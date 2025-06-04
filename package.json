@@ -13,8 +13,7 @@
 		"lint": "npx eslint .",
 		"lint:fix": "npx eslint . --fix"
 	},
-	"keywords": [
-	],
+	"keywords": [],
 	"author": {
 		"name": "Mridang Agarwalla",
 		"email": "mridang@zitadel.com",
@@ -36,7 +35,6 @@
 	"homepage": "https://github.com/zitadel/zitadel-node",
 	"bugs": "https://github.com/zitadel/zitadel-node/issues",
 	"devDependencies": {
-		"@jest/globals": "^29.7.0",
 		"@mridang/eslint-defaults": "^1.0.0",
 		"@tsconfig/node20": "latest",
 		"@types/jest": "^29.5.12",
@@ -51,5 +49,9 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"dependencies": {
+		"jose": "^6.0.11",
+		"oauth4webapi": "^3.5.1"
 	}
 }
