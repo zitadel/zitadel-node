@@ -1,0 +1,70 @@
+name: Run Tests (Jest)
+
+on: push
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  app-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: ./docker_images
+          key: ${{ runner.os }}-docker-${{ hashFiles('docker-compose.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
+      - name: Docker pull
+        run: |
+            IMAGES_DIR="./docker_images"
+            COMBINED_IMAGES_TAR="$IMAGES_DIR/combined_images.tar"
+            DOCKER_COMPOSE_FILE="docker-compose.yml"
+
+            if [ -f "$DOCKER_COMPOSE_FILE" ]; then
+              if [ -f "$COMBINED_IMAGES_TAR" ]; then
+                docker image load -i "$COMBINED_IMAGES_TAR"
+              else
+                mkdir -p "$IMAGES_DIR"
+                IMAGES=$(docker compose config --images)
+                docker compose pull --parallel
+                docker image save $(docker compose config --images) --output="$COMBINED_IMAGES_TAR"
+              fi
+            else
+              echo "No docker-compose.yml file found. Exiting."
+            fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Jest
+        run: npm run test
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ACCOUNT_ID: ${{ vars.ACCOUNT_ID }}
