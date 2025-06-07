@@ -15,11 +15,11 @@ permissions:
 
 jobs:
   check-compatibility:
-    name: With PHP ${{ matrix.php-version }}
+    name: With Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: [ '8.1', '8.2', '8.3', '8.4' ]
+        node-version: [ '20', '21', '23', '24' ]
       fail-fast: false
 
     steps:
@@ -40,11 +40,12 @@ jobs:
           ref: ${{ inputs.sanity_ref }}
           path: project/sanity
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@cf4cade2721270509d5b1c766ab3549210a39a2a # v2
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          php-version: ${{ matrix.php-version }}
+          cache: 'npm'
+          node-version: ${{ matrix.node-version }}
 
       - name: Check Installability
         working-directory: project/sanity
-        run: composer require zitadel/client
+        run: npm install @zitadel/client-node

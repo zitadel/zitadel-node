@@ -36,11 +36,6 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@cf4cade2721270509d5b1c766ab3549210a39a2a # v2
-        with:
-          php-version: '8.1'
-
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v1.2.3
         with:
@@ -49,5 +44,4 @@ jobs:
         env:
           DOCKER_REGISTRY_USER: ${{ github.actor }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
-          PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

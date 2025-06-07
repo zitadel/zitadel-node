@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "composer"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -8,11 +8,11 @@ updates:
       prefix: "chore(deps):"
     open-pull-requests-limit: 10
     groups:
-      composer-version-updates:
+      npm-version-updates:
         patterns:
           - "*"
         applies-to: "version-updates"
-      composer-security-updates:
+      npm-security-updates:
         patterns:
           - "*"
         applies-to: "security-updates"

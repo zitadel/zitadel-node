@@ -30,13 +30,14 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@cf4cade2721270509d5b1c766ab3549210a39a2a # v2
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          php-version: '8.1'
+          cache: 'npm'
+          node-version-file: '.nvmrc'
 
       - name: Install Dependencies
-        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+        run: npm ci --no-progress
 
-      - name: Run Phpstan
-        run: composer phpstan -- --error-format=github --no-progress
+      - name: Run Typecheck
+        run: npm run prepack

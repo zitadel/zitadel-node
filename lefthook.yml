@@ -3,11 +3,9 @@ pre-commit:
 
   commands:
     format:
-      glob: "*.php"
-      run: composer format
+      glob: "*.*"
+      run: npm run format
 
     check:
-      glob: "*.php"
-      run: |
-        composer rector
-        composer phpstan
+      glob: "*.*"
+      run: npm run lint:fix

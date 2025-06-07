@@ -81,7 +81,6 @@ jobs:
     needs:
       #      - lint-commits
       - code-style
-      - auto-fix
       - compat-check
       - type-check
       - run-tests

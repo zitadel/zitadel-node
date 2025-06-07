@@ -1,4 +1,3 @@
 module.exports = {
-  entry: ['src/index.ts'],
-  ignoreDependencies: ['@semantic-release/.*?'],
+  entry: ['src/index.ts', 'release.config.mjs'],
 };

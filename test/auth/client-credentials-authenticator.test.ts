@@ -9,8 +9,7 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * This test verifies that the client credentials authenticator correctly
  * refreshes its token and returns the proper Authorization header.
  */
-describe(
-  'ClientCredentialsAuthenticatorTest',
+describe('ClientCredentialsAuthenticatorTest', () => {
   withOauthContainer((oauthHost: string) => {
     test('testRefreshToken', async () => {
       await sleep(20);
@@ -38,5 +37,5 @@ describe(
         (await authenticator.refreshToken()).access_token,
       );
     }, 40000);
-  }),
-);
+  });
+});

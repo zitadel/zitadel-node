@@ -1,35 +1,37 @@
+// file: test/auth/oauth-authenticator.test.ts
 import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers';
 
 export function withOauthContainer(
-  defineTests: (ctx: string) => void,
-): () => void {
-  return () => {
-    let ctx: {
-      oauthHost: string;
-      container: StartedTestContainer;
-    };
+  defineTests: (oauthHost: string) => void,
+): void {
+  let container: StartedTestContainer;
+  let oauthHost = '';
 
+  // Outer describe ensures test registration happens after setup
+  describe('with mock OAuth2 server', () => {
     beforeAll(async () => {
-      const container = await new GenericContainer(
+      container = await new GenericContainer(
         'ghcr.io/navikt/mock-oauth2-server:2.1.10',
       )
         .withExposedPorts(8080)
         .withWaitStrategy(Wait.forHttp('/', 8080).forStatusCode(405))
         .start();
 
-      // noinspection HttpUrlsUsage
-      const oauthHost = `http://${container.getHost()}:${container.getMappedPort(8080)}`;
-      ctx = { oauthHost, container };
+      oauthHost = `http://${container.getHost()}:${container.getMappedPort(8080)}`;
     }, 30_000);
 
     afterAll(async () => {
-      await ctx.container.stop();
+      await container.stop();
     });
 
-    describe('OAuth2 server is ready', () => {
-      beforeAll(() => {
-        defineTests(ctx.oauthHost);
-      });
+    defineTestsProxy(defineTests);
+  });
+
+  // Proxy defers test registration until after `oauthHost` is assigned
+  function defineTestsProxy(fn: (oauthHost: string) => void) {
+    beforeAll(() => {
+      if (!oauthHost) throw new Error('oauthHost not initialized');
+      fn(oauthHost);
     });
-  };
+  }
 }
