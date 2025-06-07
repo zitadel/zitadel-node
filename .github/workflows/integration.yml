@@ -53,4 +53,4 @@ jobs:
 
       - name: Check Installability
         working-directory: project/sanity
-        run: npm install /project/library
+        run: npm install ../library
