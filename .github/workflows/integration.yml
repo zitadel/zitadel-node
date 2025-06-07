@@ -47,7 +47,9 @@ jobs:
 
       - name: Build Library
         working-directory: project/library
-        run: npm run build
+        run: |
+          npm ci
+          npm run build
 
       - name: Check Installability
         working-directory: project/sanity
