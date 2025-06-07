@@ -1,65 +1,72 @@
-// file: src/auth/clientcredentialsauthenticator.ts
-import { OpenId } from './openid.js';
-import * as oauth from 'oauth4webapi';
-import type { ClientCredentialsAuthenticatorBuilder } from './clientcredentialsauthenticatorbuilder.js';
-// Full import needed for static builder method to instantiate the builder
-import { ClientCredentialsAuthenticatorBuilder as ActualClientCredentialsAuthenticatorBuilder } from './clientcredentialsauthenticatorbuilder.js';
 import { OAuthAuthenticator } from './oauthauthenticator.js';
+import { OpenId } from './openid.js';
+import { ClientCredentialsAuthenticatorBuilder } from './clientcredentialsauthenticatorbuilder.js';
+import * as oauth from 'oauth4webapi';
 
+/**
+ * OAuth2 Client Credentials Authenticator.
+ *
+ * Implements the OAuth2 client credentials grant to obtain an access token.
+ */
 export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
-  private static readonly GRANT_TYPE = 'client_credentials';
+  private readonly clientAuth: oauth.ClientAuth;
+  private readonly parameters: URLSearchParams;
 
   /**
    * Constructs a ClientCredentialsAuthenticator.
-   * @param openId Initialized OpenId instance.
+   *
+   * @param openId The base URL for the API endpoints.
    * @param clientId The OAuth2 client identifier.
+   * @param clientSecret The OAuth2 client secret.
    * @param scope The scope for the token request.
-   * @param asMetadata The discovered Authorization Server metadata.
-   * @param clientMetadata The configured Client metadata for this authenticator.
-   * @param clientAuth The configured ClientAuth function for this authenticator.
    */
   public constructor(
     openId: OpenId,
     clientId: string,
-    scope: string,
-    asMetadata: oauth.AuthorizationServer, // Changed from clientConfig
-    clientMetadata: oauth.Client, // New parameter
-    clientAuth: oauth.ClientAuth, // New parameter
+    clientSecret: string,
+    scope: string = 'openid urn:zitadel:iam:org:project:id:zitadel:aud',
   ) {
-    // Pass the new parameters to the refactored OAuthAuthenticator constructor
-    super(openId, clientId, scope, asMetadata, clientMetadata, clientAuth);
+    const authServer = openId.getAuthorizationServer();
+    const client: oauth.Client = { client_id: clientId };
+    super(authServer, client, scope);
+    this.clientAuth = oauth.ClientSecretBasic(clientSecret);
+    this.parameters = new URLSearchParams({
+      grant_type: 'client_credentials',
+      scope: this.scope,
+    });
   }
 
   /**
    * Returns a new builder instance for ClientCredentialsAuthenticator.
-   * The builder will be responsible for creating asMetadata, clientMetadata, and clientAuth.
+   *
+   * @param host The base URL for API endpoints.
+   * @param clientId The OAuth2 client identifier.
+   * @param clientSecret The OAuth2 client secret.
+   * @returns A new builder instance.
    */
   public static builder(
     host: string,
     clientId: string,
     clientSecret: string,
   ): ClientCredentialsAuthenticatorBuilder {
-    return new ActualClientCredentialsAuthenticatorBuilder(
+    return new ClientCredentialsAuthenticatorBuilder(
       host,
       clientId,
       clientSecret,
     );
   }
 
-  protected getGrantType(): string {
-    return ClientCredentialsAuthenticator.GRANT_TYPE;
-  }
+  protected async performTokenRequest(
+    authServer: oauth.AuthorizationServer,
+    client: oauth.Client,
+  ): Promise<oauth.TokenEndpointResponse> {
+    const response = await oauth.clientCredentialsGrantRequest(
+      authServer,
+      client,
+      this.clientAuth,
+      this.parameters,
+    );
 
-  protected getAccessTokenOptions(): Record<string, string> {
-    const options: Record<string, string> = {
-      scope: this.scope,
-    };
-    // Note: For the 'client_credentials' grant type with oauth4webapi,
-    // client authentication (like client_id and client_secret) is handled by the
-    // `clientAuth` function (e.g., oauth.ClientSecretPost) passed during the
-    // token request (e.g., to oauth.clientCredentialsGrantRequest or oauth.genericTokenEndpointRequest).
-    // The `scope` is a primary parameter for the grant itself.
-    // Additional parameters required by the AS for this grant could be added here too.
-    return options;
+    return oauth.processClientCredentialsResponse(authServer, client, response);
   }
 }

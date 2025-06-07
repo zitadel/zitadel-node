@@ -1,138 +1,65 @@
-// file: src/auth/webtokenauthenticator.ts
-import { OpenId } from './openid.js';
 import { OAuthAuthenticator } from './oauthauthenticator.js';
 import * as oauth from 'oauth4webapi';
-import * as fs from 'fs';
-import { ZitadelException } from '../zitadel_exception.js';
-import type { WebTokenAuthenticatorBuilder } from './webtokenauthenticatorbuilder.js';
-import { WebTokenAuthenticatorBuilder as ActualWebTokenAuthenticatorBuilder } from './webtokenauthenticatorbuilder.js';
+import * as jose from 'jose';
+import { OpenId } from './openid.js';
+import { WebTokenAuthenticatorBuilder } from './webtokenauthenticatorbuilder.js';
+// @ts-expect-error since it is not expoered.
+import type { CryptoKey } from 'crypto';
 
-// Import necessary functions and types from 'jose'
-import {
-  importPKCS8,
-  SignJWT,
-  type KeyObject as JoseKeyObject, // jose's KeyObject type
-  type CryptoKey as JoseCryptoKey, // jose's CryptoKey type
-} from 'jose';
-
-interface ServiceAccountKey {
-  type: string;
-  keyId: string;
-  key: string;
-  userId: string;
-}
-
+/**
+ * JWT-based Authenticator using the JWT Bearer Grant (RFC7523).
+ *
+ * This class creates a JWT assertion and exchanges it for an access token.
+ */
 export class WebTokenAuthenticator extends OAuthAuthenticator {
-  private static readonly GRANT_TYPE =
+  private readonly clientAuth: oauth.ClientAuth;
+  private readonly grantType: string =
     'urn:ietf:params:oauth:grant-type:jwt-bearer';
 
-  private jwtIssuer: string;
-  private jwtSubject: string;
-  private jwtAudience: string;
-  private privateKeyPem: string;
-  private jwtLifetimeMs: number;
-  private jwtAlgorithm: string;
-  private keyId?: string;
-  // Store the key object that jose can use, using the explicitly exported types
-  private josePrivateKey?: JoseKeyObject | JoseCryptoKey | Uint8Array;
-
-  public constructor(
-    openId: OpenId,
-    clientId: string,
+  /**
+   * WebTokenAuthenticator constructor.
+   *
+   * @param authServer The discovered authorization server metadata.
+   * @param client The OAuth2 client metadata.
+   * @param scope The scope for the token request.
+   * @param privateKey The private key to sign the JWT.
+   * @param jwtIssuer The issuer claim for the JWT.
+   * @param jwtSubject The subject claim for the JWT.
+   * @param jwtAudience The audience claim for the JWT.
+   * @param jwtLifetimeSeconds The lifetime of the JWT in seconds.
+   * @param jwtAlgorithm The signing algorithm.
+   * @param keyId The key ID.
+   */
+  private constructor(
+    authServer: oauth.AuthorizationServer,
+    client: oauth.Client,
     scope: string,
-    asMetadata: oauth.AuthorizationServer,
-    clientMetadata: oauth.Client,
-    clientAuth: oauth.ClientAuth,
-    jwtIssuer: string,
-    jwtSubject: string,
-    jwtAudience: string,
-    privateKeyPem: string,
-    jwtLifetimeInSeconds: number,
-    jwtAlgorithm: string = 'RS256',
-    keyId?: string,
+    private readonly privateKey: CryptoKey,
+    private readonly jwtIssuer: string,
+    private readonly jwtSubject: string,
+    private readonly jwtAudience: string,
+    private readonly jwtLifetimeSeconds: number,
+    private readonly jwtAlgorithm: string,
+    private readonly keyId?: string,
   ) {
-    super(openId, clientId, scope, asMetadata, clientMetadata, clientAuth);
-    this.jwtIssuer = jwtIssuer;
-    this.jwtSubject = jwtSubject;
-    this.jwtAudience = jwtAudience;
-    this.privateKeyPem = privateKeyPem;
-    this.jwtLifetimeMs = jwtLifetimeInSeconds * 1000;
-    this.jwtAlgorithm = jwtAlgorithm;
-    this.keyId = keyId;
+    super(authServer, client, scope);
+    this.clientAuth = oauth.None();
   }
 
-  private async getJosePrivateKey(): Promise<
-    JoseKeyObject | JoseCryptoKey | Uint8Array
-  > {
-    if (this.josePrivateKey) {
-      return this.josePrivateKey;
-    }
-    try {
-      // importPKCS8 returns Promise<KeyObject | CryptoKey | Uint8Array>
-      // where KeyObject and CryptoKey are the types defined/exported by jose
-      this.josePrivateKey = await importPKCS8(
-        this.privateKeyPem,
-        this.jwtAlgorithm,
-      );
-      return this.josePrivateKey;
-    } catch (keyImportError: unknown) {
-      throw new ZitadelException(
-        `Failed to import private key for JWT signing: ${(keyImportError as Error).message}. Ensure key is PKCS#8 PEM format and algorithm is correct.`,
-        { cause: keyImportError },
-      );
-    }
-  }
-
-  public static async fromJson(
-    host: string,
-    jsonPath: string,
-  ): Promise<WebTokenAuthenticator> {
-    let jsonContent: string;
-    try {
-      jsonContent = fs.readFileSync(jsonPath, 'utf-8');
-    } catch (err) {
-      throw new ZitadelException(
-        `Unable to read JSON file: ${jsonPath}. Error: ${(err as Error).message}`,
-        { cause: err },
-      );
-    }
-
-    let configFromFile: Partial<ServiceAccountKey>;
-    try {
-      configFromFile = JSON.parse(jsonContent);
-    } catch (err) {
-      throw new ZitadelException(
-        `Invalid JSON in file: ${jsonPath}. Error: ${(err as Error).message}`,
-        { cause: err },
-      );
-    }
-
-    const userId = configFromFile.userId;
-    const privateKey = configFromFile.key;
-    const keyId = configFromFile.keyId;
-
-    if (!userId || !privateKey || !keyId) {
-      throw new ZitadelException(
-        'Missing required configuration keys (userId, key, keyId) in JSON file.',
-      );
-    }
-
-    const builder = WebTokenAuthenticator.builder(
-      // Corrected to call static method on WebTokenAuthenticator
-      host,
-      userId,
-      privateKey,
-    );
-    builder.keyId(keyId);
-    return builder.build();
-  }
-
+  /**
+   * Returns a new builder instance for WebTokenAuthenticator.
+   *
+   * @param host The base URL for API endpoints.
+   * @param userId The user ID.
+   * @param privateKey The PEM-formatted private key.
+   * @returns A new builder instance.
+   */
   public static builder(
     host: string,
     userId: string,
     privateKey: string,
   ): WebTokenAuthenticatorBuilder {
-    return new ActualWebTokenAuthenticatorBuilder(
+    return new WebTokenAuthenticatorBuilder(
       host,
       userId,
       userId,
@@ -141,31 +68,78 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     );
   }
 
-  protected getGrantType(): string {
-    return WebTokenAuthenticator.GRANT_TYPE;
+  /**
+   * Creates an instance of WebTokenAuthenticator.
+   * @internal
+   */
+  public static async create(
+    openId: OpenId,
+    clientId: string,
+    scope: string,
+    jwtIssuer: string,
+    jwtSubject: string,
+    jwtAudience: string,
+    privateKeyPem: string,
+    jwtLifetimeSeconds: number,
+    jwtAlgorithm: string,
+    keyId?: string,
+  ): Promise<WebTokenAuthenticator> {
+    const privateKey = await jose.importPKCS8(privateKeyPem, jwtAlgorithm);
+    const authServer = openId.getAuthorizationServer();
+    const client: oauth.Client = { client_id: clientId };
+    return new WebTokenAuthenticator(
+      authServer,
+      client,
+      scope,
+      privateKey,
+      jwtIssuer,
+      jwtSubject,
+      jwtAudience,
+      jwtLifetimeSeconds,
+      jwtAlgorithm,
+      keyId,
+    );
   }
 
-  protected async getAccessTokenOptions(): Promise<Record<string, string>> {
-    const nowSeconds = Math.floor(Date.now() / 1000);
-    const expirationSeconds = nowSeconds + this.jwtLifetimeMs / 1000;
-
-    const signingKey = await this.getJosePrivateKey(); // is JoseKeyObject | JoseCryptoKey | Uint8Array
-
-    const jwtSigner = new SignJWT({})
-      .setProtectedHeader({ alg: this.jwtAlgorithm, kid: this.keyId })
-      .setIssuedAt(nowSeconds)
-      .setIssuer(this.jwtIssuer)
-      .setSubject(this.jwtSubject)
-      .setAudience(this.jwtAudience)
-      .setExpirationTime(expirationSeconds);
-
-    // SignJWT.sign accepts KeyObject | CryptoKey | Uint8Array, which signingKey matches
-    const assertion = await jwtSigner.sign(signingKey);
-
-    const options: Record<string, string> = {
-      scope: this.scope,
-      assertion: assertion,
+  protected async performTokenRequest(
+    authServer: oauth.AuthorizationServer,
+    client: oauth.Client,
+  ): Promise<oauth.TokenEndpointResponse> {
+    const protectedHeader: jose.JWTHeaderParameters = {
+      alg: this.jwtAlgorithm,
     };
-    return options;
+    if (this.keyId) {
+      protectedHeader.kid = this.keyId;
+    }
+
+    const assertion = await new jose.SignJWT({ sub: this.jwtSubject })
+      .setProtectedHeader(protectedHeader)
+      .setIssuer(this.jwtIssuer)
+      .setAudience(
+        this.jwtAudience || authServer.token_endpoint || authServer.issuer,
+      )
+      .setIssuedAt()
+      .setExpirationTime(`${this.jwtLifetimeSeconds}s`)
+      .sign(this.privateKey);
+
+    const parameters = new URLSearchParams({
+      grant_type: this.grantType,
+      assertion: assertion,
+      scope: this.scope,
+    });
+
+    const response = await oauth.genericTokenEndpointRequest(
+      authServer,
+      client,
+      this.clientAuth,
+      this.grantType,
+      parameters,
+    );
+
+    return oauth.processGenericTokenEndpointResponse(
+      authServer,
+      client,
+      response,
+    );
   }
 }

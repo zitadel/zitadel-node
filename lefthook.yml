@@ -1,0 +1,13 @@
+pre-commit:
+  parallel: true
+
+  commands:
+    format:
+      glob: "*.php"
+      run: composer format
+
+    check:
+      glob: "*.php"
+      run: |
+        composer rector
+        composer phpstan

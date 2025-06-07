@@ -1,0 +1,51 @@
+name: Autofix
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: 'The Git ref (branch, tag, or SHA) to checkout'
+        required: true
+        type: string
+
+defaults:
+  run:
+    working-directory: ./
+
+permissions:
+  contents: read
+
+jobs:
+  rector-check:
+    runs-on: ubuntu-latest
+    name: Run Rector Checks
+
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@cf4cade2721270509d5b1c766ab3549210a39a2a # v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Install Dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run Rector
+        run: composer rector -- --dry-run --ansi
+
+      - name: Check for changes
+        run: |
+          if ! git diff --exit-code; then
+            echo "❌ Rector found pending changes! Please run 'composer rector' locally and commit the fixes."
+            exit 1
+          fi

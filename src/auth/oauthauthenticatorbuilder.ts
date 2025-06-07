@@ -1,59 +1,41 @@
-// file: src/auth/oauthauthenticatorbuilder.ts
 import { OpenId } from './openid.js';
-import { Authenticator } from './authenticator.js';
+import { OAuthAuthenticator } from './oauthauthenticator.js';
 
 /**
  * Base builder for OAuth authenticators.
  *
- * Provides fluent methods to override scopes.
- * Subclasses extend this builder to construct specific OAuthAuthenticator instances.
+ * Provides fluent methods to override the default token endpoint and scopes.
+ * Subclasses extend this builder to construct specific OAuthAuthenticator
+ * instances.
  */
 export abstract class OAuthAuthenticatorBuilder {
-  protected openIdInstance!: OpenId;
   protected authScopes: string =
     'openid urn:zitadel:iam:org:project:id:zitadel:aud';
-  protected originalHost: string;
+  protected openId!: OpenId;
 
   /**
    * Constructs the builder with the required host.
    *
-   * @param hostName The hostname for OpenID discovery.
+   * @param host The hostname of the OpenID provider.
    */
-  protected constructor(hostName: string) {
-    if (!hostName || hostName.trim() === '') {
-      throw new TypeError('HostName cannot be empty for builder.');
-    }
-    this.originalHost = hostName;
-  }
-
-  /**
-   * Initializes the OpenId instance. Should be called by subclass build methods.
-   */
-  protected async initializeOpenId(): Promise<void> {
-    if (!this.openIdInstance) {
-      this.openIdInstance = new OpenId(this.originalHost);
-      await this.openIdInstance.init();
-    }
-  }
+  protected constructor(protected readonly host: string) {}
 
   /**
    * Overrides the default scopes.
    *
-   * @param authScopes A list of scopes for the token request.
-   * @returns This builder instance for fluent chaining.
+   * @param scopes A list of scopes for the token request.
+   * @returns The builder instance for chaining.
    */
-  public scopes(authScopes: string[]): this {
-    if (!authScopes || authScopes.length === 0) {
-      this.authScopes = '';
-    } else {
-      this.authScopes = authScopes.join(' ');
-    }
+  public scopes(scopes: string | string[]): this {
+    this.authScopes = Array.isArray(scopes) ? scopes.join(' ') : scopes;
     return this;
   }
 
-  /**
-   * Abstract build method to be implemented by subclasses.
-   * It's async due to potential OpenId initialization.
-   */
-  abstract build(): Promise<Authenticator>;
+  protected async discoverOpenId(): Promise<void> {
+    if (!this.openId) {
+      this.openId = await OpenId.discover(this.host);
+    }
+  }
+
+  public abstract build(): Promise<OAuthAuthenticator>;
 }

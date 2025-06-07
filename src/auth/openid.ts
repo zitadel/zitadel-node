@@ -1,121 +1,93 @@
-// file: src/auth/openid.ts
-import * as oauth from 'oauth4webapi'; // Assuming this is how you access the library
+import * as oauth from 'oauth4webapi';
 
 /**
- * OpenId class is responsible for fetching and storing OIDC Authorization Server metadata.
- * It manually fetches the .well-known/openid-configuration endpoint.
+ * OpenId class is responsible for fetching and storing important OpenID
+ * configuration endpoints. It interacts with the OpenID provider's
+ * well-known configuration endpoint and retrieves the token, authorization,
+ * and userinfo endpoints.
  */
 export class OpenId {
-  private readonly issuerUrl: string;
-  private _serverMetadata!: oauth.AuthorizationServer; // Using direct type from oauth4webapi
-  private _hostEndpoint!: URL;
-  private isInitialized = false;
+  /**
+   * @param authServer The discovered authorization server metadata.
+   */
+  private constructor(private readonly authServer: oauth.AuthorizationServer) {}
 
-  public constructor(hostname: string) {
-    // hostname is the issuer URL
-    if (!hostname || hostname.trim() === '') {
-      throw new TypeError('Hostname (issuer URL) cannot be empty.');
+  /**
+   * Constructor to initialize the OpenId instance and fetch OpenID
+   * configuration.
+   *
+   * This constructor accepts a hostname, fetches the OpenID configuration,
+   * and stores the `token_endpoint`, `authorization_endpoint`, and
+   * `userinfo_endpoint` for future use.
+   *
+   * @param hostname The hostname of the OpenID provider.
+   * @returns A promise that resolves to an OpenId instance.
+   * @throws {Error} If the provided hostname is empty, or if there's an
+   * error during the HTTP request or JSON parsing.
+   */
+  public static async discover(hostname: string): Promise<OpenId> {
+    if (!hostname) {
+      throw new Error('Hostname cannot be empty.');
     }
-    let fullUrl = hostname;
-    if (!/^https?:\/\//.test(hostname)) {
-      fullUrl = `https://${hostname}`;
+    if (!hostname.startsWith('http')) {
+      hostname = `https://${hostname}`;
     }
-    this.issuerUrl = fullUrl;
-    this._hostEndpoint = new URL(this.issuerUrl);
+    const issuer = new URL(hostname);
+    const authServer = await oauth
+      .discoveryRequest(issuer)
+      .then((response) => oauth.processDiscoveryResponse(issuer, response));
+    return new OpenId(authServer);
   }
 
   /**
-   * Asynchronously fetches and parses the OIDC server metadata.
-   * This method MUST be called and awaited before accessing metadata or endpoints.
-   * @throws Error if fetching or parsing fails, or if essential endpoints are missing.
+   * Returns the discovered Authorization Server metadata.
    */
-  public async init(): Promise<void> {
-    if (this.isInitialized) {
-      return;
+  public getAuthorizationServer(): oauth.AuthorizationServer {
+    return this.authServer;
+  }
+
+  /**
+   * Returns the token endpoint URL.
+   *
+   * This method returns the URL for obtaining OpenID tokens.
+   *
+   * @returns The token endpoint URL.
+   */
+  public getTokenEndpoint(): string {
+    if (!this.authServer.token_endpoint) {
+      throw new Error('Token endpoint not found in OpenID configuration.');
     }
-    const wellKnownUrl = new URL(
-      '/.well-known/openid-configuration',
-      this.issuerUrl,
-    ).href;
+    return this.authServer.token_endpoint;
+  }
 
-    try {
-      const response = await fetch(wellKnownUrl); // Using global fetch
-      if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(
-          `Failed to fetch OpenID configuration from ${wellKnownUrl}, status: ${response.status}, body: ${errorBody}`,
-        );
-      }
-      // Cast to the correct type from oauth4webapi
-      const metadata = (await response.json()) as oauth.AuthorizationServer;
-
-      if (!metadata.issuer) {
-        throw new Error('issuer not found in OpenID configuration');
-      }
-      // It's good practice for metadata.issuer to match the authority it was discovered from.
-      if (metadata.issuer !== this.issuerUrl) {
-        console.warn(
-          `Discovered issuer "${metadata.issuer}" does not exactly match authority "${this.issuerUrl}". Proceeding with discovered issuer's endpoints, but this may indicate a misconfiguration.`,
-        );
-      }
-      if (!metadata.token_endpoint) {
-        throw new Error('token_endpoint not found in OpenID configuration');
-      }
-      if (!metadata.authorization_endpoint) {
-        throw new Error(
-          'authorization_endpoint not found in OpenID configuration',
-        );
-      }
-
-      this._serverMetadata = metadata;
-      this.isInitialized = true;
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
+  /**
+   * Returns the authorization endpoint URL.
+   *
+   * This method returns the URL used for authorization requests.
+   *
+   * @returns The authorization endpoint URL.
+   */
+  public getAuthorizationEndpoint(): string {
+    if (!this.authServer.authorization_endpoint) {
       throw new Error(
-        `Failed to initialize OpenId from ${wellKnownUrl}: ${message}`,
+        'Authorization endpoint not found in OpenID configuration.',
       );
     }
+    return this.authServer.authorization_endpoint;
   }
 
-  private ensureInitialized(): void {
-    if (!this.isInitialized) {
-      throw new Error(
-        'OpenId instance has not been initialized. Call and await init() first.',
-      );
+  /**
+   * Returns the userinfo endpoint URL.
+   *
+   * This method returns the URL for fetching user information from the
+   * OpenID provider.
+   *
+   * @returns The userinfo endpoint URL.
+   */
+  public getUserinfoEndpoint(): string {
+    if (!this.authServer.userinfo_endpoint) {
+      throw new Error('Userinfo endpoint not found in OpenID configuration.');
     }
-  }
-
-  public getServerMetadata(): oauth.AuthorizationServer {
-    // Correct return type
-    this.ensureInitialized();
-    return this._serverMetadata;
-  }
-
-  public getHostEndpoint(): URL {
-    return this._hostEndpoint;
-  }
-
-  public getTokenEndpoint(): URL {
-    this.ensureInitialized();
-    const endpoint = this._serverMetadata.token_endpoint;
-    if (!endpoint)
-      throw new Error('Token endpoint is not available in server metadata.');
-    return new URL(endpoint);
-  }
-
-  public getAuthorizationEndpoint(): URL {
-    this.ensureInitialized();
-    const endpoint = this._serverMetadata.authorization_endpoint;
-    if (!endpoint)
-      throw new Error(
-        'Authorization endpoint is not available in server metadata.',
-      );
-    return new URL(endpoint);
-  }
-
-  public getUserinfoEndpoint(): URL | undefined {
-    this.ensureInitialized();
-    const endpoint = this._serverMetadata.userinfo_endpoint;
-    return endpoint ? new URL(endpoint) : undefined;
+    return this.authServer.userinfo_endpoint;
   }
 }

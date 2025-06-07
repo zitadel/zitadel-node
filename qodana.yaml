@@ -1,0 +1,15 @@
+version: "1.0"
+
+profile:
+  name: qodana.recommended
+
+exclude:
+  - name: All
+    paths:
+      - lib/Api
+      - lib/Model
+
+php:
+  version: '8.0'
+
+linter: jetbrains/qodana-js:2025.1
