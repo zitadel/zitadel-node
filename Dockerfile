@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json* ./
 
-RUN npm ci --production
+RUN npm ci --no-progress
 
 COPY . .
 

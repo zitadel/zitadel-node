@@ -3,4 +3,5 @@
 
 # Include only the essential files needed for building the library
 !package*.json
+!tsconfig.json
 !src/
