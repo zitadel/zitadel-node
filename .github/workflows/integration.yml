@@ -43,7 +43,6 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          cache: 'npm'
           node-version: ${{ matrix.node-version }}
 
       - name: Build Library
