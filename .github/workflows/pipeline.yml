@@ -29,13 +29,6 @@ jobs:
       commit_changes: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     secrets: inherit
 
-  auto-fix:
-    name: Run Static Analysis
-    uses: ./.github/workflows/autofix.yml
-    with:
-      ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
-    secrets: inherit
-
   compat-check:
     name: Run Compatibility Checks
     uses: ./.github/workflows/integration.yml
