@@ -2,5 +2,5 @@
 *
 
 # Include only the essential files needed for building the library
-!composer.*
-!lib/
+!package*.json
+!src/
