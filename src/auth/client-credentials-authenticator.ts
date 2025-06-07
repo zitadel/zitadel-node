@@ -1,4 +1,4 @@
-import { OAuthAuthenticator } from './oauthauthenticator.js';
+import { OAuthAuthenticator } from './oauth-authenticator.js';
 import { OpenId } from './openid.js';
 import { ClientCredentialsAuthenticatorBuilder } from './clientcredentialsauthenticatorbuilder.js';
 import * as oauth from 'oauth4webapi';

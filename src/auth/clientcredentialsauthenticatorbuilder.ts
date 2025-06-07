@@ -1,5 +1,5 @@
-import { OAuthAuthenticatorBuilder } from './oauthauthenticatorbuilder.js';
-import { ClientCredentialsAuthenticator } from './clientcredentialsauthenticator.js';
+import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
+import { ClientCredentialsAuthenticator } from './client-credentials-authenticator.js';
 
 /**
  * Builder for ClientCredentialsAuthenticator.

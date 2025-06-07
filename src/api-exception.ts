@@ -1,5 +1,5 @@
 // file: src/client/apiexception.ts
-import { ZitadelException } from './zitadel_exception.js'; // Adjust path based on your structure
+import { ZitadelException } from './zitadel-exception.js'; // Adjust path based on your structure
 
 /**
  * Represents an HTTP error returned from an API.

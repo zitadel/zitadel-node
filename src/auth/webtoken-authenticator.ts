@@ -1,8 +1,8 @@
-import { OAuthAuthenticator } from './oauthauthenticator.js';
+import { OAuthAuthenticator } from './oauth-authenticator.js';
 import * as oauth from 'oauth4webapi';
 import * as jose from 'jose';
 import { OpenId } from './openid.js';
-import { WebTokenAuthenticatorBuilder } from './webtokenauthenticatorbuilder.js';
+import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
 // @ts-expect-error since it is not expoered.
 import type { CryptoKey } from 'crypto';
 

@@ -1,5 +1,5 @@
-import { OAuthAuthenticatorBuilder } from './oauthauthenticatorbuilder.js';
-import { WebTokenAuthenticator } from './webtokenauthenticator.js';
+import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
+import { WebTokenAuthenticator } from './webtoken-authenticator.js';
 import { promises as fs } from 'fs';
 
 /**

@@ -1,5 +1,5 @@
 import { OpenId } from './openid.js';
-import { OAuthAuthenticator } from './oauthauthenticator.js';
+import { OAuthAuthenticator } from './oauth-authenticator.js';
 
 /**
  * Base builder for OAuth authenticators.
