@@ -16,7 +16,7 @@ export abstract class Authenticator {
    * @param hostName The base URL for all authentication endpoints.
    */
   protected constructor(hostName: string) {
-    this.hostName = new URL(hostName);
+    this.hostName = new URL(new URL(hostName).origin);
   }
 
   /**

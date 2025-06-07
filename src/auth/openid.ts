@@ -32,9 +32,15 @@ export class OpenId {
     if (!hostname.startsWith('http')) {
       hostname = `https://${hostname}`;
     }
-    const issuer = new URL(hostname);
+    const issuer = new URL(
+      '/.well-known/openid-configuration',
+      new URL(hostname).origin,
+    );
+    // noinspection JSDeprecatedSymbols
     const authServer = await oauth
-      .discoveryRequest(issuer)
+      .discoveryRequest(issuer, {
+        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
+      })
       .then((response) => oauth.processDiscoveryResponse(issuer, response));
     return new OpenId(authServer);
   }

@@ -65,6 +65,9 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
       client,
       this.clientAuth,
       this.parameters,
+      {
+        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
+      },
     );
 
     return oauth.processClientCredentialsResponse(authServer, client, response);

@@ -74,14 +74,6 @@ export abstract class OAuthAuthenticator extends Authenticator {
     }
   }
 
-  /**
-   * Retrieves the client metadata.
-   * @returns The client metadata.
-   */
-  public getClient(): oauth.Client {
-    return this.client;
-  }
-
   protected abstract performTokenRequest(
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,

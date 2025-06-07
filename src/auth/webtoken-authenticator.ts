@@ -134,6 +134,9 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       this.clientAuth,
       this.grantType,
       parameters,
+      {
+        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
+      },
     );
 
     return oauth.processGenericTokenEndpointResponse(

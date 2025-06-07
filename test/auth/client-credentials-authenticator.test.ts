@@ -1,5 +1,5 @@
 import { ClientCredentialsAuthenticator } from '../../src/auth/client-credentials-authenticator.js';
-import { withOauthContainer } from './oauth-authenticator.test.js';
+import { withOauthContainer } from './oauth-authenticator-test.js';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -10,8 +10,9 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * refreshes its token and returns the proper Authorization header.
  */
 describe('ClientCredentialsAuthenticatorTest', () => {
-  withOauthContainer((oauthHost: string) => {
+  withOauthContainer((getOauthHost) => {
     test('testRefreshToken', async () => {
+      const oauthHost = getOauthHost();
       await sleep(20);
 
       const authenticator = await ClientCredentialsAuthenticator.builder(
