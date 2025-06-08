@@ -30,6 +30,7 @@ export interface ConfigurationParameters {
     | Promise<string>
     | ((name?: string, scopes?: string[]) => string | Promise<string>); // parameter for oauth2 security
   headers?: HTTPHeaders; //header params we want to use on every request
+  // @ts-ignore
   credentials?: RequestCredentials; //value for the credentials param we want to use on each request
 }
 
@@ -90,6 +91,7 @@ export class Configuration {
     return this.configuration.headers;
   }
 
+  // @ts-ignore
   get credentials(): RequestCredentials | undefined {
     return this.configuration.credentials;
   }
@@ -159,6 +161,7 @@ export class BaseAPI {
     if (response && response.status >= 200 && response.status < 300) {
       return response;
     }
+    // @ts-ignore
     throw new ResponseError(response, 'Response returned an error code');
   }
 
@@ -275,6 +278,7 @@ export class BaseAPI {
             fetch: this.fetchApi,
             url: fetchParams.url,
             init: fetchParams.init,
+            // @ts-ignore
             response: response.clone(),
           })) || response;
       }
@@ -339,6 +343,7 @@ export const COLLECTION_FORMATS = {
   pipes: '|',
 };
 
+// @ts-ignore
 export type FetchAPI = WindowOrWorkerGlobalScope['fetch'];
 
 export type Json = any;
@@ -365,6 +370,7 @@ export type HTTPBody = Json | FormData | URLSearchParams;
 export type HTTPRequestInit = {
   headers?: HTTPHeaders;
   method: HTTPMethod;
+  // @ts-ignore
   credentials?: RequestCredentials;
   body?: HTTPBody;
 };
