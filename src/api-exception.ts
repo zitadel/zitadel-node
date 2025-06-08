@@ -1,5 +1,4 @@
-// file: src/client/apiexception.ts
-import { ZitadelException } from './zitadel-exception.js'; // Adjust path based on your structure
+import { ZitadelException } from './zitadel-exception.js';
 
 /**
  * Represents an HTTP error returned from an API.
@@ -19,8 +18,6 @@ export class ApiException extends ZitadelException {
    */
   protected readonly _responseHeaders: Record<string, string[]>;
 
-  // 'code' property is inherited from ZitadelException.
-
   /**
    * Constructor.
    *
@@ -31,11 +28,11 @@ export class ApiException extends ZitadelException {
    */
   public constructor(
     message: string,
-    code: number, // HTTP status code
+    code: number,
     responseHeaders: Record<string, string[]> = {},
     responseBody: Record<string, unknown> | string | null = null,
   ) {
-    super(message, code); // Pass message and code to ZitadelException constructor
+    super(message, code);
     this._responseHeaders = responseHeaders;
     this._responseBody = responseBody;
   }
@@ -46,7 +43,7 @@ export class ApiException extends ZitadelException {
    * @returns HTTP status code.
    */
   public getStatusCode(): number {
-    return super.getCode(); // 'this.code' is inherited from ZitadelException
+    return super.getCode();
   }
 
   /**

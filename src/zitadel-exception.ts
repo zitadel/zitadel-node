@@ -1,6 +1,5 @@
-// file: src/zitadelexception.ts
 export class ZitadelException extends Error {
-  protected readonly code: number; // For HTTP status or general error code
+  protected readonly code: number;
 
   constructor(message: string, code: number = 0, options?: ErrorOptions) {
     super(message, options);
