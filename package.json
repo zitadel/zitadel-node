@@ -8,8 +8,8 @@
 		"test": "jest --verbose --config=jest.config.mjs --runInBand",
 		"test:watch": "npm run test -- --watch",
 		"test:debug": "jest --verbose --config=jest.config.mjs --runInBand --detectOpenHandles",
-		"format": "prettier --write \"**/*.{js,ts,jsx,tsx,json,css,md,html}\"",
-		"format:check": "prettier --check \"**/*.{js,ts,jsx,tsx,json,css,md,html}\"",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"lint": "npx eslint .",
 		"lint:fix": "npx eslint . --fix"
 	},

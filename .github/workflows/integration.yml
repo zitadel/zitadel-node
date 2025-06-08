@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ '20', '21', '23', '24' ]
+        node-version: ['20', '21', '23', '24']
       fail-fast: false
 
     steps:

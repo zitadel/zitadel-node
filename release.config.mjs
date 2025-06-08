@@ -28,5 +28,5 @@ export default {
       },
     ],
   ],
-  repositoryUrl: "git+https://github.com/zitadel/zitadel-node.git"
+  repositoryUrl: 'git+https://github.com/zitadel/zitadel-node.git',
 };
