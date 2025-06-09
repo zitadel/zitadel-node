@@ -9,7 +9,4 @@ exclude:
       - lib/Api
       - lib/Model
 
-php:
-  version: '8.0'
-
 linter: jetbrains/qodana-js:2025.1
