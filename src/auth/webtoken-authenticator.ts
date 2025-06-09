@@ -104,7 +104,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       host,
       userId,
       userId,
-      userId,
+      host,
       privateKey,
     );
   }
@@ -213,10 +213,31 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       },
     );
 
-    return oauth.processGenericTokenEndpointResponse(
-      authServer,
-      client,
-      response,
-    );
+    const responseBody = (await response.clone().json()) as Response;
+    // @ts-expect-error wgsg
+    const idToken = responseBody.id_token;
+
+    if (!idToken || typeof idToken !== 'string') {
+      return oauth.processGenericTokenEndpointResponse(
+        authServer,
+        client,
+        response,
+      );
+    } else {
+      const claims = jose.decodeJwt(idToken);
+
+      const validationClientId = claims.azp;
+      if (!validationClientId || typeof validationClientId !== 'string') {
+        throw new Error(
+          'ID Token is missing a valid `azp` claim for validation.',
+        );
+      }
+
+      return oauth.processGenericTokenEndpointResponse(
+        authServer,
+        { client_id: validationClientId },
+        response,
+      );
+    }
   }
 }
