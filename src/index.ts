@@ -14,6 +14,7 @@ import { Authenticator } from './auth/authenticator.js';
 import { Configuration } from './configuration.js';
 import { ClientCredentialsAuthenticator } from './auth/client-credentials-authenticator.js';
 import { PersonalAccessAuthenticator } from './auth/personal-access-authenticator.js';
+import { WebTokenAuthenticator } from './auth/webtoken-authenticator.js';
 
 // noinspection JSUnusedGlobalSymbols
 export default class Zitadel {
@@ -88,16 +89,21 @@ export default class Zitadel {
     return new this(authenticator);
   }
 
-  // /**
-  //  * Initialize the SDK via Private Key JWT assertion.
-  //  *
-  //  * @param host API URL.
-  //  * @param keyFile Path to service account JSON or PEM key file.
-  //  * @returns Configured Zitadel client instance using JWT assertion.
-  //  * @throws {Error} If key parsing or token exchange fails.
-  //  * @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-  //  */
-  // public static withPrivateKey(host: string, keyFile: string): Zitadel {
-  //   return new this(WebTokenAuthenticator.fromJson(host, keyFile));
-  // }
+  /**
+   * Initialize the SDK via Private Key JWT assertion.
+   *
+   * @param host API URL.
+   * @param keyFile Path to service account JSON or PEM key file.
+   * @returns Configured Zitadel client instance using JWT assertion.
+   * @throws {Error} If key parsing or token exchange fails.
+   * @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
+   */
+  public static async withPrivateKey(
+    host: string,
+    keyFile: string,
+  ): Promise<Zitadel> {
+    const authenticator = await WebTokenAuthenticator.fromJson(host, keyFile);
+
+    return new this(authenticator);
+  }
 }

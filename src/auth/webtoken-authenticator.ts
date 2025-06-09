@@ -5,6 +5,7 @@ import { OpenId } from './openid.js';
 import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
 // @ts-expect-error since it is not expoered.
 import type { CryptoKey } from 'crypto';
+import * as fs from 'node:fs';
 
 /**
  * JWT-based Authenticator using the JWT Bearer Grant (RFC7523).
@@ -44,6 +45,45 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
   ) {
     super(authServer, client, scope);
     this.clientAuth = oauth.None();
+  }
+
+  /**
+   * Initialize a WebTokenAuthenticator instance from a JSON configuration
+   * file.
+   *
+   * The JSON file should have the following structure:
+   * ```
+   * {
+   * "type": "serviceaccount",
+   * "keyId": "100509901696068329",
+   * "key": "-----BEGIN RSA PRIVATE KEY----- [...] -----END RSA PRIVATE KEY-----\n",
+   * "userId": "100507859606888466"
+   * }
+   * ```
+   *
+   * @param host The base URL for the API endpoints.
+   * @param jsonPath The file path to the JSON configuration file.
+   * @returns A builder instance for WebTokenAuthenticator.
+   * @throws {Error} if the file cannot be read or the JSON is invalid.
+   */
+  public static async fromJson(
+    host: string,
+    jsonPath: string,
+  ): Promise<WebTokenAuthenticator> {
+    const json = fs.readFileSync(jsonPath, 'utf-8');
+    const config = JSON.parse(json);
+
+    const userId = config?.userId;
+    const privateKey = config?.key;
+    const keyId = config?.keyId;
+
+    if (!userId || !privateKey || !keyId) {
+      throw new Error('Missing required configuration keys in JSON file.');
+    }
+
+    return WebTokenAuthenticator.builder(host, userId, privateKey)
+      .keyId(keyId)
+      .build();
   }
 
   /**
