@@ -1,5 +1,6 @@
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
+import { ZitadelException } from '../zitadel-exception.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.
@@ -68,9 +69,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
 
       return this.token;
     } catch (err) {
-      this.token = null;
-      this.tokenExpiry = null;
-      throw err;
+      throw new ZitadelException('Token refresh failed: ', err);
     }
   }
 

@@ -6,6 +6,7 @@ import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.j
 // @ts-expect-error since it is not expoered.
 import type { CryptoKey } from 'crypto';
 import * as fs from 'node:fs';
+import { createPrivateKey, KeyObject } from 'node:crypto';
 
 /**
  * JWT-based Authenticator using the JWT Bearer Grant (RFC7523).
@@ -70,7 +71,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     host: string,
     jsonPath: string,
   ): Promise<WebTokenAuthenticator> {
-    const json = fs.readFileSync(jsonPath, 'utf-8');
+    const json = fs.readFileSync(jsonPath, 'utf-8').replaceAll('\\"', '"');
     const config = JSON.parse(json);
 
     const userId = config?.userId;
@@ -103,9 +104,44 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       host,
       userId,
       userId,
-      host,
+      userId,
       privateKey,
     );
+  }
+
+  /**
+   * Normalises any PKCS-1/PKCS-8 PEM string and returns a Node KeyObject.
+   * Works with:
+   *   • one-liner PEMs
+   *   • JSON-escaped “\n” sequences
+   *   • Windows CRLF line-endings
+   */
+  private static parsePem(pemLike: string): KeyObject {
+    // 1 – turn literal “\n” into real LF and unify CRLF → LF
+    let pem = pemLike.replace(/\\n/g, '\n').replace(/\r\n/g, '\n').trim();
+
+    // 2 – ensure header and footer sit on their own lines
+    pem = pem
+      .replace(/(-----BEGIN [^-]+-----)([A-Za-z0-9+/=]+)/, '$1\n$2')
+      .replace(/([A-Za-z0-9+/=]+)(-----END [^-]+-----)/, '$1\n$2');
+
+    // 3 – if the body is one long line, wrap it at 64 chars (tidy, not mandatory)
+    const parts = pem.split('\n');
+    if (parts.length === 3) {
+      const [header, bodyRaw, footer] = parts;
+      const bodyWrapped =
+        bodyRaw
+          .replace(/\s+/g, '') // strip stray white-space
+          .match(/.{1,64}/g) // wrap
+          ?.join('\n') ?? bodyRaw;
+      pem = `${header}\n${bodyWrapped}\n${footer}`;
+    }
+
+    // 4 – pick the correct “type” hint for Node’s decoder
+    const type = /BEGIN RSA PRIVATE KEY/.test(pem) ? 'pkcs1' : 'pkcs8';
+
+    // 5 – finally build the KeyObject
+    return createPrivateKey({ key: pem, format: 'pem', type });
   }
 
   /**
@@ -124,7 +160,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     jwtAlgorithm: string,
     keyId?: string,
   ): Promise<WebTokenAuthenticator> {
-    const privateKey = await jose.importPKCS8(privateKeyPem, jwtAlgorithm);
+    const privateKey = WebTokenAuthenticator.parsePem(privateKeyPem);
     const authServer = openId.getAuthorizationServer();
     const client: oauth.Client = { client_id: clientId };
     return new WebTokenAuthenticator(
@@ -155,9 +191,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     const assertion = await new jose.SignJWT({ sub: this.jwtSubject })
       .setProtectedHeader(protectedHeader)
       .setIssuer(this.jwtIssuer)
-      .setAudience(
-        this.jwtAudience || authServer.token_endpoint || authServer.issuer,
-      )
+      .setAudience(this.jwtAudience)
       .setIssuedAt()
       .setExpirationTime(`${this.jwtLifetimeSeconds}s`)
       .sign(this.privateKey);

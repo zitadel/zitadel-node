@@ -53,7 +53,10 @@ describe('UsePrivateKeySpec', () => {
     const tempFile = createTempJwtFile();
     try {
       // Note: The original test uses a valid key with an invalid host.
-      const invalid = await Zitadel.withPrivateKey('https://zitadel.cloud', tempFile);
+      const invalid = await Zitadel.withPrivateKey(
+        'https://zitadel.cloud',
+        tempFile,
+      );
       await expect(
         invalid.settings.settingsServiceGetGeneralSettings(),
       ).rejects.toThrow(ZitadelException);

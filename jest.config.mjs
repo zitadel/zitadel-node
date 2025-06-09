@@ -29,6 +29,7 @@ export default {
   coverageReporters: ['clover'],
   coveragePathIgnorePatterns: ['/dist/', '/node_modules/'],
   testTimeout: 60000,
+  globalSetup: './test/setup.js',
   extensionsToTreatAsEsm: ['.ts', '.tsx', '.mts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',

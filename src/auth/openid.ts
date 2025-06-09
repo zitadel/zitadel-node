@@ -10,15 +10,58 @@ export class OpenId {
   /**
    * @param authServer The discovered authorization server metadata.
    */
-  private constructor(private readonly authServer: oauth.AuthorizationServer) {}
+  private constructor(private readonly authServer: oauth.AuthorizationServer) {
+    //
+  }
 
   /**
-   * Constructor to initialize the OpenId instance and fetch OpenID
-   * configuration.
+   * Builds and returns a URL object from the provided hostname.
+   * If the hostname does not include a scheme, it defaults to "https".
+   */
+  private static buildHostname(hostname: string): URL {
+    if (!hostname.startsWith('http')) {
+      return new URL(`https://${hostname}`);
+    }
+    return new URL(hostname);
+  }
+
+  /**
+   * Builds the URL to the well-known OpenID configuration endpoint.
+   */
+  private static buildWellKnownUrl(hostname: string): string {
+    const url = this.buildHostname(hostname);
+    url.pathname = '/.well-known/openid-configuration';
+    return url.toString();
+  }
+
+  /**
+   * Fetches the OpenID configuration from the well-known endpoint.
+   */
+  private static async fetchOpenIdConfiguration(
+    hostname: string,
+  ): Promise<oauth.AuthorizationServer> {
+    const wellKnownUrl = this.buildWellKnownUrl(hostname);
+    const response = await fetch(wellKnownUrl);
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch OpenID configuration: ${response.status} ${response.statusText}`,
+      );
+    }
+
+    try {
+      // Assign the JSON response to the specified type.
+      return (await response.json()) as unknown as oauth.AuthorizationServer;
+    } catch {
+      throw new Error('Failed to parse OpenID configuration JSON.');
+    }
+  }
+
+  /**
+   * Discovers the OpenID configuration from a provider's hostname.
    *
-   * This constructor accepts a hostname, fetches the OpenID configuration,
-   * and stores the `token_endpoint`, `authorization_endpoint`, and
-   * `userinfo_endpoint` for future use.
+   * This method accepts a hostname, fetches the OpenID configuration,
+   * and returns a new OpenId instance.
    *
    * @param hostname The hostname of the OpenID provider.
    * @returns A promise that resolves to an OpenId instance.
@@ -29,29 +72,19 @@ export class OpenId {
     if (!hostname) {
       throw new Error('Hostname cannot be empty.');
     }
-    if (!hostname.startsWith('http')) {
-      hostname = `https://${hostname}`;
-    }
-    const issuer = new URL(
-      '/.well-known/openid-configuration',
-      new URL(hostname).origin,
-    );
-    // noinspection JSDeprecatedSymbols
-    const authServer = await oauth
-      .discoveryRequest(issuer, {
-        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
-      })
-      .then((response) => oauth.processDiscoveryResponse(issuer, response));
+
+    const authServer = await this.fetchOpenIdConfiguration(hostname);
     return new OpenId(authServer);
   }
 
   /**
    * Returns the discovered Authorization Server metadata.
    */
-  public getAuthorizationServer(): oauth.AuthorizationServer {
+  getAuthorizationServer(): oauth.AuthorizationServer {
     return this.authServer;
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns the token endpoint URL.
    *
@@ -66,6 +99,7 @@ export class OpenId {
     return this.authServer.token_endpoint;
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns the authorization endpoint URL.
    *
@@ -82,6 +116,7 @@ export class OpenId {
     return this.authServer.authorization_endpoint;
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns the userinfo endpoint URL.
    *

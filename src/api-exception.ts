@@ -32,7 +32,7 @@ export class ApiException extends ZitadelException {
     responseHeaders: Record<string, string[]> = {},
     responseBody: Record<string, unknown> | string | null = null,
   ) {
-    super(message, code);
+    super(message, undefined, code);
     this._responseHeaders = responseHeaders;
     this._responseBody = responseBody;
   }

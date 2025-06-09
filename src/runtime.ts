@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Configuration } from './configuration.js';
+import { ApiException } from './api-exception.js';
 
 export const BASE_PATH = 'https://zitadel.com'.replace(/\/+$/, '');
 
@@ -43,8 +44,17 @@ export class BaseAPI {
     if (response && response.status >= 200 && response.status < 300) {
       return response;
     }
-    // @ts-ignore
-    throw new ResponseError(response, 'Response returned an error code');
+    throw new ApiException(
+      'Response returned an error code',
+      response.status,
+      Object.fromEntries(
+        Object.entries(response.headers).map(([k, v]) => [
+          k,
+          Array.isArray(v) ? v : [v],
+        ]),
+      ),
+      response?.body?.toString(),
+    );
   }
 
   private async createFetchParams(
