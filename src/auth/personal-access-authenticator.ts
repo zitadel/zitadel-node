@@ -7,6 +7,20 @@ import { Authenticator } from './authenticator.js';
  */
 export class PersonalAccessAuthenticator extends Authenticator {
   /**
+<<<<<<< Updated upstream:src/auth/personal-access-authenticator.ts
+||||||| Stash base:src/auth/personalaccessauthenticator.ts
+   * The personal access token.
+   */
+  private token: string;
+
+  /**
+=======
+   * The personal access token.
+   */
+  private readonly token: string;
+
+  /**
+>>>>>>> Stashed changes:src/auth/personalaccessauthenticator.ts
    * PersonalAccessAuthenticator constructor.
    *
    * @param host The base URL for the API endpoints.
@@ -17,6 +31,15 @@ export class PersonalAccessAuthenticator extends Authenticator {
     private readonly token: string,
   ) {
     super(host);
+<<<<<<< Updated upstream:src/auth/personal-access-authenticator.ts
+||||||| Stash base:src/auth/personalaccessauthenticator.ts
+    if (token === null || token === undefined) {
+      throw new TypeError('Token cannot be null or undefined.');
+    }
+    this.token = token;
+=======
+    this.token = token;
+>>>>>>> Stashed changes:src/auth/personalaccessauthenticator.ts
   }
 
   /**

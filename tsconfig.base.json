@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@zitadel/client-node": [
+        "libs/client-node/src/index.ts"
+      ],
+      "@zitadel/react-support": [
+        "libs/react-support/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "dist",
+    "test"
+  ]
+}

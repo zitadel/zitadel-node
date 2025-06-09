@@ -1,11 +1,11 @@
 export default {
-  preset: 'ts-jest/presets/default-esm',
+  preset: '@nx/jest/preset',
   transform: {
     '^.+\\.m?[tj]sx?$': [
       'ts-jest',
       {
         useESM: true,
-        tsconfig: 'tsconfig.jest.json',
+        tsconfig: '<rootDir>/tsconfig.test.json',
       },
     ],
   },
