@@ -3,8 +3,6 @@
 import { Configuration } from './configuration.js';
 import { ApiException } from './api-exception.js';
 
-export const BASE_PATH = 'https://zitadel.com'.replace(/\/+$/, '');
-
 /**
  * This is the base class for all generated API classes.
  */
@@ -152,19 +150,7 @@ function isBlob(value: any): value is Blob {
 function isFormData(value: any): value is FormData {
   return typeof FormData !== 'undefined' && value instanceof FormData;
 }
-
-export class ResponseError extends Error {
-  override name: 'ResponseError' = 'ResponseError';
-
-  constructor(
-    public response: Response,
-    msg?: string,
-  ) {
-    super(msg);
-  }
-}
-
-export class FetchError extends Error {
+class FetchError extends Error {
   override name: 'FetchError' = 'FetchError';
 
   constructor(
@@ -193,8 +179,8 @@ export const COLLECTION_FORMATS = {
   pipes: '|',
 };
 
-export type Json = any;
-export type HTTPMethod =
+type Json = any;
+type HTTPMethod =
   | 'GET'
   | 'POST'
   | 'PUT'
@@ -203,7 +189,7 @@ export type HTTPMethod =
   | 'OPTIONS'
   | 'HEAD';
 export type HTTPHeaders = { [key: string]: string };
-export type HTTPQuery = {
+type HTTPQuery = {
   [key: string]:
     | string
     | number
@@ -213,8 +199,8 @@ export type HTTPQuery = {
     | Set<string | number | null | boolean>
     | HTTPQuery;
 };
-export type HTTPBody = Json | FormData | URLSearchParams;
-export type HTTPRequestInit = {
+type HTTPBody = Json | FormData | URLSearchParams;
+type HTTPRequestInit = {
   headers?: HTTPHeaders;
   method: HTTPMethod;
   // @ts-ignore
@@ -227,7 +213,7 @@ export type InitOverrideFunction = (requestContext: {
   context: RequestOpts;
 }) => Promise<RequestInit>;
 
-export interface RequestOpts {
+interface RequestOpts {
   path: string;
   method: HTTPMethod;
   headers: HTTPHeaders;
@@ -235,7 +221,7 @@ export interface RequestOpts {
   body?: HTTPBody;
 }
 
-export function querystring(params: HTTPQuery, prefix: string = ''): string {
+function querystring(params: HTTPQuery, prefix: string = ''): string {
   return Object.keys(params)
     .map((key) => querystringSingleKey(key, params[key], prefix))
     .filter((part) => part.length > 0)
@@ -288,7 +274,7 @@ export interface ApiResponse<T> {
   value(): Promise<T>;
 }
 
-export interface ResponseTransformer<T> {
+interface ResponseTransformer<T> {
   (json: any): T;
 }
 

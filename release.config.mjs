@@ -1,9 +1,45 @@
 // noinspection JSUnusedGlobalSymbols
 export default {
-  branches: ['master'],
-  plugins: [
+  branches: ['main'],
+  foo: [
     '@semantic-release/commit-analyzer',
+    [
+      '@mridang/semantic-release-peer-version',
+      {
+        repo: 'zitadel/zitadel',
+      },
+    ],
     '@semantic-release/release-notes-generator',
+    [
+      '@semantic-release/exec',
+      {
+        prepareCmd:
+          "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' src/version.ts",
+      },
+    ],
+    [
+      '@semantic-release/exec',
+      {
+        prepareCmd: 'npm ci --no-progress',
+      },
+    ],
+    [
+      '@codedependant/semantic-release-docker',
+      {
+        dockerRegistry: 'ghcr.io',
+        dockerProject: 'zitadel',
+        dockerImage: 'client-node',
+        dockerTags: ['{{version}}'],
+      },
+    ],
+    [
+      '@semantic-release/github',
+      {
+        successComment: false,
+        failComment: false,
+        assets: [],
+      },
+    ],
     [
       '@semantic-release/npm',
       {
@@ -14,17 +50,11 @@ export default {
       },
     ],
     [
-      '@semantic-release/github',
-      {
-        assets: [{ path: '*.tgz', label: 'Package' }],
-      },
-    ],
-    [
       '@semantic-release/git',
       {
-        assets: ['package.json', 'package-lock.json'],
         message:
           'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+        assets: ['package.json', 'package-lock.json', 'src/version.ts'],
       },
     ],
   ],
