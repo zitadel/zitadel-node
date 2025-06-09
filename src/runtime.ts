@@ -65,6 +65,9 @@ export class BaseAPI {
     const headers = Object.assign(
       {},
       this.configuration.headers,
+      {
+        'User-Agent': this.configuration.userAgent,
+      },
       context.headers,
     );
     Object.keys(headers).forEach((key) =>
