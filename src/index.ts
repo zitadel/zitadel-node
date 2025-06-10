@@ -10,13 +10,20 @@ import {
   UserServiceApi,
   WebKeyServiceApi,
 } from './apis/index.js';
-import { Authenticator } from './auth/authenticator.js';
+import {
+  Authenticator,
+  ClientCredentialsAuthenticator,
+  PersonalAccessAuthenticator,
+  WebTokenAuthenticator,
+} from './auth/index.js';
 import { Configuration } from './configuration.js';
-import { ClientCredentialsAuthenticator } from './auth/client-credentials-authenticator.js';
-import { PersonalAccessAuthenticator } from './auth/personal-access-authenticator.js';
-import { WebTokenAuthenticator } from './auth/webtoken-authenticator.js';
 
-// noinspection JSUnusedGlobalSymbols
+export * from './zitadel-exception.js';
+export * from './api-exception.js';
+export * from './configuration.js';
+export * from './models/index.js';
+export * from './auth/index.js';
+
 export default class Zitadel {
   public readonly actions: ActionServiceApi;
   public readonly features: FeatureServiceApi;

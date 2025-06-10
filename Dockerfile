@@ -10,4 +10,4 @@ COPY . .
 
 RUN npm run build
 
-CMD ["node", "--require", "./dist/index.js"]
+CMD ["node", "--require", "./dist/index.ts"]

@@ -59,7 +59,7 @@ export class BaseAPI {
     context: RequestOpts,
     initOverrides?: RequestInit | InitOverrideFunction,
   ) {
-    let url = this.configuration.basePath + context.path;
+    let url = new URL(context.path, this.configuration.basePath).toString();
     if (
       context.query !== undefined &&
       Object.keys(context.query).length !== 0

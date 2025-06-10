@@ -96,7 +96,7 @@ describe('UserServiceSanityCheckSpec', () => {
     const response = await client.users.userServiceGetUserByID({
       userId: user.userId || '',
     });
-    expect(response.user?.human?.email).toContain('updated');
+    expect(response.user?.human?.email?.email).toContain('updated');
   });
 
   it('raises an ApiException when retrieving a non-existent user', async () => {
