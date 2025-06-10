@@ -9,4 +9,6 @@ exclude:
       - src/apis
       - src/models
 
+bootstrap: npm ci --no-progress
+
 linter: jetbrains/qodana-js:2025.1
