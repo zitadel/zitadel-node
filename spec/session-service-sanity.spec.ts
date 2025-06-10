@@ -12,7 +12,16 @@ import { ApiException } from '../src/api-exception.js';
  * SessionService Integration Tests
  *
  * This suite verifies the Zitadel SessionService API's basic operations using a
- * personal access token.
+ * personal access token:
+ *
+ * 1. Create a session with specified checks and lifetime
+ * 2. Retrieve the session by ID
+ * 3. List sessions and ensure the created session appears
+ * 4. Update the session's lifetime and confirm a new token is returned
+ * 5. Error when retrieving a non-existent session
+ *
+ * Each test runs in isolation: a new session is created before each test (beforeEach)
+ * and deleted after (afterEach) to ensure a clean state.
  */
 describe('SessionServiceSanityCheckSpec', () => {
   let client: Zitadel;
@@ -30,9 +39,10 @@ describe('SessionServiceSanityCheckSpec', () => {
     client = Zitadel.withAccessToken(baseUrl, validToken);
   });
 
-  // This runs before each individual test
+  /**
+   * @throws ApiException
+   */
   beforeEach(async () => {
-    // This structure was correct based on the type `SessionServiceCreateSessionOperationRequest`.
     const request = {
       sessionServiceCreateSessionRequest: {
         checks: {
@@ -48,11 +58,8 @@ describe('SessionServiceSanityCheckSpec', () => {
     sessionId = response.sessionId || '';
   });
 
-  // This runs after each individual test
   afterEach(async () => {
     try {
-      // CORRECTED: The type `SessionServiceDeleteSessionOperationRequest` requires
-      // both a `sessionId` and an empty `sessionServiceDeleteSessionRequest` object.
       await client.sessions.sessionServiceDeleteSession({
         sessionId,
         sessionServiceDeleteSessionRequest: {},
@@ -62,16 +69,20 @@ describe('SessionServiceSanityCheckSpec', () => {
     }
   });
 
-  it('retrieves the session details by id', async () => {
-    // This structure was correct based on the type `SessionServiceGetSessionRequest`.
+  /**
+   * @throws ApiException
+   */
+  it('testRetrievesTheSessionDetailsById', async () => {
     const response = await client.sessions.sessionServiceGetSession({
       sessionId,
     });
     expect(response.session?.id).toBe(sessionId);
   });
 
-  it('includes the created session when listing all sessions', async () => {
-    // CORRECTED: The payload must be nested inside a `sessionServiceListSessionsRequest` object.
+  /**
+   * @throws ApiException
+   */
+  it('testIncludesTheCreatedSessionWhenListingAllSessions', async () => {
     const request = {
       sessionServiceListSessionsRequest: {
         queries: [],
@@ -82,8 +93,10 @@ describe('SessionServiceSanityCheckSpec', () => {
     expect(ids).toContain(sessionId);
   });
 
-  it('updates the session lifetime and returns a new token', async () => {
-    // This structure was correct based on the type `SessionServiceSetSessionOperationRequest`.
+  /**
+   * @throws ApiException
+   */
+  it('testUpdatesTheSessionLifetimeAndReturnsANewToken', async () => {
     const response = await client.sessions.sessionServiceSetSession({
       sessionId: sessionId,
       sessionServiceSetSessionRequest: {
@@ -93,9 +106,8 @@ describe('SessionServiceSanityCheckSpec', () => {
     expect(typeof response.sessionToken).toBe('string');
   });
 
-  it('raises an ApiException when retrieving a non-existent session', async () => {
+  it('testRaisesAnApiExceptionWhenRetrievingANonExistentSession', async () => {
     const nonExistentId = crypto.randomUUID();
-    // This structure was correct based on the type `SessionServiceGetSessionRequest`.
     await expect(
       client.sessions.sessionServiceGetSession({ sessionId: nonExistentId }),
     ).rejects.toThrow(ApiException);

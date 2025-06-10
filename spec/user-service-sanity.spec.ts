@@ -12,7 +12,16 @@ import { ApiException } from '../src/api-exception.js';
  * UserService Integration Tests
  *
  * This suite verifies the Zitadel UserService API's basic operations using a
- * personal access token.
+ * personal access token:
+ *
+ * 1. Create a human user
+ * 2. Retrieve the user by ID
+ * 3. List users and ensure the created user appears
+ * 4. Update the user's email and confirm the change
+ * 5. Error when retrieving a non-existent user
+ *
+ * Each test runs in isolation: a new user is created before each test (beforeEach)
+ * and removed after (afterEach) to ensure a clean state.
  */
 describe('UserServiceSanityCheckSpec', () => {
   let client: Zitadel;
@@ -30,10 +39,13 @@ describe('UserServiceSanityCheckSpec', () => {
     client = Zitadel.withAccessToken(baseUrl, validToken);
   });
 
-  // This runs before each individual test
+  /**
+   * Create a new human user before each test.
+   *
+   * @throws ApiException on API error
+   */
   beforeEach(async () => {
     const uniqueId = crypto.randomUUID().substring(0, 8);
-    // This structure was correct based on the type `UserServiceAddHumanUserOperationRequest`.
     const request = {
       userServiceAddHumanUserRequest: {
         username: `user_${uniqueId}`,
@@ -49,26 +61,35 @@ describe('UserServiceSanityCheckSpec', () => {
     user = await client.users.userServiceAddHumanUser(request);
   });
 
-  // This runs after each individual test
+  /**
+   * Remove the created human user after each test.
+   */
   afterEach(async () => {
     try {
-      // This structure was correct based on the type `UserServiceDeleteUserRequest`.
       await client.users.userServiceDeleteUser({ userId: user.userId || '' });
     } catch {
       // cleanup errors ignored
     }
   });
 
-  it('retrieves the user details by id', async () => {
-    // This structure was correct based on the type `UserServiceGetUserByIDRequest`.
+  /**
+   * Retrieve the user by ID and verify the returned ID matches.
+   *
+   * @throws ApiException on API error
+   */
+  it('testRetrievesTheUserDetailsById', async () => {
     const response = await client.users.userServiceGetUserByID({
       userId: user.userId || '',
     });
     expect(response.user?.userId).toBe(user.userId);
   });
 
-  it('includes the created user when listing all users', async () => {
-    // CORRECTED: The payload must be nested inside a `userServiceListUsersRequest` object.
+  /**
+   * List all human users and verify the created user appears in the list.
+   *
+   * @throws ApiException on API error
+   */
+  it('testIncludesTheCreatedUserWhenListingAllUsers', async () => {
     const request = {
       userServiceListUsersRequest: {
         queries: [],
@@ -81,10 +102,14 @@ describe('UserServiceSanityCheckSpec', () => {
     expect(userIds).toContain(user.userId);
   });
 
-  it('updates the user email and reflects in get', async () => {
+  /**
+   * Update the user's email and verify via a get call that the change was applied.
+   *
+   * @throws ApiException on API error
+   */
+  it('testUpdatesTheUserEmailAndReflectsInGet', async () => {
     const newEmail = `updated_${crypto.randomUUID().substring(0, 8)}@example.com`;
 
-    // This structure was correct based on the type `UserServiceUpdateHumanUserOperationRequest`.
     await client.users.userServiceUpdateHumanUser({
       userId: user.userId || '',
       userServiceUpdateHumanUserRequest: {
@@ -100,9 +125,11 @@ describe('UserServiceSanityCheckSpec', () => {
     expect(response.user?.human?.email?.email).toContain('updated');
   });
 
-  it('raises an ApiException when retrieving a non-existent user', async () => {
+  /**
+   * Attempt to retrieve a non-existent user and expect an ApiException.
+   */
+  it('testRaisesAnApiExceptionWhenRetrievingNonExistentUser', async () => {
     const nonExistentId = crypto.randomUUID();
-    // This structure was correct based on the type `UserServiceGetUserByIDRequest`.
     await expect(
       client.users.userServiceGetUserByID({ userId: nonExistentId }),
     ).rejects.toThrow(ApiException);
