@@ -6,7 +6,7 @@ profile:
 exclude:
   - name: All
     paths:
-      - lib/Api
-      - lib/Model
+      - src/apis
+      - src/models
 
 linter: jetbrains/qodana-js:2025.1
