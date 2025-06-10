@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "lefthook@latest": {
+      "last_modified": "2025-05-16T20:19:48Z",
+      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#lefthook",
+      "source": "devbox-search",
+      "version": "1.11.12",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/kilfcgmnvx98lzr85mbbxrfa9px5879m-lefthook-1.11.12",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/kilfcgmnvx98lzr85mbbxrfa9px5879m-lefthook-1.11.12"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pvxs97fc0ba492bciazlqnh5ak0lcgiq-lefthook-1.11.12",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pvxs97fc0ba492bciazlqnh5ak0lcgiq-lefthook-1.11.12"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9lrdwi4flvhkvyk6ipb2b8hikyhrr1gq-lefthook-1.11.12",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9lrdwi4flvhkvyk6ipb2b8hikyhrr1gq-lefthook-1.11.12"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mpdpmidc3fpv6xnwkblwmnykgb8483sm-lefthook-1.11.12",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mpdpmidc3fpv6xnwkblwmnykgb8483sm-lefthook-1.11.12"
+        }
+      }
+    },
     "nodejs@20": {
       "last_modified": "2024-10-13T23:44:06Z",
       "plugin_version": "0.0.2",

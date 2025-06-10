@@ -238,7 +238,8 @@ function querystringSingleKey(
     | boolean
     | Array<string | number | null | boolean>
     | Set<string | number | null | boolean>
-    | HTTPQuery,
+    | HTTPQuery
+    | Date,
   keyPrefix: string = '',
 ): string {
   const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
@@ -255,6 +256,7 @@ function querystringSingleKey(
   if (value instanceof Date) {
     return `${encodeURIComponent(fullKey)}=${encodeURIComponent(value.toISOString())}`;
   }
+  // noinspection SuspiciousTypeOfGuard
   if (value instanceof Object) {
     return querystring(value as HTTPQuery, fullKey);
   }

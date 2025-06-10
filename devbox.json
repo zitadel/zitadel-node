@@ -1,4 +1,31 @@
 {
-  "$schema":  "https://raw.githubusercontent.com/jetpack-io/devbox/0.10.3/.schema/devbox.schema.json",
-  "packages": ["nodejs@20"]
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.7/.schema/devbox.schema.json",
+  "packages": [
+    "nodejs@20",
+    "lefthook@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "lefthook install",
+      "npm ci --no-progress"
+    ],
+    "scripts": {
+      "format": [
+        "npm run format"
+      ],
+      "test": [
+        "npm run test"
+      ],
+      "check": [
+        "npm run lint"
+      ],
+      "replit": [
+        "docker build --tag node-repl --file Dockerfile .",
+        "docker run --rm --interactive --tty node-repl"
+      ],
+      "docgen": [
+        "npm run docgen"
+      ]
+    }
+  }
 }
