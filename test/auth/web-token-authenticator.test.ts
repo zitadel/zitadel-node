@@ -1,4 +1,7 @@
+// noinspection DuplicatedCode
+
 import { generateKeyPair } from 'node:crypto';
+// noinspection ES6PreferShortImport
 import { WebTokenAuthenticator } from '../../src/auth/webtoken-authenticator.js';
 import { withOauthContainer } from './oauth-authenticator-test.js';
 

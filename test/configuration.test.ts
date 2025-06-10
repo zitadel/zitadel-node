@@ -1,5 +1,7 @@
 import { arch, platform, version as nodeVersion } from 'process';
+// noinspection ES6PreferShortImport
 import { Configuration } from '../src/configuration.js';
+// noinspection ES6PreferShortImport
 import { PersonalAccessAuthenticator } from '../src/auth/personal-access-authenticator.js';
 import { VERSION } from '../src/version.js';
 

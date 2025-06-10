@@ -1,3 +1,4 @@
+// noinspection ES6PreferShortImport
 import { NoAuthAuthenticator } from '../../src/auth/noauth-authenticator.js';
 
 describe('NoAuthAuthenticatorTest', () => {

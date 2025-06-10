@@ -60,6 +60,7 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,
   ): Promise<oauth.TokenEndpointResponse> {
+    // noinspection JSDeprecatedSymbols
     const response = await oauth.clientCredentialsGrantRequest(
       authServer,
       client,

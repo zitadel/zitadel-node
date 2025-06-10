@@ -5,6 +5,7 @@ import {
   UserServiceAddHumanUserResponse,
   UserServiceUser,
 } from '../src/models/index.js';
+// noinspection ES6PreferShortImport
 import { ApiException } from '../src/api-exception.js';
 
 /**
@@ -53,7 +54,7 @@ describe('UserServiceSanityCheckSpec', () => {
     try {
       // This structure was correct based on the type `UserServiceDeleteUserRequest`.
       await client.users.userServiceDeleteUser({ userId: user.userId || '' });
-    } catch (error) {
+    } catch {
       // cleanup errors ignored
     }
   });

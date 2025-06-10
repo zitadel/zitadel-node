@@ -1,4 +1,5 @@
 import Zitadel from '../../src/index.js';
+// noinspection ES6PreferShortImport
 import { ZitadelException } from '../../src/zitadel-exception.js';
 
 /**

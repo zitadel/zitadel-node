@@ -202,6 +202,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       scope: this.scope,
     });
 
+    // noinspection JSDeprecatedSymbols
     const response = await oauth.genericTokenEndpointRequest(
       authServer,
       client,

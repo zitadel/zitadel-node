@@ -1,6 +1,5 @@
 import { HTTPHeaders } from './runtime.js';
-import { NoAuthAuthenticator } from './auth/index.js';
-import { Authenticator } from './auth/index.js';
+import { NoAuthAuthenticator, Authenticator } from './auth/index.js';
 import { arch, platform, version as nodeVersion } from 'process';
 import { VERSION } from './version.js';
 

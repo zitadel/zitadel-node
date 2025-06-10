@@ -15,6 +15,7 @@ export function withOauthContainer(
       .withWaitStrategy(Wait.forHttp('/', 8080).forStatusCode(405))
       .start();
 
+    // noinspection HttpUrlsUsage
     oauthHost = `http://${container.getHost()}:${container.getMappedPort(8080)}`;
   }, 30_000);
 

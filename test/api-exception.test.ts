@@ -1,3 +1,4 @@
+// noinspection ES6PreferShortImport
 import { ApiException } from '../src/api-exception.js';
 
 describe('ApiExceptionTest', () => {

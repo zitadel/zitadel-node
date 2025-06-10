@@ -20,17 +20,10 @@ node_modules
 *.json
 
 # Minified files
-*.min.*
-
 # Source maps
 *.map
 
 # Image files
-*.png
-*.jpg
 *.jpeg
-*.gif
-*.svg
-
 src/apis/*
 src/models/*

@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+// noinspection ES6PreferShortImport
 import { NoAuthAuthenticator } from '../src/auth/noauth-authenticator.js';
 import Zitadel from '../src/index.js';
 

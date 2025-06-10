@@ -5,6 +5,7 @@ import {
   SessionServiceChecks,
   SessionServiceCheckUser,
 } from '../src/models/index.js';
+// noinspection ES6PreferShortImport
 import { ApiException } from '../src/api-exception.js';
 
 /**
@@ -56,7 +57,7 @@ describe('SessionServiceSanityCheckSpec', () => {
         sessionId,
         sessionServiceDeleteSessionRequest: {},
       });
-    } catch (error) {
+    } catch {
       // Ignore cleanup errors
     }
   });

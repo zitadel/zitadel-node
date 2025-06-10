@@ -1,3 +1,4 @@
+// noinspection ES6PreferShortImport
 import { ClientCredentialsAuthenticator } from '../../src/auth/client-credentials-authenticator.js';
 import { withOauthContainer } from './oauth-authenticator-test.js';
 
@@ -31,6 +32,7 @@ describe('ClientCredentialsAuthenticatorTest', () => {
       const tokenExpiryTimestamp = Date.now() + expiresIn * 1000;
       expect(tokenExpiryTimestamp > Date.now()).toBe(true);
 
+      // noinspection DuplicatedCode
       expect(token.access_token).toBe(await authenticator.getAuthToken());
       expect(authenticator.getHost().toString()).toBe(oauthHost + '/');
 

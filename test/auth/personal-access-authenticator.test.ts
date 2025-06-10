@@ -1,3 +1,4 @@
+// noinspection ES6PreferShortImport
 import { PersonalAccessAuthenticator } from '../../src/auth/personal-access-authenticator.js';
 
 describe('PersonalAccessAuthenticatorTest', () => {
