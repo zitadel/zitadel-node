@@ -7,6 +7,7 @@ import {
 } from '../src/models/index.js';
 // noinspection ES6PreferShortImport
 import { ApiException } from '../src/api-exception.js';
+import { useIntegrationEnvironment } from './base-spec.js';
 
 /**
  * UserService Integration Tests
@@ -24,19 +25,13 @@ import { ApiException } from '../src/api-exception.js';
  * and removed after (afterEach) to ensure a clean state.
  */
 describe('UserServiceSanityCheckSpec', () => {
+  const { context } = useIntegrationEnvironment();
   let client: Zitadel;
   let user: UserServiceAddHumanUserResponse;
 
   // This runs once before all tests in the suite
   beforeAll(() => {
-    const validToken = process.env.AUTH_TOKEN as string;
-    const baseUrl = process.env.BASE_URL as string;
-    if (!validToken || !baseUrl) {
-      throw new Error(
-        'AUTH_TOKEN and BASE_URL environment variables must be set.',
-      );
-    }
-    client = Zitadel.withAccessToken(baseUrl, validToken);
+    client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
   });
 
   /**

@@ -1,23 +1,7 @@
-import * as fs from 'fs';
-import * as os from 'os';
-import * as path from 'path';
 import Zitadel from '../../src/index.js';
 // noinspection ES6PreferShortImport
 import { ZitadelException } from '../../src/zitadel-exception.js';
-
-/**
- * Retrieve a configuration variable from the environment.
- */
-const env = (key: string): string => process.env[key] ?? '';
-
-const createTempJwtFile = (): string => {
-  const k = env('JWT_KEY');
-  // Note: Using a simple temp file name for clarity.
-  // In a real-world concurrent test suite, a more robust unique name is advised.
-  const p = path.join(os.tmpdir(), `jwt_${Date.now()}`);
-  fs.writeFileSync(p, k);
-  return p;
-};
+import { useIntegrationEnvironment } from '../base-spec.js';
 
 /**
  * SettingsService Integration Tests (Private Key Assertion)
@@ -29,6 +13,8 @@ const createTempJwtFile = (): string => {
  * 2. Expect an ApiException when using an invalid private key
  */
 describe('UsePrivateKeySpec', () => {
+  const { context } = useIntegrationEnvironment();
+
   /**
    * Validate retrieval of general settings with a valid private key assertion.
    *
@@ -37,13 +23,11 @@ describe('UsePrivateKeySpec', () => {
    * @doesNotPerformAssertions
    */
   it('testRetrievesGeneralSettingsWithValidAuth', async () => {
-    const tempFile = createTempJwtFile();
-    try {
-      const client = await Zitadel.withPrivateKey(env('BASE_URL'), tempFile);
-      await client.settings.settingsServiceGetGeneralSettings();
-    } finally {
-      fs.unlinkSync(tempFile); // Cleanup
-    }
+    const client = await Zitadel.withPrivateKey(
+      context.baseUrl,
+      context.jwtKey,
+    );
+    await client.settings.settingsServiceGetGeneralSettings();
   });
 
   /**
@@ -51,18 +35,12 @@ describe('UsePrivateKeySpec', () => {
    * @throws {Error}
    */
   it('testRaisesApiExceptionWithInvalidAuth', async () => {
-    const tempFile = createTempJwtFile();
-    try {
-      // Note: The original test uses a valid key with an invalid host.
-      const invalid = await Zitadel.withPrivateKey(
-        'https://zitadel.cloud',
-        tempFile,
-      );
-      await expect(
-        invalid.settings.settingsServiceGetGeneralSettings(),
-      ).rejects.toThrow(ZitadelException);
-    } finally {
-      fs.unlinkSync(tempFile); // Cleanup
-    }
+    const invalid = await Zitadel.withPrivateKey(
+      'https://zitadel.cloud',
+      context.jwtKey,
+    );
+    await expect(
+      invalid.settings.settingsServiceGetGeneralSettings(),
+    ).rejects.toThrow(ZitadelException);
   });
 });
