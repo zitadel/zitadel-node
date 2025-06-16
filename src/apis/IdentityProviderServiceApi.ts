@@ -38,7 +38,7 @@ export class IdentityProviderServiceApi extends runtime.BaseAPI {
      * Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
      * Get identity provider (IdP) by ID
      */
-    async identityProviderServiceGetIDPByIDRaw(requestParameters: IdentityProviderServiceGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentityProviderServiceGetIDPByIDResponse>> {
+    private async identityProviderServiceGetIDPByIDRaw(requestParameters: IdentityProviderServiceGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentityProviderServiceGetIDPByIDResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',

@@ -105,7 +105,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * Create a new target to your endpoint, which can be used in executions.  Required permission:   - `action.target.write`  Required feature flag:   - `actions`
      * Create Target
      */
-    async actionServiceCreateTargetRaw(requestParameters: ActionServiceCreateTargetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaCreateTargetResponse>> {
+    private async actionServiceCreateTargetRaw(requestParameters: ActionServiceCreateTargetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaCreateTargetResponse>> {
         if (requestParameters['actionServiceCreateTargetRequest'] == null) {
             throw new runtime.RequiredError(
                 'actionServiceCreateTargetRequest',
@@ -151,7 +151,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * Delete an existing target. This will remove it from any configured execution as well. In case the target is not found, the request will return a successful response as the desired state is already achieved.  Required permission:   - `action.target.delete`  Required feature flag:   - `actions`
      * Delete Target
      */
-    async actionServiceDeleteTargetRaw(requestParameters: ActionServiceDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaDeleteTargetResponse>> {
+    private async actionServiceDeleteTargetRaw(requestParameters: ActionServiceDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaDeleteTargetResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -194,7 +194,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * Returns the target identified by the requested ID.  Required permission:   - `action.target.read`  Required feature flag:   - `actions`
      * Get Target
      */
-    async actionServiceGetTargetRaw(requestParameters: ActionServiceGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaGetTargetResponse>> {
+    private async actionServiceGetTargetRaw(requestParameters: ActionServiceGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaGetTargetResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -237,7 +237,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * List all available functions which can be used as condition for executions.
      * List Execution Functions
      */
-    async actionServiceListExecutionFunctionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionFunctionsResponse>> {
+    private async actionServiceListExecutionFunctionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionFunctionsResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -273,7 +273,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * List all available methods which can be used as condition for executions.
      * List Execution Methods
      */
-    async actionServiceListExecutionMethodsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionMethodsResponse>> {
+    private async actionServiceListExecutionMethodsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionMethodsResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -309,7 +309,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * List all available services which can be used as condition for executions.
      * List Execution Services
      */
-    async actionServiceListExecutionServicesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionServicesResponse>> {
+    private async actionServiceListExecutionServicesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionServicesResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -345,7 +345,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * List all matching executions. By default all executions of the instance are returned that have at least one execution target. Make sure to include a limit and sorting for pagination.  Required permission:   - `action.execution.read`  Required feature flag:   - `actions`
      * List Executions
      */
-    async actionServiceListExecutionsRaw(requestParameters: ActionServiceListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionsResponse>> {
+    private async actionServiceListExecutionsRaw(requestParameters: ActionServiceListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListExecutionsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['paginationOffset'] != null) {
@@ -397,7 +397,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * List all matching targets. By default all targets of the instance are returned. Make sure to include a limit and sorting for pagination.  Required permission:   - `action.target.read`  Required feature flag:   - `actions`
      * List targets
      */
-    async actionServiceListTargetsRaw(requestParameters: ActionServiceListTargetsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListTargetsResponse>> {
+    private async actionServiceListTargetsRaw(requestParameters: ActionServiceListTargetsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaListTargetsResponse>> {
         if (requestParameters['actionServiceListTargetsRequest'] == null) {
             throw new runtime.RequiredError(
                 'actionServiceListTargetsRequest',
@@ -443,7 +443,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * Sets an execution to call a target or include the targets of another execution. Setting an empty list of targets will remove all targets from the execution, making it a noop.  Required permission:   - `action.execution.write`  Required feature flag:   - `actions`
      * Set Execution
      */
-    async actionServiceSetExecutionRaw(requestParameters: ActionServiceSetExecutionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaSetExecutionResponse>> {
+    private async actionServiceSetExecutionRaw(requestParameters: ActionServiceSetExecutionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaSetExecutionResponse>> {
         if (requestParameters['actionServiceSetExecutionRequest'] == null) {
             throw new runtime.RequiredError(
                 'actionServiceSetExecutionRequest',
@@ -489,7 +489,7 @@ export class ActionServiceApi extends runtime.BaseAPI {
      * Update an existing target. To generate a new signing key set the optional expirationSigningKey.  Required permission:   - `action.target.write`  Required feature flag:   - `actions`
      * Update Target
      */
-    async actionServiceUpdateTargetRaw(requestParameters: ActionServiceUpdateTargetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaUpdateTargetResponse>> {
+    private async actionServiceUpdateTargetRaw(requestParameters: ActionServiceUpdateTargetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionServiceBetaUpdateTargetResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',

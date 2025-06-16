@@ -49,7 +49,7 @@ export class SAMLServiceApi extends runtime.BaseAPI {
      * Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
      * Finalize a SAML Request and get the response.
      */
-    async sAMLServiceCreateResponseRaw(requestParameters: SAMLServiceCreateResponseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceCreateResponseResponse>> {
+    private async sAMLServiceCreateResponseRaw(requestParameters: SAMLServiceCreateResponseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceCreateResponseResponse>> {
         if (requestParameters['samlRequestId'] == null) {
             throw new runtime.RequiredError(
                 'samlRequestId',
@@ -102,7 +102,7 @@ export class SAMLServiceApi extends runtime.BaseAPI {
      * Get SAML Request details by ID. Returns details that are parsed from the application\'s SAML Request.
      * Get SAML Request details
      */
-    async sAMLServiceGetSAMLRequestRaw(requestParameters: SAMLServiceGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceGetSAMLRequestResponse>> {
+    private async sAMLServiceGetSAMLRequestRaw(requestParameters: SAMLServiceGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceGetSAMLRequestResponse>> {
         if (requestParameters['samlRequestId'] == null) {
             throw new runtime.RequiredError(
                 'samlRequestId',

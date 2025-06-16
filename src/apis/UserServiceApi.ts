@@ -449,7 +449,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
      * Create a new human user
      */
-    async userServiceAddHumanUserRaw(requestParameters: UserServiceAddHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
+    private async userServiceAddHumanUserRaw(requestParameters: UserServiceAddHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
         if (requestParameters['userServiceAddHumanUserRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceAddHumanUserRequest',
@@ -495,7 +495,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Add link to an identity provider to an user..
      * Add link to an identity provider to an user
      */
-    async userServiceAddIDPLinkRaw(requestParameters: UserServiceAddIDPLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddIDPLinkResponse>> {
+    private async userServiceAddIDPLinkRaw(requestParameters: UserServiceAddIDPLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddIDPLinkResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -548,7 +548,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
      * Add OTP Email for a user
      */
-    async userServiceAddOTPEmailRaw(requestParameters: UserServiceAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPEmailResponse>> {
+    private async userServiceAddOTPEmailRaw(requestParameters: UserServiceAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPEmailResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -591,7 +591,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
      * Add OTP SMS for a user
      */
-    async userServiceAddOTPSMSRaw(requestParameters: UserServiceAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPSMSResponse>> {
+    private async userServiceAddOTPSMSRaw(requestParameters: UserServiceAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPSMSResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -634,7 +634,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
      * Create an invite code for a user
      */
-    async userServiceCreateInviteCodeRaw(requestParameters: UserServiceCreateInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
+    private async userServiceCreateInviteCodeRaw(requestParameters: UserServiceCreateInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -687,7 +687,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Create a passkey registration link which includes a code and either return it or send it to the user..
      * Create a passkey registration link for a user
      */
-    async userServiceCreatePasskeyRegistrationLinkRaw(requestParameters: UserServiceCreatePasskeyRegistrationLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreatePasskeyRegistrationLinkResponse>> {
+    private async userServiceCreatePasskeyRegistrationLinkRaw(requestParameters: UserServiceCreatePasskeyRegistrationLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreatePasskeyRegistrationLinkResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -740,7 +740,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
      * Deactivate user
      */
-    async userServiceDeactivateUserRaw(requestParameters: UserServiceDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeactivateUserResponse>> {
+    private async userServiceDeactivateUserRaw(requestParameters: UserServiceDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeactivateUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -783,7 +783,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
      * Delete user
      */
-    async userServiceDeleteUserRaw(requestParameters: UserServiceDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserResponse>> {
+    private async userServiceDeleteUserRaw(requestParameters: UserServiceDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -826,7 +826,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Returns the full user object (human or machine) including the profile, email, etc..
      * User by ID
      */
-    async userServiceGetUserByIDRaw(requestParameters: UserServiceGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGetUserByIDResponse>> {
+    private async userServiceGetUserByIDRaw(requestParameters: UserServiceGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGetUserByIDResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -869,7 +869,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Update the last time the user has skipped MFA initialization. The server timestamp is used.
      * MFA Init Skipped
      */
-    async userServiceHumanMFAInitSkippedRaw(requestParameters: UserServiceHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceHumanMFAInitSkippedResponse>> {
+    private async userServiceHumanMFAInitSkippedRaw(requestParameters: UserServiceHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceHumanMFAInitSkippedResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -910,7 +910,7 @@ export class UserServiceApi extends runtime.BaseAPI {
 
     /**
      */
-    async userServiceListAuthenticationFactorsRaw(requestParameters: UserServiceListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationFactorsResponse>> {
+    private async userServiceListAuthenticationFactorsRaw(requestParameters: UserServiceListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationFactorsResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -959,7 +959,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
      * List all possible authentication methods of a user
      */
-    async userServiceListAuthenticationMethodTypesRaw(requestParameters: UserServiceListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationMethodTypesResponse>> {
+    private async userServiceListAuthenticationMethodTypesRaw(requestParameters: UserServiceListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationMethodTypesResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1010,7 +1010,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * List links to an identity provider of an user.
      * List links to an identity provider of an user
      */
-    async userServiceListIDPLinksRaw(requestParameters: UserServiceListIDPLinksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListIDPLinksResponse>> {
+    private async userServiceListIDPLinksRaw(requestParameters: UserServiceListIDPLinksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListIDPLinksResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1063,7 +1063,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * List passkeys of an user
      * List passkeys of an user
      */
-    async userServiceListPasskeysRaw(requestParameters: UserServiceListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPasskeysResponse>> {
+    private async userServiceListPasskeysRaw(requestParameters: UserServiceListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPasskeysResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1106,7 +1106,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
      * Search Users
      */
-    async userServiceListUsersRaw(requestParameters: UserServiceListUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUsersResponse>> {
+    private async userServiceListUsersRaw(requestParameters: UserServiceListUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUsersResponse>> {
         if (requestParameters['userServiceListUsersRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceListUsersRequest',
@@ -1152,7 +1152,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
      * Lock user
      */
-    async userServiceLockUserRaw(requestParameters: UserServiceLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceLockUserResponse>> {
+    private async userServiceLockUserRaw(requestParameters: UserServiceLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceLockUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1195,7 +1195,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Request a code to reset a password..
      * Request a code to reset a password
      */
-    async userServicePasswordResetRaw(requestParameters: UserServicePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServicePasswordResetResponse>> {
+    private async userServicePasswordResetRaw(requestParameters: UserServicePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServicePasswordResetResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1248,7 +1248,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
      * Reactivate user
      */
-    async userServiceReactivateUserRaw(requestParameters: UserServiceReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceReactivateUserResponse>> {
+    private async userServiceReactivateUserRaw(requestParameters: UserServiceReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceReactivateUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1291,7 +1291,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
      * Start the registration of passkey for a user
      */
-    async userServiceRegisterPasskeyRaw(requestParameters: UserServiceRegisterPasskeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterPasskeyResponse>> {
+    private async userServiceRegisterPasskeyRaw(requestParameters: UserServiceRegisterPasskeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterPasskeyResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1344,7 +1344,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
      * Start the registration of a TOTP generator for a user
      */
-    async userServiceRegisterTOTPRaw(requestParameters: UserServiceRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterTOTPResponse>> {
+    private async userServiceRegisterTOTPRaw(requestParameters: UserServiceRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterTOTPResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1387,7 +1387,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
      * Start the registration of a u2f token for a user
      */
-    async userServiceRegisterU2FRaw(requestParameters: UserServiceRegisterU2FOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterU2FResponse>> {
+    private async userServiceRegisterU2FRaw(requestParameters: UserServiceRegisterU2FOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterU2FResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1440,7 +1440,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove link of an identity provider to an user.
      * Remove link of an identity provider to an user
      */
-    async userServiceRemoveIDPLinkRaw(requestParameters: UserServiceRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveIDPLinkResponse>> {
+    private async userServiceRemoveIDPLinkRaw(requestParameters: UserServiceRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveIDPLinkResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1497,7 +1497,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
      * Remove One-Time Password (OTP) Email from a user
      */
-    async userServiceRemoveOTPEmailRaw(requestParameters: UserServiceRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPEmailResponse>> {
+    private async userServiceRemoveOTPEmailRaw(requestParameters: UserServiceRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPEmailResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1540,7 +1540,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
      * Remove One-Time Password (OTP) SMS from a user
      */
-    async userServiceRemoveOTPSMSRaw(requestParameters: UserServiceRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPSMSResponse>> {
+    private async userServiceRemoveOTPSMSRaw(requestParameters: UserServiceRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPSMSResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1583,7 +1583,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove passkey from a user.
      * Remove passkey from a user
      */
-    async userServiceRemovePasskeyRaw(requestParameters: UserServiceRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePasskeyResponse>> {
+    private async userServiceRemovePasskeyRaw(requestParameters: UserServiceRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePasskeyResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1633,7 +1633,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Delete the phone number of a user.
      * Delete the user phone
      */
-    async userServiceRemovePhoneRaw(requestParameters: UserServiceRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
+    private async userServiceRemovePhoneRaw(requestParameters: UserServiceRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1676,7 +1676,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
      * Remove TOTP generator from a user
      */
-    async userServiceRemoveTOTPRaw(requestParameters: UserServiceRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveTOTPResponse>> {
+    private async userServiceRemoveTOTPRaw(requestParameters: UserServiceRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveTOTPResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1719,7 +1719,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Remove u2f token from a user
      * Remove u2f token from a user
      */
-    async userServiceRemoveU2FRaw(requestParameters: UserServiceRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveU2FResponse>> {
+    private async userServiceRemoveU2FRaw(requestParameters: UserServiceRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveU2FResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1769,7 +1769,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Resend code to verify user email.
      * Resend code to verify user email
      */
-    async userServiceResendEmailCodeRaw(requestParameters: UserServiceResendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendEmailCodeResponse>> {
+    private async userServiceResendEmailCodeRaw(requestParameters: UserServiceResendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendEmailCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1822,7 +1822,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods. A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
      * Resend an invite code for a user
      */
-    async userServiceResendInviteCodeRaw(requestParameters: UserServiceResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendInviteCodeResponse>> {
+    private async userServiceResendInviteCodeRaw(requestParameters: UserServiceResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendInviteCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1865,7 +1865,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Resend code to verify user phone.
      * Resend code to verify user phone
      */
-    async userServiceResendPhoneCodeRaw(requestParameters: UserServiceResendPhoneCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
+    private async userServiceResendPhoneCodeRaw(requestParameters: UserServiceResendPhoneCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1918,7 +1918,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
      * Retrieve the information returned by the identity provider
      */
-    async userServiceRetrieveIdentityProviderIntentRaw(requestParameters: UserServiceRetrieveIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRetrieveIdentityProviderIntentResponse>> {
+    private async userServiceRetrieveIdentityProviderIntentRaw(requestParameters: UserServiceRetrieveIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRetrieveIdentityProviderIntentResponse>> {
         if (requestParameters['idpIntentId'] == null) {
             throw new runtime.RequiredError(
                 'idpIntentId',
@@ -1971,7 +1971,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Send code to verify user email.
      * Send code to verify user email
      */
-    async userServiceSendEmailCodeRaw(requestParameters: UserServiceSendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSendEmailCodeResponse>> {
+    private async userServiceSendEmailCodeRaw(requestParameters: UserServiceSendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSendEmailCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2024,7 +2024,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
      * Change the user email
      */
-    async userServiceSetEmailRaw(requestParameters: UserServiceSetEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
+    private async userServiceSetEmailRaw(requestParameters: UserServiceSetEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2077,7 +2077,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Change the password of a user with either a verification code or the current password..
      * Change password
      */
-    async userServiceSetPasswordRaw(requestParameters: UserServiceSetPasswordOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
+    private async userServiceSetPasswordRaw(requestParameters: UserServiceSetPasswordOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2130,7 +2130,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
      * Set the user phone
      */
-    async userServiceSetPhoneRaw(requestParameters: UserServiceSetPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
+    private async userServiceSetPhoneRaw(requestParameters: UserServiceSetPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2183,7 +2183,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Start a flow with an identity provider, for external login, registration or linking..
      * Start flow with an identity provider
      */
-    async userServiceStartIdentityProviderIntentRaw(requestParameters: UserServiceStartIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceStartIdentityProviderIntentResponse>> {
+    private async userServiceStartIdentityProviderIntentRaw(requestParameters: UserServiceStartIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceStartIdentityProviderIntentResponse>> {
         if (requestParameters['userServiceStartIdentityProviderIntentRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceStartIdentityProviderIntentRequest',
@@ -2229,7 +2229,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
      * Unlock user
      */
-    async userServiceUnlockUserRaw(requestParameters: UserServiceUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUnlockUserResponse>> {
+    private async userServiceUnlockUserRaw(requestParameters: UserServiceUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUnlockUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2272,7 +2272,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Update all information from a user..
      * Update User
      */
-    async userServiceUpdateHumanUserRaw(requestParameters: UserServiceUpdateHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
+    private async userServiceUpdateHumanUserRaw(requestParameters: UserServiceUpdateHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2325,7 +2325,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the email with the generated code.
      * Verify the email
      */
-    async userServiceVerifyEmailRaw(requestParameters: UserServiceVerifyEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyEmailResponse>> {
+    private async userServiceVerifyEmailRaw(requestParameters: UserServiceVerifyEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyEmailResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2378,7 +2378,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the invite code of a user previously issued. This will set their email to a verified state and allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
      * Verify an invite code for a user
      */
-    async userServiceVerifyInviteCodeRaw(requestParameters: UserServiceVerifyInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyInviteCodeResponse>> {
+    private async userServiceVerifyInviteCodeRaw(requestParameters: UserServiceVerifyInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyInviteCodeResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2431,7 +2431,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the passkey registration with the public key credential..
      * Verify a passkey for a user
      */
-    async userServiceVerifyPasskeyRegistrationRaw(requestParameters: UserServiceVerifyPasskeyRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPasskeyRegistrationResponse>> {
+    private async userServiceVerifyPasskeyRegistrationRaw(requestParameters: UserServiceVerifyPasskeyRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPasskeyRegistrationResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2491,7 +2491,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the phone with the generated code..
      * Verify the phone
      */
-    async userServiceVerifyPhoneRaw(requestParameters: UserServiceVerifyPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
+    private async userServiceVerifyPhoneRaw(requestParameters: UserServiceVerifyPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2544,7 +2544,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the TOTP registration with a generated code..
      * Verify a TOTP generator for a user
      */
-    async userServiceVerifyTOTPRegistrationRaw(requestParameters: UserServiceVerifyTOTPRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyTOTPRegistrationResponse>> {
+    private async userServiceVerifyTOTPRegistrationRaw(requestParameters: UserServiceVerifyTOTPRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyTOTPRegistrationResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2597,7 +2597,7 @@ export class UserServiceApi extends runtime.BaseAPI {
      * Verify the u2f token registration with the public key credential..
      * Verify a u2f token for a user
      */
-    async userServiceVerifyU2FRegistrationRaw(requestParameters: UserServiceVerifyU2FRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyU2FRegistrationResponse>> {
+    private async userServiceVerifyU2FRegistrationRaw(requestParameters: UserServiceVerifyU2FRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyU2FRegistrationResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
