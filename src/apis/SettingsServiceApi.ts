@@ -115,7 +115,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the current active identity providers for the requested context
      * Get the current active identity providers
      */
-    async settingsServiceGetActiveIdentityProvidersRaw(requestParameters: SettingsServiceGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
+    private async settingsServiceGetActiveIdentityProvidersRaw(requestParameters: SettingsServiceGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -175,7 +175,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the current active branding settings for the requested context
      * Get the current active branding settings
      */
-    async settingsServiceGetBrandingSettingsRaw(requestParameters: SettingsServiceGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
+    private async settingsServiceGetBrandingSettingsRaw(requestParameters: SettingsServiceGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -219,7 +219,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the domain settings for the requested context
      * Get the domain settings
      */
-    async settingsServiceGetDomainSettingsRaw(requestParameters: SettingsServiceGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
+    private async settingsServiceGetDomainSettingsRaw(requestParameters: SettingsServiceGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -263,7 +263,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the basic information of the instance for the requested context
      * Get basic information over the instance
      */
-    async settingsServiceGetGeneralSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
+    private async settingsServiceGetGeneralSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -299,7 +299,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the legal settings for the requested context
      * Get the legal and support settings
      */
-    async settingsServiceGetLegalAndSupportSettingsRaw(requestParameters: SettingsServiceGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
+    private async settingsServiceGetLegalAndSupportSettingsRaw(requestParameters: SettingsServiceGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -343,7 +343,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the lockout settings for the requested context, which define when a user will be locked
      * Get the lockout settings
      */
-    async settingsServiceGetLockoutSettingsRaw(requestParameters: SettingsServiceGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
+    private async settingsServiceGetLockoutSettingsRaw(requestParameters: SettingsServiceGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -387,7 +387,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the settings for the requested context
      * Get the login settings
      */
-    async settingsServiceGetLoginSettingsRaw(requestParameters: SettingsServiceGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
+    private async settingsServiceGetLoginSettingsRaw(requestParameters: SettingsServiceGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -431,7 +431,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the password complexity settings for the requested context
      * Get the password complexity settings
      */
-    async settingsServiceGetPasswordComplexitySettingsRaw(requestParameters: SettingsServiceGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
+    private async settingsServiceGetPasswordComplexitySettingsRaw(requestParameters: SettingsServiceGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -475,7 +475,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Return the password expiry settings for the requested context
      * Get the password expiry settings
      */
-    async settingsServiceGetPasswordExpirySettingsRaw(requestParameters: SettingsServiceGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
+    private async settingsServiceGetPasswordExpirySettingsRaw(requestParameters: SettingsServiceGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ctxOrgId'] != null) {
@@ -519,7 +519,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Returns the security settings of the ZITADEL instance.
      * Get Security Settings
      */
-    async settingsServiceGetSecuritySettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
+    private async settingsServiceGetSecuritySettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -555,7 +555,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
      * Set the security settings of the ZITADEL instance.
      * Set Security Settings
      */
-    async settingsServiceSetSecuritySettingsRaw(requestParameters: SettingsServiceSetSecuritySettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
+    private async settingsServiceSetSecuritySettingsRaw(requestParameters: SettingsServiceSetSecuritySettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
         if (requestParameters['settingsServiceSetSecuritySettingsRequest'] == null) {
             throw new runtime.RequiredError(
                 'settingsServiceSetSecuritySettingsRequest',

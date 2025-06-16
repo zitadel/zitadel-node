@@ -111,7 +111,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
      * Get Instance Features
      */
-    async featureServiceGetInstanceFeaturesRaw(requestParameters: FeatureServiceGetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetInstanceFeaturesResponse>> {
+    private async featureServiceGetInstanceFeaturesRaw(requestParameters: FeatureServiceGetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetInstanceFeaturesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['inheritance'] != null) {
@@ -151,7 +151,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
      * Get Organization Features
      */
-    async featureServiceGetOrganizationFeaturesRaw(requestParameters: FeatureServiceGetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetOrganizationFeaturesResponse>> {
+    private async featureServiceGetOrganizationFeaturesRaw(requestParameters: FeatureServiceGetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetOrganizationFeaturesResponse>> {
         if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
                 'organizationId',
@@ -198,7 +198,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
      * Get System Features
      */
-    async featureServiceGetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetSystemFeaturesResponse>> {
+    private async featureServiceGetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetSystemFeaturesResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -234,7 +234,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
      * Get User Features
      */
-    async featureServiceGetUserFeaturesRaw(requestParameters: FeatureServiceGetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetUserFeaturesResponse>> {
+    private async featureServiceGetUserFeaturesRaw(requestParameters: FeatureServiceGetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetUserFeaturesResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -281,7 +281,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
      * Reset Instance Features
      */
-    async featureServiceResetInstanceFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetInstanceFeaturesResponse>> {
+    private async featureServiceResetInstanceFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetInstanceFeaturesResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -317,7 +317,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
      * Reset Organization Features
      */
-    async featureServiceResetOrganizationFeaturesRaw(requestParameters: FeatureServiceResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetOrganizationFeaturesResponse>> {
+    private async featureServiceResetOrganizationFeaturesRaw(requestParameters: FeatureServiceResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetOrganizationFeaturesResponse>> {
         if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
                 'organizationId',
@@ -360,7 +360,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
      * Reset System Features
      */
-    async featureServiceResetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetSystemFeaturesResponse>> {
+    private async featureServiceResetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetSystemFeaturesResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -396,7 +396,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
      * Reset User Features
      */
-    async featureServiceResetUserFeaturesRaw(requestParameters: FeatureServiceResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetUserFeaturesResponse>> {
+    private async featureServiceResetUserFeaturesRaw(requestParameters: FeatureServiceResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetUserFeaturesResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -439,7 +439,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
      * Set Instance Features
      */
-    async featureServiceSetInstanceFeaturesRaw(requestParameters: FeatureServiceSetInstanceFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetInstanceFeaturesResponse>> {
+    private async featureServiceSetInstanceFeaturesRaw(requestParameters: FeatureServiceSetInstanceFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetInstanceFeaturesResponse>> {
         if (requestParameters['featureServiceSetInstanceFeaturesRequest'] == null) {
             throw new runtime.RequiredError(
                 'featureServiceSetInstanceFeaturesRequest',
@@ -485,7 +485,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
      * Set Organization Features
      */
-    async featureServiceSetOrganizationFeaturesRaw(requestParameters: FeatureServiceSetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetOrganizationFeaturesResponse>> {
+    private async featureServiceSetOrganizationFeaturesRaw(requestParameters: FeatureServiceSetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetOrganizationFeaturesResponse>> {
         if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
                 'organizationId',
@@ -528,7 +528,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
      * Set System Features
      */
-    async featureServiceSetSystemFeaturesRaw(requestParameters: FeatureServiceSetSystemFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetSystemFeaturesResponse>> {
+    private async featureServiceSetSystemFeaturesRaw(requestParameters: FeatureServiceSetSystemFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetSystemFeaturesResponse>> {
         if (requestParameters['featureServiceSetSystemFeaturesRequest'] == null) {
             throw new runtime.RequiredError(
                 'featureServiceSetSystemFeaturesRequest',
@@ -574,7 +574,7 @@ export class FeatureServiceApi extends runtime.BaseAPI {
      * Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
      * Set User Features
      */
-    async featureServiceSetUserFeaturesRaw(requestParameters: FeatureServiceSetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetUserFeaturesResponse>> {
+    private async featureServiceSetUserFeaturesRaw(requestParameters: FeatureServiceSetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetUserFeaturesResponse>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',

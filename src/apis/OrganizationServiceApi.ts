@@ -51,7 +51,7 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
      * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
      * Create an Organization
      */
-    async organizationServiceAddOrganizationRaw(requestParameters: OrganizationServiceAddOrganizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
+    private async organizationServiceAddOrganizationRaw(requestParameters: OrganizationServiceAddOrganizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
         if (requestParameters['organizationServiceAddOrganizationRequest'] == null) {
             throw new runtime.RequiredError(
                 'organizationServiceAddOrganizationRequest',
@@ -97,7 +97,7 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
      * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
      * Search Organizations
      */
-    async organizationServiceListOrganizationsRaw(requestParameters: OrganizationServiceListOrganizationsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
+    private async organizationServiceListOrganizationsRaw(requestParameters: OrganizationServiceListOrganizationsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
         if (requestParameters['organizationServiceListOrganizationsRequest'] == null) {
             throw new runtime.RequiredError(
                 'organizationServiceListOrganizationsRequest',

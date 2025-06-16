@@ -64,7 +64,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
      * Authorize or deny the device authorization request based on the provided device authorization id.
      * Authorize or deny device authorization
      */
-    async oIDCServiceAuthorizeOrDenyDeviceAuthorizationRaw(requestParameters: OIDCServiceAuthorizeOrDenyDeviceAuthorizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    private async oIDCServiceAuthorizeOrDenyDeviceAuthorizationRaw(requestParameters: OIDCServiceAuthorizeOrDenyDeviceAuthorizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['deviceAuthorizationId'] == null) {
             throw new runtime.RequiredError(
                 'deviceAuthorizationId',
@@ -117,7 +117,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
      * Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
      * Finalize an Auth Request and get the callback URL.
      */
-    async oIDCServiceCreateCallbackRaw(requestParameters: OIDCServiceCreateCallbackOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceCreateCallbackResponse>> {
+    private async oIDCServiceCreateCallbackRaw(requestParameters: OIDCServiceCreateCallbackOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceCreateCallbackResponse>> {
         if (requestParameters['authRequestId'] == null) {
             throw new runtime.RequiredError(
                 'authRequestId',
@@ -170,7 +170,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
      * Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application\'s Auth Request.
      * Get OIDC Auth Request details
      */
-    async oIDCServiceGetAuthRequestRaw(requestParameters: OIDCServiceGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetAuthRequestResponse>> {
+    private async oIDCServiceGetAuthRequestRaw(requestParameters: OIDCServiceGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetAuthRequestResponse>> {
         if (requestParameters['authRequestId'] == null) {
             throw new runtime.RequiredError(
                 'authRequestId',
@@ -213,7 +213,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
      * Get the device authorization based on the provided \"user code\". This will return the device authorization request, which contains the device authorization id that is required to authorize the request once the user signed in or to deny it.
      * Get device authorization request
      */
-    async oIDCServiceGetDeviceAuthorizationRequestRaw(requestParameters: OIDCServiceGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
+    private async oIDCServiceGetDeviceAuthorizationRequestRaw(requestParameters: OIDCServiceGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
         if (requestParameters['userCode'] == null) {
             throw new runtime.RequiredError(
                 'userCode',

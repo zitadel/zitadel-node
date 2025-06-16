@@ -81,7 +81,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
      * Create a new session. A token will be returned, which is required for further updates of the session.
      * Create a new session
      */
-    async sessionServiceCreateSessionRaw(requestParameters: SessionServiceCreateSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
+    private async sessionServiceCreateSessionRaw(requestParameters: SessionServiceCreateSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
         if (requestParameters['sessionServiceCreateSessionRequest'] == null) {
             throw new runtime.RequiredError(
                 'sessionServiceCreateSessionRequest',
@@ -127,7 +127,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
      * Terminate your own session or if granted any other session.
      * Terminate an existing session
      */
-    async sessionServiceDeleteSessionRaw(requestParameters: SessionServiceDeleteSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
+    private async sessionServiceDeleteSessionRaw(requestParameters: SessionServiceDeleteSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
         if (requestParameters['sessionId'] == null) {
             throw new runtime.RequiredError(
                 'sessionId',
@@ -180,7 +180,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
      * Get a session and all its information like the time of the user or password verification
      * Get a session
      */
-    async sessionServiceGetSessionRaw(requestParameters: SessionServiceGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
+    private async sessionServiceGetSessionRaw(requestParameters: SessionServiceGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
         if (requestParameters['sessionId'] == null) {
             throw new runtime.RequiredError(
                 'sessionId',
@@ -227,7 +227,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
      * Search for sessions
      * Search sessions
      */
-    async sessionServiceListSessionsRaw(requestParameters: SessionServiceListSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
+    private async sessionServiceListSessionsRaw(requestParameters: SessionServiceListSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
         if (requestParameters['sessionServiceListSessionsRequest'] == null) {
             throw new runtime.RequiredError(
                 'sessionServiceListSessionsRequest',
@@ -273,7 +273,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
      * Update an existing session with new information.
      * Update an existing session
      */
-    async sessionServiceSetSessionRaw(requestParameters: SessionServiceSetSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
+    private async sessionServiceSetSessionRaw(requestParameters: SessionServiceSetSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
         if (requestParameters['sessionId'] == null) {
             throw new runtime.RequiredError(
                 'sessionId',
