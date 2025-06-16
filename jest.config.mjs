@@ -26,7 +26,7 @@ export default {
   collectCoverage: true,
   coverageDirectory: './build/coverage',
   collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/**/*.d.ts'],
-  coverageReporters: ['clover'],
+  coverageReporters: ['clover', 'cobertura', 'lcov'],
   coveragePathIgnorePatterns: ['/dist/', '/node_modules/'],
   testTimeout: 60000,
   globalSetup: './test/setup.js',
