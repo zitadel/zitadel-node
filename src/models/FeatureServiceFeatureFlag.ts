@@ -28,7 +28,7 @@ import {
  */
 export interface FeatureServiceFeatureFlag {
     /**
-     * Whether a feature is enabled.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceFeatureFlag
      */

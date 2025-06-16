@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface OrganizationServiceHashedPassword {
     /**
-     * "Encoded hash of a password in Modular Crypt Format: https://zitadel.com/docs/concepts/architecture/secrets#hashed-secrets"
+     * 
      * @type {string}
      * @memberof OrganizationServiceHashedPassword
      */

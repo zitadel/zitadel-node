@@ -21,20 +21,20 @@ import { mapValues } from '../runtime.js';
 export interface UserServiceSendInviteCode {
     /**
      * Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page.
-     * If no template is set, the default ZITADEL url will be used.
+     *  If no template is set and no previous code was created, the default ZITADEL url will be used.
      * 
-     * The following placeholders can be used: UserID, OrgID, Code
+     *  The following placeholders can be used: UserID, OrgID, Code
      * @type {string}
      * @memberof UserServiceSendInviteCode
      */
-    urlTemplate?: string;
+    urlTemplate?: string | null;
     /**
      * Optionally set an application name, which will be used in the invite mail sent by ZITADEL.
-     * If no application name is set, ZITADEL will be used as default.
+     *  If no application name is set and no previous code was created, ZITADEL will be used as default.
      * @type {string}
      * @memberof UserServiceSendInviteCode
      */
-    applicationName?: string;
+    applicationName?: string | null;
 }
 
 /**

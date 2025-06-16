@@ -44,13 +44,13 @@ export interface UserServiceAddHumanUserResponse {
      * @type {string}
      * @memberof UserServiceAddHumanUserResponse
      */
-    emailCode?: string;
+    emailCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserServiceAddHumanUserResponse
      */
-    phoneCode?: string;
+    phoneCode?: string | null;
 }
 
 /**

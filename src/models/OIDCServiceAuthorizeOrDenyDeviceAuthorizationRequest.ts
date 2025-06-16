@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { OIDCServiceSession } from './OIDCServiceSession.js';
+import type { Deny } from './Deny.js';
 import {
-    OIDCServiceSessionFromJSON,
-    OIDCServiceSessionFromJSONTyped,
-    OIDCServiceSessionToJSON,
-    OIDCServiceSessionToJSONTyped,
-} from './OIDCServiceSession.js';
+    instanceOfDeny,
+    DenyFromJSON,
+    DenyFromJSONTyped,
+    DenyToJSON,
+} from './Deny.js';
+import type { Session } from './Session.js';
+import {
+    instanceOfSession,
+    SessionFromJSON,
+    SessionFromJSONTyped,
+    SessionToJSON,
+} from './Session.js';
 
 /**
+ * @type OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
  * 
  * @export
- * @interface OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
  */
-export interface OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest {
-    /**
-     * 
-     * @type {OIDCServiceSession}
-     * @memberof OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
-     */
-    session?: OIDCServiceSession;
-    /**
-     * 
-     * @type {object}
-     * @memberof OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
-     */
-    deny?: object;
-}
-
-/**
- * Check if a given object implements the OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest interface.
- */
-export function instanceOfOIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest(value: object): value is OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest {
-    return true;
-}
+export type OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest = Deny | Session;
 
 export function OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestFromJSON(json: any): OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest {
     return OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestFromJSONType
     if (json == null) {
         return json;
     }
-    return {
-        
-        'session': json['session'] == null ? undefined : OIDCServiceSessionFromJSON(json['session']),
-        'deny': json['deny'] == null ? undefined : json['deny'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfDeny(json)) {
+        return DenyFromJSONTyped(json, true);
+    }
+    if (instanceOfSession(json)) {
+        return SessionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestToJSON(json: any): OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest {
+export function OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestToJSON(json: any): any {
     return OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestToJSONTyped(
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfDeny(value)) {
+        return DenyToJSON(value as Deny);
+    }
+    if (instanceOfSession(value)) {
+        return SessionToJSON(value as Session);
+    }
 
-    return {
-        
-        'session': OIDCServiceSessionToJSON(value['session']),
-        'deny': value['deny'],
-    };
+    return {};
 }
 

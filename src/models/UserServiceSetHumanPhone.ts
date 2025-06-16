@@ -12,45 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-/**
- * 
- * @export
- * @interface UserServiceSetHumanPhone
- */
-export interface UserServiceSetHumanPhone {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceSetHumanPhone
-     */
-    phone?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSetHumanPhone
-     */
-    sendCode?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSetHumanPhone
-     */
-    returnCode?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserServiceSetHumanPhone
-     */
-    isVerified?: boolean;
-}
+import type { IsVerified } from './IsVerified.js';
+import {
+    instanceOfIsVerified,
+    IsVerifiedFromJSON,
+    IsVerifiedFromJSONTyped,
+    IsVerifiedToJSON,
+} from './IsVerified.js';
+import type { ReturnCode3 } from './ReturnCode3.js';
+import {
+    instanceOfReturnCode3,
+    ReturnCode3FromJSON,
+    ReturnCode3FromJSONTyped,
+    ReturnCode3ToJSON,
+} from './ReturnCode3.js';
+import type { SendCode3 } from './SendCode3.js';
+import {
+    instanceOfSendCode3,
+    SendCode3FromJSON,
+    SendCode3FromJSONTyped,
+    SendCode3ToJSON,
+} from './SendCode3.js';
 
 /**
- * Check if a given object implements the UserServiceSetHumanPhone interface.
+ * @type UserServiceSetHumanPhone
+ * 
+ * @export
  */
-export function instanceOfUserServiceSetHumanPhone(value: object): value is UserServiceSetHumanPhone {
-    return true;
-}
+export type UserServiceSetHumanPhone = IsVerified | ReturnCode3 | SendCode3;
 
 export function UserServiceSetHumanPhoneFromJSON(json: any): UserServiceSetHumanPhone {
     return UserServiceSetHumanPhoneFromJSONTyped(json, false);
@@ -60,16 +49,23 @@ export function UserServiceSetHumanPhoneFromJSONTyped(json: any, ignoreDiscrimin
     if (json == null) {
         return json;
     }
-    return {
-        
-        'phone': json['phone'] == null ? undefined : json['phone'],
-        'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-        'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfIsVerified(json)) {
+        return IsVerifiedFromJSONTyped(json, true);
+    }
+    if (instanceOfReturnCode3(json)) {
+        return ReturnCode3FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode3(json)) {
+        return SendCode3FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSetHumanPhoneToJSON(json: any): UserServiceSetHumanPhone {
+export function UserServiceSetHumanPhoneToJSON(json: any): any {
     return UserServiceSetHumanPhoneToJSONTyped(json, false);
 }
 
@@ -77,13 +73,19 @@ export function UserServiceSetHumanPhoneToJSONTyped(value?: UserServiceSetHumanP
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfIsVerified(value)) {
+        return IsVerifiedToJSON(value as IsVerified);
+    }
+    if (instanceOfReturnCode3(value)) {
+        return ReturnCode3ToJSON(value as ReturnCode3);
+    }
+    if (instanceOfSendCode3(value)) {
+        return SendCode3ToJSON(value as SendCode3);
+    }
 
-    return {
-        
-        'phone': value['phone'],
-        'sendCode': value['sendCode'],
-        'returnCode': value['returnCode'],
-        'isVerified': value['isVerified'],
-    };
+    return {};
 }
 

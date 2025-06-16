@@ -15,91 +15,122 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  FeatureServiceConnectError,
+  FeatureServiceGetInstanceFeaturesRequest,
   FeatureServiceGetInstanceFeaturesResponse,
+  FeatureServiceGetOrganizationFeaturesRequest,
   FeatureServiceGetOrganizationFeaturesResponse,
   FeatureServiceGetSystemFeaturesResponse,
+  FeatureServiceGetUserFeaturesRequest,
   FeatureServiceGetUserFeaturesResponse,
   FeatureServiceResetInstanceFeaturesResponse,
+  FeatureServiceResetOrganizationFeaturesRequest,
   FeatureServiceResetOrganizationFeaturesResponse,
   FeatureServiceResetSystemFeaturesResponse,
+  FeatureServiceResetUserFeaturesRequest,
   FeatureServiceResetUserFeaturesResponse,
-  FeatureServiceRpcStatus,
   FeatureServiceSetInstanceFeaturesRequest,
   FeatureServiceSetInstanceFeaturesResponse,
+  FeatureServiceSetOrganizationFeaturesRequest,
   FeatureServiceSetOrganizationFeaturesResponse,
   FeatureServiceSetSystemFeaturesRequest,
   FeatureServiceSetSystemFeaturesResponse,
+  FeatureServiceSetUserFeatureRequest,
   FeatureServiceSetUserFeaturesResponse,
 } from '../models/index.js';
 import {
+    FeatureServiceConnectErrorFromJSON,
+    FeatureServiceConnectErrorToJSON,
+    FeatureServiceGetInstanceFeaturesRequestFromJSON,
+    FeatureServiceGetInstanceFeaturesRequestToJSON,
     FeatureServiceGetInstanceFeaturesResponseFromJSON,
     FeatureServiceGetInstanceFeaturesResponseToJSON,
+    FeatureServiceGetOrganizationFeaturesRequestFromJSON,
+    FeatureServiceGetOrganizationFeaturesRequestToJSON,
     FeatureServiceGetOrganizationFeaturesResponseFromJSON,
     FeatureServiceGetOrganizationFeaturesResponseToJSON,
     FeatureServiceGetSystemFeaturesResponseFromJSON,
     FeatureServiceGetSystemFeaturesResponseToJSON,
+    FeatureServiceGetUserFeaturesRequestFromJSON,
+    FeatureServiceGetUserFeaturesRequestToJSON,
     FeatureServiceGetUserFeaturesResponseFromJSON,
     FeatureServiceGetUserFeaturesResponseToJSON,
     FeatureServiceResetInstanceFeaturesResponseFromJSON,
     FeatureServiceResetInstanceFeaturesResponseToJSON,
+    FeatureServiceResetOrganizationFeaturesRequestFromJSON,
+    FeatureServiceResetOrganizationFeaturesRequestToJSON,
     FeatureServiceResetOrganizationFeaturesResponseFromJSON,
     FeatureServiceResetOrganizationFeaturesResponseToJSON,
     FeatureServiceResetSystemFeaturesResponseFromJSON,
     FeatureServiceResetSystemFeaturesResponseToJSON,
+    FeatureServiceResetUserFeaturesRequestFromJSON,
+    FeatureServiceResetUserFeaturesRequestToJSON,
     FeatureServiceResetUserFeaturesResponseFromJSON,
     FeatureServiceResetUserFeaturesResponseToJSON,
-    FeatureServiceRpcStatusFromJSON,
-    FeatureServiceRpcStatusToJSON,
     FeatureServiceSetInstanceFeaturesRequestFromJSON,
     FeatureServiceSetInstanceFeaturesRequestToJSON,
     FeatureServiceSetInstanceFeaturesResponseFromJSON,
     FeatureServiceSetInstanceFeaturesResponseToJSON,
+    FeatureServiceSetOrganizationFeaturesRequestFromJSON,
+    FeatureServiceSetOrganizationFeaturesRequestToJSON,
     FeatureServiceSetOrganizationFeaturesResponseFromJSON,
     FeatureServiceSetOrganizationFeaturesResponseToJSON,
     FeatureServiceSetSystemFeaturesRequestFromJSON,
     FeatureServiceSetSystemFeaturesRequestToJSON,
     FeatureServiceSetSystemFeaturesResponseFromJSON,
     FeatureServiceSetSystemFeaturesResponseToJSON,
+    FeatureServiceSetUserFeatureRequestFromJSON,
+    FeatureServiceSetUserFeatureRequestToJSON,
     FeatureServiceSetUserFeaturesResponseFromJSON,
     FeatureServiceSetUserFeaturesResponseToJSON,
 } from '../models/index.js';
 
-export interface FeatureServiceGetInstanceFeaturesRequest {
-    inheritance?: boolean;
+export interface GetInstanceFeaturesRequest {
+    featureServiceGetInstanceFeaturesRequest: FeatureServiceGetInstanceFeaturesRequest;
 }
 
-export interface FeatureServiceGetOrganizationFeaturesRequest {
-    organizationId: string;
-    inheritance?: boolean;
+export interface GetOrganizationFeaturesRequest {
+    featureServiceGetOrganizationFeaturesRequest: FeatureServiceGetOrganizationFeaturesRequest;
 }
 
-export interface FeatureServiceGetUserFeaturesRequest {
-    userId: string;
-    inheritance?: boolean;
+export interface GetSystemFeaturesRequest {
+    body: object;
 }
 
-export interface FeatureServiceResetOrganizationFeaturesRequest {
-    organizationId: string;
+export interface GetUserFeaturesRequest {
+    featureServiceGetUserFeaturesRequest: FeatureServiceGetUserFeaturesRequest;
 }
 
-export interface FeatureServiceResetUserFeaturesRequest {
-    userId: string;
+export interface ResetInstanceFeaturesRequest {
+    body: object;
 }
 
-export interface FeatureServiceSetInstanceFeaturesOperationRequest {
+export interface ResetOrganizationFeaturesRequest {
+    featureServiceResetOrganizationFeaturesRequest: FeatureServiceResetOrganizationFeaturesRequest;
+}
+
+export interface ResetSystemFeaturesRequest {
+    body: object;
+}
+
+export interface ResetUserFeaturesRequest {
+    featureServiceResetUserFeaturesRequest: FeatureServiceResetUserFeaturesRequest;
+}
+
+export interface SetInstanceFeaturesRequest {
     featureServiceSetInstanceFeaturesRequest: FeatureServiceSetInstanceFeaturesRequest;
 }
 
-export interface FeatureServiceSetOrganizationFeaturesRequest {
-    organizationId: string;
+export interface SetOrganizationFeaturesRequest {
+    featureServiceSetOrganizationFeaturesRequest: FeatureServiceSetOrganizationFeaturesRequest;
 }
 
-export interface FeatureServiceSetSystemFeaturesOperationRequest {
+export interface SetSystemFeaturesRequest {
     featureServiceSetSystemFeaturesRequest: FeatureServiceSetSystemFeaturesRequest;
 }
 
-export interface FeatureServiceSetUserFeaturesRequest {
-    userId: string;
+export interface SetUserFeaturesRequest {
+    featureServiceSetUserFeatureRequest: FeatureServiceSetUserFeatureRequest;
 }
 
 /**
@@ -108,342 +139,14 @@ export interface FeatureServiceSetUserFeaturesRequest {
 export class FeatureServiceApi extends runtime.BaseAPI {
 
     /**
-     * Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
-     * Get Instance Features
+     * Get Instance Features   Returns all configured features for an instance. Unset fields mean the feature is the current system default.   Required permissions:   - none
+     * GetInstanceFeatures
      */
-    async featureServiceGetInstanceFeaturesRaw(requestParameters: FeatureServiceGetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetInstanceFeaturesResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['inheritance'] != null) {
-            queryParameters['inheritance'] = requestParameters['inheritance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/instance`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetInstanceFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
-     * Get Instance Features
-     */
-    async featureServiceGetInstanceFeatures(requestParameters: FeatureServiceGetInstanceFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetInstanceFeaturesResponse> {
-        const response = await this.featureServiceGetInstanceFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
-     * Get Organization Features
-     */
-    async featureServiceGetOrganizationFeaturesRaw(requestParameters: FeatureServiceGetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetOrganizationFeaturesResponse>> {
-        if (requestParameters['organizationId'] == null) {
+    async getInstanceFeaturesRaw(requestParameters: GetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetInstanceFeaturesResponse>> {
+        if (requestParameters['featureServiceGetInstanceFeaturesRequest'] == null) {
             throw new runtime.RequiredError(
-                'organizationId',
-                'Required parameter "organizationId" was null or undefined when calling featureServiceGetOrganizationFeatures().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['inheritance'] != null) {
-            queryParameters['inheritance'] = requestParameters['inheritance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/organization/{organizationId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetOrganizationFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
-     * Get Organization Features
-     */
-    async featureServiceGetOrganizationFeatures(requestParameters: FeatureServiceGetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetOrganizationFeaturesResponse> {
-        const response = await this.featureServiceGetOrganizationFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
-     * Get System Features
-     */
-    async featureServiceGetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetSystemFeaturesResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/system`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetSystemFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
-     * Get System Features
-     */
-    async featureServiceGetSystemFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetSystemFeaturesResponse> {
-        const response = await this.featureServiceGetSystemFeaturesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
-     * Get User Features
-     */
-    async featureServiceGetUserFeaturesRaw(requestParameters: FeatureServiceGetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetUserFeaturesResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling featureServiceGetUserFeatures().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['inheritance'] != null) {
-            queryParameters['inheritance'] = requestParameters['inheritance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetUserFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
-     * Get User Features
-     */
-    async featureServiceGetUserFeatures(requestParameters: FeatureServiceGetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetUserFeaturesResponse> {
-        const response = await this.featureServiceGetUserFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
-     * Reset Instance Features
-     */
-    async featureServiceResetInstanceFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetInstanceFeaturesResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/instance`,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetInstanceFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
-     * Reset Instance Features
-     */
-    async featureServiceResetInstanceFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetInstanceFeaturesResponse> {
-        const response = await this.featureServiceResetInstanceFeaturesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
-     * Reset Organization Features
-     */
-    async featureServiceResetOrganizationFeaturesRaw(requestParameters: FeatureServiceResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetOrganizationFeaturesResponse>> {
-        if (requestParameters['organizationId'] == null) {
-            throw new runtime.RequiredError(
-                'organizationId',
-                'Required parameter "organizationId" was null or undefined when calling featureServiceResetOrganizationFeatures().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/organization/{organizationId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetOrganizationFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
-     * Reset Organization Features
-     */
-    async featureServiceResetOrganizationFeatures(requestParameters: FeatureServiceResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetOrganizationFeaturesResponse> {
-        const response = await this.featureServiceResetOrganizationFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
-     * Reset System Features
-     */
-    async featureServiceResetSystemFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetSystemFeaturesResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/system`,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetSystemFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
-     * Reset System Features
-     */
-    async featureServiceResetSystemFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetSystemFeaturesResponse> {
-        const response = await this.featureServiceResetSystemFeaturesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
-     * Reset User Features
-     */
-    async featureServiceResetUserFeaturesRaw(requestParameters: FeatureServiceResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetUserFeaturesResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling featureServiceResetUserFeatures().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetUserFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
-     * Reset User Features
-     */
-    async featureServiceResetUserFeatures(requestParameters: FeatureServiceResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetUserFeaturesResponse> {
-        const response = await this.featureServiceResetUserFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
-     * Set Instance Features
-     */
-    async featureServiceSetInstanceFeaturesRaw(requestParameters: FeatureServiceSetInstanceFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetInstanceFeaturesResponse>> {
-        if (requestParameters['featureServiceSetInstanceFeaturesRequest'] == null) {
-            throw new runtime.RequiredError(
-                'featureServiceSetInstanceFeaturesRequest',
-                'Required parameter "featureServiceSetInstanceFeaturesRequest" was null or undefined when calling featureServiceSetInstanceFeatures().'
+                'featureServiceGetInstanceFeaturesRequest',
+                'Required parameter "featureServiceGetInstanceFeaturesRequest" was null or undefined when calling getInstanceFeatures().'
             );
         }
 
@@ -462,8 +165,376 @@ export class FeatureServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/features/instance`,
-            method: 'PUT',
+            path: `/zitadel.feature.v2.FeatureService/GetInstanceFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceGetInstanceFeaturesRequestToJSON(requestParameters['featureServiceGetInstanceFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetInstanceFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get Instance Features   Returns all configured features for an instance. Unset fields mean the feature is the current system default.   Required permissions:   - none
+     * GetInstanceFeatures
+     */
+    async getInstanceFeatures(requestParameters: GetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetInstanceFeaturesResponse> {
+        const response = await this.getInstanceFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get Organization Features   Returns all configured features for an organization. Unset fields mean the feature is the current instance default.   Required permissions:   - org.feature.read   - no permission required for the organization the user belongs to
+     * GetOrganizationFeatures
+     */
+    async getOrganizationFeaturesRaw(requestParameters: GetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetOrganizationFeaturesResponse>> {
+        if (requestParameters['featureServiceGetOrganizationFeaturesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceGetOrganizationFeaturesRequest',
+                'Required parameter "featureServiceGetOrganizationFeaturesRequest" was null or undefined when calling getOrganizationFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/GetOrganizationFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceGetOrganizationFeaturesRequestToJSON(requestParameters['featureServiceGetOrganizationFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetOrganizationFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get Organization Features   Returns all configured features for an organization. Unset fields mean the feature is the current instance default.   Required permissions:   - org.feature.read   - no permission required for the organization the user belongs to
+     * GetOrganizationFeatures
+     */
+    async getOrganizationFeatures(requestParameters: GetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetOrganizationFeaturesResponse> {
+        const response = await this.getOrganizationFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get System Features   Returns all configured features for the system. Unset fields mean the feature is the current system default.   Required permissions:   - none
+     * GetSystemFeatures
+     */
+    async getSystemFeaturesRaw(requestParameters: GetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetSystemFeaturesResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling getSystemFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/GetSystemFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetSystemFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get System Features   Returns all configured features for the system. Unset fields mean the feature is the current system default.   Required permissions:   - none
+     * GetSystemFeatures
+     */
+    async getSystemFeatures(requestParameters: GetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetSystemFeaturesResponse> {
+        const response = await this.getSystemFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get User Features   Returns all configured features for a user. Unset fields mean the feature is the current organization default.   Required permissions:   - user.feature.read   - no permission required for the own user
+     * GetUserFeatures
+     */
+    async getUserFeaturesRaw(requestParameters: GetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceGetUserFeaturesResponse>> {
+        if (requestParameters['featureServiceGetUserFeaturesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceGetUserFeaturesRequest',
+                'Required parameter "featureServiceGetUserFeaturesRequest" was null or undefined when calling getUserFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/GetUserFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceGetUserFeaturesRequestToJSON(requestParameters['featureServiceGetUserFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceGetUserFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get User Features   Returns all configured features for a user. Unset fields mean the feature is the current organization default.   Required permissions:   - user.feature.read   - no permission required for the own user
+     * GetUserFeatures
+     */
+    async getUserFeatures(requestParameters: GetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceGetUserFeaturesResponse> {
+        const response = await this.getUserFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Reset Instance Features   Deletes ALL configured features for an instance, reverting the behaviors to system defaults.   Required permissions:   - iam.feature.delete
+     * ResetInstanceFeatures
+     */
+    async resetInstanceFeaturesRaw(requestParameters: ResetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetInstanceFeaturesResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling resetInstanceFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/ResetInstanceFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetInstanceFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reset Instance Features   Deletes ALL configured features for an instance, reverting the behaviors to system defaults.   Required permissions:   - iam.feature.delete
+     * ResetInstanceFeatures
+     */
+    async resetInstanceFeatures(requestParameters: ResetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetInstanceFeaturesResponse> {
+        const response = await this.resetInstanceFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Reset Organization Features   Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.   Required permissions:   - org.feature.delete
+     * ResetOrganizationFeatures
+     */
+    async resetOrganizationFeaturesRaw(requestParameters: ResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetOrganizationFeaturesResponse>> {
+        if (requestParameters['featureServiceResetOrganizationFeaturesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceResetOrganizationFeaturesRequest',
+                'Required parameter "featureServiceResetOrganizationFeaturesRequest" was null or undefined when calling resetOrganizationFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/ResetOrganizationFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceResetOrganizationFeaturesRequestToJSON(requestParameters['featureServiceResetOrganizationFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetOrganizationFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reset Organization Features   Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.   Required permissions:   - org.feature.delete
+     * ResetOrganizationFeatures
+     */
+    async resetOrganizationFeatures(requestParameters: ResetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetOrganizationFeaturesResponse> {
+        const response = await this.resetOrganizationFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Reset System Features   Deletes ALL configured features for the system, reverting the behaviors to system defaults.   Required permissions:   - system.feature.delete
+     * ResetSystemFeatures
+     */
+    async resetSystemFeaturesRaw(requestParameters: ResetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetSystemFeaturesResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling resetSystemFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/ResetSystemFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetSystemFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reset System Features   Deletes ALL configured features for the system, reverting the behaviors to system defaults.   Required permissions:   - system.feature.delete
+     * ResetSystemFeatures
+     */
+    async resetSystemFeatures(requestParameters: ResetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetSystemFeaturesResponse> {
+        const response = await this.resetSystemFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Reset User Features   Deletes ALL configured features for a user, reverting the behaviors to organization defaults.   Required permissions:   - user.feature.delete
+     * ResetUserFeatures
+     */
+    async resetUserFeaturesRaw(requestParameters: ResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceResetUserFeaturesResponse>> {
+        if (requestParameters['featureServiceResetUserFeaturesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceResetUserFeaturesRequest',
+                'Required parameter "featureServiceResetUserFeaturesRequest" was null or undefined when calling resetUserFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/ResetUserFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceResetUserFeaturesRequestToJSON(requestParameters['featureServiceResetUserFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceResetUserFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reset User Features   Deletes ALL configured features for a user, reverting the behaviors to organization defaults.   Required permissions:   - user.feature.delete
+     * ResetUserFeatures
+     */
+    async resetUserFeatures(requestParameters: ResetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceResetUserFeaturesResponse> {
+        const response = await this.resetUserFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set Instance Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - iam.feature.write
+     * SetInstanceFeatures
+     */
+    async setInstanceFeaturesRaw(requestParameters: SetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetInstanceFeaturesResponse>> {
+        if (requestParameters['featureServiceSetInstanceFeaturesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceSetInstanceFeaturesRequest',
+                'Required parameter "featureServiceSetInstanceFeaturesRequest" was null or undefined when calling setInstanceFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/SetInstanceFeatures`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: FeatureServiceSetInstanceFeaturesRequestToJSON(requestParameters['featureServiceSetInstanceFeaturesRequest']),
@@ -473,66 +544,23 @@ export class FeatureServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
-     * Set Instance Features
+     * Set Instance Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - iam.feature.write
+     * SetInstanceFeatures
      */
-    async featureServiceSetInstanceFeatures(requestParameters: FeatureServiceSetInstanceFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetInstanceFeaturesResponse> {
-        const response = await this.featureServiceSetInstanceFeaturesRaw(requestParameters, initOverrides);
+    async setInstanceFeatures(requestParameters: SetInstanceFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetInstanceFeaturesResponse> {
+        const response = await this.setInstanceFeaturesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
-     * Set Organization Features
+     * Set Organization Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - org.feature.write
+     * SetOrganizationFeatures
      */
-    async featureServiceSetOrganizationFeaturesRaw(requestParameters: FeatureServiceSetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetOrganizationFeaturesResponse>> {
-        if (requestParameters['organizationId'] == null) {
+    async setOrganizationFeaturesRaw(requestParameters: SetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetOrganizationFeaturesResponse>> {
+        if (requestParameters['featureServiceSetOrganizationFeaturesRequest'] == null) {
             throw new runtime.RequiredError(
-                'organizationId',
-                'Required parameter "organizationId" was null or undefined when calling featureServiceSetOrganizationFeatures().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/features/organization/{organizationId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceSetOrganizationFeaturesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
-     * Set Organization Features
-     */
-    async featureServiceSetOrganizationFeatures(requestParameters: FeatureServiceSetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetOrganizationFeaturesResponse> {
-        const response = await this.featureServiceSetOrganizationFeaturesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
-     * Set System Features
-     */
-    async featureServiceSetSystemFeaturesRaw(requestParameters: FeatureServiceSetSystemFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetSystemFeaturesResponse>> {
-        if (requestParameters['featureServiceSetSystemFeaturesRequest'] == null) {
-            throw new runtime.RequiredError(
-                'featureServiceSetSystemFeaturesRequest',
-                'Required parameter "featureServiceSetSystemFeaturesRequest" was null or undefined when calling featureServiceSetSystemFeatures().'
+                'featureServiceSetOrganizationFeaturesRequest',
+                'Required parameter "featureServiceSetOrganizationFeaturesRequest" was null or undefined when calling setOrganizationFeatures().'
             );
         }
 
@@ -551,40 +579,42 @@ export class FeatureServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/features/system`,
-            method: 'PUT',
+            path: `/zitadel.feature.v2.FeatureService/SetOrganizationFeatures`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: FeatureServiceSetSystemFeaturesRequestToJSON(requestParameters['featureServiceSetSystemFeaturesRequest']),
+            body: FeatureServiceSetOrganizationFeaturesRequestToJSON(requestParameters['featureServiceSetOrganizationFeaturesRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceSetSystemFeaturesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceSetOrganizationFeaturesResponseFromJSON(jsonValue));
     }
 
     /**
-     * Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
-     * Set System Features
+     * Set Organization Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - org.feature.write
+     * SetOrganizationFeatures
      */
-    async featureServiceSetSystemFeatures(requestParameters: FeatureServiceSetSystemFeaturesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetSystemFeaturesResponse> {
-        const response = await this.featureServiceSetSystemFeaturesRaw(requestParameters, initOverrides);
+    async setOrganizationFeatures(requestParameters: SetOrganizationFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetOrganizationFeaturesResponse> {
+        const response = await this.setOrganizationFeaturesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
-     * Set User Features
+     * Set System Features   Configure and set features that apply to the complete system. Only fields present in the request are set or unset.   Required permissions:   - system.feature.write
+     * SetSystemFeatures
      */
-    async featureServiceSetUserFeaturesRaw(requestParameters: FeatureServiceSetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetUserFeaturesResponse>> {
-        if (requestParameters['userId'] == null) {
+    async setSystemFeaturesRaw(requestParameters: SetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetSystemFeaturesResponse>> {
+        if (requestParameters['featureServiceSetSystemFeaturesRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling featureServiceSetUserFeatures().'
+                'featureServiceSetSystemFeaturesRequest',
+                'Required parameter "featureServiceSetSystemFeaturesRequest" was null or undefined when calling setSystemFeatures().'
             );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -595,21 +625,68 @@ export class FeatureServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/features/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'PUT',
+            path: `/zitadel.feature.v2.FeatureService/SetSystemFeatures`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: FeatureServiceSetSystemFeaturesRequestToJSON(requestParameters['featureServiceSetSystemFeaturesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceSetSystemFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Set System Features   Configure and set features that apply to the complete system. Only fields present in the request are set or unset.   Required permissions:   - system.feature.write
+     * SetSystemFeatures
+     */
+    async setSystemFeatures(requestParameters: SetSystemFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetSystemFeaturesResponse> {
+        const response = await this.setSystemFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set User Features   Configure and set features that apply to an user. Only fields present in the request are set or unset.   Required permissions:   - user.feature.write
+     * SetUserFeatures
+     */
+    async setUserFeaturesRaw(requestParameters: SetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeatureServiceSetUserFeaturesResponse>> {
+        if (requestParameters['featureServiceSetUserFeatureRequest'] == null) {
+            throw new runtime.RequiredError(
+                'featureServiceSetUserFeatureRequest',
+                'Required parameter "featureServiceSetUserFeatureRequest" was null or undefined when calling setUserFeatures().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.feature.v2.FeatureService/SetUserFeatures`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FeatureServiceSetUserFeatureRequestToJSON(requestParameters['featureServiceSetUserFeatureRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FeatureServiceSetUserFeaturesResponseFromJSON(jsonValue));
     }
 
     /**
-     * Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
-     * Set User Features
+     * Set User Features   Configure and set features that apply to an user. Only fields present in the request are set or unset.   Required permissions:   - user.feature.write
+     * SetUserFeatures
      */
-    async featureServiceSetUserFeatures(requestParameters: FeatureServiceSetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetUserFeaturesResponse> {
-        const response = await this.featureServiceSetUserFeaturesRaw(requestParameters, initOverrides);
+    async setUserFeatures(requestParameters: SetUserFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeatureServiceSetUserFeaturesResponse> {
+        const response = await this.setUserFeaturesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

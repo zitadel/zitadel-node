@@ -54,19 +54,19 @@ export interface SettingsServiceBrandingSettings {
      */
     darkTheme?: SettingsServiceTheme;
     /**
-     * url to the font used
+     * 
      * @type {string}
      * @memberof SettingsServiceBrandingSettings
      */
     fontUrl?: string;
     /**
-     * hides the org suffix on the login form if the scope "urn:zitadel:iam:org:domain:primary:{domainname}" is set
+     * hides the org suffix on the login form if the scope \"urn:zitadel:iam:org:domain:primary:{domainname}\" is set
      * @type {boolean}
      * @memberof SettingsServiceBrandingSettings
      */
     hideLoginNameSuffix?: boolean;
     /**
-     * boolean to disable the watermark
+     * 
      * @type {boolean}
      * @memberof SettingsServiceBrandingSettings
      */

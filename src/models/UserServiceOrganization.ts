@@ -12,33 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-/**
- * 
- * @export
- * @interface UserServiceOrganization
- */
-export interface UserServiceOrganization {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceOrganization
-     */
-    orgId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceOrganization
-     */
-    orgDomain?: string;
-}
+import type { OrgDomain } from './OrgDomain.js';
+import {
+    instanceOfOrgDomain,
+    OrgDomainFromJSON,
+    OrgDomainFromJSONTyped,
+    OrgDomainToJSON,
+} from './OrgDomain.js';
+import type { OrgId } from './OrgId.js';
+import {
+    instanceOfOrgId,
+    OrgIdFromJSON,
+    OrgIdFromJSONTyped,
+    OrgIdToJSON,
+} from './OrgId.js';
 
 /**
- * Check if a given object implements the UserServiceOrganization interface.
+ * @type UserServiceOrganization
+ * 
+ * @export
  */
-export function instanceOfUserServiceOrganization(value: object): value is UserServiceOrganization {
-    return true;
-}
+export type UserServiceOrganization = OrgDomain | OrgId;
 
 export function UserServiceOrganizationFromJSON(json: any): UserServiceOrganization {
     return UserServiceOrganizationFromJSONTyped(json, false);
@@ -48,14 +42,20 @@ export function UserServiceOrganizationFromJSONTyped(json: any, ignoreDiscrimina
     if (json == null) {
         return json;
     }
-    return {
-        
-        'orgId': json['orgId'] == null ? undefined : json['orgId'],
-        'orgDomain': json['orgDomain'] == null ? undefined : json['orgDomain'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfOrgDomain(json)) {
+        return OrgDomainFromJSONTyped(json, true);
+    }
+    if (instanceOfOrgId(json)) {
+        return OrgIdFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceOrganizationToJSON(json: any): UserServiceOrganization {
+export function UserServiceOrganizationToJSON(json: any): any {
     return UserServiceOrganizationToJSONTyped(json, false);
 }
 
@@ -63,11 +63,16 @@ export function UserServiceOrganizationToJSONTyped(value?: UserServiceOrganizati
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfOrgDomain(value)) {
+        return OrgDomainToJSON(value as OrgDomain);
+    }
+    if (instanceOfOrgId(value)) {
+        return OrgIdToJSON(value as OrgId);
+    }
 
-    return {
-        
-        'orgId': value['orgId'],
-        'orgDomain': value['orgDomain'],
-    };
+    return {};
 }
 

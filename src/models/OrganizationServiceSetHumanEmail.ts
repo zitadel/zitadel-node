@@ -12,54 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { OrganizationServiceSendEmailVerificationCode } from './OrganizationServiceSendEmailVerificationCode.js';
+import type { IsVerified } from './IsVerified.js';
 import {
-    OrganizationServiceSendEmailVerificationCodeFromJSON,
-    OrganizationServiceSendEmailVerificationCodeFromJSONTyped,
-    OrganizationServiceSendEmailVerificationCodeToJSON,
-    OrganizationServiceSendEmailVerificationCodeToJSONTyped,
-} from './OrganizationServiceSendEmailVerificationCode.js';
+    instanceOfIsVerified,
+    IsVerifiedFromJSON,
+    IsVerifiedFromJSONTyped,
+    IsVerifiedToJSON,
+} from './IsVerified.js';
+import type { ReturnCode7 } from './ReturnCode7.js';
+import {
+    instanceOfReturnCode7,
+    ReturnCode7FromJSON,
+    ReturnCode7FromJSONTyped,
+    ReturnCode7ToJSON,
+} from './ReturnCode7.js';
+import type { SendCode5 } from './SendCode5.js';
+import {
+    instanceOfSendCode5,
+    SendCode5FromJSON,
+    SendCode5FromJSONTyped,
+    SendCode5ToJSON,
+} from './SendCode5.js';
 
 /**
+ * @type OrganizationServiceSetHumanEmail
  * 
  * @export
- * @interface OrganizationServiceSetHumanEmail
  */
-export interface OrganizationServiceSetHumanEmail {
-    /**
-     * 
-     * @type {string}
-     * @memberof OrganizationServiceSetHumanEmail
-     */
-    email: string;
-    /**
-     * 
-     * @type {OrganizationServiceSendEmailVerificationCode}
-     * @memberof OrganizationServiceSetHumanEmail
-     */
-    sendCode?: OrganizationServiceSendEmailVerificationCode;
-    /**
-     * 
-     * @type {object}
-     * @memberof OrganizationServiceSetHumanEmail
-     */
-    returnCode?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OrganizationServiceSetHumanEmail
-     */
-    isVerified?: boolean;
-}
-
-/**
- * Check if a given object implements the OrganizationServiceSetHumanEmail interface.
- */
-export function instanceOfOrganizationServiceSetHumanEmail(value: object): value is OrganizationServiceSetHumanEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    return true;
-}
+export type OrganizationServiceSetHumanEmail = IsVerified | ReturnCode7 | SendCode5;
 
 export function OrganizationServiceSetHumanEmailFromJSON(json: any): OrganizationServiceSetHumanEmail {
     return OrganizationServiceSetHumanEmailFromJSONTyped(json, false);
@@ -69,16 +49,23 @@ export function OrganizationServiceSetHumanEmailFromJSONTyped(json: any, ignoreD
     if (json == null) {
         return json;
     }
-    return {
-        
-        'email': json['email'],
-        'sendCode': json['sendCode'] == null ? undefined : OrganizationServiceSendEmailVerificationCodeFromJSON(json['sendCode']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-        'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfIsVerified(json)) {
+        return IsVerifiedFromJSONTyped(json, true);
+    }
+    if (instanceOfReturnCode7(json)) {
+        return ReturnCode7FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode5(json)) {
+        return SendCode5FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function OrganizationServiceSetHumanEmailToJSON(json: any): OrganizationServiceSetHumanEmail {
+export function OrganizationServiceSetHumanEmailToJSON(json: any): any {
     return OrganizationServiceSetHumanEmailToJSONTyped(json, false);
 }
 
@@ -86,13 +73,19 @@ export function OrganizationServiceSetHumanEmailToJSONTyped(value?: Organization
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfIsVerified(value)) {
+        return IsVerifiedToJSON(value as IsVerified);
+    }
+    if (instanceOfReturnCode7(value)) {
+        return ReturnCode7ToJSON(value as ReturnCode7);
+    }
+    if (instanceOfSendCode5(value)) {
+        return SendCode5ToJSON(value as SendCode5);
+    }
 
-    return {
-        
-        'email': value['email'],
-        'sendCode': OrganizationServiceSendEmailVerificationCodeToJSON(value['sendCode']),
-        'returnCode': value['returnCode'],
-        'isVerified': value['isVerified'],
-    };
+    return {};
 }
 

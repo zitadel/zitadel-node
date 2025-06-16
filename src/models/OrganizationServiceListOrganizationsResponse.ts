@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { Zitadelorgv2Organization } from './Zitadelorgv2Organization.js';
-import {
-    Zitadelorgv2OrganizationFromJSON,
-    Zitadelorgv2OrganizationFromJSONTyped,
-    Zitadelorgv2OrganizationToJSON,
-    Zitadelorgv2OrganizationToJSONTyped,
-} from './Zitadelorgv2Organization.js';
 import type { OrganizationServiceListDetails } from './OrganizationServiceListDetails.js';
 import {
     OrganizationServiceListDetailsFromJSON,
@@ -27,6 +20,13 @@ import {
     OrganizationServiceListDetailsToJSON,
     OrganizationServiceListDetailsToJSONTyped,
 } from './OrganizationServiceListDetails.js';
+import type { OrganizationServiceOrganization } from './OrganizationServiceOrganization.js';
+import {
+    OrganizationServiceOrganizationFromJSON,
+    OrganizationServiceOrganizationFromJSONTyped,
+    OrganizationServiceOrganizationToJSON,
+    OrganizationServiceOrganizationToJSONTyped,
+} from './OrganizationServiceOrganization.js';
 import type { OrganizationServiceOrganizationFieldName } from './OrganizationServiceOrganizationFieldName.js';
 import {
     OrganizationServiceOrganizationFieldNameFromJSON,
@@ -55,10 +55,10 @@ export interface OrganizationServiceListOrganizationsResponse {
     sortingColumn?: OrganizationServiceOrganizationFieldName;
     /**
      * 
-     * @type {Array<Zitadelorgv2Organization>}
+     * @type {Array<OrganizationServiceOrganization>}
      * @memberof OrganizationServiceListOrganizationsResponse
      */
-    result?: Array<Zitadelorgv2Organization>;
+    result?: Array<OrganizationServiceOrganization>;
 }
 
 
@@ -82,7 +82,7 @@ export function OrganizationServiceListOrganizationsResponseFromJSONTyped(json: 
         
         'details': json['details'] == null ? undefined : OrganizationServiceListDetailsFromJSON(json['details']),
         'sortingColumn': json['sortingColumn'] == null ? undefined : OrganizationServiceOrganizationFieldNameFromJSON(json['sortingColumn']),
-        'result': json['result'] == null ? undefined : ((json['result'] as Array<any>).map(Zitadelorgv2OrganizationFromJSON)),
+        'result': json['result'] == null ? undefined : ((json['result'] as Array<any>).map(OrganizationServiceOrganizationFromJSON)),
     };
 }
 
@@ -99,7 +99,7 @@ export function OrganizationServiceListOrganizationsResponseToJSONTyped(value?: 
         
         'details': OrganizationServiceListDetailsToJSON(value['details']),
         'sortingColumn': OrganizationServiceOrganizationFieldNameToJSON(value['sortingColumn']),
-        'result': value['result'] == null ? undefined : ((value['result'] as Array<any>).map(Zitadelorgv2OrganizationToJSON)),
+        'result': value['result'] == null ? undefined : ((value['result'] as Array<any>).map(OrganizationServiceOrganizationToJSON)),
     };
 }
 

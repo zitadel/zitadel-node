@@ -20,19 +20,19 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceIDPIntent {
     /**
-     * ID of the IDP intent
+     * 
      * @type {string}
      * @memberof UserServiceIDPIntent
      */
     idpIntentId?: string;
     /**
-     * token of the IDP intent
+     * 
      * @type {string}
      * @memberof UserServiceIDPIntent
      */
     idpIntentToken?: string;
     /**
-     * ID of the ZITADEL user if external user already linked
+     * 
      * @type {string}
      * @memberof UserServiceIDPIntent
      */

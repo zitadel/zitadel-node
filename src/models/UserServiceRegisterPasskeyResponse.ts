@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { UserServiceValue } from './UserServiceValue.js';
+import {
+    UserServiceValueFromJSON,
+    UserServiceValueFromJSONTyped,
+    UserServiceValueToJSON,
+    UserServiceValueToJSONTyped,
+} from './UserServiceValue.js';
 import type { UserServiceDetails } from './UserServiceDetails.js';
 import {
     UserServiceDetailsFromJSON,
@@ -40,11 +47,18 @@ export interface UserServiceRegisterPasskeyResponse {
      */
     passkeyId?: string;
     /**
-     * Options for Credential Creation (dictionary PublicKeyCredentialCreationOptions). Generated helper methods transform the field to JSON, for use in a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#dictdef-publickeycredentialcreationoptions
-     * @type {object}
+     * `Struct` represents a structured data value, consisting of fields
+     *  which map to dynamically typed values. In some languages, `Struct`
+     *  might be supported by a native representation. For example, in
+     *  scripting languages like JS a struct is represented as an
+     *  object. The details of that representation are described together
+     *  with the proto support for the language.
+     * 
+     *  The JSON representation for `Struct` is JSON object.
+     * @type {{ [key: string]: UserServiceValue; }}
      * @memberof UserServiceRegisterPasskeyResponse
      */
-    publicKeyCredentialCreationOptions?: object;
+    publicKeyCredentialCreationOptions?: { [key: string]: UserServiceValue; };
 }
 
 /**
@@ -66,7 +80,7 @@ export function UserServiceRegisterPasskeyResponseFromJSONTyped(json: any, ignor
         
         'details': json['details'] == null ? undefined : UserServiceDetailsFromJSON(json['details']),
         'passkeyId': json['passkeyId'] == null ? undefined : json['passkeyId'],
-        'publicKeyCredentialCreationOptions': json['publicKeyCredentialCreationOptions'] == null ? undefined : json['publicKeyCredentialCreationOptions'],
+        'publicKeyCredentialCreationOptions': json['publicKeyCredentialCreationOptions'] == null ? undefined : (mapValues(json['publicKeyCredentialCreationOptions'], UserServiceValueFromJSON)),
     };
 }
 
@@ -83,7 +97,7 @@ export function UserServiceRegisterPasskeyResponseToJSONTyped(value?: UserServic
         
         'details': UserServiceDetailsToJSON(value['details']),
         'passkeyId': value['passkeyId'],
-        'publicKeyCredentialCreationOptions': value['publicKeyCredentialCreationOptions'],
+        'publicKeyCredentialCreationOptions': value['publicKeyCredentialCreationOptions'] == null ? undefined : (mapValues(value['publicKeyCredentialCreationOptions'], UserServiceValueToJSON)),
     };
 }
 

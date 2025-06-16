@@ -12,49 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServicePassword } from './UserServicePassword.js';
+import type { CurrentPassword } from './CurrentPassword.js';
 import {
-    UserServicePasswordFromJSON,
-    UserServicePasswordFromJSONTyped,
-    UserServicePasswordToJSON,
-    UserServicePasswordToJSONTyped,
-} from './UserServicePassword.js';
+    instanceOfCurrentPassword,
+    CurrentPasswordFromJSON,
+    CurrentPasswordFromJSONTyped,
+    CurrentPasswordToJSON,
+} from './CurrentPassword.js';
+import type { VerificationCode } from './VerificationCode.js';
+import {
+    instanceOfVerificationCode,
+    VerificationCodeFromJSON,
+    VerificationCodeFromJSONTyped,
+    VerificationCodeToJSON,
+} from './VerificationCode.js';
 
 /**
+ * @type UserServiceSetPasswordRequest
  * 
  * @export
- * @interface UserServiceSetPasswordRequest
  */
-export interface UserServiceSetPasswordRequest {
-    /**
-     * 
-     * @type {UserServicePassword}
-     * @memberof UserServiceSetPasswordRequest
-     */
-    newPassword?: UserServicePassword;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceSetPasswordRequest
-     */
-    currentPassword: string;
-    /**
-     * "the verification code generated during password reset request"
-     * @type {string}
-     * @memberof UserServiceSetPasswordRequest
-     */
-    verificationCode: string;
-}
-
-/**
- * Check if a given object implements the UserServiceSetPasswordRequest interface.
- */
-export function instanceOfUserServiceSetPasswordRequest(value: object): value is UserServiceSetPasswordRequest {
-    if (!('currentPassword' in value) || value['currentPassword'] === undefined) return false;
-    if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
-    return true;
-}
+export type UserServiceSetPasswordRequest = CurrentPassword | VerificationCode;
 
 export function UserServiceSetPasswordRequestFromJSON(json: any): UserServiceSetPasswordRequest {
     return UserServiceSetPasswordRequestFromJSONTyped(json, false);
@@ -64,15 +42,20 @@ export function UserServiceSetPasswordRequestFromJSONTyped(json: any, ignoreDisc
     if (json == null) {
         return json;
     }
-    return {
-        
-        'newPassword': json['newPassword'] == null ? undefined : UserServicePasswordFromJSON(json['newPassword']),
-        'currentPassword': json['currentPassword'],
-        'verificationCode': json['verificationCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfCurrentPassword(json)) {
+        return CurrentPasswordFromJSONTyped(json, true);
+    }
+    if (instanceOfVerificationCode(json)) {
+        return VerificationCodeFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSetPasswordRequestToJSON(json: any): UserServiceSetPasswordRequest {
+export function UserServiceSetPasswordRequestToJSON(json: any): any {
     return UserServiceSetPasswordRequestToJSONTyped(json, false);
 }
 
@@ -80,12 +63,16 @@ export function UserServiceSetPasswordRequestToJSONTyped(value?: UserServiceSetP
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfCurrentPassword(value)) {
+        return CurrentPasswordToJSON(value as CurrentPassword);
+    }
+    if (instanceOfVerificationCode(value)) {
+        return VerificationCodeToJSON(value as VerificationCode);
+    }
 
-    return {
-        
-        'newPassword': UserServicePasswordToJSON(value['newPassword']),
-        'currentPassword': value['currentPassword'],
-        'verificationCode': value['verificationCode'],
-    };
+    return {};
 }
 

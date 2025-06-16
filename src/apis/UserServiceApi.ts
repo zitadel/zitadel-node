@@ -15,51 +15,72 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  NoOp200Response4,
   UserServiceAddHumanUserRequest,
   UserServiceAddHumanUserResponse,
   UserServiceAddIDPLinkRequest,
   UserServiceAddIDPLinkResponse,
+  UserServiceAddOTPEmailRequest,
   UserServiceAddOTPEmailResponse,
+  UserServiceAddOTPSMSRequest,
   UserServiceAddOTPSMSResponse,
+  UserServiceConnectError,
   UserServiceCreateInviteCodeRequest,
   UserServiceCreateInviteCodeResponse,
   UserServiceCreatePasskeyRegistrationLinkRequest,
   UserServiceCreatePasskeyRegistrationLinkResponse,
+  UserServiceDeactivateUserRequest,
   UserServiceDeactivateUserResponse,
+  UserServiceDeleteUserRequest,
   UserServiceDeleteUserResponse,
+  UserServiceGetUserByIDRequest,
   UserServiceGetUserByIDResponse,
+  UserServiceHumanMFAInitSkippedRequest,
   UserServiceHumanMFAInitSkippedResponse,
+  UserServiceListAuthenticationFactorsRequest,
   UserServiceListAuthenticationFactorsResponse,
+  UserServiceListAuthenticationMethodTypesRequest,
   UserServiceListAuthenticationMethodTypesResponse,
   UserServiceListIDPLinksRequest,
   UserServiceListIDPLinksResponse,
+  UserServiceListPasskeysRequest,
   UserServiceListPasskeysResponse,
   UserServiceListUsersRequest,
   UserServiceListUsersResponse,
+  UserServiceLockUserRequest,
   UserServiceLockUserResponse,
   UserServicePasswordResetRequest,
   UserServicePasswordResetResponse,
+  UserServiceReactivateUserRequest,
   UserServiceReactivateUserResponse,
   UserServiceRegisterPasskeyRequest,
   UserServiceRegisterPasskeyResponse,
+  UserServiceRegisterTOTPRequest,
   UserServiceRegisterTOTPResponse,
   UserServiceRegisterU2FRequest,
   UserServiceRegisterU2FResponse,
+  UserServiceRemoveIDPLinkRequest,
   UserServiceRemoveIDPLinkResponse,
+  UserServiceRemoveOTPEmailRequest,
   UserServiceRemoveOTPEmailResponse,
+  UserServiceRemoveOTPSMSRequest,
   UserServiceRemoveOTPSMSResponse,
+  UserServiceRemovePasskeyRequest,
   UserServiceRemovePasskeyResponse,
+  UserServiceRemovePhoneRequest,
   UserServiceRemovePhoneResponse,
+  UserServiceRemoveTOTPRequest,
   UserServiceRemoveTOTPResponse,
+  UserServiceRemoveU2FRequest,
   UserServiceRemoveU2FResponse,
   UserServiceResendEmailCodeRequest,
   UserServiceResendEmailCodeResponse,
+  UserServiceResendInviteCodeRequest,
   UserServiceResendInviteCodeResponse,
   UserServiceResendPhoneCodeRequest,
   UserServiceResendPhoneCodeResponse,
   UserServiceRetrieveIdentityProviderIntentRequest,
   UserServiceRetrieveIdentityProviderIntentResponse,
-  UserServiceRpcStatus,
   UserServiceSendEmailCodeRequest,
   UserServiceSendEmailCodeResponse,
   UserServiceSetEmailRequest,
@@ -70,6 +91,7 @@ import type {
   UserServiceSetPhoneResponse,
   UserServiceStartIdentityProviderIntentRequest,
   UserServiceStartIdentityProviderIntentResponse,
+  UserServiceUnlockUserRequest,
   UserServiceUnlockUserResponse,
   UserServiceUpdateHumanUserRequest,
   UserServiceUpdateHumanUserResponse,
@@ -87,6 +109,8 @@ import type {
   UserServiceVerifyU2FRegistrationResponse,
 } from '../models/index.js';
 import {
+    NoOp200Response4FromJSON,
+    NoOp200Response4ToJSON,
     UserServiceAddHumanUserRequestFromJSON,
     UserServiceAddHumanUserRequestToJSON,
     UserServiceAddHumanUserResponseFromJSON,
@@ -95,10 +119,16 @@ import {
     UserServiceAddIDPLinkRequestToJSON,
     UserServiceAddIDPLinkResponseFromJSON,
     UserServiceAddIDPLinkResponseToJSON,
+    UserServiceAddOTPEmailRequestFromJSON,
+    UserServiceAddOTPEmailRequestToJSON,
     UserServiceAddOTPEmailResponseFromJSON,
     UserServiceAddOTPEmailResponseToJSON,
+    UserServiceAddOTPSMSRequestFromJSON,
+    UserServiceAddOTPSMSRequestToJSON,
     UserServiceAddOTPSMSResponseFromJSON,
     UserServiceAddOTPSMSResponseToJSON,
+    UserServiceConnectErrorFromJSON,
+    UserServiceConnectErrorToJSON,
     UserServiceCreateInviteCodeRequestFromJSON,
     UserServiceCreateInviteCodeRequestToJSON,
     UserServiceCreateInviteCodeResponseFromJSON,
@@ -107,64 +137,100 @@ import {
     UserServiceCreatePasskeyRegistrationLinkRequestToJSON,
     UserServiceCreatePasskeyRegistrationLinkResponseFromJSON,
     UserServiceCreatePasskeyRegistrationLinkResponseToJSON,
+    UserServiceDeactivateUserRequestFromJSON,
+    UserServiceDeactivateUserRequestToJSON,
     UserServiceDeactivateUserResponseFromJSON,
     UserServiceDeactivateUserResponseToJSON,
+    UserServiceDeleteUserRequestFromJSON,
+    UserServiceDeleteUserRequestToJSON,
     UserServiceDeleteUserResponseFromJSON,
     UserServiceDeleteUserResponseToJSON,
+    UserServiceGetUserByIDRequestFromJSON,
+    UserServiceGetUserByIDRequestToJSON,
     UserServiceGetUserByIDResponseFromJSON,
     UserServiceGetUserByIDResponseToJSON,
+    UserServiceHumanMFAInitSkippedRequestFromJSON,
+    UserServiceHumanMFAInitSkippedRequestToJSON,
     UserServiceHumanMFAInitSkippedResponseFromJSON,
     UserServiceHumanMFAInitSkippedResponseToJSON,
+    UserServiceListAuthenticationFactorsRequestFromJSON,
+    UserServiceListAuthenticationFactorsRequestToJSON,
     UserServiceListAuthenticationFactorsResponseFromJSON,
     UserServiceListAuthenticationFactorsResponseToJSON,
+    UserServiceListAuthenticationMethodTypesRequestFromJSON,
+    UserServiceListAuthenticationMethodTypesRequestToJSON,
     UserServiceListAuthenticationMethodTypesResponseFromJSON,
     UserServiceListAuthenticationMethodTypesResponseToJSON,
     UserServiceListIDPLinksRequestFromJSON,
     UserServiceListIDPLinksRequestToJSON,
     UserServiceListIDPLinksResponseFromJSON,
     UserServiceListIDPLinksResponseToJSON,
+    UserServiceListPasskeysRequestFromJSON,
+    UserServiceListPasskeysRequestToJSON,
     UserServiceListPasskeysResponseFromJSON,
     UserServiceListPasskeysResponseToJSON,
     UserServiceListUsersRequestFromJSON,
     UserServiceListUsersRequestToJSON,
     UserServiceListUsersResponseFromJSON,
     UserServiceListUsersResponseToJSON,
+    UserServiceLockUserRequestFromJSON,
+    UserServiceLockUserRequestToJSON,
     UserServiceLockUserResponseFromJSON,
     UserServiceLockUserResponseToJSON,
     UserServicePasswordResetRequestFromJSON,
     UserServicePasswordResetRequestToJSON,
     UserServicePasswordResetResponseFromJSON,
     UserServicePasswordResetResponseToJSON,
+    UserServiceReactivateUserRequestFromJSON,
+    UserServiceReactivateUserRequestToJSON,
     UserServiceReactivateUserResponseFromJSON,
     UserServiceReactivateUserResponseToJSON,
     UserServiceRegisterPasskeyRequestFromJSON,
     UserServiceRegisterPasskeyRequestToJSON,
     UserServiceRegisterPasskeyResponseFromJSON,
     UserServiceRegisterPasskeyResponseToJSON,
+    UserServiceRegisterTOTPRequestFromJSON,
+    UserServiceRegisterTOTPRequestToJSON,
     UserServiceRegisterTOTPResponseFromJSON,
     UserServiceRegisterTOTPResponseToJSON,
     UserServiceRegisterU2FRequestFromJSON,
     UserServiceRegisterU2FRequestToJSON,
     UserServiceRegisterU2FResponseFromJSON,
     UserServiceRegisterU2FResponseToJSON,
+    UserServiceRemoveIDPLinkRequestFromJSON,
+    UserServiceRemoveIDPLinkRequestToJSON,
     UserServiceRemoveIDPLinkResponseFromJSON,
     UserServiceRemoveIDPLinkResponseToJSON,
+    UserServiceRemoveOTPEmailRequestFromJSON,
+    UserServiceRemoveOTPEmailRequestToJSON,
     UserServiceRemoveOTPEmailResponseFromJSON,
     UserServiceRemoveOTPEmailResponseToJSON,
+    UserServiceRemoveOTPSMSRequestFromJSON,
+    UserServiceRemoveOTPSMSRequestToJSON,
     UserServiceRemoveOTPSMSResponseFromJSON,
     UserServiceRemoveOTPSMSResponseToJSON,
+    UserServiceRemovePasskeyRequestFromJSON,
+    UserServiceRemovePasskeyRequestToJSON,
     UserServiceRemovePasskeyResponseFromJSON,
     UserServiceRemovePasskeyResponseToJSON,
+    UserServiceRemovePhoneRequestFromJSON,
+    UserServiceRemovePhoneRequestToJSON,
     UserServiceRemovePhoneResponseFromJSON,
     UserServiceRemovePhoneResponseToJSON,
+    UserServiceRemoveTOTPRequestFromJSON,
+    UserServiceRemoveTOTPRequestToJSON,
     UserServiceRemoveTOTPResponseFromJSON,
     UserServiceRemoveTOTPResponseToJSON,
+    UserServiceRemoveU2FRequestFromJSON,
+    UserServiceRemoveU2FRequestToJSON,
     UserServiceRemoveU2FResponseFromJSON,
     UserServiceRemoveU2FResponseToJSON,
     UserServiceResendEmailCodeRequestFromJSON,
     UserServiceResendEmailCodeRequestToJSON,
     UserServiceResendEmailCodeResponseFromJSON,
     UserServiceResendEmailCodeResponseToJSON,
+    UserServiceResendInviteCodeRequestFromJSON,
+    UserServiceResendInviteCodeRequestToJSON,
     UserServiceResendInviteCodeResponseFromJSON,
     UserServiceResendInviteCodeResponseToJSON,
     UserServiceResendPhoneCodeRequestFromJSON,
@@ -175,8 +241,6 @@ import {
     UserServiceRetrieveIdentityProviderIntentRequestToJSON,
     UserServiceRetrieveIdentityProviderIntentResponseFromJSON,
     UserServiceRetrieveIdentityProviderIntentResponseToJSON,
-    UserServiceRpcStatusFromJSON,
-    UserServiceRpcStatusToJSON,
     UserServiceSendEmailCodeRequestFromJSON,
     UserServiceSendEmailCodeRequestToJSON,
     UserServiceSendEmailCodeResponseFromJSON,
@@ -197,6 +261,8 @@ import {
     UserServiceStartIdentityProviderIntentRequestToJSON,
     UserServiceStartIdentityProviderIntentResponseFromJSON,
     UserServiceStartIdentityProviderIntentResponseToJSON,
+    UserServiceUnlockUserRequestFromJSON,
+    UserServiceUnlockUserRequestToJSON,
     UserServiceUnlockUserResponseFromJSON,
     UserServiceUnlockUserResponseToJSON,
     UserServiceUpdateHumanUserRequestFromJSON,
@@ -229,214 +295,183 @@ import {
     UserServiceVerifyU2FRegistrationResponseToJSON,
 } from '../models/index.js';
 
-export interface UserServiceAddHumanUserOperationRequest {
+export interface AddHumanUserRequest {
     userServiceAddHumanUserRequest: UserServiceAddHumanUserRequest;
 }
 
-export interface UserServiceAddIDPLinkOperationRequest {
-    userId: string;
+export interface AddIDPLinkRequest {
     userServiceAddIDPLinkRequest: UserServiceAddIDPLinkRequest;
 }
 
-export interface UserServiceAddOTPEmailRequest {
-    userId: string;
+export interface AddOTPEmailRequest {
+    userServiceAddOTPEmailRequest: UserServiceAddOTPEmailRequest;
 }
 
-export interface UserServiceAddOTPSMSRequest {
-    userId: string;
+export interface AddOTPSMSRequest {
+    userServiceAddOTPSMSRequest: UserServiceAddOTPSMSRequest;
 }
 
-export interface UserServiceCreateInviteCodeOperationRequest {
-    userId: string;
+export interface CreateInviteCodeRequest {
     userServiceCreateInviteCodeRequest: UserServiceCreateInviteCodeRequest;
 }
 
-export interface UserServiceCreatePasskeyRegistrationLinkOperationRequest {
-    userId: string;
+export interface CreatePasskeyRegistrationLinkRequest {
     userServiceCreatePasskeyRegistrationLinkRequest: UserServiceCreatePasskeyRegistrationLinkRequest;
 }
 
-export interface UserServiceDeactivateUserRequest {
-    userId: string;
+export interface DeactivateUserRequest {
+    userServiceDeactivateUserRequest: UserServiceDeactivateUserRequest;
 }
 
-export interface UserServiceDeleteUserRequest {
-    userId: string;
+export interface DeleteUserRequest {
+    userServiceDeleteUserRequest: UserServiceDeleteUserRequest;
 }
 
-export interface UserServiceGetUserByIDRequest {
-    userId: string;
+export interface GetUserByIDRequest {
+    userServiceGetUserByIDRequest: UserServiceGetUserByIDRequest;
 }
 
-export interface UserServiceHumanMFAInitSkippedRequest {
-    userId: string;
+export interface HumanMFAInitSkippedRequest {
+    userServiceHumanMFAInitSkippedRequest: UserServiceHumanMFAInitSkippedRequest;
 }
 
-export interface UserServiceListAuthenticationFactorsRequest {
-    userId: string;
-    authFactors?: Array<UserServiceListAuthenticationFactorsAuthFactorsEnum>;
-    states?: Array<UserServiceListAuthenticationFactorsStatesEnum>;
+export interface ListAuthenticationFactorsRequest {
+    userServiceListAuthenticationFactorsRequest: UserServiceListAuthenticationFactorsRequest;
 }
 
-export interface UserServiceListAuthenticationMethodTypesRequest {
-    userId: string;
-    domainQueryIncludeWithoutDomain?: boolean;
-    domainQueryDomain?: string;
+export interface ListAuthenticationMethodTypesRequest {
+    userServiceListAuthenticationMethodTypesRequest: UserServiceListAuthenticationMethodTypesRequest;
 }
 
-export interface UserServiceListIDPLinksOperationRequest {
-    userId: string;
+export interface ListIDPLinksRequest {
     userServiceListIDPLinksRequest: UserServiceListIDPLinksRequest;
 }
 
-export interface UserServiceListPasskeysRequest {
-    userId: string;
+export interface ListPasskeysRequest {
+    userServiceListPasskeysRequest: UserServiceListPasskeysRequest;
 }
 
-export interface UserServiceListUsersOperationRequest {
+export interface ListUsersRequest {
     userServiceListUsersRequest: UserServiceListUsersRequest;
 }
 
-export interface UserServiceLockUserRequest {
-    userId: string;
+export interface LockUserRequest {
+    userServiceLockUserRequest: UserServiceLockUserRequest;
 }
 
-export interface UserServicePasswordResetOperationRequest {
-    userId: string;
+export interface PasswordResetRequest {
     userServicePasswordResetRequest: UserServicePasswordResetRequest;
 }
 
-export interface UserServiceReactivateUserRequest {
-    userId: string;
+export interface ReactivateUserRequest {
+    userServiceReactivateUserRequest: UserServiceReactivateUserRequest;
 }
 
-export interface UserServiceRegisterPasskeyOperationRequest {
-    userId: string;
+export interface RegisterPasskeyRequest {
     userServiceRegisterPasskeyRequest: UserServiceRegisterPasskeyRequest;
 }
 
-export interface UserServiceRegisterTOTPRequest {
-    userId: string;
+export interface RegisterTOTPRequest {
+    userServiceRegisterTOTPRequest: UserServiceRegisterTOTPRequest;
 }
 
-export interface UserServiceRegisterU2FOperationRequest {
-    userId: string;
+export interface RegisterU2FRequest {
     userServiceRegisterU2FRequest: UserServiceRegisterU2FRequest;
 }
 
-export interface UserServiceRemoveIDPLinkRequest {
-    userId: string;
-    idpId: string;
-    linkedUserId: string;
+export interface RemoveIDPLinkRequest {
+    userServiceRemoveIDPLinkRequest: UserServiceRemoveIDPLinkRequest;
 }
 
-export interface UserServiceRemoveOTPEmailRequest {
-    userId: string;
+export interface RemoveOTPEmailRequest {
+    userServiceRemoveOTPEmailRequest: UserServiceRemoveOTPEmailRequest;
 }
 
-export interface UserServiceRemoveOTPSMSRequest {
-    userId: string;
+export interface RemoveOTPSMSRequest {
+    userServiceRemoveOTPSMSRequest: UserServiceRemoveOTPSMSRequest;
 }
 
-export interface UserServiceRemovePasskeyRequest {
-    userId: string;
-    passkeyId: string;
+export interface RemovePasskeyRequest {
+    userServiceRemovePasskeyRequest: UserServiceRemovePasskeyRequest;
 }
 
-export interface UserServiceRemovePhoneRequest {
-    userId: string;
+export interface RemovePhoneRequest {
+    userServiceRemovePhoneRequest: UserServiceRemovePhoneRequest;
 }
 
-export interface UserServiceRemoveTOTPRequest {
-    userId: string;
+export interface RemoveTOTPRequest {
+    userServiceRemoveTOTPRequest: UserServiceRemoveTOTPRequest;
 }
 
-export interface UserServiceRemoveU2FRequest {
-    userId: string;
-    u2fId: string;
+export interface RemoveU2FRequest {
+    userServiceRemoveU2FRequest: UserServiceRemoveU2FRequest;
 }
 
-export interface UserServiceResendEmailCodeOperationRequest {
-    userId: string;
+export interface ResendEmailCodeRequest {
     userServiceResendEmailCodeRequest: UserServiceResendEmailCodeRequest;
 }
 
-export interface UserServiceResendInviteCodeRequest {
-    userId: string;
+export interface ResendInviteCodeRequest {
+    userServiceResendInviteCodeRequest: UserServiceResendInviteCodeRequest;
 }
 
-export interface UserServiceResendPhoneCodeOperationRequest {
-    userId: string;
+export interface ResendPhoneCodeRequest {
     userServiceResendPhoneCodeRequest: UserServiceResendPhoneCodeRequest;
 }
 
-export interface UserServiceRetrieveIdentityProviderIntentOperationRequest {
-    idpIntentId: string;
+export interface RetrieveIdentityProviderIntentRequest {
     userServiceRetrieveIdentityProviderIntentRequest: UserServiceRetrieveIdentityProviderIntentRequest;
 }
 
-export interface UserServiceSendEmailCodeOperationRequest {
-    userId: string;
+export interface SendEmailCodeRequest {
     userServiceSendEmailCodeRequest: UserServiceSendEmailCodeRequest;
 }
 
-export interface UserServiceSetEmailOperationRequest {
-    userId: string;
+export interface SetEmailRequest {
     userServiceSetEmailRequest: UserServiceSetEmailRequest;
 }
 
-export interface UserServiceSetPasswordOperationRequest {
-    userId: string;
+export interface SetPasswordRequest {
     userServiceSetPasswordRequest: UserServiceSetPasswordRequest;
 }
 
-export interface UserServiceSetPhoneOperationRequest {
-    userId: string;
+export interface SetPhoneRequest {
     userServiceSetPhoneRequest: UserServiceSetPhoneRequest;
 }
 
-export interface UserServiceStartIdentityProviderIntentOperationRequest {
+export interface StartIdentityProviderIntentRequest {
     userServiceStartIdentityProviderIntentRequest: UserServiceStartIdentityProviderIntentRequest;
 }
 
-export interface UserServiceUnlockUserRequest {
-    userId: string;
+export interface UnlockUserRequest {
+    userServiceUnlockUserRequest: UserServiceUnlockUserRequest;
 }
 
-export interface UserServiceUpdateHumanUserOperationRequest {
-    userId: string;
+export interface UpdateHumanUserRequest {
     userServiceUpdateHumanUserRequest: UserServiceUpdateHumanUserRequest;
 }
 
-export interface UserServiceVerifyEmailOperationRequest {
-    userId: string;
+export interface VerifyEmailRequest {
     userServiceVerifyEmailRequest: UserServiceVerifyEmailRequest;
 }
 
-export interface UserServiceVerifyInviteCodeOperationRequest {
-    userId: string;
+export interface VerifyInviteCodeRequest {
     userServiceVerifyInviteCodeRequest: UserServiceVerifyInviteCodeRequest;
 }
 
-export interface UserServiceVerifyPasskeyRegistrationOperationRequest {
-    userId: string;
-    passkeyId: string;
+export interface VerifyPasskeyRegistrationRequest {
     userServiceVerifyPasskeyRegistrationRequest: UserServiceVerifyPasskeyRegistrationRequest;
 }
 
-export interface UserServiceVerifyPhoneOperationRequest {
-    userId: string;
+export interface VerifyPhoneRequest {
     userServiceVerifyPhoneRequest: UserServiceVerifyPhoneRequest;
 }
 
-export interface UserServiceVerifyTOTPRegistrationOperationRequest {
-    userId: string;
+export interface VerifyTOTPRegistrationRequest {
     userServiceVerifyTOTPRegistrationRequest: UserServiceVerifyTOTPRegistrationRequest;
 }
 
-export interface UserServiceVerifyU2FRegistrationOperationRequest {
-    userId: string;
-    u2fId: string;
+export interface VerifyU2FRegistrationRequest {
     userServiceVerifyU2FRegistrationRequest: UserServiceVerifyU2FRegistrationRequest;
 }
 
@@ -446,14 +481,14 @@ export interface UserServiceVerifyU2FRegistrationOperationRequest {
 export class UserServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-     * Create a new human user
+     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * AddHumanUser
      */
-    async userServiceAddHumanUserRaw(requestParameters: UserServiceAddHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
+    async addHumanUserRaw(requestParameters: AddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
         if (requestParameters['userServiceAddHumanUserRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceAddHumanUserRequest',
-                'Required parameter "userServiceAddHumanUserRequest" was null or undefined when calling userServiceAddHumanUser().'
+                'Required parameter "userServiceAddHumanUserRequest" was null or undefined when calling addHumanUser().'
             );
         }
 
@@ -472,7 +507,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/human`,
+            path: `/zitadel.user.v2.UserService/AddHumanUser`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -483,30 +518,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-     * Create a new human user
+     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * AddHumanUser
      */
-    async userServiceAddHumanUser(requestParameters: UserServiceAddHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddHumanUserResponse> {
-        const response = await this.userServiceAddHumanUserRaw(requestParameters, initOverrides);
+    async addHumanUser(requestParameters: AddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddHumanUserResponse> {
+        const response = await this.addHumanUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Add link to an identity provider to an user..
-     * Add link to an identity provider to an user
+     * Add link to an identity provider to an user   Add link to an identity provider to an user..
+     * AddIDPLink
      */
-    async userServiceAddIDPLinkRaw(requestParameters: UserServiceAddIDPLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddIDPLinkResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceAddIDPLink().'
-            );
-        }
-
+    async addIDPLinkRaw(requestParameters: AddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddIDPLinkResponse>> {
         if (requestParameters['userServiceAddIDPLinkRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceAddIDPLinkRequest',
-                'Required parameter "userServiceAddIDPLinkRequest" was null or undefined when calling userServiceAddIDPLink().'
+                'Required parameter "userServiceAddIDPLinkRequest" was null or undefined when calling addIDPLink().'
             );
         }
 
@@ -525,7 +553,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/links`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/AddIDPLink`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -536,116 +564,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add link to an identity provider to an user..
-     * Add link to an identity provider to an user
+     * Add link to an identity provider to an user   Add link to an identity provider to an user..
+     * AddIDPLink
      */
-    async userServiceAddIDPLink(requestParameters: UserServiceAddIDPLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddIDPLinkResponse> {
-        const response = await this.userServiceAddIDPLinkRaw(requestParameters, initOverrides);
+    async addIDPLink(requestParameters: AddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddIDPLinkResponse> {
+        const response = await this.addIDPLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-     * Add OTP Email for a user
+     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
+     * AddOTPEmail
      */
-    async userServiceAddOTPEmailRaw(requestParameters: UserServiceAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPEmailResponse>> {
-        if (requestParameters['userId'] == null) {
+    async addOTPEmailRaw(requestParameters: AddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPEmailResponse>> {
+        if (requestParameters['userServiceAddOTPEmailRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceAddOTPEmail().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/otp_email`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceAddOTPEmailResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-     * Add OTP Email for a user
-     */
-    async userServiceAddOTPEmail(requestParameters: UserServiceAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPEmailResponse> {
-        const response = await this.userServiceAddOTPEmailRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-     * Add OTP SMS for a user
-     */
-    async userServiceAddOTPSMSRaw(requestParameters: UserServiceAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPSMSResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceAddOTPSMS().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/otp_sms`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceAddOTPSMSResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-     * Add OTP SMS for a user
-     */
-    async userServiceAddOTPSMS(requestParameters: UserServiceAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPSMSResponse> {
-        const response = await this.userServiceAddOTPSMSRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * Create an invite code for a user
-     */
-    async userServiceCreateInviteCodeRaw(requestParameters: UserServiceCreateInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceCreateInviteCode().'
-            );
-        }
-
-        if (requestParameters['userServiceCreateInviteCodeRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceCreateInviteCodeRequest',
-                'Required parameter "userServiceCreateInviteCodeRequest" was null or undefined when calling userServiceCreateInviteCode().'
+                'userServiceAddOTPEmailRequest',
+                'Required parameter "userServiceAddOTPEmailRequest" was null or undefined when calling addOTPEmail().'
             );
         }
 
@@ -664,7 +599,99 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/invite_code`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/AddOTPEmail`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceAddOTPEmailRequestToJSON(requestParameters['userServiceAddOTPEmailRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceAddOTPEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
+     * AddOTPEmail
+     */
+    async addOTPEmail(requestParameters: AddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPEmailResponse> {
+        const response = await this.addOTPEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
+     * AddOTPSMS
+     */
+    async addOTPSMSRaw(requestParameters: AddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPSMSResponse>> {
+        if (requestParameters['userServiceAddOTPSMSRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceAddOTPSMSRequest',
+                'Required parameter "userServiceAddOTPSMSRequest" was null or undefined when calling addOTPSMS().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/AddOTPSMS`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceAddOTPSMSRequestToJSON(requestParameters['userServiceAddOTPSMSRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceAddOTPSMSResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
+     * AddOTPSMS
+     */
+    async addOTPSMS(requestParameters: AddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPSMSResponse> {
+        const response = await this.addOTPSMSRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.
+     * CreateInviteCode
+     */
+    async createInviteCodeRaw(requestParameters: CreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
+        if (requestParameters['userServiceCreateInviteCodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceCreateInviteCodeRequest',
+                'Required parameter "userServiceCreateInviteCodeRequest" was null or undefined when calling createInviteCode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/CreateInviteCode`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -675,30 +702,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * Create an invite code for a user
+     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.
+     * CreateInviteCode
      */
-    async userServiceCreateInviteCode(requestParameters: UserServiceCreateInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreateInviteCodeResponse> {
-        const response = await this.userServiceCreateInviteCodeRaw(requestParameters, initOverrides);
+    async createInviteCode(requestParameters: CreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreateInviteCodeResponse> {
+        const response = await this.createInviteCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Create a passkey registration link which includes a code and either return it or send it to the user..
-     * Create a passkey registration link for a user
+     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user..
+     * CreatePasskeyRegistrationLink
      */
-    async userServiceCreatePasskeyRegistrationLinkRaw(requestParameters: UserServiceCreatePasskeyRegistrationLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreatePasskeyRegistrationLinkResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceCreatePasskeyRegistrationLink().'
-            );
-        }
-
+    async createPasskeyRegistrationLinkRaw(requestParameters: CreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreatePasskeyRegistrationLinkResponse>> {
         if (requestParameters['userServiceCreatePasskeyRegistrationLinkRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceCreatePasskeyRegistrationLinkRequest',
-                'Required parameter "userServiceCreatePasskeyRegistrationLinkRequest" was null or undefined when calling userServiceCreatePasskeyRegistrationLink().'
+                'Required parameter "userServiceCreatePasskeyRegistrationLinkRequest" was null or undefined when calling createPasskeyRegistrationLink().'
             );
         }
 
@@ -717,7 +737,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/passkeys/registration_link`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/CreatePasskeyRegistrationLink`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -728,300 +748,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a passkey registration link which includes a code and either return it or send it to the user..
-     * Create a passkey registration link for a user
+     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user..
+     * CreatePasskeyRegistrationLink
      */
-    async userServiceCreatePasskeyRegistrationLink(requestParameters: UserServiceCreatePasskeyRegistrationLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreatePasskeyRegistrationLinkResponse> {
-        const response = await this.userServiceCreatePasskeyRegistrationLinkRaw(requestParameters, initOverrides);
+    async createPasskeyRegistrationLink(requestParameters: CreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreatePasskeyRegistrationLinkResponse> {
+        const response = await this.createPasskeyRegistrationLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-     * Deactivate user
+     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
+     * DeactivateUser
      */
-    async userServiceDeactivateUserRaw(requestParameters: UserServiceDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeactivateUserResponse>> {
-        if (requestParameters['userId'] == null) {
+    async deactivateUserRaw(requestParameters: DeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeactivateUserResponse>> {
+        if (requestParameters['userServiceDeactivateUserRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceDeactivateUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/deactivate`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceDeactivateUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-     * Deactivate user
-     */
-    async userServiceDeactivateUser(requestParameters: UserServiceDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeactivateUserResponse> {
-        const response = await this.userServiceDeactivateUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
-     * Delete user
-     */
-    async userServiceDeleteUserRaw(requestParameters: UserServiceDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceDeleteUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceDeleteUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
-     * Delete user
-     */
-    async userServiceDeleteUser(requestParameters: UserServiceDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeleteUserResponse> {
-        const response = await this.userServiceDeleteUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns the full user object (human or machine) including the profile, email, etc..
-     * User by ID
-     */
-    async userServiceGetUserByIDRaw(requestParameters: UserServiceGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGetUserByIDResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceGetUserByID().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceGetUserByIDResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the full user object (human or machine) including the profile, email, etc..
-     * User by ID
-     */
-    async userServiceGetUserByID(requestParameters: UserServiceGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceGetUserByIDResponse> {
-        const response = await this.userServiceGetUserByIDRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update the last time the user has skipped MFA initialization. The server timestamp is used.
-     * MFA Init Skipped
-     */
-    async userServiceHumanMFAInitSkippedRaw(requestParameters: UserServiceHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceHumanMFAInitSkippedResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceHumanMFAInitSkipped().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/mfa_init_skipped`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceHumanMFAInitSkippedResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Update the last time the user has skipped MFA initialization. The server timestamp is used.
-     * MFA Init Skipped
-     */
-    async userServiceHumanMFAInitSkipped(requestParameters: UserServiceHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceHumanMFAInitSkippedResponse> {
-        const response = await this.userServiceHumanMFAInitSkippedRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async userServiceListAuthenticationFactorsRaw(requestParameters: UserServiceListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationFactorsResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceListAuthenticationFactors().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['authFactors'] != null) {
-            queryParameters['authFactors'] = requestParameters['authFactors']!.join(runtime.COLLECTION_FORMATS["csv"]);
-        }
-
-        if (requestParameters['states'] != null) {
-            queryParameters['states'] = requestParameters['states']!.join(runtime.COLLECTION_FORMATS["csv"]);
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/authentication_factors/_search`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListAuthenticationFactorsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async userServiceListAuthenticationFactors(requestParameters: UserServiceListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListAuthenticationFactorsResponse> {
-        const response = await this.userServiceListAuthenticationFactorsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-     * List all possible authentication methods of a user
-     */
-    async userServiceListAuthenticationMethodTypesRaw(requestParameters: UserServiceListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationMethodTypesResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceListAuthenticationMethodTypes().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['domainQueryIncludeWithoutDomain'] != null) {
-            queryParameters['domainQuery.includeWithoutDomain'] = requestParameters['domainQueryIncludeWithoutDomain'];
-        }
-
-        if (requestParameters['domainQueryDomain'] != null) {
-            queryParameters['domainQuery.domain'] = requestParameters['domainQueryDomain'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/authentication_methods`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListAuthenticationMethodTypesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-     * List all possible authentication methods of a user
-     */
-    async userServiceListAuthenticationMethodTypes(requestParameters: UserServiceListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListAuthenticationMethodTypesResponse> {
-        const response = await this.userServiceListAuthenticationMethodTypesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List links to an identity provider of an user.
-     * List links to an identity provider of an user
-     */
-    async userServiceListIDPLinksRaw(requestParameters: UserServiceListIDPLinksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListIDPLinksResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceListIDPLinks().'
-            );
-        }
-
-        if (requestParameters['userServiceListIDPLinksRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceListIDPLinksRequest',
-                'Required parameter "userServiceListIDPLinksRequest" was null or undefined when calling userServiceListIDPLinks().'
+                'userServiceDeactivateUserRequest',
+                'Required parameter "userServiceDeactivateUserRequest" was null or undefined when calling deactivateUser().'
             );
         }
 
@@ -1040,7 +783,281 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/links/_search`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/DeactivateUser`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceDeactivateUserRequestToJSON(requestParameters['userServiceDeactivateUserRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceDeactivateUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
+     * DeactivateUser
+     */
+    async deactivateUser(requestParameters: DeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeactivateUserResponse> {
+        const response = await this.deactivateUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
+     * DeleteUser
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserResponse>> {
+        if (requestParameters['userServiceDeleteUserRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceDeleteUserRequest',
+                'Required parameter "userServiceDeleteUserRequest" was null or undefined when calling deleteUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/DeleteUser`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceDeleteUserRequestToJSON(requestParameters['userServiceDeleteUserRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceDeleteUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
+     * DeleteUser
+     */
+    async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeleteUserResponse> {
+        const response = await this.deleteUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User by ID   Returns the full user object (human or machine) including the profile, email, etc..
+     * GetUserByID
+     */
+    async getUserByIDRaw(requestParameters: GetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGetUserByIDResponse>> {
+        if (requestParameters['userServiceGetUserByIDRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceGetUserByIDRequest',
+                'Required parameter "userServiceGetUserByIDRequest" was null or undefined when calling getUserByID().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/GetUserByID`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceGetUserByIDRequestToJSON(requestParameters['userServiceGetUserByIDRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceGetUserByIDResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * User by ID   Returns the full user object (human or machine) including the profile, email, etc..
+     * GetUserByID
+     */
+    async getUserByID(requestParameters: GetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceGetUserByIDResponse> {
+        const response = await this.getUserByIDRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * MFA Init Skipped   Update the last time the user has skipped MFA initialization. The server timestamp is used.
+     * HumanMFAInitSkipped
+     */
+    async humanMFAInitSkippedRaw(requestParameters: HumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceHumanMFAInitSkippedResponse>> {
+        if (requestParameters['userServiceHumanMFAInitSkippedRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceHumanMFAInitSkippedRequest',
+                'Required parameter "userServiceHumanMFAInitSkippedRequest" was null or undefined when calling humanMFAInitSkipped().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/HumanMFAInitSkipped`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceHumanMFAInitSkippedRequestToJSON(requestParameters['userServiceHumanMFAInitSkippedRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceHumanMFAInitSkippedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * MFA Init Skipped   Update the last time the user has skipped MFA initialization. The server timestamp is used.
+     * HumanMFAInitSkipped
+     */
+    async humanMFAInitSkipped(requestParameters: HumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceHumanMFAInitSkippedResponse> {
+        const response = await this.humanMFAInitSkippedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * ListAuthenticationFactors
+     */
+    async listAuthenticationFactorsRaw(requestParameters: ListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationFactorsResponse>> {
+        if (requestParameters['userServiceListAuthenticationFactorsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceListAuthenticationFactorsRequest',
+                'Required parameter "userServiceListAuthenticationFactorsRequest" was null or undefined when calling listAuthenticationFactors().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ListAuthenticationFactors`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceListAuthenticationFactorsRequestToJSON(requestParameters['userServiceListAuthenticationFactorsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListAuthenticationFactorsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * ListAuthenticationFactors
+     */
+    async listAuthenticationFactors(requestParameters: ListAuthenticationFactorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListAuthenticationFactorsResponse> {
+        const response = await this.listAuthenticationFactorsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
+     * ListAuthenticationMethodTypes
+     */
+    async listAuthenticationMethodTypesRaw(requestParameters: ListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationMethodTypesResponse>> {
+        if (requestParameters['userServiceListAuthenticationMethodTypesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceListAuthenticationMethodTypesRequest',
+                'Required parameter "userServiceListAuthenticationMethodTypesRequest" was null or undefined when calling listAuthenticationMethodTypes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ListAuthenticationMethodTypes`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceListAuthenticationMethodTypesRequestToJSON(requestParameters['userServiceListAuthenticationMethodTypesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListAuthenticationMethodTypesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
+     * ListAuthenticationMethodTypes
+     */
+    async listAuthenticationMethodTypes(requestParameters: ListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListAuthenticationMethodTypesResponse> {
+        const response = await this.listAuthenticationMethodTypesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List links to an identity provider of an user   List links to an identity provider of an user.
+     * ListIDPLinks
+     */
+    async listIDPLinksRaw(requestParameters: ListIDPLinksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListIDPLinksResponse>> {
+        if (requestParameters['userServiceListIDPLinksRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceListIDPLinksRequest',
+                'Required parameter "userServiceListIDPLinksRequest" was null or undefined when calling listIDPLinks().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ListIDPLinks`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1051,66 +1068,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List links to an identity provider of an user.
-     * List links to an identity provider of an user
+     * List links to an identity provider of an user   List links to an identity provider of an user.
+     * ListIDPLinks
      */
-    async userServiceListIDPLinks(requestParameters: UserServiceListIDPLinksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListIDPLinksResponse> {
-        const response = await this.userServiceListIDPLinksRaw(requestParameters, initOverrides);
+    async listIDPLinks(requestParameters: ListIDPLinksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListIDPLinksResponse> {
+        const response = await this.listIDPLinksRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * List passkeys of an user
-     * List passkeys of an user
+     * List passkeys of an user   List passkeys of an user
+     * ListPasskeys
      */
-    async userServiceListPasskeysRaw(requestParameters: UserServiceListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPasskeysResponse>> {
-        if (requestParameters['userId'] == null) {
+    async listPasskeysRaw(requestParameters: ListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPasskeysResponse>> {
+        if (requestParameters['userServiceListPasskeysRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceListPasskeys().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/passkeys/_search`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListPasskeysResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List passkeys of an user
-     * List passkeys of an user
-     */
-    async userServiceListPasskeys(requestParameters: UserServiceListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListPasskeysResponse> {
-        const response = await this.userServiceListPasskeysRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-     * Search Users
-     */
-    async userServiceListUsersRaw(requestParameters: UserServiceListUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUsersResponse>> {
-        if (requestParameters['userServiceListUsersRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceListUsersRequest',
-                'Required parameter "userServiceListUsersRequest" was null or undefined when calling userServiceListUsers().'
+                'userServiceListPasskeysRequest',
+                'Required parameter "userServiceListPasskeysRequest" was null or undefined when calling listPasskeys().'
             );
         }
 
@@ -1129,7 +1103,53 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users`,
+            path: `/zitadel.user.v2.UserService/ListPasskeys`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceListPasskeysRequestToJSON(requestParameters['userServiceListPasskeysRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceListPasskeysResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List passkeys of an user   List passkeys of an user
+     * ListPasskeys
+     */
+    async listPasskeys(requestParameters: ListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListPasskeysResponse> {
+        const response = await this.listPasskeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
+     * ListUsers
+     */
+    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUsersResponse>> {
+        if (requestParameters['userServiceListUsersRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceListUsersRequest',
+                'Required parameter "userServiceListUsersRequest" was null or undefined when calling listUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ListUsers`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1140,73 +1160,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-     * Search Users
+     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
+     * ListUsers
      */
-    async userServiceListUsers(requestParameters: UserServiceListUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListUsersResponse> {
-        const response = await this.userServiceListUsersRaw(requestParameters, initOverrides);
+    async listUsers(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListUsersResponse> {
+        const response = await this.listUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * Lock user
+     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * LockUser
      */
-    async userServiceLockUserRaw(requestParameters: UserServiceLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceLockUserResponse>> {
-        if (requestParameters['userId'] == null) {
+    async lockUserRaw(requestParameters: LockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceLockUserResponse>> {
+        if (requestParameters['userServiceLockUserRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceLockUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/lock`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceLockUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * Lock user
-     */
-    async userServiceLockUser(requestParameters: UserServiceLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceLockUserResponse> {
-        const response = await this.userServiceLockUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Request a code to reset a password..
-     * Request a code to reset a password
-     */
-    async userServicePasswordResetRaw(requestParameters: UserServicePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServicePasswordResetResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServicePasswordReset().'
-            );
-        }
-
-        if (requestParameters['userServicePasswordResetRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServicePasswordResetRequest',
-                'Required parameter "userServicePasswordResetRequest" was null or undefined when calling userServicePasswordReset().'
+                'userServiceLockUserRequest',
+                'Required parameter "userServiceLockUserRequest" was null or undefined when calling lockUser().'
             );
         }
 
@@ -1225,7 +1195,87 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/password_reset`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/LockUser`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceLockUserRequestToJSON(requestParameters['userServiceLockUserRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceLockUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * LockUser
+     */
+    async lockUser(requestParameters: LockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceLockUserResponse> {
+        const response = await this.lockUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response4>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/df395562`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200Response4FromJSON(jsonValue));
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response4> {
+        const response = await this.noOpRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Request a code to reset a password   Request a code to reset a password..
+     * PasswordReset
+     */
+    async passwordResetRaw(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServicePasswordResetResponse>> {
+        if (requestParameters['userServicePasswordResetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServicePasswordResetRequest',
+                'Required parameter "userServicePasswordResetRequest" was null or undefined when calling passwordReset().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/PasswordReset`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1236,73 +1286,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Request a code to reset a password..
-     * Request a code to reset a password
+     * Request a code to reset a password   Request a code to reset a password..
+     * PasswordReset
      */
-    async userServicePasswordReset(requestParameters: UserServicePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServicePasswordResetResponse> {
-        const response = await this.userServicePasswordResetRaw(requestParameters, initOverrides);
+    async passwordReset(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServicePasswordResetResponse> {
+        const response = await this.passwordResetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
-     * Reactivate user
+     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
+     * ReactivateUser
      */
-    async userServiceReactivateUserRaw(requestParameters: UserServiceReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceReactivateUserResponse>> {
-        if (requestParameters['userId'] == null) {
+    async reactivateUserRaw(requestParameters: ReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceReactivateUserResponse>> {
+        if (requestParameters['userServiceReactivateUserRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceReactivateUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/reactivate`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceReactivateUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
-     * Reactivate user
-     */
-    async userServiceReactivateUser(requestParameters: UserServiceReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceReactivateUserResponse> {
-        const response = await this.userServiceReactivateUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-     * Start the registration of passkey for a user
-     */
-    async userServiceRegisterPasskeyRaw(requestParameters: UserServiceRegisterPasskeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterPasskeyResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRegisterPasskey().'
-            );
-        }
-
-        if (requestParameters['userServiceRegisterPasskeyRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceRegisterPasskeyRequest',
-                'Required parameter "userServiceRegisterPasskeyRequest" was null or undefined when calling userServiceRegisterPasskey().'
+                'userServiceReactivateUserRequest',
+                'Required parameter "userServiceReactivateUserRequest" was null or undefined when calling reactivateUser().'
             );
         }
 
@@ -1321,7 +1321,53 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/passkeys`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/ReactivateUser`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceReactivateUserRequestToJSON(requestParameters['userServiceReactivateUserRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceReactivateUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
+     * ReactivateUser
+     */
+    async reactivateUser(requestParameters: ReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceReactivateUserResponse> {
+        const response = await this.reactivateUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
+     * RegisterPasskey
+     */
+    async registerPasskeyRaw(requestParameters: RegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterPasskeyResponse>> {
+        if (requestParameters['userServiceRegisterPasskeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRegisterPasskeyRequest',
+                'Required parameter "userServiceRegisterPasskeyRequest" was null or undefined when calling registerPasskey().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RegisterPasskey`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1332,73 +1378,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-     * Start the registration of passkey for a user
+     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
+     * RegisterPasskey
      */
-    async userServiceRegisterPasskey(requestParameters: UserServiceRegisterPasskeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterPasskeyResponse> {
-        const response = await this.userServiceRegisterPasskeyRaw(requestParameters, initOverrides);
+    async registerPasskey(requestParameters: RegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterPasskeyResponse> {
+        const response = await this.registerPasskeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-     * Start the registration of a TOTP generator for a user
+     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
+     * RegisterTOTP
      */
-    async userServiceRegisterTOTPRaw(requestParameters: UserServiceRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterTOTPResponse>> {
-        if (requestParameters['userId'] == null) {
+    async registerTOTPRaw(requestParameters: RegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterTOTPResponse>> {
+        if (requestParameters['userServiceRegisterTOTPRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRegisterTOTP().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/totp`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRegisterTOTPResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-     * Start the registration of a TOTP generator for a user
-     */
-    async userServiceRegisterTOTP(requestParameters: UserServiceRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterTOTPResponse> {
-        const response = await this.userServiceRegisterTOTPRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-     * Start the registration of a u2f token for a user
-     */
-    async userServiceRegisterU2FRaw(requestParameters: UserServiceRegisterU2FOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterU2FResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRegisterU2F().'
-            );
-        }
-
-        if (requestParameters['userServiceRegisterU2FRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceRegisterU2FRequest',
-                'Required parameter "userServiceRegisterU2FRequest" was null or undefined when calling userServiceRegisterU2F().'
+                'userServiceRegisterTOTPRequest',
+                'Required parameter "userServiceRegisterTOTPRequest" was null or undefined when calling registerTOTP().'
             );
         }
 
@@ -1417,7 +1413,53 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/u2f`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/RegisterTOTP`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRegisterTOTPRequestToJSON(requestParameters['userServiceRegisterTOTPRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRegisterTOTPResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
+     * RegisterTOTP
+     */
+    async registerTOTP(requestParameters: RegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterTOTPResponse> {
+        const response = await this.registerTOTPRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
+     * RegisterU2F
+     */
+    async registerU2FRaw(requestParameters: RegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterU2FResponse>> {
+        if (requestParameters['userServiceRegisterU2FRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRegisterU2FRequest',
+                'Required parameter "userServiceRegisterU2FRequest" was null or undefined when calling registerU2F().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RegisterU2F`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1428,359 +1470,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-     * Start the registration of a u2f token for a user
+     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
+     * RegisterU2F
      */
-    async userServiceRegisterU2F(requestParameters: UserServiceRegisterU2FOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterU2FResponse> {
-        const response = await this.userServiceRegisterU2FRaw(requestParameters, initOverrides);
+    async registerU2F(requestParameters: RegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterU2FResponse> {
+        const response = await this.registerU2FRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Remove link of an identity provider to an user.
-     * Remove link of an identity provider to an user
+     * Remove link of an identity provider to an user   Remove link of an identity provider to an user.
+     * RemoveIDPLink
      */
-    async userServiceRemoveIDPLinkRaw(requestParameters: UserServiceRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveIDPLinkResponse>> {
-        if (requestParameters['userId'] == null) {
+    async removeIDPLinkRaw(requestParameters: RemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveIDPLinkResponse>> {
+        if (requestParameters['userServiceRemoveIDPLinkRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemoveIDPLink().'
-            );
-        }
-
-        if (requestParameters['idpId'] == null) {
-            throw new runtime.RequiredError(
-                'idpId',
-                'Required parameter "idpId" was null or undefined when calling userServiceRemoveIDPLink().'
-            );
-        }
-
-        if (requestParameters['linkedUserId'] == null) {
-            throw new runtime.RequiredError(
-                'linkedUserId',
-                'Required parameter "linkedUserId" was null or undefined when calling userServiceRemoveIDPLink().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/links/{idpId}/{linkedUserId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"idpId"}}`, encodeURIComponent(String(requestParameters['idpId']))).replace(`{${"linkedUserId"}}`, encodeURIComponent(String(requestParameters['linkedUserId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveIDPLinkResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove link of an identity provider to an user.
-     * Remove link of an identity provider to an user
-     */
-    async userServiceRemoveIDPLink(requestParameters: UserServiceRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveIDPLinkResponse> {
-        const response = await this.userServiceRemoveIDPLinkRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-     * Remove One-Time Password (OTP) Email from a user
-     */
-    async userServiceRemoveOTPEmailRaw(requestParameters: UserServiceRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPEmailResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemoveOTPEmail().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/otp_email`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveOTPEmailResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-     * Remove One-Time Password (OTP) Email from a user
-     */
-    async userServiceRemoveOTPEmail(requestParameters: UserServiceRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPEmailResponse> {
-        const response = await this.userServiceRemoveOTPEmailRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-     * Remove One-Time Password (OTP) SMS from a user
-     */
-    async userServiceRemoveOTPSMSRaw(requestParameters: UserServiceRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPSMSResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemoveOTPSMS().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/otp_sms`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveOTPSMSResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-     * Remove One-Time Password (OTP) SMS from a user
-     */
-    async userServiceRemoveOTPSMS(requestParameters: UserServiceRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPSMSResponse> {
-        const response = await this.userServiceRemoveOTPSMSRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Remove passkey from a user.
-     * Remove passkey from a user
-     */
-    async userServiceRemovePasskeyRaw(requestParameters: UserServiceRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePasskeyResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemovePasskey().'
-            );
-        }
-
-        if (requestParameters['passkeyId'] == null) {
-            throw new runtime.RequiredError(
-                'passkeyId',
-                'Required parameter "passkeyId" was null or undefined when calling userServiceRemovePasskey().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/passkeys/{passkeyId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"passkeyId"}}`, encodeURIComponent(String(requestParameters['passkeyId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemovePasskeyResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove passkey from a user.
-     * Remove passkey from a user
-     */
-    async userServiceRemovePasskey(requestParameters: UserServiceRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePasskeyResponse> {
-        const response = await this.userServiceRemovePasskeyRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Delete the phone number of a user.
-     * Delete the user phone
-     */
-    async userServiceRemovePhoneRaw(requestParameters: UserServiceRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemovePhone().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/phone`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemovePhoneResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Delete the phone number of a user.
-     * Delete the user phone
-     */
-    async userServiceRemovePhone(requestParameters: UserServiceRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePhoneResponse> {
-        const response = await this.userServiceRemovePhoneRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-     * Remove TOTP generator from a user
-     */
-    async userServiceRemoveTOTPRaw(requestParameters: UserServiceRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveTOTPResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemoveTOTP().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/totp`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveTOTPResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-     * Remove TOTP generator from a user
-     */
-    async userServiceRemoveTOTP(requestParameters: UserServiceRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveTOTPResponse> {
-        const response = await this.userServiceRemoveTOTPRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Remove u2f token from a user
-     * Remove u2f token from a user
-     */
-    async userServiceRemoveU2FRaw(requestParameters: UserServiceRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveU2FResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceRemoveU2F().'
-            );
-        }
-
-        if (requestParameters['u2fId'] == null) {
-            throw new runtime.RequiredError(
-                'u2fId',
-                'Required parameter "u2fId" was null or undefined when calling userServiceRemoveU2F().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/u2f/{u2fId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"u2fId"}}`, encodeURIComponent(String(requestParameters['u2fId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveU2FResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Remove u2f token from a user
-     * Remove u2f token from a user
-     */
-    async userServiceRemoveU2F(requestParameters: UserServiceRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveU2FResponse> {
-        const response = await this.userServiceRemoveU2FRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Resend code to verify user email.
-     * Resend code to verify user email
-     */
-    async userServiceResendEmailCodeRaw(requestParameters: UserServiceResendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendEmailCodeResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceResendEmailCode().'
-            );
-        }
-
-        if (requestParameters['userServiceResendEmailCodeRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceResendEmailCodeRequest',
-                'Required parameter "userServiceResendEmailCodeRequest" was null or undefined when calling userServiceResendEmailCode().'
+                'userServiceRemoveIDPLinkRequest',
+                'Required parameter "userServiceRemoveIDPLinkRequest" was null or undefined when calling removeIDPLink().'
             );
         }
 
@@ -1799,7 +1505,329 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/email/resend`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/RemoveIDPLink`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveIDPLinkRequestToJSON(requestParameters['userServiceRemoveIDPLinkRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveIDPLinkResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove link of an identity provider to an user   Remove link of an identity provider to an user.
+     * RemoveIDPLink
+     */
+    async removeIDPLink(requestParameters: RemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveIDPLinkResponse> {
+        const response = await this.removeIDPLinkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
+     * RemoveOTPEmail
+     */
+    async removeOTPEmailRaw(requestParameters: RemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPEmailResponse>> {
+        if (requestParameters['userServiceRemoveOTPEmailRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemoveOTPEmailRequest',
+                'Required parameter "userServiceRemoveOTPEmailRequest" was null or undefined when calling removeOTPEmail().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemoveOTPEmail`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveOTPEmailRequestToJSON(requestParameters['userServiceRemoveOTPEmailRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveOTPEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
+     * RemoveOTPEmail
+     */
+    async removeOTPEmail(requestParameters: RemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPEmailResponse> {
+        const response = await this.removeOTPEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
+     * RemoveOTPSMS
+     */
+    async removeOTPSMSRaw(requestParameters: RemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPSMSResponse>> {
+        if (requestParameters['userServiceRemoveOTPSMSRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemoveOTPSMSRequest',
+                'Required parameter "userServiceRemoveOTPSMSRequest" was null or undefined when calling removeOTPSMS().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemoveOTPSMS`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveOTPSMSRequestToJSON(requestParameters['userServiceRemoveOTPSMSRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveOTPSMSResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
+     * RemoveOTPSMS
+     */
+    async removeOTPSMS(requestParameters: RemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPSMSResponse> {
+        const response = await this.removeOTPSMSRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove passkey from a user   Remove passkey from a user.
+     * RemovePasskey
+     */
+    async removePasskeyRaw(requestParameters: RemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePasskeyResponse>> {
+        if (requestParameters['userServiceRemovePasskeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemovePasskeyRequest',
+                'Required parameter "userServiceRemovePasskeyRequest" was null or undefined when calling removePasskey().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemovePasskey`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemovePasskeyRequestToJSON(requestParameters['userServiceRemovePasskeyRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemovePasskeyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove passkey from a user   Remove passkey from a user.
+     * RemovePasskey
+     */
+    async removePasskey(requestParameters: RemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePasskeyResponse> {
+        const response = await this.removePasskeyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove the user phone   Remove the user phone
+     * RemovePhone
+     */
+    async removePhoneRaw(requestParameters: RemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
+        if (requestParameters['userServiceRemovePhoneRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemovePhoneRequest',
+                'Required parameter "userServiceRemovePhoneRequest" was null or undefined when calling removePhone().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemovePhone`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemovePhoneRequestToJSON(requestParameters['userServiceRemovePhoneRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemovePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove the user phone   Remove the user phone
+     * RemovePhone
+     */
+    async removePhone(requestParameters: RemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePhoneResponse> {
+        const response = await this.removePhoneRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
+     * RemoveTOTP
+     */
+    async removeTOTPRaw(requestParameters: RemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveTOTPResponse>> {
+        if (requestParameters['userServiceRemoveTOTPRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemoveTOTPRequest',
+                'Required parameter "userServiceRemoveTOTPRequest" was null or undefined when calling removeTOTP().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemoveTOTP`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveTOTPRequestToJSON(requestParameters['userServiceRemoveTOTPRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveTOTPResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
+     * RemoveTOTP
+     */
+    async removeTOTP(requestParameters: RemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveTOTPResponse> {
+        const response = await this.removeTOTPRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove u2f token from a user   Remove u2f token from a user.
+     * RemoveU2F
+     */
+    async removeU2FRaw(requestParameters: RemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveU2FResponse>> {
+        if (requestParameters['userServiceRemoveU2FRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemoveU2FRequest',
+                'Required parameter "userServiceRemoveU2FRequest" was null or undefined when calling removeU2F().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemoveU2F`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveU2FRequestToJSON(requestParameters['userServiceRemoveU2FRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveU2FResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove u2f token from a user   Remove u2f token from a user.
+     * RemoveU2F
+     */
+    async removeU2F(requestParameters: RemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveU2FResponse> {
+        const response = await this.removeU2FRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Resend code to verify user email   Resend code to verify user email.
+     * ResendEmailCode
+     */
+    async resendEmailCodeRaw(requestParameters: ResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendEmailCodeResponse>> {
+        if (requestParameters['userServiceResendEmailCodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceResendEmailCodeRequest',
+                'Required parameter "userServiceResendEmailCodeRequest" was null or undefined when calling resendEmailCode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ResendEmailCode`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1810,73 +1838,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user email.
-     * Resend code to verify user email
+     * Resend code to verify user email   Resend code to verify user email.
+     * ResendEmailCode
      */
-    async userServiceResendEmailCode(requestParameters: UserServiceResendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendEmailCodeResponse> {
-        const response = await this.userServiceResendEmailCodeRaw(requestParameters, initOverrides);
+    async resendEmailCode(requestParameters: ResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendEmailCodeResponse> {
+        const response = await this.resendEmailCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods. A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-     * Resend an invite code for a user
+     * Resend an invite code for a user   Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
+     * ResendInviteCode
      */
-    async userServiceResendInviteCodeRaw(requestParameters: UserServiceResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendInviteCodeResponse>> {
-        if (requestParameters['userId'] == null) {
+    async resendInviteCodeRaw(requestParameters: ResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendInviteCodeResponse>> {
+        if (requestParameters['userServiceResendInviteCodeRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceResendInviteCode().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/invite_code/resend`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceResendInviteCodeResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods. A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-     * Resend an invite code for a user
-     */
-    async userServiceResendInviteCode(requestParameters: UserServiceResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendInviteCodeResponse> {
-        const response = await this.userServiceResendInviteCodeRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Resend code to verify user phone.
-     * Resend code to verify user phone
-     */
-    async userServiceResendPhoneCodeRaw(requestParameters: UserServiceResendPhoneCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceResendPhoneCode().'
-            );
-        }
-
-        if (requestParameters['userServiceResendPhoneCodeRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceResendPhoneCodeRequest',
-                'Required parameter "userServiceResendPhoneCodeRequest" was null or undefined when calling userServiceResendPhoneCode().'
+                'userServiceResendInviteCodeRequest',
+                'Required parameter "userServiceResendInviteCodeRequest" was null or undefined when calling resendInviteCode().'
             );
         }
 
@@ -1895,7 +1873,53 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/phone/resend`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/ResendInviteCode`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceResendInviteCodeRequestToJSON(requestParameters['userServiceResendInviteCodeRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceResendInviteCodeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Resend an invite code for a user   Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
+     * ResendInviteCode
+     */
+    async resendInviteCode(requestParameters: ResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendInviteCodeResponse> {
+        const response = await this.resendInviteCodeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Resend code to verify user phone   Resend code to verify user phone.
+     * ResendPhoneCode
+     */
+    async resendPhoneCodeRaw(requestParameters: ResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
+        if (requestParameters['userServiceResendPhoneCodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceResendPhoneCodeRequest',
+                'Required parameter "userServiceResendPhoneCodeRequest" was null or undefined when calling resendPhoneCode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/ResendPhoneCode`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1906,30 +1930,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone.
-     * Resend code to verify user phone
+     * Resend code to verify user phone   Resend code to verify user phone.
+     * ResendPhoneCode
      */
-    async userServiceResendPhoneCode(requestParameters: UserServiceResendPhoneCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendPhoneCodeResponse> {
-        const response = await this.userServiceResendPhoneCodeRaw(requestParameters, initOverrides);
+    async resendPhoneCode(requestParameters: ResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendPhoneCodeResponse> {
+        const response = await this.resendPhoneCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
-     * Retrieve the information returned by the identity provider
+     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
+     * RetrieveIdentityProviderIntent
      */
-    async userServiceRetrieveIdentityProviderIntentRaw(requestParameters: UserServiceRetrieveIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRetrieveIdentityProviderIntentResponse>> {
-        if (requestParameters['idpIntentId'] == null) {
-            throw new runtime.RequiredError(
-                'idpIntentId',
-                'Required parameter "idpIntentId" was null or undefined when calling userServiceRetrieveIdentityProviderIntent().'
-            );
-        }
-
+    async retrieveIdentityProviderIntentRaw(requestParameters: RetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRetrieveIdentityProviderIntentResponse>> {
         if (requestParameters['userServiceRetrieveIdentityProviderIntentRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceRetrieveIdentityProviderIntentRequest',
-                'Required parameter "userServiceRetrieveIdentityProviderIntentRequest" was null or undefined when calling userServiceRetrieveIdentityProviderIntent().'
+                'Required parameter "userServiceRetrieveIdentityProviderIntentRequest" was null or undefined when calling retrieveIdentityProviderIntent().'
             );
         }
 
@@ -1948,7 +1965,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/idp_intents/{idpIntentId}`.replace(`{${"idpIntentId"}}`, encodeURIComponent(String(requestParameters['idpIntentId']))),
+            path: `/zitadel.user.v2.UserService/RetrieveIdentityProviderIntent`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -1959,30 +1976,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
-     * Retrieve the information returned by the identity provider
+     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
+     * RetrieveIdentityProviderIntent
      */
-    async userServiceRetrieveIdentityProviderIntent(requestParameters: UserServiceRetrieveIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRetrieveIdentityProviderIntentResponse> {
-        const response = await this.userServiceRetrieveIdentityProviderIntentRaw(requestParameters, initOverrides);
+    async retrieveIdentityProviderIntent(requestParameters: RetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRetrieveIdentityProviderIntentResponse> {
+        const response = await this.retrieveIdentityProviderIntentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Send code to verify user email.
-     * Send code to verify user email
+     * Send code to verify user email   Send code to verify user email.
+     * SendEmailCode
      */
-    async userServiceSendEmailCodeRaw(requestParameters: UserServiceSendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSendEmailCodeResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceSendEmailCode().'
-            );
-        }
-
+    async sendEmailCodeRaw(requestParameters: SendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSendEmailCodeResponse>> {
         if (requestParameters['userServiceSendEmailCodeRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceSendEmailCodeRequest',
-                'Required parameter "userServiceSendEmailCodeRequest" was null or undefined when calling userServiceSendEmailCode().'
+                'Required parameter "userServiceSendEmailCodeRequest" was null or undefined when calling sendEmailCode().'
             );
         }
 
@@ -2001,7 +2011,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/email/send`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/SendEmailCode`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2012,30 +2022,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Send code to verify user email.
-     * Send code to verify user email
+     * Send code to verify user email   Send code to verify user email.
+     * SendEmailCode
      */
-    async userServiceSendEmailCode(requestParameters: UserServiceSendEmailCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSendEmailCodeResponse> {
-        const response = await this.userServiceSendEmailCodeRaw(requestParameters, initOverrides);
+    async sendEmailCode(requestParameters: SendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSendEmailCodeResponse> {
+        const response = await this.sendEmailCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-     * Change the user email
+     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * SetEmail
      */
-    async userServiceSetEmailRaw(requestParameters: UserServiceSetEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceSetEmail().'
-            );
-        }
-
+    async setEmailRaw(requestParameters: SetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
         if (requestParameters['userServiceSetEmailRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceSetEmailRequest',
-                'Required parameter "userServiceSetEmailRequest" was null or undefined when calling userServiceSetEmail().'
+                'Required parameter "userServiceSetEmailRequest" was null or undefined when calling setEmail().'
             );
         }
 
@@ -2054,7 +2057,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/email`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/SetEmail`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2065,30 +2068,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-     * Change the user email
+     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * SetEmail
      */
-    async userServiceSetEmail(requestParameters: UserServiceSetEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetEmailResponse> {
-        const response = await this.userServiceSetEmailRaw(requestParameters, initOverrides);
+    async setEmail(requestParameters: SetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetEmailResponse> {
+        const response = await this.setEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Change the password of a user with either a verification code or the current password..
-     * Change password
+     * Change password   Change the password of a user with either a verification code or the current password..
+     * SetPassword
      */
-    async userServiceSetPasswordRaw(requestParameters: UserServiceSetPasswordOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceSetPassword().'
-            );
-        }
-
+    async setPasswordRaw(requestParameters: SetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
         if (requestParameters['userServiceSetPasswordRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceSetPasswordRequest',
-                'Required parameter "userServiceSetPasswordRequest" was null or undefined when calling userServiceSetPassword().'
+                'Required parameter "userServiceSetPasswordRequest" was null or undefined when calling setPassword().'
             );
         }
 
@@ -2107,7 +2103,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/password`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/SetPassword`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2118,30 +2114,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the password of a user with either a verification code or the current password..
-     * Change password
+     * Change password   Change the password of a user with either a verification code or the current password..
+     * SetPassword
      */
-    async userServiceSetPassword(requestParameters: UserServiceSetPasswordOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPasswordResponse> {
-        const response = await this.userServiceSetPasswordRaw(requestParameters, initOverrides);
+    async setPassword(requestParameters: SetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPasswordResponse> {
+        const response = await this.setPasswordRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-     * Set the user phone
+     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * SetPhone
      */
-    async userServiceSetPhoneRaw(requestParameters: UserServiceSetPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceSetPhone().'
-            );
-        }
-
+    async setPhoneRaw(requestParameters: SetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
         if (requestParameters['userServiceSetPhoneRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceSetPhoneRequest',
-                'Required parameter "userServiceSetPhoneRequest" was null or undefined when calling userServiceSetPhone().'
+                'Required parameter "userServiceSetPhoneRequest" was null or undefined when calling setPhone().'
             );
         }
 
@@ -2160,7 +2149,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/phone`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/SetPhone`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2171,23 +2160,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-     * Set the user phone
+     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * SetPhone
      */
-    async userServiceSetPhone(requestParameters: UserServiceSetPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPhoneResponse> {
-        const response = await this.userServiceSetPhoneRaw(requestParameters, initOverrides);
+    async setPhone(requestParameters: SetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPhoneResponse> {
+        const response = await this.setPhoneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Start a flow with an identity provider, for external login, registration or linking..
-     * Start flow with an identity provider
+     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking..
+     * StartIdentityProviderIntent
      */
-    async userServiceStartIdentityProviderIntentRaw(requestParameters: UserServiceStartIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceStartIdentityProviderIntentResponse>> {
+    async startIdentityProviderIntentRaw(requestParameters: StartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceStartIdentityProviderIntentResponse>> {
         if (requestParameters['userServiceStartIdentityProviderIntentRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceStartIdentityProviderIntentRequest',
-                'Required parameter "userServiceStartIdentityProviderIntentRequest" was null or undefined when calling userServiceStartIdentityProviderIntent().'
+                'Required parameter "userServiceStartIdentityProviderIntentRequest" was null or undefined when calling startIdentityProviderIntent().'
             );
         }
 
@@ -2206,7 +2195,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/idp_intents`,
+            path: `/zitadel.user.v2.UserService/StartIdentityProviderIntent`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2217,73 +2206,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start a flow with an identity provider, for external login, registration or linking..
-     * Start flow with an identity provider
+     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking..
+     * StartIdentityProviderIntent
      */
-    async userServiceStartIdentityProviderIntent(requestParameters: UserServiceStartIdentityProviderIntentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceStartIdentityProviderIntentResponse> {
-        const response = await this.userServiceStartIdentityProviderIntentRaw(requestParameters, initOverrides);
+    async startIdentityProviderIntent(requestParameters: StartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceStartIdentityProviderIntentResponse> {
+        const response = await this.startIdentityProviderIntentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * Unlock user
+     * Unlock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * UnlockUser
      */
-    async userServiceUnlockUserRaw(requestParameters: UserServiceUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUnlockUserResponse>> {
-        if (requestParameters['userId'] == null) {
+    async unlockUserRaw(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUnlockUserResponse>> {
+        if (requestParameters['userServiceUnlockUserRequest'] == null) {
             throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceUnlockUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/users/{userId}/unlock`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceUnlockUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * Unlock user
-     */
-    async userServiceUnlockUser(requestParameters: UserServiceUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUnlockUserResponse> {
-        const response = await this.userServiceUnlockUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update all information from a user..
-     * Update User
-     */
-    async userServiceUpdateHumanUserRaw(requestParameters: UserServiceUpdateHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceUpdateHumanUser().'
-            );
-        }
-
-        if (requestParameters['userServiceUpdateHumanUserRequest'] == null) {
-            throw new runtime.RequiredError(
-                'userServiceUpdateHumanUserRequest',
-                'Required parameter "userServiceUpdateHumanUserRequest" was null or undefined when calling userServiceUpdateHumanUser().'
+                'userServiceUnlockUserRequest',
+                'Required parameter "userServiceUnlockUserRequest" was null or undefined when calling unlockUser().'
             );
         }
 
@@ -2302,8 +2241,54 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/human/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'PUT',
+            path: `/zitadel.user.v2.UserService/UnlockUser`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceUnlockUserRequestToJSON(requestParameters['userServiceUnlockUserRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceUnlockUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Unlock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * UnlockUser
+     */
+    async unlockUser(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUnlockUserResponse> {
+        const response = await this.unlockUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update User   Update all information from a user..
+     * UpdateHumanUser
+     */
+    async updateHumanUserRaw(requestParameters: UpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
+        if (requestParameters['userServiceUpdateHumanUserRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceUpdateHumanUserRequest',
+                'Required parameter "userServiceUpdateHumanUserRequest" was null or undefined when calling updateHumanUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/UpdateHumanUser`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserServiceUpdateHumanUserRequestToJSON(requestParameters['userServiceUpdateHumanUserRequest']),
@@ -2313,30 +2298,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update all information from a user..
-     * Update User
+     * Update User   Update all information from a user..
+     * UpdateHumanUser
      */
-    async userServiceUpdateHumanUser(requestParameters: UserServiceUpdateHumanUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUpdateHumanUserResponse> {
-        const response = await this.userServiceUpdateHumanUserRaw(requestParameters, initOverrides);
+    async updateHumanUser(requestParameters: UpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUpdateHumanUserResponse> {
+        const response = await this.updateHumanUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the email with the generated code.
-     * Verify the email
+     * Verify the email   Verify the email with the generated code.
+     * VerifyEmail
      */
-    async userServiceVerifyEmailRaw(requestParameters: UserServiceVerifyEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyEmailResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyEmail().'
-            );
-        }
-
+    async verifyEmailRaw(requestParameters: VerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyEmailResponse>> {
         if (requestParameters['userServiceVerifyEmailRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyEmailRequest',
-                'Required parameter "userServiceVerifyEmailRequest" was null or undefined when calling userServiceVerifyEmail().'
+                'Required parameter "userServiceVerifyEmailRequest" was null or undefined when calling verifyEmail().'
             );
         }
 
@@ -2355,7 +2333,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/email/verify`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/VerifyEmail`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2366,30 +2344,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the email with the generated code.
-     * Verify the email
+     * Verify the email   Verify the email with the generated code.
+     * VerifyEmail
      */
-    async userServiceVerifyEmail(requestParameters: UserServiceVerifyEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyEmailResponse> {
-        const response = await this.userServiceVerifyEmailRaw(requestParameters, initOverrides);
+    async verifyEmail(requestParameters: VerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyEmailResponse> {
+        const response = await this.verifyEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the invite code of a user previously issued. This will set their email to a verified state and allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * Verify an invite code for a user
+     * Verify an invite code for a user   Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
+     * VerifyInviteCode
      */
-    async userServiceVerifyInviteCodeRaw(requestParameters: UserServiceVerifyInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyInviteCodeResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyInviteCode().'
-            );
-        }
-
+    async verifyInviteCodeRaw(requestParameters: VerifyInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyInviteCodeResponse>> {
         if (requestParameters['userServiceVerifyInviteCodeRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyInviteCodeRequest',
-                'Required parameter "userServiceVerifyInviteCodeRequest" was null or undefined when calling userServiceVerifyInviteCode().'
+                'Required parameter "userServiceVerifyInviteCodeRequest" was null or undefined when calling verifyInviteCode().'
             );
         }
 
@@ -2408,7 +2379,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/invite_code/verify`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/VerifyInviteCode`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2419,37 +2390,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the invite code of a user previously issued. This will set their email to a verified state and allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * Verify an invite code for a user
+     * Verify an invite code for a user   Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
+     * VerifyInviteCode
      */
-    async userServiceVerifyInviteCode(requestParameters: UserServiceVerifyInviteCodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyInviteCodeResponse> {
-        const response = await this.userServiceVerifyInviteCodeRaw(requestParameters, initOverrides);
+    async verifyInviteCode(requestParameters: VerifyInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyInviteCodeResponse> {
+        const response = await this.verifyInviteCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the passkey registration with the public key credential..
-     * Verify a passkey for a user
+     * Verify a passkey for a user   Verify the passkey registration with the public key credential..
+     * VerifyPasskeyRegistration
      */
-    async userServiceVerifyPasskeyRegistrationRaw(requestParameters: UserServiceVerifyPasskeyRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPasskeyRegistrationResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyPasskeyRegistration().'
-            );
-        }
-
-        if (requestParameters['passkeyId'] == null) {
-            throw new runtime.RequiredError(
-                'passkeyId',
-                'Required parameter "passkeyId" was null or undefined when calling userServiceVerifyPasskeyRegistration().'
-            );
-        }
-
+    async verifyPasskeyRegistrationRaw(requestParameters: VerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPasskeyRegistrationResponse>> {
         if (requestParameters['userServiceVerifyPasskeyRegistrationRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyPasskeyRegistrationRequest',
-                'Required parameter "userServiceVerifyPasskeyRegistrationRequest" was null or undefined when calling userServiceVerifyPasskeyRegistration().'
+                'Required parameter "userServiceVerifyPasskeyRegistrationRequest" was null or undefined when calling verifyPasskeyRegistration().'
             );
         }
 
@@ -2468,7 +2425,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/passkeys/{passkeyId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"passkeyId"}}`, encodeURIComponent(String(requestParameters['passkeyId']))),
+            path: `/zitadel.user.v2.UserService/VerifyPasskeyRegistration`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2479,30 +2436,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the passkey registration with the public key credential..
-     * Verify a passkey for a user
+     * Verify a passkey for a user   Verify the passkey registration with the public key credential..
+     * VerifyPasskeyRegistration
      */
-    async userServiceVerifyPasskeyRegistration(requestParameters: UserServiceVerifyPasskeyRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPasskeyRegistrationResponse> {
-        const response = await this.userServiceVerifyPasskeyRegistrationRaw(requestParameters, initOverrides);
+    async verifyPasskeyRegistration(requestParameters: VerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPasskeyRegistrationResponse> {
+        const response = await this.verifyPasskeyRegistrationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the phone with the generated code..
-     * Verify the phone
+     * Verify the phone   Verify the phone with the generated code..
+     * VerifyPhone
      */
-    async userServiceVerifyPhoneRaw(requestParameters: UserServiceVerifyPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyPhone().'
-            );
-        }
-
+    async verifyPhoneRaw(requestParameters: VerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
         if (requestParameters['userServiceVerifyPhoneRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyPhoneRequest',
-                'Required parameter "userServiceVerifyPhoneRequest" was null or undefined when calling userServiceVerifyPhone().'
+                'Required parameter "userServiceVerifyPhoneRequest" was null or undefined when calling verifyPhone().'
             );
         }
 
@@ -2521,7 +2471,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/phone/verify`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/VerifyPhone`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2532,30 +2482,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone with the generated code..
-     * Verify the phone
+     * Verify the phone   Verify the phone with the generated code..
+     * VerifyPhone
      */
-    async userServiceVerifyPhone(requestParameters: UserServiceVerifyPhoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPhoneResponse> {
-        const response = await this.userServiceVerifyPhoneRaw(requestParameters, initOverrides);
+    async verifyPhone(requestParameters: VerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPhoneResponse> {
+        const response = await this.verifyPhoneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the TOTP registration with a generated code..
-     * Verify a TOTP generator for a user
+     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code..
+     * VerifyTOTPRegistration
      */
-    async userServiceVerifyTOTPRegistrationRaw(requestParameters: UserServiceVerifyTOTPRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyTOTPRegistrationResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyTOTPRegistration().'
-            );
-        }
-
+    async verifyTOTPRegistrationRaw(requestParameters: VerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyTOTPRegistrationResponse>> {
         if (requestParameters['userServiceVerifyTOTPRegistrationRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyTOTPRegistrationRequest',
-                'Required parameter "userServiceVerifyTOTPRegistrationRequest" was null or undefined when calling userServiceVerifyTOTPRegistration().'
+                'Required parameter "userServiceVerifyTOTPRegistrationRequest" was null or undefined when calling verifyTOTPRegistration().'
             );
         }
 
@@ -2574,7 +2517,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/totp/verify`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: `/zitadel.user.v2.UserService/VerifyTOTPRegistration`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2585,37 +2528,23 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the TOTP registration with a generated code..
-     * Verify a TOTP generator for a user
+     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code..
+     * VerifyTOTPRegistration
      */
-    async userServiceVerifyTOTPRegistration(requestParameters: UserServiceVerifyTOTPRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyTOTPRegistrationResponse> {
-        const response = await this.userServiceVerifyTOTPRegistrationRaw(requestParameters, initOverrides);
+    async verifyTOTPRegistration(requestParameters: VerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyTOTPRegistrationResponse> {
+        const response = await this.verifyTOTPRegistrationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Verify the u2f token registration with the public key credential..
-     * Verify a u2f token for a user
+     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential..
+     * VerifyU2FRegistration
      */
-    async userServiceVerifyU2FRegistrationRaw(requestParameters: UserServiceVerifyU2FRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyU2FRegistrationResponse>> {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling userServiceVerifyU2FRegistration().'
-            );
-        }
-
-        if (requestParameters['u2fId'] == null) {
-            throw new runtime.RequiredError(
-                'u2fId',
-                'Required parameter "u2fId" was null or undefined when calling userServiceVerifyU2FRegistration().'
-            );
-        }
-
+    async verifyU2FRegistrationRaw(requestParameters: VerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyU2FRegistrationResponse>> {
         if (requestParameters['userServiceVerifyU2FRegistrationRequest'] == null) {
             throw new runtime.RequiredError(
                 'userServiceVerifyU2FRegistrationRequest',
-                'Required parameter "userServiceVerifyU2FRegistrationRequest" was null or undefined when calling userServiceVerifyU2FRegistration().'
+                'Required parameter "userServiceVerifyU2FRegistrationRequest" was null or undefined when calling verifyU2FRegistration().'
             );
         }
 
@@ -2634,7 +2563,7 @@ export class UserServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/users/{userId}/u2f/{u2fId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"u2fId"}}`, encodeURIComponent(String(requestParameters['u2fId']))),
+            path: `/zitadel.user.v2.UserService/VerifyU2FRegistration`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -2645,35 +2574,12 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the u2f token registration with the public key credential..
-     * Verify a u2f token for a user
+     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential..
+     * VerifyU2FRegistration
      */
-    async userServiceVerifyU2FRegistration(requestParameters: UserServiceVerifyU2FRegistrationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyU2FRegistrationResponse> {
-        const response = await this.userServiceVerifyU2FRegistrationRaw(requestParameters, initOverrides);
+    async verifyU2FRegistration(requestParameters: VerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyU2FRegistrationResponse> {
+        const response = await this.verifyU2FRegistrationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
 }
-
-/**
- * @export
- */
-export const UserServiceListAuthenticationFactorsAuthFactorsEnum = {
-    Otp: 'OTP',
-    OtpSms: 'OTP_SMS',
-    OtpEmail: 'OTP_EMAIL',
-    U2F: 'U2F',
-    UnknownDefaultOpenApi: '11184809'
-} as const;
-export type UserServiceListAuthenticationFactorsAuthFactorsEnum = typeof UserServiceListAuthenticationFactorsAuthFactorsEnum[keyof typeof UserServiceListAuthenticationFactorsAuthFactorsEnum];
-/**
- * @export
- */
-export const UserServiceListAuthenticationFactorsStatesEnum = {
-    AuthFactorStateUnspecified: 'AUTH_FACTOR_STATE_UNSPECIFIED',
-    AuthFactorStateNotReady: 'AUTH_FACTOR_STATE_NOT_READY',
-    AuthFactorStateReady: 'AUTH_FACTOR_STATE_READY',
-    AuthFactorStateRemoved: 'AUTH_FACTOR_STATE_REMOVED',
-    UnknownDefaultOpenApi: '11184809'
-} as const;
-export type UserServiceListAuthenticationFactorsStatesEnum = typeof UserServiceListAuthenticationFactorsStatesEnum[keyof typeof UserServiceListAuthenticationFactorsStatesEnum];

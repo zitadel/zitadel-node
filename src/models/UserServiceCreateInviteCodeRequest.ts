@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSendInviteCode } from './UserServiceSendInviteCode.js';
+import type { ReturnCode6 } from './ReturnCode6.js';
 import {
-    UserServiceSendInviteCodeFromJSON,
-    UserServiceSendInviteCodeFromJSONTyped,
-    UserServiceSendInviteCodeToJSON,
-    UserServiceSendInviteCodeToJSONTyped,
-} from './UserServiceSendInviteCode.js';
+    instanceOfReturnCode6,
+    ReturnCode6FromJSON,
+    ReturnCode6FromJSONTyped,
+    ReturnCode6ToJSON,
+} from './ReturnCode6.js';
+import type { SendCode4 } from './SendCode4.js';
+import {
+    instanceOfSendCode4,
+    SendCode4FromJSON,
+    SendCode4FromJSONTyped,
+    SendCode4ToJSON,
+} from './SendCode4.js';
 
 /**
+ * @type UserServiceCreateInviteCodeRequest
  * 
  * @export
- * @interface UserServiceCreateInviteCodeRequest
  */
-export interface UserServiceCreateInviteCodeRequest {
-    /**
-     * 
-     * @type {UserServiceSendInviteCode}
-     * @memberof UserServiceCreateInviteCodeRequest
-     */
-    sendCode?: UserServiceSendInviteCode;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceCreateInviteCodeRequest
-     */
-    returnCode?: object;
-}
-
-/**
- * Check if a given object implements the UserServiceCreateInviteCodeRequest interface.
- */
-export function instanceOfUserServiceCreateInviteCodeRequest(value: object): value is UserServiceCreateInviteCodeRequest {
-    return true;
-}
+export type UserServiceCreateInviteCodeRequest = ReturnCode6 | SendCode4;
 
 export function UserServiceCreateInviteCodeRequestFromJSON(json: any): UserServiceCreateInviteCodeRequest {
     return UserServiceCreateInviteCodeRequestFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function UserServiceCreateInviteCodeRequestFromJSONTyped(json: any, ignor
     if (json == null) {
         return json;
     }
-    return {
-        
-        'sendCode': json['sendCode'] == null ? undefined : UserServiceSendInviteCodeFromJSON(json['sendCode']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfReturnCode6(json)) {
+        return ReturnCode6FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode4(json)) {
+        return SendCode4FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceCreateInviteCodeRequestToJSON(json: any): UserServiceCreateInviteCodeRequest {
+export function UserServiceCreateInviteCodeRequestToJSON(json: any): any {
     return UserServiceCreateInviteCodeRequestToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function UserServiceCreateInviteCodeRequestToJSONTyped(value?: UserServic
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfReturnCode6(value)) {
+        return ReturnCode6ToJSON(value as ReturnCode6);
+    }
+    if (instanceOfSendCode4(value)) {
+        return SendCode4ToJSON(value as SendCode4);
+    }
 
-    return {
-        
-        'sendCode': UserServiceSendInviteCodeToJSON(value['sendCode']),
-        'returnCode': value['returnCode'],
-    };
+    return {};
 }
 

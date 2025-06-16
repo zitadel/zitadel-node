@@ -12,54 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSendEmailVerificationCode } from './UserServiceSendEmailVerificationCode.js';
+import type { IsVerified } from './IsVerified.js';
 import {
-    UserServiceSendEmailVerificationCodeFromJSON,
-    UserServiceSendEmailVerificationCodeFromJSONTyped,
-    UserServiceSendEmailVerificationCodeToJSON,
-    UserServiceSendEmailVerificationCodeToJSONTyped,
-} from './UserServiceSendEmailVerificationCode.js';
+    instanceOfIsVerified,
+    IsVerifiedFromJSON,
+    IsVerifiedFromJSONTyped,
+    IsVerifiedToJSON,
+} from './IsVerified.js';
+import type { ReturnCode2 } from './ReturnCode2.js';
+import {
+    instanceOfReturnCode2,
+    ReturnCode2FromJSON,
+    ReturnCode2FromJSONTyped,
+    ReturnCode2ToJSON,
+} from './ReturnCode2.js';
+import type { SendCode2 } from './SendCode2.js';
+import {
+    instanceOfSendCode2,
+    SendCode2FromJSON,
+    SendCode2FromJSONTyped,
+    SendCode2ToJSON,
+} from './SendCode2.js';
 
 /**
+ * @type UserServiceSetHumanEmail
  * 
  * @export
- * @interface UserServiceSetHumanEmail
  */
-export interface UserServiceSetHumanEmail {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceSetHumanEmail
-     */
-    email: string;
-    /**
-     * 
-     * @type {UserServiceSendEmailVerificationCode}
-     * @memberof UserServiceSetHumanEmail
-     */
-    sendCode?: UserServiceSendEmailVerificationCode;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSetHumanEmail
-     */
-    returnCode?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserServiceSetHumanEmail
-     */
-    isVerified?: boolean;
-}
-
-/**
- * Check if a given object implements the UserServiceSetHumanEmail interface.
- */
-export function instanceOfUserServiceSetHumanEmail(value: object): value is UserServiceSetHumanEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    return true;
-}
+export type UserServiceSetHumanEmail = IsVerified | ReturnCode2 | SendCode2;
 
 export function UserServiceSetHumanEmailFromJSON(json: any): UserServiceSetHumanEmail {
     return UserServiceSetHumanEmailFromJSONTyped(json, false);
@@ -69,16 +49,23 @@ export function UserServiceSetHumanEmailFromJSONTyped(json: any, ignoreDiscrimin
     if (json == null) {
         return json;
     }
-    return {
-        
-        'email': json['email'],
-        'sendCode': json['sendCode'] == null ? undefined : UserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-        'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfIsVerified(json)) {
+        return IsVerifiedFromJSONTyped(json, true);
+    }
+    if (instanceOfReturnCode2(json)) {
+        return ReturnCode2FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode2(json)) {
+        return SendCode2FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSetHumanEmailToJSON(json: any): UserServiceSetHumanEmail {
+export function UserServiceSetHumanEmailToJSON(json: any): any {
     return UserServiceSetHumanEmailToJSONTyped(json, false);
 }
 
@@ -86,13 +73,19 @@ export function UserServiceSetHumanEmailToJSONTyped(value?: UserServiceSetHumanE
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfIsVerified(value)) {
+        return IsVerifiedToJSON(value as IsVerified);
+    }
+    if (instanceOfReturnCode2(value)) {
+        return ReturnCode2ToJSON(value as ReturnCode2);
+    }
+    if (instanceOfSendCode2(value)) {
+        return SendCode2ToJSON(value as SendCode2);
+    }
 
-    return {
-        
-        'email': value['email'],
-        'sendCode': UserServiceSendEmailVerificationCodeToJSON(value['sendCode']),
-        'returnCode': value['returnCode'],
-        'isVerified': value['isVerified'],
-    };
+    return {};
 }
 

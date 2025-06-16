@@ -12,60 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceIDPIntent } from './UserServiceIDPIntent.js';
+import type { AuthUrl } from './AuthUrl.js';
 import {
-    UserServiceIDPIntentFromJSON,
-    UserServiceIDPIntentFromJSONTyped,
-    UserServiceIDPIntentToJSON,
-    UserServiceIDPIntentToJSONTyped,
-} from './UserServiceIDPIntent.js';
-import type { UserServiceDetails } from './UserServiceDetails.js';
+    instanceOfAuthUrl,
+    AuthUrlFromJSON,
+    AuthUrlFromJSONTyped,
+    AuthUrlToJSON,
+} from './AuthUrl.js';
+import type { IdpIntent } from './IdpIntent.js';
 import {
-    UserServiceDetailsFromJSON,
-    UserServiceDetailsFromJSONTyped,
-    UserServiceDetailsToJSON,
-    UserServiceDetailsToJSONTyped,
-} from './UserServiceDetails.js';
+    instanceOfIdpIntent,
+    IdpIntentFromJSON,
+    IdpIntentFromJSONTyped,
+    IdpIntentToJSON,
+} from './IdpIntent.js';
+import type { PostForm } from './PostForm.js';
+import {
+    instanceOfPostForm,
+    PostFormFromJSON,
+    PostFormFromJSONTyped,
+    PostFormToJSON,
+} from './PostForm.js';
 
 /**
+ * @type UserServiceStartIdentityProviderIntentResponse
  * 
  * @export
- * @interface UserServiceStartIdentityProviderIntentResponse
  */
-export interface UserServiceStartIdentityProviderIntentResponse {
-    /**
-     * 
-     * @type {UserServiceDetails}
-     * @memberof UserServiceStartIdentityProviderIntentResponse
-     */
-    details?: UserServiceDetails;
-    /**
-     * URL to which the client should redirect
-     * @type {string}
-     * @memberof UserServiceStartIdentityProviderIntentResponse
-     */
-    authUrl?: string;
-    /**
-     * 
-     * @type {UserServiceIDPIntent}
-     * @memberof UserServiceStartIdentityProviderIntentResponse
-     */
-    idpIntent?: UserServiceIDPIntent;
-    /**
-     * POST call information
-     * @type {string}
-     * @memberof UserServiceStartIdentityProviderIntentResponse
-     */
-    postForm?: string;
-}
-
-/**
- * Check if a given object implements the UserServiceStartIdentityProviderIntentResponse interface.
- */
-export function instanceOfUserServiceStartIdentityProviderIntentResponse(value: object): value is UserServiceStartIdentityProviderIntentResponse {
-    return true;
-}
+export type UserServiceStartIdentityProviderIntentResponse = AuthUrl | IdpIntent | PostForm;
 
 export function UserServiceStartIdentityProviderIntentResponseFromJSON(json: any): UserServiceStartIdentityProviderIntentResponse {
     return UserServiceStartIdentityProviderIntentResponseFromJSONTyped(json, false);
@@ -75,16 +49,23 @@ export function UserServiceStartIdentityProviderIntentResponseFromJSONTyped(json
     if (json == null) {
         return json;
     }
-    return {
-        
-        'details': json['details'] == null ? undefined : UserServiceDetailsFromJSON(json['details']),
-        'authUrl': json['authUrl'] == null ? undefined : json['authUrl'],
-        'idpIntent': json['idpIntent'] == null ? undefined : UserServiceIDPIntentFromJSON(json['idpIntent']),
-        'postForm': json['postForm'] == null ? undefined : json['postForm'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfAuthUrl(json)) {
+        return AuthUrlFromJSONTyped(json, true);
+    }
+    if (instanceOfIdpIntent(json)) {
+        return IdpIntentFromJSONTyped(json, true);
+    }
+    if (instanceOfPostForm(json)) {
+        return PostFormFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceStartIdentityProviderIntentResponseToJSON(json: any): UserServiceStartIdentityProviderIntentResponse {
+export function UserServiceStartIdentityProviderIntentResponseToJSON(json: any): any {
     return UserServiceStartIdentityProviderIntentResponseToJSONTyped(json, false);
 }
 
@@ -92,13 +73,19 @@ export function UserServiceStartIdentityProviderIntentResponseToJSONTyped(value?
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfAuthUrl(value)) {
+        return AuthUrlToJSON(value as AuthUrl);
+    }
+    if (instanceOfIdpIntent(value)) {
+        return IdpIntentToJSON(value as IdpIntent);
+    }
+    if (instanceOfPostForm(value)) {
+        return PostFormToJSON(value as PostForm);
+    }
 
-    return {
-        
-        'details': UserServiceDetailsToJSON(value['details']),
-        'authUrl': value['authUrl'],
-        'idpIntent': UserServiceIDPIntentToJSON(value['idpIntent']),
-        'postForm': value['postForm'],
-    };
+    return {};
 }
 

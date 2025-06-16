@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { SessionServiceChallengesWebAuthN } from './SessionServiceChallengesWebAuthN.js';
+import type { SessionServiceWebAuthN } from './SessionServiceWebAuthN.js';
 import {
-    SessionServiceChallengesWebAuthNFromJSON,
-    SessionServiceChallengesWebAuthNFromJSONTyped,
-    SessionServiceChallengesWebAuthNToJSON,
-    SessionServiceChallengesWebAuthNToJSONTyped,
-} from './SessionServiceChallengesWebAuthN.js';
+    SessionServiceWebAuthNFromJSON,
+    SessionServiceWebAuthNFromJSONTyped,
+    SessionServiceWebAuthNToJSON,
+    SessionServiceWebAuthNToJSONTyped,
+} from './SessionServiceWebAuthN.js';
 
 /**
  * 
@@ -29,22 +29,22 @@ import {
 export interface SessionServiceChallenges {
     /**
      * 
-     * @type {SessionServiceChallengesWebAuthN}
+     * @type {SessionServiceWebAuthN}
      * @memberof SessionServiceChallenges
      */
-    webAuthN?: SessionServiceChallengesWebAuthN;
+    webAuthN?: SessionServiceWebAuthN;
     /**
      * 
      * @type {string}
      * @memberof SessionServiceChallenges
      */
-    otpSms?: string;
+    otpSms?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionServiceChallenges
      */
-    otpEmail?: string;
+    otpEmail?: string | null;
 }
 
 /**
@@ -64,7 +64,7 @@ export function SessionServiceChallengesFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'webAuthN': json['webAuthN'] == null ? undefined : SessionServiceChallengesWebAuthNFromJSON(json['webAuthN']),
+        'webAuthN': json['webAuthN'] == null ? undefined : SessionServiceWebAuthNFromJSON(json['webAuthN']),
         'otpSms': json['otpSms'] == null ? undefined : json['otpSms'],
         'otpEmail': json['otpEmail'] == null ? undefined : json['otpEmail'],
     };
@@ -81,7 +81,7 @@ export function SessionServiceChallengesToJSONTyped(value?: SessionServiceChalle
 
     return {
         
-        'webAuthN': SessionServiceChallengesWebAuthNToJSON(value['webAuthN']),
+        'webAuthN': SessionServiceWebAuthNToJSON(value['webAuthN']),
         'otpSms': value['otpSms'],
         'otpEmail': value['otpEmail'],
     };

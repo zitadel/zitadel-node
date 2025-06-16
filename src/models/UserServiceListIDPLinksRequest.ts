@@ -29,6 +29,12 @@ import {
 export interface UserServiceListIDPLinksRequest {
     /**
      * 
+     * @type {string}
+     * @memberof UserServiceListIDPLinksRequest
+     */
+    userId?: string;
+    /**
+     * 
      * @type {UserServiceListQuery}
      * @memberof UserServiceListIDPLinksRequest
      */
@@ -52,6 +58,7 @@ export function UserServiceListIDPLinksRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'query': json['query'] == null ? undefined : UserServiceListQueryFromJSON(json['query']),
     };
 }
@@ -67,6 +74,7 @@ export function UserServiceListIDPLinksRequestToJSONTyped(value?: UserServiceLis
 
     return {
         
+        'userId': value['userId'],
         'query': UserServiceListQueryToJSON(value['query']),
     };
 }

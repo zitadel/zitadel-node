@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceRedirectURLs {
     /**
-     * URL on which the user will be redirected after a successful login
+     * 
      * @type {string}
      * @memberof UserServiceRedirectURLs
      */
     successUrl?: string;
     /**
-     * URL on which the user will be redirected after a failed login
+     * 
      * @type {string}
      * @memberof UserServiceRedirectURLs
      */

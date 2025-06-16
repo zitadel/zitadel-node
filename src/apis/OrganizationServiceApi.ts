@@ -15,30 +15,33 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  NoOp200Response5,
   OrganizationServiceAddOrganizationRequest,
   OrganizationServiceAddOrganizationResponse,
+  OrganizationServiceConnectError,
   OrganizationServiceListOrganizationsRequest,
   OrganizationServiceListOrganizationsResponse,
-  OrganizationServiceRpcStatus,
 } from '../models/index.js';
 import {
+    NoOp200Response5FromJSON,
+    NoOp200Response5ToJSON,
     OrganizationServiceAddOrganizationRequestFromJSON,
     OrganizationServiceAddOrganizationRequestToJSON,
     OrganizationServiceAddOrganizationResponseFromJSON,
     OrganizationServiceAddOrganizationResponseToJSON,
+    OrganizationServiceConnectErrorFromJSON,
+    OrganizationServiceConnectErrorToJSON,
     OrganizationServiceListOrganizationsRequestFromJSON,
     OrganizationServiceListOrganizationsRequestToJSON,
     OrganizationServiceListOrganizationsResponseFromJSON,
     OrganizationServiceListOrganizationsResponseToJSON,
-    OrganizationServiceRpcStatusFromJSON,
-    OrganizationServiceRpcStatusToJSON,
 } from '../models/index.js';
 
-export interface OrganizationServiceAddOrganizationOperationRequest {
+export interface AddOrganizationRequest {
     organizationServiceAddOrganizationRequest: OrganizationServiceAddOrganizationRequest;
 }
 
-export interface OrganizationServiceListOrganizationsOperationRequest {
+export interface ListOrganizationsRequest {
     organizationServiceListOrganizationsRequest: OrganizationServiceListOrganizationsRequest;
 }
 
@@ -48,14 +51,14 @@ export interface OrganizationServiceListOrganizationsOperationRequest {
 export class OrganizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * Create an Organization
+     * Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+     * AddOrganization
      */
-    async organizationServiceAddOrganizationRaw(requestParameters: OrganizationServiceAddOrganizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
+    async addOrganizationRaw(requestParameters: AddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
         if (requestParameters['organizationServiceAddOrganizationRequest'] == null) {
             throw new runtime.RequiredError(
                 'organizationServiceAddOrganizationRequest',
-                'Required parameter "organizationServiceAddOrganizationRequest" was null or undefined when calling organizationServiceAddOrganization().'
+                'Required parameter "organizationServiceAddOrganizationRequest" was null or undefined when calling addOrganization().'
             );
         }
 
@@ -74,7 +77,7 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/organizations`,
+            path: `/zitadel.org.v2.OrganizationService/AddOrganization`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -85,23 +88,23 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * Create an Organization
+     * Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+     * AddOrganization
      */
-    async organizationServiceAddOrganization(requestParameters: OrganizationServiceAddOrganizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceAddOrganizationResponse> {
-        const response = await this.organizationServiceAddOrganizationRaw(requestParameters, initOverrides);
+    async addOrganization(requestParameters: AddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceAddOrganizationResponse> {
+        const response = await this.addOrganizationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * Search Organizations
+     * Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+     * ListOrganizations
      */
-    async organizationServiceListOrganizationsRaw(requestParameters: OrganizationServiceListOrganizationsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
+    async listOrganizationsRaw(requestParameters: ListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
         if (requestParameters['organizationServiceListOrganizationsRequest'] == null) {
             throw new runtime.RequiredError(
                 'organizationServiceListOrganizationsRequest',
-                'Required parameter "organizationServiceListOrganizationsRequest" was null or undefined when calling organizationServiceListOrganizations().'
+                'Required parameter "organizationServiceListOrganizationsRequest" was null or undefined when calling listOrganizations().'
             );
         }
 
@@ -120,7 +123,7 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/organizations/_search`,
+            path: `/zitadel.org.v2.OrganizationService/ListOrganizations`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -131,11 +134,45 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * Search Organizations
+     * Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+     * ListOrganizations
      */
-    async organizationServiceListOrganizations(requestParameters: OrganizationServiceListOrganizationsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationsResponse> {
-        const response = await this.organizationServiceListOrganizationsRaw(requestParameters, initOverrides);
+    async listOrganizations(requestParameters: ListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationsResponse> {
+        const response = await this.listOrganizationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response5>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/30a7bb25`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200Response5FromJSON(jsonValue));
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response5> {
+        const response = await this.noOpRaw(initOverrides);
         return await response.value();
     }
 

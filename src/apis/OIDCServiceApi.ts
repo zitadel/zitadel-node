@@ -15,44 +15,51 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  NoOp200Response6,
   OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest,
+  OIDCServiceConnectError,
   OIDCServiceCreateCallbackRequest,
   OIDCServiceCreateCallbackResponse,
+  OIDCServiceGetAuthRequestRequest,
   OIDCServiceGetAuthRequestResponse,
+  OIDCServiceGetDeviceAuthorizationRequestRequest,
   OIDCServiceGetDeviceAuthorizationRequestResponse,
-  OIDCServiceRpcStatus,
 } from '../models/index.js';
 import {
+    NoOp200Response6FromJSON,
+    NoOp200Response6ToJSON,
     OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestFromJSON,
     OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequestToJSON,
+    OIDCServiceConnectErrorFromJSON,
+    OIDCServiceConnectErrorToJSON,
     OIDCServiceCreateCallbackRequestFromJSON,
     OIDCServiceCreateCallbackRequestToJSON,
     OIDCServiceCreateCallbackResponseFromJSON,
     OIDCServiceCreateCallbackResponseToJSON,
+    OIDCServiceGetAuthRequestRequestFromJSON,
+    OIDCServiceGetAuthRequestRequestToJSON,
     OIDCServiceGetAuthRequestResponseFromJSON,
     OIDCServiceGetAuthRequestResponseToJSON,
+    OIDCServiceGetDeviceAuthorizationRequestRequestFromJSON,
+    OIDCServiceGetDeviceAuthorizationRequestRequestToJSON,
     OIDCServiceGetDeviceAuthorizationRequestResponseFromJSON,
     OIDCServiceGetDeviceAuthorizationRequestResponseToJSON,
-    OIDCServiceRpcStatusFromJSON,
-    OIDCServiceRpcStatusToJSON,
 } from '../models/index.js';
 
-export interface OIDCServiceAuthorizeOrDenyDeviceAuthorizationOperationRequest {
-    deviceAuthorizationId: string;
+export interface AuthorizeOrDenyDeviceAuthorizationRequest {
     oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest: OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest;
 }
 
-export interface OIDCServiceCreateCallbackOperationRequest {
-    authRequestId: string;
+export interface CreateCallbackRequest {
     oIDCServiceCreateCallbackRequest: OIDCServiceCreateCallbackRequest;
 }
 
-export interface OIDCServiceGetAuthRequestRequest {
-    authRequestId: string;
+export interface GetAuthRequestRequest {
+    oIDCServiceGetAuthRequestRequest: OIDCServiceGetAuthRequestRequest;
 }
 
-export interface OIDCServiceGetDeviceAuthorizationRequestRequest {
-    userCode: string;
+export interface GetDeviceAuthorizationRequestRequest {
+    oIDCServiceGetDeviceAuthorizationRequestRequest: OIDCServiceGetDeviceAuthorizationRequestRequest;
 }
 
 /**
@@ -61,21 +68,14 @@ export interface OIDCServiceGetDeviceAuthorizationRequestRequest {
 export class OIDCServiceApi extends runtime.BaseAPI {
 
     /**
-     * Authorize or deny the device authorization request based on the provided device authorization id.
-     * Authorize or deny device authorization
+     * Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
+     * AuthorizeOrDenyDeviceAuthorization
      */
-    async oIDCServiceAuthorizeOrDenyDeviceAuthorizationRaw(requestParameters: OIDCServiceAuthorizeOrDenyDeviceAuthorizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        if (requestParameters['deviceAuthorizationId'] == null) {
-            throw new runtime.RequiredError(
-                'deviceAuthorizationId',
-                'Required parameter "deviceAuthorizationId" was null or undefined when calling oIDCServiceAuthorizeOrDenyDeviceAuthorization().'
-            );
-        }
-
+    async authorizeOrDenyDeviceAuthorizationRaw(requestParameters: AuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest'] == null) {
             throw new runtime.RequiredError(
                 'oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest',
-                'Required parameter "oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest" was null or undefined when calling oIDCServiceAuthorizeOrDenyDeviceAuthorization().'
+                'Required parameter "oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest" was null or undefined when calling authorizeOrDenyDeviceAuthorization().'
             );
         }
 
@@ -94,7 +94,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/oidc/device_authorization/{deviceAuthorizationId}`.replace(`{${"deviceAuthorizationId"}}`, encodeURIComponent(String(requestParameters['deviceAuthorizationId']))),
+            path: `/zitadel.oidc.v2.OIDCService/AuthorizeOrDenyDeviceAuthorization`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -105,30 +105,22 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Authorize or deny the device authorization request based on the provided device authorization id.
-     * Authorize or deny device authorization
+     * Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
+     * AuthorizeOrDenyDeviceAuthorization
      */
-    async oIDCServiceAuthorizeOrDenyDeviceAuthorization(requestParameters: OIDCServiceAuthorizeOrDenyDeviceAuthorizationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.oIDCServiceAuthorizeOrDenyDeviceAuthorizationRaw(requestParameters, initOverrides);
+    async authorizeOrDenyDeviceAuthorization(requestParameters: AuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.authorizeOrDenyDeviceAuthorizationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
-     * Finalize an Auth Request and get the callback URL.
+     * CreateCallback
      */
-    async oIDCServiceCreateCallbackRaw(requestParameters: OIDCServiceCreateCallbackOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceCreateCallbackResponse>> {
-        if (requestParameters['authRequestId'] == null) {
-            throw new runtime.RequiredError(
-                'authRequestId',
-                'Required parameter "authRequestId" was null or undefined when calling oIDCServiceCreateCallback().'
-            );
-        }
-
+    async createCallbackRaw(requestParameters: CreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceCreateCallbackResponse>> {
         if (requestParameters['oIDCServiceCreateCallbackRequest'] == null) {
             throw new runtime.RequiredError(
                 'oIDCServiceCreateCallbackRequest',
-                'Required parameter "oIDCServiceCreateCallbackRequest" was null or undefined when calling oIDCServiceCreateCallback().'
+                'Required parameter "oIDCServiceCreateCallbackRequest" was null or undefined when calling createCallback().'
             );
         }
 
@@ -147,7 +139,7 @@ export class OIDCServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/oidc/auth_requests/{authRequestId}`.replace(`{${"authRequestId"}}`, encodeURIComponent(String(requestParameters['authRequestId']))),
+            path: `/zitadel.oidc.v2.OIDCService/CreateCallback`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -158,29 +150,29 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
-     * Finalize an Auth Request and get the callback URL.
+     * CreateCallback
      */
-    async oIDCServiceCreateCallback(requestParameters: OIDCServiceCreateCallbackOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceCreateCallbackResponse> {
-        const response = await this.oIDCServiceCreateCallbackRaw(requestParameters, initOverrides);
+    async createCallback(requestParameters: CreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceCreateCallbackResponse> {
+        const response = await this.createCallbackRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application\'s Auth Request.
-     * Get OIDC Auth Request details
+     * GetAuthRequest
      */
-    async oIDCServiceGetAuthRequestRaw(requestParameters: OIDCServiceGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetAuthRequestResponse>> {
-        if (requestParameters['authRequestId'] == null) {
+    async getAuthRequestRaw(requestParameters: GetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetAuthRequestResponse>> {
+        if (requestParameters['oIDCServiceGetAuthRequestRequest'] == null) {
             throw new runtime.RequiredError(
-                'authRequestId',
-                'Required parameter "authRequestId" was null or undefined when calling oIDCServiceGetAuthRequest().'
+                'oIDCServiceGetAuthRequestRequest',
+                'Required parameter "oIDCServiceGetAuthRequestRequest" was null or undefined when calling getAuthRequest().'
             );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -191,36 +183,74 @@ export class OIDCServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/oidc/auth_requests/{authRequestId}`.replace(`{${"authRequestId"}}`, encodeURIComponent(String(requestParameters['authRequestId']))),
-            method: 'GET',
+            path: `/zitadel.oidc.v2.OIDCService/GetAuthRequest`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: OIDCServiceGetAuthRequestRequestToJSON(requestParameters['oIDCServiceGetAuthRequestRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OIDCServiceGetAuthRequestResponseFromJSON(jsonValue));
     }
 
     /**
-     * Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application\'s Auth Request.
-     * Get OIDC Auth Request details
+     * GetAuthRequest
      */
-    async oIDCServiceGetAuthRequest(requestParameters: OIDCServiceGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetAuthRequestResponse> {
-        const response = await this.oIDCServiceGetAuthRequestRaw(requestParameters, initOverrides);
+    async getAuthRequest(requestParameters: GetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetAuthRequestResponse> {
+        const response = await this.getAuthRequestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Get the device authorization based on the provided \"user code\". This will return the device authorization request, which contains the device authorization id that is required to authorize the request once the user signed in or to deny it.
-     * Get device authorization request
+     * Get device authorization request   Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+     * GetDeviceAuthorizationRequest
      */
-    async oIDCServiceGetDeviceAuthorizationRequestRaw(requestParameters: OIDCServiceGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
-        if (requestParameters['userCode'] == null) {
+    async getDeviceAuthorizationRequestRaw(requestParameters: GetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
+        if (requestParameters['oIDCServiceGetDeviceAuthorizationRequestRequest'] == null) {
             throw new runtime.RequiredError(
-                'userCode',
-                'Required parameter "userCode" was null or undefined when calling oIDCServiceGetDeviceAuthorizationRequest().'
+                'oIDCServiceGetDeviceAuthorizationRequestRequest',
+                'Required parameter "oIDCServiceGetDeviceAuthorizationRequestRequest" was null or undefined when calling getDeviceAuthorizationRequest().'
             );
         }
 
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.oidc.v2.OIDCService/GetDeviceAuthorizationRequest`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OIDCServiceGetDeviceAuthorizationRequestRequestToJSON(requestParameters['oIDCServiceGetDeviceAuthorizationRequestRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OIDCServiceGetDeviceAuthorizationRequestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get device authorization request   Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+     * GetDeviceAuthorizationRequest
+     */
+    async getDeviceAuthorizationRequest(requestParameters: GetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetDeviceAuthorizationRequestResponse> {
+        const response = await this.getDeviceAuthorizationRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response6>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -234,21 +264,20 @@ export class OIDCServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/oidc/device_authorization/{userCode}`.replace(`{${"userCode"}}`, encodeURIComponent(String(requestParameters['userCode']))),
+            path: `/dc68286c`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OIDCServiceGetDeviceAuthorizationRequestResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200Response6FromJSON(jsonValue));
     }
 
     /**
-     * Get the device authorization based on the provided \"user code\". This will return the device authorization request, which contains the device authorization id that is required to authorize the request once the user signed in or to deny it.
-     * Get device authorization request
+     * Dummy endpoint to retain union-member schemas
      */
-    async oIDCServiceGetDeviceAuthorizationRequest(requestParameters: OIDCServiceGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetDeviceAuthorizationRequestResponse> {
-        const response = await this.oIDCServiceGetDeviceAuthorizationRequestRaw(requestParameters, initOverrides);
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response6> {
+        const response = await this.noOpRaw(initOverrides);
         return await response.value();
     }
 

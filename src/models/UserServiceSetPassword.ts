@@ -36,16 +36,16 @@ import {
 export interface UserServiceSetPassword {
     /**
      * 
-     * @type {UserServicePassword}
-     * @memberof UserServiceSetPassword
-     */
-    password?: UserServicePassword;
-    /**
-     * 
      * @type {UserServiceHashedPassword}
      * @memberof UserServiceSetPassword
      */
-    hashedPassword?: UserServiceHashedPassword;
+    hashedPassword: UserServiceHashedPassword;
+    /**
+     * 
+     * @type {UserServicePassword}
+     * @memberof UserServiceSetPassword
+     */
+    password: UserServicePassword;
     /**
      * 
      * @type {string}
@@ -53,7 +53,7 @@ export interface UserServiceSetPassword {
      */
     currentPassword: string;
     /**
-     * "the verification code generated during password reset request"
+     * 
      * @type {string}
      * @memberof UserServiceSetPassword
      */
@@ -64,6 +64,8 @@ export interface UserServiceSetPassword {
  * Check if a given object implements the UserServiceSetPassword interface.
  */
 export function instanceOfUserServiceSetPassword(value: object): value is UserServiceSetPassword {
+    if (!('hashedPassword' in value) || value['hashedPassword'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
     if (!('currentPassword' in value) || value['currentPassword'] === undefined) return false;
     if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
@@ -79,8 +81,8 @@ export function UserServiceSetPasswordFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'password': json['password'] == null ? undefined : UserServicePasswordFromJSON(json['password']),
-        'hashedPassword': json['hashedPassword'] == null ? undefined : UserServiceHashedPasswordFromJSON(json['hashedPassword']),
+        'hashedPassword': UserServiceHashedPasswordFromJSON(json['hashedPassword']),
+        'password': UserServicePasswordFromJSON(json['password']),
         'currentPassword': json['currentPassword'],
         'verificationCode': json['verificationCode'],
     };
@@ -97,8 +99,8 @@ export function UserServiceSetPasswordToJSONTyped(value?: UserServiceSetPassword
 
     return {
         
-        'password': UserServicePasswordToJSON(value['password']),
         'hashedPassword': UserServiceHashedPasswordToJSON(value['hashedPassword']),
+        'password': UserServicePasswordToJSON(value['password']),
         'currentPassword': value['currentPassword'],
         'verificationCode': value['verificationCode'],
     };

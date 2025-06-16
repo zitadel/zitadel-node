@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { UserServiceValue } from './UserServiceValue.js';
+import {
+    UserServiceValueFromJSON,
+    UserServiceValueFromJSONTyped,
+    UserServiceValueToJSON,
+    UserServiceValueToJSONTyped,
+} from './UserServiceValue.js';
+
 /**
  * 
  * @export
@@ -20,11 +28,18 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceIDPLDAPAccessInformation {
     /**
+     * `Struct` represents a structured data value, consisting of fields
+     *  which map to dynamically typed values. In some languages, `Struct`
+     *  might be supported by a native representation. For example, in
+     *  scripting languages like JS a struct is represented as an
+     *  object. The details of that representation are described together
+     *  with the proto support for the language.
      * 
-     * @type {object}
+     *  The JSON representation for `Struct` is JSON object.
+     * @type {{ [key: string]: UserServiceValue; }}
      * @memberof UserServiceIDPLDAPAccessInformation
      */
-    attributes?: object;
+    attributes?: { [key: string]: UserServiceValue; };
 }
 
 /**
@@ -44,7 +59,7 @@ export function UserServiceIDPLDAPAccessInformationFromJSONTyped(json: any, igno
     }
     return {
         
-        'attributes': json['attributes'] == null ? undefined : json['attributes'],
+        'attributes': json['attributes'] == null ? undefined : (mapValues(json['attributes'], UserServiceValueFromJSON)),
     };
 }
 
@@ -59,7 +74,7 @@ export function UserServiceIDPLDAPAccessInformationToJSONTyped(value?: UserServi
 
     return {
         
-        'attributes': value['attributes'],
+        'attributes': value['attributes'] == null ? undefined : (mapValues(value['attributes'], UserServiceValueToJSON)),
     };
 }
 

@@ -26,7 +26,7 @@ export interface UserServiceSetMetadataEntry {
      */
     key: string;
     /**
-     * The value has to be base64 encoded.
+     * 
      * @type {string}
      * @memberof UserServiceSetMetadataEntry
      */

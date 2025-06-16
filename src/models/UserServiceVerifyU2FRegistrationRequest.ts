@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { UserServiceValue } from './UserServiceValue.js';
+import {
+    UserServiceValueFromJSON,
+    UserServiceValueFromJSONTyped,
+    UserServiceValueToJSON,
+    UserServiceValueToJSONTyped,
+} from './UserServiceValue.js';
+
 /**
  * 
  * @export
@@ -20,11 +28,30 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceVerifyU2FRegistrationRequest {
     /**
-     * PublicKeyCredential Interface. Generated helper methods populate the field from JSON created by a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#publickeycredential
-     * @type {object}
+     * 
+     * @type {string}
      * @memberof UserServiceVerifyU2FRegistrationRequest
      */
-    publicKeyCredential: object;
+    userId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserServiceVerifyU2FRegistrationRequest
+     */
+    u2fId: string;
+    /**
+     * `Struct` represents a structured data value, consisting of fields
+     *  which map to dynamically typed values. In some languages, `Struct`
+     *  might be supported by a native representation. For example, in
+     *  scripting languages like JS a struct is represented as an
+     *  object. The details of that representation are described together
+     *  with the proto support for the language.
+     * 
+     *  The JSON representation for `Struct` is JSON object.
+     * @type {{ [key: string]: UserServiceValue; }}
+     * @memberof UserServiceVerifyU2FRegistrationRequest
+     */
+    publicKeyCredential: { [key: string]: UserServiceValue; };
     /**
      * 
      * @type {string}
@@ -37,6 +64,8 @@ export interface UserServiceVerifyU2FRegistrationRequest {
  * Check if a given object implements the UserServiceVerifyU2FRegistrationRequest interface.
  */
 export function instanceOfUserServiceVerifyU2FRegistrationRequest(value: object): value is UserServiceVerifyU2FRegistrationRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
+    if (!('u2fId' in value) || value['u2fId'] === undefined) return false;
     if (!('publicKeyCredential' in value) || value['publicKeyCredential'] === undefined) return false;
     if (!('tokenName' in value) || value['tokenName'] === undefined) return false;
     return true;
@@ -52,7 +81,9 @@ export function UserServiceVerifyU2FRegistrationRequestFromJSONTyped(json: any, 
     }
     return {
         
-        'publicKeyCredential': json['publicKeyCredential'],
+        'userId': json['userId'],
+        'u2fId': json['u2fId'],
+        'publicKeyCredential': (mapValues(json['publicKeyCredential'], UserServiceValueFromJSON)),
         'tokenName': json['tokenName'],
     };
 }
@@ -68,7 +99,9 @@ export function UserServiceVerifyU2FRegistrationRequestToJSONTyped(value?: UserS
 
     return {
         
-        'publicKeyCredential': value['publicKeyCredential'],
+        'userId': value['userId'],
+        'u2fId': value['u2fId'],
+        'publicKeyCredential': (mapValues(value['publicKeyCredential'], UserServiceValueToJSON)),
         'tokenName': value['tokenName'],
     };
 }

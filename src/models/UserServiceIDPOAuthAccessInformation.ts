@@ -30,7 +30,7 @@ export interface UserServiceIDPOAuthAccessInformation {
      * @type {string}
      * @memberof UserServiceIDPOAuthAccessInformation
      */
-    idToken?: string;
+    idToken?: string | null;
 }
 
 /**

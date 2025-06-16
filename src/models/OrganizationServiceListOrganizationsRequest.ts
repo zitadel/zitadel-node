@@ -54,7 +54,7 @@ export interface OrganizationServiceListOrganizationsRequest {
      */
     sortingColumn?: OrganizationServiceOrganizationFieldName;
     /**
-     * 
+     * criteria the client is looking for
      * @type {Array<OrganizationServiceSearchQuery>}
      * @memberof OrganizationServiceListOrganizationsRequest
      */

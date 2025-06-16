@@ -35,71 +35,71 @@ import {
  */
 export interface FeatureServiceSetInstanceFeaturesRequest {
     /**
-     * The login UI will use the settings of the default org (and not from the instance) if no organization context is set
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    loginDefaultOrg?: boolean;
+    loginDefaultOrg?: boolean | null;
     /**
-     * Enable projection triggers during an introspection request. This can act as workaround if there are noticeable consistency issues in the introspection response but can have an impact on performance. We are planning to remove triggers for introspection requests in the future. Please raise an issue if you needed to enable this feature.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    oidcTriggerIntrospectionProjections?: boolean;
+    oidcTriggerIntrospectionProjections?: boolean | null;
     /**
-     * We have recently refactored the introspection endpoint for performance reasons. This feature can be used to rollback to the legacy implementation if unexpected bugs arise. Please raise an issue if you needed to enable this feature.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    oidcLegacyIntrospection?: boolean;
+    oidcLegacyIntrospection?: boolean | null;
     /**
-     * User Schemas allow to manage data schemas of user. If the flag is enabled, you'll be able to use the new API and its features. Note that it is still in an early stage.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    userSchema?: boolean;
+    userSchema?: boolean | null;
     /**
-     * Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    oidcTokenExchange?: boolean;
+    oidcTokenExchange?: boolean | null;
     /**
-     * Improves performance of specified execution paths.
+     * 
      * @type {Array<FeatureServiceImprovedPerformance>}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
     improvedPerformance?: Array<FeatureServiceImprovedPerformance>;
     /**
-     * Enable the webkey/v3alpha API. The first time this feature is enabled, web keys are generated and activated.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    webKey?: boolean;
+    webKey?: boolean | null;
     /**
-     * Return parent errors to OIDC clients for debugging purposes. Parent errors may contain sensitive data or unwanted details about the system status of zitadel. Only enable if really needed.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    debugOidcParentError?: boolean;
+    debugOidcParentError?: boolean | null;
     /**
-     * If the flag is enabled, you'll be able to terminate a single session from the login UI by providing an id_token with a `sid` claim as id_token_hint on the end_session endpoint. Note that currently all sessions from the same user agent (browser) are terminated in the login UI. Sessions managed through the Session API already allow the termination of single sessions.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    oidcSingleV1SessionTermination?: boolean;
+    oidcSingleV1SessionTermination?: boolean | null;
     /**
-     * Do not push user token meta-event user.token.v2.added to improve performance on many concurrent single (machine-)user logins
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    disableUserTokenEvent?: boolean;
+    disableUserTokenEvent?: boolean | null;
     /**
-     * If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    enableBackChannelLogout?: boolean;
+    enableBackChannelLogout?: boolean | null;
     /**
      * 
      * @type {FeatureServiceLoginV2}
@@ -107,17 +107,17 @@ export interface FeatureServiceSetInstanceFeaturesRequest {
      */
     loginV2?: FeatureServiceLoginV2;
     /**
-     * Enable a newer, more performant, permission check used for v2 and v3 resource based APIs.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    permissionCheckV2?: boolean;
+    permissionCheckV2?: boolean | null;
     /**
-     * If this is enabled the console web client will use the new User v2 API for certain calls
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    consoleUseV2UserApi?: boolean;
+    consoleUseV2UserApi?: boolean | null;
 }
 
 /**

@@ -12,230 +12,125 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceDisplayNameQuery } from './UserServiceDisplayNameQuery.js';
+import type { AndQuery } from './AndQuery.js';
 import {
-    UserServiceDisplayNameQueryFromJSON,
-    UserServiceDisplayNameQueryFromJSONTyped,
-    UserServiceDisplayNameQueryToJSON,
-    UserServiceDisplayNameQueryToJSONTyped,
-} from './UserServiceDisplayNameQuery.js';
-import type { UserServiceStateQuery } from './UserServiceStateQuery.js';
+    instanceOfAndQuery,
+    AndQueryFromJSON,
+    AndQueryFromJSONTyped,
+    AndQueryToJSON,
+} from './AndQuery.js';
+import type { DisplayNameQuery } from './DisplayNameQuery.js';
 import {
-    UserServiceStateQueryFromJSON,
-    UserServiceStateQueryFromJSONTyped,
-    UserServiceStateQueryToJSON,
-    UserServiceStateQueryToJSONTyped,
-} from './UserServiceStateQuery.js';
-import type { UserServiceInUserIDQuery } from './UserServiceInUserIDQuery.js';
+    instanceOfDisplayNameQuery,
+    DisplayNameQueryFromJSON,
+    DisplayNameQueryFromJSONTyped,
+    DisplayNameQueryToJSON,
+} from './DisplayNameQuery.js';
+import type { EmailQuery } from './EmailQuery.js';
 import {
-    UserServiceInUserIDQueryFromJSON,
-    UserServiceInUserIDQueryFromJSONTyped,
-    UserServiceInUserIDQueryToJSON,
-    UserServiceInUserIDQueryToJSONTyped,
-} from './UserServiceInUserIDQuery.js';
-import type { UserServiceNickNameQuery } from './UserServiceNickNameQuery.js';
+    instanceOfEmailQuery,
+    EmailQueryFromJSON,
+    EmailQueryFromJSONTyped,
+    EmailQueryToJSON,
+} from './EmailQuery.js';
+import type { FirstNameQuery } from './FirstNameQuery.js';
 import {
-    UserServiceNickNameQueryFromJSON,
-    UserServiceNickNameQueryFromJSONTyped,
-    UserServiceNickNameQueryToJSON,
-    UserServiceNickNameQueryToJSONTyped,
-} from './UserServiceNickNameQuery.js';
-import type { UserServiceTypeQuery } from './UserServiceTypeQuery.js';
+    instanceOfFirstNameQuery,
+    FirstNameQueryFromJSON,
+    FirstNameQueryFromJSONTyped,
+    FirstNameQueryToJSON,
+} from './FirstNameQuery.js';
+import type { InUserEmailsQuery } from './InUserEmailsQuery.js';
 import {
-    UserServiceTypeQueryFromJSON,
-    UserServiceTypeQueryFromJSONTyped,
-    UserServiceTypeQueryToJSON,
-    UserServiceTypeQueryToJSONTyped,
-} from './UserServiceTypeQuery.js';
-import type { UserServiceAndQuery } from './UserServiceAndQuery.js';
+    instanceOfInUserEmailsQuery,
+    InUserEmailsQueryFromJSON,
+    InUserEmailsQueryFromJSONTyped,
+    InUserEmailsQueryToJSON,
+} from './InUserEmailsQuery.js';
+import type { InUserIdsQuery } from './InUserIdsQuery.js';
 import {
-    UserServiceAndQueryFromJSON,
-    UserServiceAndQueryFromJSONTyped,
-    UserServiceAndQueryToJSON,
-    UserServiceAndQueryToJSONTyped,
-} from './UserServiceAndQuery.js';
-import type { UserServiceNotQuery } from './UserServiceNotQuery.js';
+    instanceOfInUserIdsQuery,
+    InUserIdsQueryFromJSON,
+    InUserIdsQueryFromJSONTyped,
+    InUserIdsQueryToJSON,
+} from './InUserIdsQuery.js';
+import type { LastNameQuery } from './LastNameQuery.js';
 import {
-    UserServiceNotQueryFromJSON,
-    UserServiceNotQueryFromJSONTyped,
-    UserServiceNotQueryToJSON,
-    UserServiceNotQueryToJSONTyped,
-} from './UserServiceNotQuery.js';
-import type { UserServiceUserNameQuery } from './UserServiceUserNameQuery.js';
+    instanceOfLastNameQuery,
+    LastNameQueryFromJSON,
+    LastNameQueryFromJSONTyped,
+    LastNameQueryToJSON,
+} from './LastNameQuery.js';
+import type { LoginNameQuery } from './LoginNameQuery.js';
 import {
-    UserServiceUserNameQueryFromJSON,
-    UserServiceUserNameQueryFromJSONTyped,
-    UserServiceUserNameQueryToJSON,
-    UserServiceUserNameQueryToJSONTyped,
-} from './UserServiceUserNameQuery.js';
-import type { UserServiceOrganizationIdQuery } from './UserServiceOrganizationIdQuery.js';
+    instanceOfLoginNameQuery,
+    LoginNameQueryFromJSON,
+    LoginNameQueryFromJSONTyped,
+    LoginNameQueryToJSON,
+} from './LoginNameQuery.js';
+import type { NickNameQuery } from './NickNameQuery.js';
 import {
-    UserServiceOrganizationIdQueryFromJSON,
-    UserServiceOrganizationIdQueryFromJSONTyped,
-    UserServiceOrganizationIdQueryToJSON,
-    UserServiceOrganizationIdQueryToJSONTyped,
-} from './UserServiceOrganizationIdQuery.js';
-import type { UserServiceOrQuery } from './UserServiceOrQuery.js';
+    instanceOfNickNameQuery,
+    NickNameQueryFromJSON,
+    NickNameQueryFromJSONTyped,
+    NickNameQueryToJSON,
+} from './NickNameQuery.js';
+import type { NotQuery } from './NotQuery.js';
 import {
-    UserServiceOrQueryFromJSON,
-    UserServiceOrQueryFromJSONTyped,
-    UserServiceOrQueryToJSON,
-    UserServiceOrQueryToJSONTyped,
-} from './UserServiceOrQuery.js';
-import type { UserServicePhoneQuery } from './UserServicePhoneQuery.js';
+    instanceOfNotQuery,
+    NotQueryFromJSON,
+    NotQueryFromJSONTyped,
+    NotQueryToJSON,
+} from './NotQuery.js';
+import type { OrQuery } from './OrQuery.js';
 import {
-    UserServicePhoneQueryFromJSON,
-    UserServicePhoneQueryFromJSONTyped,
-    UserServicePhoneQueryToJSON,
-    UserServicePhoneQueryToJSONTyped,
-} from './UserServicePhoneQuery.js';
-import type { UserServiceEmailQuery } from './UserServiceEmailQuery.js';
+    instanceOfOrQuery,
+    OrQueryFromJSON,
+    OrQueryFromJSONTyped,
+    OrQueryToJSON,
+} from './OrQuery.js';
+import type { OrganizationIdQuery } from './OrganizationIdQuery.js';
 import {
-    UserServiceEmailQueryFromJSON,
-    UserServiceEmailQueryFromJSONTyped,
-    UserServiceEmailQueryToJSON,
-    UserServiceEmailQueryToJSONTyped,
-} from './UserServiceEmailQuery.js';
-import type { UserServiceLoginNameQuery } from './UserServiceLoginNameQuery.js';
+    instanceOfOrganizationIdQuery,
+    OrganizationIdQueryFromJSON,
+    OrganizationIdQueryFromJSONTyped,
+    OrganizationIdQueryToJSON,
+} from './OrganizationIdQuery.js';
+import type { PhoneQuery } from './PhoneQuery.js';
 import {
-    UserServiceLoginNameQueryFromJSON,
-    UserServiceLoginNameQueryFromJSONTyped,
-    UserServiceLoginNameQueryToJSON,
-    UserServiceLoginNameQueryToJSONTyped,
-} from './UserServiceLoginNameQuery.js';
-import type { UserServiceFirstNameQuery } from './UserServiceFirstNameQuery.js';
+    instanceOfPhoneQuery,
+    PhoneQueryFromJSON,
+    PhoneQueryFromJSONTyped,
+    PhoneQueryToJSON,
+} from './PhoneQuery.js';
+import type { StateQuery } from './StateQuery.js';
 import {
-    UserServiceFirstNameQueryFromJSON,
-    UserServiceFirstNameQueryFromJSONTyped,
-    UserServiceFirstNameQueryToJSON,
-    UserServiceFirstNameQueryToJSONTyped,
-} from './UserServiceFirstNameQuery.js';
-import type { UserServiceInUserEmailsQuery } from './UserServiceInUserEmailsQuery.js';
+    instanceOfStateQuery,
+    StateQueryFromJSON,
+    StateQueryFromJSONTyped,
+    StateQueryToJSON,
+} from './StateQuery.js';
+import type { TypeQuery } from './TypeQuery.js';
 import {
-    UserServiceInUserEmailsQueryFromJSON,
-    UserServiceInUserEmailsQueryFromJSONTyped,
-    UserServiceInUserEmailsQueryToJSON,
-    UserServiceInUserEmailsQueryToJSONTyped,
-} from './UserServiceInUserEmailsQuery.js';
-import type { UserServiceLastNameQuery } from './UserServiceLastNameQuery.js';
+    instanceOfTypeQuery,
+    TypeQueryFromJSON,
+    TypeQueryFromJSONTyped,
+    TypeQueryToJSON,
+} from './TypeQuery.js';
+import type { UserNameQuery } from './UserNameQuery.js';
 import {
-    UserServiceLastNameQueryFromJSON,
-    UserServiceLastNameQueryFromJSONTyped,
-    UserServiceLastNameQueryToJSON,
-    UserServiceLastNameQueryToJSONTyped,
-} from './UserServiceLastNameQuery.js';
+    instanceOfUserNameQuery,
+    UserNameQueryFromJSON,
+    UserNameQueryFromJSONTyped,
+    UserNameQueryToJSON,
+} from './UserNameQuery.js';
 
 /**
+ * @type UserServiceSearchQuery
  * 
  * @export
- * @interface UserServiceSearchQuery
  */
-export interface UserServiceSearchQuery {
-    /**
-     * 
-     * @type {UserServiceUserNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    userNameQuery?: UserServiceUserNameQuery;
-    /**
-     * 
-     * @type {UserServiceFirstNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    firstNameQuery?: UserServiceFirstNameQuery;
-    /**
-     * 
-     * @type {UserServiceLastNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    lastNameQuery?: UserServiceLastNameQuery;
-    /**
-     * 
-     * @type {UserServiceNickNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    nickNameQuery?: UserServiceNickNameQuery;
-    /**
-     * 
-     * @type {UserServiceDisplayNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    displayNameQuery?: UserServiceDisplayNameQuery;
-    /**
-     * 
-     * @type {UserServiceEmailQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    emailQuery?: UserServiceEmailQuery;
-    /**
-     * 
-     * @type {UserServiceStateQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    stateQuery?: UserServiceStateQuery;
-    /**
-     * 
-     * @type {UserServiceTypeQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    typeQuery?: UserServiceTypeQuery;
-    /**
-     * 
-     * @type {UserServiceLoginNameQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    loginNameQuery?: UserServiceLoginNameQuery;
-    /**
-     * 
-     * @type {UserServiceInUserIDQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    inUserIdsQuery?: UserServiceInUserIDQuery;
-    /**
-     * 
-     * @type {UserServiceOrQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    orQuery?: UserServiceOrQuery;
-    /**
-     * 
-     * @type {UserServiceAndQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    andQuery?: UserServiceAndQuery;
-    /**
-     * 
-     * @type {UserServiceNotQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    notQuery?: UserServiceNotQuery;
-    /**
-     * 
-     * @type {UserServiceInUserEmailsQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    inUserEmailsQuery?: UserServiceInUserEmailsQuery;
-    /**
-     * 
-     * @type {UserServiceOrganizationIdQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    organizationIdQuery?: UserServiceOrganizationIdQuery;
-    /**
-     * 
-     * @type {UserServicePhoneQuery}
-     * @memberof UserServiceSearchQuery
-     */
-    phoneQuery?: UserServicePhoneQuery;
-}
-
-/**
- * Check if a given object implements the UserServiceSearchQuery interface.
- */
-export function instanceOfUserServiceSearchQuery(value: object): value is UserServiceSearchQuery {
-    return true;
-}
+export type UserServiceSearchQuery = AndQuery | DisplayNameQuery | EmailQuery | FirstNameQuery | InUserEmailsQuery | InUserIdsQuery | LastNameQuery | LoginNameQuery | NickNameQuery | NotQuery | OrQuery | OrganizationIdQuery | PhoneQuery | StateQuery | TypeQuery | UserNameQuery;
 
 export function UserServiceSearchQueryFromJSON(json: any): UserServiceSearchQuery {
     return UserServiceSearchQueryFromJSONTyped(json, false);
@@ -245,28 +140,62 @@ export function UserServiceSearchQueryFromJSONTyped(json: any, ignoreDiscriminat
     if (json == null) {
         return json;
     }
-    return {
-        
-        'userNameQuery': json['userNameQuery'] == null ? undefined : UserServiceUserNameQueryFromJSON(json['userNameQuery']),
-        'firstNameQuery': json['firstNameQuery'] == null ? undefined : UserServiceFirstNameQueryFromJSON(json['firstNameQuery']),
-        'lastNameQuery': json['lastNameQuery'] == null ? undefined : UserServiceLastNameQueryFromJSON(json['lastNameQuery']),
-        'nickNameQuery': json['nickNameQuery'] == null ? undefined : UserServiceNickNameQueryFromJSON(json['nickNameQuery']),
-        'displayNameQuery': json['displayNameQuery'] == null ? undefined : UserServiceDisplayNameQueryFromJSON(json['displayNameQuery']),
-        'emailQuery': json['emailQuery'] == null ? undefined : UserServiceEmailQueryFromJSON(json['emailQuery']),
-        'stateQuery': json['stateQuery'] == null ? undefined : UserServiceStateQueryFromJSON(json['stateQuery']),
-        'typeQuery': json['typeQuery'] == null ? undefined : UserServiceTypeQueryFromJSON(json['typeQuery']),
-        'loginNameQuery': json['loginNameQuery'] == null ? undefined : UserServiceLoginNameQueryFromJSON(json['loginNameQuery']),
-        'inUserIdsQuery': json['inUserIdsQuery'] == null ? undefined : UserServiceInUserIDQueryFromJSON(json['inUserIdsQuery']),
-        'orQuery': json['orQuery'] == null ? undefined : UserServiceOrQueryFromJSON(json['orQuery']),
-        'andQuery': json['andQuery'] == null ? undefined : UserServiceAndQueryFromJSON(json['andQuery']),
-        'notQuery': json['notQuery'] == null ? undefined : UserServiceNotQueryFromJSON(json['notQuery']),
-        'inUserEmailsQuery': json['inUserEmailsQuery'] == null ? undefined : UserServiceInUserEmailsQueryFromJSON(json['inUserEmailsQuery']),
-        'organizationIdQuery': json['organizationIdQuery'] == null ? undefined : UserServiceOrganizationIdQueryFromJSON(json['organizationIdQuery']),
-        'phoneQuery': json['phoneQuery'] == null ? undefined : UserServicePhoneQueryFromJSON(json['phoneQuery']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfAndQuery(json)) {
+        return AndQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfDisplayNameQuery(json)) {
+        return DisplayNameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfEmailQuery(json)) {
+        return EmailQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfFirstNameQuery(json)) {
+        return FirstNameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfInUserEmailsQuery(json)) {
+        return InUserEmailsQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfInUserIdsQuery(json)) {
+        return InUserIdsQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfLastNameQuery(json)) {
+        return LastNameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfLoginNameQuery(json)) {
+        return LoginNameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfNickNameQuery(json)) {
+        return NickNameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfNotQuery(json)) {
+        return NotQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfOrQuery(json)) {
+        return OrQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfOrganizationIdQuery(json)) {
+        return OrganizationIdQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfPhoneQuery(json)) {
+        return PhoneQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfStateQuery(json)) {
+        return StateQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfTypeQuery(json)) {
+        return TypeQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfUserNameQuery(json)) {
+        return UserNameQueryFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSearchQueryToJSON(json: any): UserServiceSearchQuery {
+export function UserServiceSearchQueryToJSON(json: any): any {
     return UserServiceSearchQueryToJSONTyped(json, false);
 }
 
@@ -274,25 +203,58 @@ export function UserServiceSearchQueryToJSONTyped(value?: UserServiceSearchQuery
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfAndQuery(value)) {
+        return AndQueryToJSON(value as AndQuery);
+    }
+    if (instanceOfDisplayNameQuery(value)) {
+        return DisplayNameQueryToJSON(value as DisplayNameQuery);
+    }
+    if (instanceOfEmailQuery(value)) {
+        return EmailQueryToJSON(value as EmailQuery);
+    }
+    if (instanceOfFirstNameQuery(value)) {
+        return FirstNameQueryToJSON(value as FirstNameQuery);
+    }
+    if (instanceOfInUserEmailsQuery(value)) {
+        return InUserEmailsQueryToJSON(value as InUserEmailsQuery);
+    }
+    if (instanceOfInUserIdsQuery(value)) {
+        return InUserIdsQueryToJSON(value as InUserIdsQuery);
+    }
+    if (instanceOfLastNameQuery(value)) {
+        return LastNameQueryToJSON(value as LastNameQuery);
+    }
+    if (instanceOfLoginNameQuery(value)) {
+        return LoginNameQueryToJSON(value as LoginNameQuery);
+    }
+    if (instanceOfNickNameQuery(value)) {
+        return NickNameQueryToJSON(value as NickNameQuery);
+    }
+    if (instanceOfNotQuery(value)) {
+        return NotQueryToJSON(value as NotQuery);
+    }
+    if (instanceOfOrQuery(value)) {
+        return OrQueryToJSON(value as OrQuery);
+    }
+    if (instanceOfOrganizationIdQuery(value)) {
+        return OrganizationIdQueryToJSON(value as OrganizationIdQuery);
+    }
+    if (instanceOfPhoneQuery(value)) {
+        return PhoneQueryToJSON(value as PhoneQuery);
+    }
+    if (instanceOfStateQuery(value)) {
+        return StateQueryToJSON(value as StateQuery);
+    }
+    if (instanceOfTypeQuery(value)) {
+        return TypeQueryToJSON(value as TypeQuery);
+    }
+    if (instanceOfUserNameQuery(value)) {
+        return UserNameQueryToJSON(value as UserNameQuery);
+    }
 
-    return {
-        
-        'userNameQuery': UserServiceUserNameQueryToJSON(value['userNameQuery']),
-        'firstNameQuery': UserServiceFirstNameQueryToJSON(value['firstNameQuery']),
-        'lastNameQuery': UserServiceLastNameQueryToJSON(value['lastNameQuery']),
-        'nickNameQuery': UserServiceNickNameQueryToJSON(value['nickNameQuery']),
-        'displayNameQuery': UserServiceDisplayNameQueryToJSON(value['displayNameQuery']),
-        'emailQuery': UserServiceEmailQueryToJSON(value['emailQuery']),
-        'stateQuery': UserServiceStateQueryToJSON(value['stateQuery']),
-        'typeQuery': UserServiceTypeQueryToJSON(value['typeQuery']),
-        'loginNameQuery': UserServiceLoginNameQueryToJSON(value['loginNameQuery']),
-        'inUserIdsQuery': UserServiceInUserIDQueryToJSON(value['inUserIdsQuery']),
-        'orQuery': UserServiceOrQueryToJSON(value['orQuery']),
-        'andQuery': UserServiceAndQueryToJSON(value['andQuery']),
-        'notQuery': UserServiceNotQueryToJSON(value['notQuery']),
-        'inUserEmailsQuery': UserServiceInUserEmailsQueryToJSON(value['inUserEmailsQuery']),
-        'organizationIdQuery': UserServiceOrganizationIdQueryToJSON(value['organizationIdQuery']),
-        'phoneQuery': UserServicePhoneQueryToJSON(value['phoneQuery']),
-    };
+    return {};
 }
 

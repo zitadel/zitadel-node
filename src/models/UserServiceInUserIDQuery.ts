@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceInUserIDQuery {
     /**
-     * the ids of the users to include
+     * 
      * @type {Array<string>}
      * @memberof UserServiceInUserIDQuery
      */

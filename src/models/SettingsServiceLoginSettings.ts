@@ -49,25 +49,25 @@ import {
  */
 export interface SettingsServiceLoginSettings {
     /**
-     * defines if a user is allowed to log in with username and password
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowUsernamePassword?: boolean;
     /**
-     * defines if a person is allowed to register a user on this organization
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowRegister?: boolean;
     /**
-     * defines if a user is allowed to add a defined identity provider. E.g. Google auth
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowExternalIdp?: boolean;
     /**
-     * defines if a user MUST use a multi-factor to log in
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
@@ -79,49 +79,334 @@ export interface SettingsServiceLoginSettings {
      */
     passkeysType?: SettingsServicePasskeysType;
     /**
-     * defines if password reset link should be shown in the login screen
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     hidePasswordReset?: boolean;
     /**
-     * defines if unknown username on login screen directly returns an error or always displays the password screen
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     ignoreUnknownUsernames?: boolean;
     /**
-     * defines where the user will be redirected to if the login is started without app context (e.g. from mail)
+     * 
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
     defaultRedirectUri?: string;
     /**
-     * Defines after how much time the user has to re-authenticate with the password.
+     * A Duration represents a signed, fixed-length span of time represented
+     *  as a count of seconds and fractions of seconds at nanosecond
+     *  resolution. It is independent of any calendar and concepts like "day"
+     *  or "month". It is related to Timestamp in that the difference between
+     *  two Timestamp values is a Duration and it can be added or subtracted
+     *  from a Timestamp. Range is approximately +-10,000 years.
+     * 
+     *  # Examples
+     * 
+     *  Example 1: Compute Duration from two Timestamps in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Timestamp end = ...;
+     *      Duration duration = ...;
+     * 
+     *      duration.seconds = end.seconds - start.seconds;
+     *      duration.nanos = end.nanos - start.nanos;
+     * 
+     *      if (duration.seconds < 0 && duration.nanos > 0) {
+     *        duration.seconds += 1;
+     *        duration.nanos -= 1000000000;
+     *      } else if (duration.seconds > 0 && duration.nanos < 0) {
+     *        duration.seconds -= 1;
+     *        duration.nanos += 1000000000;
+     *      }
+     * 
+     *  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Duration duration = ...;
+     *      Timestamp end = ...;
+     * 
+     *      end.seconds = start.seconds + duration.seconds;
+     *      end.nanos = start.nanos + duration.nanos;
+     * 
+     *      if (end.nanos < 0) {
+     *        end.seconds -= 1;
+     *        end.nanos += 1000000000;
+     *      } else if (end.nanos >= 1000000000) {
+     *        end.seconds += 1;
+     *        end.nanos -= 1000000000;
+     *      }
+     * 
+     *  Example 3: Compute Duration from datetime.timedelta in Python.
+     * 
+     *      td = datetime.timedelta(days=3, minutes=10)
+     *      duration = Duration()
+     *      duration.FromTimedelta(td)
+     * 
+     *  # JSON Mapping
+     * 
+     *  In JSON format, the Duration type is encoded as a string rather than an
+     *  object, where the string ends in the suffix "s" (indicating seconds) and
+     *  is preceded by the number of seconds, with nanoseconds expressed as
+     *  fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+     *  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+     *  be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+     *  microsecond should be expressed in JSON format as "3.000001s".
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
     passwordCheckLifetime?: string;
     /**
-     * Defines after how much time the user has to re-authenticate with an external provider.
+     * A Duration represents a signed, fixed-length span of time represented
+     *  as a count of seconds and fractions of seconds at nanosecond
+     *  resolution. It is independent of any calendar and concepts like "day"
+     *  or "month". It is related to Timestamp in that the difference between
+     *  two Timestamp values is a Duration and it can be added or subtracted
+     *  from a Timestamp. Range is approximately +-10,000 years.
+     * 
+     *  # Examples
+     * 
+     *  Example 1: Compute Duration from two Timestamps in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Timestamp end = ...;
+     *      Duration duration = ...;
+     * 
+     *      duration.seconds = end.seconds - start.seconds;
+     *      duration.nanos = end.nanos - start.nanos;
+     * 
+     *      if (duration.seconds < 0 && duration.nanos > 0) {
+     *        duration.seconds += 1;
+     *        duration.nanos -= 1000000000;
+     *      } else if (duration.seconds > 0 && duration.nanos < 0) {
+     *        duration.seconds -= 1;
+     *        duration.nanos += 1000000000;
+     *      }
+     * 
+     *  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Duration duration = ...;
+     *      Timestamp end = ...;
+     * 
+     *      end.seconds = start.seconds + duration.seconds;
+     *      end.nanos = start.nanos + duration.nanos;
+     * 
+     *      if (end.nanos < 0) {
+     *        end.seconds -= 1;
+     *        end.nanos += 1000000000;
+     *      } else if (end.nanos >= 1000000000) {
+     *        end.seconds += 1;
+     *        end.nanos -= 1000000000;
+     *      }
+     * 
+     *  Example 3: Compute Duration from datetime.timedelta in Python.
+     * 
+     *      td = datetime.timedelta(days=3, minutes=10)
+     *      duration = Duration()
+     *      duration.FromTimedelta(td)
+     * 
+     *  # JSON Mapping
+     * 
+     *  In JSON format, the Duration type is encoded as a string rather than an
+     *  object, where the string ends in the suffix "s" (indicating seconds) and
+     *  is preceded by the number of seconds, with nanoseconds expressed as
+     *  fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+     *  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+     *  be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+     *  microsecond should be expressed in JSON format as "3.000001s".
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
     externalLoginCheckLifetime?: string;
     /**
-     * Defines after how much time the mfa prompt will be shown again.
+     * A Duration represents a signed, fixed-length span of time represented
+     *  as a count of seconds and fractions of seconds at nanosecond
+     *  resolution. It is independent of any calendar and concepts like "day"
+     *  or "month". It is related to Timestamp in that the difference between
+     *  two Timestamp values is a Duration and it can be added or subtracted
+     *  from a Timestamp. Range is approximately +-10,000 years.
+     * 
+     *  # Examples
+     * 
+     *  Example 1: Compute Duration from two Timestamps in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Timestamp end = ...;
+     *      Duration duration = ...;
+     * 
+     *      duration.seconds = end.seconds - start.seconds;
+     *      duration.nanos = end.nanos - start.nanos;
+     * 
+     *      if (duration.seconds < 0 && duration.nanos > 0) {
+     *        duration.seconds += 1;
+     *        duration.nanos -= 1000000000;
+     *      } else if (duration.seconds > 0 && duration.nanos < 0) {
+     *        duration.seconds -= 1;
+     *        duration.nanos += 1000000000;
+     *      }
+     * 
+     *  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Duration duration = ...;
+     *      Timestamp end = ...;
+     * 
+     *      end.seconds = start.seconds + duration.seconds;
+     *      end.nanos = start.nanos + duration.nanos;
+     * 
+     *      if (end.nanos < 0) {
+     *        end.seconds -= 1;
+     *        end.nanos += 1000000000;
+     *      } else if (end.nanos >= 1000000000) {
+     *        end.seconds += 1;
+     *        end.nanos -= 1000000000;
+     *      }
+     * 
+     *  Example 3: Compute Duration from datetime.timedelta in Python.
+     * 
+     *      td = datetime.timedelta(days=3, minutes=10)
+     *      duration = Duration()
+     *      duration.FromTimedelta(td)
+     * 
+     *  # JSON Mapping
+     * 
+     *  In JSON format, the Duration type is encoded as a string rather than an
+     *  object, where the string ends in the suffix "s" (indicating seconds) and
+     *  is preceded by the number of seconds, with nanoseconds expressed as
+     *  fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+     *  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+     *  be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+     *  microsecond should be expressed in JSON format as "3.000001s".
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
     mfaInitSkipLifetime?: string;
     /**
-     * Defines after how long the second factor check is valid.
+     * A Duration represents a signed, fixed-length span of time represented
+     *  as a count of seconds and fractions of seconds at nanosecond
+     *  resolution. It is independent of any calendar and concepts like "day"
+     *  or "month". It is related to Timestamp in that the difference between
+     *  two Timestamp values is a Duration and it can be added or subtracted
+     *  from a Timestamp. Range is approximately +-10,000 years.
+     * 
+     *  # Examples
+     * 
+     *  Example 1: Compute Duration from two Timestamps in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Timestamp end = ...;
+     *      Duration duration = ...;
+     * 
+     *      duration.seconds = end.seconds - start.seconds;
+     *      duration.nanos = end.nanos - start.nanos;
+     * 
+     *      if (duration.seconds < 0 && duration.nanos > 0) {
+     *        duration.seconds += 1;
+     *        duration.nanos -= 1000000000;
+     *      } else if (duration.seconds > 0 && duration.nanos < 0) {
+     *        duration.seconds -= 1;
+     *        duration.nanos += 1000000000;
+     *      }
+     * 
+     *  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Duration duration = ...;
+     *      Timestamp end = ...;
+     * 
+     *      end.seconds = start.seconds + duration.seconds;
+     *      end.nanos = start.nanos + duration.nanos;
+     * 
+     *      if (end.nanos < 0) {
+     *        end.seconds -= 1;
+     *        end.nanos += 1000000000;
+     *      } else if (end.nanos >= 1000000000) {
+     *        end.seconds += 1;
+     *        end.nanos -= 1000000000;
+     *      }
+     * 
+     *  Example 3: Compute Duration from datetime.timedelta in Python.
+     * 
+     *      td = datetime.timedelta(days=3, minutes=10)
+     *      duration = Duration()
+     *      duration.FromTimedelta(td)
+     * 
+     *  # JSON Mapping
+     * 
+     *  In JSON format, the Duration type is encoded as a string rather than an
+     *  object, where the string ends in the suffix "s" (indicating seconds) and
+     *  is preceded by the number of seconds, with nanoseconds expressed as
+     *  fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+     *  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+     *  be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+     *  microsecond should be expressed in JSON format as "3.000001s".
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
     secondFactorCheckLifetime?: string;
     /**
-     * Defines how long the multi-factor check is valid.
+     * A Duration represents a signed, fixed-length span of time represented
+     *  as a count of seconds and fractions of seconds at nanosecond
+     *  resolution. It is independent of any calendar and concepts like "day"
+     *  or "month". It is related to Timestamp in that the difference between
+     *  two Timestamp values is a Duration and it can be added or subtracted
+     *  from a Timestamp. Range is approximately +-10,000 years.
+     * 
+     *  # Examples
+     * 
+     *  Example 1: Compute Duration from two Timestamps in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Timestamp end = ...;
+     *      Duration duration = ...;
+     * 
+     *      duration.seconds = end.seconds - start.seconds;
+     *      duration.nanos = end.nanos - start.nanos;
+     * 
+     *      if (duration.seconds < 0 && duration.nanos > 0) {
+     *        duration.seconds += 1;
+     *        duration.nanos -= 1000000000;
+     *      } else if (duration.seconds > 0 && duration.nanos < 0) {
+     *        duration.seconds -= 1;
+     *        duration.nanos += 1000000000;
+     *      }
+     * 
+     *  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+     * 
+     *      Timestamp start = ...;
+     *      Duration duration = ...;
+     *      Timestamp end = ...;
+     * 
+     *      end.seconds = start.seconds + duration.seconds;
+     *      end.nanos = start.nanos + duration.nanos;
+     * 
+     *      if (end.nanos < 0) {
+     *        end.seconds -= 1;
+     *        end.nanos += 1000000000;
+     *      } else if (end.nanos >= 1000000000) {
+     *        end.seconds += 1;
+     *        end.nanos -= 1000000000;
+     *      }
+     * 
+     *  Example 3: Compute Duration from datetime.timedelta in Python.
+     * 
+     *      td = datetime.timedelta(days=3, minutes=10)
+     *      duration = Duration()
+     *      duration.FromTimedelta(td)
+     * 
+     *  # JSON Mapping
+     * 
+     *  In JSON format, the Duration type is encoded as a string rather than an
+     *  object, where the string ends in the suffix "s" (indicating seconds) and
+     *  is preceded by the number of seconds, with nanoseconds expressed as
+     *  fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+     *  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+     *  be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+     *  microsecond should be expressed in JSON format as "3.000001s".
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
@@ -145,13 +430,13 @@ export interface SettingsServiceLoginSettings {
      */
     allowDomainDiscovery?: boolean;
     /**
-     * defines if the user can additionally (to the login name) be identified by their verified email address
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     disableLoginWithEmail?: boolean;
     /**
-     * defines if the user can additionally (to the login name) be identified by their verified phone number
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
@@ -163,7 +448,7 @@ export interface SettingsServiceLoginSettings {
      */
     resourceOwnerType?: SettingsServiceResourceOwnerType;
     /**
-     * if activated, only local authenticated users are forced to use MFA. Authentication through IDPs won't prompt a MFA step in the login.
+     * 
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */

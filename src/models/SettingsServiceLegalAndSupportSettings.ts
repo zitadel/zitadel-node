@@ -46,7 +46,7 @@ export interface SettingsServiceLegalAndSupportSettings {
      */
     helpLink?: string;
     /**
-     * help / support email address.
+     * 
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
@@ -58,19 +58,19 @@ export interface SettingsServiceLegalAndSupportSettings {
      */
     resourceOwnerType?: SettingsServiceResourceOwnerType;
     /**
-     * Link to documentation to be shown in the console.
+     * 
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     docsLink?: string;
     /**
-     * Link to an external resource that will be available to users in the console.
+     * 
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     customLink?: string;
     /**
-     * The button text that would be shown in console pointing to custom link.
+     * 
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */

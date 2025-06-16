@@ -20,11 +20,17 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceDeleteSessionRequest {
     /**
-     * "The current token of the session, previously returned on the create / update request. The token is required unless the authenticated user terminates the own session or is granted the `session.delete` permission."
+     * 
      * @type {string}
      * @memberof SessionServiceDeleteSessionRequest
      */
-    sessionToken?: string;
+    sessionId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SessionServiceDeleteSessionRequest
+     */
+    sessionToken?: string | null;
 }
 
 /**
@@ -44,6 +50,7 @@ export function SessionServiceDeleteSessionRequestFromJSONTyped(json: any, ignor
     }
     return {
         
+        'sessionId': json['sessionId'] == null ? undefined : json['sessionId'],
         'sessionToken': json['sessionToken'] == null ? undefined : json['sessionToken'],
     };
 }
@@ -59,6 +66,7 @@ export function SessionServiceDeleteSessionRequestToJSONTyped(value?: SessionSer
 
     return {
         
+        'sessionId': value['sessionId'],
         'sessionToken': value['sessionToken'],
     };
 }

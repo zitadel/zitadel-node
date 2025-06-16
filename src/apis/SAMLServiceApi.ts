@@ -15,29 +15,34 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  NoOp200Response7,
+  SAMLServiceConnectError,
   SAMLServiceCreateResponseRequest,
   SAMLServiceCreateResponseResponse,
+  SAMLServiceGetSAMLRequestRequest,
   SAMLServiceGetSAMLRequestResponse,
-  SAMLServiceRpcStatus,
 } from '../models/index.js';
 import {
+    NoOp200Response7FromJSON,
+    NoOp200Response7ToJSON,
+    SAMLServiceConnectErrorFromJSON,
+    SAMLServiceConnectErrorToJSON,
     SAMLServiceCreateResponseRequestFromJSON,
     SAMLServiceCreateResponseRequestToJSON,
     SAMLServiceCreateResponseResponseFromJSON,
     SAMLServiceCreateResponseResponseToJSON,
+    SAMLServiceGetSAMLRequestRequestFromJSON,
+    SAMLServiceGetSAMLRequestRequestToJSON,
     SAMLServiceGetSAMLRequestResponseFromJSON,
     SAMLServiceGetSAMLRequestResponseToJSON,
-    SAMLServiceRpcStatusFromJSON,
-    SAMLServiceRpcStatusToJSON,
 } from '../models/index.js';
 
-export interface SAMLServiceCreateResponseOperationRequest {
-    samlRequestId: string;
+export interface CreateResponseRequest {
     sAMLServiceCreateResponseRequest: SAMLServiceCreateResponseRequest;
 }
 
-export interface SAMLServiceGetSAMLRequestRequest {
-    samlRequestId: string;
+export interface GetSAMLRequestRequest {
+    sAMLServiceGetSAMLRequestRequest: SAMLServiceGetSAMLRequestRequest;
 }
 
 /**
@@ -46,21 +51,13 @@ export interface SAMLServiceGetSAMLRequestRequest {
 export class SAMLServiceApi extends runtime.BaseAPI {
 
     /**
-     * Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
-     * Finalize a SAML Request and get the response.
+     * CreateResponse
      */
-    async sAMLServiceCreateResponseRaw(requestParameters: SAMLServiceCreateResponseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceCreateResponseResponse>> {
-        if (requestParameters['samlRequestId'] == null) {
-            throw new runtime.RequiredError(
-                'samlRequestId',
-                'Required parameter "samlRequestId" was null or undefined when calling sAMLServiceCreateResponse().'
-            );
-        }
-
+    async createResponseRaw(requestParameters: CreateResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceCreateResponseResponse>> {
         if (requestParameters['sAMLServiceCreateResponseRequest'] == null) {
             throw new runtime.RequiredError(
                 'sAMLServiceCreateResponseRequest',
-                'Required parameter "sAMLServiceCreateResponseRequest" was null or undefined when calling sAMLServiceCreateResponse().'
+                'Required parameter "sAMLServiceCreateResponseRequest" was null or undefined when calling createResponse().'
             );
         }
 
@@ -79,7 +76,7 @@ export class SAMLServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/saml/saml_requests/{samlRequestId}`.replace(`{${"samlRequestId"}}`, encodeURIComponent(String(requestParameters['samlRequestId']))),
+            path: `/zitadel.saml.v2.SAMLService/CreateResponse`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -90,26 +87,61 @@ export class SAMLServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
-     * Finalize a SAML Request and get the response.
+     * CreateResponse
      */
-    async sAMLServiceCreateResponse(requestParameters: SAMLServiceCreateResponseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceCreateResponseResponse> {
-        const response = await this.sAMLServiceCreateResponseRaw(requestParameters, initOverrides);
+    async createResponse(requestParameters: CreateResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceCreateResponseResponse> {
+        const response = await this.createResponseRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Get SAML Request details by ID. Returns details that are parsed from the application\'s SAML Request.
-     * Get SAML Request details
+     * GetSAMLRequest
      */
-    async sAMLServiceGetSAMLRequestRaw(requestParameters: SAMLServiceGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceGetSAMLRequestResponse>> {
-        if (requestParameters['samlRequestId'] == null) {
+    async getSAMLRequestRaw(requestParameters: GetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceGetSAMLRequestResponse>> {
+        if (requestParameters['sAMLServiceGetSAMLRequestRequest'] == null) {
             throw new runtime.RequiredError(
-                'samlRequestId',
-                'Required parameter "samlRequestId" was null or undefined when calling sAMLServiceGetSAMLRequest().'
+                'sAMLServiceGetSAMLRequestRequest',
+                'Required parameter "sAMLServiceGetSAMLRequestRequest" was null or undefined when calling getSAMLRequest().'
             );
         }
 
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.saml.v2.SAMLService/GetSAMLRequest`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SAMLServiceGetSAMLRequestRequestToJSON(requestParameters['sAMLServiceGetSAMLRequestRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SAMLServiceGetSAMLRequestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * GetSAMLRequest
+     */
+    async getSAMLRequest(requestParameters: GetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceGetSAMLRequestResponse> {
+        const response = await this.getSAMLRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response7>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -123,21 +155,20 @@ export class SAMLServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/saml/saml_requests/{samlRequestId}`.replace(`{${"samlRequestId"}}`, encodeURIComponent(String(requestParameters['samlRequestId']))),
+            path: `/d3bdecb1`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SAMLServiceGetSAMLRequestResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200Response7FromJSON(jsonValue));
     }
 
     /**
-     * Get SAML Request details by ID. Returns details that are parsed from the application\'s SAML Request.
-     * Get SAML Request details
+     * Dummy endpoint to retain union-member schemas
      */
-    async sAMLServiceGetSAMLRequest(requestParameters: SAMLServiceGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceGetSAMLRequestResponse> {
-        const response = await this.sAMLServiceGetSAMLRequestRaw(requestParameters, initOverrides);
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response7> {
+        const response = await this.noOpRaw(initOverrides);
         return await response.value();
     }
 

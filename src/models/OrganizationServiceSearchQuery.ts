@@ -12,80 +12,48 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { OrganizationServiceOrganizationIDQuery } from './OrganizationServiceOrganizationIDQuery.js';
+import type { DefaultQuery } from './DefaultQuery.js';
 import {
-    OrganizationServiceOrganizationIDQueryFromJSON,
-    OrganizationServiceOrganizationIDQueryFromJSONTyped,
-    OrganizationServiceOrganizationIDQueryToJSON,
-    OrganizationServiceOrganizationIDQueryToJSONTyped,
-} from './OrganizationServiceOrganizationIDQuery.js';
-import type { OrganizationServiceOrganizationNameQuery } from './OrganizationServiceOrganizationNameQuery.js';
+    instanceOfDefaultQuery,
+    DefaultQueryFromJSON,
+    DefaultQueryFromJSONTyped,
+    DefaultQueryToJSON,
+} from './DefaultQuery.js';
+import type { DomainQuery } from './DomainQuery.js';
 import {
-    OrganizationServiceOrganizationNameQueryFromJSON,
-    OrganizationServiceOrganizationNameQueryFromJSONTyped,
-    OrganizationServiceOrganizationNameQueryToJSON,
-    OrganizationServiceOrganizationNameQueryToJSONTyped,
-} from './OrganizationServiceOrganizationNameQuery.js';
-import type { OrganizationServiceOrganizationStateQuery } from './OrganizationServiceOrganizationStateQuery.js';
+    instanceOfDomainQuery,
+    DomainQueryFromJSON,
+    DomainQueryFromJSONTyped,
+    DomainQueryToJSON,
+} from './DomainQuery.js';
+import type { IdQuery } from './IdQuery.js';
 import {
-    OrganizationServiceOrganizationStateQueryFromJSON,
-    OrganizationServiceOrganizationStateQueryFromJSONTyped,
-    OrganizationServiceOrganizationStateQueryToJSON,
-    OrganizationServiceOrganizationStateQueryToJSONTyped,
-} from './OrganizationServiceOrganizationStateQuery.js';
-import type { OrganizationServiceOrganizationDomainQuery } from './OrganizationServiceOrganizationDomainQuery.js';
+    instanceOfIdQuery,
+    IdQueryFromJSON,
+    IdQueryFromJSONTyped,
+    IdQueryToJSON,
+} from './IdQuery.js';
+import type { NameQuery } from './NameQuery.js';
 import {
-    OrganizationServiceOrganizationDomainQueryFromJSON,
-    OrganizationServiceOrganizationDomainQueryFromJSONTyped,
-    OrganizationServiceOrganizationDomainQueryToJSON,
-    OrganizationServiceOrganizationDomainQueryToJSONTyped,
-} from './OrganizationServiceOrganizationDomainQuery.js';
+    instanceOfNameQuery,
+    NameQueryFromJSON,
+    NameQueryFromJSONTyped,
+    NameQueryToJSON,
+} from './NameQuery.js';
+import type { StateQuery1 } from './StateQuery1.js';
+import {
+    instanceOfStateQuery1,
+    StateQuery1FromJSON,
+    StateQuery1FromJSONTyped,
+    StateQuery1ToJSON,
+} from './StateQuery1.js';
 
 /**
+ * @type OrganizationServiceSearchQuery
  * 
  * @export
- * @interface OrganizationServiceSearchQuery
  */
-export interface OrganizationServiceSearchQuery {
-    /**
-     * 
-     * @type {OrganizationServiceOrganizationNameQuery}
-     * @memberof OrganizationServiceSearchQuery
-     */
-    nameQuery?: OrganizationServiceOrganizationNameQuery;
-    /**
-     * 
-     * @type {OrganizationServiceOrganizationDomainQuery}
-     * @memberof OrganizationServiceSearchQuery
-     */
-    domainQuery?: OrganizationServiceOrganizationDomainQuery;
-    /**
-     * 
-     * @type {OrganizationServiceOrganizationStateQuery}
-     * @memberof OrganizationServiceSearchQuery
-     */
-    stateQuery?: OrganizationServiceOrganizationStateQuery;
-    /**
-     * 
-     * @type {OrganizationServiceOrganizationIDQuery}
-     * @memberof OrganizationServiceSearchQuery
-     */
-    idQuery?: OrganizationServiceOrganizationIDQuery;
-    /**
-     * 
-     * @type {object}
-     * @memberof OrganizationServiceSearchQuery
-     */
-    defaultQuery?: object;
-}
-
-/**
- * Check if a given object implements the OrganizationServiceSearchQuery interface.
- */
-export function instanceOfOrganizationServiceSearchQuery(value: object): value is OrganizationServiceSearchQuery {
-    return true;
-}
+export type OrganizationServiceSearchQuery = DefaultQuery | DomainQuery | IdQuery | NameQuery | StateQuery1;
 
 export function OrganizationServiceSearchQueryFromJSON(json: any): OrganizationServiceSearchQuery {
     return OrganizationServiceSearchQueryFromJSONTyped(json, false);
@@ -95,17 +63,29 @@ export function OrganizationServiceSearchQueryFromJSONTyped(json: any, ignoreDis
     if (json == null) {
         return json;
     }
-    return {
-        
-        'nameQuery': json['nameQuery'] == null ? undefined : OrganizationServiceOrganizationNameQueryFromJSON(json['nameQuery']),
-        'domainQuery': json['domainQuery'] == null ? undefined : OrganizationServiceOrganizationDomainQueryFromJSON(json['domainQuery']),
-        'stateQuery': json['stateQuery'] == null ? undefined : OrganizationServiceOrganizationStateQueryFromJSON(json['stateQuery']),
-        'idQuery': json['idQuery'] == null ? undefined : OrganizationServiceOrganizationIDQueryFromJSON(json['idQuery']),
-        'defaultQuery': json['defaultQuery'] == null ? undefined : json['defaultQuery'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfDefaultQuery(json)) {
+        return DefaultQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfDomainQuery(json)) {
+        return DomainQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfIdQuery(json)) {
+        return IdQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfNameQuery(json)) {
+        return NameQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfStateQuery1(json)) {
+        return StateQuery1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function OrganizationServiceSearchQueryToJSON(json: any): OrganizationServiceSearchQuery {
+export function OrganizationServiceSearchQueryToJSON(json: any): any {
     return OrganizationServiceSearchQueryToJSONTyped(json, false);
 }
 
@@ -113,14 +93,25 @@ export function OrganizationServiceSearchQueryToJSONTyped(value?: OrganizationSe
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfDefaultQuery(value)) {
+        return DefaultQueryToJSON(value as DefaultQuery);
+    }
+    if (instanceOfDomainQuery(value)) {
+        return DomainQueryToJSON(value as DomainQuery);
+    }
+    if (instanceOfIdQuery(value)) {
+        return IdQueryToJSON(value as IdQuery);
+    }
+    if (instanceOfNameQuery(value)) {
+        return NameQueryToJSON(value as NameQuery);
+    }
+    if (instanceOfStateQuery1(value)) {
+        return StateQuery1ToJSON(value as StateQuery1);
+    }
 
-    return {
-        
-        'nameQuery': OrganizationServiceOrganizationNameQueryToJSON(value['nameQuery']),
-        'domainQuery': OrganizationServiceOrganizationDomainQueryToJSON(value['domainQuery']),
-        'stateQuery': OrganizationServiceOrganizationStateQueryToJSON(value['stateQuery']),
-        'idQuery': OrganizationServiceOrganizationIDQueryToJSON(value['idQuery']),
-        'defaultQuery': value['defaultQuery'],
-    };
+    return {};
 }
 

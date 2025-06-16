@@ -38,13 +38,13 @@ export interface UserServiceUpdateHumanUserResponse {
      * @type {string}
      * @memberof UserServiceUpdateHumanUserResponse
      */
-    emailCode?: string;
+    emailCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserServiceUpdateHumanUserResponse
      */
-    phoneCode?: string;
+    phoneCode?: string | null;
 }
 
 /**

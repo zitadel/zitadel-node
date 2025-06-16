@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSendEmailVerificationCode } from './UserServiceSendEmailVerificationCode.js';
+import type { ReturnCode2 } from './ReturnCode2.js';
 import {
-    UserServiceSendEmailVerificationCodeFromJSON,
-    UserServiceSendEmailVerificationCodeFromJSONTyped,
-    UserServiceSendEmailVerificationCodeToJSON,
-    UserServiceSendEmailVerificationCodeToJSONTyped,
-} from './UserServiceSendEmailVerificationCode.js';
+    instanceOfReturnCode2,
+    ReturnCode2FromJSON,
+    ReturnCode2FromJSONTyped,
+    ReturnCode2ToJSON,
+} from './ReturnCode2.js';
+import type { SendCode2 } from './SendCode2.js';
+import {
+    instanceOfSendCode2,
+    SendCode2FromJSON,
+    SendCode2FromJSONTyped,
+    SendCode2ToJSON,
+} from './SendCode2.js';
 
 /**
+ * @type UserServiceSendEmailCodeRequest
  * 
  * @export
- * @interface UserServiceSendEmailCodeRequest
  */
-export interface UserServiceSendEmailCodeRequest {
-    /**
-     * 
-     * @type {UserServiceSendEmailVerificationCode}
-     * @memberof UserServiceSendEmailCodeRequest
-     */
-    sendCode?: UserServiceSendEmailVerificationCode;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSendEmailCodeRequest
-     */
-    returnCode?: object;
-}
-
-/**
- * Check if a given object implements the UserServiceSendEmailCodeRequest interface.
- */
-export function instanceOfUserServiceSendEmailCodeRequest(value: object): value is UserServiceSendEmailCodeRequest {
-    return true;
-}
+export type UserServiceSendEmailCodeRequest = ReturnCode2 | SendCode2;
 
 export function UserServiceSendEmailCodeRequestFromJSON(json: any): UserServiceSendEmailCodeRequest {
     return UserServiceSendEmailCodeRequestFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function UserServiceSendEmailCodeRequestFromJSONTyped(json: any, ignoreDi
     if (json == null) {
         return json;
     }
-    return {
-        
-        'sendCode': json['sendCode'] == null ? undefined : UserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfReturnCode2(json)) {
+        return ReturnCode2FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode2(json)) {
+        return SendCode2FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSendEmailCodeRequestToJSON(json: any): UserServiceSendEmailCodeRequest {
+export function UserServiceSendEmailCodeRequestToJSON(json: any): any {
     return UserServiceSendEmailCodeRequestToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function UserServiceSendEmailCodeRequestToJSONTyped(value?: UserServiceSe
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfReturnCode2(value)) {
+        return ReturnCode2ToJSON(value as ReturnCode2);
+    }
+    if (instanceOfSendCode2(value)) {
+        return SendCode2ToJSON(value as SendCode2);
+    }
 
-    return {
-        
-        'sendCode': UserServiceSendEmailVerificationCodeToJSON(value['sendCode']),
-        'returnCode': value['returnCode'],
-    };
+    return {};
 }
 

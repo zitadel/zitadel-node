@@ -12,48 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { SAMLServiceAuthorizationError } from './SAMLServiceAuthorizationError.js';
+import type { Error1 } from './Error1.js';
 import {
-    SAMLServiceAuthorizationErrorFromJSON,
-    SAMLServiceAuthorizationErrorFromJSONTyped,
-    SAMLServiceAuthorizationErrorToJSON,
-    SAMLServiceAuthorizationErrorToJSONTyped,
-} from './SAMLServiceAuthorizationError.js';
-import type { SAMLServiceSession } from './SAMLServiceSession.js';
+    instanceOfError1,
+    Error1FromJSON,
+    Error1FromJSONTyped,
+    Error1ToJSON,
+} from './Error1.js';
+import type { Session1 } from './Session1.js';
 import {
-    SAMLServiceSessionFromJSON,
-    SAMLServiceSessionFromJSONTyped,
-    SAMLServiceSessionToJSON,
-    SAMLServiceSessionToJSONTyped,
-} from './SAMLServiceSession.js';
+    instanceOfSession1,
+    Session1FromJSON,
+    Session1FromJSONTyped,
+    Session1ToJSON,
+} from './Session1.js';
 
 /**
+ * @type SAMLServiceCreateResponseRequest
  * 
  * @export
- * @interface SAMLServiceCreateResponseRequest
  */
-export interface SAMLServiceCreateResponseRequest {
-    /**
-     * 
-     * @type {SAMLServiceSession}
-     * @memberof SAMLServiceCreateResponseRequest
-     */
-    session?: SAMLServiceSession;
-    /**
-     * 
-     * @type {SAMLServiceAuthorizationError}
-     * @memberof SAMLServiceCreateResponseRequest
-     */
-    error?: SAMLServiceAuthorizationError;
-}
-
-/**
- * Check if a given object implements the SAMLServiceCreateResponseRequest interface.
- */
-export function instanceOfSAMLServiceCreateResponseRequest(value: object): value is SAMLServiceCreateResponseRequest {
-    return true;
-}
+export type SAMLServiceCreateResponseRequest = Error1 | Session1;
 
 export function SAMLServiceCreateResponseRequestFromJSON(json: any): SAMLServiceCreateResponseRequest {
     return SAMLServiceCreateResponseRequestFromJSONTyped(json, false);
@@ -63,14 +42,20 @@ export function SAMLServiceCreateResponseRequestFromJSONTyped(json: any, ignoreD
     if (json == null) {
         return json;
     }
-    return {
-        
-        'session': json['session'] == null ? undefined : SAMLServiceSessionFromJSON(json['session']),
-        'error': json['error'] == null ? undefined : SAMLServiceAuthorizationErrorFromJSON(json['error']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfError1(json)) {
+        return Error1FromJSONTyped(json, true);
+    }
+    if (instanceOfSession1(json)) {
+        return Session1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function SAMLServiceCreateResponseRequestToJSON(json: any): SAMLServiceCreateResponseRequest {
+export function SAMLServiceCreateResponseRequestToJSON(json: any): any {
     return SAMLServiceCreateResponseRequestToJSONTyped(json, false);
 }
 
@@ -78,11 +63,16 @@ export function SAMLServiceCreateResponseRequestToJSONTyped(value?: SAMLServiceC
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfError1(value)) {
+        return Error1ToJSON(value as Error1);
+    }
+    if (instanceOfSession1(value)) {
+        return Session1ToJSON(value as Session1);
+    }
 
-    return {
-        
-        'session': SAMLServiceSessionToJSON(value['session']),
-        'error': SAMLServiceAuthorizationErrorToJSON(value['error']),
-    };
+    return {};
 }
 

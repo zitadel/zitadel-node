@@ -14,25 +14,25 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * Object unspecific list filters like offset, limit and asc/desc.
+ * 
  * @export
  * @interface SessionServiceListQuery
  */
 export interface SessionServiceListQuery {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof SessionServiceListQuery
      */
-    offset?: string;
+    offset?: any | null;
     /**
-     * Maximum amount of events returned. The default is set to 1000 in https://github.com/zitadel/zitadel/blob/new-eventstore/cmd/zitadel/startup.yaml. If the limit exceeds the maximum configured ZITADEL will throw an error. If no limit is present the default is taken.
+     * 
      * @type {number}
      * @memberof SessionServiceListQuery
      */
     limit?: number;
     /**
-     * default is descending
+     * 
      * @type {boolean}
      * @memberof SessionServiceListQuery
      */

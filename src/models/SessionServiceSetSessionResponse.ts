@@ -41,7 +41,7 @@ export interface SessionServiceSetSessionResponse {
      */
     details?: SessionServiceDetails;
     /**
-     * "The current token of the session, which is required for delete session, get session or the request of other resources."
+     * 
      * @type {string}
      * @memberof SessionServiceSetSessionResponse
      */

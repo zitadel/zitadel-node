@@ -34,7 +34,7 @@ export interface SettingsServiceSecuritySettings {
      */
     embeddedIframe?: SettingsServiceEmbeddedIframeSettings;
     /**
-     * default language for the current context
+     * 
      * @type {boolean}
      * @memberof SettingsServiceSecuritySettings
      */

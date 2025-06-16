@@ -53,7 +53,13 @@ export interface UserServiceUpdateHumanUserRequest {
      * @type {string}
      * @memberof UserServiceUpdateHumanUserRequest
      */
-    username?: string;
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserServiceUpdateHumanUserRequest
+     */
+    username?: string | null;
     /**
      * 
      * @type {UserServiceSetHumanProfile}
@@ -97,6 +103,7 @@ export function UserServiceUpdateHumanUserRequestFromJSONTyped(json: any, ignore
     }
     return {
         
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'profile': json['profile'] == null ? undefined : UserServiceSetHumanProfileFromJSON(json['profile']),
         'email': json['email'] == null ? undefined : UserServiceSetHumanEmailFromJSON(json['email']),
@@ -116,6 +123,7 @@ export function UserServiceUpdateHumanUserRequestToJSONTyped(value?: UserService
 
     return {
         
+        'userId': value['userId'],
         'username': value['username'],
         'profile': UserServiceSetHumanProfileToJSON(value['profile']),
         'email': UserServiceSetHumanEmailToJSON(value['email']),

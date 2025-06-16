@@ -15,94 +15,114 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  SettingsServiceConnectError,
+  SettingsServiceGetActiveIdentityProvidersRequest,
   SettingsServiceGetActiveIdentityProvidersResponse,
+  SettingsServiceGetBrandingSettingsRequest,
   SettingsServiceGetBrandingSettingsResponse,
+  SettingsServiceGetDomainSettingsRequest,
   SettingsServiceGetDomainSettingsResponse,
   SettingsServiceGetGeneralSettingsResponse,
+  SettingsServiceGetLegalAndSupportSettingsRequest,
   SettingsServiceGetLegalAndSupportSettingsResponse,
+  SettingsServiceGetLockoutSettingsRequest,
   SettingsServiceGetLockoutSettingsResponse,
+  SettingsServiceGetLoginSettingsRequest,
   SettingsServiceGetLoginSettingsResponse,
+  SettingsServiceGetPasswordComplexitySettingsRequest,
   SettingsServiceGetPasswordComplexitySettingsResponse,
+  SettingsServiceGetPasswordExpirySettingsRequest,
   SettingsServiceGetPasswordExpirySettingsResponse,
   SettingsServiceGetSecuritySettingsResponse,
-  SettingsServiceRpcStatus,
   SettingsServiceSetSecuritySettingsRequest,
   SettingsServiceSetSecuritySettingsResponse,
 } from '../models/index.js';
 import {
+    SettingsServiceConnectErrorFromJSON,
+    SettingsServiceConnectErrorToJSON,
+    SettingsServiceGetActiveIdentityProvidersRequestFromJSON,
+    SettingsServiceGetActiveIdentityProvidersRequestToJSON,
     SettingsServiceGetActiveIdentityProvidersResponseFromJSON,
     SettingsServiceGetActiveIdentityProvidersResponseToJSON,
+    SettingsServiceGetBrandingSettingsRequestFromJSON,
+    SettingsServiceGetBrandingSettingsRequestToJSON,
     SettingsServiceGetBrandingSettingsResponseFromJSON,
     SettingsServiceGetBrandingSettingsResponseToJSON,
+    SettingsServiceGetDomainSettingsRequestFromJSON,
+    SettingsServiceGetDomainSettingsRequestToJSON,
     SettingsServiceGetDomainSettingsResponseFromJSON,
     SettingsServiceGetDomainSettingsResponseToJSON,
     SettingsServiceGetGeneralSettingsResponseFromJSON,
     SettingsServiceGetGeneralSettingsResponseToJSON,
+    SettingsServiceGetLegalAndSupportSettingsRequestFromJSON,
+    SettingsServiceGetLegalAndSupportSettingsRequestToJSON,
     SettingsServiceGetLegalAndSupportSettingsResponseFromJSON,
     SettingsServiceGetLegalAndSupportSettingsResponseToJSON,
+    SettingsServiceGetLockoutSettingsRequestFromJSON,
+    SettingsServiceGetLockoutSettingsRequestToJSON,
     SettingsServiceGetLockoutSettingsResponseFromJSON,
     SettingsServiceGetLockoutSettingsResponseToJSON,
+    SettingsServiceGetLoginSettingsRequestFromJSON,
+    SettingsServiceGetLoginSettingsRequestToJSON,
     SettingsServiceGetLoginSettingsResponseFromJSON,
     SettingsServiceGetLoginSettingsResponseToJSON,
+    SettingsServiceGetPasswordComplexitySettingsRequestFromJSON,
+    SettingsServiceGetPasswordComplexitySettingsRequestToJSON,
     SettingsServiceGetPasswordComplexitySettingsResponseFromJSON,
     SettingsServiceGetPasswordComplexitySettingsResponseToJSON,
+    SettingsServiceGetPasswordExpirySettingsRequestFromJSON,
+    SettingsServiceGetPasswordExpirySettingsRequestToJSON,
     SettingsServiceGetPasswordExpirySettingsResponseFromJSON,
     SettingsServiceGetPasswordExpirySettingsResponseToJSON,
     SettingsServiceGetSecuritySettingsResponseFromJSON,
     SettingsServiceGetSecuritySettingsResponseToJSON,
-    SettingsServiceRpcStatusFromJSON,
-    SettingsServiceRpcStatusToJSON,
     SettingsServiceSetSecuritySettingsRequestFromJSON,
     SettingsServiceSetSecuritySettingsRequestToJSON,
     SettingsServiceSetSecuritySettingsResponseFromJSON,
     SettingsServiceSetSecuritySettingsResponseToJSON,
 } from '../models/index.js';
 
-export interface SettingsServiceGetActiveIdentityProvidersRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
-    creationAllowed?: boolean;
-    linkingAllowed?: boolean;
-    autoCreation?: boolean;
-    autoLinking?: boolean;
+export interface GetActiveIdentityProvidersRequest {
+    settingsServiceGetActiveIdentityProvidersRequest: SettingsServiceGetActiveIdentityProvidersRequest;
 }
 
-export interface SettingsServiceGetBrandingSettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetBrandingSettingsRequest {
+    settingsServiceGetBrandingSettingsRequest: SettingsServiceGetBrandingSettingsRequest;
 }
 
-export interface SettingsServiceGetDomainSettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetDomainSettingsRequest {
+    settingsServiceGetDomainSettingsRequest: SettingsServiceGetDomainSettingsRequest;
 }
 
-export interface SettingsServiceGetLegalAndSupportSettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetGeneralSettingsRequest {
+    body: object;
 }
 
-export interface SettingsServiceGetLockoutSettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetLegalAndSupportSettingsRequest {
+    settingsServiceGetLegalAndSupportSettingsRequest: SettingsServiceGetLegalAndSupportSettingsRequest;
 }
 
-export interface SettingsServiceGetLoginSettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetLockoutSettingsRequest {
+    settingsServiceGetLockoutSettingsRequest: SettingsServiceGetLockoutSettingsRequest;
 }
 
-export interface SettingsServiceGetPasswordComplexitySettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetLoginSettingsRequest {
+    settingsServiceGetLoginSettingsRequest: SettingsServiceGetLoginSettingsRequest;
 }
 
-export interface SettingsServiceGetPasswordExpirySettingsRequest {
-    ctxOrgId?: string;
-    ctxInstance?: boolean;
+export interface GetPasswordComplexitySettingsRequest {
+    settingsServiceGetPasswordComplexitySettingsRequest: SettingsServiceGetPasswordComplexitySettingsRequest;
 }
 
-export interface SettingsServiceSetSecuritySettingsOperationRequest {
+export interface GetPasswordExpirySettingsRequest {
+    settingsServiceGetPasswordExpirySettingsRequest: SettingsServiceGetPasswordExpirySettingsRequest;
+}
+
+export interface GetSecuritySettingsRequest {
+    body: object;
+}
+
+export interface SetSecuritySettingsRequest {
     settingsServiceSetSecuritySettingsRequest: SettingsServiceSetSecuritySettingsRequest;
 }
 
@@ -112,454 +132,14 @@ export interface SettingsServiceSetSecuritySettingsOperationRequest {
 export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
-     * Return the current active identity providers for the requested context
      * Get the current active identity providers
+     * GetActiveIdentityProviders
      */
-    async settingsServiceGetActiveIdentityProvidersRaw(requestParameters: SettingsServiceGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        if (requestParameters['creationAllowed'] != null) {
-            queryParameters['creationAllowed'] = requestParameters['creationAllowed'];
-        }
-
-        if (requestParameters['linkingAllowed'] != null) {
-            queryParameters['linkingAllowed'] = requestParameters['linkingAllowed'];
-        }
-
-        if (requestParameters['autoCreation'] != null) {
-            queryParameters['autoCreation'] = requestParameters['autoCreation'];
-        }
-
-        if (requestParameters['autoLinking'] != null) {
-            queryParameters['autoLinking'] = requestParameters['autoLinking'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/login/idps`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetActiveIdentityProvidersResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the current active identity providers for the requested context
-     * Get the current active identity providers
-     */
-    async settingsServiceGetActiveIdentityProviders(requestParameters: SettingsServiceGetActiveIdentityProvidersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetActiveIdentityProvidersResponse> {
-        const response = await this.settingsServiceGetActiveIdentityProvidersRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the current active branding settings for the requested context
-     * Get the current active branding settings
-     */
-    async settingsServiceGetBrandingSettingsRaw(requestParameters: SettingsServiceGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/branding`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetBrandingSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the current active branding settings for the requested context
-     * Get the current active branding settings
-     */
-    async settingsServiceGetBrandingSettings(requestParameters: SettingsServiceGetBrandingSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetBrandingSettingsResponse> {
-        const response = await this.settingsServiceGetBrandingSettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the domain settings for the requested context
-     * Get the domain settings
-     */
-    async settingsServiceGetDomainSettingsRaw(requestParameters: SettingsServiceGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/domain`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetDomainSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the domain settings for the requested context
-     * Get the domain settings
-     */
-    async settingsServiceGetDomainSettings(requestParameters: SettingsServiceGetDomainSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetDomainSettingsResponse> {
-        const response = await this.settingsServiceGetDomainSettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the basic information of the instance for the requested context
-     * Get basic information over the instance
-     */
-    async settingsServiceGetGeneralSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetGeneralSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the basic information of the instance for the requested context
-     * Get basic information over the instance
-     */
-    async settingsServiceGetGeneralSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetGeneralSettingsResponse> {
-        const response = await this.settingsServiceGetGeneralSettingsRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the legal settings for the requested context
-     * Get the legal and support settings
-     */
-    async settingsServiceGetLegalAndSupportSettingsRaw(requestParameters: SettingsServiceGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/legal_support`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLegalAndSupportSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the legal settings for the requested context
-     * Get the legal and support settings
-     */
-    async settingsServiceGetLegalAndSupportSettings(requestParameters: SettingsServiceGetLegalAndSupportSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLegalAndSupportSettingsResponse> {
-        const response = await this.settingsServiceGetLegalAndSupportSettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the lockout settings for the requested context, which define when a user will be locked
-     * Get the lockout settings
-     */
-    async settingsServiceGetLockoutSettingsRaw(requestParameters: SettingsServiceGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/lockout`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLockoutSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the lockout settings for the requested context, which define when a user will be locked
-     * Get the lockout settings
-     */
-    async settingsServiceGetLockoutSettings(requestParameters: SettingsServiceGetLockoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLockoutSettingsResponse> {
-        const response = await this.settingsServiceGetLockoutSettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the settings for the requested context
-     * Get the login settings
-     */
-    async settingsServiceGetLoginSettingsRaw(requestParameters: SettingsServiceGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/login`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLoginSettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the settings for the requested context
-     * Get the login settings
-     */
-    async settingsServiceGetLoginSettings(requestParameters: SettingsServiceGetLoginSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLoginSettingsResponse> {
-        const response = await this.settingsServiceGetLoginSettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the password complexity settings for the requested context
-     * Get the password complexity settings
-     */
-    async settingsServiceGetPasswordComplexitySettingsRaw(requestParameters: SettingsServiceGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/password/complexity`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetPasswordComplexitySettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the password complexity settings for the requested context
-     * Get the password complexity settings
-     */
-    async settingsServiceGetPasswordComplexitySettings(requestParameters: SettingsServiceGetPasswordComplexitySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordComplexitySettingsResponse> {
-        const response = await this.settingsServiceGetPasswordComplexitySettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Return the password expiry settings for the requested context
-     * Get the password expiry settings
-     */
-    async settingsServiceGetPasswordExpirySettingsRaw(requestParameters: SettingsServiceGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ctxOrgId'] != null) {
-            queryParameters['ctx.orgId'] = requestParameters['ctxOrgId'];
-        }
-
-        if (requestParameters['ctxInstance'] != null) {
-            queryParameters['ctx.instance'] = requestParameters['ctxInstance'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/password/expiry`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetPasswordExpirySettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Return the password expiry settings for the requested context
-     * Get the password expiry settings
-     */
-    async settingsServiceGetPasswordExpirySettings(requestParameters: SettingsServiceGetPasswordExpirySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordExpirySettingsResponse> {
-        const response = await this.settingsServiceGetPasswordExpirySettingsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns the security settings of the ZITADEL instance.
-     * Get Security Settings
-     */
-    async settingsServiceGetSecuritySettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/settings/security`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetSecuritySettingsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the security settings of the ZITADEL instance.
-     * Get Security Settings
-     */
-    async settingsServiceGetSecuritySettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetSecuritySettingsResponse> {
-        const response = await this.settingsServiceGetSecuritySettingsRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Set the security settings of the ZITADEL instance.
-     * Set Security Settings
-     */
-    async settingsServiceSetSecuritySettingsRaw(requestParameters: SettingsServiceSetSecuritySettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
-        if (requestParameters['settingsServiceSetSecuritySettingsRequest'] == null) {
+    async getActiveIdentityProvidersRaw(requestParameters: GetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
+        if (requestParameters['settingsServiceGetActiveIdentityProvidersRequest'] == null) {
             throw new runtime.RequiredError(
-                'settingsServiceSetSecuritySettingsRequest',
-                'Required parameter "settingsServiceSetSecuritySettingsRequest" was null or undefined when calling settingsServiceSetSecuritySettings().'
+                'settingsServiceGetActiveIdentityProvidersRequest',
+                'Required parameter "settingsServiceGetActiveIdentityProvidersRequest" was null or undefined when calling getActiveIdentityProviders().'
             );
         }
 
@@ -578,8 +158,468 @@ export class SettingsServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/policies/security`,
-            method: 'PUT',
+            path: `/zitadel.settings.v2.SettingsService/GetActiveIdentityProviders`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetActiveIdentityProvidersRequestToJSON(requestParameters['settingsServiceGetActiveIdentityProvidersRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetActiveIdentityProvidersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the current active identity providers
+     * GetActiveIdentityProviders
+     */
+    async getActiveIdentityProviders(requestParameters: GetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetActiveIdentityProvidersResponse> {
+        const response = await this.getActiveIdentityProvidersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the current active branding settings
+     * GetBrandingSettings
+     */
+    async getBrandingSettingsRaw(requestParameters: GetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
+        if (requestParameters['settingsServiceGetBrandingSettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetBrandingSettingsRequest',
+                'Required parameter "settingsServiceGetBrandingSettingsRequest" was null or undefined when calling getBrandingSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetBrandingSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetBrandingSettingsRequestToJSON(requestParameters['settingsServiceGetBrandingSettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetBrandingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the current active branding settings
+     * GetBrandingSettings
+     */
+    async getBrandingSettings(requestParameters: GetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetBrandingSettingsResponse> {
+        const response = await this.getBrandingSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the domain settings
+     * GetDomainSettings
+     */
+    async getDomainSettingsRaw(requestParameters: GetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
+        if (requestParameters['settingsServiceGetDomainSettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetDomainSettingsRequest',
+                'Required parameter "settingsServiceGetDomainSettingsRequest" was null or undefined when calling getDomainSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetDomainSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetDomainSettingsRequestToJSON(requestParameters['settingsServiceGetDomainSettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetDomainSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the domain settings
+     * GetDomainSettings
+     */
+    async getDomainSettings(requestParameters: GetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetDomainSettingsResponse> {
+        const response = await this.getDomainSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get basic information over the instance
+     * GetGeneralSettings
+     */
+    async getGeneralSettingsRaw(requestParameters: GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling getGeneralSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetGeneralSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetGeneralSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get basic information over the instance
+     * GetGeneralSettings
+     */
+    async getGeneralSettings(requestParameters: GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetGeneralSettingsResponse> {
+        const response = await this.getGeneralSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the legal and support settings
+     * GetLegalAndSupportSettings
+     */
+    async getLegalAndSupportSettingsRaw(requestParameters: GetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
+        if (requestParameters['settingsServiceGetLegalAndSupportSettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetLegalAndSupportSettingsRequest',
+                'Required parameter "settingsServiceGetLegalAndSupportSettingsRequest" was null or undefined when calling getLegalAndSupportSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetLegalAndSupportSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetLegalAndSupportSettingsRequestToJSON(requestParameters['settingsServiceGetLegalAndSupportSettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLegalAndSupportSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the legal and support settings
+     * GetLegalAndSupportSettings
+     */
+    async getLegalAndSupportSettings(requestParameters: GetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLegalAndSupportSettingsResponse> {
+        const response = await this.getLegalAndSupportSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the lockout settings
+     * GetLockoutSettings
+     */
+    async getLockoutSettingsRaw(requestParameters: GetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
+        if (requestParameters['settingsServiceGetLockoutSettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetLockoutSettingsRequest',
+                'Required parameter "settingsServiceGetLockoutSettingsRequest" was null or undefined when calling getLockoutSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetLockoutSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetLockoutSettingsRequestToJSON(requestParameters['settingsServiceGetLockoutSettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLockoutSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the lockout settings
+     * GetLockoutSettings
+     */
+    async getLockoutSettings(requestParameters: GetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLockoutSettingsResponse> {
+        const response = await this.getLockoutSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the login settings
+     * GetLoginSettings
+     */
+    async getLoginSettingsRaw(requestParameters: GetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
+        if (requestParameters['settingsServiceGetLoginSettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetLoginSettingsRequest',
+                'Required parameter "settingsServiceGetLoginSettingsRequest" was null or undefined when calling getLoginSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetLoginSettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetLoginSettingsRequestToJSON(requestParameters['settingsServiceGetLoginSettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetLoginSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the login settings
+     * GetLoginSettings
+     */
+    async getLoginSettings(requestParameters: GetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLoginSettingsResponse> {
+        const response = await this.getLoginSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the password complexity settings
+     * GetPasswordComplexitySettings
+     */
+    async getPasswordComplexitySettingsRaw(requestParameters: GetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
+        if (requestParameters['settingsServiceGetPasswordComplexitySettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetPasswordComplexitySettingsRequest',
+                'Required parameter "settingsServiceGetPasswordComplexitySettingsRequest" was null or undefined when calling getPasswordComplexitySettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetPasswordComplexitySettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetPasswordComplexitySettingsRequestToJSON(requestParameters['settingsServiceGetPasswordComplexitySettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetPasswordComplexitySettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the password complexity settings
+     * GetPasswordComplexitySettings
+     */
+    async getPasswordComplexitySettings(requestParameters: GetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordComplexitySettingsResponse> {
+        const response = await this.getPasswordComplexitySettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the password expiry settings
+     * GetPasswordExpirySettings
+     */
+    async getPasswordExpirySettingsRaw(requestParameters: GetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
+        if (requestParameters['settingsServiceGetPasswordExpirySettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceGetPasswordExpirySettingsRequest',
+                'Required parameter "settingsServiceGetPasswordExpirySettingsRequest" was null or undefined when calling getPasswordExpirySettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetPasswordExpirySettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsServiceGetPasswordExpirySettingsRequestToJSON(requestParameters['settingsServiceGetPasswordExpirySettingsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetPasswordExpirySettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the password expiry settings
+     * GetPasswordExpirySettings
+     */
+    async getPasswordExpirySettings(requestParameters: GetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordExpirySettingsResponse> {
+        const response = await this.getPasswordExpirySettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the security settings
+     * GetSecuritySettings
+     */
+    async getSecuritySettingsRaw(requestParameters: GetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling getSecuritySettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/GetSecuritySettings`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsServiceGetSecuritySettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the security settings
+     * GetSecuritySettings
+     */
+    async getSecuritySettings(requestParameters: GetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetSecuritySettingsResponse> {
+        const response = await this.getSecuritySettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set the security settings
+     * SetSecuritySettings
+     */
+    async setSecuritySettingsRaw(requestParameters: SetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
+        if (requestParameters['settingsServiceSetSecuritySettingsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'settingsServiceSetSecuritySettingsRequest',
+                'Required parameter "settingsServiceSetSecuritySettingsRequest" was null or undefined when calling setSecuritySettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.settings.v2.SettingsService/SetSecuritySettings`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SettingsServiceSetSecuritySettingsRequestToJSON(requestParameters['settingsServiceSetSecuritySettingsRequest']),
@@ -589,11 +629,11 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the security settings of the ZITADEL instance.
-     * Set Security Settings
+     * Set the security settings
+     * SetSecuritySettings
      */
-    async settingsServiceSetSecuritySettings(requestParameters: SettingsServiceSetSecuritySettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceSetSecuritySettingsResponse> {
-        const response = await this.settingsServiceSetSecuritySettingsRaw(requestParameters, initOverrides);
+    async setSecuritySettings(requestParameters: SetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceSetSecuritySettingsResponse> {
+        const response = await this.setSecuritySettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

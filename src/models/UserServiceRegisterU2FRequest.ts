@@ -20,7 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceRegisterU2FRequest {
     /**
-     * "Domain on which the user is authenticated."
+     * 
+     * @type {string}
+     * @memberof UserServiceRegisterU2FRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {string}
      * @memberof UserServiceRegisterU2FRequest
      */
@@ -31,6 +37,7 @@ export interface UserServiceRegisterU2FRequest {
  * Check if a given object implements the UserServiceRegisterU2FRequest interface.
  */
 export function instanceOfUserServiceRegisterU2FRequest(value: object): value is UserServiceRegisterU2FRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -44,6 +51,7 @@ export function UserServiceRegisterU2FRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'userId': json['userId'],
         'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
@@ -59,6 +67,7 @@ export function UserServiceRegisterU2FRequestToJSONTyped(value?: UserServiceRegi
 
     return {
         
+        'userId': value['userId'],
         'domain': value['domain'],
     };
 }

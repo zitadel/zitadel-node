@@ -12,48 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { OIDCServiceAuthorizationError } from './OIDCServiceAuthorizationError.js';
+import type { ModelError } from './ModelError.js';
 import {
-    OIDCServiceAuthorizationErrorFromJSON,
-    OIDCServiceAuthorizationErrorFromJSONTyped,
-    OIDCServiceAuthorizationErrorToJSON,
-    OIDCServiceAuthorizationErrorToJSONTyped,
-} from './OIDCServiceAuthorizationError.js';
-import type { OIDCServiceSession } from './OIDCServiceSession.js';
+    instanceOfModelError,
+    ModelErrorFromJSON,
+    ModelErrorFromJSONTyped,
+    ModelErrorToJSON,
+} from './ModelError.js';
+import type { Session } from './Session.js';
 import {
-    OIDCServiceSessionFromJSON,
-    OIDCServiceSessionFromJSONTyped,
-    OIDCServiceSessionToJSON,
-    OIDCServiceSessionToJSONTyped,
-} from './OIDCServiceSession.js';
+    instanceOfSession,
+    SessionFromJSON,
+    SessionFromJSONTyped,
+    SessionToJSON,
+} from './Session.js';
 
 /**
+ * @type OIDCServiceCreateCallbackRequest
  * 
  * @export
- * @interface OIDCServiceCreateCallbackRequest
  */
-export interface OIDCServiceCreateCallbackRequest {
-    /**
-     * 
-     * @type {OIDCServiceSession}
-     * @memberof OIDCServiceCreateCallbackRequest
-     */
-    session?: OIDCServiceSession;
-    /**
-     * 
-     * @type {OIDCServiceAuthorizationError}
-     * @memberof OIDCServiceCreateCallbackRequest
-     */
-    error?: OIDCServiceAuthorizationError;
-}
-
-/**
- * Check if a given object implements the OIDCServiceCreateCallbackRequest interface.
- */
-export function instanceOfOIDCServiceCreateCallbackRequest(value: object): value is OIDCServiceCreateCallbackRequest {
-    return true;
-}
+export type OIDCServiceCreateCallbackRequest = ModelError | Session;
 
 export function OIDCServiceCreateCallbackRequestFromJSON(json: any): OIDCServiceCreateCallbackRequest {
     return OIDCServiceCreateCallbackRequestFromJSONTyped(json, false);
@@ -63,14 +42,20 @@ export function OIDCServiceCreateCallbackRequestFromJSONTyped(json: any, ignoreD
     if (json == null) {
         return json;
     }
-    return {
-        
-        'session': json['session'] == null ? undefined : OIDCServiceSessionFromJSON(json['session']),
-        'error': json['error'] == null ? undefined : OIDCServiceAuthorizationErrorFromJSON(json['error']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfModelError(json)) {
+        return ModelErrorFromJSONTyped(json, true);
+    }
+    if (instanceOfSession(json)) {
+        return SessionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function OIDCServiceCreateCallbackRequestToJSON(json: any): OIDCServiceCreateCallbackRequest {
+export function OIDCServiceCreateCallbackRequestToJSON(json: any): any {
     return OIDCServiceCreateCallbackRequestToJSONTyped(json, false);
 }
 
@@ -78,11 +63,16 @@ export function OIDCServiceCreateCallbackRequestToJSONTyped(value?: OIDCServiceC
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfModelError(value)) {
+        return ModelErrorToJSON(value as ModelError);
+    }
+    if (instanceOfSession(value)) {
+        return SessionToJSON(value as Session);
+    }
 
-    return {
-        
-        'session': OIDCServiceSessionToJSON(value['session']),
-        'error': OIDCServiceAuthorizationErrorToJSON(value['error']),
-    };
+    return {};
 }
 

@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { OrganizationServiceAddOrganizationRequestAdmin } from './OrganizationServiceAddOrganizationRequestAdmin.js';
+import type { OrganizationServiceAdmin } from './OrganizationServiceAdmin.js';
 import {
-    OrganizationServiceAddOrganizationRequestAdminFromJSON,
-    OrganizationServiceAddOrganizationRequestAdminFromJSONTyped,
-    OrganizationServiceAddOrganizationRequestAdminToJSON,
-    OrganizationServiceAddOrganizationRequestAdminToJSONTyped,
-} from './OrganizationServiceAddOrganizationRequestAdmin.js';
+    OrganizationServiceAdminFromJSON,
+    OrganizationServiceAdminFromJSONTyped,
+    OrganizationServiceAdminToJSON,
+    OrganizationServiceAdminToJSONTyped,
+} from './OrganizationServiceAdmin.js';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface OrganizationServiceAddOrganizationRequest {
     name: string;
     /**
      * 
-     * @type {Array<OrganizationServiceAddOrganizationRequestAdmin>}
+     * @type {Array<OrganizationServiceAdmin>}
      * @memberof OrganizationServiceAddOrganizationRequest
      */
-    admins?: Array<OrganizationServiceAddOrganizationRequestAdmin>;
+    admins?: Array<OrganizationServiceAdmin>;
 }
 
 /**
@@ -60,7 +60,7 @@ export function OrganizationServiceAddOrganizationRequestFromJSONTyped(json: any
     return {
         
         'name': json['name'],
-        'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(OrganizationServiceAddOrganizationRequestAdminFromJSON)),
+        'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(OrganizationServiceAdminFromJSON)),
     };
 }
 
@@ -76,7 +76,7 @@ export function OrganizationServiceAddOrganizationRequestToJSONTyped(value?: Org
     return {
         
         'name': value['name'],
-        'admins': value['admins'] == null ? undefined : ((value['admins'] as Array<any>).map(OrganizationServiceAddOrganizationRequestAdminToJSON)),
+        'admins': value['admins'] == null ? undefined : ((value['admins'] as Array<any>).map(OrganizationServiceAdminToJSON)),
     };
 }
 

@@ -38,7 +38,7 @@ export interface UserServiceCreateInviteCodeResponse {
      * @type {string}
      * @memberof UserServiceCreateInviteCodeResponse
      */
-    inviteCode?: string;
+    inviteCode?: string | null;
 }
 
 /**

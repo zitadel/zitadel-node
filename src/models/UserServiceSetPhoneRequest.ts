@@ -12,46 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-/**
- * 
- * @export
- * @interface UserServiceSetPhoneRequest
- */
-export interface UserServiceSetPhoneRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceSetPhoneRequest
-     */
-    phone: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSetPhoneRequest
-     */
-    sendCode?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceSetPhoneRequest
-     */
-    returnCode?: object;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserServiceSetPhoneRequest
-     */
-    isVerified?: boolean;
-}
+import type { IsVerified } from './IsVerified.js';
+import {
+    instanceOfIsVerified,
+    IsVerifiedFromJSON,
+    IsVerifiedFromJSONTyped,
+    IsVerifiedToJSON,
+} from './IsVerified.js';
+import type { ReturnCode3 } from './ReturnCode3.js';
+import {
+    instanceOfReturnCode3,
+    ReturnCode3FromJSON,
+    ReturnCode3FromJSONTyped,
+    ReturnCode3ToJSON,
+} from './ReturnCode3.js';
+import type { SendCode3 } from './SendCode3.js';
+import {
+    instanceOfSendCode3,
+    SendCode3FromJSON,
+    SendCode3FromJSONTyped,
+    SendCode3ToJSON,
+} from './SendCode3.js';
 
 /**
- * Check if a given object implements the UserServiceSetPhoneRequest interface.
+ * @type UserServiceSetPhoneRequest
+ * 
+ * @export
  */
-export function instanceOfUserServiceSetPhoneRequest(value: object): value is UserServiceSetPhoneRequest {
-    if (!('phone' in value) || value['phone'] === undefined) return false;
-    return true;
-}
+export type UserServiceSetPhoneRequest = IsVerified | ReturnCode3 | SendCode3;
 
 export function UserServiceSetPhoneRequestFromJSON(json: any): UserServiceSetPhoneRequest {
     return UserServiceSetPhoneRequestFromJSONTyped(json, false);
@@ -61,16 +49,23 @@ export function UserServiceSetPhoneRequestFromJSONTyped(json: any, ignoreDiscrim
     if (json == null) {
         return json;
     }
-    return {
-        
-        'phone': json['phone'],
-        'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-        'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfIsVerified(json)) {
+        return IsVerifiedFromJSONTyped(json, true);
+    }
+    if (instanceOfReturnCode3(json)) {
+        return ReturnCode3FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode3(json)) {
+        return SendCode3FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceSetPhoneRequestToJSON(json: any): UserServiceSetPhoneRequest {
+export function UserServiceSetPhoneRequestToJSON(json: any): any {
     return UserServiceSetPhoneRequestToJSONTyped(json, false);
 }
 
@@ -78,13 +73,19 @@ export function UserServiceSetPhoneRequestToJSONTyped(value?: UserServiceSetPhon
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfIsVerified(value)) {
+        return IsVerifiedToJSON(value as IsVerified);
+    }
+    if (instanceOfReturnCode3(value)) {
+        return ReturnCode3ToJSON(value as ReturnCode3);
+    }
+    if (instanceOfSendCode3(value)) {
+        return SendCode3ToJSON(value as SendCode3);
+    }
 
-    return {
-        
-        'phone': value['phone'],
-        'sendCode': value['sendCode'],
-        'returnCode': value['returnCode'],
-        'isVerified': value['isVerified'],
-    };
+    return {};
 }
 

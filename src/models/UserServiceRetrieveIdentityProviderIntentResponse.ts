@@ -54,7 +54,7 @@ export interface UserServiceRetrieveIdentityProviderIntentResponse {
      */
     idpInformation?: UserServiceIDPInformation;
     /**
-     * ID of the user in ZITADEL if external user is linked
+     * 
      * @type {string}
      * @memberof UserServiceRetrieveIdentityProviderIntentResponse
      */

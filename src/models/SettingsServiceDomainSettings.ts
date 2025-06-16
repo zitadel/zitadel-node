@@ -28,19 +28,19 @@ import {
  */
 export interface SettingsServiceDomainSettings {
     /**
-     * the username has to end with the domain of its organization
+     * 
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */
     loginNameIncludesDomain?: boolean;
     /**
-     * defines if organization domains should be verified upon creation, otherwise will be created already verified
+     * 
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */
     requireOrgDomainVerification?: boolean;
     /**
-     * defines if the SMTP sender address domain should match an existing domain on the instance
+     * 
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */

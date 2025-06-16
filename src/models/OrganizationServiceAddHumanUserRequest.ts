@@ -12,147 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { OrganizationServiceSetHumanProfile } from './OrganizationServiceSetHumanProfile.js';
+import type { HashedPassword1 } from './HashedPassword1.js';
 import {
-    OrganizationServiceSetHumanProfileFromJSON,
-    OrganizationServiceSetHumanProfileFromJSONTyped,
-    OrganizationServiceSetHumanProfileToJSON,
-    OrganizationServiceSetHumanProfileToJSONTyped,
-} from './OrganizationServiceSetHumanProfile.js';
-import type { OrganizationServicePassword } from './OrganizationServicePassword.js';
+    instanceOfHashedPassword1,
+    HashedPassword1FromJSON,
+    HashedPassword1FromJSONTyped,
+    HashedPassword1ToJSON,
+} from './HashedPassword1.js';
+import type { Password1 } from './Password1.js';
 import {
-    OrganizationServicePasswordFromJSON,
-    OrganizationServicePasswordFromJSONTyped,
-    OrganizationServicePasswordToJSON,
-    OrganizationServicePasswordToJSONTyped,
-} from './OrganizationServicePassword.js';
-import type { OrganizationServiceIDPLink } from './OrganizationServiceIDPLink.js';
-import {
-    OrganizationServiceIDPLinkFromJSON,
-    OrganizationServiceIDPLinkFromJSONTyped,
-    OrganizationServiceIDPLinkToJSON,
-    OrganizationServiceIDPLinkToJSONTyped,
-} from './OrganizationServiceIDPLink.js';
-import type { OrganizationServiceSetHumanPhone } from './OrganizationServiceSetHumanPhone.js';
-import {
-    OrganizationServiceSetHumanPhoneFromJSON,
-    OrganizationServiceSetHumanPhoneFromJSONTyped,
-    OrganizationServiceSetHumanPhoneToJSON,
-    OrganizationServiceSetHumanPhoneToJSONTyped,
-} from './OrganizationServiceSetHumanPhone.js';
-import type { OrganizationServiceHashedPassword } from './OrganizationServiceHashedPassword.js';
-import {
-    OrganizationServiceHashedPasswordFromJSON,
-    OrganizationServiceHashedPasswordFromJSONTyped,
-    OrganizationServiceHashedPasswordToJSON,
-    OrganizationServiceHashedPasswordToJSONTyped,
-} from './OrganizationServiceHashedPassword.js';
-import type { Zitadelobjectv2Organization } from './Zitadelobjectv2Organization.js';
-import {
-    Zitadelobjectv2OrganizationFromJSON,
-    Zitadelobjectv2OrganizationFromJSONTyped,
-    Zitadelobjectv2OrganizationToJSON,
-    Zitadelobjectv2OrganizationToJSONTyped,
-} from './Zitadelobjectv2Organization.js';
-import type { OrganizationServiceSetHumanEmail } from './OrganizationServiceSetHumanEmail.js';
-import {
-    OrganizationServiceSetHumanEmailFromJSON,
-    OrganizationServiceSetHumanEmailFromJSONTyped,
-    OrganizationServiceSetHumanEmailToJSON,
-    OrganizationServiceSetHumanEmailToJSONTyped,
-} from './OrganizationServiceSetHumanEmail.js';
-import type { OrganizationServiceSetMetadataEntry } from './OrganizationServiceSetMetadataEntry.js';
-import {
-    OrganizationServiceSetMetadataEntryFromJSON,
-    OrganizationServiceSetMetadataEntryFromJSONTyped,
-    OrganizationServiceSetMetadataEntryToJSON,
-    OrganizationServiceSetMetadataEntryToJSONTyped,
-} from './OrganizationServiceSetMetadataEntry.js';
+    instanceOfPassword1,
+    Password1FromJSON,
+    Password1FromJSONTyped,
+    Password1ToJSON,
+} from './Password1.js';
 
 /**
+ * @type OrganizationServiceAddHumanUserRequest
  * 
  * @export
- * @interface OrganizationServiceAddHumanUserRequest
  */
-export interface OrganizationServiceAddHumanUserRequest {
-    /**
-     * optionally set your own id unique for the user.
-     * @type {string}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    userId?: string;
-    /**
-     * optionally set a unique username, if none is provided the email will be used.
-     * @type {string}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    username?: string;
-    /**
-     * 
-     * @type {Zitadelobjectv2Organization}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    organization?: Zitadelobjectv2Organization;
-    /**
-     * 
-     * @type {OrganizationServiceSetHumanProfile}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    profile: OrganizationServiceSetHumanProfile;
-    /**
-     * 
-     * @type {OrganizationServiceSetHumanEmail}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    email: OrganizationServiceSetHumanEmail;
-    /**
-     * 
-     * @type {OrganizationServiceSetHumanPhone}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    phone?: OrganizationServiceSetHumanPhone;
-    /**
-     * 
-     * @type {Array<OrganizationServiceSetMetadataEntry>}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    metadata?: Array<OrganizationServiceSetMetadataEntry>;
-    /**
-     * 
-     * @type {OrganizationServicePassword}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    password?: OrganizationServicePassword;
-    /**
-     * 
-     * @type {OrganizationServiceHashedPassword}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    hashedPassword?: OrganizationServiceHashedPassword;
-    /**
-     * 
-     * @type {Array<OrganizationServiceIDPLink>}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    idpLinks?: Array<OrganizationServiceIDPLink>;
-    /**
-     * An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds.
-     * Currently no other options are supported, and if anything different is used the validation will fail.
-     * @type {string}
-     * @memberof OrganizationServiceAddHumanUserRequest
-     */
-    totpSecret?: string;
-}
-
-/**
- * Check if a given object implements the OrganizationServiceAddHumanUserRequest interface.
- */
-export function instanceOfOrganizationServiceAddHumanUserRequest(value: object): value is OrganizationServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    return true;
-}
+export type OrganizationServiceAddHumanUserRequest = HashedPassword1 | Password1;
 
 export function OrganizationServiceAddHumanUserRequestFromJSON(json: any): OrganizationServiceAddHumanUserRequest {
     return OrganizationServiceAddHumanUserRequestFromJSONTyped(json, false);
@@ -162,23 +42,20 @@ export function OrganizationServiceAddHumanUserRequestFromJSONTyped(json: any, i
     if (json == null) {
         return json;
     }
-    return {
-        
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'username': json['username'] == null ? undefined : json['username'],
-        'organization': json['organization'] == null ? undefined : Zitadelobjectv2OrganizationFromJSON(json['organization']),
-        'profile': OrganizationServiceSetHumanProfileFromJSON(json['profile']),
-        'email': OrganizationServiceSetHumanEmailFromJSON(json['email']),
-        'phone': json['phone'] == null ? undefined : OrganizationServiceSetHumanPhoneFromJSON(json['phone']),
-        'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(OrganizationServiceSetMetadataEntryFromJSON)),
-        'password': json['password'] == null ? undefined : OrganizationServicePasswordFromJSON(json['password']),
-        'hashedPassword': json['hashedPassword'] == null ? undefined : OrganizationServiceHashedPasswordFromJSON(json['hashedPassword']),
-        'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(OrganizationServiceIDPLinkFromJSON)),
-        'totpSecret': json['totpSecret'] == null ? undefined : json['totpSecret'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfHashedPassword1(json)) {
+        return HashedPassword1FromJSONTyped(json, true);
+    }
+    if (instanceOfPassword1(json)) {
+        return Password1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function OrganizationServiceAddHumanUserRequestToJSON(json: any): OrganizationServiceAddHumanUserRequest {
+export function OrganizationServiceAddHumanUserRequestToJSON(json: any): any {
     return OrganizationServiceAddHumanUserRequestToJSONTyped(json, false);
 }
 
@@ -186,20 +63,16 @@ export function OrganizationServiceAddHumanUserRequestToJSONTyped(value?: Organi
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfHashedPassword1(value)) {
+        return HashedPassword1ToJSON(value as HashedPassword1);
+    }
+    if (instanceOfPassword1(value)) {
+        return Password1ToJSON(value as Password1);
+    }
 
-    return {
-        
-        'userId': value['userId'],
-        'username': value['username'],
-        'organization': Zitadelobjectv2OrganizationToJSON(value['organization']),
-        'profile': OrganizationServiceSetHumanProfileToJSON(value['profile']),
-        'email': OrganizationServiceSetHumanEmailToJSON(value['email']),
-        'phone': OrganizationServiceSetHumanPhoneToJSON(value['phone']),
-        'metadata': value['metadata'] == null ? undefined : ((value['metadata'] as Array<any>).map(OrganizationServiceSetMetadataEntryToJSON)),
-        'password': OrganizationServicePasswordToJSON(value['password']),
-        'hashedPassword': OrganizationServiceHashedPasswordToJSON(value['hashedPassword']),
-        'idpLinks': value['idpLinks'] == null ? undefined : ((value['idpLinks'] as Array<any>).map(OrganizationServiceIDPLinkToJSON)),
-        'totpSecret': value['totpSecret'],
-    };
+    return {};
 }
 

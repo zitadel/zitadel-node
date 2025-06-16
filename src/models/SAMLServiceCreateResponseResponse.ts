@@ -12,60 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { SAMLServiceDetails } from './SAMLServiceDetails.js';
+import type { Post } from './Post.js';
 import {
-    SAMLServiceDetailsFromJSON,
-    SAMLServiceDetailsFromJSONTyped,
-    SAMLServiceDetailsToJSON,
-    SAMLServiceDetailsToJSONTyped,
-} from './SAMLServiceDetails.js';
-import type { SAMLServicePostResponse } from './SAMLServicePostResponse.js';
+    instanceOfPost,
+    PostFromJSON,
+    PostFromJSONTyped,
+    PostToJSON,
+} from './Post.js';
+import type { Redirect } from './Redirect.js';
 import {
-    SAMLServicePostResponseFromJSON,
-    SAMLServicePostResponseFromJSONTyped,
-    SAMLServicePostResponseToJSON,
-    SAMLServicePostResponseToJSONTyped,
-} from './SAMLServicePostResponse.js';
+    instanceOfRedirect,
+    RedirectFromJSON,
+    RedirectFromJSONTyped,
+    RedirectToJSON,
+} from './Redirect.js';
 
 /**
+ * @type SAMLServiceCreateResponseResponse
  * 
  * @export
- * @interface SAMLServiceCreateResponseResponse
  */
-export interface SAMLServiceCreateResponseResponse {
-    /**
-     * 
-     * @type {SAMLServiceDetails}
-     * @memberof SAMLServiceCreateResponseResponse
-     */
-    details?: SAMLServiceDetails;
-    /**
-     * URL including the Assertion Consumer Service where the user should be redirected or has to call per POST, depending on the binding. Contains details for the application to obtain the response on success, or error details on failure. Note that this field must be treated as credentials, as the contained SAMLResponse or code can be used on behalve of the user.
-     * @type {string}
-     * @memberof SAMLServiceCreateResponseResponse
-     */
-    url?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof SAMLServiceCreateResponseResponse
-     */
-    redirect?: object;
-    /**
-     * 
-     * @type {SAMLServicePostResponse}
-     * @memberof SAMLServiceCreateResponseResponse
-     */
-    post?: SAMLServicePostResponse;
-}
-
-/**
- * Check if a given object implements the SAMLServiceCreateResponseResponse interface.
- */
-export function instanceOfSAMLServiceCreateResponseResponse(value: object): value is SAMLServiceCreateResponseResponse {
-    return true;
-}
+export type SAMLServiceCreateResponseResponse = Post | Redirect;
 
 export function SAMLServiceCreateResponseResponseFromJSON(json: any): SAMLServiceCreateResponseResponse {
     return SAMLServiceCreateResponseResponseFromJSONTyped(json, false);
@@ -75,16 +42,20 @@ export function SAMLServiceCreateResponseResponseFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    return {
-        
-        'details': json['details'] == null ? undefined : SAMLServiceDetailsFromJSON(json['details']),
-        'url': json['url'] == null ? undefined : json['url'],
-        'redirect': json['redirect'] == null ? undefined : json['redirect'],
-        'post': json['post'] == null ? undefined : SAMLServicePostResponseFromJSON(json['post']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfPost(json)) {
+        return PostFromJSONTyped(json, true);
+    }
+    if (instanceOfRedirect(json)) {
+        return RedirectFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function SAMLServiceCreateResponseResponseToJSON(json: any): SAMLServiceCreateResponseResponse {
+export function SAMLServiceCreateResponseResponseToJSON(json: any): any {
     return SAMLServiceCreateResponseResponseToJSONTyped(json, false);
 }
 
@@ -92,13 +63,16 @@ export function SAMLServiceCreateResponseResponseToJSONTyped(value?: SAMLService
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfPost(value)) {
+        return PostToJSON(value as Post);
+    }
+    if (instanceOfRedirect(value)) {
+        return RedirectToJSON(value as Redirect);
+    }
 
-    return {
-        
-        'details': SAMLServiceDetailsToJSON(value['details']),
-        'url': value['url'],
-        'redirect': value['redirect'],
-        'post': SAMLServicePostResponseToJSON(value['post']),
-    };
+    return {};
 }
 

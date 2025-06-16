@@ -28,7 +28,7 @@ import {
  */
 export interface UserServiceOrQuery {
     /**
-     * the sub queries to 'OR'
+     * 
      * @type {Array<UserServiceSearchQuery>}
      * @memberof UserServiceOrQuery
      */

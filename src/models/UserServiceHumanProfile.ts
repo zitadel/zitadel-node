@@ -44,19 +44,19 @@ export interface UserServiceHumanProfile {
      * @type {string}
      * @memberof UserServiceHumanProfile
      */
-    nickName?: string;
+    nickName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserServiceHumanProfile
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserServiceHumanProfile
      */
-    preferredLanguage?: string;
+    preferredLanguage?: string | null;
     /**
      * 
      * @type {UserServiceGender}
@@ -64,7 +64,7 @@ export interface UserServiceHumanProfile {
      */
     gender?: UserServiceGender;
     /**
-     * avatar URL of the user
+     * 
      * @type {string}
      * @memberof UserServiceHumanProfile
      */

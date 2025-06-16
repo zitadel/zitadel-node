@@ -12,147 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSetHumanPhone } from './UserServiceSetHumanPhone.js';
+import type { HashedPassword } from './HashedPassword.js';
 import {
-    UserServiceSetHumanPhoneFromJSON,
-    UserServiceSetHumanPhoneFromJSONTyped,
-    UserServiceSetHumanPhoneToJSON,
-    UserServiceSetHumanPhoneToJSONTyped,
-} from './UserServiceSetHumanPhone.js';
-import type { UserServiceSetMetadataEntry } from './UserServiceSetMetadataEntry.js';
+    instanceOfHashedPassword,
+    HashedPasswordFromJSON,
+    HashedPasswordFromJSONTyped,
+    HashedPasswordToJSON,
+} from './HashedPassword.js';
+import type { Password } from './Password.js';
 import {
-    UserServiceSetMetadataEntryFromJSON,
-    UserServiceSetMetadataEntryFromJSONTyped,
-    UserServiceSetMetadataEntryToJSON,
-    UserServiceSetMetadataEntryToJSONTyped,
-} from './UserServiceSetMetadataEntry.js';
-import type { UserServiceHashedPassword } from './UserServiceHashedPassword.js';
-import {
-    UserServiceHashedPasswordFromJSON,
-    UserServiceHashedPasswordFromJSONTyped,
-    UserServiceHashedPasswordToJSON,
-    UserServiceHashedPasswordToJSONTyped,
-} from './UserServiceHashedPassword.js';
-import type { UserServiceSetHumanEmail } from './UserServiceSetHumanEmail.js';
-import {
-    UserServiceSetHumanEmailFromJSON,
-    UserServiceSetHumanEmailFromJSONTyped,
-    UserServiceSetHumanEmailToJSON,
-    UserServiceSetHumanEmailToJSONTyped,
-} from './UserServiceSetHumanEmail.js';
-import type { UserServiceOrganization } from './UserServiceOrganization.js';
-import {
-    UserServiceOrganizationFromJSON,
-    UserServiceOrganizationFromJSONTyped,
-    UserServiceOrganizationToJSON,
-    UserServiceOrganizationToJSONTyped,
-} from './UserServiceOrganization.js';
-import type { UserServiceIDPLink } from './UserServiceIDPLink.js';
-import {
-    UserServiceIDPLinkFromJSON,
-    UserServiceIDPLinkFromJSONTyped,
-    UserServiceIDPLinkToJSON,
-    UserServiceIDPLinkToJSONTyped,
-} from './UserServiceIDPLink.js';
-import type { UserServicePassword } from './UserServicePassword.js';
-import {
-    UserServicePasswordFromJSON,
-    UserServicePasswordFromJSONTyped,
-    UserServicePasswordToJSON,
-    UserServicePasswordToJSONTyped,
-} from './UserServicePassword.js';
-import type { UserServiceSetHumanProfile } from './UserServiceSetHumanProfile.js';
-import {
-    UserServiceSetHumanProfileFromJSON,
-    UserServiceSetHumanProfileFromJSONTyped,
-    UserServiceSetHumanProfileToJSON,
-    UserServiceSetHumanProfileToJSONTyped,
-} from './UserServiceSetHumanProfile.js';
+    instanceOfPassword,
+    PasswordFromJSON,
+    PasswordFromJSONTyped,
+    PasswordToJSON,
+} from './Password.js';
 
 /**
+ * @type UserServiceAddHumanUserRequest
  * 
  * @export
- * @interface UserServiceAddHumanUserRequest
  */
-export interface UserServiceAddHumanUserRequest {
-    /**
-     * optionally set your own id unique for the user.
-     * @type {string}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    userId?: string;
-    /**
-     * optionally set a unique username, if none is provided the email will be used.
-     * @type {string}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    username?: string;
-    /**
-     * 
-     * @type {UserServiceOrganization}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    organization?: UserServiceOrganization;
-    /**
-     * 
-     * @type {UserServiceSetHumanProfile}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    profile: UserServiceSetHumanProfile;
-    /**
-     * 
-     * @type {UserServiceSetHumanEmail}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    email: UserServiceSetHumanEmail;
-    /**
-     * 
-     * @type {UserServiceSetHumanPhone}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    phone?: UserServiceSetHumanPhone;
-    /**
-     * 
-     * @type {Array<UserServiceSetMetadataEntry>}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    metadata?: Array<UserServiceSetMetadataEntry>;
-    /**
-     * 
-     * @type {UserServicePassword}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    password?: UserServicePassword;
-    /**
-     * 
-     * @type {UserServiceHashedPassword}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    hashedPassword?: UserServiceHashedPassword;
-    /**
-     * 
-     * @type {Array<UserServiceIDPLink>}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    idpLinks?: Array<UserServiceIDPLink>;
-    /**
-     * An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds.
-     * Currently no other options are supported, and if anything different is used the validation will fail.
-     * @type {string}
-     * @memberof UserServiceAddHumanUserRequest
-     */
-    totpSecret?: string;
-}
-
-/**
- * Check if a given object implements the UserServiceAddHumanUserRequest interface.
- */
-export function instanceOfUserServiceAddHumanUserRequest(value: object): value is UserServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    return true;
-}
+export type UserServiceAddHumanUserRequest = HashedPassword | Password;
 
 export function UserServiceAddHumanUserRequestFromJSON(json: any): UserServiceAddHumanUserRequest {
     return UserServiceAddHumanUserRequestFromJSONTyped(json, false);
@@ -162,23 +42,20 @@ export function UserServiceAddHumanUserRequestFromJSONTyped(json: any, ignoreDis
     if (json == null) {
         return json;
     }
-    return {
-        
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'username': json['username'] == null ? undefined : json['username'],
-        'organization': json['organization'] == null ? undefined : UserServiceOrganizationFromJSON(json['organization']),
-        'profile': UserServiceSetHumanProfileFromJSON(json['profile']),
-        'email': UserServiceSetHumanEmailFromJSON(json['email']),
-        'phone': json['phone'] == null ? undefined : UserServiceSetHumanPhoneFromJSON(json['phone']),
-        'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(UserServiceSetMetadataEntryFromJSON)),
-        'password': json['password'] == null ? undefined : UserServicePasswordFromJSON(json['password']),
-        'hashedPassword': json['hashedPassword'] == null ? undefined : UserServiceHashedPasswordFromJSON(json['hashedPassword']),
-        'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(UserServiceIDPLinkFromJSON)),
-        'totpSecret': json['totpSecret'] == null ? undefined : json['totpSecret'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfHashedPassword(json)) {
+        return HashedPasswordFromJSONTyped(json, true);
+    }
+    if (instanceOfPassword(json)) {
+        return PasswordFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceAddHumanUserRequestToJSON(json: any): UserServiceAddHumanUserRequest {
+export function UserServiceAddHumanUserRequestToJSON(json: any): any {
     return UserServiceAddHumanUserRequestToJSONTyped(json, false);
 }
 
@@ -186,20 +63,16 @@ export function UserServiceAddHumanUserRequestToJSONTyped(value?: UserServiceAdd
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfHashedPassword(value)) {
+        return HashedPasswordToJSON(value as HashedPassword);
+    }
+    if (instanceOfPassword(value)) {
+        return PasswordToJSON(value as Password);
+    }
 
-    return {
-        
-        'userId': value['userId'],
-        'username': value['username'],
-        'organization': UserServiceOrganizationToJSON(value['organization']),
-        'profile': UserServiceSetHumanProfileToJSON(value['profile']),
-        'email': UserServiceSetHumanEmailToJSON(value['email']),
-        'phone': UserServiceSetHumanPhoneToJSON(value['phone']),
-        'metadata': value['metadata'] == null ? undefined : ((value['metadata'] as Array<any>).map(UserServiceSetMetadataEntryToJSON)),
-        'password': UserServicePasswordToJSON(value['password']),
-        'hashedPassword': UserServiceHashedPasswordToJSON(value['hashedPassword']),
-        'idpLinks': value['idpLinks'] == null ? undefined : ((value['idpLinks'] as Array<any>).map(UserServiceIDPLinkToJSON)),
-        'totpSecret': value['totpSecret'],
-    };
+    return {};
 }
 

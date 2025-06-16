@@ -29,16 +29,16 @@ import {
 export interface SettingsServicePasswordExpirySettings {
     /**
      * Amount of days after which a password will expire. The user will be forced to change the password on the following authentication.
-     * @type {string}
+     * @type {any}
      * @memberof SettingsServicePasswordExpirySettings
      */
-    maxAgeDays?: string;
+    maxAgeDays?: any | null;
     /**
      * Amount of days after which the user should be notified of the upcoming expiry. ZITADEL will not notify the user.
-     * @type {string}
+     * @type {any}
      * @memberof SettingsServicePasswordExpirySettings
      */
-    expireWarnDays?: string;
+    expireWarnDays?: any | null;
     /**
      * 
      * @type {SettingsServiceResourceOwnerType}

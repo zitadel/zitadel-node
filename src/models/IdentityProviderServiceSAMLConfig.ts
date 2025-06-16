@@ -60,19 +60,19 @@ export interface IdentityProviderServiceSAMLConfig {
     nameIdFormat?: IdentityProviderServiceSAMLNameIDFormat;
     /**
      * Optional name of the attribute, which will be used to map the user
-     * in case the nameid-format returned is
-     * `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
+     *  in case the nameid-format returned is
+     *  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
      * @type {string}
      * @memberof IdentityProviderServiceSAMLConfig
      */
-    transientMappingAttributeName?: string;
+    transientMappingAttributeName?: string | null;
     /**
      * Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider,
-     * if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
+     *  if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
      * @type {boolean}
      * @memberof IdentityProviderServiceSAMLConfig
      */
-    federatedLogoutEnabled?: boolean;
+    federatedLogoutEnabled?: boolean | null;
 }
 
 

@@ -33,14 +33,14 @@ export interface IdentityProviderServiceGenericOIDCConfig {
     clientId?: string;
     /**
      * The scopes requested by ZITADEL during the request on the identity
-     * provider.
+     *  provider.
      * @type {Array<string>}
      * @memberof IdentityProviderServiceGenericOIDCConfig
      */
     scopes?: Array<string>;
     /**
      * If true, provider information get mapped from the id token, not from the
-     * userinfo endpoint.
+     *  userinfo endpoint.
      * @type {boolean}
      * @memberof IdentityProviderServiceGenericOIDCConfig
      */

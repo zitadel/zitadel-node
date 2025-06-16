@@ -44,19 +44,19 @@ export interface OrganizationServiceSetHumanProfile {
      * @type {string}
      * @memberof OrganizationServiceSetHumanProfile
      */
-    nickName?: string;
+    nickName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OrganizationServiceSetHumanProfile
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OrganizationServiceSetHumanProfile
      */
-    preferredLanguage?: string;
+    preferredLanguage?: string | null;
     /**
      * 
      * @type {OrganizationServiceGender}

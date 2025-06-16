@@ -13,27 +13,27 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { SessionServiceRequestChallengesOTPEmail } from './SessionServiceRequestChallengesOTPEmail.js';
+import type { SessionServiceWebAuthN } from './SessionServiceWebAuthN.js';
 import {
-    SessionServiceRequestChallengesOTPEmailFromJSON,
-    SessionServiceRequestChallengesOTPEmailFromJSONTyped,
-    SessionServiceRequestChallengesOTPEmailToJSON,
-    SessionServiceRequestChallengesOTPEmailToJSONTyped,
-} from './SessionServiceRequestChallengesOTPEmail.js';
-import type { SessionServiceRequestChallengesOTPSMS } from './SessionServiceRequestChallengesOTPSMS.js';
+    SessionServiceWebAuthNFromJSON,
+    SessionServiceWebAuthNFromJSONTyped,
+    SessionServiceWebAuthNToJSON,
+    SessionServiceWebAuthNToJSONTyped,
+} from './SessionServiceWebAuthN.js';
+import type { SessionServiceOTPSMS } from './SessionServiceOTPSMS.js';
 import {
-    SessionServiceRequestChallengesOTPSMSFromJSON,
-    SessionServiceRequestChallengesOTPSMSFromJSONTyped,
-    SessionServiceRequestChallengesOTPSMSToJSON,
-    SessionServiceRequestChallengesOTPSMSToJSONTyped,
-} from './SessionServiceRequestChallengesOTPSMS.js';
-import type { SessionServiceRequestChallengesWebAuthN } from './SessionServiceRequestChallengesWebAuthN.js';
+    SessionServiceOTPSMSFromJSON,
+    SessionServiceOTPSMSFromJSONTyped,
+    SessionServiceOTPSMSToJSON,
+    SessionServiceOTPSMSToJSONTyped,
+} from './SessionServiceOTPSMS.js';
+import type { SessionServiceOTPEmail } from './SessionServiceOTPEmail.js';
 import {
-    SessionServiceRequestChallengesWebAuthNFromJSON,
-    SessionServiceRequestChallengesWebAuthNFromJSONTyped,
-    SessionServiceRequestChallengesWebAuthNToJSON,
-    SessionServiceRequestChallengesWebAuthNToJSONTyped,
-} from './SessionServiceRequestChallengesWebAuthN.js';
+    SessionServiceOTPEmailFromJSON,
+    SessionServiceOTPEmailFromJSONTyped,
+    SessionServiceOTPEmailToJSON,
+    SessionServiceOTPEmailToJSONTyped,
+} from './SessionServiceOTPEmail.js';
 
 /**
  * 
@@ -43,22 +43,22 @@ import {
 export interface SessionServiceRequestChallenges {
     /**
      * 
-     * @type {SessionServiceRequestChallengesWebAuthN}
+     * @type {SessionServiceWebAuthN}
      * @memberof SessionServiceRequestChallenges
      */
-    webAuthN?: SessionServiceRequestChallengesWebAuthN;
+    webAuthN?: SessionServiceWebAuthN;
     /**
      * 
-     * @type {SessionServiceRequestChallengesOTPSMS}
+     * @type {SessionServiceOTPSMS}
      * @memberof SessionServiceRequestChallenges
      */
-    otpSms?: SessionServiceRequestChallengesOTPSMS;
+    otpSms?: SessionServiceOTPSMS;
     /**
      * 
-     * @type {SessionServiceRequestChallengesOTPEmail}
+     * @type {SessionServiceOTPEmail}
      * @memberof SessionServiceRequestChallenges
      */
-    otpEmail?: SessionServiceRequestChallengesOTPEmail;
+    otpEmail?: SessionServiceOTPEmail;
 }
 
 /**
@@ -78,9 +78,9 @@ export function SessionServiceRequestChallengesFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'webAuthN': json['webAuthN'] == null ? undefined : SessionServiceRequestChallengesWebAuthNFromJSON(json['webAuthN']),
-        'otpSms': json['otpSms'] == null ? undefined : SessionServiceRequestChallengesOTPSMSFromJSON(json['otpSms']),
-        'otpEmail': json['otpEmail'] == null ? undefined : SessionServiceRequestChallengesOTPEmailFromJSON(json['otpEmail']),
+        'webAuthN': json['webAuthN'] == null ? undefined : SessionServiceWebAuthNFromJSON(json['webAuthN']),
+        'otpSms': json['otpSms'] == null ? undefined : SessionServiceOTPSMSFromJSON(json['otpSms']),
+        'otpEmail': json['otpEmail'] == null ? undefined : SessionServiceOTPEmailFromJSON(json['otpEmail']),
     };
 }
 
@@ -95,9 +95,9 @@ export function SessionServiceRequestChallengesToJSONTyped(value?: SessionServic
 
     return {
         
-        'webAuthN': SessionServiceRequestChallengesWebAuthNToJSON(value['webAuthN']),
-        'otpSms': SessionServiceRequestChallengesOTPSMSToJSON(value['otpSms']),
-        'otpEmail': SessionServiceRequestChallengesOTPEmailToJSON(value['otpEmail']),
+        'webAuthN': SessionServiceWebAuthNToJSON(value['webAuthN']),
+        'otpSms': SessionServiceOTPSMSToJSON(value['otpSms']),
+        'otpEmail': SessionServiceOTPEmailToJSON(value['otpEmail']),
     };
 }
 

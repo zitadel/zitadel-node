@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { SessionServiceValue } from './SessionServiceValue.js';
+import {
+    SessionServiceValueFromJSON,
+    SessionServiceValueFromJSONTyped,
+    SessionServiceValueToJSON,
+    SessionServiceValueToJSONTyped,
+} from './SessionServiceValue.js';
+
 /**
  * 
  * @export
@@ -20,11 +28,18 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceCheckWebAuthN {
     /**
-     * JSON representation of public key credential issued by the webAuthN client
-     * @type {object}
+     * `Struct` represents a structured data value, consisting of fields
+     *  which map to dynamically typed values. In some languages, `Struct`
+     *  might be supported by a native representation. For example, in
+     *  scripting languages like JS a struct is represented as an
+     *  object. The details of that representation are described together
+     *  with the proto support for the language.
+     * 
+     *  The JSON representation for `Struct` is JSON object.
+     * @type {{ [key: string]: SessionServiceValue; }}
      * @memberof SessionServiceCheckWebAuthN
      */
-    credentialAssertionData: object;
+    credentialAssertionData: { [key: string]: SessionServiceValue; };
 }
 
 /**
@@ -45,7 +60,7 @@ export function SessionServiceCheckWebAuthNFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'credentialAssertionData': json['credentialAssertionData'],
+        'credentialAssertionData': (mapValues(json['credentialAssertionData'], SessionServiceValueFromJSON)),
     };
 }
 
@@ -60,7 +75,7 @@ export function SessionServiceCheckWebAuthNToJSONTyped(value?: SessionServiceChe
 
     return {
         
-        'credentialAssertionData': value['credentialAssertionData'],
+        'credentialAssertionData': (mapValues(value['credentialAssertionData'], SessionServiceValueToJSON)),
     };
 }
 

@@ -34,11 +34,11 @@ export interface UserServiceSendEmailCodeResponse {
      */
     details?: UserServiceDetails;
     /**
-     * 
+     * in case the verification was set to return_code, the code will be returned
      * @type {string}
      * @memberof UserServiceSendEmailCodeResponse
      */
-    verificationCode?: string;
+    verificationCode?: string | null;
 }
 
 /**

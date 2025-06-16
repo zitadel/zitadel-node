@@ -32,7 +32,7 @@ export interface SettingsServiceTheme {
      */
     backgroundColor?: string;
     /**
-     * hex value for warn color
+     * hex value for warning color
      * @type {string}
      * @memberof SettingsServiceTheme
      */
@@ -44,13 +44,13 @@ export interface SettingsServiceTheme {
      */
     fontColor?: string;
     /**
-     * url to the logo
+     * url where the logo is served
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     logoUrl?: string;
     /**
-     * url to the icon
+     * url where the icon is served
      * @type {string}
      * @memberof SettingsServiceTheme
      */

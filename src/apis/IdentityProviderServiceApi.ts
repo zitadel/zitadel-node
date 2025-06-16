@@ -15,18 +15,24 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  IdentityProviderServiceConnectError,
+  IdentityProviderServiceGetIDPByIDRequest,
   IdentityProviderServiceGetIDPByIDResponse,
-  IdentityProviderServiceRpcStatus,
+  NoOp200Response,
 } from '../models/index.js';
 import {
+    IdentityProviderServiceConnectErrorFromJSON,
+    IdentityProviderServiceConnectErrorToJSON,
+    IdentityProviderServiceGetIDPByIDRequestFromJSON,
+    IdentityProviderServiceGetIDPByIDRequestToJSON,
     IdentityProviderServiceGetIDPByIDResponseFromJSON,
     IdentityProviderServiceGetIDPByIDResponseToJSON,
-    IdentityProviderServiceRpcStatusFromJSON,
-    IdentityProviderServiceRpcStatusToJSON,
+    NoOp200ResponseFromJSON,
+    NoOp200ResponseToJSON,
 } from '../models/index.js';
 
-export interface IdentityProviderServiceGetIDPByIDRequest {
-    id: string;
+export interface GetIDPByIDRequest {
+    identityProviderServiceGetIDPByIDRequest: IdentityProviderServiceGetIDPByIDRequest;
 }
 
 /**
@@ -35,17 +41,55 @@ export interface IdentityProviderServiceGetIDPByIDRequest {
 export class IdentityProviderServiceApi extends runtime.BaseAPI {
 
     /**
-     * Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-     * Get identity provider (IdP) by ID
+     * Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+     * GetIDPByID
      */
-    async identityProviderServiceGetIDPByIDRaw(requestParameters: IdentityProviderServiceGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentityProviderServiceGetIDPByIDResponse>> {
-        if (requestParameters['id'] == null) {
+    async getIDPByIDRaw(requestParameters: GetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentityProviderServiceGetIDPByIDResponse>> {
+        if (requestParameters['identityProviderServiceGetIDPByIDRequest'] == null) {
             throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling identityProviderServiceGetIDPByID().'
+                'identityProviderServiceGetIDPByIDRequest',
+                'Required parameter "identityProviderServiceGetIDPByIDRequest" was null or undefined when calling getIDPByID().'
             );
         }
 
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.idp.v2.IdentityProviderService/GetIDPByID`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: IdentityProviderServiceGetIDPByIDRequestToJSON(requestParameters['identityProviderServiceGetIDPByIDRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdentityProviderServiceGetIDPByIDResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+     * GetIDPByID
+     */
+    async getIDPByID(requestParameters: GetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdentityProviderServiceGetIDPByIDResponse> {
+        const response = await this.getIDPByIDRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -59,21 +103,20 @@ export class IdentityProviderServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/idps/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/8f3c9d63`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => IdentityProviderServiceGetIDPByIDResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200ResponseFromJSON(jsonValue));
     }
 
     /**
-     * Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-     * Get identity provider (IdP) by ID
+     * Dummy endpoint to retain union-member schemas
      */
-    async identityProviderServiceGetIDPByID(requestParameters: IdentityProviderServiceGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdentityProviderServiceGetIDPByIDResponse> {
-        const response = await this.identityProviderServiceGetIDPByIDRaw(requestParameters, initOverrides);
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response> {
+        const response = await this.noOpRaw(initOverrides);
         return await response.value();
     }
 

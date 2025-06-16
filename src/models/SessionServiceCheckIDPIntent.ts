@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceCheckIDPIntent {
     /**
-     * ID of the idp intent, previously returned on the success response of the IDP callback
+     * 
      * @type {string}
      * @memberof SessionServiceCheckIDPIntent
      */
     idpIntentId?: string;
     /**
-     * token of the idp intent, previously returned on the success response of the IDP callback
+     * 
      * @type {string}
      * @memberof SessionServiceCheckIDPIntent
      */

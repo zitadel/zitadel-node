@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSendPasskeyRegistrationLink } from './UserServiceSendPasskeyRegistrationLink.js';
+import type { ReturnCode4 } from './ReturnCode4.js';
 import {
-    UserServiceSendPasskeyRegistrationLinkFromJSON,
-    UserServiceSendPasskeyRegistrationLinkFromJSONTyped,
-    UserServiceSendPasskeyRegistrationLinkToJSON,
-    UserServiceSendPasskeyRegistrationLinkToJSONTyped,
-} from './UserServiceSendPasskeyRegistrationLink.js';
+    instanceOfReturnCode4,
+    ReturnCode4FromJSON,
+    ReturnCode4FromJSONTyped,
+    ReturnCode4ToJSON,
+} from './ReturnCode4.js';
+import type { SendLink } from './SendLink.js';
+import {
+    instanceOfSendLink,
+    SendLinkFromJSON,
+    SendLinkFromJSONTyped,
+    SendLinkToJSON,
+} from './SendLink.js';
 
 /**
+ * @type UserServiceCreatePasskeyRegistrationLinkRequest
  * 
  * @export
- * @interface UserServiceCreatePasskeyRegistrationLinkRequest
  */
-export interface UserServiceCreatePasskeyRegistrationLinkRequest {
-    /**
-     * 
-     * @type {UserServiceSendPasskeyRegistrationLink}
-     * @memberof UserServiceCreatePasskeyRegistrationLinkRequest
-     */
-    sendLink?: UserServiceSendPasskeyRegistrationLink;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceCreatePasskeyRegistrationLinkRequest
-     */
-    returnCode?: object;
-}
-
-/**
- * Check if a given object implements the UserServiceCreatePasskeyRegistrationLinkRequest interface.
- */
-export function instanceOfUserServiceCreatePasskeyRegistrationLinkRequest(value: object): value is UserServiceCreatePasskeyRegistrationLinkRequest {
-    return true;
-}
+export type UserServiceCreatePasskeyRegistrationLinkRequest = ReturnCode4 | SendLink;
 
 export function UserServiceCreatePasskeyRegistrationLinkRequestFromJSON(json: any): UserServiceCreatePasskeyRegistrationLinkRequest {
     return UserServiceCreatePasskeyRegistrationLinkRequestFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function UserServiceCreatePasskeyRegistrationLinkRequestFromJSONTyped(jso
     if (json == null) {
         return json;
     }
-    return {
-        
-        'sendLink': json['sendLink'] == null ? undefined : UserServiceSendPasskeyRegistrationLinkFromJSON(json['sendLink']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfReturnCode4(json)) {
+        return ReturnCode4FromJSONTyped(json, true);
+    }
+    if (instanceOfSendLink(json)) {
+        return SendLinkFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceCreatePasskeyRegistrationLinkRequestToJSON(json: any): UserServiceCreatePasskeyRegistrationLinkRequest {
+export function UserServiceCreatePasskeyRegistrationLinkRequestToJSON(json: any): any {
     return UserServiceCreatePasskeyRegistrationLinkRequestToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function UserServiceCreatePasskeyRegistrationLinkRequestToJSONTyped(value
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfReturnCode4(value)) {
+        return ReturnCode4ToJSON(value as ReturnCode4);
+    }
+    if (instanceOfSendLink(value)) {
+        return SendLinkToJSON(value as SendLink);
+    }
 
-    return {
-        
-        'sendLink': UserServiceSendPasskeyRegistrationLinkToJSON(value['sendLink']),
-        'returnCode': value['returnCode'],
-    };
+    return {};
 }
 

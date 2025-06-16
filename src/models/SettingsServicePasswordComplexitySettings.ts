@@ -28,31 +28,31 @@ import {
  */
 export interface SettingsServicePasswordComplexitySettings {
     /**
-     * Defines the minimum length of a password.
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof SettingsServicePasswordComplexitySettings
      */
-    minLength?: string;
+    minLength?: any | null;
     /**
-     * defines if the password MUST contain an upper case letter
+     * 
      * @type {boolean}
      * @memberof SettingsServicePasswordComplexitySettings
      */
     requiresUppercase?: boolean;
     /**
-     * defines if the password MUST contain a lowercase letter
+     * 
      * @type {boolean}
      * @memberof SettingsServicePasswordComplexitySettings
      */
     requiresLowercase?: boolean;
     /**
-     * defines if the password MUST contain a number
+     * 
      * @type {boolean}
      * @memberof SettingsServicePasswordComplexitySettings
      */
     requiresNumber?: boolean;
     /**
-     * defines if the password MUST contain a symbol. E.g. "$"
+     * 
      * @type {boolean}
      * @memberof SettingsServicePasswordComplexitySettings
      */

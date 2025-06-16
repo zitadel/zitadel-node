@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { IdentityProviderServiceAzureADTenantType } from './IdentityProviderServiceAzureADTenantType.js';
+import type { TenantId } from './TenantId.js';
 import {
-    IdentityProviderServiceAzureADTenantTypeFromJSON,
-    IdentityProviderServiceAzureADTenantTypeFromJSONTyped,
-    IdentityProviderServiceAzureADTenantTypeToJSON,
-    IdentityProviderServiceAzureADTenantTypeToJSONTyped,
-} from './IdentityProviderServiceAzureADTenantType.js';
+    instanceOfTenantId,
+    TenantIdFromJSON,
+    TenantIdFromJSONTyped,
+    TenantIdToJSON,
+} from './TenantId.js';
+import type { TenantType } from './TenantType.js';
+import {
+    instanceOfTenantType,
+    TenantTypeFromJSON,
+    TenantTypeFromJSONTyped,
+    TenantTypeToJSON,
+} from './TenantType.js';
 
 /**
+ * @type IdentityProviderServiceAzureADTenant
  * 
  * @export
- * @interface IdentityProviderServiceAzureADTenant
  */
-export interface IdentityProviderServiceAzureADTenant {
-    /**
-     * 
-     * @type {IdentityProviderServiceAzureADTenantType}
-     * @memberof IdentityProviderServiceAzureADTenant
-     */
-    tenantType?: IdentityProviderServiceAzureADTenantType;
-    /**
-     * 
-     * @type {string}
-     * @memberof IdentityProviderServiceAzureADTenant
-     */
-    tenantId?: string;
-}
-
-/**
- * Check if a given object implements the IdentityProviderServiceAzureADTenant interface.
- */
-export function instanceOfIdentityProviderServiceAzureADTenant(value: object): value is IdentityProviderServiceAzureADTenant {
-    return true;
-}
+export type IdentityProviderServiceAzureADTenant = TenantId | TenantType;
 
 export function IdentityProviderServiceAzureADTenantFromJSON(json: any): IdentityProviderServiceAzureADTenant {
     return IdentityProviderServiceAzureADTenantFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function IdentityProviderServiceAzureADTenantFromJSONTyped(json: any, ign
     if (json == null) {
         return json;
     }
-    return {
-        
-        'tenantType': json['tenantType'] == null ? undefined : IdentityProviderServiceAzureADTenantTypeFromJSON(json['tenantType']),
-        'tenantId': json['tenantId'] == null ? undefined : json['tenantId'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfTenantId(json)) {
+        return TenantIdFromJSONTyped(json, true);
+    }
+    if (instanceOfTenantType(json)) {
+        return TenantTypeFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function IdentityProviderServiceAzureADTenantToJSON(json: any): IdentityProviderServiceAzureADTenant {
+export function IdentityProviderServiceAzureADTenantToJSON(json: any): any {
     return IdentityProviderServiceAzureADTenantToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function IdentityProviderServiceAzureADTenantToJSONTyped(value?: Identity
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfTenantId(value)) {
+        return TenantIdToJSON(value as TenantId);
+    }
+    if (instanceOfTenantType(value)) {
+        return TenantTypeToJSON(value as TenantType);
+    }
 
-    return {
-        
-        'tenantType': IdentityProviderServiceAzureADTenantTypeToJSON(value['tenantType']),
-        'tenantId': value['tenantId'],
-    };
+    return {};
 }
 

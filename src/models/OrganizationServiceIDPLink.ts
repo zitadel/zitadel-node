@@ -20,19 +20,19 @@ import { mapValues } from '../runtime.js';
  */
 export interface OrganizationServiceIDPLink {
     /**
-     * ID of the identity provider
+     * 
      * @type {string}
      * @memberof OrganizationServiceIDPLink
      */
     idpId?: string;
     /**
-     * ID of the user of the identity provider
+     * 
      * @type {string}
      * @memberof OrganizationServiceIDPLink
      */
     userId?: string;
     /**
-     * username of the user of the identity provider
+     * 
      * @type {string}
      * @memberof OrganizationServiceIDPLink
      */

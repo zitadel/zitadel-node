@@ -20,7 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceVerifyPhoneRequest {
     /**
-     * "the verification code generated during the set phone request"
+     * 
+     * @type {string}
+     * @memberof UserServiceVerifyPhoneRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {string}
      * @memberof UserServiceVerifyPhoneRequest
      */
@@ -31,6 +37,7 @@ export interface UserServiceVerifyPhoneRequest {
  * Check if a given object implements the UserServiceVerifyPhoneRequest interface.
  */
 export function instanceOfUserServiceVerifyPhoneRequest(value: object): value is UserServiceVerifyPhoneRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
@@ -45,6 +52,7 @@ export function UserServiceVerifyPhoneRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'userId': json['userId'],
         'verificationCode': json['verificationCode'],
     };
 }
@@ -60,6 +68,7 @@ export function UserServiceVerifyPhoneRequestToJSONTyped(value?: UserServiceVeri
 
     return {
         
+        'userId': value['userId'],
         'verificationCode': value['verificationCode'],
     };
 }

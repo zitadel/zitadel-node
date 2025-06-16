@@ -12,191 +12,97 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { IdentityProviderServiceGenericOIDCConfig } from './IdentityProviderServiceGenericOIDCConfig.js';
+import type { Apple } from './Apple.js';
 import {
-    IdentityProviderServiceGenericOIDCConfigFromJSON,
-    IdentityProviderServiceGenericOIDCConfigFromJSONTyped,
-    IdentityProviderServiceGenericOIDCConfigToJSON,
-    IdentityProviderServiceGenericOIDCConfigToJSONTyped,
-} from './IdentityProviderServiceGenericOIDCConfig.js';
-import type { IdentityProviderServiceAppleConfig } from './IdentityProviderServiceAppleConfig.js';
+    instanceOfApple,
+    AppleFromJSON,
+    AppleFromJSONTyped,
+    AppleToJSON,
+} from './Apple.js';
+import type { AzureAd } from './AzureAd.js';
 import {
-    IdentityProviderServiceAppleConfigFromJSON,
-    IdentityProviderServiceAppleConfigFromJSONTyped,
-    IdentityProviderServiceAppleConfigToJSON,
-    IdentityProviderServiceAppleConfigToJSONTyped,
-} from './IdentityProviderServiceAppleConfig.js';
-import type { IdentityProviderServiceGitLabSelfHostedConfig } from './IdentityProviderServiceGitLabSelfHostedConfig.js';
+    instanceOfAzureAd,
+    AzureAdFromJSON,
+    AzureAdFromJSONTyped,
+    AzureAdToJSON,
+} from './AzureAd.js';
+import type { Github } from './Github.js';
 import {
-    IdentityProviderServiceGitLabSelfHostedConfigFromJSON,
-    IdentityProviderServiceGitLabSelfHostedConfigFromJSONTyped,
-    IdentityProviderServiceGitLabSelfHostedConfigToJSON,
-    IdentityProviderServiceGitLabSelfHostedConfigToJSONTyped,
-} from './IdentityProviderServiceGitLabSelfHostedConfig.js';
-import type { IdentityProviderServiceGitLabConfig } from './IdentityProviderServiceGitLabConfig.js';
+    instanceOfGithub,
+    GithubFromJSON,
+    GithubFromJSONTyped,
+    GithubToJSON,
+} from './Github.js';
+import type { GithubEs } from './GithubEs.js';
 import {
-    IdentityProviderServiceGitLabConfigFromJSON,
-    IdentityProviderServiceGitLabConfigFromJSONTyped,
-    IdentityProviderServiceGitLabConfigToJSON,
-    IdentityProviderServiceGitLabConfigToJSONTyped,
-} from './IdentityProviderServiceGitLabConfig.js';
-import type { IdentityProviderServiceJWTConfig } from './IdentityProviderServiceJWTConfig.js';
+    instanceOfGithubEs,
+    GithubEsFromJSON,
+    GithubEsFromJSONTyped,
+    GithubEsToJSON,
+} from './GithubEs.js';
+import type { Gitlab } from './Gitlab.js';
 import {
-    IdentityProviderServiceJWTConfigFromJSON,
-    IdentityProviderServiceJWTConfigFromJSONTyped,
-    IdentityProviderServiceJWTConfigToJSON,
-    IdentityProviderServiceJWTConfigToJSONTyped,
-} from './IdentityProviderServiceJWTConfig.js';
-import type { IdentityProviderServiceGitHubConfig } from './IdentityProviderServiceGitHubConfig.js';
+    instanceOfGitlab,
+    GitlabFromJSON,
+    GitlabFromJSONTyped,
+    GitlabToJSON,
+} from './Gitlab.js';
+import type { GitlabSelfHosted } from './GitlabSelfHosted.js';
 import {
-    IdentityProviderServiceGitHubConfigFromJSON,
-    IdentityProviderServiceGitHubConfigFromJSONTyped,
-    IdentityProviderServiceGitHubConfigToJSON,
-    IdentityProviderServiceGitHubConfigToJSONTyped,
-} from './IdentityProviderServiceGitHubConfig.js';
-import type { IdentityProviderServiceGoogleConfig } from './IdentityProviderServiceGoogleConfig.js';
+    instanceOfGitlabSelfHosted,
+    GitlabSelfHostedFromJSON,
+    GitlabSelfHostedFromJSONTyped,
+    GitlabSelfHostedToJSON,
+} from './GitlabSelfHosted.js';
+import type { Google } from './Google.js';
 import {
-    IdentityProviderServiceGoogleConfigFromJSON,
-    IdentityProviderServiceGoogleConfigFromJSONTyped,
-    IdentityProviderServiceGoogleConfigToJSON,
-    IdentityProviderServiceGoogleConfigToJSONTyped,
-} from './IdentityProviderServiceGoogleConfig.js';
-import type { IdentityProviderServiceSAMLConfig } from './IdentityProviderServiceSAMLConfig.js';
+    instanceOfGoogle,
+    GoogleFromJSON,
+    GoogleFromJSONTyped,
+    GoogleToJSON,
+} from './Google.js';
+import type { Jwt } from './Jwt.js';
 import {
-    IdentityProviderServiceSAMLConfigFromJSON,
-    IdentityProviderServiceSAMLConfigFromJSONTyped,
-    IdentityProviderServiceSAMLConfigToJSON,
-    IdentityProviderServiceSAMLConfigToJSONTyped,
-} from './IdentityProviderServiceSAMLConfig.js';
-import type { IdentityProviderServiceGitHubEnterpriseServerConfig } from './IdentityProviderServiceGitHubEnterpriseServerConfig.js';
+    instanceOfJwt,
+    JwtFromJSON,
+    JwtFromJSONTyped,
+    JwtToJSON,
+} from './Jwt.js';
+import type { Ldap } from './Ldap.js';
 import {
-    IdentityProviderServiceGitHubEnterpriseServerConfigFromJSON,
-    IdentityProviderServiceGitHubEnterpriseServerConfigFromJSONTyped,
-    IdentityProviderServiceGitHubEnterpriseServerConfigToJSON,
-    IdentityProviderServiceGitHubEnterpriseServerConfigToJSONTyped,
-} from './IdentityProviderServiceGitHubEnterpriseServerConfig.js';
-import type { IdentityProviderServiceOptions } from './IdentityProviderServiceOptions.js';
+    instanceOfLdap,
+    LdapFromJSON,
+    LdapFromJSONTyped,
+    LdapToJSON,
+} from './Ldap.js';
+import type { Oauth } from './Oauth.js';
 import {
-    IdentityProviderServiceOptionsFromJSON,
-    IdentityProviderServiceOptionsFromJSONTyped,
-    IdentityProviderServiceOptionsToJSON,
-    IdentityProviderServiceOptionsToJSONTyped,
-} from './IdentityProviderServiceOptions.js';
-import type { IdentityProviderServiceLDAPConfig } from './IdentityProviderServiceLDAPConfig.js';
+    instanceOfOauth,
+    OauthFromJSON,
+    OauthFromJSONTyped,
+    OauthToJSON,
+} from './Oauth.js';
+import type { Oidc } from './Oidc.js';
 import {
-    IdentityProviderServiceLDAPConfigFromJSON,
-    IdentityProviderServiceLDAPConfigFromJSONTyped,
-    IdentityProviderServiceLDAPConfigToJSON,
-    IdentityProviderServiceLDAPConfigToJSONTyped,
-} from './IdentityProviderServiceLDAPConfig.js';
-import type { IdentityProviderServiceAzureADConfig } from './IdentityProviderServiceAzureADConfig.js';
+    instanceOfOidc,
+    OidcFromJSON,
+    OidcFromJSONTyped,
+    OidcToJSON,
+} from './Oidc.js';
+import type { Saml } from './Saml.js';
 import {
-    IdentityProviderServiceAzureADConfigFromJSON,
-    IdentityProviderServiceAzureADConfigFromJSONTyped,
-    IdentityProviderServiceAzureADConfigToJSON,
-    IdentityProviderServiceAzureADConfigToJSONTyped,
-} from './IdentityProviderServiceAzureADConfig.js';
-import type { IdentityProviderServiceOAuthConfig } from './IdentityProviderServiceOAuthConfig.js';
-import {
-    IdentityProviderServiceOAuthConfigFromJSON,
-    IdentityProviderServiceOAuthConfigFromJSONTyped,
-    IdentityProviderServiceOAuthConfigToJSON,
-    IdentityProviderServiceOAuthConfigToJSONTyped,
-} from './IdentityProviderServiceOAuthConfig.js';
+    instanceOfSaml,
+    SamlFromJSON,
+    SamlFromJSONTyped,
+    SamlToJSON,
+} from './Saml.js';
 
 /**
+ * @type IdentityProviderServiceIDPConfig
  * 
  * @export
- * @interface IdentityProviderServiceIDPConfig
  */
-export interface IdentityProviderServiceIDPConfig {
-    /**
-     * 
-     * @type {IdentityProviderServiceOptions}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    options?: IdentityProviderServiceOptions;
-    /**
-     * 
-     * @type {IdentityProviderServiceLDAPConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    ldap?: IdentityProviderServiceLDAPConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGoogleConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    google?: IdentityProviderServiceGoogleConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceOAuthConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    oauth?: IdentityProviderServiceOAuthConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGenericOIDCConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    oidc?: IdentityProviderServiceGenericOIDCConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceJWTConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    jwt?: IdentityProviderServiceJWTConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGitHubConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    github?: IdentityProviderServiceGitHubConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGitHubEnterpriseServerConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    githubEs?: IdentityProviderServiceGitHubEnterpriseServerConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGitLabConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    gitlab?: IdentityProviderServiceGitLabConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceGitLabSelfHostedConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    gitlabSelfHosted?: IdentityProviderServiceGitLabSelfHostedConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceAzureADConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    azureAd?: IdentityProviderServiceAzureADConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceAppleConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    apple?: IdentityProviderServiceAppleConfig;
-    /**
-     * 
-     * @type {IdentityProviderServiceSAMLConfig}
-     * @memberof IdentityProviderServiceIDPConfig
-     */
-    saml?: IdentityProviderServiceSAMLConfig;
-}
-
-/**
- * Check if a given object implements the IdentityProviderServiceIDPConfig interface.
- */
-export function instanceOfIdentityProviderServiceIDPConfig(value: object): value is IdentityProviderServiceIDPConfig {
-    return true;
-}
+export type IdentityProviderServiceIDPConfig = Apple | AzureAd | Github | GithubEs | Gitlab | GitlabSelfHosted | Google | Jwt | Ldap | Oauth | Oidc | Saml;
 
 export function IdentityProviderServiceIDPConfigFromJSON(json: any): IdentityProviderServiceIDPConfig {
     return IdentityProviderServiceIDPConfigFromJSONTyped(json, false);
@@ -206,25 +112,50 @@ export function IdentityProviderServiceIDPConfigFromJSONTyped(json: any, ignoreD
     if (json == null) {
         return json;
     }
-    return {
-        
-        'options': json['options'] == null ? undefined : IdentityProviderServiceOptionsFromJSON(json['options']),
-        'ldap': json['ldap'] == null ? undefined : IdentityProviderServiceLDAPConfigFromJSON(json['ldap']),
-        'google': json['google'] == null ? undefined : IdentityProviderServiceGoogleConfigFromJSON(json['google']),
-        'oauth': json['oauth'] == null ? undefined : IdentityProviderServiceOAuthConfigFromJSON(json['oauth']),
-        'oidc': json['oidc'] == null ? undefined : IdentityProviderServiceGenericOIDCConfigFromJSON(json['oidc']),
-        'jwt': json['jwt'] == null ? undefined : IdentityProviderServiceJWTConfigFromJSON(json['jwt']),
-        'github': json['github'] == null ? undefined : IdentityProviderServiceGitHubConfigFromJSON(json['github']),
-        'githubEs': json['githubEs'] == null ? undefined : IdentityProviderServiceGitHubEnterpriseServerConfigFromJSON(json['githubEs']),
-        'gitlab': json['gitlab'] == null ? undefined : IdentityProviderServiceGitLabConfigFromJSON(json['gitlab']),
-        'gitlabSelfHosted': json['gitlabSelfHosted'] == null ? undefined : IdentityProviderServiceGitLabSelfHostedConfigFromJSON(json['gitlabSelfHosted']),
-        'azureAd': json['azureAd'] == null ? undefined : IdentityProviderServiceAzureADConfigFromJSON(json['azureAd']),
-        'apple': json['apple'] == null ? undefined : IdentityProviderServiceAppleConfigFromJSON(json['apple']),
-        'saml': json['saml'] == null ? undefined : IdentityProviderServiceSAMLConfigFromJSON(json['saml']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfApple(json)) {
+        return AppleFromJSONTyped(json, true);
+    }
+    if (instanceOfAzureAd(json)) {
+        return AzureAdFromJSONTyped(json, true);
+    }
+    if (instanceOfGithub(json)) {
+        return GithubFromJSONTyped(json, true);
+    }
+    if (instanceOfGithubEs(json)) {
+        return GithubEsFromJSONTyped(json, true);
+    }
+    if (instanceOfGitlab(json)) {
+        return GitlabFromJSONTyped(json, true);
+    }
+    if (instanceOfGitlabSelfHosted(json)) {
+        return GitlabSelfHostedFromJSONTyped(json, true);
+    }
+    if (instanceOfGoogle(json)) {
+        return GoogleFromJSONTyped(json, true);
+    }
+    if (instanceOfJwt(json)) {
+        return JwtFromJSONTyped(json, true);
+    }
+    if (instanceOfLdap(json)) {
+        return LdapFromJSONTyped(json, true);
+    }
+    if (instanceOfOauth(json)) {
+        return OauthFromJSONTyped(json, true);
+    }
+    if (instanceOfOidc(json)) {
+        return OidcFromJSONTyped(json, true);
+    }
+    if (instanceOfSaml(json)) {
+        return SamlFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function IdentityProviderServiceIDPConfigToJSON(json: any): IdentityProviderServiceIDPConfig {
+export function IdentityProviderServiceIDPConfigToJSON(json: any): any {
     return IdentityProviderServiceIDPConfigToJSONTyped(json, false);
 }
 
@@ -232,22 +163,46 @@ export function IdentityProviderServiceIDPConfigToJSONTyped(value?: IdentityProv
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfApple(value)) {
+        return AppleToJSON(value as Apple);
+    }
+    if (instanceOfAzureAd(value)) {
+        return AzureAdToJSON(value as AzureAd);
+    }
+    if (instanceOfGithub(value)) {
+        return GithubToJSON(value as Github);
+    }
+    if (instanceOfGithubEs(value)) {
+        return GithubEsToJSON(value as GithubEs);
+    }
+    if (instanceOfGitlab(value)) {
+        return GitlabToJSON(value as Gitlab);
+    }
+    if (instanceOfGitlabSelfHosted(value)) {
+        return GitlabSelfHostedToJSON(value as GitlabSelfHosted);
+    }
+    if (instanceOfGoogle(value)) {
+        return GoogleToJSON(value as Google);
+    }
+    if (instanceOfJwt(value)) {
+        return JwtToJSON(value as Jwt);
+    }
+    if (instanceOfLdap(value)) {
+        return LdapToJSON(value as Ldap);
+    }
+    if (instanceOfOauth(value)) {
+        return OauthToJSON(value as Oauth);
+    }
+    if (instanceOfOidc(value)) {
+        return OidcToJSON(value as Oidc);
+    }
+    if (instanceOfSaml(value)) {
+        return SamlToJSON(value as Saml);
+    }
 
-    return {
-        
-        'options': IdentityProviderServiceOptionsToJSON(value['options']),
-        'ldap': IdentityProviderServiceLDAPConfigToJSON(value['ldap']),
-        'google': IdentityProviderServiceGoogleConfigToJSON(value['google']),
-        'oauth': IdentityProviderServiceOAuthConfigToJSON(value['oauth']),
-        'oidc': IdentityProviderServiceGenericOIDCConfigToJSON(value['oidc']),
-        'jwt': IdentityProviderServiceJWTConfigToJSON(value['jwt']),
-        'github': IdentityProviderServiceGitHubConfigToJSON(value['github']),
-        'githubEs': IdentityProviderServiceGitHubEnterpriseServerConfigToJSON(value['githubEs']),
-        'gitlab': IdentityProviderServiceGitLabConfigToJSON(value['gitlab']),
-        'gitlabSelfHosted': IdentityProviderServiceGitLabSelfHostedConfigToJSON(value['gitlabSelfHosted']),
-        'azureAd': IdentityProviderServiceAzureADConfigToJSON(value['azureAd']),
-        'apple': IdentityProviderServiceAppleConfigToJSON(value['apple']),
-        'saml': IdentityProviderServiceSAMLConfigToJSON(value['saml']),
-    };
+    return {};
 }
 

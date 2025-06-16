@@ -12,98 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceDetails } from './UserServiceDetails.js';
+import type { Human } from './Human.js';
 import {
-    UserServiceDetailsFromJSON,
-    UserServiceDetailsFromJSONTyped,
-    UserServiceDetailsToJSON,
-    UserServiceDetailsToJSONTyped,
-} from './UserServiceDetails.js';
-import type { UserServiceUserState } from './UserServiceUserState.js';
+    instanceOfHuman,
+    HumanFromJSON,
+    HumanFromJSONTyped,
+    HumanToJSON,
+} from './Human.js';
+import type { Machine } from './Machine.js';
 import {
-    UserServiceUserStateFromJSON,
-    UserServiceUserStateFromJSONTyped,
-    UserServiceUserStateToJSON,
-    UserServiceUserStateToJSONTyped,
-} from './UserServiceUserState.js';
-import type { UserServiceMachineUser } from './UserServiceMachineUser.js';
-import {
-    UserServiceMachineUserFromJSON,
-    UserServiceMachineUserFromJSONTyped,
-    UserServiceMachineUserToJSON,
-    UserServiceMachineUserToJSONTyped,
-} from './UserServiceMachineUser.js';
-import type { UserServiceHumanUser } from './UserServiceHumanUser.js';
-import {
-    UserServiceHumanUserFromJSON,
-    UserServiceHumanUserFromJSONTyped,
-    UserServiceHumanUserToJSON,
-    UserServiceHumanUserToJSONTyped,
-} from './UserServiceHumanUser.js';
+    instanceOfMachine,
+    MachineFromJSON,
+    MachineFromJSONTyped,
+    MachineToJSON,
+} from './Machine.js';
 
 /**
+ * @type UserServiceUser
  * 
  * @export
- * @interface UserServiceUser
  */
-export interface UserServiceUser {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceUser
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {UserServiceDetails}
-     * @memberof UserServiceUser
-     */
-    details?: UserServiceDetails;
-    /**
-     * 
-     * @type {UserServiceUserState}
-     * @memberof UserServiceUser
-     */
-    state?: UserServiceUserState;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceUser
-     */
-    username?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof UserServiceUser
-     */
-    loginNames?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserServiceUser
-     */
-    preferredLoginName?: string;
-    /**
-     * 
-     * @type {UserServiceHumanUser}
-     * @memberof UserServiceUser
-     */
-    human?: UserServiceHumanUser;
-    /**
-     * 
-     * @type {UserServiceMachineUser}
-     * @memberof UserServiceUser
-     */
-    machine?: UserServiceMachineUser;
-}
-
-/**
- * Check if a given object implements the UserServiceUser interface.
- */
-export function instanceOfUserServiceUser(value: object): value is UserServiceUser {
-    return true;
-}
+export type UserServiceUser = Human | Machine;
 
 export function UserServiceUserFromJSON(json: any): UserServiceUser {
     return UserServiceUserFromJSONTyped(json, false);
@@ -113,20 +42,20 @@ export function UserServiceUserFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (json == null) {
         return json;
     }
-    return {
-        
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'details': json['details'] == null ? undefined : UserServiceDetailsFromJSON(json['details']),
-        'state': json['state'] == null ? undefined : UserServiceUserStateFromJSON(json['state']),
-        'username': json['username'] == null ? undefined : json['username'],
-        'loginNames': json['loginNames'] == null ? undefined : json['loginNames'],
-        'preferredLoginName': json['preferredLoginName'] == null ? undefined : json['preferredLoginName'],
-        'human': json['human'] == null ? undefined : UserServiceHumanUserFromJSON(json['human']),
-        'machine': json['machine'] == null ? undefined : UserServiceMachineUserFromJSON(json['machine']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfHuman(json)) {
+        return HumanFromJSONTyped(json, true);
+    }
+    if (instanceOfMachine(json)) {
+        return MachineFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceUserToJSON(json: any): UserServiceUser {
+export function UserServiceUserToJSON(json: any): any {
     return UserServiceUserToJSONTyped(json, false);
 }
 
@@ -134,17 +63,16 @@ export function UserServiceUserToJSONTyped(value?: UserServiceUser | null, ignor
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfHuman(value)) {
+        return HumanToJSON(value as Human);
+    }
+    if (instanceOfMachine(value)) {
+        return MachineToJSON(value as Machine);
+    }
 
-    return {
-        
-        'userId': value['userId'],
-        'details': UserServiceDetailsToJSON(value['details']),
-        'state': UserServiceUserStateToJSON(value['state']),
-        'username': value['username'],
-        'loginNames': value['loginNames'],
-        'preferredLoginName': value['preferredLoginName'],
-        'human': UserServiceHumanUserToJSON(value['human']),
-        'machine': UserServiceMachineUserToJSON(value['machine']),
-    };
+    return {};
 }
 

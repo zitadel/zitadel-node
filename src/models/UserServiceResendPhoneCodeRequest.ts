@@ -12,33 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-/**
- * 
- * @export
- * @interface UserServiceResendPhoneCodeRequest
- */
-export interface UserServiceResendPhoneCodeRequest {
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceResendPhoneCodeRequest
-     */
-    sendCode?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceResendPhoneCodeRequest
-     */
-    returnCode?: object;
-}
+import type { ReturnCode3 } from './ReturnCode3.js';
+import {
+    instanceOfReturnCode3,
+    ReturnCode3FromJSON,
+    ReturnCode3FromJSONTyped,
+    ReturnCode3ToJSON,
+} from './ReturnCode3.js';
+import type { SendCode3 } from './SendCode3.js';
+import {
+    instanceOfSendCode3,
+    SendCode3FromJSON,
+    SendCode3FromJSONTyped,
+    SendCode3ToJSON,
+} from './SendCode3.js';
 
 /**
- * Check if a given object implements the UserServiceResendPhoneCodeRequest interface.
+ * @type UserServiceResendPhoneCodeRequest
+ * 
+ * @export
  */
-export function instanceOfUserServiceResendPhoneCodeRequest(value: object): value is UserServiceResendPhoneCodeRequest {
-    return true;
-}
+export type UserServiceResendPhoneCodeRequest = ReturnCode3 | SendCode3;
 
 export function UserServiceResendPhoneCodeRequestFromJSON(json: any): UserServiceResendPhoneCodeRequest {
     return UserServiceResendPhoneCodeRequestFromJSONTyped(json, false);
@@ -48,14 +42,20 @@ export function UserServiceResendPhoneCodeRequestFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    return {
-        
-        'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfReturnCode3(json)) {
+        return ReturnCode3FromJSONTyped(json, true);
+    }
+    if (instanceOfSendCode3(json)) {
+        return SendCode3FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceResendPhoneCodeRequestToJSON(json: any): UserServiceResendPhoneCodeRequest {
+export function UserServiceResendPhoneCodeRequestToJSON(json: any): any {
     return UserServiceResendPhoneCodeRequestToJSONTyped(json, false);
 }
 
@@ -63,11 +63,16 @@ export function UserServiceResendPhoneCodeRequestToJSONTyped(value?: UserService
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfReturnCode3(value)) {
+        return ReturnCode3ToJSON(value as ReturnCode3);
+    }
+    if (instanceOfSendCode3(value)) {
+        return SendCode3ToJSON(value as SendCode3);
+    }
 
-    return {
-        
-        'sendCode': value['sendCode'],
-        'returnCode': value['returnCode'],
-    };
+    return {};
 }
 

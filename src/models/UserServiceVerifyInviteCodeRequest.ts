@@ -20,7 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceVerifyInviteCodeRequest {
     /**
-     * "the verification code generated during the invite code request"
+     * 
+     * @type {string}
+     * @memberof UserServiceVerifyInviteCodeRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {string}
      * @memberof UserServiceVerifyInviteCodeRequest
      */
@@ -31,6 +37,7 @@ export interface UserServiceVerifyInviteCodeRequest {
  * Check if a given object implements the UserServiceVerifyInviteCodeRequest interface.
  */
 export function instanceOfUserServiceVerifyInviteCodeRequest(value: object): value is UserServiceVerifyInviteCodeRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
@@ -45,6 +52,7 @@ export function UserServiceVerifyInviteCodeRequestFromJSONTyped(json: any, ignor
     }
     return {
         
+        'userId': json['userId'],
         'verificationCode': json['verificationCode'],
     };
 }
@@ -60,6 +68,7 @@ export function UserServiceVerifyInviteCodeRequestToJSONTyped(value?: UserServic
 
     return {
         
+        'userId': value['userId'],
         'verificationCode': value['verificationCode'],
     };
 }

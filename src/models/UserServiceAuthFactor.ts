@@ -12,66 +12,41 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceAuthFactorU2F } from './UserServiceAuthFactorU2F.js';
+import type { Otp } from './Otp.js';
 import {
-    UserServiceAuthFactorU2FFromJSON,
-    UserServiceAuthFactorU2FFromJSONTyped,
-    UserServiceAuthFactorU2FToJSON,
-    UserServiceAuthFactorU2FToJSONTyped,
-} from './UserServiceAuthFactorU2F.js';
-import type { UserServiceAuthFactorState } from './UserServiceAuthFactorState.js';
+    instanceOfOtp,
+    OtpFromJSON,
+    OtpFromJSONTyped,
+    OtpToJSON,
+} from './Otp.js';
+import type { OtpEmail } from './OtpEmail.js';
 import {
-    UserServiceAuthFactorStateFromJSON,
-    UserServiceAuthFactorStateFromJSONTyped,
-    UserServiceAuthFactorStateToJSON,
-    UserServiceAuthFactorStateToJSONTyped,
-} from './UserServiceAuthFactorState.js';
+    instanceOfOtpEmail,
+    OtpEmailFromJSON,
+    OtpEmailFromJSONTyped,
+    OtpEmailToJSON,
+} from './OtpEmail.js';
+import type { OtpSms } from './OtpSms.js';
+import {
+    instanceOfOtpSms,
+    OtpSmsFromJSON,
+    OtpSmsFromJSONTyped,
+    OtpSmsToJSON,
+} from './OtpSms.js';
+import type { U2f } from './U2f.js';
+import {
+    instanceOfU2f,
+    U2fFromJSON,
+    U2fFromJSONTyped,
+    U2fToJSON,
+} from './U2f.js';
 
 /**
+ * @type UserServiceAuthFactor
  * 
  * @export
- * @interface UserServiceAuthFactor
  */
-export interface UserServiceAuthFactor {
-    /**
-     * 
-     * @type {UserServiceAuthFactorState}
-     * @memberof UserServiceAuthFactor
-     */
-    state?: UserServiceAuthFactorState;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceAuthFactor
-     */
-    otp?: object;
-    /**
-     * 
-     * @type {UserServiceAuthFactorU2F}
-     * @memberof UserServiceAuthFactor
-     */
-    u2f?: UserServiceAuthFactorU2F;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceAuthFactor
-     */
-    otpSms?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServiceAuthFactor
-     */
-    otpEmail?: object;
-}
-
-/**
- * Check if a given object implements the UserServiceAuthFactor interface.
- */
-export function instanceOfUserServiceAuthFactor(value: object): value is UserServiceAuthFactor {
-    return true;
-}
+export type UserServiceAuthFactor = Otp | OtpEmail | OtpSms | U2f;
 
 export function UserServiceAuthFactorFromJSON(json: any): UserServiceAuthFactor {
     return UserServiceAuthFactorFromJSONTyped(json, false);
@@ -81,17 +56,26 @@ export function UserServiceAuthFactorFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return {
-        
-        'state': json['state'] == null ? undefined : UserServiceAuthFactorStateFromJSON(json['state']),
-        'otp': json['otp'] == null ? undefined : json['otp'],
-        'u2f': json['u2f'] == null ? undefined : UserServiceAuthFactorU2FFromJSON(json['u2f']),
-        'otpSms': json['otpSms'] == null ? undefined : json['otpSms'],
-        'otpEmail': json['otpEmail'] == null ? undefined : json['otpEmail'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfOtp(json)) {
+        return OtpFromJSONTyped(json, true);
+    }
+    if (instanceOfOtpEmail(json)) {
+        return OtpEmailFromJSONTyped(json, true);
+    }
+    if (instanceOfOtpSms(json)) {
+        return OtpSmsFromJSONTyped(json, true);
+    }
+    if (instanceOfU2f(json)) {
+        return U2fFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceAuthFactorToJSON(json: any): UserServiceAuthFactor {
+export function UserServiceAuthFactorToJSON(json: any): any {
     return UserServiceAuthFactorToJSONTyped(json, false);
 }
 
@@ -99,14 +83,22 @@ export function UserServiceAuthFactorToJSONTyped(value?: UserServiceAuthFactor |
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfOtp(value)) {
+        return OtpToJSON(value as Otp);
+    }
+    if (instanceOfOtpEmail(value)) {
+        return OtpEmailToJSON(value as OtpEmail);
+    }
+    if (instanceOfOtpSms(value)) {
+        return OtpSmsToJSON(value as OtpSms);
+    }
+    if (instanceOfU2f(value)) {
+        return U2fToJSON(value as U2f);
+    }
 
-    return {
-        
-        'state': UserServiceAuthFactorStateToJSON(value['state']),
-        'otp': value['otp'],
-        'u2f': UserServiceAuthFactorU2FToJSON(value['u2f']),
-        'otpSms': value['otpSms'],
-        'otpEmail': value['otpEmail'],
-    };
+    return {};
 }
 

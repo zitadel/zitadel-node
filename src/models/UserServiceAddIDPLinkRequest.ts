@@ -29,6 +29,12 @@ import {
 export interface UserServiceAddIDPLinkRequest {
     /**
      * 
+     * @type {string}
+     * @memberof UserServiceAddIDPLinkRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {UserServiceIDPLink}
      * @memberof UserServiceAddIDPLinkRequest
      */
@@ -39,6 +45,7 @@ export interface UserServiceAddIDPLinkRequest {
  * Check if a given object implements the UserServiceAddIDPLinkRequest interface.
  */
 export function instanceOfUserServiceAddIDPLinkRequest(value: object): value is UserServiceAddIDPLinkRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -52,6 +59,7 @@ export function UserServiceAddIDPLinkRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'userId': json['userId'],
         'idpLink': json['idpLink'] == null ? undefined : UserServiceIDPLinkFromJSON(json['idpLink']),
     };
 }
@@ -67,6 +75,7 @@ export function UserServiceAddIDPLinkRequestToJSONTyped(value?: UserServiceAddID
 
     return {
         
+        'userId': value['userId'],
         'idpLink': UserServiceIDPLinkToJSON(value['idpLink']),
     };
 }

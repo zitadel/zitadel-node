@@ -15,18 +15,24 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  NoOp200Response2,
+  SessionServiceConnectError,
   SessionServiceCreateSessionRequest,
   SessionServiceCreateSessionResponse,
   SessionServiceDeleteSessionRequest,
   SessionServiceDeleteSessionResponse,
+  SessionServiceGetSessionRequest,
   SessionServiceGetSessionResponse,
   SessionServiceListSessionsRequest,
   SessionServiceListSessionsResponse,
-  SessionServiceRpcStatus,
   SessionServiceSetSessionRequest,
   SessionServiceSetSessionResponse,
 } from '../models/index.js';
 import {
+    NoOp200Response2FromJSON,
+    NoOp200Response2ToJSON,
+    SessionServiceConnectErrorFromJSON,
+    SessionServiceConnectErrorToJSON,
     SessionServiceCreateSessionRequestFromJSON,
     SessionServiceCreateSessionRequestToJSON,
     SessionServiceCreateSessionResponseFromJSON,
@@ -35,40 +41,37 @@ import {
     SessionServiceDeleteSessionRequestToJSON,
     SessionServiceDeleteSessionResponseFromJSON,
     SessionServiceDeleteSessionResponseToJSON,
+    SessionServiceGetSessionRequestFromJSON,
+    SessionServiceGetSessionRequestToJSON,
     SessionServiceGetSessionResponseFromJSON,
     SessionServiceGetSessionResponseToJSON,
     SessionServiceListSessionsRequestFromJSON,
     SessionServiceListSessionsRequestToJSON,
     SessionServiceListSessionsResponseFromJSON,
     SessionServiceListSessionsResponseToJSON,
-    SessionServiceRpcStatusFromJSON,
-    SessionServiceRpcStatusToJSON,
     SessionServiceSetSessionRequestFromJSON,
     SessionServiceSetSessionRequestToJSON,
     SessionServiceSetSessionResponseFromJSON,
     SessionServiceSetSessionResponseToJSON,
 } from '../models/index.js';
 
-export interface SessionServiceCreateSessionOperationRequest {
+export interface CreateSessionRequest {
     sessionServiceCreateSessionRequest: SessionServiceCreateSessionRequest;
 }
 
-export interface SessionServiceDeleteSessionOperationRequest {
-    sessionId: string;
+export interface DeleteSessionRequest {
     sessionServiceDeleteSessionRequest: SessionServiceDeleteSessionRequest;
 }
 
-export interface SessionServiceGetSessionRequest {
-    sessionId: string;
-    sessionToken?: string;
+export interface GetSessionRequest {
+    sessionServiceGetSessionRequest: SessionServiceGetSessionRequest;
 }
 
-export interface SessionServiceListSessionsOperationRequest {
+export interface ListSessionsRequest {
     sessionServiceListSessionsRequest: SessionServiceListSessionsRequest;
 }
 
-export interface SessionServiceSetSessionOperationRequest {
-    sessionId: string;
+export interface SetSessionRequest {
     sessionServiceSetSessionRequest: SessionServiceSetSessionRequest;
 }
 
@@ -78,14 +81,14 @@ export interface SessionServiceSetSessionOperationRequest {
 export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new session. A token will be returned, which is required for further updates of the session.
      * Create a new session
+     * CreateSession
      */
-    async sessionServiceCreateSessionRaw(requestParameters: SessionServiceCreateSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
+    async createSessionRaw(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
         if (requestParameters['sessionServiceCreateSessionRequest'] == null) {
             throw new runtime.RequiredError(
                 'sessionServiceCreateSessionRequest',
-                'Required parameter "sessionServiceCreateSessionRequest" was null or undefined when calling sessionServiceCreateSession().'
+                'Required parameter "sessionServiceCreateSessionRequest" was null or undefined when calling createSession().'
             );
         }
 
@@ -104,7 +107,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/sessions`,
+            path: `/zitadel.session.v2.SessionService/CreateSession`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -115,30 +118,23 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new session. A token will be returned, which is required for further updates of the session.
      * Create a new session
+     * CreateSession
      */
-    async sessionServiceCreateSession(requestParameters: SessionServiceCreateSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceCreateSessionResponse> {
-        const response = await this.sessionServiceCreateSessionRaw(requestParameters, initOverrides);
+    async createSession(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceCreateSessionResponse> {
+        const response = await this.createSessionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Terminate your own session or if granted any other session.
-     * Terminate an existing session
+     * Terminate a session
+     * DeleteSession
      */
-    async sessionServiceDeleteSessionRaw(requestParameters: SessionServiceDeleteSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
-        if (requestParameters['sessionId'] == null) {
-            throw new runtime.RequiredError(
-                'sessionId',
-                'Required parameter "sessionId" was null or undefined when calling sessionServiceDeleteSession().'
-            );
-        }
-
+    async deleteSessionRaw(requestParameters: DeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
         if (requestParameters['sessionServiceDeleteSessionRequest'] == null) {
             throw new runtime.RequiredError(
                 'sessionServiceDeleteSessionRequest',
-                'Required parameter "sessionServiceDeleteSessionRequest" was null or undefined when calling sessionServiceDeleteSession().'
+                'Required parameter "sessionServiceDeleteSessionRequest" was null or undefined when calling deleteSession().'
             );
         }
 
@@ -157,8 +153,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/sessions/{sessionId}`.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId']))),
-            method: 'DELETE',
+            path: `/zitadel.session.v2.SessionService/DeleteSession`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SessionServiceDeleteSessionRequestToJSON(requestParameters['sessionServiceDeleteSessionRequest']),
@@ -168,70 +164,23 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Terminate your own session or if granted any other session.
-     * Terminate an existing session
+     * Terminate a session
+     * DeleteSession
      */
-    async sessionServiceDeleteSession(requestParameters: SessionServiceDeleteSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceDeleteSessionResponse> {
-        const response = await this.sessionServiceDeleteSessionRaw(requestParameters, initOverrides);
+    async deleteSession(requestParameters: DeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceDeleteSessionResponse> {
+        const response = await this.deleteSessionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Get a session and all its information like the time of the user or password verification
-     * Get a session
+     * GetSession a session
+     * GetSession
      */
-    async sessionServiceGetSessionRaw(requestParameters: SessionServiceGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
-        if (requestParameters['sessionId'] == null) {
+    async getSessionRaw(requestParameters: GetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
+        if (requestParameters['sessionServiceGetSessionRequest'] == null) {
             throw new runtime.RequiredError(
-                'sessionId',
-                'Required parameter "sessionId" was null or undefined when calling sessionServiceGetSession().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['sessionToken'] != null) {
-            queryParameters['sessionToken'] = requestParameters['sessionToken'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("zitadelAccessToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/v2/sessions/{sessionId}`.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SessionServiceGetSessionResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Get a session and all its information like the time of the user or password verification
-     * Get a session
-     */
-    async sessionServiceGetSession(requestParameters: SessionServiceGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceGetSessionResponse> {
-        const response = await this.sessionServiceGetSessionRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Search for sessions
-     * Search sessions
-     */
-    async sessionServiceListSessionsRaw(requestParameters: SessionServiceListSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
-        if (requestParameters['sessionServiceListSessionsRequest'] == null) {
-            throw new runtime.RequiredError(
-                'sessionServiceListSessionsRequest',
-                'Required parameter "sessionServiceListSessionsRequest" was null or undefined when calling sessionServiceListSessions().'
+                'sessionServiceGetSessionRequest',
+                'Required parameter "sessionServiceGetSessionRequest" was null or undefined when calling getSession().'
             );
         }
 
@@ -250,7 +199,53 @@ export class SessionServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/sessions/search`,
+            path: `/zitadel.session.v2.SessionService/GetSession`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SessionServiceGetSessionRequestToJSON(requestParameters['sessionServiceGetSessionRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SessionServiceGetSessionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * GetSession a session
+     * GetSession
+     */
+    async getSession(requestParameters: GetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceGetSessionResponse> {
+        const response = await this.getSessionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Search sessions
+     * ListSessions
+     */
+    async listSessionsRaw(requestParameters: ListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
+        if (requestParameters['sessionServiceListSessionsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'sessionServiceListSessionsRequest',
+                'Required parameter "sessionServiceListSessionsRequest" was null or undefined when calling listSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.session.v2.SessionService/ListSessions`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -261,30 +256,57 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search for sessions
      * Search sessions
+     * ListSessions
      */
-    async sessionServiceListSessions(requestParameters: SessionServiceListSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceListSessionsResponse> {
-        const response = await this.sessionServiceListSessionsRaw(requestParameters, initOverrides);
+    async listSessions(requestParameters: ListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceListSessionsResponse> {
+        const response = await this.listSessionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Update an existing session with new information.
-     * Update an existing session
+     * Dummy endpoint to retain union-member schemas
      */
-    async sessionServiceSetSessionRaw(requestParameters: SessionServiceSetSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
-        if (requestParameters['sessionId'] == null) {
-            throw new runtime.RequiredError(
-                'sessionId',
-                'Required parameter "sessionId" was null or undefined when calling sessionServiceSetSession().'
-            );
-        }
+    async noOpRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NoOp200Response2>> {
+        const queryParameters: any = {};
 
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/44ad5538`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NoOp200Response2FromJSON(jsonValue));
+    }
+
+    /**
+     * Dummy endpoint to retain union-member schemas
+     */
+    async noOp(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NoOp200Response2> {
+        const response = await this.noOpRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a session
+     * SetSession
+     */
+    async setSessionRaw(requestParameters: SetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
         if (requestParameters['sessionServiceSetSessionRequest'] == null) {
             throw new runtime.RequiredError(
                 'sessionServiceSetSessionRequest',
-                'Required parameter "sessionServiceSetSessionRequest" was null or undefined when calling sessionServiceSetSession().'
+                'Required parameter "sessionServiceSetSessionRequest" was null or undefined when calling setSession().'
             );
         }
 
@@ -303,8 +325,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/v2/sessions/{sessionId}`.replace(`{${"sessionId"}}`, encodeURIComponent(String(requestParameters['sessionId']))),
-            method: 'PATCH',
+            path: `/zitadel.session.v2.SessionService/SetSession`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SessionServiceSetSessionRequestToJSON(requestParameters['sessionServiceSetSessionRequest']),
@@ -314,11 +336,11 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing session with new information.
-     * Update an existing session
+     * Update a session
+     * SetSession
      */
-    async sessionServiceSetSession(requestParameters: SessionServiceSetSessionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceSetSessionResponse> {
-        const response = await this.sessionServiceSetSessionRaw(requestParameters, initOverrides);
+    async setSession(requestParameters: SetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceSetSessionResponse> {
+        const response = await this.setSessionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

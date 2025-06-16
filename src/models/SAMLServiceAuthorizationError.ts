@@ -38,7 +38,7 @@ export interface SAMLServiceAuthorizationError {
      * @type {string}
      * @memberof SAMLServiceAuthorizationError
      */
-    errorDescription?: string;
+    errorDescription?: string | null;
 }
 
 

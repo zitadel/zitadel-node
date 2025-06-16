@@ -28,7 +28,7 @@ import {
  */
 export interface UserServiceAndQuery {
     /**
-     * the sub queries to 'AND'
+     * 
      * @type {Array<UserServiceSearchQuery>}
      * @memberof UserServiceAndQuery
      */

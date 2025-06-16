@@ -12,54 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceLDAPCredentials } from './UserServiceLDAPCredentials.js';
+import type { Ldap1 } from './Ldap1.js';
 import {
-    UserServiceLDAPCredentialsFromJSON,
-    UserServiceLDAPCredentialsFromJSONTyped,
-    UserServiceLDAPCredentialsToJSON,
-    UserServiceLDAPCredentialsToJSONTyped,
-} from './UserServiceLDAPCredentials.js';
-import type { UserServiceRedirectURLs } from './UserServiceRedirectURLs.js';
+    instanceOfLdap1,
+    Ldap1FromJSON,
+    Ldap1FromJSONTyped,
+    Ldap1ToJSON,
+} from './Ldap1.js';
+import type { Urls } from './Urls.js';
 import {
-    UserServiceRedirectURLsFromJSON,
-    UserServiceRedirectURLsFromJSONTyped,
-    UserServiceRedirectURLsToJSON,
-    UserServiceRedirectURLsToJSONTyped,
-} from './UserServiceRedirectURLs.js';
+    instanceOfUrls,
+    UrlsFromJSON,
+    UrlsFromJSONTyped,
+    UrlsToJSON,
+} from './Urls.js';
 
 /**
+ * @type UserServiceStartIdentityProviderIntentRequest
  * 
  * @export
- * @interface UserServiceStartIdentityProviderIntentRequest
  */
-export interface UserServiceStartIdentityProviderIntentRequest {
-    /**
-     * ID for existing identity provider
-     * @type {string}
-     * @memberof UserServiceStartIdentityProviderIntentRequest
-     */
-    idpId?: string;
-    /**
-     * 
-     * @type {UserServiceRedirectURLs}
-     * @memberof UserServiceStartIdentityProviderIntentRequest
-     */
-    urls?: UserServiceRedirectURLs;
-    /**
-     * 
-     * @type {UserServiceLDAPCredentials}
-     * @memberof UserServiceStartIdentityProviderIntentRequest
-     */
-    ldap?: UserServiceLDAPCredentials;
-}
-
-/**
- * Check if a given object implements the UserServiceStartIdentityProviderIntentRequest interface.
- */
-export function instanceOfUserServiceStartIdentityProviderIntentRequest(value: object): value is UserServiceStartIdentityProviderIntentRequest {
-    return true;
-}
+export type UserServiceStartIdentityProviderIntentRequest = Ldap1 | Urls;
 
 export function UserServiceStartIdentityProviderIntentRequestFromJSON(json: any): UserServiceStartIdentityProviderIntentRequest {
     return UserServiceStartIdentityProviderIntentRequestFromJSONTyped(json, false);
@@ -69,15 +42,20 @@ export function UserServiceStartIdentityProviderIntentRequestFromJSONTyped(json:
     if (json == null) {
         return json;
     }
-    return {
-        
-        'idpId': json['idpId'] == null ? undefined : json['idpId'],
-        'urls': json['urls'] == null ? undefined : UserServiceRedirectURLsFromJSON(json['urls']),
-        'ldap': json['ldap'] == null ? undefined : UserServiceLDAPCredentialsFromJSON(json['ldap']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfLdap1(json)) {
+        return Ldap1FromJSONTyped(json, true);
+    }
+    if (instanceOfUrls(json)) {
+        return UrlsFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceStartIdentityProviderIntentRequestToJSON(json: any): UserServiceStartIdentityProviderIntentRequest {
+export function UserServiceStartIdentityProviderIntentRequestToJSON(json: any): any {
     return UserServiceStartIdentityProviderIntentRequestToJSONTyped(json, false);
 }
 
@@ -85,12 +63,16 @@ export function UserServiceStartIdentityProviderIntentRequestToJSONTyped(value?:
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfLdap1(value)) {
+        return Ldap1ToJSON(value as Ldap1);
+    }
+    if (instanceOfUrls(value)) {
+        return UrlsToJSON(value as Urls);
+    }
 
-    return {
-        
-        'idpId': value['idpId'],
-        'urls': UserServiceRedirectURLsToJSON(value['urls']),
-        'ldap': UserServiceLDAPCredentialsToJSON(value['ldap']),
-    };
+    return {};
 }
 

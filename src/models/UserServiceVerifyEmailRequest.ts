@@ -20,7 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceVerifyEmailRequest {
     /**
-     * "the verification code generated during the set email request"
+     * 
+     * @type {string}
+     * @memberof UserServiceVerifyEmailRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {string}
      * @memberof UserServiceVerifyEmailRequest
      */
@@ -31,6 +37,7 @@ export interface UserServiceVerifyEmailRequest {
  * Check if a given object implements the UserServiceVerifyEmailRequest interface.
  */
 export function instanceOfUserServiceVerifyEmailRequest(value: object): value is UserServiceVerifyEmailRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
@@ -45,6 +52,7 @@ export function UserServiceVerifyEmailRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'userId': json['userId'],
         'verificationCode': json['verificationCode'],
     };
 }
@@ -60,6 +68,7 @@ export function UserServiceVerifyEmailRequestToJSONTyped(value?: UserServiceVeri
 
     return {
         
+        'userId': value['userId'],
         'verificationCode': value['verificationCode'],
     };
 }

@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceLDAPCredentials {
     /**
-     * Username used to login through LDAP
+     * 
      * @type {string}
      * @memberof UserServiceLDAPCredentials
      */
     username?: string;
     /**
-     * Password used to login through LDAP
+     * 
      * @type {string}
      * @memberof UserServiceLDAPCredentials
      */

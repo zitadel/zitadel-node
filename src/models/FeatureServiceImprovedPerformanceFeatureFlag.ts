@@ -35,7 +35,7 @@ import {
  */
 export interface FeatureServiceImprovedPerformanceFeatureFlag {
     /**
-     * Which of the performance improvements is enabled
+     * 
      * @type {Array<FeatureServiceImprovedPerformance>}
      * @memberof FeatureServiceImprovedPerformanceFeatureFlag
      */

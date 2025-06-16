@@ -36,6 +36,12 @@ import {
 export interface UserServiceRegisterPasskeyRequest {
     /**
      * 
+     * @type {string}
+     * @memberof UserServiceRegisterPasskeyRequest
+     */
+    userId: string;
+    /**
+     * 
      * @type {UserServicePasskeyRegistrationCode}
      * @memberof UserServiceRegisterPasskeyRequest
      */
@@ -47,7 +53,7 @@ export interface UserServiceRegisterPasskeyRequest {
      */
     authenticator?: UserServicePasskeyAuthenticator;
     /**
-     * "Domain on which the user is authenticated."
+     * 
      * @type {string}
      * @memberof UserServiceRegisterPasskeyRequest
      */
@@ -60,6 +66,7 @@ export interface UserServiceRegisterPasskeyRequest {
  * Check if a given object implements the UserServiceRegisterPasskeyRequest interface.
  */
 export function instanceOfUserServiceRegisterPasskeyRequest(value: object): value is UserServiceRegisterPasskeyRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -73,6 +80,7 @@ export function UserServiceRegisterPasskeyRequestFromJSONTyped(json: any, ignore
     }
     return {
         
+        'userId': json['userId'],
         'code': json['code'] == null ? undefined : UserServicePasskeyRegistrationCodeFromJSON(json['code']),
         'authenticator': json['authenticator'] == null ? undefined : UserServicePasskeyAuthenticatorFromJSON(json['authenticator']),
         'domain': json['domain'] == null ? undefined : json['domain'],
@@ -90,6 +98,7 @@ export function UserServiceRegisterPasskeyRequestToJSONTyped(value?: UserService
 
     return {
         
+        'userId': value['userId'],
         'code': UserServicePasskeyRegistrationCodeToJSON(value['code']),
         'authenticator': UserServicePasskeyAuthenticatorToJSON(value['authenticator']),
         'domain': value['domain'],

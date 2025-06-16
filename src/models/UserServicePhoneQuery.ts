@@ -28,7 +28,7 @@ import {
  */
 export interface UserServicePhoneQuery {
     /**
-     * Phone number of the user
+     * 
      * @type {string}
      * @memberof UserServicePhoneQuery
      */

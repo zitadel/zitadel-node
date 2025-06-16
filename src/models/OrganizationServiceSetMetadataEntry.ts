@@ -26,7 +26,7 @@ export interface OrganizationServiceSetMetadataEntry {
      */
     key: string;
     /**
-     * The value has to be base64 encoded.
+     * 
      * @type {string}
      * @memberof OrganizationServiceSetMetadataEntry
      */

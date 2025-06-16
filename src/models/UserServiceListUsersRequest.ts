@@ -54,7 +54,7 @@ export interface UserServiceListUsersRequest {
      */
     sortingColumn?: UserServiceUserFieldName;
     /**
-     * 
+     * criteria the client is looking for
      * @type {Array<UserServiceSearchQuery>}
      * @memberof UserServiceListUsersRequest
      */

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { UserServiceValue } from './UserServiceValue.js';
+import {
+    UserServiceValueFromJSON,
+    UserServiceValueFromJSONTyped,
+    UserServiceValueToJSON,
+    UserServiceValueToJSONTyped,
+} from './UserServiceValue.js';
+
 /**
  * 
  * @export
@@ -20,11 +28,30 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceVerifyPasskeyRegistrationRequest {
     /**
-     * PublicKeyCredential Interface. Generated helper methods populate the field from JSON created by a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#publickeycredential
-     * @type {object}
+     * 
+     * @type {string}
      * @memberof UserServiceVerifyPasskeyRegistrationRequest
      */
-    publicKeyCredential: object;
+    userId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserServiceVerifyPasskeyRegistrationRequest
+     */
+    passkeyId: string;
+    /**
+     * `Struct` represents a structured data value, consisting of fields
+     *  which map to dynamically typed values. In some languages, `Struct`
+     *  might be supported by a native representation. For example, in
+     *  scripting languages like JS a struct is represented as an
+     *  object. The details of that representation are described together
+     *  with the proto support for the language.
+     * 
+     *  The JSON representation for `Struct` is JSON object.
+     * @type {{ [key: string]: UserServiceValue; }}
+     * @memberof UserServiceVerifyPasskeyRegistrationRequest
+     */
+    publicKeyCredential: { [key: string]: UserServiceValue; };
     /**
      * 
      * @type {string}
@@ -37,6 +64,8 @@ export interface UserServiceVerifyPasskeyRegistrationRequest {
  * Check if a given object implements the UserServiceVerifyPasskeyRegistrationRequest interface.
  */
 export function instanceOfUserServiceVerifyPasskeyRegistrationRequest(value: object): value is UserServiceVerifyPasskeyRegistrationRequest {
+    if (!('userId' in value) || value['userId'] === undefined) return false;
+    if (!('passkeyId' in value) || value['passkeyId'] === undefined) return false;
     if (!('publicKeyCredential' in value) || value['publicKeyCredential'] === undefined) return false;
     if (!('passkeyName' in value) || value['passkeyName'] === undefined) return false;
     return true;
@@ -52,7 +81,9 @@ export function UserServiceVerifyPasskeyRegistrationRequestFromJSONTyped(json: a
     }
     return {
         
-        'publicKeyCredential': json['publicKeyCredential'],
+        'userId': json['userId'],
+        'passkeyId': json['passkeyId'],
+        'publicKeyCredential': (mapValues(json['publicKeyCredential'], UserServiceValueFromJSON)),
         'passkeyName': json['passkeyName'],
     };
 }
@@ -68,7 +99,9 @@ export function UserServiceVerifyPasskeyRegistrationRequestToJSONTyped(value?: U
 
     return {
         
-        'publicKeyCredential': value['publicKeyCredential'],
+        'userId': value['userId'],
+        'passkeyId': value['passkeyId'],
+        'publicKeyCredential': (mapValues(value['publicKeyCredential'], UserServiceValueToJSON)),
         'passkeyName': value['passkeyName'],
     };
 }

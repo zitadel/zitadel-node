@@ -12,87 +12,48 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { SessionServiceUserIDQuery } from './SessionServiceUserIDQuery.js';
+import type { CreationDateQuery1 } from './CreationDateQuery1.js';
 import {
-    SessionServiceUserIDQueryFromJSON,
-    SessionServiceUserIDQueryFromJSONTyped,
-    SessionServiceUserIDQueryToJSON,
-    SessionServiceUserIDQueryToJSONTyped,
-} from './SessionServiceUserIDQuery.js';
-import type { SessionServiceIDsQuery } from './SessionServiceIDsQuery.js';
+    instanceOfCreationDateQuery1,
+    CreationDateQuery1FromJSON,
+    CreationDateQuery1FromJSONTyped,
+    CreationDateQuery1ToJSON,
+} from './CreationDateQuery1.js';
+import type { CreatorQuery } from './CreatorQuery.js';
 import {
-    SessionServiceIDsQueryFromJSON,
-    SessionServiceIDsQueryFromJSONTyped,
-    SessionServiceIDsQueryToJSON,
-    SessionServiceIDsQueryToJSONTyped,
-} from './SessionServiceIDsQuery.js';
-import type { SessionServiceCreationDateQuery } from './SessionServiceCreationDateQuery.js';
+    instanceOfCreatorQuery,
+    CreatorQueryFromJSON,
+    CreatorQueryFromJSONTyped,
+    CreatorQueryToJSON,
+} from './CreatorQuery.js';
+import type { IdsQuery1 } from './IdsQuery1.js';
 import {
-    SessionServiceCreationDateQueryFromJSON,
-    SessionServiceCreationDateQueryFromJSONTyped,
-    SessionServiceCreationDateQueryToJSON,
-    SessionServiceCreationDateQueryToJSONTyped,
-} from './SessionServiceCreationDateQuery.js';
-import type { SessionServiceCreatorQuery } from './SessionServiceCreatorQuery.js';
+    instanceOfIdsQuery1,
+    IdsQuery1FromJSON,
+    IdsQuery1FromJSONTyped,
+    IdsQuery1ToJSON,
+} from './IdsQuery1.js';
+import type { UserAgentQuery } from './UserAgentQuery.js';
 import {
-    SessionServiceCreatorQueryFromJSON,
-    SessionServiceCreatorQueryFromJSONTyped,
-    SessionServiceCreatorQueryToJSON,
-    SessionServiceCreatorQueryToJSONTyped,
-} from './SessionServiceCreatorQuery.js';
-import type { SessionServiceUserAgentQuery } from './SessionServiceUserAgentQuery.js';
+    instanceOfUserAgentQuery,
+    UserAgentQueryFromJSON,
+    UserAgentQueryFromJSONTyped,
+    UserAgentQueryToJSON,
+} from './UserAgentQuery.js';
+import type { UserIdQuery1 } from './UserIdQuery1.js';
 import {
-    SessionServiceUserAgentQueryFromJSON,
-    SessionServiceUserAgentQueryFromJSONTyped,
-    SessionServiceUserAgentQueryToJSON,
-    SessionServiceUserAgentQueryToJSONTyped,
-} from './SessionServiceUserAgentQuery.js';
+    instanceOfUserIdQuery1,
+    UserIdQuery1FromJSON,
+    UserIdQuery1FromJSONTyped,
+    UserIdQuery1ToJSON,
+} from './UserIdQuery1.js';
 
 /**
+ * @type SessionServiceSearchQuery
  * 
  * @export
- * @interface SessionServiceSearchQuery
  */
-export interface SessionServiceSearchQuery {
-    /**
-     * 
-     * @type {SessionServiceIDsQuery}
-     * @memberof SessionServiceSearchQuery
-     */
-    idsQuery?: SessionServiceIDsQuery;
-    /**
-     * 
-     * @type {SessionServiceUserIDQuery}
-     * @memberof SessionServiceSearchQuery
-     */
-    userIdQuery?: SessionServiceUserIDQuery;
-    /**
-     * 
-     * @type {SessionServiceCreationDateQuery}
-     * @memberof SessionServiceSearchQuery
-     */
-    creationDateQuery?: SessionServiceCreationDateQuery;
-    /**
-     * 
-     * @type {SessionServiceCreatorQuery}
-     * @memberof SessionServiceSearchQuery
-     */
-    creatorQuery?: SessionServiceCreatorQuery;
-    /**
-     * 
-     * @type {SessionServiceUserAgentQuery}
-     * @memberof SessionServiceSearchQuery
-     */
-    userAgentQuery?: SessionServiceUserAgentQuery;
-}
-
-/**
- * Check if a given object implements the SessionServiceSearchQuery interface.
- */
-export function instanceOfSessionServiceSearchQuery(value: object): value is SessionServiceSearchQuery {
-    return true;
-}
+export type SessionServiceSearchQuery = CreationDateQuery1 | CreatorQuery | IdsQuery1 | UserAgentQuery | UserIdQuery1;
 
 export function SessionServiceSearchQueryFromJSON(json: any): SessionServiceSearchQuery {
     return SessionServiceSearchQueryFromJSONTyped(json, false);
@@ -102,17 +63,29 @@ export function SessionServiceSearchQueryFromJSONTyped(json: any, ignoreDiscrimi
     if (json == null) {
         return json;
     }
-    return {
-        
-        'idsQuery': json['idsQuery'] == null ? undefined : SessionServiceIDsQueryFromJSON(json['idsQuery']),
-        'userIdQuery': json['userIdQuery'] == null ? undefined : SessionServiceUserIDQueryFromJSON(json['userIdQuery']),
-        'creationDateQuery': json['creationDateQuery'] == null ? undefined : SessionServiceCreationDateQueryFromJSON(json['creationDateQuery']),
-        'creatorQuery': json['creatorQuery'] == null ? undefined : SessionServiceCreatorQueryFromJSON(json['creatorQuery']),
-        'userAgentQuery': json['userAgentQuery'] == null ? undefined : SessionServiceUserAgentQueryFromJSON(json['userAgentQuery']),
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfCreationDateQuery1(json)) {
+        return CreationDateQuery1FromJSONTyped(json, true);
+    }
+    if (instanceOfCreatorQuery(json)) {
+        return CreatorQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfIdsQuery1(json)) {
+        return IdsQuery1FromJSONTyped(json, true);
+    }
+    if (instanceOfUserAgentQuery(json)) {
+        return UserAgentQueryFromJSONTyped(json, true);
+    }
+    if (instanceOfUserIdQuery1(json)) {
+        return UserIdQuery1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function SessionServiceSearchQueryToJSON(json: any): SessionServiceSearchQuery {
+export function SessionServiceSearchQueryToJSON(json: any): any {
     return SessionServiceSearchQueryToJSONTyped(json, false);
 }
 
@@ -120,14 +93,25 @@ export function SessionServiceSearchQueryToJSONTyped(value?: SessionServiceSearc
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfCreationDateQuery1(value)) {
+        return CreationDateQuery1ToJSON(value as CreationDateQuery1);
+    }
+    if (instanceOfCreatorQuery(value)) {
+        return CreatorQueryToJSON(value as CreatorQuery);
+    }
+    if (instanceOfIdsQuery1(value)) {
+        return IdsQuery1ToJSON(value as IdsQuery1);
+    }
+    if (instanceOfUserAgentQuery(value)) {
+        return UserAgentQueryToJSON(value as UserAgentQuery);
+    }
+    if (instanceOfUserIdQuery1(value)) {
+        return UserIdQuery1ToJSON(value as UserIdQuery1);
+    }
 
-    return {
-        
-        'idsQuery': SessionServiceIDsQueryToJSON(value['idsQuery']),
-        'userIdQuery': SessionServiceUserIDQueryToJSON(value['userIdQuery']),
-        'creationDateQuery': SessionServiceCreationDateQueryToJSON(value['creationDateQuery']),
-        'creatorQuery': SessionServiceCreatorQueryToJSON(value['creatorQuery']),
-        'userAgentQuery': SessionServiceUserAgentQueryToJSON(value['userAgentQuery']),
-    };
+    return {};
 }
 

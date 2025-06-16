@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { SessionServiceUserAgentHeaderValues } from './SessionServiceUserAgentHeaderValues.js';
+import type { SessionServiceHeaderValues } from './SessionServiceHeaderValues.js';
 import {
-    SessionServiceUserAgentHeaderValuesFromJSON,
-    SessionServiceUserAgentHeaderValuesFromJSONTyped,
-    SessionServiceUserAgentHeaderValuesToJSON,
-    SessionServiceUserAgentHeaderValuesToJSONTyped,
-} from './SessionServiceUserAgentHeaderValues.js';
+    SessionServiceHeaderValuesFromJSON,
+    SessionServiceHeaderValuesFromJSONTyped,
+    SessionServiceHeaderValuesToJSON,
+    SessionServiceHeaderValuesToJSONTyped,
+} from './SessionServiceHeaderValues.js';
 
 /**
  * 
@@ -32,25 +32,25 @@ export interface SessionServiceUserAgent {
      * @type {string}
      * @memberof SessionServiceUserAgent
      */
-    fingerprintId?: string;
+    fingerprintId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionServiceUserAgent
      */
-    ip?: string;
+    ip?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionServiceUserAgent
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
-     * @type {{ [key: string]: SessionServiceUserAgentHeaderValues; }}
+     * @type {{ [key: string]: SessionServiceHeaderValues; }}
      * @memberof SessionServiceUserAgent
      */
-    header?: { [key: string]: SessionServiceUserAgentHeaderValues; };
+    header?: { [key: string]: SessionServiceHeaderValues; };
 }
 
 /**
@@ -73,7 +73,7 @@ export function SessionServiceUserAgentFromJSONTyped(json: any, ignoreDiscrimina
         'fingerprintId': json['fingerprintId'] == null ? undefined : json['fingerprintId'],
         'ip': json['ip'] == null ? undefined : json['ip'],
         'description': json['description'] == null ? undefined : json['description'],
-        'header': json['header'] == null ? undefined : (mapValues(json['header'], SessionServiceUserAgentHeaderValuesFromJSON)),
+        'header': json['header'] == null ? undefined : (mapValues(json['header'], SessionServiceHeaderValuesFromJSON)),
     };
 }
 
@@ -91,7 +91,7 @@ export function SessionServiceUserAgentToJSONTyped(value?: SessionServiceUserAge
         'fingerprintId': value['fingerprintId'],
         'ip': value['ip'],
         'description': value['description'],
-        'header': value['header'] == null ? undefined : (mapValues(value['header'], SessionServiceUserAgentHeaderValuesToJSON)),
+        'header': value['header'] == null ? undefined : (mapValues(value['header'], SessionServiceHeaderValuesToJSON)),
     };
 }
 

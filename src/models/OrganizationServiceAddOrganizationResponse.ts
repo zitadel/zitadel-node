@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
-import type { OrganizationServiceAddOrganizationResponseCreatedAdmin } from './OrganizationServiceAddOrganizationResponseCreatedAdmin.js';
+import type { OrganizationServiceCreatedAdmin } from './OrganizationServiceCreatedAdmin.js';
 import {
-    OrganizationServiceAddOrganizationResponseCreatedAdminFromJSON,
-    OrganizationServiceAddOrganizationResponseCreatedAdminFromJSONTyped,
-    OrganizationServiceAddOrganizationResponseCreatedAdminToJSON,
-    OrganizationServiceAddOrganizationResponseCreatedAdminToJSONTyped,
-} from './OrganizationServiceAddOrganizationResponseCreatedAdmin.js';
+    OrganizationServiceCreatedAdminFromJSON,
+    OrganizationServiceCreatedAdminFromJSONTyped,
+    OrganizationServiceCreatedAdminToJSON,
+    OrganizationServiceCreatedAdminToJSONTyped,
+} from './OrganizationServiceCreatedAdmin.js';
 import type { OrganizationServiceDetails } from './OrganizationServiceDetails.js';
 import {
     OrganizationServiceDetailsFromJSON,
@@ -48,10 +48,10 @@ export interface OrganizationServiceAddOrganizationResponse {
     organizationId?: string;
     /**
      * 
-     * @type {Array<OrganizationServiceAddOrganizationResponseCreatedAdmin>}
+     * @type {Array<OrganizationServiceCreatedAdmin>}
      * @memberof OrganizationServiceAddOrganizationResponse
      */
-    createdAdmins?: Array<OrganizationServiceAddOrganizationResponseCreatedAdmin>;
+    createdAdmins?: Array<OrganizationServiceCreatedAdmin>;
 }
 
 /**
@@ -73,7 +73,7 @@ export function OrganizationServiceAddOrganizationResponseFromJSONTyped(json: an
         
         'details': json['details'] == null ? undefined : OrganizationServiceDetailsFromJSON(json['details']),
         'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
-        'createdAdmins': json['createdAdmins'] == null ? undefined : ((json['createdAdmins'] as Array<any>).map(OrganizationServiceAddOrganizationResponseCreatedAdminFromJSON)),
+        'createdAdmins': json['createdAdmins'] == null ? undefined : ((json['createdAdmins'] as Array<any>).map(OrganizationServiceCreatedAdminFromJSON)),
     };
 }
 
@@ -90,7 +90,7 @@ export function OrganizationServiceAddOrganizationResponseToJSONTyped(value?: Or
         
         'details': OrganizationServiceDetailsToJSON(value['details']),
         'organizationId': value['organizationId'],
-        'createdAdmins': value['createdAdmins'] == null ? undefined : ((value['createdAdmins'] as Array<any>).map(OrganizationServiceAddOrganizationResponseCreatedAdminToJSON)),
+        'createdAdmins': value['createdAdmins'] == null ? undefined : ((value['createdAdmins'] as Array<any>).map(OrganizationServiceCreatedAdminToJSON)),
     };
 }
 

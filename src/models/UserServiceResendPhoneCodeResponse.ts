@@ -34,11 +34,11 @@ export interface UserServiceResendPhoneCodeResponse {
      */
     details?: UserServiceDetails;
     /**
-     * 
+     * in case the verification was set to return_code, the code will be returned
      * @type {string}
      * @memberof UserServiceResendPhoneCodeResponse
      */
-    verificationCode?: string;
+    verificationCode?: string | null;
 }
 
 /**

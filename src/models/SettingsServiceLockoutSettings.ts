@@ -28,11 +28,11 @@ import {
  */
 export interface SettingsServiceLockoutSettings {
     /**
-     * Maximum password check attempts before the account gets locked. Attempts are reset as soon as the password is entered correctly or the password is reset. If set to 0 the account will never be locked.
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof SettingsServiceLockoutSettings
      */
-    maxPasswordAttempts?: string;
+    maxPasswordAttempts?: any | null;
     /**
      * 
      * @type {SettingsServiceResourceOwnerType}
@@ -40,11 +40,11 @@ export interface SettingsServiceLockoutSettings {
      */
     resourceOwnerType?: SettingsServiceResourceOwnerType;
     /**
-     * Maximum failed attempts for a single OTP type (TOTP, SMS, Email) before the account gets locked. Attempts are reset as soon as the OTP is entered correctly. If set to 0 the account will never be locked.
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof SettingsServiceLockoutSettings
      */
-    maxOtpAttempts?: string;
+    maxOtpAttempts?: any | null;
 }
 
 

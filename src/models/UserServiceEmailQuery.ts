@@ -28,7 +28,7 @@ import {
  */
 export interface UserServiceEmailQuery {
     /**
-     * email address of the user
+     * 
      * @type {string}
      * @memberof UserServiceEmailQuery
      */

@@ -45,14 +45,14 @@ export interface IdentityProviderServiceOAuthConfig {
     userEndpoint?: string;
     /**
      * The scopes requested by ZITADEL during the request on the identity
-     * provider.
+     *  provider.
      * @type {Array<string>}
      * @memberof IdentityProviderServiceOAuthConfig
      */
     scopes?: Array<string>;
     /**
      * Defines how the attribute is called where ZITADEL can get the id of the
-     * user.
+     *  user.
      * @type {string}
      * @memberof IdentityProviderServiceOAuthConfig
      */

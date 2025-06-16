@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface SettingsServiceGetGeneralSettingsResponse {
     /**
-     * default organization for the current context
+     * 
      * @type {string}
      * @memberof SettingsServiceGetGeneralSettingsResponse
      */
     defaultOrgId?: string;
     /**
-     * default language for the current context
+     * 
      * @type {string}
      * @memberof SettingsServiceGetGeneralSettingsResponse
      */

@@ -24,7 +24,7 @@ export interface SessionServiceCreatorQuery {
      * @type {string}
      * @memberof SessionServiceCreatorQuery
      */
-    id?: string;
+    id?: string | null;
 }
 
 /**

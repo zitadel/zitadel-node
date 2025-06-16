@@ -12,85 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceIDPOAuthAccessInformation } from './UserServiceIDPOAuthAccessInformation.js';
+import type { Ldap2 } from './Ldap2.js';
 import {
-    UserServiceIDPOAuthAccessInformationFromJSON,
-    UserServiceIDPOAuthAccessInformationFromJSONTyped,
-    UserServiceIDPOAuthAccessInformationToJSON,
-    UserServiceIDPOAuthAccessInformationToJSONTyped,
-} from './UserServiceIDPOAuthAccessInformation.js';
-import type { UserServiceIDPSAMLAccessInformation } from './UserServiceIDPSAMLAccessInformation.js';
+    instanceOfLdap2,
+    Ldap2FromJSON,
+    Ldap2FromJSONTyped,
+    Ldap2ToJSON,
+} from './Ldap2.js';
+import type { Oauth1 } from './Oauth1.js';
 import {
-    UserServiceIDPSAMLAccessInformationFromJSON,
-    UserServiceIDPSAMLAccessInformationFromJSONTyped,
-    UserServiceIDPSAMLAccessInformationToJSON,
-    UserServiceIDPSAMLAccessInformationToJSONTyped,
-} from './UserServiceIDPSAMLAccessInformation.js';
-import type { UserServiceIDPLDAPAccessInformation } from './UserServiceIDPLDAPAccessInformation.js';
+    instanceOfOauth1,
+    Oauth1FromJSON,
+    Oauth1FromJSONTyped,
+    Oauth1ToJSON,
+} from './Oauth1.js';
+import type { Saml1 } from './Saml1.js';
 import {
-    UserServiceIDPLDAPAccessInformationFromJSON,
-    UserServiceIDPLDAPAccessInformationFromJSONTyped,
-    UserServiceIDPLDAPAccessInformationToJSON,
-    UserServiceIDPLDAPAccessInformationToJSONTyped,
-} from './UserServiceIDPLDAPAccessInformation.js';
+    instanceOfSaml1,
+    Saml1FromJSON,
+    Saml1FromJSONTyped,
+    Saml1ToJSON,
+} from './Saml1.js';
 
 /**
+ * @type UserServiceIDPInformation
  * 
  * @export
- * @interface UserServiceIDPInformation
  */
-export interface UserServiceIDPInformation {
-    /**
-     * 
-     * @type {UserServiceIDPOAuthAccessInformation}
-     * @memberof UserServiceIDPInformation
-     */
-    oauth?: UserServiceIDPOAuthAccessInformation;
-    /**
-     * 
-     * @type {UserServiceIDPLDAPAccessInformation}
-     * @memberof UserServiceIDPInformation
-     */
-    ldap?: UserServiceIDPLDAPAccessInformation;
-    /**
-     * 
-     * @type {UserServiceIDPSAMLAccessInformation}
-     * @memberof UserServiceIDPInformation
-     */
-    saml?: UserServiceIDPSAMLAccessInformation;
-    /**
-     * ID of the identity provider
-     * @type {string}
-     * @memberof UserServiceIDPInformation
-     */
-    idpId?: string;
-    /**
-     * ID of the user of the identity provider
-     * @type {string}
-     * @memberof UserServiceIDPInformation
-     */
-    userId?: string;
-    /**
-     * username of the user of the identity provider
-     * @type {string}
-     * @memberof UserServiceIDPInformation
-     */
-    userName?: string;
-    /**
-     * complete information returned by the identity provider
-     * @type {object}
-     * @memberof UserServiceIDPInformation
-     */
-    rawInformation?: object;
-}
-
-/**
- * Check if a given object implements the UserServiceIDPInformation interface.
- */
-export function instanceOfUserServiceIDPInformation(value: object): value is UserServiceIDPInformation {
-    return true;
-}
+export type UserServiceIDPInformation = Ldap2 | Oauth1 | Saml1;
 
 export function UserServiceIDPInformationFromJSON(json: any): UserServiceIDPInformation {
     return UserServiceIDPInformationFromJSONTyped(json, false);
@@ -100,19 +49,23 @@ export function UserServiceIDPInformationFromJSONTyped(json: any, ignoreDiscrimi
     if (json == null) {
         return json;
     }
-    return {
-        
-        'oauth': json['oauth'] == null ? undefined : UserServiceIDPOAuthAccessInformationFromJSON(json['oauth']),
-        'ldap': json['ldap'] == null ? undefined : UserServiceIDPLDAPAccessInformationFromJSON(json['ldap']),
-        'saml': json['saml'] == null ? undefined : UserServiceIDPSAMLAccessInformationFromJSON(json['saml']),
-        'idpId': json['idpId'] == null ? undefined : json['idpId'],
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'userName': json['userName'] == null ? undefined : json['userName'],
-        'rawInformation': json['rawInformation'] == null ? undefined : json['rawInformation'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfLdap2(json)) {
+        return Ldap2FromJSONTyped(json, true);
+    }
+    if (instanceOfOauth1(json)) {
+        return Oauth1FromJSONTyped(json, true);
+    }
+    if (instanceOfSaml1(json)) {
+        return Saml1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServiceIDPInformationToJSON(json: any): UserServiceIDPInformation {
+export function UserServiceIDPInformationToJSON(json: any): any {
     return UserServiceIDPInformationToJSONTyped(json, false);
 }
 
@@ -120,16 +73,19 @@ export function UserServiceIDPInformationToJSONTyped(value?: UserServiceIDPInfor
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfLdap2(value)) {
+        return Ldap2ToJSON(value as Ldap2);
+    }
+    if (instanceOfOauth1(value)) {
+        return Oauth1ToJSON(value as Oauth1);
+    }
+    if (instanceOfSaml1(value)) {
+        return Saml1ToJSON(value as Saml1);
+    }
 
-    return {
-        
-        'oauth': UserServiceIDPOAuthAccessInformationToJSON(value['oauth']),
-        'ldap': UserServiceIDPLDAPAccessInformationToJSON(value['ldap']),
-        'saml': UserServiceIDPSAMLAccessInformationToJSON(value['saml']),
-        'idpId': value['idpId'],
-        'userId': value['userId'],
-        'userName': value['userName'],
-        'rawInformation': value['rawInformation'],
-    };
+    return {};
 }
 

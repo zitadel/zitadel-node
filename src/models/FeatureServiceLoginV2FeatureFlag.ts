@@ -38,7 +38,7 @@ export interface FeatureServiceLoginV2FeatureFlag {
      * @type {string}
      * @memberof FeatureServiceLoginV2FeatureFlag
      */
-    baseUri?: string;
+    baseUri?: string | null;
     /**
      * 
      * @type {FeatureServiceSource}

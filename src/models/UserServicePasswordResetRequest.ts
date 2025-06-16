@@ -12,41 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-import type { UserServiceSendPasswordResetLink } from './UserServiceSendPasswordResetLink.js';
+import type { ReturnCode5 } from './ReturnCode5.js';
 import {
-    UserServiceSendPasswordResetLinkFromJSON,
-    UserServiceSendPasswordResetLinkFromJSONTyped,
-    UserServiceSendPasswordResetLinkToJSON,
-    UserServiceSendPasswordResetLinkToJSONTyped,
-} from './UserServiceSendPasswordResetLink.js';
+    instanceOfReturnCode5,
+    ReturnCode5FromJSON,
+    ReturnCode5FromJSONTyped,
+    ReturnCode5ToJSON,
+} from './ReturnCode5.js';
+import type { SendLink1 } from './SendLink1.js';
+import {
+    instanceOfSendLink1,
+    SendLink1FromJSON,
+    SendLink1FromJSONTyped,
+    SendLink1ToJSON,
+} from './SendLink1.js';
 
 /**
+ * @type UserServicePasswordResetRequest
  * 
  * @export
- * @interface UserServicePasswordResetRequest
  */
-export interface UserServicePasswordResetRequest {
-    /**
-     * 
-     * @type {UserServiceSendPasswordResetLink}
-     * @memberof UserServicePasswordResetRequest
-     */
-    sendLink?: UserServiceSendPasswordResetLink;
-    /**
-     * 
-     * @type {object}
-     * @memberof UserServicePasswordResetRequest
-     */
-    returnCode?: object;
-}
-
-/**
- * Check if a given object implements the UserServicePasswordResetRequest interface.
- */
-export function instanceOfUserServicePasswordResetRequest(value: object): value is UserServicePasswordResetRequest {
-    return true;
-}
+export type UserServicePasswordResetRequest = ReturnCode5 | SendLink1;
 
 export function UserServicePasswordResetRequestFromJSON(json: any): UserServicePasswordResetRequest {
     return UserServicePasswordResetRequestFromJSONTyped(json, false);
@@ -56,14 +42,20 @@ export function UserServicePasswordResetRequestFromJSONTyped(json: any, ignoreDi
     if (json == null) {
         return json;
     }
-    return {
-        
-        'sendLink': json['sendLink'] == null ? undefined : UserServiceSendPasswordResetLinkFromJSON(json['sendLink']),
-        'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfReturnCode5(json)) {
+        return ReturnCode5FromJSONTyped(json, true);
+    }
+    if (instanceOfSendLink1(json)) {
+        return SendLink1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UserServicePasswordResetRequestToJSON(json: any): UserServicePasswordResetRequest {
+export function UserServicePasswordResetRequestToJSON(json: any): any {
     return UserServicePasswordResetRequestToJSONTyped(json, false);
 }
 
@@ -71,11 +63,16 @@ export function UserServicePasswordResetRequestToJSONTyped(value?: UserServicePa
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfReturnCode5(value)) {
+        return ReturnCode5ToJSON(value as ReturnCode5);
+    }
+    if (instanceOfSendLink1(value)) {
+        return SendLink1ToJSON(value as SendLink1);
+    }
 
-    return {
-        
-        'sendLink': UserServiceSendPasswordResetLinkToJSON(value['sendLink']),
-        'returnCode': value['returnCode'],
-    };
+    return {};
 }
 

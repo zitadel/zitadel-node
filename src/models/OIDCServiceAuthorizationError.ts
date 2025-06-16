@@ -38,13 +38,13 @@ export interface OIDCServiceAuthorizationError {
      * @type {string}
      * @memberof OIDCServiceAuthorizationError
      */
-    errorDescription?: string;
+    errorDescription?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OIDCServiceAuthorizationError
      */
-    errorUri?: string;
+    errorUri?: string | null;
 }
 
 

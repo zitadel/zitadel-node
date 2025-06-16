@@ -12,33 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime.js';
-/**
- * 
- * @export
- * @interface SessionServiceCheckUser
- */
-export interface SessionServiceCheckUser {
-    /**
-     * 
-     * @type {string}
-     * @memberof SessionServiceCheckUser
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SessionServiceCheckUser
-     */
-    loginName?: string;
-}
+import type { LoginName } from './LoginName.js';
+import {
+    instanceOfLoginName,
+    LoginNameFromJSON,
+    LoginNameFromJSONTyped,
+    LoginNameToJSON,
+} from './LoginName.js';
+import type { UserId } from './UserId.js';
+import {
+    instanceOfUserId,
+    UserIdFromJSON,
+    UserIdFromJSONTyped,
+    UserIdToJSON,
+} from './UserId.js';
 
 /**
- * Check if a given object implements the SessionServiceCheckUser interface.
+ * @type SessionServiceCheckUser
+ * 
+ * @export
  */
-export function instanceOfSessionServiceCheckUser(value: object): value is SessionServiceCheckUser {
-    return true;
-}
+export type SessionServiceCheckUser = LoginName | UserId;
 
 export function SessionServiceCheckUserFromJSON(json: any): SessionServiceCheckUser {
     return SessionServiceCheckUserFromJSONTyped(json, false);
@@ -48,14 +42,20 @@ export function SessionServiceCheckUserFromJSONTyped(json: any, ignoreDiscrimina
     if (json == null) {
         return json;
     }
-    return {
-        
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'loginName': json['loginName'] == null ? undefined : json['loginName'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfLoginName(json)) {
+        return LoginNameFromJSONTyped(json, true);
+    }
+    if (instanceOfUserId(json)) {
+        return UserIdFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function SessionServiceCheckUserToJSON(json: any): SessionServiceCheckUser {
+export function SessionServiceCheckUserToJSON(json: any): any {
     return SessionServiceCheckUserToJSONTyped(json, false);
 }
 
@@ -63,11 +63,16 @@ export function SessionServiceCheckUserToJSONTyped(value?: SessionServiceCheckUs
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfLoginName(value)) {
+        return LoginNameToJSON(value as LoginName);
+    }
+    if (instanceOfUserId(value)) {
+        return UserIdToJSON(value as UserId);
+    }
 
-    return {
-        
-        'userId': value['userId'],
-        'loginName': value['loginName'],
-    };
+    return {};
 }
 

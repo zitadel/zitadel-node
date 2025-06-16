@@ -21,13 +21,13 @@ import { mapValues } from '../runtime.js';
 export interface UserServiceSendEmailVerificationCode {
     /**
      * Optionally set a url_template, which will be used in the verification mail sent by ZITADEL to guide the user to your verification page.
-     * If no template is set, the default ZITADEL url will be used.
+     *  If no template is set, the default ZITADEL url will be used.
      * 
-     * The following placeholders can be used: UserID, OrgID, Code
+     *  The following placeholders can be used: UserID, OrgID, Code
      * @type {string}
      * @memberof UserServiceSendEmailVerificationCode
      */
-    urlTemplate?: string;
+    urlTemplate?: string | null;
 }
 
 /**

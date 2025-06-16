@@ -28,7 +28,7 @@ import {
  */
 export interface IdentityProviderServiceAzureADConfig {
     /**
-     * 
+     * Client id of the Azure AD application
      * @type {string}
      * @memberof IdentityProviderServiceAzureADConfig
      */
@@ -41,8 +41,8 @@ export interface IdentityProviderServiceAzureADConfig {
     tenant?: IdentityProviderServiceAzureADTenant;
     /**
      * Azure AD doesn't send if the email has been verified. Enable this if the
-     * user email should always be added verified in ZITADEL (no verification
-     * emails will be sent).
+     *  user email should always be added verified in ZITADEL (no verification
+     *  emails will be sent).
      * @type {boolean}
      * @memberof IdentityProviderServiceAzureADConfig
      */

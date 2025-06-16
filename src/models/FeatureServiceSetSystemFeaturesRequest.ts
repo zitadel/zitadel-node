@@ -35,59 +35,59 @@ import {
  */
 export interface FeatureServiceSetSystemFeaturesRequest {
     /**
-     * The login UI will use the settings of the default org (and not from the instance) if no organization context is set
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    loginDefaultOrg?: boolean;
+    loginDefaultOrg?: boolean | null;
     /**
-     * Enable projection triggers during an introspection request. This can act as workaround if there are noticeable consistency issues in the introspection response but can have an impact on performance. We are planning to remove triggers for introspection requests in the future. Please raise an issue if you needed to enable this feature.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    oidcTriggerIntrospectionProjections?: boolean;
+    oidcTriggerIntrospectionProjections?: boolean | null;
     /**
-     * We have recently refactored the introspection endpoint for performance reasons. This feature can be used to rollback to the legacy implementation if unexpected bugs arise. Please raise an issue if you needed to enable this feature.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    oidcLegacyIntrospection?: boolean;
+    oidcLegacyIntrospection?: boolean | null;
     /**
-     * User Schemas allow to manage data schemas of user. If the flag is enabled, you'll be able to use the new API and its features. Note that it is still in an early stage.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    userSchema?: boolean;
+    userSchema?: boolean | null;
     /**
-     * Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    oidcTokenExchange?: boolean;
+    oidcTokenExchange?: boolean | null;
     /**
-     * Improves performance of specified execution paths.
+     * 
      * @type {Array<FeatureServiceImprovedPerformance>}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
     improvedPerformance?: Array<FeatureServiceImprovedPerformance>;
     /**
-     * If the flag is enabled, you'll be able to terminate a single session from the login UI by providing an id_token with a `sid` claim as id_token_hint on the end_session endpoint. Note that currently all sessions from the same user agent (browser) are terminated in the login UI. Sessions managed through the Session API already allow the termination of single sessions.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    oidcSingleV1SessionTermination?: boolean;
+    oidcSingleV1SessionTermination?: boolean | null;
     /**
-     * Do not push user token meta-event user.token.v2.added to improve performance on many concurrent single (machine-)user logins
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    disableUserTokenEvent?: boolean;
+    disableUserTokenEvent?: boolean | null;
     /**
-     * If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    enableBackChannelLogout?: boolean;
+    enableBackChannelLogout?: boolean | null;
     /**
      * 
      * @type {FeatureServiceLoginV2}
@@ -95,11 +95,11 @@ export interface FeatureServiceSetSystemFeaturesRequest {
      */
     loginV2?: FeatureServiceLoginV2;
     /**
-     * Enable a newer, more performant, permission check used for v2 and v3 resource based APIs.
+     * 
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    permissionCheckV2?: boolean;
+    permissionCheckV2?: boolean | null;
 }
 
 /**

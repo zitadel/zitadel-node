@@ -20,7 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceRetrieveIdentityProviderIntentRequest {
     /**
-     * token of the idp intent, previously returned on the success response of the IDP callback
+     * 
+     * @type {string}
+     * @memberof UserServiceRetrieveIdentityProviderIntentRequest
+     */
+    idpIntentId?: string;
+    /**
+     * 
      * @type {string}
      * @memberof UserServiceRetrieveIdentityProviderIntentRequest
      */
@@ -44,6 +50,7 @@ export function UserServiceRetrieveIdentityProviderIntentRequestFromJSONTyped(js
     }
     return {
         
+        'idpIntentId': json['idpIntentId'] == null ? undefined : json['idpIntentId'],
         'idpIntentToken': json['idpIntentToken'] == null ? undefined : json['idpIntentToken'],
     };
 }
@@ -59,6 +66,7 @@ export function UserServiceRetrieveIdentityProviderIntentRequestToJSONTyped(valu
 
     return {
         
+        'idpIntentId': value['idpIntentId'],
         'idpIntentToken': value['idpIntentToken'],
     };
 }

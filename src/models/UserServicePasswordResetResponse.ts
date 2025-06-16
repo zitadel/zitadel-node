@@ -34,11 +34,11 @@ export interface UserServicePasswordResetResponse {
      */
     details?: UserServiceDetails;
     /**
-     * 
+     * in case the medium was set to return_code, the code will be returned
      * @type {string}
      * @memberof UserServicePasswordResetResponse
      */
-    verificationCode?: string;
+    verificationCode?: string | null;
 }
 
 /**

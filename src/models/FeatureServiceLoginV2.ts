@@ -30,7 +30,7 @@ export interface FeatureServiceLoginV2 {
      * @type {string}
      * @memberof FeatureServiceLoginV2
      */
-    baseUri?: string;
+    baseUri?: string | null;
 }
 
 /**

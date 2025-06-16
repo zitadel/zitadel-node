@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface UserServiceInUserEmailsQuery {
     /**
-     * the emails of the users to include
+     * 
      * @type {Array<string>}
      * @memberof UserServiceInUserEmailsQuery
      */
