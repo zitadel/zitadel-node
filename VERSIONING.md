@@ -4,11 +4,11 @@ This document provides a detailed explanation of the versioning and release stra
 
 ## Versioning at a Glance
 
-| Version Change | ZITADEL Compatibility | Type of Change | Example |
-| :--- | :--- | :--- | :--- |
-| **MAJOR** (e.g., 3.x -> 4.x) | Aligned with ZITADEL Core. Requires server upgrade. | Contains breaking changes. | `v3.5.1` -> `v4.0.0` |
-| **MINOR** (e.g., 3.1 -> 3.2) | Compatible with the same ZITADEL major version. | New, non-breaking features added. | `v3.1.4` -> `v3.2.0` |
-| **PATCH** (e.g., 3.1.0 -> 3.1.1)| Compatible with the same ZITADEL major version. | Backwards-compatible bug fixes. | `v3.1.0` -> `v3.1.1` |
+| Version Change                   | ZITADEL Compatibility                               | Type of Change                    | Example              |
+| :------------------------------- | :-------------------------------------------------- | :-------------------------------- | :------------------- |
+| **MAJOR** (e.g., 3.x -> 4.x)     | Aligned with ZITADEL Core. Requires server upgrade. | Contains breaking changes.        | `v3.5.1` -> `v4.0.0` |
+| **MINOR** (e.g., 3.1 -> 3.2)     | Compatible with the same ZITADEL major version.     | New, non-breaking features added. | `v3.1.4` -> `v3.2.0` |
+| **PATCH** (e.g., 3.1.0 -> 3.1.1) | Compatible with the same ZITADEL major version.     | Backwards-compatible bug fixes.   | `v3.1.0` -> `v3.1.1` |
 
 ---
 
@@ -17,6 +17,7 @@ This document provides a detailed explanation of the versioning and release stra
 Our SDKs follow a version alignment policy to ensure seamless compatibility with the ZITADEL core application. The `MAJOR` version number of the SDK directly corresponds to the `MAJOR` version of the ZITADEL instance it is designed to work with.
 
 For example:
+
 - Any SDK release in the `3.x.x` series is built for and tested against ZITADEL `v3`.
 - When ZITADEL `v4` is released, a corresponding `4.0.0` version of the SDK will be released.
 
@@ -37,6 +38,7 @@ To allow users time for upgrades, we provide support for the two most recent maj
 - **Unsupported Versions:** Any version prior to `N-1` is considered deprecated and unsupported.
 
 For example, when SDK `v4.x.x` is released:
+
 - `v4.x.x` becomes the current, fully supported version.
 - `v3.x.x` becomes the previous (`N-1`) version and will continue to receive critical backported fixes.
 - `v2.x.x` and older versions become unsupported.
