@@ -34,4 +34,3 @@ jobs:
         uses: mridang/action-commit-lint@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-

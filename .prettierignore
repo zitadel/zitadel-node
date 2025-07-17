@@ -16,9 +16,6 @@ node_modules
 /public
 /assets
 
-# Configuration files
-*.json
-
 # Minified files
 # Source maps
 *.map
