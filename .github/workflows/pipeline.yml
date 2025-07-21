@@ -2,8 +2,6 @@ name: Pipeline
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 permissions:
@@ -54,8 +52,8 @@ jobs:
   code-inspection:
     name: Run Qodana Inspections
     needs: run-tests
-    uses: ./.github/workflows/qodana.yml
     if: ${{ always() }}
+    uses: ./.github/workflows/qodana.yml
     with:
       ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
     secrets: inherit
@@ -72,7 +70,7 @@ jobs:
     name: Check Build Status
     runs-on: ubuntu-latest
     needs:
-      #      - lint-commits
+      #- lint-commits
       - code-style
       - compat-check
       - type-check

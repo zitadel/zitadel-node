@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  steep-check:
+  tsc-check:
     runs-on: ubuntu-latest
     name: Inspect Code
 

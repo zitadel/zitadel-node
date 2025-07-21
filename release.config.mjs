@@ -1,6 +1,12 @@
 // noinspection JSUnusedGlobalSymbols
 export default {
-  branches: ['main'],
+  branches: [
+    'main',
+    {
+      name: 'beta',
+      prerelease: 'beta',
+    },
+  ],
   foo: [
     '@semantic-release/commit-analyzer',
     [
