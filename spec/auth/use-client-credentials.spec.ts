@@ -28,6 +28,7 @@ describe('UseClientCredentialsSpec', () => {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
         },
+        signal: AbortSignal.timeout(5000),
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -57,6 +58,7 @@ describe('UseClientCredentialsSpec', () => {
               Accept: 'application/json',
             },
             body: '{}',
+            signal: AbortSignal.timeout(5000),
           });
         } catch (error) {
           if (error instanceof Error) {
@@ -117,7 +119,7 @@ describe('UseClientCredentialsSpec', () => {
     );
 
     await client.settings.settingsServiceGetGeneralSettings();
-  });
+  }, 120000);
 
   /**
    * Expect an ApiException when using invalid client credentials.
@@ -133,5 +135,5 @@ describe('UseClientCredentialsSpec', () => {
     await expect(
       invalid.settings.settingsServiceGetGeneralSettings(),
     ).rejects.toThrow(ZitadelException);
-  });
+  }, 120000);
 });

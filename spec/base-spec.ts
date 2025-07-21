@@ -90,7 +90,7 @@ export abstract class AbstractIntegrationTest {
     console.log(`Exposed BASE_URL as: ${this.baseUrl}`);
 
     console.log('Sleeping for 20 seconds to allow services to initialize...');
-    await setTimeout(20000);
+    await setTimeout(40000);
     console.log('Sleep finished.');
   }
 
@@ -123,8 +123,12 @@ export abstract class AbstractIntegrationTest {
    */
   public static tearDownAfterClass(): void {
     console.log('Tearing down Docker Compose stack...');
+    console.log(fs.existsSync('etc/zitadel_output'));
     if (fs.existsSync(this.composeFilePath)) {
       try {
+        fs.rmdirSync('etc/zitadel_output', { recursive: true });
+        const commandl = `docker compose -f "${this.composeFilePath}" logs`;
+        execSync(commandl, { stdio: 'inherit' });
         const command = `docker compose -f "${this.composeFilePath}" down -v`;
         execSync(command, { stdio: 'inherit' });
         console.log('Docker Compose stack torn down.');

@@ -28,7 +28,7 @@ describe('UsePrivateKeySpec', () => {
       context.jwtKey,
     );
     await client.settings.settingsServiceGetGeneralSettings();
-  });
+  }, 120000);
 
   /**
    * Expect an ApiException when using an invalid private key assertion.
@@ -42,5 +42,5 @@ describe('UsePrivateKeySpec', () => {
     await expect(
       invalid.settings.settingsServiceGetGeneralSettings(),
     ).rejects.toThrow(ZitadelException);
-  });
+  }, 120000);
 });

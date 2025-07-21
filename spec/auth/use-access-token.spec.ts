@@ -37,5 +37,5 @@ describe('UseAccessTokenSpec', () => {
     await expect(
       invalid.settings.settingsServiceGetGeneralSettings(),
     ).rejects.toThrow(ZitadelException);
-  });
+  }, 120000);
 });
