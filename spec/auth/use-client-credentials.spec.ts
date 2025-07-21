@@ -78,7 +78,6 @@ describe('UseClientCredentialsSpec', () => {
           if (clientId && clientSecret) {
             return { clientId, clientSecret };
           } else {
-            console.log(secretData);
             throw new Error(
               "API response for secret is missing 'clientId' or 'clientSecret'.",
             );
@@ -90,7 +89,6 @@ describe('UseClientCredentialsSpec', () => {
           );
         }
       } else {
-        console.log(userPayload);
         throw new Error(
           `Could not parse a valid user ID from API response for login name: '${loginName}'.`,
         );
