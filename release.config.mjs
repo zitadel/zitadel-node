@@ -7,7 +7,7 @@ export default {
       prerelease: 'beta',
     },
   ],
-  foo: [
+  plugins: [
     '@semantic-release/commit-analyzer',
     [
       '@mridang/semantic-release-peer-version',
@@ -46,15 +46,15 @@ export default {
         assets: [],
       },
     ],
-    [
-      '@semantic-release/npm',
-      {
-        npmPublish: true,
-        pkgRoot: '.',
-        tarballDir: '.',
-        access: 'public',
-      },
-    ],
+    // [
+    //   '@semantic-release/npm',
+    //   {
+    //     npmPublish: true,
+    //     pkgRoot: '.',
+    //     tarballDir: '.',
+    //     access: 'public',
+    //   },
+    // ],
     [
       '@semantic-release/git',
       {
