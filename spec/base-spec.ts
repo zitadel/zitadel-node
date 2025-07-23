@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 /**
  * Defines the shape of the context object provided to tests.
  */
-export interface TestContext {
+interface TestContext {
   authToken: string;
   jwtKey: string;
   baseUrl: string;
@@ -27,7 +27,7 @@ export interface TestContext {
  * and JWT keys) from files and make them accessible via protected getters
  * for use in concrete test implementations.
  */
-export abstract class AbstractIntegrationTest {
+abstract class AbstractIntegrationTest {
   /**
    * The authentication token loaded from a file.
    */
