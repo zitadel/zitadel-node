@@ -43,28 +43,28 @@
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/github": "^11.0.4",
     "@semantic-release/npm": "^12.0.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "@tsconfig/node20": "latest",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.15",
-    "dotenv": "^17.2.0",
-    "eslint": "^9.31.0",
-    "jest": "^30.0.4",
+    "@types/node": "^24.2.1",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.33.0",
+    "jest": "^30.0.5",
     "jest-junit": "^16.0.0",
     "knip": "^5.62.0",
     "prettier": "^3.6.2",
-    "testcontainers": "^11.3.1",
-    "ts-jest": "^29.4.0",
-    "typescript": "^5.8.3"
+    "testcontainers": "^11.5.1",
+    "ts-jest": "^29.4.1",
+    "typescript": "^5.9.2"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@jest/globals": "^30.0.4",
+    "@jest/globals": "^30.0.5",
     "jose": "^6.0.12",
-    "oauth4webapi": "^3.6.0"
+    "oauth4webapi": "^3.6.2"
   }
 }
