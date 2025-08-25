@@ -46,15 +46,14 @@ export default {
         assets: [],
       },
     ],
-    // [
-    //   '@semantic-release/npm',
-    //   {
-    //     npmPublish: true,
-    //     pkgRoot: '.',
-    //     tarballDir: '.',
-    //     access: 'public',
-    //   },
-    // ],
+    [
+      '@semantic-release/npm',
+      {
+        npmPublish: true,
+        pkgRoot: '.',
+        tarballDir: '.',
+      },
+    ],
     [
       '@semantic-release/git',
       {

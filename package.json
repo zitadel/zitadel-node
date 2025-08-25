@@ -60,7 +60,7 @@
     "typescript": "^5.8.3"
   },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "@jest/globals": "^30.0.4",
