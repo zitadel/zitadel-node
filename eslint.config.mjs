@@ -1,8 +1,8 @@
 import mridangPlugin from '@mridang/eslint-defaults';
 
 export default [
-  ...mridangPlugin.configs.recommended, // Spread if it's an array
+  ...mridangPlugin.configs.recommended,
   {
-    ignores: ['src/apis/*', 'src/models/*'],
+    ignores: ['src/apis/*', 'src/models/*', 'README.md'],
   },
 ];

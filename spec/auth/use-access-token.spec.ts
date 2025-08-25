@@ -24,7 +24,7 @@ describe('UseAccessTokenSpec', () => {
   it('testRetrievesGeneralSettingsWithValidAuth', async () => {
     const client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
 
-    await client.settings.settingsServiceGetGeneralSettings();
+    await client.settings.getGeneralSettings({ body: {} });
   });
 
   /**
@@ -35,7 +35,7 @@ describe('UseAccessTokenSpec', () => {
     const invalid = Zitadel.withAccessToken(context.baseUrl, 'invalid');
 
     await expect(
-      invalid.settings.settingsServiceGetGeneralSettings(),
+      invalid.settings.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });

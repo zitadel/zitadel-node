@@ -39,7 +39,7 @@ describe('SessionServiceSanityCheckSpec', () => {
    */
   beforeEach(async () => {
     const username = crypto.randomUUID().substring(0, 8);
-    await client.users.userServiceAddHumanUser({
+    await client.users.addHumanUser({
       userServiceAddHumanUserRequest: {
         username: username,
         profile: {
@@ -63,15 +63,16 @@ describe('SessionServiceSanityCheckSpec', () => {
       },
     };
 
-    const response = await client.sessions.sessionServiceCreateSession(request);
+    const response = await client.sessions.createSession(request);
     sessionId = response.sessionId || '';
   });
 
   afterEach(async () => {
     try {
-      await client.sessions.sessionServiceDeleteSession({
-        sessionId,
-        sessionServiceDeleteSessionRequest: {},
+      await client.sessions.deleteSession({
+        sessionServiceDeleteSessionRequest: {
+          sessionId,
+        },
       });
     } catch {
       // Ignore cleanup errors
@@ -82,8 +83,10 @@ describe('SessionServiceSanityCheckSpec', () => {
    * @throws ApiException
    */
   it('testRetrievesTheSessionDetailsById', async () => {
-    const response = await client.sessions.sessionServiceGetSession({
-      sessionId,
+    const response = await client.sessions.getSession({
+      sessionServiceGetSessionRequest: {
+        sessionId,
+      },
     });
     expect(response.session?.id).toBe(sessionId);
   });
@@ -97,7 +100,7 @@ describe('SessionServiceSanityCheckSpec', () => {
         queries: [],
       },
     };
-    const response = await client.sessions.sessionServiceListSessions(request);
+    const response = await client.sessions.listSessions(request);
     const ids = response.sessions?.map((session) => session.id);
     expect(ids).toContain(sessionId);
   });
@@ -106,9 +109,9 @@ describe('SessionServiceSanityCheckSpec', () => {
    * @throws ApiException
    */
   it('testUpdatesTheSessionLifetimeAndReturnsANewToken', async () => {
-    const response = await client.sessions.sessionServiceSetSession({
-      sessionId: sessionId,
+    const response = await client.sessions.setSession({
       sessionServiceSetSessionRequest: {
+        sessionId: sessionId,
         lifetime: '36000s',
       },
     });
@@ -118,7 +121,9 @@ describe('SessionServiceSanityCheckSpec', () => {
   it('testRaisesAnApiExceptionWhenRetrievingANonExistentSession', async () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
-      client.sessions.sessionServiceGetSession({ sessionId: nonExistentId }),
+      client.sessions.getSession({
+        sessionServiceGetSessionRequest: { sessionId: nonExistentId },
+      }),
     ).rejects.toThrow(ApiException);
   });
 });

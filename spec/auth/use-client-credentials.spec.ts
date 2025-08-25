@@ -116,7 +116,7 @@ describe('UseClientCredentialsSpec', () => {
       credentials.clientSecret,
     );
 
-    await client.settings.settingsServiceGetGeneralSettings();
+    await client.settings.getGeneralSettings({ body: {} });
   }, 120000);
 
   /**
@@ -131,7 +131,7 @@ describe('UseClientCredentialsSpec', () => {
     );
 
     await expect(
-      invalid.settings.settingsServiceGetGeneralSettings(),
+      invalid.settings.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });
