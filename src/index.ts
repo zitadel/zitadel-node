@@ -1,5 +1,19 @@
 import {
   ActionServiceApi,
+  BetaActionServiceApi,
+  BetaAppServiceApi,
+  BetaAuthorizationServiceApi,
+  BetaFeatureServiceApi,
+  BetaInstanceServiceApi,
+  BetaInternalPermissionServiceApi,
+  BetaOIDCServiceApi,
+  BetaOrganizationServiceApi,
+  BetaProjectServiceApi,
+  BetaSessionServiceApi,
+  BetaSettingsServiceApi,
+  BetaTelemetryServiceApi,
+  BetaUserServiceApi,
+  BetaWebKeyServiceApi,
   FeatureServiceApi,
   IdentityProviderServiceApi,
   OIDCServiceApi,
@@ -26,6 +40,20 @@ export * from './auth/index.js';
 
 export default class Zitadel {
   public readonly actions: ActionServiceApi;
+  public readonly betaActions: BetaActionServiceApi;
+  public readonly betaApps: BetaAppServiceApi;
+  public readonly betaAuthorizations: BetaAuthorizationServiceApi;
+  public readonly betaFeatures: BetaFeatureServiceApi;
+  public readonly betaInstances: BetaInstanceServiceApi;
+  public readonly betaInternalPermissions: BetaInternalPermissionServiceApi;
+  public readonly betaOidc: BetaOIDCServiceApi;
+  public readonly betaOrganizations: BetaOrganizationServiceApi;
+  public readonly betaProjects: BetaProjectServiceApi;
+  public readonly betaSessions: BetaSessionServiceApi;
+  public readonly betaSettings: BetaSettingsServiceApi;
+  public readonly betaTelemetry: BetaTelemetryServiceApi;
+  public readonly betaUsers: BetaUserServiceApi;
+  public readonly betaWebkeys: BetaWebKeyServiceApi;
   public readonly features: FeatureServiceApi;
   public readonly idps: IdentityProviderServiceApi;
   public readonly oidc: OIDCServiceApi;
@@ -44,11 +72,23 @@ export default class Zitadel {
 
     if (mutateConfig) {
       mutateConfig(config);
-    } else {
-      // No mutation by default.
     }
 
     this.actions = new ActionServiceApi(config);
+    this.betaActions = new BetaActionServiceApi(config);
+    this.betaApps = new BetaAppServiceApi(config);
+    this.betaAuthorizations = new BetaAuthorizationServiceApi(config);
+    this.betaFeatures = new BetaFeatureServiceApi(config);
+    this.betaInstances = new BetaInstanceServiceApi(config);
+    this.betaInternalPermissions = new BetaInternalPermissionServiceApi(config);
+    this.betaOidc = new BetaOIDCServiceApi(config);
+    this.betaOrganizations = new BetaOrganizationServiceApi(config);
+    this.betaProjects = new BetaProjectServiceApi(config);
+    this.betaSessions = new BetaSessionServiceApi(config);
+    this.betaSettings = new BetaSettingsServiceApi(config);
+    this.betaTelemetry = new BetaTelemetryServiceApi(config);
+    this.betaUsers = new BetaUserServiceApi(config);
+    this.betaWebkeys = new BetaWebKeyServiceApi(config);
     this.features = new FeatureServiceApi(config);
     this.idps = new IdentityProviderServiceApi(config);
     this.oidc = new OIDCServiceApi(config);
