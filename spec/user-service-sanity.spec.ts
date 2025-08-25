@@ -1,7 +1,10 @@
 import crypto from 'crypto';
 import Zitadel from '../src/index.js';
 // noinspection ES6PreferShortImport
-import { UserServiceAddHumanUserResponse, UserServiceUser, } from '../src/models/index.js';
+import {
+  UserServiceAddHumanUserResponse,
+  UserServiceUser,
+} from '../src/models/index.js';
 // noinspection ES6PreferShortImport
 import { ApiException } from '../src/api-exception.js';
 import { useIntegrationEnvironment } from './base-spec.js';
