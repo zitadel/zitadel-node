@@ -24,13 +24,13 @@ export interface BetaUserServiceVerifyPasskeyRegistrationRequest {
      * @type {string}
      * @memberof BetaUserServiceVerifyPasskeyRegistrationRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyPasskeyRegistrationRequest
      */
-    passkeyId: string;
+    passkeyId?: string;
     /**
      * `Struct` represents a structured data value, consisting of fields
      *  which map to dynamically typed values. In some languages, `Struct`
@@ -43,23 +43,19 @@ export interface BetaUserServiceVerifyPasskeyRegistrationRequest {
      * @type {{ [key: string]: any; }}
      * @memberof BetaUserServiceVerifyPasskeyRegistrationRequest
      */
-    publicKeyCredential: { [key: string]: any; };
+    publicKeyCredential?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyPasskeyRegistrationRequest
      */
-    passkeyName: string;
+    passkeyName?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceVerifyPasskeyRegistrationRequest interface.
  */
 export function instanceOfBetaUserServiceVerifyPasskeyRegistrationRequest(value: object): value is BetaUserServiceVerifyPasskeyRegistrationRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('passkeyId' in value) || value['passkeyId'] === undefined) return false;
-    if (!('publicKeyCredential' in value) || value['publicKeyCredential'] === undefined) return false;
-    if (!('passkeyName' in value) || value['passkeyName'] === undefined) return false;
     return true;
 }
 
@@ -73,10 +69,10 @@ export function BetaUserServiceVerifyPasskeyRegistrationRequestFromJSONTyped(jso
     }
     return {
         
-        'userId': json['userId'],
-        'passkeyId': json['passkeyId'],
-        'publicKeyCredential': json['publicKeyCredential'],
-        'passkeyName': json['passkeyName'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'passkeyId': json['passkeyId'] == null ? undefined : json['passkeyId'],
+        'publicKeyCredential': json['publicKeyCredential'] == null ? undefined : json['publicKeyCredential'],
+        'passkeyName': json['passkeyName'] == null ? undefined : json['passkeyName'],
     };
 }
 

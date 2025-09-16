@@ -24,14 +24,13 @@ export interface WebKeyServiceDeleteWebKeyRequest {
      * @type {string}
      * @memberof WebKeyServiceDeleteWebKeyRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the WebKeyServiceDeleteWebKeyRequest interface.
  */
 export function instanceOfWebKeyServiceDeleteWebKeyRequest(value: object): value is WebKeyServiceDeleteWebKeyRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function WebKeyServiceDeleteWebKeyRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

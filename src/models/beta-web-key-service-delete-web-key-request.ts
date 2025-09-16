@@ -24,14 +24,13 @@ export interface BetaWebKeyServiceDeleteWebKeyRequest {
      * @type {string}
      * @memberof BetaWebKeyServiceDeleteWebKeyRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaWebKeyServiceDeleteWebKeyRequest interface.
  */
 export function instanceOfBetaWebKeyServiceDeleteWebKeyRequest(value: object): value is BetaWebKeyServiceDeleteWebKeyRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaWebKeyServiceDeleteWebKeyRequestFromJSONTyped(json: any, ign
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

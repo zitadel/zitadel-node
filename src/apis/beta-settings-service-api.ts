@@ -133,7 +133,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active identity providers
-     * GetActiveIdentityProviders
+     * Get the current active identity providers
      */
     private async getActiveIdentityProvidersRaw(requestParameters: BetaSettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetActiveIdentityProvidersResponse>> {
         if (requestParameters['betaSettingsServiceGetActiveIdentityProvidersRequest'] == null) {
@@ -170,7 +170,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active identity providers
-     * GetActiveIdentityProviders
+     * Get the current active identity providers
      */
     async getActiveIdentityProviders(requestParameters: BetaSettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetActiveIdentityProvidersResponse> {
         const response = await this.getActiveIdentityProvidersRaw(requestParameters, initOverrides);
@@ -179,7 +179,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active branding settings
-     * GetBrandingSettings
+     * Get the current active branding settings
      */
     private async getBrandingSettingsRaw(requestParameters: BetaSettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetBrandingSettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetBrandingSettingsRequest'] == null) {
@@ -216,7 +216,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active branding settings
-     * GetBrandingSettings
+     * Get the current active branding settings
      */
     async getBrandingSettings(requestParameters: BetaSettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetBrandingSettingsResponse> {
         const response = await this.getBrandingSettingsRaw(requestParameters, initOverrides);
@@ -225,7 +225,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the domain settings
-     * GetDomainSettings
+     * Get the domain settings
      */
     private async getDomainSettingsRaw(requestParameters: BetaSettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetDomainSettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetDomainSettingsRequest'] == null) {
@@ -262,7 +262,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the domain settings
-     * GetDomainSettings
+     * Get the domain settings
      */
     async getDomainSettings(requestParameters: BetaSettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetDomainSettingsResponse> {
         const response = await this.getDomainSettingsRaw(requestParameters, initOverrides);
@@ -271,7 +271,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get basic information over the instance
-     * GetGeneralSettings
+     * Get basic information over the instance
      */
     private async getGeneralSettingsRaw(requestParameters: BetaSettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetGeneralSettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -308,7 +308,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get basic information over the instance
-     * GetGeneralSettings
+     * Get basic information over the instance
      */
     async getGeneralSettings(requestParameters: BetaSettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetGeneralSettingsResponse> {
         const response = await this.getGeneralSettingsRaw(requestParameters, initOverrides);
@@ -317,7 +317,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the legal and support settings
-     * GetLegalAndSupportSettings
+     * Get the legal and support settings
      */
     private async getLegalAndSupportSettingsRaw(requestParameters: BetaSettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLegalAndSupportSettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetLegalAndSupportSettingsRequest'] == null) {
@@ -354,7 +354,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the legal and support settings
-     * GetLegalAndSupportSettings
+     * Get the legal and support settings
      */
     async getLegalAndSupportSettings(requestParameters: BetaSettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLegalAndSupportSettingsResponse> {
         const response = await this.getLegalAndSupportSettingsRaw(requestParameters, initOverrides);
@@ -363,7 +363,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the lockout settings
-     * GetLockoutSettings
+     * Get the lockout settings
      */
     private async getLockoutSettingsRaw(requestParameters: BetaSettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLockoutSettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetLockoutSettingsRequest'] == null) {
@@ -400,7 +400,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the lockout settings
-     * GetLockoutSettings
+     * Get the lockout settings
      */
     async getLockoutSettings(requestParameters: BetaSettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLockoutSettingsResponse> {
         const response = await this.getLockoutSettingsRaw(requestParameters, initOverrides);
@@ -409,7 +409,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the login settings
-     * GetLoginSettings
+     * Get the login settings
      */
     private async getLoginSettingsRaw(requestParameters: BetaSettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLoginSettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetLoginSettingsRequest'] == null) {
@@ -446,7 +446,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the login settings
-     * GetLoginSettings
+     * Get the login settings
      */
     async getLoginSettings(requestParameters: BetaSettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLoginSettingsResponse> {
         const response = await this.getLoginSettingsRaw(requestParameters, initOverrides);
@@ -455,7 +455,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password complexity settings
-     * GetPasswordComplexitySettings
+     * Get the password complexity settings
      */
     private async getPasswordComplexitySettingsRaw(requestParameters: BetaSettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetPasswordComplexitySettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetPasswordComplexitySettingsRequest'] == null) {
@@ -492,7 +492,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password complexity settings
-     * GetPasswordComplexitySettings
+     * Get the password complexity settings
      */
     async getPasswordComplexitySettings(requestParameters: BetaSettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetPasswordComplexitySettingsResponse> {
         const response = await this.getPasswordComplexitySettingsRaw(requestParameters, initOverrides);
@@ -501,7 +501,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password expiry settings
-     * GetPasswordExpirySettings
+     * Get the password expiry settings
      */
     private async getPasswordExpirySettingsRaw(requestParameters: BetaSettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetPasswordExpirySettingsResponse>> {
         if (requestParameters['betaSettingsServiceGetPasswordExpirySettingsRequest'] == null) {
@@ -538,7 +538,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password expiry settings
-     * GetPasswordExpirySettings
+     * Get the password expiry settings
      */
     async getPasswordExpirySettings(requestParameters: BetaSettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetPasswordExpirySettingsResponse> {
         const response = await this.getPasswordExpirySettingsRaw(requestParameters, initOverrides);
@@ -547,7 +547,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the security settings
-     * GetSecuritySettings
+     * Get the security settings
      */
     private async getSecuritySettingsRaw(requestParameters: BetaSettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetSecuritySettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -584,7 +584,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the security settings
-     * GetSecuritySettings
+     * Get the security settings
      */
     async getSecuritySettings(requestParameters: BetaSettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetSecuritySettingsResponse> {
         const response = await this.getSecuritySettingsRaw(requestParameters, initOverrides);
@@ -593,7 +593,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Set the security settings
-     * SetSecuritySettings
+     * Set the security settings
      */
     private async setSecuritySettingsRaw(requestParameters: BetaSettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceSetSecuritySettingsResponse>> {
         if (requestParameters['betaSettingsServiceSetSecuritySettingsRequest'] == null) {
@@ -630,7 +630,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Set the security settings
-     * SetSecuritySettings
+     * Set the security settings
      */
     async setSecuritySettings(requestParameters: BetaSettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceSetSecuritySettingsResponse> {
         const response = await this.setSecuritySettingsRaw(requestParameters, initOverrides);

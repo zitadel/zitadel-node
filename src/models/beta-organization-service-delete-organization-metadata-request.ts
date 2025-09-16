@@ -24,7 +24,7 @@ export interface BetaOrganizationServiceDeleteOrganizationMetadataRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceDeleteOrganizationMetadataRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * The keys for the Organization metadata to be deleted.
      * @type {Array<string>}
@@ -37,7 +37,6 @@ export interface BetaOrganizationServiceDeleteOrganizationMetadataRequest {
  * Check if a given object implements the BetaOrganizationServiceDeleteOrganizationMetadataRequest interface.
  */
 export function instanceOfBetaOrganizationServiceDeleteOrganizationMetadataRequest(value: object): value is BetaOrganizationServiceDeleteOrganizationMetadataRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaOrganizationServiceDeleteOrganizationMetadataRequestFromJSON
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'keys': json['keys'] == null ? undefined : json['keys'],
     };
 }

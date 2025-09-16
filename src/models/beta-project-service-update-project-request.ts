@@ -32,7 +32,7 @@ export interface BetaProjectServiceUpdateProjectRequest {
      * @type {string}
      * @memberof BetaProjectServiceUpdateProjectRequest
      */
-    id: string;
+    id?: string;
     /**
      * Name of the project.
      * @type {string}
@@ -71,7 +71,6 @@ export interface BetaProjectServiceUpdateProjectRequest {
  * Check if a given object implements the BetaProjectServiceUpdateProjectRequest interface.
  */
 export function instanceOfBetaProjectServiceUpdateProjectRequest(value: object): value is BetaProjectServiceUpdateProjectRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -85,7 +84,7 @@ export function BetaProjectServiceUpdateProjectRequestFromJSONTyped(json: any, i
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'projectRoleAssertion': json['projectRoleAssertion'] == null ? undefined : json['projectRoleAssertion'],
         'projectRoleCheck': json['projectRoleCheck'] == null ? undefined : json['projectRoleCheck'],

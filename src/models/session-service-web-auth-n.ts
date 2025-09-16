@@ -32,13 +32,13 @@ export interface SessionServiceWebAuthN {
      * @type {string}
      * @memberof SessionServiceWebAuthN
      */
-    domain: string;
+    domain?: string;
     /**
      * 
      * @type {SessionServiceUserVerificationRequirement}
      * @memberof SessionServiceWebAuthN
      */
-    userVerificationRequirement: SessionServiceUserVerificationRequirement;
+    userVerificationRequirement?: SessionServiceUserVerificationRequirement;
 }
 
 
@@ -47,8 +47,6 @@ export interface SessionServiceWebAuthN {
  * Check if a given object implements the SessionServiceWebAuthN interface.
  */
 export function instanceOfSessionServiceWebAuthN(value: object): value is SessionServiceWebAuthN {
-    if (!('domain' in value) || value['domain'] === undefined) return false;
-    if (!('userVerificationRequirement' in value) || value['userVerificationRequirement'] === undefined) return false;
     return true;
 }
 
@@ -62,8 +60,8 @@ export function SessionServiceWebAuthNFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'domain': json['domain'],
-        'userVerificationRequirement': SessionServiceUserVerificationRequirementFromJSON(json['userVerificationRequirement']),
+        'domain': json['domain'] == null ? undefined : json['domain'],
+        'userVerificationRequirement': json['userVerificationRequirement'] == null ? undefined : SessionServiceUserVerificationRequirementFromJSON(json['userVerificationRequirement']),
     };
 }
 

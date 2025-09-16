@@ -32,7 +32,7 @@ export interface OrganizationServiceAddOrganizationRequest {
      * @type {string}
      * @memberof OrganizationServiceAddOrganizationRequest
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {Array<OrganizationServiceAdmin>}
@@ -51,7 +51,6 @@ export interface OrganizationServiceAddOrganizationRequest {
  * Check if a given object implements the OrganizationServiceAddOrganizationRequest interface.
  */
 export function instanceOfOrganizationServiceAddOrganizationRequest(value: object): value is OrganizationServiceAddOrganizationRequest {
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function OrganizationServiceAddOrganizationRequestFromJSONTyped(json: any
     }
     return {
         
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(OrganizationServiceAdminFromJSON)),
         'orgId': json['orgId'] == null ? undefined : json['orgId'],
     };

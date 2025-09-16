@@ -348,6 +348,7 @@ export * from './beta-project-service-activate-project-request.js';
 export * from './beta-project-service-activate-project-response.js';
 export * from './beta-project-service-add-project-role-request.js';
 export * from './beta-project-service-add-project-role-response.js';
+export * from './beta-project-service-admin.js';
 export * from './beta-project-service-any.js';
 export * from './beta-project-service-connect-error.js';
 export * from './beta-project-service-create-project-grant-request.js';

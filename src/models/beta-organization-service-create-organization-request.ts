@@ -32,7 +32,7 @@ export interface BetaOrganizationServiceCreateOrganizationRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceCreateOrganizationRequest
      */
-    name: string;
+    name?: string;
     /**
      * Optionally set your own id unique for the organization.
      * @type {string}
@@ -51,7 +51,6 @@ export interface BetaOrganizationServiceCreateOrganizationRequest {
  * Check if a given object implements the BetaOrganizationServiceCreateOrganizationRequest interface.
  */
 export function instanceOfBetaOrganizationServiceCreateOrganizationRequest(value: object): value is BetaOrganizationServiceCreateOrganizationRequest {
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function BetaOrganizationServiceCreateOrganizationRequestFromJSONTyped(js
     }
     return {
         
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'id': json['id'] == null ? undefined : json['id'],
         'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(BetaOrganizationServiceAdminFromJSON)),
     };

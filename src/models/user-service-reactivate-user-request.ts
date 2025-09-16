@@ -24,14 +24,13 @@ export interface UserServiceReactivateUserRequest {
      * @type {string}
      * @memberof UserServiceReactivateUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceReactivateUserRequest interface.
  */
 export function instanceOfUserServiceReactivateUserRequest(value: object): value is UserServiceReactivateUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceReactivateUserRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

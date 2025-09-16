@@ -31,14 +31,13 @@ export interface SessionServiceCheckWebAuthN {
      * @type {{ [key: string]: any; }}
      * @memberof SessionServiceCheckWebAuthN
      */
-    credentialAssertionData: { [key: string]: any; };
+    credentialAssertionData?: { [key: string]: any; };
 }
 
 /**
  * Check if a given object implements the SessionServiceCheckWebAuthN interface.
  */
 export function instanceOfSessionServiceCheckWebAuthN(value: object): value is SessionServiceCheckWebAuthN {
-    if (!('credentialAssertionData' in value) || value['credentialAssertionData'] === undefined) return false;
     return true;
 }
 
@@ -52,7 +51,7 @@ export function SessionServiceCheckWebAuthNFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'credentialAssertionData': json['credentialAssertionData'],
+        'credentialAssertionData': json['credentialAssertionData'] == null ? undefined : json['credentialAssertionData'],
     };
 }
 

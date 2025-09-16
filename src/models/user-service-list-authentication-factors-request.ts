@@ -39,7 +39,7 @@ export interface UserServiceListAuthenticationFactorsRequest {
      * @type {string}
      * @memberof UserServiceListAuthenticationFactorsRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {Array<UserServiceAuthFactors>}
@@ -58,7 +58,6 @@ export interface UserServiceListAuthenticationFactorsRequest {
  * Check if a given object implements the UserServiceListAuthenticationFactorsRequest interface.
  */
 export function instanceOfUserServiceListAuthenticationFactorsRequest(value: object): value is UserServiceListAuthenticationFactorsRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -72,7 +71,7 @@ export function UserServiceListAuthenticationFactorsRequestFromJSONTyped(json: a
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'authFactors': json['authFactors'] == null ? undefined : ((json['authFactors'] as Array<any>).map(UserServiceAuthFactorsFromJSON)),
         'states': json['states'] == null ? undefined : ((json['states'] as Array<any>).map(UserServiceAuthFactorStateFromJSON)),
     };

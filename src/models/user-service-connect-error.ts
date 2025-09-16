@@ -41,11 +41,11 @@ export interface UserServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {UserServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<UserServiceAny>}
      * @memberof UserServiceConnectError
      */
-    detail?: UserServiceAny;
+    details?: Array<UserServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function UserServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrimina
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : UserServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(UserServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function UserServiceConnectErrorToJSONTyped(value?: UserServiceConnectErr
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': UserServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(UserServiceAnyToJSON)),
     };
 }
 

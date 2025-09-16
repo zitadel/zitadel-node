@@ -32,7 +32,7 @@ export interface BetaOrganizationServiceSetOrganizationMetadataRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceSetOrganizationMetadataRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * Metadata to set.
      * @type {Array<BetaOrganizationServiceMetadata>}
@@ -45,7 +45,6 @@ export interface BetaOrganizationServiceSetOrganizationMetadataRequest {
  * Check if a given object implements the BetaOrganizationServiceSetOrganizationMetadataRequest interface.
  */
 export function instanceOfBetaOrganizationServiceSetOrganizationMetadataRequest(value: object): value is BetaOrganizationServiceSetOrganizationMetadataRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -59,7 +58,7 @@ export function BetaOrganizationServiceSetOrganizationMetadataRequestFromJSONTyp
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(BetaOrganizationServiceMetadataFromJSON)),
     };
 }

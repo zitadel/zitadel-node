@@ -24,14 +24,13 @@ export interface UserServiceUnlockUserRequest {
      * @type {string}
      * @memberof UserServiceUnlockUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceUnlockUserRequest interface.
  */
 export function instanceOfUserServiceUnlockUserRequest(value: object): value is UserServiceUnlockUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceUnlockUserRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

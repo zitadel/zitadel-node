@@ -368,8 +368,8 @@ export interface BetaUserServiceApiVerifyU2FRegistrationRequest {
 export class BetaUserServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
-     * AddHumanUser
+     * Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
+     * Create a new human user
      */
     private async addHumanUserRaw(requestParameters: BetaUserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceAddHumanUserResponse>> {
         if (requestParameters['betaUserServiceAddHumanUserRequest'] == null) {
@@ -405,8 +405,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
-     * AddHumanUser
+     * Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
+     * Create a new human user
      */
     async addHumanUser(requestParameters: BetaUserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceAddHumanUserResponse> {
         const response = await this.addHumanUserRaw(requestParameters, initOverrides);
@@ -414,8 +414,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add link to an identity provider to an user   Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddIDPLink
+     * Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add link to an identity provider to an user
      */
     private async addIDPLinkRaw(requestParameters: BetaUserServiceApiAddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceAddIDPLinkResponse>> {
         if (requestParameters['betaUserServiceAddIDPLinkRequest'] == null) {
@@ -451,8 +451,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add link to an identity provider to an user   Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddIDPLink
+     * Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add link to an identity provider to an user
      */
     async addIDPLink(requestParameters: BetaUserServiceApiAddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceAddIDPLinkResponse> {
         const response = await this.addIDPLinkRaw(requestParameters, initOverrides);
@@ -460,8 +460,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddOTPEmail
+     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add OTP Email for a user
      */
     private async addOTPEmailRaw(requestParameters: BetaUserServiceApiAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceAddOTPEmailResponse>> {
         if (requestParameters['betaUserServiceAddOTPEmailRequest'] == null) {
@@ -497,8 +497,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddOTPEmail
+     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add OTP Email for a user
      */
     async addOTPEmail(requestParameters: BetaUserServiceApiAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceAddOTPEmailResponse> {
         const response = await this.addOTPEmailRaw(requestParameters, initOverrides);
@@ -506,8 +506,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddOTPSMS
+     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add OTP SMS for a user
      */
     private async addOTPSMSRaw(requestParameters: BetaUserServiceApiAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceAddOTPSMSResponse>> {
         if (requestParameters['betaUserServiceAddOTPSMSRequest'] == null) {
@@ -543,8 +543,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * AddOTPSMS
+     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Add OTP SMS for a user
      */
     async addOTPSMS(requestParameters: BetaUserServiceApiAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceAddOTPSMSResponse> {
         const response = await this.addOTPSMSRaw(requestParameters, initOverrides);
@@ -552,8 +552,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * CreatePasskeyRegistrationLink
+     * Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Create a passkey registration link for a user
      */
     private async createPasskeyRegistrationLinkRaw(requestParameters: BetaUserServiceApiCreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceCreatePasskeyRegistrationLinkResponse>> {
         if (requestParameters['betaUserServiceCreatePasskeyRegistrationLinkRequest'] == null) {
@@ -589,8 +589,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * CreatePasskeyRegistrationLink
+     * Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Create a passkey registration link for a user
      */
     async createPasskeyRegistrationLink(requestParameters: BetaUserServiceApiCreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceCreatePasskeyRegistrationLinkResponse> {
         const response = await this.createPasskeyRegistrationLinkRaw(requestParameters, initOverrides);
@@ -598,8 +598,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * DeactivateUser
+     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Deactivate user
      */
     private async deactivateUserRaw(requestParameters: BetaUserServiceApiDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceDeactivateUserResponse>> {
         if (requestParameters['betaUserServiceDeactivateUserRequest'] == null) {
@@ -635,8 +635,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * DeactivateUser
+     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Deactivate user
      */
     async deactivateUser(requestParameters: BetaUserServiceApiDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceDeactivateUserResponse> {
         const response = await this.deactivateUserRaw(requestParameters, initOverrides);
@@ -644,8 +644,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * DeleteUser
+     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Delete user
      */
     private async deleteUserRaw(requestParameters: BetaUserServiceApiDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceDeleteUserResponse>> {
         if (requestParameters['betaUserServiceDeleteUserRequest'] == null) {
@@ -681,8 +681,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * DeleteUser
+     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Delete user
      */
     async deleteUser(requestParameters: BetaUserServiceApiDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceDeleteUserResponse> {
         const response = await this.deleteUserRaw(requestParameters, initOverrides);
@@ -690,8 +690,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * User by ID   Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * GetUserByID
+     * Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * User by ID
      */
     private async getUserByIDRaw(requestParameters: BetaUserServiceApiGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceGetUserByIDResponse>> {
         if (requestParameters['betaUserServiceGetUserByIDRequest'] == null) {
@@ -727,8 +727,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * User by ID   Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * GetUserByID
+     * Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * User by ID
      */
     async getUserByID(requestParameters: BetaUserServiceApiGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceGetUserByIDResponse> {
         const response = await this.getUserByIDRaw(requestParameters, initOverrides);
@@ -736,8 +736,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ListAuthenticationMethodTypes
+     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * List all possible authentication methods of a user
      */
     private async listAuthenticationMethodTypesRaw(requestParameters: BetaUserServiceApiListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceListAuthenticationMethodTypesResponse>> {
         if (requestParameters['betaUserServiceListAuthenticationMethodTypesRequest'] == null) {
@@ -773,8 +773,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ListAuthenticationMethodTypes
+     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * List all possible authentication methods of a user
      */
     async listAuthenticationMethodTypes(requestParameters: BetaUserServiceApiListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceListAuthenticationMethodTypesResponse> {
         const response = await this.listAuthenticationMethodTypesRaw(requestParameters, initOverrides);
@@ -782,8 +782,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ListUsers
+     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Search Users
      */
     private async listUsersRaw(requestParameters: BetaUserServiceApiListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceListUsersResponse>> {
         if (requestParameters['betaUserServiceListUsersRequest'] == null) {
@@ -819,8 +819,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ListUsers
+     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Search Users
      */
     async listUsers(requestParameters: BetaUserServiceApiListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceListUsersResponse> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
@@ -828,8 +828,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * LockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Lock user
      */
     private async lockUserRaw(requestParameters: BetaUserServiceApiLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceLockUserResponse>> {
         if (requestParameters['betaUserServiceLockUserRequest'] == null) {
@@ -865,8 +865,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * LockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Lock user
      */
     async lockUser(requestParameters: BetaUserServiceApiLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceLockUserResponse> {
         const response = await this.lockUserRaw(requestParameters, initOverrides);
@@ -874,8 +874,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Request a code to reset a password   Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * PasswordReset
+     * Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Request a code to reset a password
      */
     private async passwordResetRaw(requestParameters: BetaUserServiceApiPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServicePasswordResetResponse>> {
         if (requestParameters['betaUserServicePasswordResetRequest'] == null) {
@@ -911,8 +911,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Request a code to reset a password   Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * PasswordReset
+     * Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Request a code to reset a password
      */
     async passwordReset(requestParameters: BetaUserServiceApiPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServicePasswordResetResponse> {
         const response = await this.passwordResetRaw(requestParameters, initOverrides);
@@ -920,8 +920,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ReactivateUser
+     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Reactivate user
      */
     private async reactivateUserRaw(requestParameters: BetaUserServiceApiReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceReactivateUserResponse>> {
         if (requestParameters['betaUserServiceReactivateUserRequest'] == null) {
@@ -957,8 +957,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ReactivateUser
+     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Reactivate user
      */
     async reactivateUser(requestParameters: BetaUserServiceApiReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceReactivateUserResponse> {
         const response = await this.reactivateUserRaw(requestParameters, initOverrides);
@@ -966,8 +966,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterPasskey
+     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of passkey for a user
      */
     private async registerPasskeyRaw(requestParameters: BetaUserServiceApiRegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRegisterPasskeyResponse>> {
         if (requestParameters['betaUserServiceRegisterPasskeyRequest'] == null) {
@@ -1003,8 +1003,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterPasskey
+     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of passkey for a user
      */
     async registerPasskey(requestParameters: BetaUserServiceApiRegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRegisterPasskeyResponse> {
         const response = await this.registerPasskeyRaw(requestParameters, initOverrides);
@@ -1012,8 +1012,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterTOTP
+     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of a TOTP generator for a user
      */
     private async registerTOTPRaw(requestParameters: BetaUserServiceApiRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRegisterTOTPResponse>> {
         if (requestParameters['betaUserServiceRegisterTOTPRequest'] == null) {
@@ -1049,8 +1049,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterTOTP
+     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of a TOTP generator for a user
      */
     async registerTOTP(requestParameters: BetaUserServiceApiRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRegisterTOTPResponse> {
         const response = await this.registerTOTPRaw(requestParameters, initOverrides);
@@ -1058,8 +1058,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterU2F
+     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of a u2f token for a user
      */
     private async registerU2FRaw(requestParameters: BetaUserServiceApiRegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRegisterU2FResponse>> {
         if (requestParameters['betaUserServiceRegisterU2FRequest'] == null) {
@@ -1095,8 +1095,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RegisterU2F
+     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start the registration of a u2f token for a user
      */
     async registerU2F(requestParameters: BetaUserServiceApiRegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRegisterU2FResponse> {
         const response = await this.registerU2FRaw(requestParameters, initOverrides);
@@ -1104,8 +1104,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveOTPEmail
+     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove One-Time Password (OTP) Email from a user
      */
     private async removeOTPEmailRaw(requestParameters: BetaUserServiceApiRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRemoveOTPEmailResponse>> {
         if (requestParameters['betaUserServiceRemoveOTPEmailRequest'] == null) {
@@ -1141,8 +1141,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveOTPEmail
+     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove One-Time Password (OTP) Email from a user
      */
     async removeOTPEmail(requestParameters: BetaUserServiceApiRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRemoveOTPEmailResponse> {
         const response = await this.removeOTPEmailRaw(requestParameters, initOverrides);
@@ -1150,8 +1150,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveOTPSMS
+     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove One-Time Password (OTP) SMS from a user
      */
     private async removeOTPSMSRaw(requestParameters: BetaUserServiceApiRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRemoveOTPSMSResponse>> {
         if (requestParameters['betaUserServiceRemoveOTPSMSRequest'] == null) {
@@ -1187,8 +1187,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveOTPSMS
+     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove One-Time Password (OTP) SMS from a user
      */
     async removeOTPSMS(requestParameters: BetaUserServiceApiRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRemoveOTPSMSResponse> {
         const response = await this.removeOTPSMSRaw(requestParameters, initOverrides);
@@ -1196,8 +1196,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove the user phone   Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemovePhone
+     * Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove the user phone
      */
     private async removePhoneRaw(requestParameters: BetaUserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRemovePhoneResponse>> {
         if (requestParameters['betaUserServiceRemovePhoneRequest'] == null) {
@@ -1233,8 +1233,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove the user phone   Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemovePhone
+     * Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove the user phone
      */
     async removePhone(requestParameters: BetaUserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRemovePhoneResponse> {
         const response = await this.removePhoneRaw(requestParameters, initOverrides);
@@ -1242,8 +1242,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveTOTP
+     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove TOTP generator from a user
      */
     private async removeTOTPRaw(requestParameters: BetaUserServiceApiRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRemoveTOTPResponse>> {
         if (requestParameters['betaUserServiceRemoveTOTPRequest'] == null) {
@@ -1279,8 +1279,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RemoveTOTP
+     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Remove TOTP generator from a user
      */
     async removeTOTP(requestParameters: BetaUserServiceApiRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRemoveTOTPResponse> {
         const response = await this.removeTOTPRaw(requestParameters, initOverrides);
@@ -1288,8 +1288,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user email   Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ResendEmailCode
+     * Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Resend code to verify user email
      */
     private async resendEmailCodeRaw(requestParameters: BetaUserServiceApiResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceResendEmailCodeResponse>> {
         if (requestParameters['betaUserServiceResendEmailCodeRequest'] == null) {
@@ -1325,8 +1325,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user email   Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ResendEmailCode
+     * Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Resend code to verify user email
      */
     async resendEmailCode(requestParameters: BetaUserServiceApiResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceResendEmailCodeResponse> {
         const response = await this.resendEmailCodeRaw(requestParameters, initOverrides);
@@ -1334,8 +1334,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone   Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ResendPhoneCode
+     * Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Resend code to verify user phone
      */
     private async resendPhoneCodeRaw(requestParameters: BetaUserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceResendPhoneCodeResponse>> {
         if (requestParameters['betaUserServiceResendPhoneCodeRequest'] == null) {
@@ -1371,8 +1371,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone   Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * ResendPhoneCode
+     * Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Resend code to verify user phone
      */
     async resendPhoneCode(requestParameters: BetaUserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceResendPhoneCodeResponse> {
         const response = await this.resendPhoneCodeRaw(requestParameters, initOverrides);
@@ -1380,8 +1380,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RetrieveIdentityProviderIntent
+     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Retrieve the information returned by the identity provider
      */
     private async retrieveIdentityProviderIntentRaw(requestParameters: BetaUserServiceApiRetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceRetrieveIdentityProviderIntentResponse>> {
         if (requestParameters['betaUserServiceRetrieveIdentityProviderIntentRequest'] == null) {
@@ -1417,8 +1417,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * RetrieveIdentityProviderIntent
+     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Retrieve the information returned by the identity provider
      */
     async retrieveIdentityProviderIntent(requestParameters: BetaUserServiceApiRetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceRetrieveIdentityProviderIntentResponse> {
         const response = await this.retrieveIdentityProviderIntentRaw(requestParameters, initOverrides);
@@ -1426,8 +1426,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetEmail
+     * Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Change the user email
      */
     private async setEmailRaw(requestParameters: BetaUserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceSetEmailResponse>> {
         if (requestParameters['betaUserServiceSetEmailRequest'] == null) {
@@ -1463,8 +1463,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetEmail
+     * Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Change the user email
      */
     async setEmail(requestParameters: BetaUserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceSetEmailResponse> {
         const response = await this.setEmailRaw(requestParameters, initOverrides);
@@ -1472,8 +1472,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetPassword
+     * Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Change password
      */
     private async setPasswordRaw(requestParameters: BetaUserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceSetPasswordResponse>> {
         if (requestParameters['betaUserServiceSetPasswordRequest'] == null) {
@@ -1509,8 +1509,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetPassword
+     * Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Change password
      */
     async setPassword(requestParameters: BetaUserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceSetPasswordResponse> {
         const response = await this.setPasswordRaw(requestParameters, initOverrides);
@@ -1518,8 +1518,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetPhone
+     * Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Set the user phone
      */
     private async setPhoneRaw(requestParameters: BetaUserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceSetPhoneResponse>> {
         if (requestParameters['betaUserServiceSetPhoneRequest'] == null) {
@@ -1555,8 +1555,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * SetPhone
+     * Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Set the user phone
      */
     async setPhone(requestParameters: BetaUserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceSetPhoneResponse> {
         const response = await this.setPhoneRaw(requestParameters, initOverrides);
@@ -1564,8 +1564,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * StartIdentityProviderIntent
+     * Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start flow with an identity provider
      */
     private async startIdentityProviderIntentRaw(requestParameters: BetaUserServiceApiStartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceStartIdentityProviderIntentResponse>> {
         if (requestParameters['betaUserServiceStartIdentityProviderIntentRequest'] == null) {
@@ -1601,8 +1601,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * StartIdentityProviderIntent
+     * Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Start flow with an identity provider
      */
     async startIdentityProviderIntent(requestParameters: BetaUserServiceApiStartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceStartIdentityProviderIntentResponse> {
         const response = await this.startIdentityProviderIntentRaw(requestParameters, initOverrides);
@@ -1610,8 +1610,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * UnlockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Unlock user
      */
     private async unlockUserRaw(requestParameters: BetaUserServiceApiUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceUnlockUserResponse>> {
         if (requestParameters['betaUserServiceUnlockUserRequest'] == null) {
@@ -1647,8 +1647,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * UnlockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Unlock user
      */
     async unlockUser(requestParameters: BetaUserServiceApiUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceUnlockUserResponse> {
         const response = await this.unlockUserRaw(requestParameters, initOverrides);
@@ -1656,8 +1656,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update User   Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * UpdateHumanUser
+     * Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Update User
      */
     private async updateHumanUserRaw(requestParameters: BetaUserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceUpdateHumanUserResponse>> {
         if (requestParameters['betaUserServiceUpdateHumanUserRequest'] == null) {
@@ -1693,8 +1693,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update User   Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * UpdateHumanUser
+     * Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Update User
      */
     async updateHumanUser(requestParameters: BetaUserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceUpdateHumanUserResponse> {
         const response = await this.updateHumanUserRaw(requestParameters, initOverrides);
@@ -1702,8 +1702,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the email   Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyEmail
+     * Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify the email
      */
     private async verifyEmailRaw(requestParameters: BetaUserServiceApiVerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceVerifyEmailResponse>> {
         if (requestParameters['betaUserServiceVerifyEmailRequest'] == null) {
@@ -1739,8 +1739,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the email   Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyEmail
+     * Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify the email
      */
     async verifyEmail(requestParameters: BetaUserServiceApiVerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceVerifyEmailResponse> {
         const response = await this.verifyEmailRaw(requestParameters, initOverrides);
@@ -1748,8 +1748,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a passkey for a user   Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyPasskeyRegistration
+     * Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a passkey for a user
      */
     private async verifyPasskeyRegistrationRaw(requestParameters: BetaUserServiceApiVerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceVerifyPasskeyRegistrationResponse>> {
         if (requestParameters['betaUserServiceVerifyPasskeyRegistrationRequest'] == null) {
@@ -1785,8 +1785,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a passkey for a user   Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyPasskeyRegistration
+     * Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a passkey for a user
      */
     async verifyPasskeyRegistration(requestParameters: BetaUserServiceApiVerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceVerifyPasskeyRegistrationResponse> {
         const response = await this.verifyPasskeyRegistrationRaw(requestParameters, initOverrides);
@@ -1794,8 +1794,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone   Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyPhone
+     * Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify the phone
      */
     private async verifyPhoneRaw(requestParameters: BetaUserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceVerifyPhoneResponse>> {
         if (requestParameters['betaUserServiceVerifyPhoneRequest'] == null) {
@@ -1831,8 +1831,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone   Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyPhone
+     * Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify the phone
      */
     async verifyPhone(requestParameters: BetaUserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceVerifyPhoneResponse> {
         const response = await this.verifyPhoneRaw(requestParameters, initOverrides);
@@ -1840,8 +1840,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyTOTPRegistration
+     * Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a TOTP generator for a user
      */
     private async verifyTOTPRegistrationRaw(requestParameters: BetaUserServiceApiVerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceVerifyTOTPRegistrationResponse>> {
         if (requestParameters['betaUserServiceVerifyTOTPRegistrationRequest'] == null) {
@@ -1877,8 +1877,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyTOTPRegistration
+     * Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a TOTP generator for a user
      */
     async verifyTOTPRegistration(requestParameters: BetaUserServiceApiVerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceVerifyTOTPRegistrationResponse> {
         const response = await this.verifyTOTPRegistrationRaw(requestParameters, initOverrides);
@@ -1886,8 +1886,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyU2FRegistration
+     * Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a u2f token for a user
      */
     private async verifyU2FRegistrationRaw(requestParameters: BetaUserServiceApiVerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaUserServiceVerifyU2FRegistrationResponse>> {
         if (requestParameters['betaUserServiceVerifyU2FRegistrationRequest'] == null) {
@@ -1923,8 +1923,8 @@ export class BetaUserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-     * VerifyU2FRegistration
+     * Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+     * Verify a u2f token for a user
      */
     async verifyU2FRegistration(requestParameters: BetaUserServiceApiVerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaUserServiceVerifyU2FRegistrationResponse> {
         const response = await this.verifyU2FRegistrationRaw(requestParameters, initOverrides);

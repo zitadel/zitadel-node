@@ -32,7 +32,7 @@ export interface UserServiceCreatePasskeyRegistrationLinkRequest {
      * @type {string}
      * @memberof UserServiceCreatePasskeyRegistrationLinkRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface UserServiceCreatePasskeyRegistrationLinkRequest {
  * Check if a given object implements the UserServiceCreatePasskeyRegistrationLinkRequest interface.
  */
 export function instanceOfUserServiceCreatePasskeyRegistrationLinkRequest(value: object): value is UserServiceCreatePasskeyRegistrationLinkRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function UserServiceCreatePasskeyRegistrationLinkRequestFromJSONTyped(jso
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendLink': json['sendLink'] == null ? undefined : UserServiceSendPasskeyRegistrationLinkFromJSON(json['sendLink']),
     };

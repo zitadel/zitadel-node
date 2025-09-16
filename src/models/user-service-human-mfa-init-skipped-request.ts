@@ -24,14 +24,13 @@ export interface UserServiceHumanMFAInitSkippedRequest {
      * @type {string}
      * @memberof UserServiceHumanMFAInitSkippedRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceHumanMFAInitSkippedRequest interface.
  */
 export function instanceOfUserServiceHumanMFAInitSkippedRequest(value: object): value is UserServiceHumanMFAInitSkippedRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceHumanMFAInitSkippedRequestFromJSONTyped(json: any, ig
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

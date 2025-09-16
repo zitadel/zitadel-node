@@ -41,11 +41,11 @@ export interface SAMLServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {SAMLServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<SAMLServiceAny>}
      * @memberof SAMLServiceConnectError
      */
-    detail?: SAMLServiceAny;
+    details?: Array<SAMLServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function SAMLServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrimina
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : SAMLServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(SAMLServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function SAMLServiceConnectErrorToJSONTyped(value?: SAMLServiceConnectErr
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': SAMLServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(SAMLServiceAnyToJSON)),
     };
 }
 

@@ -32,7 +32,7 @@ export interface OrganizationServiceOrganizationNameQuery {
      * @type {string}
      * @memberof OrganizationServiceOrganizationNameQuery
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {OrganizationServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface OrganizationServiceOrganizationNameQuery {
  * Check if a given object implements the OrganizationServiceOrganizationNameQuery interface.
  */
 export function instanceOfOrganizationServiceOrganizationNameQuery(value: object): value is OrganizationServiceOrganizationNameQuery {
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function OrganizationServiceOrganizationNameQueryFromJSONTyped(json: any,
     }
     return {
         
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'method': json['method'] == null ? undefined : OrganizationServiceTextQueryMethodFromJSON(json['method']),
     };
 }

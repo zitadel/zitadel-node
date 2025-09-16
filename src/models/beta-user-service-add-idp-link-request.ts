@@ -32,7 +32,7 @@ export interface BetaUserServiceAddIDPLinkRequest {
      * @type {string}
      * @memberof BetaUserServiceAddIDPLinkRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {BetaUserServiceIDPLink}
@@ -45,7 +45,6 @@ export interface BetaUserServiceAddIDPLinkRequest {
  * Check if a given object implements the BetaUserServiceAddIDPLinkRequest interface.
  */
 export function instanceOfBetaUserServiceAddIDPLinkRequest(value: object): value is BetaUserServiceAddIDPLinkRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -59,7 +58,7 @@ export function BetaUserServiceAddIDPLinkRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'idpLink': json['idpLink'] == null ? undefined : BetaUserServiceIDPLinkFromJSON(json['idpLink']),
     };
 }

@@ -168,8 +168,8 @@ export interface BetaOrganizationServiceApiVerifyOrganizationDomainRequest {
 export class BetaOrganizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Activate Organization   Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
-     * ActivateOrganization
+     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Activate Organization
      */
     private async activateOrganizationRaw(requestParameters: BetaOrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceActivateOrganizationResponse>> {
         if (requestParameters['betaOrganizationServiceActivateOrganizationRequest'] == null) {
@@ -205,8 +205,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Activate Organization   Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
-     * ActivateOrganization
+     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Activate Organization
      */
     async activateOrganization(requestParameters: BetaOrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceActivateOrganizationResponse> {
         const response = await this.activateOrganizationRaw(requestParameters, initOverrides);
@@ -214,8 +214,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Organization Domain   Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
-     * AddOrganizationDomain
+     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Add Organization Domain
      */
     private async addOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceAddOrganizationDomainResponse>> {
         if (requestParameters['betaOrganizationServiceAddOrganizationDomainRequest'] == null) {
@@ -251,8 +251,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Organization Domain   Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
-     * AddOrganizationDomain
+     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Add Organization Domain
      */
     async addOrganizationDomain(requestParameters: BetaOrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceAddOrganizationDomainResponse> {
         const response = await this.addOrganizationDomainRaw(requestParameters, initOverrides);
@@ -260,8 +260,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
-     * CreateOrganization
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
+     * Create Organization
      */
     private async createOrganizationRaw(requestParameters: BetaOrganizationServiceApiCreateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceCreateOrganizationResponse>> {
         if (requestParameters['betaOrganizationServiceCreateOrganizationRequest'] == null) {
@@ -297,8 +297,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
-     * CreateOrganization
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
+     * Create Organization
      */
     async createOrganization(requestParameters: BetaOrganizationServiceApiCreateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceCreateOrganizationResponse> {
         const response = await this.createOrganizationRaw(requestParameters, initOverrides);
@@ -306,8 +306,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Organization   Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
-     * DeactivateOrganization
+     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deactivate Organization
      */
     private async deactivateOrganizationRaw(requestParameters: BetaOrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeactivateOrganizationResponse>> {
         if (requestParameters['betaOrganizationServiceDeactivateOrganizationRequest'] == null) {
@@ -343,8 +343,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Organization   Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
-     * DeactivateOrganization
+     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deactivate Organization
      */
     async deactivateOrganization(requestParameters: BetaOrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeactivateOrganizationResponse> {
         const response = await this.deactivateOrganizationRaw(requestParameters, initOverrides);
@@ -352,8 +352,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization   Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
-     * DeleteOrganization
+     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Delete Organization
      */
     private async deleteOrganizationRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationResponse>> {
         if (requestParameters['betaOrganizationServiceDeleteOrganizationRequest'] == null) {
@@ -389,8 +389,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization   Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
-     * DeleteOrganization
+     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Delete Organization
      */
     async deleteOrganization(requestParameters: BetaOrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationResponse> {
         const response = await this.deleteOrganizationRaw(requestParameters, initOverrides);
@@ -398,8 +398,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization Domain   Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
-     * DeleteOrganizationDomain
+     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Delete Organization Domain
      */
     private async deleteOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationDomainResponse>> {
         if (requestParameters['betaOrganizationServiceDeleteOrganizationDomainRequest'] == null) {
@@ -435,8 +435,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization Domain   Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
-     * DeleteOrganizationDomain
+     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Delete Organization Domain
      */
     async deleteOrganizationDomain(requestParameters: BetaOrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationDomainResponse> {
         const response = await this.deleteOrganizationDomainRaw(requestParameters, initOverrides);
@@ -444,8 +444,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization Metadata   Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
-     * DeleteOrganizationMetadata
+     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Delete Organization Metadata
      */
     private async deleteOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationMetadataResponse>> {
         if (requestParameters['betaOrganizationServiceDeleteOrganizationMetadataRequest'] == null) {
@@ -481,8 +481,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Organization Metadata   Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
-     * DeleteOrganizationMetadata
+     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Delete Organization Metadata
      */
     async deleteOrganizationMetadata(requestParameters: BetaOrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationMetadataResponse> {
         const response = await this.deleteOrganizationMetadataRaw(requestParameters, initOverrides);
@@ -490,8 +490,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate Organization Domain Validation   Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
-     * GenerateOrganizationDomainValidation
+     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Generate Organization Domain Validation
      */
     private async generateOrganizationDomainValidationRaw(requestParameters: BetaOrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceGenerateOrganizationDomainValidationResponse>> {
         if (requestParameters['betaOrganizationServiceGenerateOrganizationDomainValidationRequest'] == null) {
@@ -527,8 +527,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate Organization Domain Validation   Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
-     * GenerateOrganizationDomainValidation
+     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Generate Organization Domain Validation
      */
     async generateOrganizationDomainValidation(requestParameters: BetaOrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceGenerateOrganizationDomainValidationResponse> {
         const response = await this.generateOrganizationDomainValidationRaw(requestParameters, initOverrides);
@@ -536,8 +536,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organization Domains   Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
-     * ListOrganizationDomains
+     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
+     * List Organization Domains
      */
     private async listOrganizationDomainsRaw(requestParameters: BetaOrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationDomainsResponse>> {
         if (requestParameters['betaOrganizationServiceListOrganizationDomainsRequest'] == null) {
@@ -573,8 +573,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organization Domains   Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
-     * ListOrganizationDomains
+     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
+     * List Organization Domains
      */
     async listOrganizationDomains(requestParameters: BetaOrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationDomainsResponse> {
         const response = await this.listOrganizationDomainsRaw(requestParameters, initOverrides);
@@ -582,8 +582,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organization Metadata   List metadata of an organization filtered by query.   Required permission:   - `org.read`
-     * ListOrganizationMetadata
+     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * List Organization Metadata
      */
     private async listOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationMetadataResponse>> {
         if (requestParameters['betaOrganizationServiceListOrganizationMetadataRequest'] == null) {
@@ -619,8 +619,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organization Metadata   List metadata of an organization filtered by query.   Required permission:   - `org.read`
-     * ListOrganizationMetadata
+     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * List Organization Metadata
      */
     async listOrganizationMetadata(requestParameters: BetaOrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationMetadataResponse> {
         const response = await this.listOrganizationMetadataRaw(requestParameters, initOverrides);
@@ -628,8 +628,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organizations   Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
-     * ListOrganizations
+     * Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
+     * List Organizations
      */
     private async listOrganizationsRaw(requestParameters: BetaOrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationsResponse>> {
         if (requestParameters['betaOrganizationServiceListOrganizationsRequest'] == null) {
@@ -665,8 +665,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Organizations   Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
-     * ListOrganizations
+     * Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
+     * List Organizations
      */
     async listOrganizations(requestParameters: BetaOrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationsResponse> {
         const response = await this.listOrganizationsRaw(requestParameters, initOverrides);
@@ -674,8 +674,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Organization Metadata   Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
-     * SetOrganizationMetadata
+     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Set Organization Metadata
      */
     private async setOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceSetOrganizationMetadataResponse>> {
         if (requestParameters['betaOrganizationServiceSetOrganizationMetadataRequest'] == null) {
@@ -711,8 +711,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Organization Metadata   Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
-     * SetOrganizationMetadata
+     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Set Organization Metadata
      */
     async setOrganizationMetadata(requestParameters: BetaOrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceSetOrganizationMetadataResponse> {
         const response = await this.setOrganizationMetadataRaw(requestParameters, initOverrides);
@@ -720,8 +720,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Organization   Change the name of the organization.   Required permission:   - `org.write`
-     * UpdateOrganization
+     * Change the name of the organization.   Required permission:   - `org.write`
+     * Update Organization
      */
     private async updateOrganizationRaw(requestParameters: BetaOrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceUpdateOrganizationResponse>> {
         if (requestParameters['betaOrganizationServiceUpdateOrganizationRequest'] == null) {
@@ -757,8 +757,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Organization   Change the name of the organization.   Required permission:   - `org.write`
-     * UpdateOrganization
+     * Change the name of the organization.   Required permission:   - `org.write`
+     * Update Organization
      */
     async updateOrganization(requestParameters: BetaOrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceUpdateOrganizationResponse> {
         const response = await this.updateOrganizationRaw(requestParameters, initOverrides);
@@ -766,8 +766,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify Organization Domain   Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
-     * VerifyOrganizationDomain
+     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Verify Organization Domain
      */
     private async verifyOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceVerifyOrganizationDomainResponse>> {
         if (requestParameters['betaOrganizationServiceVerifyOrganizationDomainRequest'] == null) {
@@ -803,8 +803,8 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify Organization Domain   Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
-     * VerifyOrganizationDomain
+     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Verify Organization Domain
      */
     async verifyOrganizationDomain(requestParameters: BetaOrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceVerifyOrganizationDomainResponse> {
         const response = await this.verifyOrganizationDomainRaw(requestParameters, initOverrides);

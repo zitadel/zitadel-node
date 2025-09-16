@@ -41,11 +41,11 @@ export interface BetaAuthorizationServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {BetaAuthorizationServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<BetaAuthorizationServiceAny>}
      * @memberof BetaAuthorizationServiceConnectError
      */
-    detail?: BetaAuthorizationServiceAny;
+    details?: Array<BetaAuthorizationServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function BetaAuthorizationServiceConnectErrorFromJSONTyped(json: any, ign
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : BetaAuthorizationServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(BetaAuthorizationServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function BetaAuthorizationServiceConnectErrorToJSONTyped(value?: BetaAuth
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': BetaAuthorizationServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(BetaAuthorizationServiceAnyToJSON)),
     };
 }
 

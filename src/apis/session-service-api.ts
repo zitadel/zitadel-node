@@ -79,7 +79,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Create a new session
-     * CreateSession
+     * Create a new session
      */
     private async createSessionRaw(requestParameters: SessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
         if (requestParameters['sessionServiceCreateSessionRequest'] == null) {
@@ -116,7 +116,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Create a new session
-     * CreateSession
+     * Create a new session
      */
     async createSession(requestParameters: SessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceCreateSessionResponse> {
         const response = await this.createSessionRaw(requestParameters, initOverrides);
@@ -125,7 +125,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Terminate a session
-     * DeleteSession
+     * Terminate a session
      */
     private async deleteSessionRaw(requestParameters: SessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
         if (requestParameters['sessionServiceDeleteSessionRequest'] == null) {
@@ -162,7 +162,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Terminate a session
-     * DeleteSession
+     * Terminate a session
      */
     async deleteSession(requestParameters: SessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceDeleteSessionResponse> {
         const response = await this.deleteSessionRaw(requestParameters, initOverrides);
@@ -171,7 +171,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * GetSession a session
-     * GetSession
+     * GetSession a session
      */
     private async getSessionRaw(requestParameters: SessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
         if (requestParameters['sessionServiceGetSessionRequest'] == null) {
@@ -208,7 +208,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * GetSession a session
-     * GetSession
+     * GetSession a session
      */
     async getSession(requestParameters: SessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceGetSessionResponse> {
         const response = await this.getSessionRaw(requestParameters, initOverrides);
@@ -217,7 +217,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Search sessions
-     * ListSessions
+     * Search sessions
      */
     private async listSessionsRaw(requestParameters: SessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
         if (requestParameters['sessionServiceListSessionsRequest'] == null) {
@@ -254,7 +254,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Search sessions
-     * ListSessions
+     * Search sessions
      */
     async listSessions(requestParameters: SessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceListSessionsResponse> {
         const response = await this.listSessionsRaw(requestParameters, initOverrides);
@@ -263,7 +263,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Update a session
-     * SetSession
+     * Update a session
      */
     private async setSessionRaw(requestParameters: SessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
         if (requestParameters['sessionServiceSetSessionRequest'] == null) {
@@ -300,7 +300,7 @@ export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Update a session
-     * SetSession
+     * Update a session
      */
     async setSession(requestParameters: SessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceSetSessionResponse> {
         const response = await this.setSessionRaw(requestParameters, initOverrides);

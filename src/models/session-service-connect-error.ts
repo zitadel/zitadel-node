@@ -41,11 +41,11 @@ export interface SessionServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {SessionServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<SessionServiceAny>}
      * @memberof SessionServiceConnectError
      */
-    detail?: SessionServiceAny;
+    details?: Array<SessionServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function SessionServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrim
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : SessionServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(SessionServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function SessionServiceConnectErrorToJSONTyped(value?: SessionServiceConn
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': SessionServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(SessionServiceAnyToJSON)),
     };
 }
 

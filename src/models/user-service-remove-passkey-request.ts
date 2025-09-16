@@ -24,21 +24,19 @@ export interface UserServiceRemovePasskeyRequest {
      * @type {string}
      * @memberof UserServiceRemovePasskeyRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceRemovePasskeyRequest
      */
-    passkeyId: string;
+    passkeyId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemovePasskeyRequest interface.
  */
 export function instanceOfUserServiceRemovePasskeyRequest(value: object): value is UserServiceRemovePasskeyRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('passkeyId' in value) || value['passkeyId'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceRemovePasskeyRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'userId': json['userId'],
-        'passkeyId': json['passkeyId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'passkeyId': json['passkeyId'] == null ? undefined : json['passkeyId'],
     };
 }
 

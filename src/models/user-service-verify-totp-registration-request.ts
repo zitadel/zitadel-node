@@ -24,21 +24,19 @@ export interface UserServiceVerifyTOTPRegistrationRequest {
      * @type {string}
      * @memberof UserServiceVerifyTOTPRegistrationRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceVerifyTOTPRegistrationRequest
      */
-    code: string;
+    code?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceVerifyTOTPRegistrationRequest interface.
  */
 export function instanceOfUserServiceVerifyTOTPRegistrationRequest(value: object): value is UserServiceVerifyTOTPRegistrationRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceVerifyTOTPRegistrationRequestFromJSONTyped(json: any,
     }
     return {
         
-        'userId': json['userId'],
-        'code': json['code'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 

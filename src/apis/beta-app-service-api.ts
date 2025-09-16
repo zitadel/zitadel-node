@@ -148,8 +148,8 @@ export interface BetaAppServiceApiUpdateApplicationRequest {
 export class BetaAppServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create Application   Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
-     * CreateApplication
+     * Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
+     * Create Application
      */
     private async createApplicationRaw(requestParameters: BetaAppServiceApiCreateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceCreateApplicationResponse>> {
         if (requestParameters['betaAppServiceCreateApplicationRequest'] == null) {
@@ -185,8 +185,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Application   Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
-     * CreateApplication
+     * Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
+     * Create Application
      */
     async createApplication(requestParameters: BetaAppServiceApiCreateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceCreateApplicationResponse> {
         const response = await this.createApplicationRaw(requestParameters, initOverrides);
@@ -194,8 +194,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Application Key    Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - `project.app.write`
-     * CreateApplicationKey
+     * Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - `project.app.write`
+     * Create Application Key
      */
     private async createApplicationKeyRaw(requestParameters: BetaAppServiceApiCreateApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceCreateApplicationKeyResponse>> {
         if (requestParameters['betaAppServiceCreateApplicationKeyRequest'] == null) {
@@ -231,8 +231,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Application Key    Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - `project.app.write`
-     * CreateApplicationKey
+     * Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - `project.app.write`
+     * Create Application Key
      */
     async createApplicationKey(requestParameters: BetaAppServiceApiCreateApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceCreateApplicationKeyResponse> {
         const response = await this.createApplicationKeyRaw(requestParameters, initOverrides);
@@ -240,8 +240,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Application   Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-     * DeactivateApplication
+     * Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+     * Deactivate Application
      */
     private async deactivateApplicationRaw(requestParameters: BetaAppServiceApiDeactivateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceDeactivateApplicationResponse>> {
         if (requestParameters['betaAppServiceDeactivateApplicationRequest'] == null) {
@@ -277,8 +277,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Application   Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-     * DeactivateApplication
+     * Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+     * Deactivate Application
      */
     async deactivateApplication(requestParameters: BetaAppServiceApiDeactivateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceDeactivateApplicationResponse> {
         const response = await this.deactivateApplicationRaw(requestParameters, initOverrides);
@@ -286,8 +286,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Application   Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
-     * DeleteApplication
+     * Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
+     * Delete Application
      */
     private async deleteApplicationRaw(requestParameters: BetaAppServiceApiDeleteApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceDeleteApplicationResponse>> {
         if (requestParameters['betaAppServiceDeleteApplicationRequest'] == null) {
@@ -323,8 +323,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Application   Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
-     * DeleteApplication
+     * Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
+     * Delete Application
      */
     async deleteApplication(requestParameters: BetaAppServiceApiDeleteApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceDeleteApplicationResponse> {
         const response = await this.deleteApplicationRaw(requestParameters, initOverrides);
@@ -332,8 +332,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Application Key    Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - `project.app.write`
-     * DeleteApplicationKey
+     * Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - `project.app.write`
+     * Delete Application Key
      */
     private async deleteApplicationKeyRaw(requestParameters: BetaAppServiceApiDeleteApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceDeleteApplicationKeyResponse>> {
         if (requestParameters['betaAppServiceDeleteApplicationKeyRequest'] == null) {
@@ -369,8 +369,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Application Key    Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - `project.app.write`
-     * DeleteApplicationKey
+     * Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - `project.app.write`
+     * Delete Application Key
      */
     async deleteApplicationKey(requestParameters: BetaAppServiceApiDeleteApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceDeleteApplicationKeyResponse> {
         const response = await this.deleteApplicationKeyRaw(requestParameters, initOverrides);
@@ -378,8 +378,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Application   Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
-     * GetApplication
+     * Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
+     * Get Application
      */
     private async getApplicationRaw(requestParameters: BetaAppServiceApiGetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceGetApplicationResponse>> {
         if (requestParameters['betaAppServiceGetApplicationRequest'] == null) {
@@ -415,8 +415,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Application   Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
-     * GetApplication
+     * Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
+     * Get Application
      */
     async getApplication(requestParameters: BetaAppServiceApiGetApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceGetApplicationResponse> {
         const response = await this.getApplicationRaw(requestParameters, initOverrides);
@@ -424,8 +424,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Application Key   Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
-     * GetApplicationKey
+     * Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
+     * Get Application Key
      */
     private async getApplicationKeyRaw(requestParameters: BetaAppServiceApiGetApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceGetApplicationKeyResponse>> {
         if (requestParameters['betaAppServiceGetApplicationKeyRequest'] == null) {
@@ -461,8 +461,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Application Key   Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
-     * GetApplicationKey
+     * Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
+     * Get Application Key
      */
     async getApplicationKey(requestParameters: BetaAppServiceApiGetApplicationKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceGetApplicationKeyResponse> {
         const response = await this.getApplicationKeyRaw(requestParameters, initOverrides);
@@ -470,8 +470,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Application Keys   Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
-     * ListApplicationKeys
+     * Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
+     * List Application Keys
      */
     private async listApplicationKeysRaw(requestParameters: BetaAppServiceApiListApplicationKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceListApplicationKeysResponse>> {
         if (requestParameters['betaAppServiceListApplicationKeysRequest'] == null) {
@@ -507,8 +507,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Application Keys   Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
-     * ListApplicationKeys
+     * Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
+     * List Application Keys
      */
     async listApplicationKeys(requestParameters: BetaAppServiceApiListApplicationKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceListApplicationKeysResponse> {
         const response = await this.listApplicationKeysRaw(requestParameters, initOverrides);
@@ -516,8 +516,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Applications   Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
-     * ListApplications
+     * Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
+     * List Applications
      */
     private async listApplicationsRaw(requestParameters: BetaAppServiceApiListApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceListApplicationsResponse>> {
         if (requestParameters['betaAppServiceListApplicationsRequest'] == null) {
@@ -553,8 +553,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Applications   Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
-     * ListApplications
+     * Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
+     * List Applications
      */
     async listApplications(requestParameters: BetaAppServiceApiListApplicationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceListApplicationsResponse> {
         const response = await this.listApplicationsRaw(requestParameters, initOverrides);
@@ -562,8 +562,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate Application   Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-     * ReactivateApplication
+     * Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+     * Reactivate Application
      */
     private async reactivateApplicationRaw(requestParameters: BetaAppServiceApiReactivateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceReactivateApplicationResponse>> {
         if (requestParameters['betaAppServiceReactivateApplicationRequest'] == null) {
@@ -599,8 +599,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate Application   Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-     * ReactivateApplication
+     * Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+     * Reactivate Application
      */
     async reactivateApplication(requestParameters: BetaAppServiceApiReactivateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceReactivateApplicationResponse> {
         const response = await this.reactivateApplicationRaw(requestParameters, initOverrides);
@@ -608,8 +608,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Regenerate Client Secret   Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
-     * RegenerateClientSecret
+     * Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
+     * Regenerate Client Secret
      */
     private async regenerateClientSecretRaw(requestParameters: BetaAppServiceApiRegenerateClientSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceRegenerateClientSecretResponse>> {
         if (requestParameters['betaAppServiceRegenerateClientSecretRequest'] == null) {
@@ -645,8 +645,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Regenerate Client Secret   Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
-     * RegenerateClientSecret
+     * Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
+     * Regenerate Client Secret
      */
     async regenerateClientSecret(requestParameters: BetaAppServiceApiRegenerateClientSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceRegenerateClientSecretResponse> {
         const response = await this.regenerateClientSecretRaw(requestParameters, initOverrides);
@@ -654,8 +654,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Application   Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
-     * UpdateApplication
+     * Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
+     * Update Application
      */
     private async updateApplicationRaw(requestParameters: BetaAppServiceApiUpdateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAppServiceUpdateApplicationResponse>> {
         if (requestParameters['betaAppServiceUpdateApplicationRequest'] == null) {
@@ -691,8 +691,8 @@ export class BetaAppServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Application   Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
-     * UpdateApplication
+     * Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
+     * Update Application
      */
     async updateApplication(requestParameters: BetaAppServiceApiUpdateApplicationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAppServiceUpdateApplicationResponse> {
         const response = await this.updateApplicationRaw(requestParameters, initOverrides);

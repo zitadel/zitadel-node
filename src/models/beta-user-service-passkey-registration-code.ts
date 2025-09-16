@@ -24,21 +24,19 @@ export interface BetaUserServicePasskeyRegistrationCode {
      * @type {string}
      * @memberof BetaUserServicePasskeyRegistrationCode
      */
-    id: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServicePasskeyRegistrationCode
      */
-    code: string;
+    code?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServicePasskeyRegistrationCode interface.
  */
 export function instanceOfBetaUserServicePasskeyRegistrationCode(value: object): value is BetaUserServicePasskeyRegistrationCode {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaUserServicePasskeyRegistrationCodeFromJSONTyped(json: any, i
     }
     return {
         
-        'id': json['id'],
-        'code': json['code'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 

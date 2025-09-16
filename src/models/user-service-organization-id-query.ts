@@ -24,14 +24,13 @@ export interface UserServiceOrganizationIdQuery {
      * @type {string}
      * @memberof UserServiceOrganizationIdQuery
      */
-    organizationId: string;
+    organizationId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceOrganizationIdQuery interface.
  */
 export function instanceOfUserServiceOrganizationIdQuery(value: object): value is UserServiceOrganizationIdQuery {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceOrganizationIdQueryFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
     };
 }
 

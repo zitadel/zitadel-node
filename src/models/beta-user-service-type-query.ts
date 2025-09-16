@@ -32,7 +32,7 @@ export interface BetaUserServiceTypeQuery {
      * @type {BetaUserServiceType}
      * @memberof BetaUserServiceTypeQuery
      */
-    type: BetaUserServiceType;
+    type?: BetaUserServiceType;
 }
 
 
@@ -41,7 +41,6 @@ export interface BetaUserServiceTypeQuery {
  * Check if a given object implements the BetaUserServiceTypeQuery interface.
  */
 export function instanceOfBetaUserServiceTypeQuery(value: object): value is BetaUserServiceTypeQuery {
-    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
@@ -55,7 +54,7 @@ export function BetaUserServiceTypeQueryFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'type': BetaUserServiceTypeFromJSON(json['type']),
+        'type': json['type'] == null ? undefined : BetaUserServiceTypeFromJSON(json['type']),
     };
 }
 

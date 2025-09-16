@@ -24,14 +24,13 @@ export interface UserServiceRemoveTOTPRequest {
      * @type {string}
      * @memberof UserServiceRemoveTOTPRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemoveTOTPRequest interface.
  */
 export function instanceOfUserServiceRemoveTOTPRequest(value: object): value is UserServiceRemoveTOTPRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceRemoveTOTPRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

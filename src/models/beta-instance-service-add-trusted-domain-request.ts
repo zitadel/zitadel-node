@@ -30,14 +30,13 @@ export interface BetaInstanceServiceAddTrustedDomainRequest {
      * @type {string}
      * @memberof BetaInstanceServiceAddTrustedDomainRequest
      */
-    domain: string;
+    domain?: string;
 }
 
 /**
  * Check if a given object implements the BetaInstanceServiceAddTrustedDomainRequest interface.
  */
 export function instanceOfBetaInstanceServiceAddTrustedDomainRequest(value: object): value is BetaInstanceServiceAddTrustedDomainRequest {
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -52,7 +51,7 @@ export function BetaInstanceServiceAddTrustedDomainRequestFromJSONTyped(json: an
     return {
         
         'instanceId': json['instanceId'] == null ? undefined : json['instanceId'],
-        'domain': json['domain'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
 

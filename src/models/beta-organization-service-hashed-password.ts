@@ -24,7 +24,7 @@ export interface BetaOrganizationServiceHashedPassword {
      * @type {string}
      * @memberof BetaOrganizationServiceHashedPassword
      */
-    hash: string;
+    hash?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface BetaOrganizationServiceHashedPassword {
  * Check if a given object implements the BetaOrganizationServiceHashedPassword interface.
  */
 export function instanceOfBetaOrganizationServiceHashedPassword(value: object): value is BetaOrganizationServiceHashedPassword {
-    if (!('hash' in value) || value['hash'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaOrganizationServiceHashedPasswordFromJSONTyped(json: any, ig
     }
     return {
         
-        'hash': json['hash'],
+        'hash': json['hash'] == null ? undefined : json['hash'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

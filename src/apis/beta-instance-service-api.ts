@@ -128,8 +128,8 @@ export interface BetaInstanceServiceApiUpdateInstanceRequest {
 export class BetaInstanceServiceApi extends runtime.BaseAPI {
 
     /**
-     * Add Custom Domain   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
-     * AddCustomDomain
+     * Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
+     * Add Custom Domain
      */
     private async addCustomDomainRaw(requestParameters: BetaInstanceServiceApiAddCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceAddCustomDomainResponse>> {
         if (requestParameters['betaInstanceServiceAddCustomDomainRequest'] == null) {
@@ -165,8 +165,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Custom Domain   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
-     * AddCustomDomain
+     * Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
+     * Add Custom Domain
      */
     async addCustomDomain(requestParameters: BetaInstanceServiceApiAddCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceAddCustomDomainResponse> {
         const response = await this.addCustomDomainRaw(requestParameters, initOverrides);
@@ -174,8 +174,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Trusted Domain   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
-     * AddTrustedDomain
+     * Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Add Trusted Domain
      */
     private async addTrustedDomainRaw(requestParameters: BetaInstanceServiceApiAddTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceAddTrustedDomainResponse>> {
         if (requestParameters['betaInstanceServiceAddTrustedDomainRequest'] == null) {
@@ -211,8 +211,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Trusted Domain   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
-     * AddTrustedDomain
+     * Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Add Trusted Domain
      */
     async addTrustedDomain(requestParameters: BetaInstanceServiceApiAddTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceAddTrustedDomainResponse> {
         const response = await this.addTrustedDomainRaw(requestParameters, initOverrides);
@@ -220,8 +220,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Instance   Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
-     * DeleteInstance
+     * Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
+     * Delete Instance
      */
     private async deleteInstanceRaw(requestParameters: BetaInstanceServiceApiDeleteInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceDeleteInstanceResponse>> {
         if (requestParameters['betaInstanceServiceDeleteInstanceRequest'] == null) {
@@ -257,8 +257,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Instance   Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
-     * DeleteInstance
+     * Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
+     * Delete Instance
      */
     async deleteInstance(requestParameters: BetaInstanceServiceApiDeleteInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceDeleteInstanceResponse> {
         const response = await this.deleteInstanceRaw(requestParameters, initOverrides);
@@ -266,8 +266,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
-     * GetInstance
+     * Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Get Instance
      */
     private async getInstanceRaw(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceGetInstanceResponse>> {
         if (requestParameters['betaInstanceServiceGetInstanceRequest'] == null) {
@@ -303,8 +303,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
-     * GetInstance
+     * Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Get Instance
      */
     async getInstance(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceGetInstanceResponse> {
         const response = await this.getInstanceRaw(requestParameters, initOverrides);
@@ -312,8 +312,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Custom Domains   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
-     * ListCustomDomains
+     * Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
+     * List Custom Domains
      */
     private async listCustomDomainsRaw(requestParameters: BetaInstanceServiceApiListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListCustomDomainsResponse>> {
         if (requestParameters['betaInstanceServiceListCustomDomainsRequest'] == null) {
@@ -349,8 +349,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Custom Domains   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
-     * ListCustomDomains
+     * Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
+     * List Custom Domains
      */
     async listCustomDomains(requestParameters: BetaInstanceServiceApiListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListCustomDomainsResponse> {
         const response = await this.listCustomDomainsRaw(requestParameters, initOverrides);
@@ -358,8 +358,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Instances   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
-     * ListInstances
+     * Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
+     * List Instances
      */
     private async listInstancesRaw(requestParameters: BetaInstanceServiceApiListInstancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListInstancesResponse>> {
         if (requestParameters['betaInstanceServiceListInstancesRequest'] == null) {
@@ -395,8 +395,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Instances   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
-     * ListInstances
+     * Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
+     * List Instances
      */
     async listInstances(requestParameters: BetaInstanceServiceApiListInstancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListInstancesResponse> {
         const response = await this.listInstancesRaw(requestParameters, initOverrides);
@@ -404,8 +404,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Trusted Domains   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
-     * ListTrustedDomains
+     * Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * List Trusted Domains
      */
     private async listTrustedDomainsRaw(requestParameters: BetaInstanceServiceApiListTrustedDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListTrustedDomainsResponse>> {
         if (requestParameters['betaInstanceServiceListTrustedDomainsRequest'] == null) {
@@ -441,8 +441,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Trusted Domains   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
-     * ListTrustedDomains
+     * Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * List Trusted Domains
      */
     async listTrustedDomains(requestParameters: BetaInstanceServiceApiListTrustedDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListTrustedDomainsResponse> {
         const response = await this.listTrustedDomainsRaw(requestParameters, initOverrides);
@@ -450,8 +450,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Custom Domain   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
-     * RemoveCustomDomain
+     * Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
+     * Remove Custom Domain
      */
     private async removeCustomDomainRaw(requestParameters: BetaInstanceServiceApiRemoveCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceRemoveCustomDomainResponse>> {
         if (requestParameters['betaInstanceServiceRemoveCustomDomainRequest'] == null) {
@@ -487,8 +487,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Custom Domain   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
-     * RemoveCustomDomain
+     * Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
+     * Remove Custom Domain
      */
     async removeCustomDomain(requestParameters: BetaInstanceServiceApiRemoveCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceRemoveCustomDomainResponse> {
         const response = await this.removeCustomDomainRaw(requestParameters, initOverrides);
@@ -496,8 +496,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Trusted Domain   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
-     * RemoveTrustedDomain
+     * Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Remove Trusted Domain
      */
     private async removeTrustedDomainRaw(requestParameters: BetaInstanceServiceApiRemoveTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceRemoveTrustedDomainResponse>> {
         if (requestParameters['betaInstanceServiceRemoveTrustedDomainRequest'] == null) {
@@ -533,8 +533,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Trusted Domain   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
-     * RemoveTrustedDomain
+     * Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Remove Trusted Domain
      */
     async removeTrustedDomain(requestParameters: BetaInstanceServiceApiRemoveTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceRemoveTrustedDomainResponse> {
         const response = await this.removeTrustedDomainRaw(requestParameters, initOverrides);
@@ -542,8 +542,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Instance   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
-     * UpdateInstance
+     * Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
+     * Update Instance
      */
     private async updateInstanceRaw(requestParameters: BetaInstanceServiceApiUpdateInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceUpdateInstanceResponse>> {
         if (requestParameters['betaInstanceServiceUpdateInstanceRequest'] == null) {
@@ -579,8 +579,8 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Instance   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
-     * UpdateInstance
+     * Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
+     * Update Instance
      */
     async updateInstance(requestParameters: BetaInstanceServiceApiUpdateInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceUpdateInstanceResponse> {
         const response = await this.updateInstanceRaw(requestParameters, initOverrides);

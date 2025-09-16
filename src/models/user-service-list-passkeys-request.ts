@@ -24,14 +24,13 @@ export interface UserServiceListPasskeysRequest {
      * @type {string}
      * @memberof UserServiceListPasskeysRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceListPasskeysRequest interface.
  */
 export function instanceOfUserServiceListPasskeysRequest(value: object): value is UserServiceListPasskeysRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceListPasskeysRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

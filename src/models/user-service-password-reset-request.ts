@@ -32,7 +32,7 @@ export interface UserServicePasswordResetRequest {
      * @type {string}
      * @memberof UserServicePasswordResetRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface UserServicePasswordResetRequest {
  * Check if a given object implements the UserServicePasswordResetRequest interface.
  */
 export function instanceOfUserServicePasswordResetRequest(value: object): value is UserServicePasswordResetRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function UserServicePasswordResetRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendLink': json['sendLink'] == null ? undefined : UserServiceSendPasswordResetLinkFromJSON(json['sendLink']),
     };

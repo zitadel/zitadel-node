@@ -24,7 +24,7 @@ export interface BetaUserServiceRegisterU2FRequest {
      * @type {string}
      * @memberof BetaUserServiceRegisterU2FRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
@@ -37,7 +37,6 @@ export interface BetaUserServiceRegisterU2FRequest {
  * Check if a given object implements the BetaUserServiceRegisterU2FRequest interface.
  */
 export function instanceOfBetaUserServiceRegisterU2FRequest(value: object): value is BetaUserServiceRegisterU2FRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaUserServiceRegisterU2FRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }

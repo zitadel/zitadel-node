@@ -32,13 +32,13 @@ export interface BetaSessionServiceWebAuthN {
      * @type {string}
      * @memberof BetaSessionServiceWebAuthN
      */
-    domain: string;
+    domain?: string;
     /**
      * 
      * @type {BetaSessionServiceUserVerificationRequirement}
      * @memberof BetaSessionServiceWebAuthN
      */
-    userVerificationRequirement: BetaSessionServiceUserVerificationRequirement;
+    userVerificationRequirement?: BetaSessionServiceUserVerificationRequirement;
 }
 
 
@@ -47,8 +47,6 @@ export interface BetaSessionServiceWebAuthN {
  * Check if a given object implements the BetaSessionServiceWebAuthN interface.
  */
 export function instanceOfBetaSessionServiceWebAuthN(value: object): value is BetaSessionServiceWebAuthN {
-    if (!('domain' in value) || value['domain'] === undefined) return false;
-    if (!('userVerificationRequirement' in value) || value['userVerificationRequirement'] === undefined) return false;
     return true;
 }
 
@@ -62,8 +60,8 @@ export function BetaSessionServiceWebAuthNFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'domain': json['domain'],
-        'userVerificationRequirement': BetaSessionServiceUserVerificationRequirementFromJSON(json['userVerificationRequirement']),
+        'domain': json['domain'] == null ? undefined : json['domain'],
+        'userVerificationRequirement': json['userVerificationRequirement'] == null ? undefined : BetaSessionServiceUserVerificationRequirementFromJSON(json['userVerificationRequirement']),
     };
 }
 

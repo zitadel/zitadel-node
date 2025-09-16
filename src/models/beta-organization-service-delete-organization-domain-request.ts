@@ -24,21 +24,19 @@ export interface BetaOrganizationServiceDeleteOrganizationDomainRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceDeleteOrganizationDomainRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaOrganizationServiceDeleteOrganizationDomainRequest
      */
-    domain: string;
+    domain?: string;
 }
 
 /**
  * Check if a given object implements the BetaOrganizationServiceDeleteOrganizationDomainRequest interface.
  */
 export function instanceOfBetaOrganizationServiceDeleteOrganizationDomainRequest(value: object): value is BetaOrganizationServiceDeleteOrganizationDomainRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaOrganizationServiceDeleteOrganizationDomainRequestFromJSONTy
     }
     return {
         
-        'organizationId': json['organizationId'],
-        'domain': json['domain'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
 

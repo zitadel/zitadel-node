@@ -32,7 +32,7 @@ export interface BetaUserServicePhoneQuery {
      * @type {string}
      * @memberof BetaUserServicePhoneQuery
      */
-    number: string;
+    number?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServicePhoneQuery {
  * Check if a given object implements the BetaUserServicePhoneQuery interface.
  */
 export function instanceOfBetaUserServicePhoneQuery(value: object): value is BetaUserServicePhoneQuery {
-    if (!('number' in value) || value['number'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServicePhoneQueryFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'number': json['number'],
+        'number': json['number'] == null ? undefined : json['number'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

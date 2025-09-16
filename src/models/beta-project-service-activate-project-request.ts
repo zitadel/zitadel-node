@@ -24,14 +24,13 @@ export interface BetaProjectServiceActivateProjectRequest {
      * @type {string}
      * @memberof BetaProjectServiceActivateProjectRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaProjectServiceActivateProjectRequest interface.
  */
 export function instanceOfBetaProjectServiceActivateProjectRequest(value: object): value is BetaProjectServiceActivateProjectRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaProjectServiceActivateProjectRequestFromJSONTyped(json: any,
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

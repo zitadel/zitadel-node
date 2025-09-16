@@ -24,14 +24,13 @@ export interface BetaUserServiceRemoveOTPEmailRequest {
      * @type {string}
      * @memberof BetaUserServiceRemoveOTPEmailRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceRemoveOTPEmailRequest interface.
  */
 export function instanceOfBetaUserServiceRemoveOTPEmailRequest(value: object): value is BetaUserServiceRemoveOTPEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceRemoveOTPEmailRequestFromJSONTyped(json: any, ign
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

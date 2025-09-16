@@ -32,7 +32,7 @@ export interface OrganizationServiceOrganizationDomainQuery {
      * @type {string}
      * @memberof OrganizationServiceOrganizationDomainQuery
      */
-    domain: string;
+    domain?: string;
     /**
      * 
      * @type {OrganizationServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface OrganizationServiceOrganizationDomainQuery {
  * Check if a given object implements the OrganizationServiceOrganizationDomainQuery interface.
  */
 export function instanceOfOrganizationServiceOrganizationDomainQuery(value: object): value is OrganizationServiceOrganizationDomainQuery {
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function OrganizationServiceOrganizationDomainQueryFromJSONTyped(json: an
     }
     return {
         
-        'domain': json['domain'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
         'method': json['method'] == null ? undefined : OrganizationServiceTextQueryMethodFromJSON(json['method']),
     };
 }

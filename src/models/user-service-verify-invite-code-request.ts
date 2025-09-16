@@ -24,21 +24,19 @@ export interface UserServiceVerifyInviteCodeRequest {
      * @type {string}
      * @memberof UserServiceVerifyInviteCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceVerifyInviteCodeRequest
      */
-    verificationCode: string;
+    verificationCode?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceVerifyInviteCodeRequest interface.
  */
 export function instanceOfUserServiceVerifyInviteCodeRequest(value: object): value is UserServiceVerifyInviteCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceVerifyInviteCodeRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'userId': json['userId'],
-        'verificationCode': json['verificationCode'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],
     };
 }
 

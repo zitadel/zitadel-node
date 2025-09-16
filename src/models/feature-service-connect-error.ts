@@ -41,11 +41,11 @@ export interface FeatureServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {FeatureServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<FeatureServiceAny>}
      * @memberof FeatureServiceConnectError
      */
-    detail?: FeatureServiceAny;
+    details?: Array<FeatureServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function FeatureServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrim
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : FeatureServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(FeatureServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function FeatureServiceConnectErrorToJSONTyped(value?: FeatureServiceConn
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': FeatureServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(FeatureServiceAnyToJSON)),
     };
 }
 

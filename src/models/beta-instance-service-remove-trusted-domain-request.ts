@@ -30,14 +30,13 @@ export interface BetaInstanceServiceRemoveTrustedDomainRequest {
      * @type {string}
      * @memberof BetaInstanceServiceRemoveTrustedDomainRequest
      */
-    domain: string;
+    domain?: string;
 }
 
 /**
  * Check if a given object implements the BetaInstanceServiceRemoveTrustedDomainRequest interface.
  */
 export function instanceOfBetaInstanceServiceRemoveTrustedDomainRequest(value: object): value is BetaInstanceServiceRemoveTrustedDomainRequest {
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -52,7 +51,7 @@ export function BetaInstanceServiceRemoveTrustedDomainRequestFromJSONTyped(json:
     return {
         
         'instanceId': json['instanceId'] == null ? undefined : json['instanceId'],
-        'domain': json['domain'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
 

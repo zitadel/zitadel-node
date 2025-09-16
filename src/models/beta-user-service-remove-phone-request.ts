@@ -24,14 +24,13 @@ export interface BetaUserServiceRemovePhoneRequest {
      * @type {string}
      * @memberof BetaUserServiceRemovePhoneRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceRemovePhoneRequest interface.
  */
 export function instanceOfBetaUserServiceRemovePhoneRequest(value: object): value is BetaUserServiceRemovePhoneRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceRemovePhoneRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

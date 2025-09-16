@@ -24,21 +24,19 @@ export interface UserServicePasskeyRegistrationCode {
      * @type {string}
      * @memberof UserServicePasskeyRegistrationCode
      */
-    id: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServicePasskeyRegistrationCode
      */
-    code: string;
+    code?: string;
 }
 
 /**
  * Check if a given object implements the UserServicePasskeyRegistrationCode interface.
  */
 export function instanceOfUserServicePasskeyRegistrationCode(value: object): value is UserServicePasskeyRegistrationCode {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServicePasskeyRegistrationCodeFromJSONTyped(json: any, ignor
     }
     return {
         
-        'id': json['id'],
-        'code': json['code'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 

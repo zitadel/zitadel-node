@@ -24,14 +24,13 @@ export interface BetaUserServiceListAuthenticationMethodTypesRequest {
      * @type {string}
      * @memberof BetaUserServiceListAuthenticationMethodTypesRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceListAuthenticationMethodTypesRequest interface.
  */
 export function instanceOfBetaUserServiceListAuthenticationMethodTypesRequest(value: object): value is BetaUserServiceListAuthenticationMethodTypesRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceListAuthenticationMethodTypesRequestFromJSONTyped
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

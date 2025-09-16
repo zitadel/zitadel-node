@@ -24,7 +24,7 @@ export interface UserServicePassword {
      * @type {string}
      * @memberof UserServicePassword
      */
-    password: string;
+    password?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface UserServicePassword {
  * Check if a given object implements the UserServicePassword interface.
  */
 export function instanceOfUserServicePassword(value: object): value is UserServicePassword {
-    if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function UserServicePasswordFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'password': json['password'],
+        'password': json['password'] == null ? undefined : json['password'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

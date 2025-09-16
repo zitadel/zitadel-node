@@ -32,7 +32,7 @@ export interface BetaUserServicePasswordResetRequest {
      * @type {string}
      * @memberof BetaUserServicePasswordResetRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface BetaUserServicePasswordResetRequest {
  * Check if a given object implements the BetaUserServicePasswordResetRequest interface.
  */
 export function instanceOfBetaUserServicePasswordResetRequest(value: object): value is BetaUserServicePasswordResetRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function BetaUserServicePasswordResetRequestFromJSONTyped(json: any, igno
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendLink': json['sendLink'] == null ? undefined : BetaUserServiceSendPasswordResetLinkFromJSON(json['sendLink']),
     };

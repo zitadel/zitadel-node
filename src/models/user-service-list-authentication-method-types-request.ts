@@ -32,7 +32,7 @@ export interface UserServiceListAuthenticationMethodTypesRequest {
      * @type {string}
      * @memberof UserServiceListAuthenticationMethodTypesRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {UserServiceDomainQuery}
@@ -45,7 +45,6 @@ export interface UserServiceListAuthenticationMethodTypesRequest {
  * Check if a given object implements the UserServiceListAuthenticationMethodTypesRequest interface.
  */
 export function instanceOfUserServiceListAuthenticationMethodTypesRequest(value: object): value is UserServiceListAuthenticationMethodTypesRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -59,7 +58,7 @@ export function UserServiceListAuthenticationMethodTypesRequestFromJSONTyped(jso
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'domainQuery': json['domainQuery'] == null ? undefined : UserServiceDomainQueryFromJSON(json['domainQuery']),
     };
 }

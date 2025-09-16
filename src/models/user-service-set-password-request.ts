@@ -32,7 +32,7 @@ export interface UserServiceSetPasswordRequest {
      * @type {string}
      * @memberof UserServiceSetPasswordRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {UserServicePassword}
@@ -57,7 +57,6 @@ export interface UserServiceSetPasswordRequest {
  * Check if a given object implements the UserServiceSetPasswordRequest interface.
  */
 export function instanceOfUserServiceSetPasswordRequest(value: object): value is UserServiceSetPasswordRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +70,7 @@ export function UserServiceSetPasswordRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'newPassword': json['newPassword'] == null ? undefined : UserServicePasswordFromJSON(json['newPassword']),
         'currentPassword': json['currentPassword'] == null ? undefined : json['currentPassword'],
         'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],

@@ -32,7 +32,7 @@ export interface UserServiceNickNameQuery {
      * @type {string}
      * @memberof UserServiceNickNameQuery
      */
-    nickName: string;
+    nickName?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServiceNickNameQuery {
  * Check if a given object implements the UserServiceNickNameQuery interface.
  */
 export function instanceOfUserServiceNickNameQuery(value: object): value is UserServiceNickNameQuery {
-    if (!('nickName' in value) || value['nickName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServiceNickNameQueryFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'nickName': json['nickName'],
+        'nickName': json['nickName'] == null ? undefined : json['nickName'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

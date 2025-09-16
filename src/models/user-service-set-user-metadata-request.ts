@@ -32,7 +32,7 @@ export interface UserServiceSetUserMetadataRequest {
      * @type {string}
      * @memberof UserServiceSetUserMetadataRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * Metadata to bet set. The values have to be base64 encoded.
      * @type {Array<UserServiceMetadata>}
@@ -45,7 +45,6 @@ export interface UserServiceSetUserMetadataRequest {
  * Check if a given object implements the UserServiceSetUserMetadataRequest interface.
  */
 export function instanceOfUserServiceSetUserMetadataRequest(value: object): value is UserServiceSetUserMetadataRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -59,7 +58,7 @@ export function UserServiceSetUserMetadataRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(UserServiceMetadataFromJSON)),
     };
 }

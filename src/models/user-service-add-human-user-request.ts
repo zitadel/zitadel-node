@@ -99,13 +99,13 @@ export interface UserServiceAddHumanUserRequest {
      * @type {UserServiceSetHumanProfile}
      * @memberof UserServiceAddHumanUserRequest
      */
-    profile: UserServiceSetHumanProfile;
+    profile?: UserServiceSetHumanProfile;
     /**
      * 
      * @type {UserServiceSetHumanEmail}
      * @memberof UserServiceAddHumanUserRequest
      */
-    email: UserServiceSetHumanEmail;
+    email?: UserServiceSetHumanEmail;
     /**
      * 
      * @type {UserServiceSetHumanPhone}
@@ -149,8 +149,6 @@ export interface UserServiceAddHumanUserRequest {
  * Check if a given object implements the UserServiceAddHumanUserRequest interface.
  */
 export function instanceOfUserServiceAddHumanUserRequest(value: object): value is UserServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -167,8 +165,8 @@ export function UserServiceAddHumanUserRequestFromJSONTyped(json: any, ignoreDis
         'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'organization': json['organization'] == null ? undefined : UserServiceOrganizationFromJSON(json['organization']),
-        'profile': UserServiceSetHumanProfileFromJSON(json['profile']),
-        'email': UserServiceSetHumanEmailFromJSON(json['email']),
+        'profile': json['profile'] == null ? undefined : UserServiceSetHumanProfileFromJSON(json['profile']),
+        'email': json['email'] == null ? undefined : UserServiceSetHumanEmailFromJSON(json['email']),
         'phone': json['phone'] == null ? undefined : UserServiceSetHumanPhoneFromJSON(json['phone']),
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(UserServiceSetMetadataEntryFromJSON)),
         'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(UserServiceIDPLinkFromJSON)),

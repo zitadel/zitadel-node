@@ -24,13 +24,13 @@ export interface BetaProjectServiceCreateProjectGrantRequest {
      * @type {string}
      * @memberof BetaProjectServiceCreateProjectGrantRequest
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Organization the project is granted to.
      * @type {string}
      * @memberof BetaProjectServiceCreateProjectGrantRequest
      */
-    grantedOrganizationId: string;
+    grantedOrganizationId?: string;
     /**
      * Keys of the role available for the project grant.
      * @type {Array<string>}
@@ -43,8 +43,6 @@ export interface BetaProjectServiceCreateProjectGrantRequest {
  * Check if a given object implements the BetaProjectServiceCreateProjectGrantRequest interface.
  */
 export function instanceOfBetaProjectServiceCreateProjectGrantRequest(value: object): value is BetaProjectServiceCreateProjectGrantRequest {
-    if (!('projectId' in value) || value['projectId'] === undefined) return false;
-    if (!('grantedOrganizationId' in value) || value['grantedOrganizationId'] === undefined) return false;
     return true;
 }
 
@@ -58,8 +56,8 @@ export function BetaProjectServiceCreateProjectGrantRequestFromJSONTyped(json: a
     }
     return {
         
-        'projectId': json['projectId'],
-        'grantedOrganizationId': json['grantedOrganizationId'],
+        'projectId': json['projectId'] == null ? undefined : json['projectId'],
+        'grantedOrganizationId': json['grantedOrganizationId'] == null ? undefined : json['grantedOrganizationId'],
         'roleKeys': json['roleKeys'] == null ? undefined : json['roleKeys'],
     };
 }

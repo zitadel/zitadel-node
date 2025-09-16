@@ -24,19 +24,19 @@ export interface BetaProjectServiceAddProjectRoleRequest {
      * @type {string}
      * @memberof BetaProjectServiceAddProjectRoleRequest
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The key is the only relevant attribute for ZITADEL regarding the authorization checks.
      * @type {string}
      * @memberof BetaProjectServiceAddProjectRoleRequest
      */
-    roleKey: string;
+    roleKey?: string;
     /**
      * Name displayed for the role.
      * @type {string}
      * @memberof BetaProjectServiceAddProjectRoleRequest
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The group is only used for display purposes. That you have better handling, like giving all the roles from a group to a user.
      * @type {string}
@@ -49,9 +49,6 @@ export interface BetaProjectServiceAddProjectRoleRequest {
  * Check if a given object implements the BetaProjectServiceAddProjectRoleRequest interface.
  */
 export function instanceOfBetaProjectServiceAddProjectRoleRequest(value: object): value is BetaProjectServiceAddProjectRoleRequest {
-    if (!('projectId' in value) || value['projectId'] === undefined) return false;
-    if (!('roleKey' in value) || value['roleKey'] === undefined) return false;
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
     return true;
 }
 
@@ -65,9 +62,9 @@ export function BetaProjectServiceAddProjectRoleRequestFromJSONTyped(json: any, 
     }
     return {
         
-        'projectId': json['projectId'],
-        'roleKey': json['roleKey'],
-        'displayName': json['displayName'],
+        'projectId': json['projectId'] == null ? undefined : json['projectId'],
+        'roleKey': json['roleKey'] == null ? undefined : json['roleKey'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'group': json['group'] == null ? undefined : json['group'],
     };
 }

@@ -24,14 +24,13 @@ export interface UserServiceRemoveOTPSMSRequest {
      * @type {string}
      * @memberof UserServiceRemoveOTPSMSRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemoveOTPSMSRequest interface.
  */
 export function instanceOfUserServiceRemoveOTPSMSRequest(value: object): value is UserServiceRemoveOTPSMSRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceRemoveOTPSMSRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

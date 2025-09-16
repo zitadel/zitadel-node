@@ -41,11 +41,11 @@ export interface BetaWebKeyServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {BetaWebKeyServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<BetaWebKeyServiceAny>}
      * @memberof BetaWebKeyServiceConnectError
      */
-    detail?: BetaWebKeyServiceAny;
+    details?: Array<BetaWebKeyServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function BetaWebKeyServiceConnectErrorFromJSONTyped(json: any, ignoreDisc
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : BetaWebKeyServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(BetaWebKeyServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function BetaWebKeyServiceConnectErrorToJSONTyped(value?: BetaWebKeyServi
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': BetaWebKeyServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(BetaWebKeyServiceAnyToJSON)),
     };
 }
 

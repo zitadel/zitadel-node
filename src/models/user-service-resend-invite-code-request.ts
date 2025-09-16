@@ -24,14 +24,13 @@ export interface UserServiceResendInviteCodeRequest {
      * @type {string}
      * @memberof UserServiceResendInviteCodeRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceResendInviteCodeRequest interface.
  */
 export function instanceOfUserServiceResendInviteCodeRequest(value: object): value is UserServiceResendInviteCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceResendInviteCodeRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

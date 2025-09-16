@@ -32,13 +32,13 @@ export interface BetaOrganizationServiceGenerateOrganizationDomainValidationRequ
      * @type {string}
      * @memberof BetaOrganizationServiceGenerateOrganizationDomainValidationRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * The domain which to be deleted.
      * @type {string}
      * @memberof BetaOrganizationServiceGenerateOrganizationDomainValidationRequest
      */
-    domain: string;
+    domain?: string;
     /**
      * 
      * @type {BetaOrganizationServiceDomainValidationType}
@@ -53,8 +53,6 @@ export interface BetaOrganizationServiceGenerateOrganizationDomainValidationRequ
  * Check if a given object implements the BetaOrganizationServiceGenerateOrganizationDomainValidationRequest interface.
  */
 export function instanceOfBetaOrganizationServiceGenerateOrganizationDomainValidationRequest(value: object): value is BetaOrganizationServiceGenerateOrganizationDomainValidationRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -68,8 +66,8 @@ export function BetaOrganizationServiceGenerateOrganizationDomainValidationReque
     }
     return {
         
-        'organizationId': json['organizationId'],
-        'domain': json['domain'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
         'type': json['type'] == null ? undefined : BetaOrganizationServiceDomainValidationTypeFromJSON(json['type']),
     };
 }

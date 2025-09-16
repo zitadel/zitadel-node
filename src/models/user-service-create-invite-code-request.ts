@@ -32,7 +32,7 @@ export interface UserServiceCreateInviteCodeRequest {
      * @type {string}
      * @memberof UserServiceCreateInviteCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface UserServiceCreateInviteCodeRequest {
  * Check if a given object implements the UserServiceCreateInviteCodeRequest interface.
  */
 export function instanceOfUserServiceCreateInviteCodeRequest(value: object): value is UserServiceCreateInviteCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function UserServiceCreateInviteCodeRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : UserServiceSendInviteCodeFromJSON(json['sendCode']),
     };

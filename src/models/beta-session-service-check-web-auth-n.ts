@@ -31,14 +31,13 @@ export interface BetaSessionServiceCheckWebAuthN {
      * @type {{ [key: string]: any; }}
      * @memberof BetaSessionServiceCheckWebAuthN
      */
-    credentialAssertionData: { [key: string]: any; };
+    credentialAssertionData?: { [key: string]: any; };
 }
 
 /**
  * Check if a given object implements the BetaSessionServiceCheckWebAuthN interface.
  */
 export function instanceOfBetaSessionServiceCheckWebAuthN(value: object): value is BetaSessionServiceCheckWebAuthN {
-    if (!('credentialAssertionData' in value) || value['credentialAssertionData'] === undefined) return false;
     return true;
 }
 
@@ -52,7 +51,7 @@ export function BetaSessionServiceCheckWebAuthNFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'credentialAssertionData': json['credentialAssertionData'],
+        'credentialAssertionData': json['credentialAssertionData'] == null ? undefined : json['credentialAssertionData'],
     };
 }
 

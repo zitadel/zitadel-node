@@ -65,8 +65,8 @@ export interface OIDCServiceApiGetDeviceAuthorizationRequestRequest {
 export class OIDCServiceApi extends runtime.BaseAPI {
 
     /**
-     * Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
-     * AuthorizeOrDenyDeviceAuthorization
+     * Authorize or deny the device authorization request based on the provided device authorization id.
+     * Authorize or deny device authorization
      */
     private async authorizeOrDenyDeviceAuthorizationRaw(requestParameters: OIDCServiceApiAuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest'] == null) {
@@ -102,8 +102,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
-     * AuthorizeOrDenyDeviceAuthorization
+     * Authorize or deny the device authorization request based on the provided device authorization id.
+     * Authorize or deny device authorization
      */
     async authorizeOrDenyDeviceAuthorization(requestParameters: OIDCServiceApiAuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.authorizeOrDenyDeviceAuthorizationRaw(requestParameters, initOverrides);
@@ -199,8 +199,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get device authorization request   Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
-     * GetDeviceAuthorizationRequest
+     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+     * Get device authorization request
      */
     private async getDeviceAuthorizationRequestRaw(requestParameters: OIDCServiceApiGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
         if (requestParameters['oIDCServiceGetDeviceAuthorizationRequestRequest'] == null) {
@@ -236,8 +236,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get device authorization request   Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
-     * GetDeviceAuthorizationRequest
+     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+     * Get device authorization request
      */
     async getDeviceAuthorizationRequest(requestParameters: OIDCServiceApiGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetDeviceAuthorizationRequestResponse> {
         const response = await this.getDeviceAuthorizationRequestRaw(requestParameters, initOverrides);

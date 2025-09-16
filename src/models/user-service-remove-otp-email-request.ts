@@ -24,14 +24,13 @@ export interface UserServiceRemoveOTPEmailRequest {
      * @type {string}
      * @memberof UserServiceRemoveOTPEmailRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemoveOTPEmailRequest interface.
  */
 export function instanceOfUserServiceRemoveOTPEmailRequest(value: object): value is UserServiceRemoveOTPEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceRemoveOTPEmailRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

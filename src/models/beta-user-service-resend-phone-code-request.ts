@@ -24,7 +24,7 @@ export interface BetaUserServiceResendPhoneCodeRequest {
      * @type {string}
      * @memberof BetaUserServiceResendPhoneCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -43,7 +43,6 @@ export interface BetaUserServiceResendPhoneCodeRequest {
  * Check if a given object implements the BetaUserServiceResendPhoneCodeRequest interface.
  */
 export function instanceOfBetaUserServiceResendPhoneCodeRequest(value: object): value is BetaUserServiceResendPhoneCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -57,7 +56,7 @@ export function BetaUserServiceResendPhoneCodeRequestFromJSONTyped(json: any, ig
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],
     };

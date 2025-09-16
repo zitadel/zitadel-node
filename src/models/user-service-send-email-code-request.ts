@@ -32,7 +32,7 @@ export interface UserServiceSendEmailCodeRequest {
      * @type {string}
      * @memberof UserServiceSendEmailCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface UserServiceSendEmailCodeRequest {
  * Check if a given object implements the UserServiceSendEmailCodeRequest interface.
  */
 export function instanceOfUserServiceSendEmailCodeRequest(value: object): value is UserServiceSendEmailCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function UserServiceSendEmailCodeRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : UserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),
     };

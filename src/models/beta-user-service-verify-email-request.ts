@@ -24,21 +24,19 @@ export interface BetaUserServiceVerifyEmailRequest {
      * @type {string}
      * @memberof BetaUserServiceVerifyEmailRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyEmailRequest
      */
-    verificationCode: string;
+    verificationCode?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceVerifyEmailRequest interface.
  */
 export function instanceOfBetaUserServiceVerifyEmailRequest(value: object): value is BetaUserServiceVerifyEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaUserServiceVerifyEmailRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
-        'verificationCode': json['verificationCode'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],
     };
 }
 

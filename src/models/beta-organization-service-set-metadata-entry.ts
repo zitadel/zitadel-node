@@ -24,21 +24,19 @@ export interface BetaOrganizationServiceSetMetadataEntry {
      * @type {string}
      * @memberof BetaOrganizationServiceSetMetadataEntry
      */
-    key: string;
+    key?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaOrganizationServiceSetMetadataEntry
      */
-    value: string;
+    value?: string;
 }
 
 /**
  * Check if a given object implements the BetaOrganizationServiceSetMetadataEntry interface.
  */
 export function instanceOfBetaOrganizationServiceSetMetadataEntry(value: object): value is BetaOrganizationServiceSetMetadataEntry {
-    if (!('key' in value) || value['key'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaOrganizationServiceSetMetadataEntryFromJSONTyped(json: any, 
     }
     return {
         
-        'key': json['key'],
-        'value': json['value'],
+        'key': json['key'] == null ? undefined : json['key'],
+        'value': json['value'] == null ? undefined : json['value'],
     };
 }
 

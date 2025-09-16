@@ -24,14 +24,13 @@ export interface ActionServiceDeleteTargetRequest {
      * @type {string}
      * @memberof ActionServiceDeleteTargetRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the ActionServiceDeleteTargetRequest interface.
  */
 export function instanceOfActionServiceDeleteTargetRequest(value: object): value is ActionServiceDeleteTargetRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function ActionServiceDeleteTargetRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

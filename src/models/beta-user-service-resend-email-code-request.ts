@@ -32,7 +32,7 @@ export interface BetaUserServiceResendEmailCodeRequest {
      * @type {string}
      * @memberof BetaUserServiceResendEmailCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface BetaUserServiceResendEmailCodeRequest {
  * Check if a given object implements the BetaUserServiceResendEmailCodeRequest interface.
  */
 export function instanceOfBetaUserServiceResendEmailCodeRequest(value: object): value is BetaUserServiceResendEmailCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function BetaUserServiceResendEmailCodeRequestFromJSONTyped(json: any, ig
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : BetaUserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),
     };

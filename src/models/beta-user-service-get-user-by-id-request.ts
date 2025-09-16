@@ -24,14 +24,13 @@ export interface BetaUserServiceGetUserByIDRequest {
      * @type {string}
      * @memberof BetaUserServiceGetUserByIDRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceGetUserByIDRequest interface.
  */
 export function instanceOfBetaUserServiceGetUserByIDRequest(value: object): value is BetaUserServiceGetUserByIDRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceGetUserByIDRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

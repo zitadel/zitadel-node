@@ -46,7 +46,7 @@ export interface BetaProjectServiceListProjectRolesRequest {
      * @type {string}
      * @memberof BetaProjectServiceListProjectRolesRequest
      */
-    projectId: string;
+    projectId?: string;
     /**
      * 
      * @type {BetaProjectServicePaginationRequest}
@@ -73,7 +73,6 @@ export interface BetaProjectServiceListProjectRolesRequest {
  * Check if a given object implements the BetaProjectServiceListProjectRolesRequest interface.
  */
 export function instanceOfBetaProjectServiceListProjectRolesRequest(value: object): value is BetaProjectServiceListProjectRolesRequest {
-    if (!('projectId' in value) || value['projectId'] === undefined) return false;
     return true;
 }
 
@@ -87,7 +86,7 @@ export function BetaProjectServiceListProjectRolesRequestFromJSONTyped(json: any
     }
     return {
         
-        'projectId': json['projectId'],
+        'projectId': json['projectId'] == null ? undefined : json['projectId'],
         'pagination': json['pagination'] == null ? undefined : BetaProjectServicePaginationRequestFromJSON(json['pagination']),
         'sortingColumn': json['sortingColumn'] == null ? undefined : BetaProjectServiceProjectRoleFieldNameFromJSON(json['sortingColumn']),
         'filters': json['filters'] == null ? undefined : ((json['filters'] as Array<any>).map(BetaProjectServiceProjectRoleSearchFilterFromJSON)),

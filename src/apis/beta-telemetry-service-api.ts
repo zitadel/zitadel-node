@@ -49,7 +49,7 @@ export class BetaTelemetryServiceApi extends runtime.BaseAPI {
 
     /**
      * ReportBaseInformation is used to report the base information of the ZITADEL system,  including the version, instances, their creation date and domains.  The response contains a report ID to link it to the resource counts or other reports.  The report ID is only valid for the same system ID.
-     * ReportBaseInformation
+     * ReportBaseInformation is used to report the base information of the ZITADEL system,  including the version, instances, their creation date and domains.  The response contains a report ID to link it to the resource counts or other reports.  The report ID is only valid for the same system ID.
      */
     private async reportBaseInformationRaw(requestParameters: BetaTelemetryServiceApiReportBaseInformationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaTelemetryServiceReportBaseInformationResponse>> {
         if (requestParameters['betaTelemetryServiceReportBaseInformationRequest'] == null) {
@@ -86,7 +86,7 @@ export class BetaTelemetryServiceApi extends runtime.BaseAPI {
 
     /**
      * ReportBaseInformation is used to report the base information of the ZITADEL system,  including the version, instances, their creation date and domains.  The response contains a report ID to link it to the resource counts or other reports.  The report ID is only valid for the same system ID.
-     * ReportBaseInformation
+     * ReportBaseInformation is used to report the base information of the ZITADEL system,  including the version, instances, their creation date and domains.  The response contains a report ID to link it to the resource counts or other reports.  The report ID is only valid for the same system ID.
      */
     async reportBaseInformation(requestParameters: BetaTelemetryServiceApiReportBaseInformationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaTelemetryServiceReportBaseInformationResponse> {
         const response = await this.reportBaseInformationRaw(requestParameters, initOverrides);
@@ -95,7 +95,7 @@ export class BetaTelemetryServiceApi extends runtime.BaseAPI {
 
     /**
      * ReportResourceCounts is used to report the resource counts such as amount of organizations  or users per organization and much more.  Since the resource counts can be reported in multiple batches,  the response contains a report ID to continue reporting.  The report ID is only valid for the same system ID.
-     * ReportResourceCounts
+     * ReportResourceCounts is used to report the resource counts such as amount of organizations  or users per organization and much more.  Since the resource counts can be reported in multiple batches,  the response contains a report ID to continue reporting.  The report ID is only valid for the same system ID.
      */
     private async reportResourceCountsRaw(requestParameters: BetaTelemetryServiceApiReportResourceCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaTelemetryServiceReportResourceCountsResponse>> {
         if (requestParameters['betaTelemetryServiceReportResourceCountsRequest'] == null) {
@@ -132,7 +132,7 @@ export class BetaTelemetryServiceApi extends runtime.BaseAPI {
 
     /**
      * ReportResourceCounts is used to report the resource counts such as amount of organizations  or users per organization and much more.  Since the resource counts can be reported in multiple batches,  the response contains a report ID to continue reporting.  The report ID is only valid for the same system ID.
-     * ReportResourceCounts
+     * ReportResourceCounts is used to report the resource counts such as amount of organizations  or users per organization and much more.  Since the resource counts can be reported in multiple batches,  the response contains a report ID to continue reporting.  The report ID is only valid for the same system ID.
      */
     async reportResourceCounts(requestParameters: BetaTelemetryServiceApiReportResourceCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaTelemetryServiceReportResourceCountsResponse> {
         const response = await this.reportResourceCountsRaw(requestParameters, initOverrides);

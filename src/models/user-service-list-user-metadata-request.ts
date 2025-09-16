@@ -39,7 +39,7 @@ export interface UserServiceListUserMetadataRequest {
      * @type {string}
      * @memberof UserServiceListUserMetadataRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {UserServicePaginationRequest}
@@ -58,7 +58,6 @@ export interface UserServiceListUserMetadataRequest {
  * Check if a given object implements the UserServiceListUserMetadataRequest interface.
  */
 export function instanceOfUserServiceListUserMetadataRequest(value: object): value is UserServiceListUserMetadataRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -72,7 +71,7 @@ export function UserServiceListUserMetadataRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'pagination': json['pagination'] == null ? undefined : UserServicePaginationRequestFromJSON(json['pagination']),
         'filters': json['filters'] == null ? undefined : ((json['filters'] as Array<any>).map(UserServiceMetadataSearchFilterFromJSON)),
     };

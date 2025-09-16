@@ -24,21 +24,19 @@ export interface BetaOrganizationServiceAddOrganizationDomainRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceAddOrganizationDomainRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * The domain you want to add to the organization.
      * @type {string}
      * @memberof BetaOrganizationServiceAddOrganizationDomainRequest
      */
-    domain: string;
+    domain?: string;
 }
 
 /**
  * Check if a given object implements the BetaOrganizationServiceAddOrganizationDomainRequest interface.
  */
 export function instanceOfBetaOrganizationServiceAddOrganizationDomainRequest(value: object): value is BetaOrganizationServiceAddOrganizationDomainRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
-    if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaOrganizationServiceAddOrganizationDomainRequestFromJSONTyped
     }
     return {
         
-        'organizationId': json['organizationId'],
-        'domain': json['domain'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
 

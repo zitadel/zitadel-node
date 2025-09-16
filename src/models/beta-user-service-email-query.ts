@@ -32,7 +32,7 @@ export interface BetaUserServiceEmailQuery {
      * @type {string}
      * @memberof BetaUserServiceEmailQuery
      */
-    emailAddress: string;
+    emailAddress?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServiceEmailQuery {
  * Check if a given object implements the BetaUserServiceEmailQuery interface.
  */
 export function instanceOfBetaUserServiceEmailQuery(value: object): value is BetaUserServiceEmailQuery {
-    if (!('emailAddress' in value) || value['emailAddress'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServiceEmailQueryFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'emailAddress': json['emailAddress'],
+        'emailAddress': json['emailAddress'] == null ? undefined : json['emailAddress'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

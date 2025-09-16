@@ -24,14 +24,13 @@ export interface BetaUserServiceRegisterTOTPRequest {
      * @type {string}
      * @memberof BetaUserServiceRegisterTOTPRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceRegisterTOTPRequest interface.
  */
 export function instanceOfBetaUserServiceRegisterTOTPRequest(value: object): value is BetaUserServiceRegisterTOTPRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceRegisterTOTPRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

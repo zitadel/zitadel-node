@@ -20,6 +20,13 @@ import {
     BetaProjectServicePrivateLabelingSettingToJSON,
     BetaProjectServicePrivateLabelingSettingToJSONTyped,
 } from './beta-project-service-private-labeling-setting.js';
+import type { BetaProjectServiceAdmin } from './beta-project-service-admin.js';
+import {
+    BetaProjectServiceAdminFromJSON,
+    BetaProjectServiceAdminFromJSONTyped,
+    BetaProjectServiceAdminToJSON,
+    BetaProjectServiceAdminToJSONTyped,
+} from './beta-project-service-admin.js';
 
 /**
  * 
@@ -44,7 +51,7 @@ export interface BetaProjectServiceCreateProjectRequest {
      * @type {string}
      * @memberof BetaProjectServiceCreateProjectRequest
      */
-    name: string;
+    name?: string;
     /**
      * Enable this setting to have role information included in the user info endpoint. It is also dependent on your application settings to include it in tokens and other types.
      * @type {boolean}
@@ -69,6 +76,12 @@ export interface BetaProjectServiceCreateProjectRequest {
      * @memberof BetaProjectServiceCreateProjectRequest
      */
     privateLabelingSetting?: BetaProjectServicePrivateLabelingSetting;
+    /**
+     * List of users and Project Member roles (PROJECT_OWNER, by default) to be assigned to those users.
+     * @type {Array<BetaProjectServiceAdmin>}
+     * @memberof BetaProjectServiceCreateProjectRequest
+     */
+    admins?: Array<BetaProjectServiceAdmin>;
 }
 
 
@@ -77,7 +90,6 @@ export interface BetaProjectServiceCreateProjectRequest {
  * Check if a given object implements the BetaProjectServiceCreateProjectRequest interface.
  */
 export function instanceOfBetaProjectServiceCreateProjectRequest(value: object): value is BetaProjectServiceCreateProjectRequest {
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -93,11 +105,12 @@ export function BetaProjectServiceCreateProjectRequestFromJSONTyped(json: any, i
         
         'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'projectRoleAssertion': json['projectRoleAssertion'] == null ? undefined : json['projectRoleAssertion'],
         'authorizationRequired': json['authorizationRequired'] == null ? undefined : json['authorizationRequired'],
         'projectAccessRequired': json['projectAccessRequired'] == null ? undefined : json['projectAccessRequired'],
         'privateLabelingSetting': json['privateLabelingSetting'] == null ? undefined : BetaProjectServicePrivateLabelingSettingFromJSON(json['privateLabelingSetting']),
+        'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(BetaProjectServiceAdminFromJSON)),
     };
 }
 
@@ -119,6 +132,7 @@ export function BetaProjectServiceCreateProjectRequestToJSONTyped(value?: BetaPr
         'authorizationRequired': value['authorizationRequired'],
         'projectAccessRequired': value['projectAccessRequired'],
         'privateLabelingSetting': BetaProjectServicePrivateLabelingSettingToJSON(value['privateLabelingSetting']),
+        'admins': value['admins'] == null ? undefined : ((value['admins'] as Array<any>).map(BetaProjectServiceAdminToJSON)),
     };
 }
 

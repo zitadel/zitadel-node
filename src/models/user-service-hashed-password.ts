@@ -24,7 +24,7 @@ export interface UserServiceHashedPassword {
      * @type {string}
      * @memberof UserServiceHashedPassword
      */
-    hash: string;
+    hash?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface UserServiceHashedPassword {
  * Check if a given object implements the UserServiceHashedPassword interface.
  */
 export function instanceOfUserServiceHashedPassword(value: object): value is UserServiceHashedPassword {
-    if (!('hash' in value) || value['hash'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function UserServiceHashedPasswordFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'hash': json['hash'],
+        'hash': json['hash'] == null ? undefined : json['hash'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

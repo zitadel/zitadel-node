@@ -24,21 +24,19 @@ export interface UserServiceRemoveU2FRequest {
      * @type {string}
      * @memberof UserServiceRemoveU2FRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceRemoveU2FRequest
      */
-    u2fId: string;
+    u2fId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemoveU2FRequest interface.
  */
 export function instanceOfUserServiceRemoveU2FRequest(value: object): value is UserServiceRemoveU2FRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('u2fId' in value) || value['u2fId'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceRemoveU2FRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'userId': json['userId'],
-        'u2fId': json['u2fId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'u2fId': json['u2fId'] == null ? undefined : json['u2fId'],
     };
 }
 

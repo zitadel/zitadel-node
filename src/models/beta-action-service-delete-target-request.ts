@@ -24,14 +24,13 @@ export interface BetaActionServiceDeleteTargetRequest {
      * @type {string}
      * @memberof BetaActionServiceDeleteTargetRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaActionServiceDeleteTargetRequest interface.
  */
 export function instanceOfBetaActionServiceDeleteTargetRequest(value: object): value is BetaActionServiceDeleteTargetRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaActionServiceDeleteTargetRequestFromJSONTyped(json: any, ign
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

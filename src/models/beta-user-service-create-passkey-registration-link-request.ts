@@ -32,7 +32,7 @@ export interface BetaUserServiceCreatePasskeyRegistrationLinkRequest {
      * @type {string}
      * @memberof BetaUserServiceCreatePasskeyRegistrationLinkRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -51,7 +51,6 @@ export interface BetaUserServiceCreatePasskeyRegistrationLinkRequest {
  * Check if a given object implements the BetaUserServiceCreatePasskeyRegistrationLinkRequest interface.
  */
 export function instanceOfBetaUserServiceCreatePasskeyRegistrationLinkRequest(value: object): value is BetaUserServiceCreatePasskeyRegistrationLinkRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function BetaUserServiceCreatePasskeyRegistrationLinkRequestFromJSONTyped
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendLink': json['sendLink'] == null ? undefined : BetaUserServiceSendPasskeyRegistrationLinkFromJSON(json['sendLink']),
     };

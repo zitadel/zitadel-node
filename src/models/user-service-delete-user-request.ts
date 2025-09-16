@@ -24,14 +24,13 @@ export interface UserServiceDeleteUserRequest {
      * @type {string}
      * @memberof UserServiceDeleteUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceDeleteUserRequest interface.
  */
 export function instanceOfUserServiceDeleteUserRequest(value: object): value is UserServiceDeleteUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceDeleteUserRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

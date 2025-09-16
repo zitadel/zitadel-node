@@ -41,11 +41,11 @@ export interface BetaInternalPermissionServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {BetaInternalPermissionServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<BetaInternalPermissionServiceAny>}
      * @memberof BetaInternalPermissionServiceConnectError
      */
-    detail?: BetaInternalPermissionServiceAny;
+    details?: Array<BetaInternalPermissionServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function BetaInternalPermissionServiceConnectErrorFromJSONTyped(json: any
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : BetaInternalPermissionServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(BetaInternalPermissionServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function BetaInternalPermissionServiceConnectErrorToJSONTyped(value?: Bet
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': BetaInternalPermissionServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(BetaInternalPermissionServiceAnyToJSON)),
     };
 }
 

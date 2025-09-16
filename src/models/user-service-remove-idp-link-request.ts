@@ -24,28 +24,25 @@ export interface UserServiceRemoveIDPLinkRequest {
      * @type {string}
      * @memberof UserServiceRemoveIDPLinkRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceRemoveIDPLinkRequest
      */
-    idpId: string;
+    idpId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceRemoveIDPLinkRequest
      */
-    linkedUserId: string;
+    linkedUserId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRemoveIDPLinkRequest interface.
  */
 export function instanceOfUserServiceRemoveIDPLinkRequest(value: object): value is UserServiceRemoveIDPLinkRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('idpId' in value) || value['idpId'] === undefined) return false;
-    if (!('linkedUserId' in value) || value['linkedUserId'] === undefined) return false;
     return true;
 }
 
@@ -59,9 +56,9 @@ export function UserServiceRemoveIDPLinkRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'userId': json['userId'],
-        'idpId': json['idpId'],
-        'linkedUserId': json['linkedUserId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'idpId': json['idpId'] == null ? undefined : json['idpId'],
+        'linkedUserId': json['linkedUserId'] == null ? undefined : json['linkedUserId'],
     };
 }
 
