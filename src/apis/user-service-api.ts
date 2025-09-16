@@ -608,7 +608,7 @@ export interface UserServiceApiVerifyU2FRegistrationRequest {
 export class UserServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
      * AddHumanUser
      */
     private async addHumanUserRaw(requestParameters: UserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
@@ -645,7 +645,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
      * AddHumanUser
      */
     async addHumanUser(requestParameters: UserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddHumanUserResponse> {
@@ -930,7 +930,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.
+     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
      * CreateInviteCode
      */
     private async createInviteCodeRaw(requestParameters: UserServiceApiCreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
@@ -967,7 +967,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.
+     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
      * CreateInviteCode
      */
     async createInviteCode(requestParameters: UserServiceApiCreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreateInviteCodeResponse> {
@@ -2216,7 +2216,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the user phone   Delete the phone number of a user.
+     * Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
      * RemovePhone
      */
     private async removePhoneRaw(requestParameters: UserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
@@ -2253,7 +2253,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the user phone   Delete the phone number of a user.
+     * Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
      * RemovePhone
      */
     async removePhone(requestParameters: UserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePhoneResponse> {
@@ -2492,7 +2492,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone
+     * Resend code to verify user phone number   Resend code to verify user phone number.
      * ResendPhoneCode
      */
     private async resendPhoneCodeRaw(requestParameters: UserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
@@ -2529,7 +2529,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone
+     * Resend code to verify user phone number   Resend code to verify user phone number.
      * ResendPhoneCode
      */
     async resendPhoneCode(requestParameters: UserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendPhoneCodeResponse> {
@@ -2630,7 +2630,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
      * SetEmail
      */
     private async setEmailRaw(requestParameters: UserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
@@ -2667,7 +2667,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
      * SetEmail
      */
     async setEmail(requestParameters: UserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetEmailResponse> {
@@ -2676,7 +2676,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Change the password of a user with either a verification code or the current password..
+     * Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
      * SetPassword
      */
     private async setPasswordRaw(requestParameters: UserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
@@ -2713,7 +2713,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Change the password of a user with either a verification code or the current password..
+     * Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
      * SetPassword
      */
     async setPassword(requestParameters: UserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPasswordResponse> {
@@ -2722,7 +2722,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
      * SetPhone
      */
     private async setPhoneRaw(requestParameters: UserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
@@ -2759,7 +2759,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
      * SetPhone
      */
     async setPhone(requestParameters: UserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPhoneResponse> {
@@ -2906,7 +2906,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Human User   Update all information from a user..
+     * Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
      * UpdateHumanUser
      */
     private async updateHumanUserRaw(requestParameters: UserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
@@ -2943,7 +2943,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Human User   Update all information from a user..
+     * Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
      * UpdateHumanUser
      */
     async updateHumanUser(requestParameters: UserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUpdateHumanUserResponse> {
@@ -3136,7 +3136,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone   Verify the phone with the generated code..
+     * Verify the phone number   Verify the phone number with the generated code.
      * VerifyPhone
      */
     private async verifyPhoneRaw(requestParameters: UserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
@@ -3173,7 +3173,7 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone   Verify the phone with the generated code..
+     * Verify the phone number   Verify the phone number with the generated code.
      * VerifyPhone
      */
     async verifyPhone(requestParameters: UserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPhoneResponse> {

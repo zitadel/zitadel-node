@@ -266,7 +266,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Instance   Returns the instance in the current context.   The instace_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * GetInstance
      */
     private async getInstanceRaw(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceGetInstanceResponse>> {
@@ -303,7 +303,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Instance   Returns the instance in the current context.   The instace_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * GetInstance
      */
     async getInstance(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceGetInstanceResponse> {

@@ -19,7 +19,6 @@
  */
 export const BetaFeatureServiceImprovedPerformance = {
     ImprovedPerformanceUnspecified: 'IMPROVED_PERFORMANCE_UNSPECIFIED',
-    ImprovedPerformanceOrgById: 'IMPROVED_PERFORMANCE_ORG_BY_ID',
     ImprovedPerformanceProjectGrant: 'IMPROVED_PERFORMANCE_PROJECT_GRANT',
     ImprovedPerformanceProject: 'IMPROVED_PERFORMANCE_PROJECT',
     ImprovedPerformanceUserGrant: 'IMPROVED_PERFORMANCE_USER_GRANT',

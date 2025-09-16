@@ -95,12 +95,6 @@ export interface FeatureServiceGetInstanceFeaturesResponse {
      * @type {FeatureServiceFeatureFlag}
      * @memberof FeatureServiceGetInstanceFeaturesResponse
      */
-    disableUserTokenEvent?: FeatureServiceFeatureFlag;
-    /**
-     * 
-     * @type {FeatureServiceFeatureFlag}
-     * @memberof FeatureServiceGetInstanceFeaturesResponse
-     */
     enableBackChannelLogout?: FeatureServiceFeatureFlag;
     /**
      * 
@@ -146,7 +140,6 @@ export function FeatureServiceGetInstanceFeaturesResponseFromJSONTyped(json: any
         'improvedPerformance': json['improvedPerformance'] == null ? undefined : FeatureServiceImprovedPerformanceFeatureFlagFromJSON(json['improvedPerformance']),
         'debugOidcParentError': json['debugOidcParentError'] == null ? undefined : FeatureServiceFeatureFlagFromJSON(json['debugOidcParentError']),
         'oidcSingleV1SessionTermination': json['oidcSingleV1SessionTermination'] == null ? undefined : FeatureServiceFeatureFlagFromJSON(json['oidcSingleV1SessionTermination']),
-        'disableUserTokenEvent': json['disableUserTokenEvent'] == null ? undefined : FeatureServiceFeatureFlagFromJSON(json['disableUserTokenEvent']),
         'enableBackChannelLogout': json['enableBackChannelLogout'] == null ? undefined : FeatureServiceFeatureFlagFromJSON(json['enableBackChannelLogout']),
         'loginV2': json['loginV2'] == null ? undefined : FeatureServiceLoginV2FeatureFlagFromJSON(json['loginV2']),
         'permissionCheckV2': json['permissionCheckV2'] == null ? undefined : FeatureServiceFeatureFlagFromJSON(json['permissionCheckV2']),
@@ -172,7 +165,6 @@ export function FeatureServiceGetInstanceFeaturesResponseToJSONTyped(value?: Fea
         'improvedPerformance': FeatureServiceImprovedPerformanceFeatureFlagToJSON(value['improvedPerformance']),
         'debugOidcParentError': FeatureServiceFeatureFlagToJSON(value['debugOidcParentError']),
         'oidcSingleV1SessionTermination': FeatureServiceFeatureFlagToJSON(value['oidcSingleV1SessionTermination']),
-        'disableUserTokenEvent': FeatureServiceFeatureFlagToJSON(value['disableUserTokenEvent']),
         'enableBackChannelLogout': FeatureServiceFeatureFlagToJSON(value['enableBackChannelLogout']),
         'loginV2': FeatureServiceLoginV2FeatureFlagToJSON(value['loginV2']),
         'permissionCheckV2': FeatureServiceFeatureFlagToJSON(value['permissionCheckV2']),
