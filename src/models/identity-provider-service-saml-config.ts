@@ -27,6 +27,13 @@ import {
     IdentityProviderServiceSAMLBindingToJSON,
     IdentityProviderServiceSAMLBindingToJSONTyped,
 } from './identity-provider-service-saml-binding.js';
+import type { IdentityProviderServiceSAMLSignatureAlgorithm } from './identity-provider-service-saml-signature-algorithm.js';
+import {
+    IdentityProviderServiceSAMLSignatureAlgorithmFromJSON,
+    IdentityProviderServiceSAMLSignatureAlgorithmFromJSONTyped,
+    IdentityProviderServiceSAMLSignatureAlgorithmToJSON,
+    IdentityProviderServiceSAMLSignatureAlgorithmToJSONTyped,
+} from './identity-provider-service-saml-signature-algorithm.js';
 
 /**
  * 
@@ -73,6 +80,12 @@ export interface IdentityProviderServiceSAMLConfig {
      * @memberof IdentityProviderServiceSAMLConfig
      */
     federatedLogoutEnabled?: boolean | null;
+    /**
+     * 
+     * @type {IdentityProviderServiceSAMLSignatureAlgorithm}
+     * @memberof IdentityProviderServiceSAMLConfig
+     */
+    signatureAlgorithm?: IdentityProviderServiceSAMLSignatureAlgorithm;
 }
 
 
@@ -100,6 +113,7 @@ export function IdentityProviderServiceSAMLConfigFromJSONTyped(json: any, ignore
         'nameIdFormat': json['nameIdFormat'] == null ? undefined : IdentityProviderServiceSAMLNameIDFormatFromJSON(json['nameIdFormat']),
         'transientMappingAttributeName': json['transientMappingAttributeName'] == null ? undefined : json['transientMappingAttributeName'],
         'federatedLogoutEnabled': json['federatedLogoutEnabled'] == null ? undefined : json['federatedLogoutEnabled'],
+        'signatureAlgorithm': json['signatureAlgorithm'] == null ? undefined : IdentityProviderServiceSAMLSignatureAlgorithmFromJSON(json['signatureAlgorithm']),
     };
 }
 
@@ -120,6 +134,7 @@ export function IdentityProviderServiceSAMLConfigToJSONTyped(value?: IdentityPro
         'nameIdFormat': IdentityProviderServiceSAMLNameIDFormatToJSON(value['nameIdFormat']),
         'transientMappingAttributeName': value['transientMappingAttributeName'],
         'federatedLogoutEnabled': value['federatedLogoutEnabled'],
+        'signatureAlgorithm': IdentityProviderServiceSAMLSignatureAlgorithmToJSON(value['signatureAlgorithm']),
     };
 }
 

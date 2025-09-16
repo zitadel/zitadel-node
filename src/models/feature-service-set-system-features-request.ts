@@ -69,12 +69,6 @@ export interface FeatureServiceSetSystemFeaturesRequest {
      * @type {boolean}
      * @memberof FeatureServiceSetSystemFeaturesRequest
      */
-    disableUserTokenEvent?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FeatureServiceSetSystemFeaturesRequest
-     */
     enableBackChannelLogout?: boolean | null;
     /**
      * 
@@ -112,7 +106,6 @@ export function FeatureServiceSetSystemFeaturesRequestFromJSONTyped(json: any, i
         'oidcTokenExchange': json['oidcTokenExchange'] == null ? undefined : json['oidcTokenExchange'],
         'improvedPerformance': json['improvedPerformance'] == null ? undefined : ((json['improvedPerformance'] as Array<any>).map(FeatureServiceImprovedPerformanceFromJSON)),
         'oidcSingleV1SessionTermination': json['oidcSingleV1SessionTermination'] == null ? undefined : json['oidcSingleV1SessionTermination'],
-        'disableUserTokenEvent': json['disableUserTokenEvent'] == null ? undefined : json['disableUserTokenEvent'],
         'enableBackChannelLogout': json['enableBackChannelLogout'] == null ? undefined : json['enableBackChannelLogout'],
         'loginV2': json['loginV2'] == null ? undefined : FeatureServiceLoginV2FromJSON(json['loginV2']),
         'permissionCheckV2': json['permissionCheckV2'] == null ? undefined : json['permissionCheckV2'],
@@ -135,7 +128,6 @@ export function FeatureServiceSetSystemFeaturesRequestToJSONTyped(value?: Featur
         'oidcTokenExchange': value['oidcTokenExchange'],
         'improvedPerformance': value['improvedPerformance'] == null ? undefined : ((value['improvedPerformance'] as Array<any>).map(FeatureServiceImprovedPerformanceToJSON)),
         'oidcSingleV1SessionTermination': value['oidcSingleV1SessionTermination'],
-        'disableUserTokenEvent': value['disableUserTokenEvent'],
         'enableBackChannelLogout': value['enableBackChannelLogout'],
         'loginV2': FeatureServiceLoginV2ToJSON(value['loginV2']),
         'permissionCheckV2': value['permissionCheckV2'],

@@ -62,6 +62,13 @@ import {
     UserServiceNotQueryToJSON,
     UserServiceNotQueryToJSONTyped,
 } from './user-service-not-query.js';
+import type { UserServiceMetadataKeyFilter } from './user-service-metadata-key-filter.js';
+import {
+    UserServiceMetadataKeyFilterFromJSON,
+    UserServiceMetadataKeyFilterFromJSONTyped,
+    UserServiceMetadataKeyFilterToJSON,
+    UserServiceMetadataKeyFilterToJSONTyped,
+} from './user-service-metadata-key-filter.js';
 import type { UserServiceUserNameQuery } from './user-service-user-name-query.js';
 import {
     UserServiceUserNameQueryFromJSON,
@@ -69,6 +76,13 @@ import {
     UserServiceUserNameQueryToJSON,
     UserServiceUserNameQueryToJSONTyped,
 } from './user-service-user-name-query.js';
+import type { UserServiceMetadataValueFilter } from './user-service-metadata-value-filter.js';
+import {
+    UserServiceMetadataValueFilterFromJSON,
+    UserServiceMetadataValueFilterFromJSONTyped,
+    UserServiceMetadataValueFilterToJSON,
+    UserServiceMetadataValueFilterToJSONTyped,
+} from './user-service-metadata-value-filter.js';
 import type { UserServiceOrganizationIdQuery } from './user-service-organization-id-query.js';
 import {
     UserServiceOrganizationIdQueryFromJSON,
@@ -182,6 +196,18 @@ export interface UserServiceSearchQuery {
     loginNameQuery?: UserServiceLoginNameQuery;
     /**
      * 
+     * @type {UserServiceMetadataKeyFilter}
+     * @memberof UserServiceSearchQuery
+     */
+    metadataKeyFilter?: UserServiceMetadataKeyFilter;
+    /**
+     * 
+     * @type {UserServiceMetadataValueFilter}
+     * @memberof UserServiceSearchQuery
+     */
+    metadataValueFilter?: UserServiceMetadataValueFilter;
+    /**
+     * 
      * @type {UserServiceNickNameQuery}
      * @memberof UserServiceSearchQuery
      */
@@ -255,6 +281,8 @@ export function UserServiceSearchQueryFromJSONTyped(json: any, ignoreDiscriminat
         'inUserIdsQuery': json['inUserIdsQuery'] == null ? undefined : UserServiceInUserIDQueryFromJSON(json['inUserIdsQuery']),
         'lastNameQuery': json['lastNameQuery'] == null ? undefined : UserServiceLastNameQueryFromJSON(json['lastNameQuery']),
         'loginNameQuery': json['loginNameQuery'] == null ? undefined : UserServiceLoginNameQueryFromJSON(json['loginNameQuery']),
+        'metadataKeyFilter': json['metadataKeyFilter'] == null ? undefined : UserServiceMetadataKeyFilterFromJSON(json['metadataKeyFilter']),
+        'metadataValueFilter': json['metadataValueFilter'] == null ? undefined : UserServiceMetadataValueFilterFromJSON(json['metadataValueFilter']),
         'nickNameQuery': json['nickNameQuery'] == null ? undefined : UserServiceNickNameQueryFromJSON(json['nickNameQuery']),
         'notQuery': json['notQuery'] == null ? undefined : UserServiceNotQueryFromJSON(json['notQuery']),
         'orQuery': json['orQuery'] == null ? undefined : UserServiceOrQueryFromJSON(json['orQuery']),
@@ -285,6 +313,8 @@ export function UserServiceSearchQueryToJSONTyped(value?: UserServiceSearchQuery
         'inUserIdsQuery': UserServiceInUserIDQueryToJSON(value['inUserIdsQuery']),
         'lastNameQuery': UserServiceLastNameQueryToJSON(value['lastNameQuery']),
         'loginNameQuery': UserServiceLoginNameQueryToJSON(value['loginNameQuery']),
+        'metadataKeyFilter': UserServiceMetadataKeyFilterToJSON(value['metadataKeyFilter']),
+        'metadataValueFilter': UserServiceMetadataValueFilterToJSON(value['metadataValueFilter']),
         'nickNameQuery': UserServiceNickNameQueryToJSON(value['nickNameQuery']),
         'notQuery': UserServiceNotQueryToJSON(value['notQuery']),
         'orQuery': UserServiceOrQueryToJSON(value['orQuery']),

@@ -75,12 +75,6 @@ export interface FeatureServiceSetInstanceFeaturesRequest {
      * @type {boolean}
      * @memberof FeatureServiceSetInstanceFeaturesRequest
      */
-    disableUserTokenEvent?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FeatureServiceSetInstanceFeaturesRequest
-     */
     enableBackChannelLogout?: boolean | null;
     /**
      * 
@@ -125,7 +119,6 @@ export function FeatureServiceSetInstanceFeaturesRequestFromJSONTyped(json: any,
         'improvedPerformance': json['improvedPerformance'] == null ? undefined : ((json['improvedPerformance'] as Array<any>).map(FeatureServiceImprovedPerformanceFromJSON)),
         'debugOidcParentError': json['debugOidcParentError'] == null ? undefined : json['debugOidcParentError'],
         'oidcSingleV1SessionTermination': json['oidcSingleV1SessionTermination'] == null ? undefined : json['oidcSingleV1SessionTermination'],
-        'disableUserTokenEvent': json['disableUserTokenEvent'] == null ? undefined : json['disableUserTokenEvent'],
         'enableBackChannelLogout': json['enableBackChannelLogout'] == null ? undefined : json['enableBackChannelLogout'],
         'loginV2': json['loginV2'] == null ? undefined : FeatureServiceLoginV2FromJSON(json['loginV2']),
         'permissionCheckV2': json['permissionCheckV2'] == null ? undefined : json['permissionCheckV2'],
@@ -150,7 +143,6 @@ export function FeatureServiceSetInstanceFeaturesRequestToJSONTyped(value?: Feat
         'improvedPerformance': value['improvedPerformance'] == null ? undefined : ((value['improvedPerformance'] as Array<any>).map(FeatureServiceImprovedPerformanceToJSON)),
         'debugOidcParentError': value['debugOidcParentError'],
         'oidcSingleV1SessionTermination': value['oidcSingleV1SessionTermination'],
-        'disableUserTokenEvent': value['disableUserTokenEvent'],
         'enableBackChannelLogout': value['enableBackChannelLogout'],
         'loginV2': FeatureServiceLoginV2ToJSON(value['loginV2']),
         'permissionCheckV2': value['permissionCheckV2'],

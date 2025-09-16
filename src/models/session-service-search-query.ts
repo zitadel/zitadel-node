@@ -20,6 +20,13 @@ import {
     SessionServiceUserIDQueryToJSON,
     SessionServiceUserIDQueryToJSONTyped,
 } from './session-service-user-id-query.js';
+import type { SessionServiceExpirationDateQuery } from './session-service-expiration-date-query.js';
+import {
+    SessionServiceExpirationDateQueryFromJSON,
+    SessionServiceExpirationDateQueryFromJSONTyped,
+    SessionServiceExpirationDateQueryToJSON,
+    SessionServiceExpirationDateQueryToJSONTyped,
+} from './session-service-expiration-date-query.js';
 import type { SessionServiceIDsQuery } from './session-service-ids-query.js';
 import {
     SessionServiceIDsQueryFromJSON,
@@ -69,6 +76,12 @@ export interface SessionServiceSearchQuery {
     creatorQuery?: SessionServiceCreatorQuery;
     /**
      * 
+     * @type {SessionServiceExpirationDateQuery}
+     * @memberof SessionServiceSearchQuery
+     */
+    expirationDateQuery?: SessionServiceExpirationDateQuery;
+    /**
+     * 
      * @type {SessionServiceIDsQuery}
      * @memberof SessionServiceSearchQuery
      */
@@ -106,6 +119,7 @@ export function SessionServiceSearchQueryFromJSONTyped(json: any, ignoreDiscrimi
         
         'creationDateQuery': json['creationDateQuery'] == null ? undefined : SessionServiceCreationDateQueryFromJSON(json['creationDateQuery']),
         'creatorQuery': json['creatorQuery'] == null ? undefined : SessionServiceCreatorQueryFromJSON(json['creatorQuery']),
+        'expirationDateQuery': json['expirationDateQuery'] == null ? undefined : SessionServiceExpirationDateQueryFromJSON(json['expirationDateQuery']),
         'idsQuery': json['idsQuery'] == null ? undefined : SessionServiceIDsQueryFromJSON(json['idsQuery']),
         'userAgentQuery': json['userAgentQuery'] == null ? undefined : SessionServiceUserAgentQueryFromJSON(json['userAgentQuery']),
         'userIdQuery': json['userIdQuery'] == null ? undefined : SessionServiceUserIDQueryFromJSON(json['userIdQuery']),
@@ -125,6 +139,7 @@ export function SessionServiceSearchQueryToJSONTyped(value?: SessionServiceSearc
         
         'creationDateQuery': SessionServiceCreationDateQueryToJSON(value['creationDateQuery']),
         'creatorQuery': SessionServiceCreatorQueryToJSON(value['creatorQuery']),
+        'expirationDateQuery': SessionServiceExpirationDateQueryToJSON(value['expirationDateQuery']),
         'idsQuery': SessionServiceIDsQueryToJSON(value['idsQuery']),
         'userAgentQuery': SessionServiceUserAgentQueryToJSON(value['userAgentQuery']),
         'userIdQuery': SessionServiceUserIDQueryToJSON(value['userIdQuery']),
