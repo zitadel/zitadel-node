@@ -24,21 +24,19 @@ export interface UserServiceVerifyPhoneRequest {
      * @type {string}
      * @memberof UserServiceVerifyPhoneRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceVerifyPhoneRequest
      */
-    verificationCode: string;
+    verificationCode?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceVerifyPhoneRequest interface.
  */
 export function instanceOfUserServiceVerifyPhoneRequest(value: object): value is UserServiceVerifyPhoneRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceVerifyPhoneRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'userId': json['userId'],
-        'verificationCode': json['verificationCode'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],
     };
 }
 

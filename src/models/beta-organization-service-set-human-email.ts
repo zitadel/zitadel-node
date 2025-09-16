@@ -32,7 +32,7 @@ export interface BetaOrganizationServiceSetHumanEmail {
      * @type {string}
      * @memberof BetaOrganizationServiceSetHumanEmail
      */
-    email: string;
+    email?: string;
     /**
      * 
      * @type {boolean}
@@ -57,7 +57,6 @@ export interface BetaOrganizationServiceSetHumanEmail {
  * Check if a given object implements the BetaOrganizationServiceSetHumanEmail interface.
  */
 export function instanceOfBetaOrganizationServiceSetHumanEmail(value: object): value is BetaOrganizationServiceSetHumanEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +70,7 @@ export function BetaOrganizationServiceSetHumanEmailFromJSONTyped(json: any, ign
     }
     return {
         
-        'email': json['email'],
+        'email': json['email'] == null ? undefined : json['email'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : BetaOrganizationServiceSendEmailVerificationCodeFromJSON(json['sendCode']),

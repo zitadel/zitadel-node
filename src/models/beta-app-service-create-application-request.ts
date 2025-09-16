@@ -58,7 +58,7 @@ export interface BetaAppServiceCreateApplicationRequest {
      * @type {string}
      * @memberof BetaAppServiceCreateApplicationRequest
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {BetaAppServiceCreateAPIApplicationRequest}
@@ -83,7 +83,6 @@ export interface BetaAppServiceCreateApplicationRequest {
  * Check if a given object implements the BetaAppServiceCreateApplicationRequest interface.
  */
 export function instanceOfBetaAppServiceCreateApplicationRequest(value: object): value is BetaAppServiceCreateApplicationRequest {
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -99,7 +98,7 @@ export function BetaAppServiceCreateApplicationRequestFromJSONTyped(json: any, i
         
         'projectId': json['projectId'] == null ? undefined : json['projectId'],
         'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'apiRequest': json['apiRequest'] == null ? undefined : BetaAppServiceCreateAPIApplicationRequestFromJSON(json['apiRequest']),
         'oidcRequest': json['oidcRequest'] == null ? undefined : BetaAppServiceCreateOIDCApplicationRequestFromJSON(json['oidcRequest']),
         'samlRequest': json['samlRequest'] == null ? undefined : BetaAppServiceCreateSAMLApplicationRequestFromJSON(json['samlRequest']),

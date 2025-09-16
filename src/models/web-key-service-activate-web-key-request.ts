@@ -24,14 +24,13 @@ export interface WebKeyServiceActivateWebKeyRequest {
      * @type {string}
      * @memberof WebKeyServiceActivateWebKeyRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the WebKeyServiceActivateWebKeyRequest interface.
  */
 export function instanceOfWebKeyServiceActivateWebKeyRequest(value: object): value is WebKeyServiceActivateWebKeyRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function WebKeyServiceActivateWebKeyRequestFromJSONTyped(json: any, ignor
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

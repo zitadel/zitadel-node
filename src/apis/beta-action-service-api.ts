@@ -119,8 +119,8 @@ export interface BetaActionServiceApiUpdateTargetRequest {
 export class BetaActionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create Target   Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
-     * CreateTarget
+     * Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Create Target
      */
     private async createTargetRaw(requestParameters: BetaActionServiceApiCreateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceCreateTargetResponse>> {
         if (requestParameters['betaActionServiceCreateTargetRequest'] == null) {
@@ -156,8 +156,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Target   Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
-     * CreateTarget
+     * Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Create Target
      */
     async createTarget(requestParameters: BetaActionServiceApiCreateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceCreateTargetResponse> {
         const response = await this.createTargetRaw(requestParameters, initOverrides);
@@ -165,8 +165,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Target   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
-     * DeleteTarget
+     * Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
+     * Delete Target
      */
     private async deleteTargetRaw(requestParameters: BetaActionServiceApiDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceDeleteTargetResponse>> {
         if (requestParameters['betaActionServiceDeleteTargetRequest'] == null) {
@@ -202,8 +202,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Target   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
-     * DeleteTarget
+     * Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
+     * Delete Target
      */
     async deleteTarget(requestParameters: BetaActionServiceApiDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceDeleteTargetResponse> {
         const response = await this.deleteTargetRaw(requestParameters, initOverrides);
@@ -211,8 +211,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Target   Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
-     * GetTarget
+     * Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Get Target
      */
     private async getTargetRaw(requestParameters: BetaActionServiceApiGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceGetTargetResponse>> {
         if (requestParameters['betaActionServiceGetTargetRequest'] == null) {
@@ -248,8 +248,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Target   Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
-     * GetTarget
+     * Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Get Target
      */
     async getTarget(requestParameters: BetaActionServiceApiGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceGetTargetResponse> {
         const response = await this.getTargetRaw(requestParameters, initOverrides);
@@ -257,8 +257,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Functions   List all available functions which can be used as condition for executions.
-     * ListExecutionFunctions
+     * List all available functions which can be used as condition for executions.
+     * List Execution Functions
      */
     private async listExecutionFunctionsRaw(requestParameters: BetaActionServiceApiListExecutionFunctionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionFunctionsResponse>> {
         if (requestParameters['body'] == null) {
@@ -294,8 +294,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Functions   List all available functions which can be used as condition for executions.
-     * ListExecutionFunctions
+     * List all available functions which can be used as condition for executions.
+     * List Execution Functions
      */
     async listExecutionFunctions(requestParameters: BetaActionServiceApiListExecutionFunctionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionFunctionsResponse> {
         const response = await this.listExecutionFunctionsRaw(requestParameters, initOverrides);
@@ -303,8 +303,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Methods   List all available methods which can be used as condition for executions.
-     * ListExecutionMethods
+     * List all available methods which can be used as condition for executions.
+     * List Execution Methods
      */
     private async listExecutionMethodsRaw(requestParameters: BetaActionServiceApiListExecutionMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionMethodsResponse>> {
         if (requestParameters['body'] == null) {
@@ -340,8 +340,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Methods   List all available methods which can be used as condition for executions.
-     * ListExecutionMethods
+     * List all available methods which can be used as condition for executions.
+     * List Execution Methods
      */
     async listExecutionMethods(requestParameters: BetaActionServiceApiListExecutionMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionMethodsResponse> {
         const response = await this.listExecutionMethodsRaw(requestParameters, initOverrides);
@@ -349,8 +349,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Services   List all available services which can be used as condition for executions.
-     * ListExecutionServices
+     * List all available services which can be used as condition for executions.
+     * List Execution Services
      */
     private async listExecutionServicesRaw(requestParameters: BetaActionServiceApiListExecutionServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionServicesResponse>> {
         if (requestParameters['body'] == null) {
@@ -386,8 +386,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Execution Services   List all available services which can be used as condition for executions.
-     * ListExecutionServices
+     * List all available services which can be used as condition for executions.
+     * List Execution Services
      */
     async listExecutionServices(requestParameters: BetaActionServiceApiListExecutionServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionServicesResponse> {
         const response = await this.listExecutionServicesRaw(requestParameters, initOverrides);
@@ -395,8 +395,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Executions   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
-     * ListExecutions
+     * List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
+     * List Executions
      */
     private async listExecutionsRaw(requestParameters: BetaActionServiceApiListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionsResponse>> {
         if (requestParameters['betaActionServiceListExecutionsRequest'] == null) {
@@ -432,8 +432,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Executions   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
-     * ListExecutions
+     * List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
+     * List Executions
      */
     async listExecutions(requestParameters: BetaActionServiceApiListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionsResponse> {
         const response = await this.listExecutionsRaw(requestParameters, initOverrides);
@@ -441,8 +441,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List targets   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
-     * ListTargets
+     * List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * List targets
      */
     private async listTargetsRaw(requestParameters: BetaActionServiceApiListTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListTargetsResponse>> {
         if (requestParameters['betaActionServiceListTargetsRequest'] == null) {
@@ -478,8 +478,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List targets   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
-     * ListTargets
+     * List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * List targets
      */
     async listTargets(requestParameters: BetaActionServiceApiListTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListTargetsResponse> {
         const response = await this.listTargetsRaw(requestParameters, initOverrides);
@@ -487,8 +487,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Execution   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
-     * SetExecution
+     * Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
+     * Set Execution
      */
     private async setExecutionRaw(requestParameters: BetaActionServiceApiSetExecutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceSetExecutionResponse>> {
         if (requestParameters['betaActionServiceSetExecutionRequest'] == null) {
@@ -524,8 +524,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Execution   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
-     * SetExecution
+     * Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
+     * Set Execution
      */
     async setExecution(requestParameters: BetaActionServiceApiSetExecutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceSetExecutionResponse> {
         const response = await this.setExecutionRaw(requestParameters, initOverrides);
@@ -533,8 +533,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Target   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
-     * UpdateTarget
+     * Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Update Target
      */
     private async updateTargetRaw(requestParameters: BetaActionServiceApiUpdateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceUpdateTargetResponse>> {
         if (requestParameters['betaActionServiceUpdateTargetRequest'] == null) {
@@ -570,8 +570,8 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Target   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
-     * UpdateTarget
+     * Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Update Target
      */
     async updateTarget(requestParameters: BetaActionServiceApiUpdateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceUpdateTargetResponse> {
         const response = await this.updateTargetRaw(requestParameters, initOverrides);

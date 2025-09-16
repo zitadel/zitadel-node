@@ -38,8 +38,8 @@ export interface IdentityProviderServiceApiGetIDPByIDRequest {
 export class IdentityProviderServiceApi extends runtime.BaseAPI {
 
     /**
-     * Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-     * GetIDPByID
+     * Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+     * Get identity provider (IdP) by ID
      */
     private async getIDPByIDRaw(requestParameters: IdentityProviderServiceApiGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdentityProviderServiceGetIDPByIDResponse>> {
         if (requestParameters['identityProviderServiceGetIDPByIDRequest'] == null) {
@@ -75,8 +75,8 @@ export class IdentityProviderServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-     * GetIDPByID
+     * Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+     * Get identity provider (IdP) by ID
      */
     async getIDPByID(requestParameters: IdentityProviderServiceApiGetIDPByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdentityProviderServiceGetIDPByIDResponse> {
         const response = await this.getIDPByIDRaw(requestParameters, initOverrides);

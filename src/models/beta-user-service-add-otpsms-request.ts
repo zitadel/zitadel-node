@@ -24,14 +24,13 @@ export interface BetaUserServiceAddOTPSMSRequest {
      * @type {string}
      * @memberof BetaUserServiceAddOTPSMSRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceAddOTPSMSRequest interface.
  */
 export function instanceOfBetaUserServiceAddOTPSMSRequest(value: object): value is BetaUserServiceAddOTPSMSRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceAddOTPSMSRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

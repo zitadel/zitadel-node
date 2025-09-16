@@ -32,7 +32,7 @@ export interface UserServiceTypeQuery {
      * @type {UserServiceType}
      * @memberof UserServiceTypeQuery
      */
-    type: UserServiceType;
+    type?: UserServiceType;
 }
 
 
@@ -41,7 +41,6 @@ export interface UserServiceTypeQuery {
  * Check if a given object implements the UserServiceTypeQuery interface.
  */
 export function instanceOfUserServiceTypeQuery(value: object): value is UserServiceTypeQuery {
-    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
@@ -55,7 +54,7 @@ export function UserServiceTypeQueryFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'type': UserServiceTypeFromJSON(json['type']),
+        'type': json['type'] == null ? undefined : UserServiceTypeFromJSON(json['type']),
     };
 }
 

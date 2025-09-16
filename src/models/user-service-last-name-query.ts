@@ -32,7 +32,7 @@ export interface UserServiceLastNameQuery {
      * @type {string}
      * @memberof UserServiceLastNameQuery
      */
-    lastName: string;
+    lastName?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServiceLastNameQuery {
  * Check if a given object implements the UserServiceLastNameQuery interface.
  */
 export function instanceOfUserServiceLastNameQuery(value: object): value is UserServiceLastNameQuery {
-    if (!('lastName' in value) || value['lastName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServiceLastNameQueryFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'lastName': json['lastName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

@@ -32,7 +32,7 @@ export interface BetaUserServiceUserNameQuery {
      * @type {string}
      * @memberof BetaUserServiceUserNameQuery
      */
-    userName: string;
+    userName?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServiceUserNameQuery {
  * Check if a given object implements the BetaUserServiceUserNameQuery interface.
  */
 export function instanceOfBetaUserServiceUserNameQuery(value: object): value is BetaUserServiceUserNameQuery {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServiceUserNameQueryFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'userName': json['userName'],
+        'userName': json['userName'] == null ? undefined : json['userName'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

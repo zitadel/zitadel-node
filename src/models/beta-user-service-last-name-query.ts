@@ -32,7 +32,7 @@ export interface BetaUserServiceLastNameQuery {
      * @type {string}
      * @memberof BetaUserServiceLastNameQuery
      */
-    lastName: string;
+    lastName?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServiceLastNameQuery {
  * Check if a given object implements the BetaUserServiceLastNameQuery interface.
  */
 export function instanceOfBetaUserServiceLastNameQuery(value: object): value is BetaUserServiceLastNameQuery {
-    if (!('lastName' in value) || value['lastName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServiceLastNameQueryFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'lastName': json['lastName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

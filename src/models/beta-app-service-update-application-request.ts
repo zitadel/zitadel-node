@@ -52,7 +52,7 @@ export interface BetaAppServiceUpdateApplicationRequest {
      * @type {string}
      * @memberof BetaAppServiceUpdateApplicationRequest
      */
-    id: string;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -83,7 +83,6 @@ export interface BetaAppServiceUpdateApplicationRequest {
  * Check if a given object implements the BetaAppServiceUpdateApplicationRequest interface.
  */
 export function instanceOfBetaAppServiceUpdateApplicationRequest(value: object): value is BetaAppServiceUpdateApplicationRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -98,7 +97,7 @@ export function BetaAppServiceUpdateApplicationRequestFromJSONTyped(json: any, i
     return {
         
         'projectId': json['projectId'] == null ? undefined : json['projectId'],
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'apiConfigurationRequest': json['apiConfigurationRequest'] == null ? undefined : BetaAppServiceUpdateAPIApplicationConfigurationRequestFromJSON(json['apiConfigurationRequest']),
         'oidcConfigurationRequest': json['oidcConfigurationRequest'] == null ? undefined : BetaAppServiceUpdateOIDCApplicationConfigurationRequestFromJSON(json['oidcConfigurationRequest']),

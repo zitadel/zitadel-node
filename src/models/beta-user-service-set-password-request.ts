@@ -32,7 +32,7 @@ export interface BetaUserServiceSetPasswordRequest {
      * @type {string}
      * @memberof BetaUserServiceSetPasswordRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {BetaUserServicePassword}
@@ -57,7 +57,6 @@ export interface BetaUserServiceSetPasswordRequest {
  * Check if a given object implements the BetaUserServiceSetPasswordRequest interface.
  */
 export function instanceOfBetaUserServiceSetPasswordRequest(value: object): value is BetaUserServiceSetPasswordRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +70,7 @@ export function BetaUserServiceSetPasswordRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'newPassword': json['newPassword'] == null ? undefined : BetaUserServicePasswordFromJSON(json['newPassword']),
         'currentPassword': json['currentPassword'] == null ? undefined : json['currentPassword'],
         'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],

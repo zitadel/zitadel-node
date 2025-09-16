@@ -24,14 +24,13 @@ export interface BetaUserServiceAddOTPEmailRequest {
      * @type {string}
      * @memberof BetaUserServiceAddOTPEmailRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceAddOTPEmailRequest interface.
  */
 export function instanceOfBetaUserServiceAddOTPEmailRequest(value: object): value is BetaUserServiceAddOTPEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceAddOTPEmailRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

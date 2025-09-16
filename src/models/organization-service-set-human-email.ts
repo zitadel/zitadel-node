@@ -32,7 +32,7 @@ export interface OrganizationServiceSetHumanEmail {
      * @type {string}
      * @memberof OrganizationServiceSetHumanEmail
      */
-    email: string;
+    email?: string;
     /**
      * 
      * @type {boolean}
@@ -57,7 +57,6 @@ export interface OrganizationServiceSetHumanEmail {
  * Check if a given object implements the OrganizationServiceSetHumanEmail interface.
  */
 export function instanceOfOrganizationServiceSetHumanEmail(value: object): value is OrganizationServiceSetHumanEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +70,7 @@ export function OrganizationServiceSetHumanEmailFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'email': json['email'],
+        'email': json['email'] == null ? undefined : json['email'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : OrganizationServiceSendEmailVerificationCodeFromJSON(json['sendCode']),

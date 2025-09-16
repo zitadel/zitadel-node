@@ -24,7 +24,7 @@ export interface OrganizationServiceHashedPassword {
      * @type {string}
      * @memberof OrganizationServiceHashedPassword
      */
-    hash: string;
+    hash?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface OrganizationServiceHashedPassword {
  * Check if a given object implements the OrganizationServiceHashedPassword interface.
  */
 export function instanceOfOrganizationServiceHashedPassword(value: object): value is OrganizationServiceHashedPassword {
-    if (!('hash' in value) || value['hash'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function OrganizationServiceHashedPasswordFromJSONTyped(json: any, ignore
     }
     return {
         
-        'hash': json['hash'],
+        'hash': json['hash'] == null ? undefined : json['hash'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

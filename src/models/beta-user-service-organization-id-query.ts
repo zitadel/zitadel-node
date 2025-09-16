@@ -24,14 +24,13 @@ export interface BetaUserServiceOrganizationIdQuery {
      * @type {string}
      * @memberof BetaUserServiceOrganizationIdQuery
      */
-    organizationId: string;
+    organizationId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceOrganizationIdQuery interface.
  */
 export function instanceOfBetaUserServiceOrganizationIdQuery(value: object): value is BetaUserServiceOrganizationIdQuery {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceOrganizationIdQueryFromJSONTyped(json: any, ignor
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
     };
 }
 

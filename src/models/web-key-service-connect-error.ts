@@ -41,11 +41,11 @@ export interface WebKeyServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {WebKeyServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<WebKeyServiceAny>}
      * @memberof WebKeyServiceConnectError
      */
-    detail?: WebKeyServiceAny;
+    details?: Array<WebKeyServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function WebKeyServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrimi
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : WebKeyServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(WebKeyServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function WebKeyServiceConnectErrorToJSONTyped(value?: WebKeyServiceConnec
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': WebKeyServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(WebKeyServiceAnyToJSON)),
     };
 }
 

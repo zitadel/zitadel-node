@@ -24,21 +24,19 @@ export interface BetaProjectServiceRemoveProjectRoleRequest {
      * @type {string}
      * @memberof BetaProjectServiceRemoveProjectRoleRequest
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The key is the only relevant attribute for ZITADEL regarding the authorization checks.
      * @type {string}
      * @memberof BetaProjectServiceRemoveProjectRoleRequest
      */
-    roleKey: string;
+    roleKey?: string;
 }
 
 /**
  * Check if a given object implements the BetaProjectServiceRemoveProjectRoleRequest interface.
  */
 export function instanceOfBetaProjectServiceRemoveProjectRoleRequest(value: object): value is BetaProjectServiceRemoveProjectRoleRequest {
-    if (!('projectId' in value) || value['projectId'] === undefined) return false;
-    if (!('roleKey' in value) || value['roleKey'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaProjectServiceRemoveProjectRoleRequestFromJSONTyped(json: an
     }
     return {
         
-        'projectId': json['projectId'],
-        'roleKey': json['roleKey'],
+        'projectId': json['projectId'] == null ? undefined : json['projectId'],
+        'roleKey': json['roleKey'] == null ? undefined : json['roleKey'],
     };
 }
 

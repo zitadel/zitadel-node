@@ -24,13 +24,13 @@ export interface BetaUserServiceVerifyU2FRegistrationRequest {
      * @type {string}
      * @memberof BetaUserServiceVerifyU2FRegistrationRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyU2FRegistrationRequest
      */
-    u2fId: string;
+    u2fId?: string;
     /**
      * `Struct` represents a structured data value, consisting of fields
      *  which map to dynamically typed values. In some languages, `Struct`
@@ -43,23 +43,19 @@ export interface BetaUserServiceVerifyU2FRegistrationRequest {
      * @type {{ [key: string]: any; }}
      * @memberof BetaUserServiceVerifyU2FRegistrationRequest
      */
-    publicKeyCredential: { [key: string]: any; };
+    publicKeyCredential?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyU2FRegistrationRequest
      */
-    tokenName: string;
+    tokenName?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceVerifyU2FRegistrationRequest interface.
  */
 export function instanceOfBetaUserServiceVerifyU2FRegistrationRequest(value: object): value is BetaUserServiceVerifyU2FRegistrationRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('u2fId' in value) || value['u2fId'] === undefined) return false;
-    if (!('publicKeyCredential' in value) || value['publicKeyCredential'] === undefined) return false;
-    if (!('tokenName' in value) || value['tokenName'] === undefined) return false;
     return true;
 }
 
@@ -73,10 +69,10 @@ export function BetaUserServiceVerifyU2FRegistrationRequestFromJSONTyped(json: a
     }
     return {
         
-        'userId': json['userId'],
-        'u2fId': json['u2fId'],
-        'publicKeyCredential': json['publicKeyCredential'],
-        'tokenName': json['tokenName'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'u2fId': json['u2fId'] == null ? undefined : json['u2fId'],
+        'publicKeyCredential': json['publicKeyCredential'] == null ? undefined : json['publicKeyCredential'],
+        'tokenName': json['tokenName'] == null ? undefined : json['tokenName'],
     };
 }
 

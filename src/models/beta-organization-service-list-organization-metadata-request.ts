@@ -39,7 +39,7 @@ export interface BetaOrganizationServiceListOrganizationMetadataRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceListOrganizationMetadataRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * 
      * @type {BetaOrganizationServicePaginationRequest}
@@ -58,7 +58,6 @@ export interface BetaOrganizationServiceListOrganizationMetadataRequest {
  * Check if a given object implements the BetaOrganizationServiceListOrganizationMetadataRequest interface.
  */
 export function instanceOfBetaOrganizationServiceListOrganizationMetadataRequest(value: object): value is BetaOrganizationServiceListOrganizationMetadataRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -72,7 +71,7 @@ export function BetaOrganizationServiceListOrganizationMetadataRequestFromJSONTy
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'pagination': json['pagination'] == null ? undefined : BetaOrganizationServicePaginationRequestFromJSON(json['pagination']),
         'filter': json['filter'] == null ? undefined : ((json['filter'] as Array<any>).map(BetaOrganizationServiceMetadataQueryFromJSON)),
     };

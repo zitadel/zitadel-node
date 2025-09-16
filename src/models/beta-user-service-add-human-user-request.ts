@@ -99,13 +99,13 @@ export interface BetaUserServiceAddHumanUserRequest {
      * @type {BetaUserServiceSetHumanProfile}
      * @memberof BetaUserServiceAddHumanUserRequest
      */
-    profile: BetaUserServiceSetHumanProfile;
+    profile?: BetaUserServiceSetHumanProfile;
     /**
      * 
      * @type {BetaUserServiceSetHumanEmail}
      * @memberof BetaUserServiceAddHumanUserRequest
      */
-    email: BetaUserServiceSetHumanEmail;
+    email?: BetaUserServiceSetHumanEmail;
     /**
      * 
      * @type {BetaUserServiceSetHumanPhone}
@@ -149,8 +149,6 @@ export interface BetaUserServiceAddHumanUserRequest {
  * Check if a given object implements the BetaUserServiceAddHumanUserRequest interface.
  */
 export function instanceOfBetaUserServiceAddHumanUserRequest(value: object): value is BetaUserServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -167,8 +165,8 @@ export function BetaUserServiceAddHumanUserRequestFromJSONTyped(json: any, ignor
         'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'organization': json['organization'] == null ? undefined : BetaUserServiceOrganizationFromJSON(json['organization']),
-        'profile': BetaUserServiceSetHumanProfileFromJSON(json['profile']),
-        'email': BetaUserServiceSetHumanEmailFromJSON(json['email']),
+        'profile': json['profile'] == null ? undefined : BetaUserServiceSetHumanProfileFromJSON(json['profile']),
+        'email': json['email'] == null ? undefined : BetaUserServiceSetHumanEmailFromJSON(json['email']),
         'phone': json['phone'] == null ? undefined : BetaUserServiceSetHumanPhoneFromJSON(json['phone']),
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(BetaUserServiceSetMetadataEntryFromJSON)),
         'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(BetaUserServiceIDPLinkFromJSON)),

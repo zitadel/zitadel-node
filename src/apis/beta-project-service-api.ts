@@ -198,8 +198,8 @@ export interface BetaProjectServiceApiUpdateProjectRoleRequest {
 export class BetaProjectServiceApi extends runtime.BaseAPI {
 
     /**
-     * Activate Project   Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - `project.write`
-     * ActivateProject
+     * Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - `project.write`
+     * Activate Project
      */
     private async activateProjectRaw(requestParameters: BetaProjectServiceApiActivateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceActivateProjectResponse>> {
         if (requestParameters['betaProjectServiceActivateProjectRequest'] == null) {
@@ -235,8 +235,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Activate Project   Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - `project.write`
-     * ActivateProject
+     * Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - `project.write`
+     * Activate Project
      */
     async activateProject(requestParameters: BetaProjectServiceApiActivateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceActivateProjectResponse> {
         const response = await this.activateProjectRaw(requestParameters, initOverrides);
@@ -244,8 +244,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Activate Project Grant   Set the state of the project grant to activated.   Required permission:    - `project.grant.write`
-     * ActivateProjectGrant
+     * Set the state of the project grant to activated.   Required permission:    - `project.grant.write`
+     * Activate Project Grant
      */
     private async activateProjectGrantRaw(requestParameters: BetaProjectServiceApiActivateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceActivateProjectGrantResponse>> {
         if (requestParameters['betaProjectServiceActivateProjectGrantRequest'] == null) {
@@ -281,8 +281,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Activate Project Grant   Set the state of the project grant to activated.   Required permission:    - `project.grant.write`
-     * ActivateProjectGrant
+     * Set the state of the project grant to activated.   Required permission:    - `project.grant.write`
+     * Activate Project Grant
      */
     async activateProjectGrant(requestParameters: BetaProjectServiceApiActivateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceActivateProjectGrantResponse> {
         const response = await this.activateProjectGrantRaw(requestParameters, initOverrides);
@@ -290,8 +290,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Project Role   Add a new project role to a project. The key must be unique within the project.   Required permission:    - `project.role.write`
-     * AddProjectRole
+     * Add a new project role to a project. The key must be unique within the project.   Required permission:    - `project.role.write`
+     * Add Project Role
      */
     private async addProjectRoleRaw(requestParameters: BetaProjectServiceApiAddProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceAddProjectRoleResponse>> {
         if (requestParameters['betaProjectServiceAddProjectRoleRequest'] == null) {
@@ -327,8 +327,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add Project Role   Add a new project role to a project. The key must be unique within the project.   Required permission:    - `project.role.write`
-     * AddProjectRole
+     * Add a new project role to a project. The key must be unique within the project.   Required permission:    - `project.role.write`
+     * Add Project Role
      */
     async addProjectRole(requestParameters: BetaProjectServiceApiAddProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceAddProjectRoleResponse> {
         const response = await this.addProjectRoleRaw(requestParameters, initOverrides);
@@ -336,8 +336,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Project   Create a new Project.   Required permission:    - `project.create`
-     * CreateProject
+     * Create a new Project.   Required permission:    - `project.create`
+     * Create Project
      */
     private async createProjectRaw(requestParameters: BetaProjectServiceApiCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceCreateProjectResponse>> {
         if (requestParameters['betaProjectServiceCreateProjectRequest'] == null) {
@@ -373,8 +373,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Project   Create a new Project.   Required permission:    - `project.create`
-     * CreateProject
+     * Create a new Project.   Required permission:    - `project.create`
+     * Create Project
      */
     async createProject(requestParameters: BetaProjectServiceApiCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceCreateProjectResponse> {
         const response = await this.createProjectRaw(requestParameters, initOverrides);
@@ -382,8 +382,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Project Grant   Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.create`
-     * CreateProjectGrant
+     * Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.create`
+     * Create Project Grant
      */
     private async createProjectGrantRaw(requestParameters: BetaProjectServiceApiCreateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceCreateProjectGrantResponse>> {
         if (requestParameters['betaProjectServiceCreateProjectGrantRequest'] == null) {
@@ -419,8 +419,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Project Grant   Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.create`
-     * CreateProjectGrant
+     * Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.create`
+     * Create Project Grant
      */
     async createProjectGrant(requestParameters: BetaProjectServiceApiCreateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceCreateProjectGrantResponse> {
         const response = await this.createProjectGrantRaw(requestParameters, initOverrides);
@@ -428,8 +428,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Project   Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - `project.write`
-     * DeactivateProject
+     * Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - `project.write`
+     * Deactivate Project
      */
     private async deactivateProjectRaw(requestParameters: BetaProjectServiceApiDeactivateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceDeactivateProjectResponse>> {
         if (requestParameters['betaProjectServiceDeactivateProjectRequest'] == null) {
@@ -465,8 +465,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Project   Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - `project.write`
-     * DeactivateProject
+     * Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - `project.write`
+     * Deactivate Project
      */
     async deactivateProject(requestParameters: BetaProjectServiceApiDeactivateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceDeactivateProjectResponse> {
         const response = await this.deactivateProjectRaw(requestParameters, initOverrides);
@@ -474,8 +474,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Project Grant   Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - `project.grant.write`
-     * DeactivateProjectGrant
+     * Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - `project.grant.write`
+     * Deactivate Project Grant
      */
     private async deactivateProjectGrantRaw(requestParameters: BetaProjectServiceApiDeactivateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceDeactivateProjectGrantResponse>> {
         if (requestParameters['betaProjectServiceDeactivateProjectGrantRequest'] == null) {
@@ -511,8 +511,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Project Grant   Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - `project.grant.write`
-     * DeactivateProjectGrant
+     * Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - `project.grant.write`
+     * Deactivate Project Grant
      */
     async deactivateProjectGrant(requestParameters: BetaProjectServiceApiDeactivateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceDeactivateProjectGrantResponse> {
         const response = await this.deactivateProjectGrantRaw(requestParameters, initOverrides);
@@ -520,8 +520,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Project   Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.delete`
-     * DeleteProject
+     * Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.delete`
+     * Delete Project
      */
     private async deleteProjectRaw(requestParameters: BetaProjectServiceApiDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceDeleteProjectResponse>> {
         if (requestParameters['betaProjectServiceDeleteProjectRequest'] == null) {
@@ -557,8 +557,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Project   Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.delete`
-     * DeleteProject
+     * Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.delete`
+     * Delete Project
      */
     async deleteProject(requestParameters: BetaProjectServiceApiDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceDeleteProjectResponse> {
         const response = await this.deleteProjectRaw(requestParameters, initOverrides);
@@ -566,8 +566,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Project Grant   Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.grant.delete`
-     * DeleteProjectGrant
+     * Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.grant.delete`
+     * Delete Project Grant
      */
     private async deleteProjectGrantRaw(requestParameters: BetaProjectServiceApiDeleteProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceDeleteProjectGrantResponse>> {
         if (requestParameters['betaProjectServiceDeleteProjectGrantRequest'] == null) {
@@ -603,8 +603,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Project Grant   Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.grant.delete`
-     * DeleteProjectGrant
+     * Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `project.grant.delete`
+     * Delete Project Grant
      */
     async deleteProjectGrant(requestParameters: BetaProjectServiceApiDeleteProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceDeleteProjectGrantResponse> {
         const response = await this.deleteProjectGrantRaw(requestParameters, initOverrides);
@@ -612,8 +612,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Project   Returns the project identified by the requested ID.   Required permission:    - `project.read`
-     * GetProject
+     * Returns the project identified by the requested ID.   Required permission:    - `project.read`
+     * Get Project
      */
     private async getProjectRaw(requestParameters: BetaProjectServiceApiGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceGetProjectResponse>> {
         if (requestParameters['betaProjectServiceGetProjectRequest'] == null) {
@@ -649,8 +649,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Project   Returns the project identified by the requested ID.   Required permission:    - `project.read`
-     * GetProject
+     * Returns the project identified by the requested ID.   Required permission:    - `project.read`
+     * Get Project
      */
     async getProject(requestParameters: BetaProjectServiceApiGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceGetProjectResponse> {
         const response = await this.getProjectRaw(requestParameters, initOverrides);
@@ -658,8 +658,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Project Grants   Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - `project.grant.write`
-     * ListProjectGrants
+     * Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - `project.grant.write`
+     * List Project Grants
      */
     private async listProjectGrantsRaw(requestParameters: BetaProjectServiceApiListProjectGrantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceListProjectGrantsResponse>> {
         if (requestParameters['betaProjectServiceListProjectGrantsRequest'] == null) {
@@ -695,8 +695,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Project Grants   Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - `project.grant.write`
-     * ListProjectGrants
+     * Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - `project.grant.write`
+     * List Project Grants
      */
     async listProjectGrants(requestParameters: BetaProjectServiceApiListProjectGrantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceListProjectGrantsResponse> {
         const response = await this.listProjectGrantsRaw(requestParameters, initOverrides);
@@ -704,8 +704,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Project Roles   Returns all roles of a project matching the search query.   Required permission:    - `project.role.read`
-     * ListProjectRoles
+     * Returns all roles of a project matching the search query.   Required permission:    - `project.role.read`
+     * List Project Roles
      */
     private async listProjectRolesRaw(requestParameters: BetaProjectServiceApiListProjectRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceListProjectRolesResponse>> {
         if (requestParameters['betaProjectServiceListProjectRolesRequest'] == null) {
@@ -741,8 +741,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Project Roles   Returns all roles of a project matching the search query.   Required permission:    - `project.role.read`
-     * ListProjectRoles
+     * Returns all roles of a project matching the search query.   Required permission:    - `project.role.read`
+     * List Project Roles
      */
     async listProjectRoles(requestParameters: BetaProjectServiceApiListProjectRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceListProjectRolesResponse> {
         const response = await this.listProjectRolesRaw(requestParameters, initOverrides);
@@ -750,8 +750,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Projects   List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `project.read`
-     * ListProjects
+     * List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `project.read`
+     * List Projects
      */
     private async listProjectsRaw(requestParameters: BetaProjectServiceApiListProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceListProjectsResponse>> {
         if (requestParameters['betaProjectServiceListProjectsRequest'] == null) {
@@ -787,8 +787,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Projects   List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `project.read`
-     * ListProjects
+     * List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `project.read`
+     * List Projects
      */
     async listProjects(requestParameters: BetaProjectServiceApiListProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceListProjectsResponse> {
         const response = await this.listProjectsRaw(requestParameters, initOverrides);
@@ -796,8 +796,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Project Role   Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - `project.role.write`
-     * RemoveProjectRole
+     * Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - `project.role.write`
+     * Remove Project Role
      */
     private async removeProjectRoleRaw(requestParameters: BetaProjectServiceApiRemoveProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceRemoveProjectRoleResponse>> {
         if (requestParameters['betaProjectServiceRemoveProjectRoleRequest'] == null) {
@@ -833,8 +833,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove Project Role   Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - `project.role.write`
-     * RemoveProjectRole
+     * Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - `project.role.write`
+     * Remove Project Role
      */
     async removeProjectRole(requestParameters: BetaProjectServiceApiRemoveProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceRemoveProjectRoleResponse> {
         const response = await this.removeProjectRoleRaw(requestParameters, initOverrides);
@@ -842,8 +842,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project   Update an existing project.   Required permission:    - `project.write`
-     * UpdateProject
+     * Update an existing project.   Required permission:    - `project.write`
+     * Update Project
      */
     private async updateProjectRaw(requestParameters: BetaProjectServiceApiUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceUpdateProjectResponse>> {
         if (requestParameters['betaProjectServiceUpdateProjectRequest'] == null) {
@@ -879,8 +879,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project   Update an existing project.   Required permission:    - `project.write`
-     * UpdateProject
+     * Update an existing project.   Required permission:    - `project.write`
+     * Update Project
      */
     async updateProject(requestParameters: BetaProjectServiceApiUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceUpdateProjectResponse> {
         const response = await this.updateProjectRaw(requestParameters, initOverrides);
@@ -888,8 +888,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project Grant   Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.write`
-     * UpdateProjectGrant
+     * Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.write`
+     * Update Project Grant
      */
     private async updateProjectGrantRaw(requestParameters: BetaProjectServiceApiUpdateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceUpdateProjectGrantResponse>> {
         if (requestParameters['betaProjectServiceUpdateProjectGrantRequest'] == null) {
@@ -925,8 +925,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project Grant   Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.write`
-     * UpdateProjectGrant
+     * Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - `project.grant.write`
+     * Update Project Grant
      */
     async updateProjectGrant(requestParameters: BetaProjectServiceApiUpdateProjectGrantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceUpdateProjectGrantResponse> {
         const response = await this.updateProjectGrantRaw(requestParameters, initOverrides);
@@ -934,8 +934,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project Role   Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - `project.role.write`
-     * UpdateProjectRole
+     * Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - `project.role.write`
+     * Update Project Role
      */
     private async updateProjectRoleRaw(requestParameters: BetaProjectServiceApiUpdateProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaProjectServiceUpdateProjectRoleResponse>> {
         if (requestParameters['betaProjectServiceUpdateProjectRoleRequest'] == null) {
@@ -971,8 +971,8 @@ export class BetaProjectServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Project Role   Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - `project.role.write`
-     * UpdateProjectRole
+     * Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - `project.role.write`
+     * Update Project Role
      */
     async updateProjectRole(requestParameters: BetaProjectServiceApiUpdateProjectRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaProjectServiceUpdateProjectRoleResponse> {
         const response = await this.updateProjectRoleRaw(requestParameters, initOverrides);

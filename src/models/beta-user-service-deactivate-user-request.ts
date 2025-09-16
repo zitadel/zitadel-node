@@ -24,14 +24,13 @@ export interface BetaUserServiceDeactivateUserRequest {
      * @type {string}
      * @memberof BetaUserServiceDeactivateUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceDeactivateUserRequest interface.
  */
 export function instanceOfBetaUserServiceDeactivateUserRequest(value: object): value is BetaUserServiceDeactivateUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceDeactivateUserRequestFromJSONTyped(json: any, ign
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

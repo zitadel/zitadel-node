@@ -24,21 +24,19 @@ export interface UserServiceVerifyEmailRequest {
      * @type {string}
      * @memberof UserServiceVerifyEmailRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceVerifyEmailRequest
      */
-    verificationCode: string;
+    verificationCode?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceVerifyEmailRequest interface.
  */
 export function instanceOfUserServiceVerifyEmailRequest(value: object): value is UserServiceVerifyEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('verificationCode' in value) || value['verificationCode'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function UserServiceVerifyEmailRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'userId': json['userId'],
-        'verificationCode': json['verificationCode'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'verificationCode': json['verificationCode'] == null ? undefined : json['verificationCode'],
     };
 }
 

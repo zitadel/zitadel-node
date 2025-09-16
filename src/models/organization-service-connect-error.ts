@@ -41,11 +41,11 @@ export interface OrganizationServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {OrganizationServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<OrganizationServiceAny>}
      * @memberof OrganizationServiceConnectError
      */
-    detail?: OrganizationServiceAny;
+    details?: Array<OrganizationServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function OrganizationServiceConnectErrorFromJSONTyped(json: any, ignoreDi
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : OrganizationServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(OrganizationServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function OrganizationServiceConnectErrorToJSONTyped(value?: OrganizationS
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': OrganizationServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(OrganizationServiceAnyToJSON)),
     };
 }
 

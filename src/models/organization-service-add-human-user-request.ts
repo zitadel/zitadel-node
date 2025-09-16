@@ -99,13 +99,13 @@ export interface OrganizationServiceAddHumanUserRequest {
      * @type {OrganizationServiceSetHumanProfile}
      * @memberof OrganizationServiceAddHumanUserRequest
      */
-    profile: OrganizationServiceSetHumanProfile;
+    profile?: OrganizationServiceSetHumanProfile;
     /**
      * 
      * @type {OrganizationServiceSetHumanEmail}
      * @memberof OrganizationServiceAddHumanUserRequest
      */
-    email: OrganizationServiceSetHumanEmail;
+    email?: OrganizationServiceSetHumanEmail;
     /**
      * 
      * @type {OrganizationServiceSetHumanPhone}
@@ -149,8 +149,6 @@ export interface OrganizationServiceAddHumanUserRequest {
  * Check if a given object implements the OrganizationServiceAddHumanUserRequest interface.
  */
 export function instanceOfOrganizationServiceAddHumanUserRequest(value: object): value is OrganizationServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -167,8 +165,8 @@ export function OrganizationServiceAddHumanUserRequestFromJSONTyped(json: any, i
         'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'organization': json['organization'] == null ? undefined : OrganizationServiceOrganizationFromJSON(json['organization']),
-        'profile': OrganizationServiceSetHumanProfileFromJSON(json['profile']),
-        'email': OrganizationServiceSetHumanEmailFromJSON(json['email']),
+        'profile': json['profile'] == null ? undefined : OrganizationServiceSetHumanProfileFromJSON(json['profile']),
+        'email': json['email'] == null ? undefined : OrganizationServiceSetHumanEmailFromJSON(json['email']),
         'phone': json['phone'] == null ? undefined : OrganizationServiceSetHumanPhoneFromJSON(json['phone']),
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(OrganizationServiceSetMetadataEntryFromJSON)),
         'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(OrganizationServiceIDPLinkFromJSON)),

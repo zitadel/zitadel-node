@@ -24,7 +24,7 @@ export interface BetaOrganizationServicePassword {
      * @type {string}
      * @memberof BetaOrganizationServicePassword
      */
-    password: string;
+    password?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface BetaOrganizationServicePassword {
  * Check if a given object implements the BetaOrganizationServicePassword interface.
  */
 export function instanceOfBetaOrganizationServicePassword(value: object): value is BetaOrganizationServicePassword {
-    if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaOrganizationServicePasswordFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'password': json['password'],
+        'password': json['password'] == null ? undefined : json['password'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

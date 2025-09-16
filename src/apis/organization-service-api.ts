@@ -48,8 +48,8 @@ export interface OrganizationServiceApiListOrganizationsRequest {
 export class OrganizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * AddOrganization
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+     * Create an Organization
      */
     private async addOrganizationRaw(requestParameters: OrganizationServiceApiAddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
         if (requestParameters['organizationServiceAddOrganizationRequest'] == null) {
@@ -85,8 +85,8 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * AddOrganization
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+     * Create an Organization
      */
     async addOrganization(requestParameters: OrganizationServiceApiAddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceAddOrganizationResponse> {
         const response = await this.addOrganizationRaw(requestParameters, initOverrides);
@@ -94,8 +94,8 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * ListOrganizations
+     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+     * Search Organizations
      */
     private async listOrganizationsRaw(requestParameters: OrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
         if (requestParameters['organizationServiceListOrganizationsRequest'] == null) {
@@ -131,8 +131,8 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * ListOrganizations
+     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+     * Search Organizations
      */
     async listOrganizations(requestParameters: OrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationsResponse> {
         const response = await this.listOrganizationsRaw(requestParameters, initOverrides);

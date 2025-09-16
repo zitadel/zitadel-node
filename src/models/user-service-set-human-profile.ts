@@ -32,13 +32,13 @@ export interface UserServiceSetHumanProfile {
      * @type {string}
      * @memberof UserServiceSetHumanProfile
      */
-    givenName: string;
+    givenName?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceSetHumanProfile
      */
-    familyName: string;
+    familyName?: string;
     /**
      * 
      * @type {string}
@@ -71,8 +71,6 @@ export interface UserServiceSetHumanProfile {
  * Check if a given object implements the UserServiceSetHumanProfile interface.
  */
 export function instanceOfUserServiceSetHumanProfile(value: object): value is UserServiceSetHumanProfile {
-    if (!('givenName' in value) || value['givenName'] === undefined) return false;
-    if (!('familyName' in value) || value['familyName'] === undefined) return false;
     return true;
 }
 
@@ -86,8 +84,8 @@ export function UserServiceSetHumanProfileFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'givenName': json['givenName'],
-        'familyName': json['familyName'],
+        'givenName': json['givenName'] == null ? undefined : json['givenName'],
+        'familyName': json['familyName'] == null ? undefined : json['familyName'],
         'nickName': json['nickName'] == null ? undefined : json['nickName'],
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'preferredLanguage': json['preferredLanguage'] == null ? undefined : json['preferredLanguage'],

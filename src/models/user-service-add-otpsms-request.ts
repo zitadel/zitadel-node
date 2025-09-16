@@ -24,14 +24,13 @@ export interface UserServiceAddOTPSMSRequest {
      * @type {string}
      * @memberof UserServiceAddOTPSMSRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceAddOTPSMSRequest interface.
  */
 export function instanceOfUserServiceAddOTPSMSRequest(value: object): value is UserServiceAddOTPSMSRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceAddOTPSMSRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

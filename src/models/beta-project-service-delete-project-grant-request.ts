@@ -24,21 +24,19 @@ export interface BetaProjectServiceDeleteProjectGrantRequest {
      * @type {string}
      * @memberof BetaProjectServiceDeleteProjectGrantRequest
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Organization the project is granted to.
      * @type {string}
      * @memberof BetaProjectServiceDeleteProjectGrantRequest
      */
-    grantedOrganizationId: string;
+    grantedOrganizationId?: string;
 }
 
 /**
  * Check if a given object implements the BetaProjectServiceDeleteProjectGrantRequest interface.
  */
 export function instanceOfBetaProjectServiceDeleteProjectGrantRequest(value: object): value is BetaProjectServiceDeleteProjectGrantRequest {
-    if (!('projectId' in value) || value['projectId'] === undefined) return false;
-    if (!('grantedOrganizationId' in value) || value['grantedOrganizationId'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaProjectServiceDeleteProjectGrantRequestFromJSONTyped(json: a
     }
     return {
         
-        'projectId': json['projectId'],
-        'grantedOrganizationId': json['grantedOrganizationId'],
+        'projectId': json['projectId'] == null ? undefined : json['projectId'],
+        'grantedOrganizationId': json['grantedOrganizationId'] == null ? undefined : json['grantedOrganizationId'],
     };
 }
 

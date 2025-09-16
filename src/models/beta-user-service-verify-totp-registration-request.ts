@@ -24,21 +24,19 @@ export interface BetaUserServiceVerifyTOTPRegistrationRequest {
      * @type {string}
      * @memberof BetaUserServiceVerifyTOTPRegistrationRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceVerifyTOTPRegistrationRequest
      */
-    code: string;
+    code?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceVerifyTOTPRegistrationRequest interface.
  */
 export function instanceOfBetaUserServiceVerifyTOTPRegistrationRequest(value: object): value is BetaUserServiceVerifyTOTPRegistrationRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaUserServiceVerifyTOTPRegistrationRequestFromJSONTyped(json: 
     }
     return {
         
-        'userId': json['userId'],
-        'code': json['code'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'code': json['code'] == null ? undefined : json['code'],
     };
 }
 

@@ -32,13 +32,13 @@ export interface BetaUserServiceSetHumanProfile {
      * @type {string}
      * @memberof BetaUserServiceSetHumanProfile
      */
-    givenName: string;
+    givenName?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceSetHumanProfile
      */
-    familyName: string;
+    familyName?: string;
     /**
      * 
      * @type {string}
@@ -71,8 +71,6 @@ export interface BetaUserServiceSetHumanProfile {
  * Check if a given object implements the BetaUserServiceSetHumanProfile interface.
  */
 export function instanceOfBetaUserServiceSetHumanProfile(value: object): value is BetaUserServiceSetHumanProfile {
-    if (!('givenName' in value) || value['givenName'] === undefined) return false;
-    if (!('familyName' in value) || value['familyName'] === undefined) return false;
     return true;
 }
 
@@ -86,8 +84,8 @@ export function BetaUserServiceSetHumanProfileFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'givenName': json['givenName'],
-        'familyName': json['familyName'],
+        'givenName': json['givenName'] == null ? undefined : json['givenName'],
+        'familyName': json['familyName'] == null ? undefined : json['familyName'],
         'nickName': json['nickName'] == null ? undefined : json['nickName'],
         'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'preferredLanguage': json['preferredLanguage'] == null ? undefined : json['preferredLanguage'],

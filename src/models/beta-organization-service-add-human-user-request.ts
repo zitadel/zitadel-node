@@ -99,13 +99,13 @@ export interface BetaOrganizationServiceAddHumanUserRequest {
      * @type {BetaOrganizationServiceSetHumanProfile}
      * @memberof BetaOrganizationServiceAddHumanUserRequest
      */
-    profile: BetaOrganizationServiceSetHumanProfile;
+    profile?: BetaOrganizationServiceSetHumanProfile;
     /**
      * 
      * @type {BetaOrganizationServiceSetHumanEmail}
      * @memberof BetaOrganizationServiceAddHumanUserRequest
      */
-    email: BetaOrganizationServiceSetHumanEmail;
+    email?: BetaOrganizationServiceSetHumanEmail;
     /**
      * 
      * @type {BetaOrganizationServiceSetHumanPhone}
@@ -149,8 +149,6 @@ export interface BetaOrganizationServiceAddHumanUserRequest {
  * Check if a given object implements the BetaOrganizationServiceAddHumanUserRequest interface.
  */
 export function instanceOfBetaOrganizationServiceAddHumanUserRequest(value: object): value is BetaOrganizationServiceAddHumanUserRequest {
-    if (!('profile' in value) || value['profile'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -167,8 +165,8 @@ export function BetaOrganizationServiceAddHumanUserRequestFromJSONTyped(json: an
         'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'organization': json['organization'] == null ? undefined : BetaOrganizationServiceOrganizationFromJSON(json['organization']),
-        'profile': BetaOrganizationServiceSetHumanProfileFromJSON(json['profile']),
-        'email': BetaOrganizationServiceSetHumanEmailFromJSON(json['email']),
+        'profile': json['profile'] == null ? undefined : BetaOrganizationServiceSetHumanProfileFromJSON(json['profile']),
+        'email': json['email'] == null ? undefined : BetaOrganizationServiceSetHumanEmailFromJSON(json['email']),
         'phone': json['phone'] == null ? undefined : BetaOrganizationServiceSetHumanPhoneFromJSON(json['phone']),
         'metadata': json['metadata'] == null ? undefined : ((json['metadata'] as Array<any>).map(BetaOrganizationServiceSetMetadataEntryFromJSON)),
         'idpLinks': json['idpLinks'] == null ? undefined : ((json['idpLinks'] as Array<any>).map(BetaOrganizationServiceIDPLinkFromJSON)),

@@ -32,7 +32,7 @@ export interface UserServiceDisplayNameQuery {
      * @type {string}
      * @memberof UserServiceDisplayNameQuery
      */
-    displayName: string;
+    displayName?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServiceDisplayNameQuery {
  * Check if a given object implements the UserServiceDisplayNameQuery interface.
  */
 export function instanceOfUserServiceDisplayNameQuery(value: object): value is UserServiceDisplayNameQuery {
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServiceDisplayNameQueryFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'displayName': json['displayName'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

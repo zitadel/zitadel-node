@@ -24,14 +24,13 @@ export interface BetaUserServiceUnlockUserRequest {
      * @type {string}
      * @memberof BetaUserServiceUnlockUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceUnlockUserRequest interface.
  */
 export function instanceOfBetaUserServiceUnlockUserRequest(value: object): value is BetaUserServiceUnlockUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceUnlockUserRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

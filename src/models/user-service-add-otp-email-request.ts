@@ -24,14 +24,13 @@ export interface UserServiceAddOTPEmailRequest {
      * @type {string}
      * @memberof UserServiceAddOTPEmailRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceAddOTPEmailRequest interface.
  */
 export function instanceOfUserServiceAddOTPEmailRequest(value: object): value is UserServiceAddOTPEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceAddOTPEmailRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

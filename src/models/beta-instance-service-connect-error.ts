@@ -41,11 +41,11 @@ export interface BetaInstanceServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {BetaInstanceServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<BetaInstanceServiceAny>}
      * @memberof BetaInstanceServiceConnectError
      */
-    detail?: BetaInstanceServiceAny;
+    details?: Array<BetaInstanceServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function BetaInstanceServiceConnectErrorFromJSONTyped(json: any, ignoreDi
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : BetaInstanceServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(BetaInstanceServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function BetaInstanceServiceConnectErrorToJSONTyped(value?: BetaInstanceS
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': BetaInstanceServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(BetaInstanceServiceAnyToJSON)),
     };
 }
 

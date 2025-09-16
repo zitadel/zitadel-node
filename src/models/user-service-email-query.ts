@@ -32,7 +32,7 @@ export interface UserServiceEmailQuery {
      * @type {string}
      * @memberof UserServiceEmailQuery
      */
-    emailAddress: string;
+    emailAddress?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServiceEmailQuery {
  * Check if a given object implements the UserServiceEmailQuery interface.
  */
 export function instanceOfUserServiceEmailQuery(value: object): value is UserServiceEmailQuery {
-    if (!('emailAddress' in value) || value['emailAddress'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServiceEmailQueryFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'emailAddress': json['emailAddress'],
+        'emailAddress': json['emailAddress'] == null ? undefined : json['emailAddress'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

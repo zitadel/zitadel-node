@@ -79,7 +79,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Create a new session
-     * CreateSession
+     * Create a new session
      */
     private async createSessionRaw(requestParameters: BetaSessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceCreateSessionResponse>> {
         if (requestParameters['betaSessionServiceCreateSessionRequest'] == null) {
@@ -116,7 +116,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Create a new session
-     * CreateSession
+     * Create a new session
      */
     async createSession(requestParameters: BetaSessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceCreateSessionResponse> {
         const response = await this.createSessionRaw(requestParameters, initOverrides);
@@ -125,7 +125,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Terminate a session
-     * DeleteSession
+     * Terminate a session
      */
     private async deleteSessionRaw(requestParameters: BetaSessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceDeleteSessionResponse>> {
         if (requestParameters['betaSessionServiceDeleteSessionRequest'] == null) {
@@ -162,7 +162,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Terminate a session
-     * DeleteSession
+     * Terminate a session
      */
     async deleteSession(requestParameters: BetaSessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceDeleteSessionResponse> {
         const response = await this.deleteSessionRaw(requestParameters, initOverrides);
@@ -171,7 +171,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * GetSession a session
-     * GetSession
+     * GetSession a session
      */
     private async getSessionRaw(requestParameters: BetaSessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceGetSessionResponse>> {
         if (requestParameters['betaSessionServiceGetSessionRequest'] == null) {
@@ -208,7 +208,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * GetSession a session
-     * GetSession
+     * GetSession a session
      */
     async getSession(requestParameters: BetaSessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceGetSessionResponse> {
         const response = await this.getSessionRaw(requestParameters, initOverrides);
@@ -217,7 +217,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Search sessions
-     * ListSessions
+     * Search sessions
      */
     private async listSessionsRaw(requestParameters: BetaSessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceListSessionsResponse>> {
         if (requestParameters['betaSessionServiceListSessionsRequest'] == null) {
@@ -254,7 +254,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Search sessions
-     * ListSessions
+     * Search sessions
      */
     async listSessions(requestParameters: BetaSessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceListSessionsResponse> {
         const response = await this.listSessionsRaw(requestParameters, initOverrides);
@@ -263,7 +263,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Update a session
-     * SetSession
+     * Update a session
      */
     private async setSessionRaw(requestParameters: BetaSessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceSetSessionResponse>> {
         if (requestParameters['betaSessionServiceSetSessionRequest'] == null) {
@@ -300,7 +300,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
      * Update a session
-     * SetSession
+     * Update a session
      */
     async setSession(requestParameters: BetaSessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceSetSessionResponse> {
         const response = await this.setSessionRaw(requestParameters, initOverrides);

@@ -126,7 +126,7 @@ export interface BetaOrganizationServiceCreateOrganizationResponse {
      * @type {string}
      * @memberof BetaOrganizationServiceCreateOrganizationResponse
      */
-    id: string;
+    id?: string;
     /**
      * The admins created/assigned for the Organization
      * @type {Array<BetaOrganizationServiceOrganizationAdmin>}
@@ -139,7 +139,6 @@ export interface BetaOrganizationServiceCreateOrganizationResponse {
  * Check if a given object implements the BetaOrganizationServiceCreateOrganizationResponse interface.
  */
 export function instanceOfBetaOrganizationServiceCreateOrganizationResponse(value: object): value is BetaOrganizationServiceCreateOrganizationResponse {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -154,7 +153,7 @@ export function BetaOrganizationServiceCreateOrganizationResponseFromJSONTyped(j
     return {
         
         'creationDate': json['creationDate'] == null ? undefined : (new Date(json['creationDate'])),
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'organizationAdmins': json['organizationAdmins'] == null ? undefined : ((json['organizationAdmins'] as Array<any>).map(BetaOrganizationServiceOrganizationAdminFromJSON)),
     };
 }

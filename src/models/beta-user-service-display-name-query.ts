@@ -32,7 +32,7 @@ export interface BetaUserServiceDisplayNameQuery {
      * @type {string}
      * @memberof BetaUserServiceDisplayNameQuery
      */
-    displayName: string;
+    displayName?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServiceDisplayNameQuery {
  * Check if a given object implements the BetaUserServiceDisplayNameQuery interface.
  */
 export function instanceOfBetaUserServiceDisplayNameQuery(value: object): value is BetaUserServiceDisplayNameQuery {
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServiceDisplayNameQueryFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'displayName': json['displayName'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

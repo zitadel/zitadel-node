@@ -24,14 +24,13 @@ export interface BetaOrganizationServiceDeleteOrganizationRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceDeleteOrganizationRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaOrganizationServiceDeleteOrganizationRequest interface.
  */
 export function instanceOfBetaOrganizationServiceDeleteOrganizationRequest(value: object): value is BetaOrganizationServiceDeleteOrganizationRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaOrganizationServiceDeleteOrganizationRequestFromJSONTyped(js
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

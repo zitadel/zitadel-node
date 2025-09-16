@@ -32,7 +32,7 @@ export interface UserServiceStateQuery {
      * @type {UserServiceUserState}
      * @memberof UserServiceStateQuery
      */
-    state: UserServiceUserState;
+    state?: UserServiceUserState;
 }
 
 
@@ -41,7 +41,6 @@ export interface UserServiceStateQuery {
  * Check if a given object implements the UserServiceStateQuery interface.
  */
 export function instanceOfUserServiceStateQuery(value: object): value is UserServiceStateQuery {
-    if (!('state' in value) || value['state'] === undefined) return false;
     return true;
 }
 
@@ -55,7 +54,7 @@ export function UserServiceStateQueryFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'state': UserServiceUserStateFromJSON(json['state']),
+        'state': json['state'] == null ? undefined : UserServiceUserStateFromJSON(json['state']),
     };
 }
 

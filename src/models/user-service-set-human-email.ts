@@ -32,7 +32,7 @@ export interface UserServiceSetHumanEmail {
      * @type {string}
      * @memberof UserServiceSetHumanEmail
      */
-    email: string;
+    email?: string;
     /**
      * 
      * @type {boolean}
@@ -57,7 +57,6 @@ export interface UserServiceSetHumanEmail {
  * Check if a given object implements the UserServiceSetHumanEmail interface.
  */
 export function instanceOfUserServiceSetHumanEmail(value: object): value is UserServiceSetHumanEmail {
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +70,7 @@ export function UserServiceSetHumanEmailFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'email': json['email'],
+        'email': json['email'] == null ? undefined : json['email'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : UserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),

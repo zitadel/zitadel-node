@@ -24,14 +24,13 @@ export interface OrganizationServiceOrganizationIDQuery {
      * @type {string}
      * @memberof OrganizationServiceOrganizationIDQuery
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the OrganizationServiceOrganizationIDQuery interface.
  */
 export function instanceOfOrganizationServiceOrganizationIDQuery(value: object): value is OrganizationServiceOrganizationIDQuery {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function OrganizationServiceOrganizationIDQueryFromJSONTyped(json: any, i
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

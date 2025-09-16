@@ -24,7 +24,7 @@ export interface OrganizationServicePassword {
      * @type {string}
      * @memberof OrganizationServicePassword
      */
-    password: string;
+    password?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface OrganizationServicePassword {
  * Check if a given object implements the OrganizationServicePassword interface.
  */
 export function instanceOfOrganizationServicePassword(value: object): value is OrganizationServicePassword {
-    if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function OrganizationServicePasswordFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'password': json['password'],
+        'password': json['password'] == null ? undefined : json['password'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

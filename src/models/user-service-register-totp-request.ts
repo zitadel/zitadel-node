@@ -24,14 +24,13 @@ export interface UserServiceRegisterTOTPRequest {
      * @type {string}
      * @memberof UserServiceRegisterTOTPRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceRegisterTOTPRequest interface.
  */
 export function instanceOfUserServiceRegisterTOTPRequest(value: object): value is UserServiceRegisterTOTPRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceRegisterTOTPRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

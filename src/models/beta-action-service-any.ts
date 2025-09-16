@@ -14,30 +14,30 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+ * Contains an arbitrary serialized message along with a @type that describes the type of the serialized message, with an additional debug field for ConnectRPC error details.
  * @export
  * @interface BetaActionServiceAny
  */
 export interface BetaActionServiceAny {
     [key: string]: any | any;
     /**
-     * 
+     * A URL that acts as a globally unique identifier for the type of the serialized message. For example: `type.googleapis.com/google.rpc.ErrorInfo`. This is used to determine the schema of the data in the `value` field and is the discriminator for the `debug` field.
      * @type {string}
      * @memberof BetaActionServiceAny
      */
     type?: string;
     /**
-     * 
+     * The Protobuf message, serialized as bytes and base64-encoded. The specific message type is identified by the `type` field.
      * @type {Blob}
      * @memberof BetaActionServiceAny
      */
     value?: Blob;
     /**
-     * 
-     * @type {{ [key: string]: any; }}
+     * Deserialized error detail payload. The 'type' field indicates the schema. This field is for easier debugging and should not be relied upon for application logic.
+     * @type {any}
      * @memberof BetaActionServiceAny
      */
-    debug?: { [key: string]: any; };
+    debug?: any | null;
 }
 
 /**

@@ -608,8 +608,8 @@ export interface UserServiceApiVerifyU2FRegistrationRequest {
 export class UserServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-     * AddHumanUser
+     * Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * Create a new human user
      */
     private async addHumanUserRaw(requestParameters: UserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddHumanUserResponse>> {
         if (requestParameters['userServiceAddHumanUserRequest'] == null) {
@@ -645,8 +645,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-     * AddHumanUser
+     * Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+     * Create a new human user
      */
     async addHumanUser(requestParameters: UserServiceApiAddHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddHumanUserResponse> {
         const response = await this.addHumanUserRaw(requestParameters, initOverrides);
@@ -654,8 +654,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add link to an identity provider to an user   Add link to an identity provider to an user..
-     * AddIDPLink
+     * Add link to an identity provider to an user..
+     * Add link to an identity provider to an user
      */
     private async addIDPLinkRaw(requestParameters: UserServiceApiAddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddIDPLinkResponse>> {
         if (requestParameters['userServiceAddIDPLinkRequest'] == null) {
@@ -691,8 +691,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add link to an identity provider to an user   Add link to an identity provider to an user..
-     * AddIDPLink
+     * Add link to an identity provider to an user..
+     * Add link to an identity provider to an user
      */
     async addIDPLink(requestParameters: UserServiceApiAddIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddIDPLinkResponse> {
         const response = await this.addIDPLinkRaw(requestParameters, initOverrides);
@@ -700,8 +700,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Key   Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
-     * AddKey
+     * Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
+     * Add a Key
      */
     private async addKeyRaw(requestParameters: UserServiceApiAddKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddKeyResponse>> {
         if (requestParameters['userServiceAddKeyRequest'] == null) {
@@ -737,8 +737,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Key   Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
-     * AddKey
+     * Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
+     * Add a Key
      */
     async addKey(requestParameters: UserServiceApiAddKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddKeyResponse> {
         const response = await this.addKeyRaw(requestParameters, initOverrides);
@@ -746,8 +746,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-     * AddOTPEmail
+     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
+     * Add OTP Email for a user
      */
     private async addOTPEmailRaw(requestParameters: UserServiceApiAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPEmailResponse>> {
         if (requestParameters['userServiceAddOTPEmailRequest'] == null) {
@@ -783,8 +783,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-     * AddOTPEmail
+     * Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
+     * Add OTP Email for a user
      */
     async addOTPEmail(requestParameters: UserServiceApiAddOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPEmailResponse> {
         const response = await this.addOTPEmailRaw(requestParameters, initOverrides);
@@ -792,8 +792,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-     * AddOTPSMS
+     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
+     * Add OTP SMS for a user
      */
     private async addOTPSMSRaw(requestParameters: UserServiceApiAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddOTPSMSResponse>> {
         if (requestParameters['userServiceAddOTPSMSRequest'] == null) {
@@ -829,8 +829,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-     * AddOTPSMS
+     * Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
+     * Add OTP SMS for a user
      */
     async addOTPSMS(requestParameters: UserServiceApiAddOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddOTPSMSResponse> {
         const response = await this.addOTPSMSRaw(requestParameters, initOverrides);
@@ -838,8 +838,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Personal Access Token   Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
-     * AddPersonalAccessToken
+     * Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
+     * Add a Personal Access Token
      */
     private async addPersonalAccessTokenRaw(requestParameters: UserServiceApiAddPersonalAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddPersonalAccessTokenResponse>> {
         if (requestParameters['userServiceAddPersonalAccessTokenRequest'] == null) {
@@ -875,8 +875,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Personal Access Token   Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
-     * AddPersonalAccessToken
+     * Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won\'t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
+     * Add a Personal Access Token
      */
     async addPersonalAccessToken(requestParameters: UserServiceApiAddPersonalAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddPersonalAccessTokenResponse> {
         const response = await this.addPersonalAccessTokenRaw(requestParameters, initOverrides);
@@ -884,8 +884,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Users Secret   Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
-     * AddSecret
+     * Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
+     * Add a Users Secret
      */
     private async addSecretRaw(requestParameters: UserServiceApiAddSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceAddSecretResponse>> {
         if (requestParameters['userServiceAddSecretRequest'] == null) {
@@ -921,8 +921,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a Users Secret   Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
-     * AddSecret
+     * Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
+     * Add a Users Secret
      */
     async addSecret(requestParameters: UserServiceApiAddSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceAddSecretResponse> {
         const response = await this.addSecretRaw(requestParameters, initOverrides);
@@ -930,8 +930,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
-     * CreateInviteCode
+     * Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
+     * Create an invite code for a user
      */
     private async createInviteCodeRaw(requestParameters: UserServiceApiCreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateInviteCodeResponse>> {
         if (requestParameters['userServiceCreateInviteCodeRequest'] == null) {
@@ -967,8 +967,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
-     * CreateInviteCode
+     * Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  If an invite code has been created previously, it\'s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
+     * Create an invite code for a user
      */
     async createInviteCode(requestParameters: UserServiceApiCreateInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreateInviteCodeResponse> {
         const response = await this.createInviteCodeRaw(requestParameters, initOverrides);
@@ -976,8 +976,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user..
-     * CreatePasskeyRegistrationLink
+     * Create a passkey registration link which includes a code and either return it or send it to the user..
+     * Create a passkey registration link for a user
      */
     private async createPasskeyRegistrationLinkRaw(requestParameters: UserServiceApiCreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreatePasskeyRegistrationLinkResponse>> {
         if (requestParameters['userServiceCreatePasskeyRegistrationLinkRequest'] == null) {
@@ -1013,8 +1013,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user..
-     * CreatePasskeyRegistrationLink
+     * Create a passkey registration link which includes a code and either return it or send it to the user..
+     * Create a passkey registration link for a user
      */
     async createPasskeyRegistrationLink(requestParameters: UserServiceApiCreatePasskeyRegistrationLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreatePasskeyRegistrationLinkResponse> {
         const response = await this.createPasskeyRegistrationLinkRaw(requestParameters, initOverrides);
@@ -1022,8 +1022,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a User   Create a new human or machine user in the specified organization.   Required permission:    - user.write
-     * CreateUser
+     * Create a new human or machine user in the specified organization.   Required permission:    - user.write
+     * Create a User
      */
     private async createUserRaw(requestParameters: UserServiceApiCreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceCreateUserResponse>> {
         if (requestParameters['userServiceCreateUserRequest'] == null) {
@@ -1059,8 +1059,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a User   Create a new human or machine user in the specified organization.   Required permission:    - user.write
-     * CreateUser
+     * Create a new human or machine user in the specified organization.   Required permission:    - user.write
+     * Create a User
      */
     async createUser(requestParameters: UserServiceApiCreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceCreateUserResponse> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
@@ -1068,8 +1068,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-     * DeactivateUser
+     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
+     * Deactivate user
      */
     private async deactivateUserRaw(requestParameters: UserServiceApiDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeactivateUserResponse>> {
         if (requestParameters['userServiceDeactivateUserRequest'] == null) {
@@ -1105,8 +1105,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate user   The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-     * DeactivateUser
+     * The state of the user will be changed to \'deactivated\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'deactivated\'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
+     * Deactivate user
      */
     async deactivateUser(requestParameters: UserServiceApiDeactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeactivateUserResponse> {
         const response = await this.deactivateUserRaw(requestParameters, initOverrides);
@@ -1114,8 +1114,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
-     * DeleteUser
+     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
+     * Delete user
      */
     private async deleteUserRaw(requestParameters: UserServiceApiDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserResponse>> {
         if (requestParameters['userServiceDeleteUserRequest'] == null) {
@@ -1151,8 +1151,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete user   The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
-     * DeleteUser
+     * The state of the user will be changed to \'deleted\'. The user will not be able to log in anymore. Endpoints requesting this user will return an error \'User not found..
+     * Delete user
      */
     async deleteUser(requestParameters: UserServiceApiDeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeleteUserResponse> {
         const response = await this.deleteUserRaw(requestParameters, initOverrides);
@@ -1160,8 +1160,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete User Metadata   Delete metadata objects from an user with a specific key.   Required permission:   - `user.write`
-     * DeleteUserMetadata
+     * Delete metadata objects from an user with a specific key.   Required permission:   - `user.write`
+     * Delete User Metadata
      */
     private async deleteUserMetadataRaw(requestParameters: UserServiceApiDeleteUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceDeleteUserMetadataResponse>> {
         if (requestParameters['userServiceDeleteUserMetadataRequest'] == null) {
@@ -1197,8 +1197,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete User Metadata   Delete metadata objects from an user with a specific key.   Required permission:   - `user.write`
-     * DeleteUserMetadata
+     * Delete metadata objects from an user with a specific key.   Required permission:   - `user.write`
+     * Delete User Metadata
      */
     async deleteUserMetadata(requestParameters: UserServiceApiDeleteUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeleteUserMetadataResponse> {
         const response = await this.deleteUserMetadataRaw(requestParameters, initOverrides);
@@ -1206,8 +1206,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * User by ID   Returns the full user object (human or machine) including the profile, email, etc..
-     * GetUserByID
+     * Returns the full user object (human or machine) including the profile, email, etc..
+     * User by ID
      */
     private async getUserByIDRaw(requestParameters: UserServiceApiGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGetUserByIDResponse>> {
         if (requestParameters['userServiceGetUserByIDRequest'] == null) {
@@ -1243,8 +1243,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * User by ID   Returns the full user object (human or machine) including the profile, email, etc..
-     * GetUserByID
+     * Returns the full user object (human or machine) including the profile, email, etc..
+     * User by ID
      */
     async getUserByID(requestParameters: UserServiceApiGetUserByIDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceGetUserByIDResponse> {
         const response = await this.getUserByIDRaw(requestParameters, initOverrides);
@@ -1252,8 +1252,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * MFA Init Skipped   Update the last time the user has skipped MFA initialization. The server timestamp is used.
-     * HumanMFAInitSkipped
+     * Update the last time the user has skipped MFA initialization. The server timestamp is used.
+     * MFA Init Skipped
      */
     private async humanMFAInitSkippedRaw(requestParameters: UserServiceApiHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceHumanMFAInitSkippedResponse>> {
         if (requestParameters['userServiceHumanMFAInitSkippedRequest'] == null) {
@@ -1289,8 +1289,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * MFA Init Skipped   Update the last time the user has skipped MFA initialization. The server timestamp is used.
-     * HumanMFAInitSkipped
+     * Update the last time the user has skipped MFA initialization. The server timestamp is used.
+     * MFA Init Skipped
      */
     async humanMFAInitSkipped(requestParameters: UserServiceApiHumanMFAInitSkippedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceHumanMFAInitSkippedResponse> {
         const response = await this.humanMFAInitSkippedRaw(requestParameters, initOverrides);
@@ -1342,8 +1342,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-     * ListAuthenticationMethodTypes
+     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
+     * List all possible authentication methods of a user
      */
     private async listAuthenticationMethodTypesRaw(requestParameters: UserServiceApiListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListAuthenticationMethodTypesResponse>> {
         if (requestParameters['userServiceListAuthenticationMethodTypesRequest'] == null) {
@@ -1379,8 +1379,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-     * ListAuthenticationMethodTypes
+     * List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
+     * List all possible authentication methods of a user
      */
     async listAuthenticationMethodTypes(requestParameters: UserServiceApiListAuthenticationMethodTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListAuthenticationMethodTypesResponse> {
         const response = await this.listAuthenticationMethodTypesRaw(requestParameters, initOverrides);
@@ -1388,8 +1388,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List links to an identity provider of an user   List links to an identity provider of an user.
-     * ListIDPLinks
+     * List links to an identity provider of an user.
+     * List links to an identity provider of an user
      */
     private async listIDPLinksRaw(requestParameters: UserServiceApiListIDPLinksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListIDPLinksResponse>> {
         if (requestParameters['userServiceListIDPLinksRequest'] == null) {
@@ -1425,8 +1425,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List links to an identity provider of an user   List links to an identity provider of an user.
-     * ListIDPLinks
+     * List links to an identity provider of an user.
+     * List links to an identity provider of an user
      */
     async listIDPLinks(requestParameters: UserServiceApiListIDPLinksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListIDPLinksResponse> {
         const response = await this.listIDPLinksRaw(requestParameters, initOverrides);
@@ -1434,8 +1434,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Keys   List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
-     * ListKeys
+     * List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+     * Search Keys
      */
     private async listKeysRaw(requestParameters: UserServiceApiListKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListKeysResponse>> {
         if (requestParameters['userServiceListKeysRequest'] == null) {
@@ -1471,8 +1471,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Keys   List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
-     * ListKeys
+     * List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+     * Search Keys
      */
     async listKeys(requestParameters: UserServiceApiListKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListKeysResponse> {
         const response = await this.listKeysRaw(requestParameters, initOverrides);
@@ -1480,8 +1480,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List passkeys of an user   List passkeys of an user
-     * ListPasskeys
+     * List passkeys of an user
+     * List passkeys of an user
      */
     private async listPasskeysRaw(requestParameters: UserServiceApiListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPasskeysResponse>> {
         if (requestParameters['userServiceListPasskeysRequest'] == null) {
@@ -1517,8 +1517,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List passkeys of an user   List passkeys of an user
-     * ListPasskeys
+     * List passkeys of an user
+     * List passkeys of an user
      */
     async listPasskeys(requestParameters: UserServiceApiListPasskeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListPasskeysResponse> {
         const response = await this.listPasskeysRaw(requestParameters, initOverrides);
@@ -1526,8 +1526,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Personal Access Tokens   List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
-     * ListPersonalAccessTokens
+     * List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+     * Search Personal Access Tokens
      */
     private async listPersonalAccessTokensRaw(requestParameters: UserServiceApiListPersonalAccessTokensRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListPersonalAccessTokensResponse>> {
         if (requestParameters['userServiceListPersonalAccessTokensRequest'] == null) {
@@ -1563,8 +1563,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Personal Access Tokens   List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
-     * ListPersonalAccessTokens
+     * List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+     * Search Personal Access Tokens
      */
     async listPersonalAccessTokens(requestParameters: UserServiceApiListPersonalAccessTokensRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListPersonalAccessTokensResponse> {
         const response = await this.listPersonalAccessTokensRaw(requestParameters, initOverrides);
@@ -1572,8 +1572,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List User Metadata   List metadata of an user filtered by query.   Required permission:   - `user.read`
-     * ListUserMetadata
+     * List metadata of an user filtered by query.   Required permission:   - `user.read`
+     * List User Metadata
      */
     private async listUserMetadataRaw(requestParameters: UserServiceApiListUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUserMetadataResponse>> {
         if (requestParameters['userServiceListUserMetadataRequest'] == null) {
@@ -1609,8 +1609,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List User Metadata   List metadata of an user filtered by query.   Required permission:   - `user.read`
-     * ListUserMetadata
+     * List metadata of an user filtered by query.   Required permission:   - `user.read`
+     * List User Metadata
      */
     async listUserMetadata(requestParameters: UserServiceApiListUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListUserMetadataResponse> {
         const response = await this.listUserMetadataRaw(requestParameters, initOverrides);
@@ -1618,8 +1618,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-     * ListUsers
+     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
+     * Search Users
      */
     private async listUsersRaw(requestParameters: UserServiceApiListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceListUsersResponse>> {
         if (requestParameters['userServiceListUsersRequest'] == null) {
@@ -1655,8 +1655,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-     * ListUsers
+     * Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
+     * Search Users
      */
     async listUsers(requestParameters: UserServiceApiListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceListUsersResponse> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
@@ -1664,8 +1664,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * LockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * Lock user
      */
     private async lockUserRaw(requestParameters: UserServiceApiLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceLockUserResponse>> {
         if (requestParameters['userServiceLockUserRequest'] == null) {
@@ -1701,8 +1701,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lock user   The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-     * LockUser
+     * The state of the user will be changed to \'locked\'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state \'locked\'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+     * Lock user
      */
     async lockUser(requestParameters: UserServiceApiLockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceLockUserResponse> {
         const response = await this.lockUserRaw(requestParameters, initOverrides);
@@ -1710,8 +1710,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Request a code to reset a password   Request a code to reset a password..
-     * PasswordReset
+     * Request a code to reset a password..
+     * Request a code to reset a password
      */
     private async passwordResetRaw(requestParameters: UserServiceApiPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServicePasswordResetResponse>> {
         if (requestParameters['userServicePasswordResetRequest'] == null) {
@@ -1747,8 +1747,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Request a code to reset a password   Request a code to reset a password..
-     * PasswordReset
+     * Request a code to reset a password..
+     * Request a code to reset a password
      */
     async passwordReset(requestParameters: UserServiceApiPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServicePasswordResetResponse> {
         const response = await this.passwordResetRaw(requestParameters, initOverrides);
@@ -1756,8 +1756,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
-     * ReactivateUser
+     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
+     * Reactivate user
      */
     private async reactivateUserRaw(requestParameters: UserServiceApiReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceReactivateUserResponse>> {
         if (requestParameters['userServiceReactivateUserRequest'] == null) {
@@ -1793,8 +1793,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reactivate user   Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
-     * ReactivateUser
+     * Reactivate a user with the state \'deactivated\'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state \'deactivated\'..
+     * Reactivate user
      */
     async reactivateUser(requestParameters: UserServiceApiReactivateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceReactivateUserResponse> {
         const response = await this.reactivateUserRaw(requestParameters, initOverrides);
@@ -1802,8 +1802,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-     * RegisterPasskey
+     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
+     * Start the registration of passkey for a user
      */
     private async registerPasskeyRaw(requestParameters: UserServiceApiRegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterPasskeyResponse>> {
         if (requestParameters['userServiceRegisterPasskeyRequest'] == null) {
@@ -1839,8 +1839,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-     * RegisterPasskey
+     * Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
+     * Start the registration of passkey for a user
      */
     async registerPasskey(requestParameters: UserServiceApiRegisterPasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterPasskeyResponse> {
         const response = await this.registerPasskeyRaw(requestParameters, initOverrides);
@@ -1848,8 +1848,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-     * RegisterTOTP
+     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
+     * Start the registration of a TOTP generator for a user
      */
     private async registerTOTPRaw(requestParameters: UserServiceApiRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterTOTPResponse>> {
         if (requestParameters['userServiceRegisterTOTPRequest'] == null) {
@@ -1885,8 +1885,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-     * RegisterTOTP
+     * Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
+     * Start the registration of a TOTP generator for a user
      */
     async registerTOTP(requestParameters: UserServiceApiRegisterTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterTOTPResponse> {
         const response = await this.registerTOTPRaw(requestParameters, initOverrides);
@@ -1894,8 +1894,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-     * RegisterU2F
+     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
+     * Start the registration of a u2f token for a user
      */
     private async registerU2FRaw(requestParameters: UserServiceApiRegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRegisterU2FResponse>> {
         if (requestParameters['userServiceRegisterU2FRequest'] == null) {
@@ -1931,8 +1931,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-     * RegisterU2F
+     * Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
+     * Start the registration of a u2f token for a user
      */
     async registerU2F(requestParameters: UserServiceApiRegisterU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRegisterU2FResponse> {
         const response = await this.registerU2FRaw(requestParameters, initOverrides);
@@ -1940,8 +1940,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove link of an identity provider to an user   Remove link of an identity provider to an user.
-     * RemoveIDPLink
+     * Remove link of an identity provider to an user.
+     * Remove link of an identity provider to an user
      */
     private async removeIDPLinkRaw(requestParameters: UserServiceApiRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveIDPLinkResponse>> {
         if (requestParameters['userServiceRemoveIDPLinkRequest'] == null) {
@@ -1977,8 +1977,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove link of an identity provider to an user   Remove link of an identity provider to an user.
-     * RemoveIDPLink
+     * Remove link of an identity provider to an user.
+     * Remove link of an identity provider to an user
      */
     async removeIDPLink(requestParameters: UserServiceApiRemoveIDPLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveIDPLinkResponse> {
         const response = await this.removeIDPLinkRaw(requestParameters, initOverrides);
@@ -1986,8 +1986,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Key   Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
-     * RemoveKey
+     * Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
+     * Remove a Key
      */
     private async removeKeyRaw(requestParameters: UserServiceApiRemoveKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveKeyResponse>> {
         if (requestParameters['userServiceRemoveKeyRequest'] == null) {
@@ -2023,8 +2023,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Key   Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
-     * RemoveKey
+     * Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
+     * Remove a Key
      */
     async removeKey(requestParameters: UserServiceApiRemoveKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveKeyResponse> {
         const response = await this.removeKeyRaw(requestParameters, initOverrides);
@@ -2032,8 +2032,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-     * RemoveOTPEmail
+     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
+     * Remove One-Time Password (OTP) Email from a user
      */
     private async removeOTPEmailRaw(requestParameters: UserServiceApiRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPEmailResponse>> {
         if (requestParameters['userServiceRemoveOTPEmailRequest'] == null) {
@@ -2069,8 +2069,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-     * RemoveOTPEmail
+     * Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
+     * Remove One-Time Password (OTP) Email from a user
      */
     async removeOTPEmail(requestParameters: UserServiceApiRemoveOTPEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPEmailResponse> {
         const response = await this.removeOTPEmailRaw(requestParameters, initOverrides);
@@ -2078,8 +2078,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-     * RemoveOTPSMS
+     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
+     * Remove One-Time Password (OTP) SMS from a user
      */
     private async removeOTPSMSRaw(requestParameters: UserServiceApiRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveOTPSMSResponse>> {
         if (requestParameters['userServiceRemoveOTPSMSRequest'] == null) {
@@ -2115,8 +2115,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-     * RemoveOTPSMS
+     * Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
+     * Remove One-Time Password (OTP) SMS from a user
      */
     async removeOTPSMS(requestParameters: UserServiceApiRemoveOTPSMSRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveOTPSMSResponse> {
         const response = await this.removeOTPSMSRaw(requestParameters, initOverrides);
@@ -2124,8 +2124,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove passkey from a user   Remove passkey from a user.
-     * RemovePasskey
+     * Remove passkey from a user.
+     * Remove passkey from a user
      */
     private async removePasskeyRaw(requestParameters: UserServiceApiRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePasskeyResponse>> {
         if (requestParameters['userServiceRemovePasskeyRequest'] == null) {
@@ -2161,8 +2161,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove passkey from a user   Remove passkey from a user.
-     * RemovePasskey
+     * Remove passkey from a user.
+     * Remove passkey from a user
      */
     async removePasskey(requestParameters: UserServiceApiRemovePasskeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePasskeyResponse> {
         const response = await this.removePasskeyRaw(requestParameters, initOverrides);
@@ -2170,8 +2170,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Personal Access Token   Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
-     * RemovePersonalAccessToken
+     * Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
+     * Remove a Personal Access Token
      */
     private async removePersonalAccessTokenRaw(requestParameters: UserServiceApiRemovePersonalAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePersonalAccessTokenResponse>> {
         if (requestParameters['userServiceRemovePersonalAccessTokenRequest'] == null) {
@@ -2207,8 +2207,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Personal Access Token   Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
-     * RemovePersonalAccessToken
+     * Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
+     * Remove a Personal Access Token
      */
     async removePersonalAccessToken(requestParameters: UserServiceApiRemovePersonalAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePersonalAccessTokenResponse> {
         const response = await this.removePersonalAccessTokenRaw(requestParameters, initOverrides);
@@ -2216,8 +2216,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
-     * RemovePhone
+     * Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
+     * Delete the user phone
      */
     private async removePhoneRaw(requestParameters: UserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemovePhoneResponse>> {
         if (requestParameters['userServiceRemovePhoneRequest'] == null) {
@@ -2253,8 +2253,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
-     * RemovePhone
+     * Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
+     * Delete the user phone
      */
     async removePhone(requestParameters: UserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePhoneResponse> {
         const response = await this.removePhoneRaw(requestParameters, initOverrides);
@@ -2262,8 +2262,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Users Secret   Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
-     * RemoveSecret
+     * Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
+     * Remove a Users Secret
      */
     private async removeSecretRaw(requestParameters: UserServiceApiRemoveSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveSecretResponse>> {
         if (requestParameters['userServiceRemoveSecretRequest'] == null) {
@@ -2299,8 +2299,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a Users Secret   Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
-     * RemoveSecret
+     * Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
+     * Remove a Users Secret
      */
     async removeSecret(requestParameters: UserServiceApiRemoveSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveSecretResponse> {
         const response = await this.removeSecretRaw(requestParameters, initOverrides);
@@ -2308,8 +2308,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-     * RemoveTOTP
+     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
+     * Remove TOTP generator from a user
      */
     private async removeTOTPRaw(requestParameters: UserServiceApiRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveTOTPResponse>> {
         if (requestParameters['userServiceRemoveTOTPRequest'] == null) {
@@ -2345,8 +2345,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-     * RemoveTOTP
+     * Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
+     * Remove TOTP generator from a user
      */
     async removeTOTP(requestParameters: UserServiceApiRemoveTOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveTOTPResponse> {
         const response = await this.removeTOTPRaw(requestParameters, initOverrides);
@@ -2354,8 +2354,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove u2f token from a user   Remove u2f token from a user.
-     * RemoveU2F
+     * Remove u2f token from a user.
+     * Remove u2f token from a user
      */
     private async removeU2FRaw(requestParameters: UserServiceApiRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveU2FResponse>> {
         if (requestParameters['userServiceRemoveU2FRequest'] == null) {
@@ -2391,8 +2391,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove u2f token from a user   Remove u2f token from a user.
-     * RemoveU2F
+     * Remove u2f token from a user.
+     * Remove u2f token from a user
      */
     async removeU2F(requestParameters: UserServiceApiRemoveU2FRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveU2FResponse> {
         const response = await this.removeU2FRaw(requestParameters, initOverrides);
@@ -2401,7 +2401,7 @@ export class UserServiceApi extends runtime.BaseAPI {
 
     /**
      * Resend code to verify user email
-     * ResendEmailCode
+     * Resend code to verify user email
      */
     private async resendEmailCodeRaw(requestParameters: UserServiceApiResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendEmailCodeResponse>> {
         if (requestParameters['userServiceResendEmailCodeRequest'] == null) {
@@ -2438,7 +2438,7 @@ export class UserServiceApi extends runtime.BaseAPI {
 
     /**
      * Resend code to verify user email
-     * ResendEmailCode
+     * Resend code to verify user email
      */
     async resendEmailCode(requestParameters: UserServiceApiResendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendEmailCodeResponse> {
         const response = await this.resendEmailCodeRaw(requestParameters, initOverrides);
@@ -2446,8 +2446,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend an invite code for a user   Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-     * ResendInviteCode
+     * Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
+     * Resend an invite code for a user
      */
     private async resendInviteCodeRaw(requestParameters: UserServiceApiResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendInviteCodeResponse>> {
         if (requestParameters['userServiceResendInviteCodeRequest'] == null) {
@@ -2483,8 +2483,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend an invite code for a user   Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-     * ResendInviteCode
+     * Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
+     * Resend an invite code for a user
      */
     async resendInviteCode(requestParameters: UserServiceApiResendInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendInviteCodeResponse> {
         const response = await this.resendInviteCodeRaw(requestParameters, initOverrides);
@@ -2492,8 +2492,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone number   Resend code to verify user phone number.
-     * ResendPhoneCode
+     * Resend code to verify user phone number.
+     * Resend code to verify user phone number
      */
     private async resendPhoneCodeRaw(requestParameters: UserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceResendPhoneCodeResponse>> {
         if (requestParameters['userServiceResendPhoneCodeRequest'] == null) {
@@ -2529,8 +2529,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Resend code to verify user phone number   Resend code to verify user phone number.
-     * ResendPhoneCode
+     * Resend code to verify user phone number.
+     * Resend code to verify user phone number
      */
     async resendPhoneCode(requestParameters: UserServiceApiResendPhoneCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceResendPhoneCodeResponse> {
         const response = await this.resendPhoneCodeRaw(requestParameters, initOverrides);
@@ -2538,8 +2538,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
-     * RetrieveIdentityProviderIntent
+     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
+     * Retrieve the information returned by the identity provider
      */
     private async retrieveIdentityProviderIntentRaw(requestParameters: UserServiceApiRetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRetrieveIdentityProviderIntentResponse>> {
         if (requestParameters['userServiceRetrieveIdentityProviderIntentRequest'] == null) {
@@ -2575,8 +2575,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
-     * RetrieveIdentityProviderIntent
+     * Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
+     * Retrieve the information returned by the identity provider
      */
     async retrieveIdentityProviderIntent(requestParameters: UserServiceApiRetrieveIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRetrieveIdentityProviderIntentResponse> {
         const response = await this.retrieveIdentityProviderIntentRaw(requestParameters, initOverrides);
@@ -2585,7 +2585,7 @@ export class UserServiceApi extends runtime.BaseAPI {
 
     /**
      * Send code to verify user email
-     * SendEmailCode
+     * Send code to verify user email
      */
     private async sendEmailCodeRaw(requestParameters: UserServiceApiSendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSendEmailCodeResponse>> {
         if (requestParameters['userServiceSendEmailCodeRequest'] == null) {
@@ -2622,7 +2622,7 @@ export class UserServiceApi extends runtime.BaseAPI {
 
     /**
      * Send code to verify user email
-     * SendEmailCode
+     * Send code to verify user email
      */
     async sendEmailCode(requestParameters: UserServiceApiSendEmailCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSendEmailCodeResponse> {
         const response = await this.sendEmailCodeRaw(requestParameters, initOverrides);
@@ -2630,8 +2630,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-     * SetEmail
+     * Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * Change the user email
      */
     private async setEmailRaw(requestParameters: UserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetEmailResponse>> {
         if (requestParameters['userServiceSetEmailRequest'] == null) {
@@ -2667,8 +2667,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-     * SetEmail
+     * Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+     * Change the user email
      */
     async setEmail(requestParameters: UserServiceApiSetEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetEmailResponse> {
         const response = await this.setEmailRaw(requestParameters, initOverrides);
@@ -2676,8 +2676,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
-     * SetPassword
+     * Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
+     * Change password
      */
     private async setPasswordRaw(requestParameters: UserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPasswordResponse>> {
         if (requestParameters['userServiceSetPasswordRequest'] == null) {
@@ -2713,8 +2713,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
-     * SetPassword
+     * Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
+     * Change password
      */
     async setPassword(requestParameters: UserServiceApiSetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPasswordResponse> {
         const response = await this.setPasswordRaw(requestParameters, initOverrides);
@@ -2722,8 +2722,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-     * SetPhone
+     * Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * Set the user phone
      */
     private async setPhoneRaw(requestParameters: UserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetPhoneResponse>> {
         if (requestParameters['userServiceSetPhoneRequest'] == null) {
@@ -2759,8 +2759,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-     * SetPhone
+     * Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+     * Set the user phone
      */
     async setPhone(requestParameters: UserServiceApiSetPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetPhoneResponse> {
         const response = await this.setPhoneRaw(requestParameters, initOverrides);
@@ -2768,8 +2768,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set User Metadata   Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - `user.write`
-     * SetUserMetadata
+     * Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - `user.write`
+     * Set User Metadata
      */
     private async setUserMetadataRaw(requestParameters: UserServiceApiSetUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceSetUserMetadataResponse>> {
         if (requestParameters['userServiceSetUserMetadataRequest'] == null) {
@@ -2805,8 +2805,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set User Metadata   Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - `user.write`
-     * SetUserMetadata
+     * Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - `user.write`
+     * Set User Metadata
      */
     async setUserMetadata(requestParameters: UserServiceApiSetUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceSetUserMetadataResponse> {
         const response = await this.setUserMetadataRaw(requestParameters, initOverrides);
@@ -2814,8 +2814,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking..
-     * StartIdentityProviderIntent
+     * Start a flow with an identity provider, for external login, registration or linking..
+     * Start flow with an identity provider
      */
     private async startIdentityProviderIntentRaw(requestParameters: UserServiceApiStartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceStartIdentityProviderIntentResponse>> {
         if (requestParameters['userServiceStartIdentityProviderIntentRequest'] == null) {
@@ -2851,8 +2851,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking..
-     * StartIdentityProviderIntent
+     * Start a flow with an identity provider, for external login, registration or linking..
+     * Start flow with an identity provider
      */
     async startIdentityProviderIntent(requestParameters: UserServiceApiStartIdentityProviderIntentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceStartIdentityProviderIntentResponse> {
         const response = await this.startIdentityProviderIntentRaw(requestParameters, initOverrides);
@@ -2860,8 +2860,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock user   The state of the user will be changed to \'active\'. The user will be able to log in again. The endpoint returns an error if the user is not in the state \'locked\'.
-     * UnlockUser
+     * The state of the user will be changed to \'active\'. The user will be able to log in again. The endpoint returns an error if the user is not in the state \'locked\'.
+     * Unlock user
      */
     private async unlockUserRaw(requestParameters: UserServiceApiUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUnlockUserResponse>> {
         if (requestParameters['userServiceUnlockUserRequest'] == null) {
@@ -2897,8 +2897,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Unlock user   The state of the user will be changed to \'active\'. The user will be able to log in again. The endpoint returns an error if the user is not in the state \'locked\'.
-     * UnlockUser
+     * The state of the user will be changed to \'active\'. The user will be able to log in again. The endpoint returns an error if the user is not in the state \'locked\'.
+     * Unlock user
      */
     async unlockUser(requestParameters: UserServiceApiUnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUnlockUserResponse> {
         const response = await this.unlockUserRaw(requestParameters, initOverrides);
@@ -2906,8 +2906,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
-     * UpdateHumanUser
+     * Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
+     * Update Human User
      */
     private async updateHumanUserRaw(requestParameters: UserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateHumanUserResponse>> {
         if (requestParameters['userServiceUpdateHumanUserRequest'] == null) {
@@ -2943,8 +2943,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
-     * UpdateHumanUser
+     * Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
+     * Update Human User
      */
     async updateHumanUser(requestParameters: UserServiceApiUpdateHumanUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUpdateHumanUserResponse> {
         const response = await this.updateHumanUserRaw(requestParameters, initOverrides);
@@ -2952,8 +2952,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a User   Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
-     * UpdateUser
+     * Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
+     * Update a User
      */
     private async updateUserRaw(requestParameters: UserServiceApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceUpdateUserResponse>> {
         if (requestParameters['userServiceUpdateUserRequest'] == null) {
@@ -2989,8 +2989,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a User   Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
-     * UpdateUser
+     * Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
+     * Update a User
      */
     async updateUser(requestParameters: UserServiceApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceUpdateUserResponse> {
         const response = await this.updateUserRaw(requestParameters, initOverrides);
@@ -2998,8 +2998,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the email   Verify the email with the generated code.
-     * VerifyEmail
+     * Verify the email with the generated code.
+     * Verify the email
      */
     private async verifyEmailRaw(requestParameters: UserServiceApiVerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyEmailResponse>> {
         if (requestParameters['userServiceVerifyEmailRequest'] == null) {
@@ -3035,8 +3035,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the email   Verify the email with the generated code.
-     * VerifyEmail
+     * Verify the email with the generated code.
+     * Verify the email
      */
     async verifyEmail(requestParameters: UserServiceApiVerifyEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyEmailResponse> {
         const response = await this.verifyEmailRaw(requestParameters, initOverrides);
@@ -3044,8 +3044,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify an invite code for a user   Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * VerifyInviteCode
+     * Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
+     * Verify an invite code for a user
      */
     private async verifyInviteCodeRaw(requestParameters: UserServiceApiVerifyInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyInviteCodeResponse>> {
         if (requestParameters['userServiceVerifyInviteCodeRequest'] == null) {
@@ -3081,8 +3081,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify an invite code for a user   Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
-     * VerifyInviteCode
+     * Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization\'s available methods.
+     * Verify an invite code for a user
      */
     async verifyInviteCode(requestParameters: UserServiceApiVerifyInviteCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyInviteCodeResponse> {
         const response = await this.verifyInviteCodeRaw(requestParameters, initOverrides);
@@ -3090,8 +3090,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a passkey for a user   Verify the passkey registration with the public key credential..
-     * VerifyPasskeyRegistration
+     * Verify the passkey registration with the public key credential..
+     * Verify a passkey for a user
      */
     private async verifyPasskeyRegistrationRaw(requestParameters: UserServiceApiVerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPasskeyRegistrationResponse>> {
         if (requestParameters['userServiceVerifyPasskeyRegistrationRequest'] == null) {
@@ -3127,8 +3127,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a passkey for a user   Verify the passkey registration with the public key credential..
-     * VerifyPasskeyRegistration
+     * Verify the passkey registration with the public key credential..
+     * Verify a passkey for a user
      */
     async verifyPasskeyRegistration(requestParameters: UserServiceApiVerifyPasskeyRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPasskeyRegistrationResponse> {
         const response = await this.verifyPasskeyRegistrationRaw(requestParameters, initOverrides);
@@ -3136,8 +3136,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone number   Verify the phone number with the generated code.
-     * VerifyPhone
+     * Verify the phone number with the generated code.
+     * Verify the phone number
      */
     private async verifyPhoneRaw(requestParameters: UserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyPhoneResponse>> {
         if (requestParameters['userServiceVerifyPhoneRequest'] == null) {
@@ -3173,8 +3173,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify the phone number   Verify the phone number with the generated code.
-     * VerifyPhone
+     * Verify the phone number with the generated code.
+     * Verify the phone number
      */
     async verifyPhone(requestParameters: UserServiceApiVerifyPhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyPhoneResponse> {
         const response = await this.verifyPhoneRaw(requestParameters, initOverrides);
@@ -3182,8 +3182,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code..
-     * VerifyTOTPRegistration
+     * Verify the TOTP registration with a generated code..
+     * Verify a TOTP generator for a user
      */
     private async verifyTOTPRegistrationRaw(requestParameters: UserServiceApiVerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyTOTPRegistrationResponse>> {
         if (requestParameters['userServiceVerifyTOTPRegistrationRequest'] == null) {
@@ -3219,8 +3219,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a TOTP generator for a user   Verify the TOTP registration with a generated code..
-     * VerifyTOTPRegistration
+     * Verify the TOTP registration with a generated code..
+     * Verify a TOTP generator for a user
      */
     async verifyTOTPRegistration(requestParameters: UserServiceApiVerifyTOTPRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyTOTPRegistrationResponse> {
         const response = await this.verifyTOTPRegistrationRaw(requestParameters, initOverrides);
@@ -3228,8 +3228,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential..
-     * VerifyU2FRegistration
+     * Verify the u2f token registration with the public key credential..
+     * Verify a u2f token for a user
      */
     private async verifyU2FRegistrationRaw(requestParameters: UserServiceApiVerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceVerifyU2FRegistrationResponse>> {
         if (requestParameters['userServiceVerifyU2FRegistrationRequest'] == null) {
@@ -3265,8 +3265,8 @@ export class UserServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Verify a u2f token for a user   Verify the u2f token registration with the public key credential..
-     * VerifyU2FRegistration
+     * Verify the u2f token registration with the public key credential..
+     * Verify a u2f token for a user
      */
     async verifyU2FRegistration(requestParameters: UserServiceApiVerifyU2FRegistrationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceVerifyU2FRegistrationResponse> {
         const response = await this.verifyU2FRegistrationRaw(requestParameters, initOverrides);

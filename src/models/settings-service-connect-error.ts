@@ -41,11 +41,11 @@ export interface SettingsServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {SettingsServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<SettingsServiceAny>}
      * @memberof SettingsServiceConnectError
      */
-    detail?: SettingsServiceAny;
+    details?: Array<SettingsServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function SettingsServiceConnectErrorFromJSONTyped(json: any, ignoreDiscri
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : SettingsServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(SettingsServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function SettingsServiceConnectErrorToJSONTyped(value?: SettingsServiceCo
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': SettingsServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(SettingsServiceAnyToJSON)),
     };
 }
 

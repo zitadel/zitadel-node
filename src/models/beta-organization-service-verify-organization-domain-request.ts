@@ -24,7 +24,7 @@ export interface BetaOrganizationServiceVerifyOrganizationDomainRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceVerifyOrganizationDomainRequest
      */
-    organizationId: string;
+    organizationId?: string;
     /**
      * Organization Id for the Organization doman to be verified.
      * @type {string}
@@ -37,7 +37,6 @@ export interface BetaOrganizationServiceVerifyOrganizationDomainRequest {
  * Check if a given object implements the BetaOrganizationServiceVerifyOrganizationDomainRequest interface.
  */
 export function instanceOfBetaOrganizationServiceVerifyOrganizationDomainRequest(value: object): value is BetaOrganizationServiceVerifyOrganizationDomainRequest {
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaOrganizationServiceVerifyOrganizationDomainRequestFromJSONTy
     }
     return {
         
-        'organizationId': json['organizationId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }

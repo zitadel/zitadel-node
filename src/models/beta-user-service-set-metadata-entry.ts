@@ -24,21 +24,19 @@ export interface BetaUserServiceSetMetadataEntry {
      * @type {string}
      * @memberof BetaUserServiceSetMetadataEntry
      */
-    key: string;
+    key?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceSetMetadataEntry
      */
-    value: string;
+    value?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceSetMetadataEntry interface.
  */
 export function instanceOfBetaUserServiceSetMetadataEntry(value: object): value is BetaUserServiceSetMetadataEntry {
-    if (!('key' in value) || value['key'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaUserServiceSetMetadataEntryFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'key': json['key'],
-        'value': json['value'],
+        'key': json['key'] == null ? undefined : json['key'],
+        'value': json['value'] == null ? undefined : json['value'],
     };
 }
 

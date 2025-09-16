@@ -24,14 +24,13 @@ export interface UserServiceLockUserRequest {
      * @type {string}
      * @memberof UserServiceLockUserRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the UserServiceLockUserRequest interface.
  */
 export function instanceOfUserServiceLockUserRequest(value: object): value is UserServiceLockUserRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserServiceLockUserRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

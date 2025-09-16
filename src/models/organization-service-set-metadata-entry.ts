@@ -24,21 +24,19 @@ export interface OrganizationServiceSetMetadataEntry {
      * @type {string}
      * @memberof OrganizationServiceSetMetadataEntry
      */
-    key: string;
+    key?: string;
     /**
      * 
      * @type {string}
      * @memberof OrganizationServiceSetMetadataEntry
      */
-    value: string;
+    value?: string;
 }
 
 /**
  * Check if a given object implements the OrganizationServiceSetMetadataEntry interface.
  */
 export function instanceOfOrganizationServiceSetMetadataEntry(value: object): value is OrganizationServiceSetMetadataEntry {
-    if (!('key' in value) || value['key'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function OrganizationServiceSetMetadataEntryFromJSONTyped(json: any, igno
     }
     return {
         
-        'key': json['key'],
-        'value': json['value'],
+        'key': json['key'] == null ? undefined : json['key'],
+        'value': json['value'] == null ? undefined : json['value'],
     };
 }
 

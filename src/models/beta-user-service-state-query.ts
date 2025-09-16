@@ -32,7 +32,7 @@ export interface BetaUserServiceStateQuery {
      * @type {BetaUserServiceUserState}
      * @memberof BetaUserServiceStateQuery
      */
-    state: BetaUserServiceUserState;
+    state?: BetaUserServiceUserState;
 }
 
 
@@ -41,7 +41,6 @@ export interface BetaUserServiceStateQuery {
  * Check if a given object implements the BetaUserServiceStateQuery interface.
  */
 export function instanceOfBetaUserServiceStateQuery(value: object): value is BetaUserServiceStateQuery {
-    if (!('state' in value) || value['state'] === undefined) return false;
     return true;
 }
 
@@ -55,7 +54,7 @@ export function BetaUserServiceStateQueryFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'state': BetaUserServiceUserStateFromJSON(json['state']),
+        'state': json['state'] == null ? undefined : BetaUserServiceUserStateFromJSON(json['state']),
     };
 }
 

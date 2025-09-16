@@ -24,7 +24,7 @@ export interface UserServiceRegisterU2FRequest {
      * @type {string}
      * @memberof UserServiceRegisterU2FRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
@@ -37,7 +37,6 @@ export interface UserServiceRegisterU2FRequest {
  * Check if a given object implements the UserServiceRegisterU2FRequest interface.
  */
 export function instanceOfUserServiceRegisterU2FRequest(value: object): value is UserServiceRegisterU2FRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function UserServiceRegisterU2FRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }

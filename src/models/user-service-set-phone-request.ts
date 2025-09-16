@@ -24,13 +24,13 @@ export interface UserServiceSetPhoneRequest {
      * @type {string}
      * @memberof UserServiceSetPhoneRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof UserServiceSetPhoneRequest
      */
-    phone: string;
+    phone?: string;
     /**
      * 
      * @type {boolean}
@@ -55,8 +55,6 @@ export interface UserServiceSetPhoneRequest {
  * Check if a given object implements the UserServiceSetPhoneRequest interface.
  */
 export function instanceOfUserServiceSetPhoneRequest(value: object): value is UserServiceSetPhoneRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('phone' in value) || value['phone'] === undefined) return false;
     return true;
 }
 
@@ -70,8 +68,8 @@ export function UserServiceSetPhoneRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'userId': json['userId'],
-        'phone': json['phone'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],

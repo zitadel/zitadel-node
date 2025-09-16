@@ -32,7 +32,7 @@ export interface UserServiceUserNameQuery {
      * @type {string}
      * @memberof UserServiceUserNameQuery
      */
-    userName: string;
+    userName?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServiceUserNameQuery {
  * Check if a given object implements the UserServiceUserNameQuery interface.
  */
 export function instanceOfUserServiceUserNameQuery(value: object): value is UserServiceUserNameQuery {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServiceUserNameQueryFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'userName': json['userName'],
+        'userName': json['userName'] == null ? undefined : json['userName'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

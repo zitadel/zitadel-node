@@ -41,11 +41,11 @@ export interface OIDCServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {OIDCServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<OIDCServiceAny>}
      * @memberof OIDCServiceConnectError
      */
-    detail?: OIDCServiceAny;
+    details?: Array<OIDCServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function OIDCServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrimina
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : OIDCServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(OIDCServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function OIDCServiceConnectErrorToJSONTyped(value?: OIDCServiceConnectErr
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': OIDCServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(OIDCServiceAnyToJSON)),
     };
 }
 

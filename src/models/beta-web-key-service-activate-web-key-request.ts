@@ -24,14 +24,13 @@ export interface BetaWebKeyServiceActivateWebKeyRequest {
      * @type {string}
      * @memberof BetaWebKeyServiceActivateWebKeyRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaWebKeyServiceActivateWebKeyRequest interface.
  */
 export function instanceOfBetaWebKeyServiceActivateWebKeyRequest(value: object): value is BetaWebKeyServiceActivateWebKeyRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaWebKeyServiceActivateWebKeyRequestFromJSONTyped(json: any, i
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

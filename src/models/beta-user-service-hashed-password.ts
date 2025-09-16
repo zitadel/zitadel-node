@@ -24,7 +24,7 @@ export interface BetaUserServiceHashedPassword {
      * @type {string}
      * @memberof BetaUserServiceHashedPassword
      */
-    hash: string;
+    hash?: string;
     /**
      * 
      * @type {boolean}
@@ -37,7 +37,6 @@ export interface BetaUserServiceHashedPassword {
  * Check if a given object implements the BetaUserServiceHashedPassword interface.
  */
 export function instanceOfBetaUserServiceHashedPassword(value: object): value is BetaUserServiceHashedPassword {
-    if (!('hash' in value) || value['hash'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function BetaUserServiceHashedPasswordFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'hash': json['hash'],
+        'hash': json['hash'] == null ? undefined : json['hash'],
         'changeRequired': json['changeRequired'] == null ? undefined : json['changeRequired'],
     };
 }

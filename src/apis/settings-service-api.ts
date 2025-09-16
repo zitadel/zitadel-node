@@ -153,7 +153,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active identity providers
-     * GetActiveIdentityProviders
+     * Get the current active identity providers
      */
     private async getActiveIdentityProvidersRaw(requestParameters: SettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
         if (requestParameters['settingsServiceGetActiveIdentityProvidersRequest'] == null) {
@@ -190,7 +190,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active identity providers
-     * GetActiveIdentityProviders
+     * Get the current active identity providers
      */
     async getActiveIdentityProviders(requestParameters: SettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetActiveIdentityProvidersResponse> {
         const response = await this.getActiveIdentityProvidersRaw(requestParameters, initOverrides);
@@ -199,7 +199,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active branding settings
-     * GetBrandingSettings
+     * Get the current active branding settings
      */
     private async getBrandingSettingsRaw(requestParameters: SettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
         if (requestParameters['settingsServiceGetBrandingSettingsRequest'] == null) {
@@ -236,7 +236,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the current active branding settings
-     * GetBrandingSettings
+     * Get the current active branding settings
      */
     async getBrandingSettings(requestParameters: SettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetBrandingSettingsResponse> {
         const response = await this.getBrandingSettingsRaw(requestParameters, initOverrides);
@@ -245,7 +245,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the domain settings
-     * GetDomainSettings
+     * Get the domain settings
      */
     private async getDomainSettingsRaw(requestParameters: SettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
         if (requestParameters['settingsServiceGetDomainSettingsRequest'] == null) {
@@ -282,7 +282,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the domain settings
-     * GetDomainSettings
+     * Get the domain settings
      */
     async getDomainSettings(requestParameters: SettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetDomainSettingsResponse> {
         const response = await this.getDomainSettingsRaw(requestParameters, initOverrides);
@@ -291,7 +291,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get basic information over the instance
-     * GetGeneralSettings
+     * Get basic information over the instance
      */
     private async getGeneralSettingsRaw(requestParameters: SettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -328,7 +328,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get basic information over the instance
-     * GetGeneralSettings
+     * Get basic information over the instance
      */
     async getGeneralSettings(requestParameters: SettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetGeneralSettingsResponse> {
         const response = await this.getGeneralSettingsRaw(requestParameters, initOverrides);
@@ -336,8 +336,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Hosted Login Translation   Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn\'t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance = true.   Required permissions:    - `iam.policy.read`
-     * GetHostedLoginTranslation
+     * Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn\'t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance = true.   Required permissions:    - `iam.policy.read`
+     * Get Hosted Login Translation
      */
     private async getHostedLoginTranslationRaw(requestParameters: SettingsServiceApiGetHostedLoginTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetHostedLoginTranslationResponse>> {
         if (requestParameters['settingsServiceGetHostedLoginTranslationRequest'] == null) {
@@ -373,8 +373,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Hosted Login Translation   Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn\'t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance = true.   Required permissions:    - `iam.policy.read`
-     * GetHostedLoginTranslation
+     * Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn\'t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance = true.   Required permissions:    - `iam.policy.read`
+     * Get Hosted Login Translation
      */
     async getHostedLoginTranslation(requestParameters: SettingsServiceApiGetHostedLoginTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetHostedLoginTranslationResponse> {
         const response = await this.getHostedLoginTranslationRaw(requestParameters, initOverrides);
@@ -383,7 +383,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the legal and support settings
-     * GetLegalAndSupportSettings
+     * Get the legal and support settings
      */
     private async getLegalAndSupportSettingsRaw(requestParameters: SettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
         if (requestParameters['settingsServiceGetLegalAndSupportSettingsRequest'] == null) {
@@ -420,7 +420,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the legal and support settings
-     * GetLegalAndSupportSettings
+     * Get the legal and support settings
      */
     async getLegalAndSupportSettings(requestParameters: SettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLegalAndSupportSettingsResponse> {
         const response = await this.getLegalAndSupportSettingsRaw(requestParameters, initOverrides);
@@ -429,7 +429,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the lockout settings
-     * GetLockoutSettings
+     * Get the lockout settings
      */
     private async getLockoutSettingsRaw(requestParameters: SettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
         if (requestParameters['settingsServiceGetLockoutSettingsRequest'] == null) {
@@ -466,7 +466,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the lockout settings
-     * GetLockoutSettings
+     * Get the lockout settings
      */
     async getLockoutSettings(requestParameters: SettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLockoutSettingsResponse> {
         const response = await this.getLockoutSettingsRaw(requestParameters, initOverrides);
@@ -475,7 +475,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the login settings
-     * GetLoginSettings
+     * Get the login settings
      */
     private async getLoginSettingsRaw(requestParameters: SettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
         if (requestParameters['settingsServiceGetLoginSettingsRequest'] == null) {
@@ -512,7 +512,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the login settings
-     * GetLoginSettings
+     * Get the login settings
      */
     async getLoginSettings(requestParameters: SettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLoginSettingsResponse> {
         const response = await this.getLoginSettingsRaw(requestParameters, initOverrides);
@@ -521,7 +521,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password complexity settings
-     * GetPasswordComplexitySettings
+     * Get the password complexity settings
      */
     private async getPasswordComplexitySettingsRaw(requestParameters: SettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
         if (requestParameters['settingsServiceGetPasswordComplexitySettingsRequest'] == null) {
@@ -558,7 +558,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password complexity settings
-     * GetPasswordComplexitySettings
+     * Get the password complexity settings
      */
     async getPasswordComplexitySettings(requestParameters: SettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordComplexitySettingsResponse> {
         const response = await this.getPasswordComplexitySettingsRaw(requestParameters, initOverrides);
@@ -567,7 +567,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password expiry settings
-     * GetPasswordExpirySettings
+     * Get the password expiry settings
      */
     private async getPasswordExpirySettingsRaw(requestParameters: SettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
         if (requestParameters['settingsServiceGetPasswordExpirySettingsRequest'] == null) {
@@ -604,7 +604,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the password expiry settings
-     * GetPasswordExpirySettings
+     * Get the password expiry settings
      */
     async getPasswordExpirySettings(requestParameters: SettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordExpirySettingsResponse> {
         const response = await this.getPasswordExpirySettingsRaw(requestParameters, initOverrides);
@@ -613,7 +613,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the security settings
-     * GetSecuritySettings
+     * Get the security settings
      */
     private async getSecuritySettingsRaw(requestParameters: SettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -650,7 +650,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Get the security settings
-     * GetSecuritySettings
+     * Get the security settings
      */
     async getSecuritySettings(requestParameters: SettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetSecuritySettingsResponse> {
         const response = await this.getSecuritySettingsRaw(requestParameters, initOverrides);
@@ -658,8 +658,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Hosted Login Translation   Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - `iam.policy.write`
-     * SetHostedLoginTranslation
+     * Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - `iam.policy.write`
+     * Set Hosted Login Translation
      */
     private async setHostedLoginTranslationRaw(requestParameters: SettingsServiceApiSetHostedLoginTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetHostedLoginTranslationResponse>> {
         if (requestParameters['settingsServiceSetHostedLoginTranslationRequest'] == null) {
@@ -695,8 +695,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set Hosted Login Translation   Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - `iam.policy.write`
-     * SetHostedLoginTranslation
+     * Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - `iam.policy.write`
+     * Set Hosted Login Translation
      */
     async setHostedLoginTranslation(requestParameters: SettingsServiceApiSetHostedLoginTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceSetHostedLoginTranslationResponse> {
         const response = await this.setHostedLoginTranslationRaw(requestParameters, initOverrides);
@@ -705,7 +705,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Set the security settings
-     * SetSecuritySettings
+     * Set the security settings
      */
     private async setSecuritySettingsRaw(requestParameters: SettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
         if (requestParameters['settingsServiceSetSecuritySettingsRequest'] == null) {
@@ -742,7 +742,7 @@ export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
      * Set the security settings
-     * SetSecuritySettings
+     * Set the security settings
      */
     async setSecuritySettings(requestParameters: SettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceSetSecuritySettingsResponse> {
         const response = await this.setSecuritySettingsRaw(requestParameters, initOverrides);

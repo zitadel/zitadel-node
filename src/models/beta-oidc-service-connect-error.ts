@@ -41,11 +41,11 @@ export interface BetaOIDCServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {BetaOIDCServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<BetaOIDCServiceAny>}
      * @memberof BetaOIDCServiceConnectError
      */
-    detail?: BetaOIDCServiceAny;
+    details?: Array<BetaOIDCServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function BetaOIDCServiceConnectErrorFromJSONTyped(json: any, ignoreDiscri
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : BetaOIDCServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(BetaOIDCServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function BetaOIDCServiceConnectErrorToJSONTyped(value?: BetaOIDCServiceCo
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': BetaOIDCServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(BetaOIDCServiceAnyToJSON)),
     };
 }
 

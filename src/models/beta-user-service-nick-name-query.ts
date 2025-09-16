@@ -32,7 +32,7 @@ export interface BetaUserServiceNickNameQuery {
      * @type {string}
      * @memberof BetaUserServiceNickNameQuery
      */
-    nickName: string;
+    nickName?: string;
     /**
      * 
      * @type {BetaUserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface BetaUserServiceNickNameQuery {
  * Check if a given object implements the BetaUserServiceNickNameQuery interface.
  */
 export function instanceOfBetaUserServiceNickNameQuery(value: object): value is BetaUserServiceNickNameQuery {
-    if (!('nickName' in value) || value['nickName'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function BetaUserServiceNickNameQueryFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'nickName': json['nickName'],
+        'nickName': json['nickName'] == null ? undefined : json['nickName'],
         'method': json['method'] == null ? undefined : BetaUserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

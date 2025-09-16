@@ -32,7 +32,7 @@ export interface UserServicePhoneQuery {
      * @type {string}
      * @memberof UserServicePhoneQuery
      */
-    number: string;
+    number?: string;
     /**
      * 
      * @type {UserServiceTextQueryMethod}
@@ -47,7 +47,6 @@ export interface UserServicePhoneQuery {
  * Check if a given object implements the UserServicePhoneQuery interface.
  */
 export function instanceOfUserServicePhoneQuery(value: object): value is UserServicePhoneQuery {
-    if (!('number' in value) || value['number'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function UserServicePhoneQueryFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'number': json['number'],
+        'number': json['number'] == null ? undefined : json['number'],
         'method': json['method'] == null ? undefined : UserServiceTextQueryMethodFromJSON(json['method']),
     };
 }

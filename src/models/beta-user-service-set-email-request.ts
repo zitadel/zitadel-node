@@ -32,13 +32,13 @@ export interface BetaUserServiceSetEmailRequest {
      * @type {string}
      * @memberof BetaUserServiceSetEmailRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof BetaUserServiceSetEmailRequest
      */
-    email: string;
+    email?: string;
     /**
      * 
      * @type {boolean}
@@ -63,8 +63,6 @@ export interface BetaUserServiceSetEmailRequest {
  * Check if a given object implements the BetaUserServiceSetEmailRequest interface.
  */
 export function instanceOfBetaUserServiceSetEmailRequest(value: object): value is BetaUserServiceSetEmailRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -78,8 +76,8 @@ export function BetaUserServiceSetEmailRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'userId': json['userId'],
-        'email': json['email'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'email': json['email'] == null ? undefined : json['email'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : BetaUserServiceSendEmailVerificationCodeFromJSON(json['sendCode']),

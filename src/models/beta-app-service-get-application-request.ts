@@ -24,14 +24,13 @@ export interface BetaAppServiceGetApplicationRequest {
      * @type {string}
      * @memberof BetaAppServiceGetApplicationRequest
      */
-    id: string;
+    id?: string;
 }
 
 /**
  * Check if a given object implements the BetaAppServiceGetApplicationRequest interface.
  */
 export function instanceOfBetaAppServiceGetApplicationRequest(value: object): value is BetaAppServiceGetApplicationRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaAppServiceGetApplicationRequestFromJSONTyped(json: any, igno
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 

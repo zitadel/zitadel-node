@@ -41,11 +41,11 @@ export interface IdentityProviderServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {IdentityProviderServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<IdentityProviderServiceAny>}
      * @memberof IdentityProviderServiceConnectError
      */
-    detail?: IdentityProviderServiceAny;
+    details?: Array<IdentityProviderServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function IdentityProviderServiceConnectErrorFromJSONTyped(json: any, igno
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : IdentityProviderServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(IdentityProviderServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function IdentityProviderServiceConnectErrorToJSONTyped(value?: IdentityP
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': IdentityProviderServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(IdentityProviderServiceAnyToJSON)),
     };
 }
 

@@ -24,14 +24,13 @@ export interface BetaUserServiceRemoveTOTPRequest {
      * @type {string}
      * @memberof BetaUserServiceRemoveTOTPRequest
      */
-    userId: string;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the BetaUserServiceRemoveTOTPRequest interface.
  */
 export function instanceOfBetaUserServiceRemoveTOTPRequest(value: object): value is BetaUserServiceRemoveTOTPRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function BetaUserServiceRemoveTOTPRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 

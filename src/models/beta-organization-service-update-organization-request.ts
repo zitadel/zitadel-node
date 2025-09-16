@@ -24,21 +24,19 @@ export interface BetaOrganizationServiceUpdateOrganizationRequest {
      * @type {string}
      * @memberof BetaOrganizationServiceUpdateOrganizationRequest
      */
-    id: string;
+    id?: string;
     /**
      * New Name for the Organization to be updated
      * @type {string}
      * @memberof BetaOrganizationServiceUpdateOrganizationRequest
      */
-    name: string;
+    name?: string;
 }
 
 /**
  * Check if a given object implements the BetaOrganizationServiceUpdateOrganizationRequest interface.
  */
 export function instanceOfBetaOrganizationServiceUpdateOrganizationRequest(value: object): value is BetaOrganizationServiceUpdateOrganizationRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function BetaOrganizationServiceUpdateOrganizationRequestFromJSONTyped(js
     }
     return {
         
-        'id': json['id'],
-        'name': json['name'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 

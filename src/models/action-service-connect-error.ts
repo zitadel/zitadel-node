@@ -41,11 +41,11 @@ export interface ActionServiceConnectError {
      */
     message?: string;
     /**
-     * 
-     * @type {ActionServiceAny}
+     * A list of messages that carry the error details. There is no limit on the number of messages.
+     * @type {Array<ActionServiceAny>}
      * @memberof ActionServiceConnectError
      */
-    detail?: ActionServiceAny;
+    details?: Array<ActionServiceAny>;
 }
 
 
@@ -94,7 +94,7 @@ export function ActionServiceConnectErrorFromJSONTyped(json: any, ignoreDiscrimi
             ...json,
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'detail': json['detail'] == null ? undefined : ActionServiceAnyFromJSON(json['detail']),
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(ActionServiceAnyFromJSON)),
     };
 }
 
@@ -112,7 +112,7 @@ export function ActionServiceConnectErrorToJSONTyped(value?: ActionServiceConnec
             ...value,
         'code': value['code'],
         'message': value['message'],
-        'detail': ActionServiceAnyToJSON(value['detail']),
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(ActionServiceAnyToJSON)),
     };
 }
 

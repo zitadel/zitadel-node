@@ -88,8 +88,8 @@ export interface BetaAuthorizationServiceApiUpdateAuthorizationRequest {
 export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Activate Authorization   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
-     * ActivateAuthorization
+     * ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
+     * Activate Authorization
      */
     private async activateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiActivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceActivateAuthorizationResponse>> {
         if (requestParameters['betaAuthorizationServiceActivateAuthorizationRequest'] == null) {
@@ -125,8 +125,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Activate Authorization   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
-     * ActivateAuthorization
+     * ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
+     * Activate Authorization
      */
     async activateAuthorization(requestParameters: BetaAuthorizationServiceApiActivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceActivateAuthorizationResponse> {
         const response = await this.activateAuthorizationRaw(requestParameters, initOverrides);
@@ -134,8 +134,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Authorization   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
-     * CreateAuthorization
+     * CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
+     * Create Authorization
      */
     private async createAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiCreateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceCreateAuthorizationResponse>> {
         if (requestParameters['betaAuthorizationServiceCreateAuthorizationRequest'] == null) {
@@ -171,8 +171,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create Authorization   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
-     * CreateAuthorization
+     * CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
+     * Create Authorization
      */
     async createAuthorization(requestParameters: BetaAuthorizationServiceApiCreateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceCreateAuthorizationResponse> {
         const response = await this.createAuthorizationRaw(requestParameters, initOverrides);
@@ -180,8 +180,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Authorization   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
-     * DeactivateAuthorization
+     * DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deactivate Authorization
      */
     private async deactivateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiDeactivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceDeactivateAuthorizationResponse>> {
         if (requestParameters['betaAuthorizationServiceDeactivateAuthorizationRequest'] == null) {
@@ -217,8 +217,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deactivate Authorization   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
-     * DeactivateAuthorization
+     * DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deactivate Authorization
      */
     async deactivateAuthorization(requestParameters: BetaAuthorizationServiceApiDeactivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceDeactivateAuthorizationResponse> {
         const response = await this.deactivateAuthorizationRaw(requestParameters, initOverrides);
@@ -226,8 +226,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Authorization   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
-     * DeleteAuthorization
+     * DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
+     * Delete Authorization
      */
     private async deleteAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiDeleteAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceDeleteAuthorizationResponse>> {
         if (requestParameters['betaAuthorizationServiceDeleteAuthorizationRequest'] == null) {
@@ -263,8 +263,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete Authorization   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
-     * DeleteAuthorization
+     * DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
+     * Delete Authorization
      */
     async deleteAuthorization(requestParameters: BetaAuthorizationServiceApiDeleteAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceDeleteAuthorizationResponse> {
         const response = await this.deleteAuthorizationRaw(requestParameters, initOverrides);
@@ -272,8 +272,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Authorizations   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
-     * ListAuthorizations
+     * ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
+     * List Authorizations
      */
     private async listAuthorizationsRaw(requestParameters: BetaAuthorizationServiceApiListAuthorizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceListAuthorizationsResponse>> {
         if (requestParameters['betaAuthorizationServiceListAuthorizationsRequest'] == null) {
@@ -309,8 +309,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List Authorizations   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
-     * ListAuthorizations
+     * ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
+     * List Authorizations
      */
     async listAuthorizations(requestParameters: BetaAuthorizationServiceApiListAuthorizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceListAuthorizationsResponse> {
         const response = await this.listAuthorizationsRaw(requestParameters, initOverrides);
@@ -318,8 +318,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Authorization   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
-     * UpdateAuthorization
+     * UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
+     * Update Authorization
      */
     private async updateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiUpdateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceUpdateAuthorizationResponse>> {
         if (requestParameters['betaAuthorizationServiceUpdateAuthorizationRequest'] == null) {
@@ -355,8 +355,8 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Authorization   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
-     * UpdateAuthorization
+     * UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
+     * Update Authorization
      */
     async updateAuthorization(requestParameters: BetaAuthorizationServiceApiUpdateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceUpdateAuthorizationResponse> {
         const response = await this.updateAuthorizationRaw(requestParameters, initOverrides);

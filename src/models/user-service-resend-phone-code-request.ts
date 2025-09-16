@@ -24,7 +24,7 @@ export interface UserServiceResendPhoneCodeRequest {
      * @type {string}
      * @memberof UserServiceResendPhoneCodeRequest
      */
-    userId: string;
+    userId?: string;
     /**
      * 
      * @type {object}
@@ -43,7 +43,6 @@ export interface UserServiceResendPhoneCodeRequest {
  * Check if a given object implements the UserServiceResendPhoneCodeRequest interface.
  */
 export function instanceOfUserServiceResendPhoneCodeRequest(value: object): value is UserServiceResendPhoneCodeRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
     return true;
 }
 
@@ -57,7 +56,7 @@ export function UserServiceResendPhoneCodeRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'userId': json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'returnCode': json['returnCode'] == null ? undefined : json['returnCode'],
         'sendCode': json['sendCode'] == null ? undefined : json['sendCode'],
     };
