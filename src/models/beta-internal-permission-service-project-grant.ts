@@ -26,11 +26,11 @@ export interface BetaInternalPermissionServiceProjectGrant {
      */
     projectId?: string;
     /**
-     * ProjectGrantID is required to grant administrator privileges for a specific project grant.
+     * OrganizationID is required to grant administrator privileges for a specific project grant.
      * @type {string}
      * @memberof BetaInternalPermissionServiceProjectGrant
      */
-    projectGrantId?: string;
+    organizationId?: string;
 }
 
 /**
@@ -51,7 +51,7 @@ export function BetaInternalPermissionServiceProjectGrantFromJSONTyped(json: any
     return {
         
         'projectId': json['projectId'] == null ? undefined : json['projectId'],
-        'projectGrantId': json['projectGrantId'] == null ? undefined : json['projectGrantId'],
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
     };
 }
 
@@ -67,7 +67,7 @@ export function BetaInternalPermissionServiceProjectGrantToJSONTyped(value?: Bet
     return {
         
         'projectId': value['projectId'],
-        'projectGrantId': value['projectGrantId'],
+        'organizationId': value['organizationId'],
     };
 }
 
