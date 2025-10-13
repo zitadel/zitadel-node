@@ -55,7 +55,7 @@
     "jest-junit": "^16.0.0",
     "knip": "^5.64.1",
     "prettier": "^3.6.2",
-    "testcontainers": "^11.7.0",
+    "testcontainers": "^11.7.1",
     "ts-jest": "^29.4.4",
     "typescript": "^5.9.3"
   },
@@ -69,6 +69,6 @@
   },
   "overrides": {
     "tmp": "^0.2.4",
-    "tar-fs": "3.1.0"
+    "tar-fs": "3.1.1"
   }
 }
