@@ -38,25 +38,25 @@
   "devDependencies": {
     "@codedependant/semantic-release-docker": "^5.1.1",
     "@commitlint/config-conventional": "^20.0.0",
-    "@mridang/eslint-defaults": "^1.4.0",
-    "@mridang/semantic-release-peer-version": "^1.2.0",
+    "@mridang/eslint-defaults": "^1.5.0",
+    "@mridang/semantic-release-peer-version": "^1.3.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.6",
-    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/github": "^12.0.2",
+    "@semantic-release/npm": "^13.1.1",
     "@semantic-release/release-notes-generator": "^14.1.0",
     "@tsconfig/node20": "latest",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.6.2",
+    "@types/node": "^24.10.0",
     "dotenv": "^17.2.3",
-    "eslint": "^9.36.0",
+    "eslint": "^9.39.1",
     "jest": "^30.2.0",
     "jest-junit": "^16.0.0",
-    "knip": "^5.64.1",
+    "knip": "^5.68.0",
     "prettier": "^3.6.2",
-    "testcontainers": "^11.7.1",
-    "ts-jest": "^29.4.4",
+    "testcontainers": "^11.8.0",
+    "ts-jest": "^29.4.5",
     "typescript": "^5.9.3"
   },
   "publishConfig": {
@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@jest/globals": "^30.2.0",
-    "jose": "^6.1.0",
+    "jose": "^6.1.1",
     "oauth4webapi": "^3.8.2"
   },
   "overrides": {
