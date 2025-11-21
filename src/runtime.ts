@@ -42,6 +42,7 @@ export class BaseAPI {
     if (response && response.status >= 200 && response.status < 300) {
       return response;
     }
+    const responseData = await response.json();
     throw new ApiException(
       'Response returned an error code',
       response.status,
@@ -51,7 +52,7 @@ export class BaseAPI {
           Array.isArray(v) ? v : [v],
         ]),
       ),
-      response?.body?.toString(),
+      responseData as string | Record<string, unknown> | null | undefined,
     );
   }
 
@@ -191,13 +192,13 @@ type HTTPMethod =
 export type HTTPHeaders = { [key: string]: string };
 type HTTPQuery = {
   [key: string]:
-    | string
-    | number
-    | null
-    | boolean
-    | Array<string | number | null | boolean>
-    | Set<string | number | null | boolean>
-    | HTTPQuery;
+  | string
+  | number
+  | null
+  | boolean
+  | Array<string | number | null | boolean>
+  | Set<string | number | null | boolean>
+  | HTTPQuery;
 };
 type HTTPBody = Json | FormData | URLSearchParams;
 type HTTPRequestInit = {
@@ -284,7 +285,7 @@ export class JSONApiResponse<T> {
   constructor(
     public raw: Response,
     private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue,
-  ) {}
+  ) { }
 
   async value(): Promise<T> {
     return this.transformer(await this.raw.json());
