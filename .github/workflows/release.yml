@@ -23,22 +23,22 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
         with:
           egress-policy: audit
 
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@b9b25d45f70a5d94d88496aa4896bf9ed8f49b67 # v4.4.0
         with:
           node-version: 'lts/*'
 
       - name: Run semantic-release
-        uses: mridang/action-semantic-release@v1
+        uses: mridang/action-semantic-release@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           allow-force-install: 'true'
