@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY package.json package-lock.json* ./
 
-RUN npm ci --no-progress
+# Skip lifecycle scripts during install to avoid triggering the prepare build
+# before sources are copied. Build explicitly after sources are in place.
+RUN npm ci --no-progress --ignore-scripts
 
 COPY . .
 

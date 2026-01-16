@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "prepack": "tsc",
+    "prepare": "npm run build",
     "build": "tsc",
     "test": "jest --verbose --config=jest.config.mjs --runInBand",
     "test:watch": "npm run test -- --watch",
@@ -23,6 +24,19 @@
   "files": [
     "dist"
   ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./dist/*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "license": "Apache-2.0",
   "description": "TODO",
   "private": false,
