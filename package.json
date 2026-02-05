@@ -82,9 +82,8 @@
     "oauth4webapi": "^3.8.2"
   },
   "overrides": {
-    "tmp": "^0.2.4",
-    "tar-fs": "3.1.1",
     "tar": "^7.5.7",
-    "npm": "github:npm/cli#b3f847568bcc95e1466668476cf3dcf1a4993ac3"
+    "npm": "^11.9.0",
+    "undici": "^6.23.0"
   }
 }
