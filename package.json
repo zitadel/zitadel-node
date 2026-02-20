@@ -82,8 +82,6 @@
     "oauth4webapi": "^3.8.2"
   },
   "overrides": {
-    "glob": "^11.0.0",
-    "minimatch": "^10.2.2",
     "undici": "^6.23.0"
   }
 }
