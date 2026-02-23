@@ -46,7 +46,7 @@ install dependencies.
 Install the SDK by running one of the following commands:
 
 ```bash
-npm install @zitadel/zitadel-node
+npm install @zitadel/sdk
 ```
 
 ## Authentication Methods
@@ -74,7 +74,7 @@ JSON file. This process creates a secure token.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/zitadel-node';
+import Zitadel, { ApiException } from '@zitadel/sdk';
 
 const zitadel = await Zitadel.withPrivateKey(
   'https://example.us1.zitadel.cloud',
@@ -121,7 +121,7 @@ which is then used to authenticate.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/zitadel-node';
+import Zitadel, { ApiException } from '@zitadel/sdk';
 
 const zitadel = await Zitadel.withClientCredentials(
   'https://example.us1.zitadel.cloud',
@@ -169,7 +169,7 @@ authenticate without exchanging credentials every time.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/zitadel-node';
+import Zitadel, { ApiException } from '@zitadel/sdk';
 
 const zitadel = Zitadel.withAccessToken(
   'https://example.us1.zitadel.cloud',

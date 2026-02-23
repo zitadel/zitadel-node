@@ -1,5 +1,5 @@
 {
-  "name": "@zitadel/zitadel-node",
+  "name": "@zitadel/sdk",
   "version": "4.1.0-beta.10",
   "type": "module",
   "scripts": {
