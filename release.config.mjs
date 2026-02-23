@@ -39,19 +39,18 @@ export default {
       },
     ],
     [
-      '@semantic-release/github',
-      {
-        successComment: false,
-        failComment: false,
-        assets: [],
-      },
-    ],
-    [
       '@semantic-release/npm',
       {
         npmPublish: true,
         pkgRoot: '.',
         tarballDir: '.',
+        access: 'public',
+      },
+    ],
+    [
+      '@semantic-release/github',
+      {
+        assets: [{ path: '*.tgz', label: 'Package' }],
       },
     ],
     [
