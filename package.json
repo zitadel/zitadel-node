@@ -1,6 +1,6 @@
 {
   "name": "@zitadel/sdk",
-  "version": "4.1.0-beta.10",
+  "version": "4.1.0-beta.11",
   "type": "module",
   "scripts": {
     "prepack": "tsc",
