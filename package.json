@@ -52,7 +52,7 @@
   "devDependencies": {
     "@codedependant/semantic-release-docker": "^5.1.1",
     "@commitlint/config-conventional": "^20.0.0",
-    "@mridang/eslint-defaults": "^1.4.0",
+    "@mridang/eslint-defaults": "^1.6.1",
     "@mridang/semantic-release-peer-version": "^1.2.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
