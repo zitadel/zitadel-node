@@ -35,7 +35,7 @@ import {
  */
 export interface OIDCServiceCreateCallbackRequest {
     /**
-     * 
+     * The ID of the Auth Request to finalize.
      * @type {string}
      * @memberof OIDCServiceCreateCallbackRequest
      */

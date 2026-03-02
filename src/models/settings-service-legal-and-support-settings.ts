@@ -28,25 +28,25 @@ import {
  */
 export interface SettingsServiceLegalAndSupportSettings {
     /**
-     * 
+     * Link to the Terms of Service. Can be a relative or absolute URL.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     tosLink?: string;
     /**
-     * 
+     * Link to the Privacy Policy. Can be a relative or absolute URL.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     privacyPolicyLink?: string;
     /**
-     * 
+     * Link to a help page. Can be a relative or absolute URL.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     helpLink?: string;
     /**
-     * 
+     * Email address for support issues.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
@@ -58,19 +58,19 @@ export interface SettingsServiceLegalAndSupportSettings {
      */
     resourceOwnerType?: SettingsServiceResourceOwnerType;
     /**
-     * 
+     * Link to documentation to be shown in the console.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     docsLink?: string;
     /**
-     * 
+     * Link to an external resource that will be available to users in the console.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */
     customLink?: string;
     /**
-     * 
+     * The button text that would be shown in console pointing to custom link.
      * @type {string}
      * @memberof SettingsServiceLegalAndSupportSettings
      */

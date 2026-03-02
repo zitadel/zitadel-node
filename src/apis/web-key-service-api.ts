@@ -65,7 +65,7 @@ export interface WebKeyServiceApiListWebKeysRequest {
 export class WebKeyServiceApi extends runtime.BaseAPI {
 
     /**
-     * Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - `iam.web_key.write`   Required feature flag:    - `web_key`
+     * Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - `iam.web_key.write`
      * Activate Web Key
      */
     private async activateWebKeyRaw(requestParameters: WebKeyServiceApiActivateWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebKeyServiceActivateWebKeyResponse>> {
@@ -102,7 +102,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - `iam.web_key.write`   Required feature flag:    - `web_key`
+     * Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - `iam.web_key.write`
      * Activate Web Key
      */
     async activateWebKey(requestParameters: WebKeyServiceApiActivateWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebKeyServiceActivateWebKeyResponse> {
@@ -111,7 +111,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state `STATE_INITIAL` and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - `iam.web_key.write`   Required feature flag:    - `web_key`
+     * Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state `STATE_INITIAL` and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - `iam.web_key.write`
      * Create Web Key
      */
     private async createWebKeyRaw(requestParameters: WebKeyServiceApiCreateWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebKeyServiceCreateWebKeyResponse>> {
@@ -148,7 +148,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state `STATE_INITIAL` and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - `iam.web_key.write`   Required feature flag:    - `web_key`
+     * Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state `STATE_INITIAL` and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - `iam.web_key.write`
      * Create Web Key
      */
     async createWebKey(requestParameters: WebKeyServiceApiCreateWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebKeyServiceCreateWebKeyResponse> {
@@ -157,7 +157,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - `iam.web_key.delete`   Required feature flag:    - `web_key`
+     * Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - `iam.web_key.delete`
      * Delete Web Key
      */
     private async deleteWebKeyRaw(requestParameters: WebKeyServiceApiDeleteWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebKeyServiceDeleteWebKeyResponse>> {
@@ -194,7 +194,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - `iam.web_key.delete`   Required feature flag:    - `web_key`
+     * Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - `iam.web_key.delete`
      * Delete Web Key
      */
     async deleteWebKey(requestParameters: WebKeyServiceApiDeleteWebKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebKeyServiceDeleteWebKeyResponse> {
@@ -203,7 +203,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all web keys and their states.   Required permission:    - `iam.web_key.read`   Required feature flag:    - `web_key`
+     * List all web keys and their states.   Required permission:    - `iam.web_key.read`
      * List Web Keys
      */
     private async listWebKeysRaw(requestParameters: WebKeyServiceApiListWebKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebKeyServiceListWebKeysResponse>> {
@@ -240,7 +240,7 @@ export class WebKeyServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all web keys and their states.   Required permission:    - `iam.web_key.read`   Required feature flag:    - `web_key`
+     * List all web keys and their states.   Required permission:    - `iam.web_key.read`
      * List Web Keys
      */
     async listWebKeys(requestParameters: WebKeyServiceApiListWebKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebKeyServiceListWebKeysResponse> {

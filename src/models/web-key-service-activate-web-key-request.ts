@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface WebKeyServiceActivateWebKeyRequest {
     /**
-     * 
+     * The unique identifier of the key to activate.
      * @type {string}
      * @memberof WebKeyServiceActivateWebKeyRequest
      */

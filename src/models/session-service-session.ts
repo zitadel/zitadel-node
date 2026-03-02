@@ -35,7 +35,7 @@ import {
  */
 export interface SessionServiceSession {
     /**
-     * 
+     * Unique identifier of the session.
      * @type {string}
      * @memberof SessionServiceSession
      */
@@ -229,7 +229,7 @@ export interface SessionServiceSession {
      */
     changeDate?: Date;
     /**
-     * 
+     * The sequence of the session represents the change sequence of the session.
      * @type {any}
      * @memberof SessionServiceSession
      */
@@ -241,7 +241,9 @@ export interface SessionServiceSession {
      */
     factors?: SessionServiceFactors;
     /**
-     * 
+     * Metadata contains custom key value pairs set by the user.
+     *  The metadata is not interpreted by ZITADEL and can be used to store any information
+     *  relevant to the session.
      * @type {{ [key: string]: string; }}
      * @memberof SessionServiceSession
      */

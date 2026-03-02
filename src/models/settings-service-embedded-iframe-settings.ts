@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface SettingsServiceEmbeddedIframeSettings {
     /**
-     * 
+     * Enabled states if iframe embedding is enabled or disabled.
      * @type {boolean}
      * @memberof SettingsServiceEmbeddedIframeSettings
      */
     enabled?: boolean;
     /**
-     * 
+     * AllowedOrigins defines which origins are allowed to embed ZITADEL in an iframe.
      * @type {Array<string>}
      * @memberof SettingsServiceEmbeddedIframeSettings
      */

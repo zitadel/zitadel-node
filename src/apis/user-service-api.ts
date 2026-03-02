@@ -42,6 +42,8 @@ import type {
   UserServiceDeleteUserMetadataResponse,
   UserServiceDeleteUserRequest,
   UserServiceDeleteUserResponse,
+  UserServiceGenerateRecoveryCodesRequest,
+  UserServiceGenerateRecoveryCodesResponse,
   UserServiceGetUserByIDRequest,
   UserServiceGetUserByIDResponse,
   UserServiceHumanMFAInitSkippedRequest,
@@ -88,6 +90,8 @@ import type {
   UserServiceRemovePersonalAccessTokenResponse,
   UserServiceRemovePhoneRequest,
   UserServiceRemovePhoneResponse,
+  UserServiceRemoveRecoveryCodesRequest,
+  UserServiceRemoveRecoveryCodesResponse,
   UserServiceRemoveSecretRequest,
   UserServiceRemoveSecretResponse,
   UserServiceRemoveTOTPRequest,
@@ -188,6 +192,10 @@ import {
     UserServiceDeleteUserRequestToJSON,
     UserServiceDeleteUserResponseFromJSON,
     UserServiceDeleteUserResponseToJSON,
+    UserServiceGenerateRecoveryCodesRequestFromJSON,
+    UserServiceGenerateRecoveryCodesRequestToJSON,
+    UserServiceGenerateRecoveryCodesResponseFromJSON,
+    UserServiceGenerateRecoveryCodesResponseToJSON,
     UserServiceGetUserByIDRequestFromJSON,
     UserServiceGetUserByIDRequestToJSON,
     UserServiceGetUserByIDResponseFromJSON,
@@ -280,6 +288,10 @@ import {
     UserServiceRemovePhoneRequestToJSON,
     UserServiceRemovePhoneResponseFromJSON,
     UserServiceRemovePhoneResponseToJSON,
+    UserServiceRemoveRecoveryCodesRequestFromJSON,
+    UserServiceRemoveRecoveryCodesRequestToJSON,
+    UserServiceRemoveRecoveryCodesResponseFromJSON,
+    UserServiceRemoveRecoveryCodesResponseToJSON,
     UserServiceRemoveSecretRequestFromJSON,
     UserServiceRemoveSecretRequestToJSON,
     UserServiceRemoveSecretResponseFromJSON,
@@ -422,6 +434,10 @@ export interface UserServiceApiDeleteUserMetadataRequest {
     userServiceDeleteUserMetadataRequest: UserServiceDeleteUserMetadataRequest;
 }
 
+export interface UserServiceApiGenerateRecoveryCodesRequest {
+    userServiceGenerateRecoveryCodesRequest: UserServiceGenerateRecoveryCodesRequest;
+}
+
 export interface UserServiceApiGetUserByIDRequest {
     userServiceGetUserByIDRequest: UserServiceGetUserByIDRequest;
 }
@@ -512,6 +528,10 @@ export interface UserServiceApiRemovePersonalAccessTokenRequest {
 
 export interface UserServiceApiRemovePhoneRequest {
     userServiceRemovePhoneRequest: UserServiceRemovePhoneRequest;
+}
+
+export interface UserServiceApiRemoveRecoveryCodesRequest {
+    userServiceRemoveRecoveryCodesRequest: UserServiceRemoveRecoveryCodesRequest;
 }
 
 export interface UserServiceApiRemoveSecretRequest {
@@ -1202,6 +1222,52 @@ export class UserServiceApi extends runtime.BaseAPI {
      */
     async deleteUserMetadata(requestParameters: UserServiceApiDeleteUserMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceDeleteUserMetadataResponse> {
         const response = await this.deleteUserMetadataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Generate new single-use recovery codes for the authenticated user. Recovery codes can be used to recover access to the account if other second factors are not available.
+     * Generate single-use recovery codes for a user
+     */
+    private async generateRecoveryCodesRaw(requestParameters: UserServiceApiGenerateRecoveryCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceGenerateRecoveryCodesResponse>> {
+        if (requestParameters['userServiceGenerateRecoveryCodesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceGenerateRecoveryCodesRequest',
+                'Required parameter "userServiceGenerateRecoveryCodesRequest" was null or undefined when calling generateRecoveryCodes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/GenerateRecoveryCodes`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceGenerateRecoveryCodesRequestToJSON(requestParameters['userServiceGenerateRecoveryCodesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceGenerateRecoveryCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Generate new single-use recovery codes for the authenticated user. Recovery codes can be used to recover access to the account if other second factors are not available.
+     * Generate single-use recovery codes for a user
+     */
+    async generateRecoveryCodes(requestParameters: UserServiceApiGenerateRecoveryCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceGenerateRecoveryCodesResponse> {
+        const response = await this.generateRecoveryCodesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2258,6 +2324,52 @@ export class UserServiceApi extends runtime.BaseAPI {
      */
     async removePhone(requestParameters: UserServiceApiRemovePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemovePhoneResponse> {
         const response = await this.removePhoneRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove all recovery codes from the authenticated user. This will disable the recovery code second factor.
+     * Remove recovery codes from a user
+     */
+    private async removeRecoveryCodesRaw(requestParameters: UserServiceApiRemoveRecoveryCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserServiceRemoveRecoveryCodesResponse>> {
+        if (requestParameters['userServiceRemoveRecoveryCodesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'userServiceRemoveRecoveryCodesRequest',
+                'Required parameter "userServiceRemoveRecoveryCodesRequest" was null or undefined when calling removeRecoveryCodes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.user.v2.UserService/RemoveRecoveryCodes`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UserServiceRemoveRecoveryCodesRequestToJSON(requestParameters['userServiceRemoveRecoveryCodesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserServiceRemoveRecoveryCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove all recovery codes from the authenticated user. This will disable the recovery code second factor.
+     * Remove recovery codes from a user
+     */
+    async removeRecoveryCodes(requestParameters: UserServiceApiRemoveRecoveryCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserServiceRemoveRecoveryCodesResponse> {
+        const response = await this.removeRecoveryCodesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -119,7 +119,7 @@ export interface BetaActionServiceApiUpdateTargetRequest {
 export class BetaActionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`
      * Create Target
      */
     private async createTargetRaw(requestParameters: BetaActionServiceApiCreateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceCreateTargetResponse>> {
@@ -156,7 +156,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Create a new target to your endpoint, which can be used in executions.   Required permission:    - `action.target.write`
      * Create Target
      */
     async createTarget(requestParameters: BetaActionServiceApiCreateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceCreateTargetResponse> {
@@ -165,7 +165,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`
      * Delete Target
      */
     private async deleteTargetRaw(requestParameters: BetaActionServiceApiDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceDeleteTargetResponse>> {
@@ -202,7 +202,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - `action.target.delete`
      * Delete Target
      */
     async deleteTarget(requestParameters: BetaActionServiceApiDeleteTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceDeleteTargetResponse> {
@@ -211,7 +211,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the target identified by the requested ID.   Required permission:    - `action.target.read`
      * Get Target
      */
     private async getTargetRaw(requestParameters: BetaActionServiceApiGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceGetTargetResponse>> {
@@ -248,7 +248,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the target identified by the requested ID.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the target identified by the requested ID.   Required permission:    - `action.target.read`
      * Get Target
      */
     async getTarget(requestParameters: BetaActionServiceApiGetTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceGetTargetResponse> {
@@ -257,7 +257,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available functions which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available functions which can be used as condition for executions.
      * List Execution Functions
      */
     private async listExecutionFunctionsRaw(requestParameters: BetaActionServiceApiListExecutionFunctionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionFunctionsResponse>> {
@@ -294,7 +294,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available functions which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available functions which can be used as condition for executions.
      * List Execution Functions
      */
     async listExecutionFunctions(requestParameters: BetaActionServiceApiListExecutionFunctionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionFunctionsResponse> {
@@ -303,7 +303,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available methods which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available methods which can be used as condition for executions.
      * List Execution Methods
      */
     private async listExecutionMethodsRaw(requestParameters: BetaActionServiceApiListExecutionMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionMethodsResponse>> {
@@ -340,7 +340,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available methods which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available methods which can be used as condition for executions.
      * List Execution Methods
      */
     async listExecutionMethods(requestParameters: BetaActionServiceApiListExecutionMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionMethodsResponse> {
@@ -349,7 +349,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available services which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available services which can be used as condition for executions.
      * List Execution Services
      */
     private async listExecutionServicesRaw(requestParameters: BetaActionServiceApiListExecutionServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionServicesResponse>> {
@@ -386,7 +386,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all available services which can be used as condition for executions.
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available services which can be used as condition for executions.
      * List Execution Services
      */
     async listExecutionServices(requestParameters: BetaActionServiceApiListExecutionServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionServicesResponse> {
@@ -395,7 +395,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`
      * List Executions
      */
     private async listExecutionsRaw(requestParameters: BetaActionServiceApiListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListExecutionsResponse>> {
@@ -432,7 +432,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.execution.read`
      * List Executions
      */
     async listExecutions(requestParameters: BetaActionServiceApiListExecutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListExecutionsResponse> {
@@ -441,7 +441,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`
      * List targets
      */
     private async listTargetsRaw(requestParameters: BetaActionServiceApiListTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceListTargetsResponse>> {
@@ -478,7 +478,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - `action.target.read`
      * List targets
      */
     async listTargets(requestParameters: BetaActionServiceApiListTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceListTargetsResponse> {
@@ -487,7 +487,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`
      * Set Execution
      */
     private async setExecutionRaw(requestParameters: BetaActionServiceApiSetExecutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceSetExecutionResponse>> {
@@ -524,7 +524,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - `action.execution.write`
      * Set Execution
      */
     async setExecution(requestParameters: BetaActionServiceApiSetExecutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceSetExecutionResponse> {
@@ -533,7 +533,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`
      * Update Target
      */
     private async updateTargetRaw(requestParameters: BetaActionServiceApiUpdateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaActionServiceUpdateTargetResponse>> {
@@ -570,7 +570,7 @@ export class BetaActionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`   Required feature flag:    - `actions`
+     * Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - `action.target.write`
      * Update Target
      */
     async updateTarget(requestParameters: BetaActionServiceApiUpdateTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaActionServiceUpdateTargetResponse> {

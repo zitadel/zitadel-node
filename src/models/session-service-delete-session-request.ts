@@ -20,13 +20,18 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceDeleteSessionRequest {
     /**
-     * 
+     * The unique identifier of the session to be terminated.
      * @type {string}
      * @memberof SessionServiceDeleteSessionRequest
      */
     sessionId?: string;
     /**
-     * 
+     * The current token of the session, previously returned on the create / update request.
+     *  The token is required unless either of the following conditions is met:
+     *  - the caller created the session
+     *  - the authenticated user requests their own session (checked user)
+     *  - the security token provided in the authorization header has the same user agent as the session
+     *  - the caller is granted the permission session.delete permission on either the instance or on the checked user's organization
      * @type {string}
      * @memberof SessionServiceDeleteSessionRequest
      */

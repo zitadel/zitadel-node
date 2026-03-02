@@ -48,7 +48,8 @@ export interface BetaOIDCServiceApiGetAuthRequestRequest {
 export class BetaOIDCServiceApi extends runtime.BaseAPI {
 
     /**
-     * CreateCallback
+     * Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.
+     * Create Callback
      */
     private async createCallbackRaw(requestParameters: BetaOIDCServiceApiCreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOIDCServiceCreateCallbackResponse>> {
         if (requestParameters['betaOIDCServiceCreateCallbackRequest'] == null) {
@@ -84,7 +85,8 @@ export class BetaOIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateCallback
+     * Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.
+     * Create Callback
      */
     async createCallback(requestParameters: BetaOIDCServiceApiCreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOIDCServiceCreateCallbackResponse> {
         const response = await this.createCallbackRaw(requestParameters, initOverrides);
@@ -92,7 +94,8 @@ export class BetaOIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetAuthRequest
+     * Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application\'s Auth Request.
+     * Get AuthRequest
      */
     private async getAuthRequestRaw(requestParameters: BetaOIDCServiceApiGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOIDCServiceGetAuthRequestResponse>> {
         if (requestParameters['betaOIDCServiceGetAuthRequestRequest'] == null) {
@@ -128,7 +131,8 @@ export class BetaOIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetAuthRequest
+     * Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application\'s Auth Request.
+     * Get AuthRequest
      */
     async getAuthRequest(requestParameters: BetaOIDCServiceApiGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOIDCServiceGetAuthRequestResponse> {
         const response = await this.getAuthRequestRaw(requestParameters, initOverrides);

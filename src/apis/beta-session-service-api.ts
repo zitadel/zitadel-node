@@ -78,7 +78,7 @@ export interface BetaSessionServiceApiSetSessionRequest {
 export class BetaSessionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Create a new session
      */
     private async createSessionRaw(requestParameters: BetaSessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceCreateSessionResponse>> {
@@ -115,7 +115,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Create a new session
      */
     async createSession(requestParameters: BetaSessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceCreateSessionResponse> {
@@ -124,7 +124,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Terminate a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Terminate a session
      */
     private async deleteSessionRaw(requestParameters: BetaSessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceDeleteSessionResponse>> {
@@ -161,7 +161,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Terminate a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Terminate a session
      */
     async deleteSession(requestParameters: BetaSessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceDeleteSessionResponse> {
@@ -170,7 +170,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSession a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * GetSession a session
      */
     private async getSessionRaw(requestParameters: BetaSessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceGetSessionResponse>> {
@@ -207,7 +207,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSession a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * GetSession a session
      */
     async getSession(requestParameters: BetaSessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceGetSessionResponse> {
@@ -216,7 +216,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search sessions
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Search sessions
      */
     private async listSessionsRaw(requestParameters: BetaSessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceListSessionsResponse>> {
@@ -253,7 +253,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search sessions
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Search sessions
      */
     async listSessions(requestParameters: BetaSessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceListSessionsResponse> {
@@ -262,7 +262,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Update a session
      */
     private async setSessionRaw(requestParameters: BetaSessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSessionServiceSetSessionResponse>> {
@@ -299,7 +299,7 @@ export class BetaSessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a session
+     * Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Update a session
      */
     async setSession(requestParameters: BetaSessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSessionServiceSetSessionResponse> {

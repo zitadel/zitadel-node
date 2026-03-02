@@ -68,7 +68,7 @@ export interface BetaInternalPermissionServiceApiUpdateAdministratorRequest {
 export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
      * CreateAdministrator grants a administrator role to a user for a specific resource.
      */
     private async createAdministratorRaw(requestParameters: BetaInternalPermissionServiceApiCreateAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInternalPermissionServiceCreateAdministratorResponse>> {
@@ -105,7 +105,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
      * CreateAdministrator grants a administrator role to a user for a specific resource.
      */
     async createAdministrator(requestParameters: BetaInternalPermissionServiceApiCreateAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInternalPermissionServiceCreateAdministratorResponse> {
@@ -114,7 +114,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \"iam.member.delete\" for instance administrators    - \"org.member.delete\" for organization administrators    - \"project.member.delete\" for project administrators    - \"project.grant.member.delete\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \"iam.member.delete\" for instance administrators    - \"org.member.delete\" for organization administrators    - \"project.member.delete\" for project administrators    - \"project.grant.member.delete\" for project grant administrators
      * DeleteAdministrator revokes a administrator role from a user.
      */
     private async deleteAdministratorRaw(requestParameters: BetaInternalPermissionServiceApiDeleteAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInternalPermissionServiceDeleteAdministratorResponse>> {
@@ -151,7 +151,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \"iam.member.delete\" for instance administrators    - \"org.member.delete\" for organization administrators    - \"project.member.delete\" for project administrators    - \"project.grant.member.delete\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \"iam.member.delete\" for instance administrators    - \"org.member.delete\" for organization administrators    - \"project.member.delete\" for project administrators    - \"project.grant.member.delete\" for project grant administrators
      * DeleteAdministrator revokes a administrator role from a user.
      */
     async deleteAdministrator(requestParameters: BetaInternalPermissionServiceApiDeleteAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInternalPermissionServiceDeleteAdministratorResponse> {
@@ -160,7 +160,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Required permissions depend on the resource type:    - \"iam.member.read\" for instance administrators    - \"org.member.read\" for organization administrators    - \"project.member.read\" for project administrators    - \"project.grant.member.read\" for project grant administrators    - no permissions required for listing own administrator roles
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Required permissions depend on the resource type:    - \"iam.member.read\" for instance administrators    - \"org.member.read\" for organization administrators    - \"project.member.read\" for project administrators    - \"project.grant.member.read\" for project grant administrators    - no permissions required for listing own administrator roles
      * ListAdministrators returns all administrators and its roles matching the request and necessary permissions.
      */
     private async listAdministratorsRaw(requestParameters: BetaInternalPermissionServiceApiListAdministratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInternalPermissionServiceListAdministratorsResponse>> {
@@ -197,7 +197,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Required permissions depend on the resource type:    - \"iam.member.read\" for instance administrators    - \"org.member.read\" for organization administrators    - \"project.member.read\" for project administrators    - \"project.grant.member.read\" for project grant administrators    - no permissions required for listing own administrator roles
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Required permissions depend on the resource type:    - \"iam.member.read\" for instance administrators    - \"org.member.read\" for organization administrators    - \"project.member.read\" for project administrators    - \"project.grant.member.read\" for project grant administrators    - no permissions required for listing own administrator roles
      * ListAdministrators returns all administrators and its roles matching the request and necessary permissions.
      */
     async listAdministrators(requestParameters: BetaInternalPermissionServiceApiListAdministratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInternalPermissionServiceListAdministratorsResponse> {
@@ -206,7 +206,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
      * UpdateAdministrator updates the specific administrator role.
      */
     private async updateAdministratorRaw(requestParameters: BetaInternalPermissionServiceApiUpdateAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInternalPermissionServiceUpdateAdministratorResponse>> {
@@ -243,7 +243,7 @@ export class BetaInternalPermissionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
+     * Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \"iam.member.write\" for instance administrators    - \"org.member.write\" for organization administrators    - \"project.member.write\" for project administrators    - \"project.grant.member.write\" for project grant administrators
      * UpdateAdministrator updates the specific administrator role.
      */
     async updateAdministrator(requestParameters: BetaInternalPermissionServiceApiUpdateAdministratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInternalPermissionServiceUpdateAdministratorResponse> {

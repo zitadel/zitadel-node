@@ -49,25 +49,42 @@ import {
  */
 export interface SettingsServiceLoginSettings {
     /**
-     * 
+     * If enabled, users can log in locally with their username and passkeys or password.
+     *  Disabling this option will require users to log in with an external identity provider.
+     *  Be sure to allow at least one external identity provider if this option is disabled.
+     *  Deprecated: check allow_local_authentication instead.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
+     * @deprecated
      */
     allowUsernamePassword?: boolean;
     /**
-     * 
+     * If enabled, users can log in locally with their username and passkeys or password.
+     *  Disabling this option will require users to log in with an external identity provider.
+     *  Be sure to allow at least one external identity provider if this option is disabled.
+     * @type {boolean}
+     * @memberof SettingsServiceLoginSettings
+     */
+    allowLocalAuthentication?: boolean;
+    /**
+     * If enabled, users can register a local account by themself.
+     *  This option does not effect external identity providers.
+     *  Each identity provider can be configured to allow or disallow registration.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowRegister?: boolean;
     /**
-     * 
+     * If enabled, users will generally be allowed to use an external identity provider to log in.
+     *  Be sure to allow at least one external identity provider if this option is enabled.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowExternalIdp?: boolean;
     /**
-     * 
+     * If enabled, users will be forced to use a multi-factor to log in.
+     *  This also applies to federated logins through an external identity provider.
+     *  Users will be required to set up a second factor if they have not done so already.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
@@ -79,19 +96,21 @@ export interface SettingsServiceLoginSettings {
      */
     passkeysType?: SettingsServicePasskeysType;
     /**
-     * 
+     * If enabled, the password reset link will be hidden on the login screen.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     hidePasswordReset?: boolean;
     /**
-     * 
+     * If enabled, an unknown username on the login screen will not return an error directly,
+     *  but will always display the password screen.
+     *  This prevents user enumeration attacks.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     ignoreUnknownUsernames?: boolean;
     /**
-     * 
+     * Defines where the user will be redirected to if the login is started without app context (e.g. from mail).
      * @type {string}
      * @memberof SettingsServiceLoginSettings
      */
@@ -412,31 +431,39 @@ export interface SettingsServiceLoginSettings {
      */
     multiFactorCheckLifetime?: string;
     /**
-     * 
+     * The list of allowed second factors.
      * @type {Array<SettingsServiceSecondFactorType>}
      * @memberof SettingsServiceLoginSettings
      */
     secondFactors?: Array<SettingsServiceSecondFactorType>;
     /**
-     * 
+     * The list of allowed multi factors.
      * @type {Array<SettingsServiceMultiFactorType>}
      * @memberof SettingsServiceLoginSettings
      */
     multiFactors?: Array<SettingsServiceMultiFactorType>;
     /**
-     * If set to true, the suffix (@domain.com) of an unknown username input on the login screen will be matched against the org domains and will redirect to the registration of that organization on success.
+     * Allow discovery of the organization and its authentication option by domain.
+     *  If set to true, the suffix (@domain.com) of an unknown username input on the login screen
+     *  will be matched against the organization domains and will redirect to the registration of that organization on success.
+     *  The registration can either be locally (requires allow_register to be true) or through an external identity provider.
+     *  In case only one identity provider is configured for the organization, the user will be redirected directly to the identity provider.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     allowDomainDiscovery?: boolean;
     /**
-     * 
+     * By default, users can login with their verified email address additionally to their login name.
+     *  Setting this to true disables the email login.
+     *  Note: If the email is set as the login name, this setting has no effect.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
     disableLoginWithEmail?: boolean;
     /**
-     * 
+     * By default, users can login with their verified phone number additionally to their login name.
+     *  Setting this to true disables the phone number login.
+     *  Note: If the phone number is set as the login name, this setting has no effect.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
@@ -448,7 +475,11 @@ export interface SettingsServiceLoginSettings {
      */
     resourceOwnerType?: SettingsServiceResourceOwnerType;
     /**
-     * 
+     * If enabled, users will be forced to use a multi-factor to log in if they authenticated locally.
+     *  This does not apply to federated logins through an external identity provider.
+     *  Users will be required to set up a second factor if they have not done so already.
+     *  If both force_mfa and force_mfa_local_only are enabled, force_mfa takes precedence and
+     *  all logins will require a second factor.
      * @type {boolean}
      * @memberof SettingsServiceLoginSettings
      */
@@ -475,6 +506,7 @@ export function SettingsServiceLoginSettingsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'allowUsernamePassword': json['allowUsernamePassword'] == null ? undefined : json['allowUsernamePassword'],
+        'allowLocalAuthentication': json['allowLocalAuthentication'] == null ? undefined : json['allowLocalAuthentication'],
         'allowRegister': json['allowRegister'] == null ? undefined : json['allowRegister'],
         'allowExternalIdp': json['allowExternalIdp'] == null ? undefined : json['allowExternalIdp'],
         'forceMfa': json['forceMfa'] == null ? undefined : json['forceMfa'],
@@ -509,6 +541,7 @@ export function SettingsServiceLoginSettingsToJSONTyped(value?: SettingsServiceL
     return {
         
         'allowUsernamePassword': value['allowUsernamePassword'],
+        'allowLocalAuthentication': value['allowLocalAuthentication'],
         'allowRegister': value['allowRegister'],
         'allowExternalIdp': value['allowExternalIdp'],
         'forceMfa': value['forceMfa'],

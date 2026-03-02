@@ -34,6 +34,13 @@ import {
     SessionServiceWebAuthNFactorToJSON,
     SessionServiceWebAuthNFactorToJSONTyped,
 } from './session-service-web-auth-n-factor.js';
+import type { SessionServiceRecoveryCodeFactor } from './session-service-recovery-code-factor.js';
+import {
+    SessionServiceRecoveryCodeFactorFromJSON,
+    SessionServiceRecoveryCodeFactorFromJSONTyped,
+    SessionServiceRecoveryCodeFactorToJSON,
+    SessionServiceRecoveryCodeFactorToJSONTyped,
+} from './session-service-recovery-code-factor.js';
 import type { SessionServiceUserFactor } from './session-service-user-factor.js';
 import {
     SessionServiceUserFactorFromJSON,
@@ -104,6 +111,12 @@ export interface SessionServiceFactors {
      * @memberof SessionServiceFactors
      */
     otpEmail?: SessionServiceOTPFactor;
+    /**
+     * 
+     * @type {SessionServiceRecoveryCodeFactor}
+     * @memberof SessionServiceFactors
+     */
+    recoveryCode?: SessionServiceRecoveryCodeFactor;
 }
 
 /**
@@ -130,6 +143,7 @@ export function SessionServiceFactorsFromJSONTyped(json: any, ignoreDiscriminato
         'totp': json['totp'] == null ? undefined : SessionServiceTOTPFactorFromJSON(json['totp']),
         'otpSms': json['otpSms'] == null ? undefined : SessionServiceOTPFactorFromJSON(json['otpSms']),
         'otpEmail': json['otpEmail'] == null ? undefined : SessionServiceOTPFactorFromJSON(json['otpEmail']),
+        'recoveryCode': json['recoveryCode'] == null ? undefined : SessionServiceRecoveryCodeFactorFromJSON(json['recoveryCode']),
     };
 }
 
@@ -151,6 +165,7 @@ export function SessionServiceFactorsToJSONTyped(value?: SessionServiceFactors |
         'totp': SessionServiceTOTPFactorToJSON(value['totp']),
         'otpSms': SessionServiceOTPFactorToJSON(value['otpSms']),
         'otpEmail': SessionServiceOTPFactorToJSON(value['otpEmail']),
+        'recoveryCode': SessionServiceRecoveryCodeFactorToJSON(value['recoveryCode']),
     };
 }
 

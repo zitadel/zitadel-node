@@ -20,9 +20,11 @@
 export const SettingsServiceSecondFactorType = {
     SecondFactorTypeUnspecified: 'SECOND_FACTOR_TYPE_UNSPECIFIED',
     SecondFactorTypeOtp: 'SECOND_FACTOR_TYPE_OTP',
+    SecondFactorTypeTotp: 'SECOND_FACTOR_TYPE_TOTP',
     SecondFactorTypeU2F: 'SECOND_FACTOR_TYPE_U2F',
     SecondFactorTypeOtpEmail: 'SECOND_FACTOR_TYPE_OTP_EMAIL',
     SecondFactorTypeOtpSms: 'SECOND_FACTOR_TYPE_OTP_SMS',
+    SecondFactorTypeRecoveryCodes: 'SECOND_FACTOR_TYPE_RECOVERY_CODES',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 export type SettingsServiceSecondFactorType = typeof SettingsServiceSecondFactorType[keyof typeof SettingsServiceSecondFactorType];

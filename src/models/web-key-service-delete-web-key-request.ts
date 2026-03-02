@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface WebKeyServiceDeleteWebKeyRequest {
     /**
-     * 
+     * The unique identifier of the key to delete.
      * @type {string}
      * @memberof WebKeyServiceDeleteWebKeyRequest
      */

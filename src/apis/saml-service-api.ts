@@ -48,7 +48,8 @@ export interface SAMLServiceApiGetSAMLRequestRequest {
 export class SAMLServiceApi extends runtime.BaseAPI {
 
     /**
-     * CreateResponse
+     * Finalize a SAML Request and get the response definition for success or failure.  The response must be handled as per the SAML definition to inform the application about the success or failure.  On success, the response contains details for the application to obtain the SAMLResponse.  This method can only be called once for an SAML request.   Required permissions:    - `session.link`
+     * Create Response
      */
     private async createResponseRaw(requestParameters: SAMLServiceApiCreateResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceCreateResponseResponse>> {
         if (requestParameters['sAMLServiceCreateResponseRequest'] == null) {
@@ -84,7 +85,8 @@ export class SAMLServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateResponse
+     * Finalize a SAML Request and get the response definition for success or failure.  The response must be handled as per the SAML definition to inform the application about the success or failure.  On success, the response contains details for the application to obtain the SAMLResponse.  This method can only be called once for an SAML request.   Required permissions:    - `session.link`
+     * Create Response
      */
     async createResponse(requestParameters: SAMLServiceApiCreateResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceCreateResponseResponse> {
         const response = await this.createResponseRaw(requestParameters, initOverrides);
@@ -92,7 +94,8 @@ export class SAMLServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSAMLRequest
+     * Get SAML Request details by ID. Returns details that are parsed from the application\'s SAML Request.   Required permissions:    - `session.read`
+     * Get SAML Request
      */
     private async getSAMLRequestRaw(requestParameters: SAMLServiceApiGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SAMLServiceGetSAMLRequestResponse>> {
         if (requestParameters['sAMLServiceGetSAMLRequestRequest'] == null) {
@@ -128,7 +131,8 @@ export class SAMLServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSAMLRequest
+     * Get SAML Request details by ID. Returns details that are parsed from the application\'s SAML Request.   Required permissions:    - `session.read`
+     * Get SAML Request
      */
     async getSAMLRequest(requestParameters: SAMLServiceApiGetSAMLRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SAMLServiceGetSAMLRequestResponse> {
         const response = await this.getSAMLRequestRaw(requestParameters, initOverrides);

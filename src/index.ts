@@ -1,5 +1,7 @@
 import {
   ActionServiceApi,
+  ApplicationServiceApi,
+  AuthorizationServiceApi,
   BetaActionServiceApi,
   BetaAppServiceApi,
   BetaAuthorizationServiceApi,
@@ -16,8 +18,11 @@ import {
   BetaWebKeyServiceApi,
   FeatureServiceApi,
   IdentityProviderServiceApi,
+  InstanceServiceApi,
+  InternalPermissionServiceApi,
   OIDCServiceApi,
   OrganizationServiceApi,
+  ProjectServiceApi,
   SAMLServiceApi,
   SessionServiceApi,
   SettingsServiceApi,
@@ -40,6 +45,8 @@ export * from './auth/index.js';
 
 export default class Zitadel {
   public readonly actions: ActionServiceApi;
+  public readonly applications: ApplicationServiceApi;
+  public readonly authorizations: AuthorizationServiceApi;
   public readonly betaActions: BetaActionServiceApi;
   public readonly betaApps: BetaAppServiceApi;
   public readonly betaAuthorizations: BetaAuthorizationServiceApi;
@@ -56,8 +63,11 @@ export default class Zitadel {
   public readonly betaWebkeys: BetaWebKeyServiceApi;
   public readonly features: FeatureServiceApi;
   public readonly idps: IdentityProviderServiceApi;
+  public readonly instances: InstanceServiceApi;
+  public readonly internalPermissions: InternalPermissionServiceApi;
   public readonly oidc: OIDCServiceApi;
   public readonly organizations: OrganizationServiceApi;
+  public readonly projects: ProjectServiceApi;
   public readonly saml: SAMLServiceApi;
   public readonly sessions: SessionServiceApi;
   public readonly settings: SettingsServiceApi;
@@ -75,6 +85,8 @@ export default class Zitadel {
     }
 
     this.actions = new ActionServiceApi(config);
+    this.applications = new ApplicationServiceApi(config);
+    this.authorizations = new AuthorizationServiceApi(config);
     this.betaActions = new BetaActionServiceApi(config);
     this.betaApps = new BetaAppServiceApi(config);
     this.betaAuthorizations = new BetaAuthorizationServiceApi(config);
@@ -91,8 +103,11 @@ export default class Zitadel {
     this.betaWebkeys = new BetaWebKeyServiceApi(config);
     this.features = new FeatureServiceApi(config);
     this.idps = new IdentityProviderServiceApi(config);
+    this.instances = new InstanceServiceApi(config);
+    this.internalPermissions = new InternalPermissionServiceApi(config);
     this.oidc = new OIDCServiceApi(config);
     this.organizations = new OrganizationServiceApi(config);
+    this.projects = new ProjectServiceApi(config);
     this.saml = new SAMLServiceApi(config);
     this.sessions = new SessionServiceApi(config);
     this.settings = new SettingsServiceApi(config);

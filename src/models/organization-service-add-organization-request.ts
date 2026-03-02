@@ -28,21 +28,38 @@ import {
  */
 export interface OrganizationServiceAddOrganizationRequest {
     /**
-     * 
+     * Name is the unique name of the organization to be created.
+     *  This must be unique across the instance.
      * @type {string}
      * @memberof OrganizationServiceAddOrganizationRequest
      */
     name?: string;
     /**
-     * 
+     * Specify users to be assigned as organization admins.
+     *  If no users are specified here, the organization will be created without any admin users.
+     *  The organization can still be managed by any instance administrator.
+     *  If no roles are specified for a user, they will be assigned the role ORG_OWNER.
      * @type {Array<OrganizationServiceAdmin>}
      * @memberof OrganizationServiceAddOrganizationRequest
      */
     admins?: Array<OrganizationServiceAdmin>;
     /**
-     * optionally set your own id unique for the organization.
+     * OrganizationID is the unique identifier of the organization. This field is optional.
+     *  If omitted, the system will generate one,
+     *  which is the recommended way. The generated ID will be returned in the response.
      * @type {string}
      * @memberof OrganizationServiceAddOrganizationRequest
+     */
+    organizationId?: string | null;
+    /**
+     * Optionally, set a unique id for the organization. If omitted, the system will generate one,
+     *  which is the recommended way. The generated ID will be returned in the response.
+     * 
+     *  Deprecated: use 'organization_id' field instead.
+     *  If both org_id and organization_id are set, organization_id will take precedence.
+     * @type {string}
+     * @memberof OrganizationServiceAddOrganizationRequest
+     * @deprecated
      */
     orgId?: string | null;
 }
@@ -66,6 +83,7 @@ export function OrganizationServiceAddOrganizationRequestFromJSONTyped(json: any
         
         'name': json['name'] == null ? undefined : json['name'],
         'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(OrganizationServiceAdminFromJSON)),
+        'organizationId': json['organizationId'] == null ? undefined : json['organizationId'],
         'orgId': json['orgId'] == null ? undefined : json['orgId'],
     };
 }
@@ -83,6 +101,7 @@ export function OrganizationServiceAddOrganizationRequestToJSONTyped(value?: Org
         
         'name': value['name'],
         'admins': value['admins'] == null ? undefined : ((value['admins'] as Array<any>).map(OrganizationServiceAdminToJSON)),
+        'organizationId': value['organizationId'],
         'orgId': value['orgId'],
     };
 }

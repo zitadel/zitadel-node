@@ -28,19 +28,20 @@ import {
  */
 export interface SessionServiceUserAgent {
     /**
-     * 
+     * FingerprintID is a unique identifier for the user agent's fingerprint.
+     *  It can be used to group sessions by device or browser.
      * @type {string}
      * @memberof SessionServiceUserAgent
      */
     fingerprintId?: string | null;
     /**
-     * 
+     * IP is the IP address from which the session was created.
      * @type {string}
      * @memberof SessionServiceUserAgent
      */
     ip?: string | null;
     /**
-     * 
+     * Description is a human-readable description of the user agent.
      * @type {string}
      * @memberof SessionServiceUserAgent
      */

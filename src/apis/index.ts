@@ -1,6 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './action-service-api.js';
+export * from './application-service-api.js';
+export * from './authorization-service-api.js';
 export * from './beta-action-service-api.js';
 export * from './beta-app-service-api.js';
 export * from './beta-authorization-service-api.js';
@@ -17,8 +19,11 @@ export * from './beta-user-service-api.js';
 export * from './beta-web-key-service-api.js';
 export * from './feature-service-api.js';
 export * from './identity-provider-service-api.js';
+export * from './instance-service-api.js';
+export * from './internal-permission-service-api.js';
 export * from './oidc-service-api.js';
 export * from './organization-service-api.js';
+export * from './project-service-api.js';
 export * from './saml-service-api.js';
 export * from './session-service-api.js';
 export * from './settings-service-api.js';

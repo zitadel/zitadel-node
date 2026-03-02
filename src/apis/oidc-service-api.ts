@@ -65,8 +65,8 @@ export interface OIDCServiceApiGetDeviceAuthorizationRequestRequest {
 export class OIDCServiceApi extends runtime.BaseAPI {
 
     /**
-     * Authorize or deny the device authorization request based on the provided device authorization id.
-     * Authorize or deny device authorization
+     * Authorize or deny the device authorization request based on the provided device authorization id.   Required permissions:    - `session.link`
+     * Authorize or Deny Device Authorization
      */
     private async authorizeOrDenyDeviceAuthorizationRaw(requestParameters: OIDCServiceApiAuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest'] == null) {
@@ -102,8 +102,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Authorize or deny the device authorization request based on the provided device authorization id.
-     * Authorize or deny device authorization
+     * Authorize or deny the device authorization request based on the provided device authorization id.   Required permissions:    - `session.link`
+     * Authorize or Deny Device Authorization
      */
     async authorizeOrDenyDeviceAuthorization(requestParameters: OIDCServiceApiAuthorizeOrDenyDeviceAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.authorizeOrDenyDeviceAuthorizationRaw(requestParameters, initOverrides);
@@ -111,7 +111,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateCallback
+     * Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.   Required permissions:    - `session.link`
+     * Create Callback
      */
     private async createCallbackRaw(requestParameters: OIDCServiceApiCreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceCreateCallbackResponse>> {
         if (requestParameters['oIDCServiceCreateCallbackRequest'] == null) {
@@ -147,7 +148,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateCallback
+     * Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.   Required permissions:    - `session.link`
+     * Create Callback
      */
     async createCallback(requestParameters: OIDCServiceApiCreateCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceCreateCallbackResponse> {
         const response = await this.createCallbackRaw(requestParameters, initOverrides);
@@ -155,7 +157,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetAuthRequest
+     * Get OIDC Auth Request details by ID, obtained from the redirect URL.  Returns details that are parsed from the application\'s Auth Request.   Required permissions:    - `session.read`
+     * Get Auth Request
      */
     private async getAuthRequestRaw(requestParameters: OIDCServiceApiGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetAuthRequestResponse>> {
         if (requestParameters['oIDCServiceGetAuthRequestRequest'] == null) {
@@ -191,7 +194,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetAuthRequest
+     * Get OIDC Auth Request details by ID, obtained from the redirect URL.  Returns details that are parsed from the application\'s Auth Request.   Required permissions:    - `session.read`
+     * Get Auth Request
      */
     async getAuthRequest(requestParameters: OIDCServiceApiGetAuthRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetAuthRequestResponse> {
         const response = await this.getAuthRequestRaw(requestParameters, initOverrides);
@@ -199,8 +203,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
-     * Get device authorization request
+     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.   Required permissions:    - `session.read`
+     * Get Device Authorization Request
      */
     private async getDeviceAuthorizationRequestRaw(requestParameters: OIDCServiceApiGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
         if (requestParameters['oIDCServiceGetDeviceAuthorizationRequestRequest'] == null) {
@@ -236,8 +240,8 @@ export class OIDCServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
-     * Get device authorization request
+     * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.   Required permissions:    - `session.read`
+     * Get Device Authorization Request
      */
     async getDeviceAuthorizationRequest(requestParameters: OIDCServiceApiGetDeviceAuthorizationRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OIDCServiceGetDeviceAuthorizationRequestResponse> {
         const response = await this.getDeviceAuthorizationRequestRaw(requestParameters, initOverrides);

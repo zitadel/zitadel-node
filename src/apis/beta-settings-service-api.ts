@@ -132,7 +132,7 @@ export interface BetaSettingsServiceApiSetSecuritySettingsRequest {
 export class BetaSettingsServiceApi extends runtime.BaseAPI {
 
     /**
-     * Get the current active identity providers
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the current active identity providers
      */
     private async getActiveIdentityProvidersRaw(requestParameters: BetaSettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetActiveIdentityProvidersResponse>> {
@@ -169,7 +169,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active identity providers
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the current active identity providers
      */
     async getActiveIdentityProviders(requestParameters: BetaSettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetActiveIdentityProvidersResponse> {
@@ -178,7 +178,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active branding settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the current active branding settings
      */
     private async getBrandingSettingsRaw(requestParameters: BetaSettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetBrandingSettingsResponse>> {
@@ -215,7 +215,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active branding settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the current active branding settings
      */
     async getBrandingSettings(requestParameters: BetaSettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetBrandingSettingsResponse> {
@@ -224,7 +224,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the domain settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the domain settings
      */
     private async getDomainSettingsRaw(requestParameters: BetaSettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetDomainSettingsResponse>> {
@@ -261,7 +261,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the domain settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the domain settings
      */
     async getDomainSettings(requestParameters: BetaSettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetDomainSettingsResponse> {
@@ -270,7 +270,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get basic information over the instance
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get basic information over the instance
      */
     private async getGeneralSettingsRaw(requestParameters: BetaSettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetGeneralSettingsResponse>> {
@@ -307,7 +307,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get basic information over the instance
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get basic information over the instance
      */
     async getGeneralSettings(requestParameters: BetaSettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetGeneralSettingsResponse> {
@@ -316,7 +316,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the legal and support settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the legal and support settings
      */
     private async getLegalAndSupportSettingsRaw(requestParameters: BetaSettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLegalAndSupportSettingsResponse>> {
@@ -353,7 +353,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the legal and support settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the legal and support settings
      */
     async getLegalAndSupportSettings(requestParameters: BetaSettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLegalAndSupportSettingsResponse> {
@@ -362,7 +362,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the lockout settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the lockout settings
      */
     private async getLockoutSettingsRaw(requestParameters: BetaSettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLockoutSettingsResponse>> {
@@ -399,7 +399,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the lockout settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the lockout settings
      */
     async getLockoutSettings(requestParameters: BetaSettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLockoutSettingsResponse> {
@@ -408,7 +408,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the login settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the login settings
      */
     private async getLoginSettingsRaw(requestParameters: BetaSettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetLoginSettingsResponse>> {
@@ -445,7 +445,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the login settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the login settings
      */
     async getLoginSettings(requestParameters: BetaSettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetLoginSettingsResponse> {
@@ -454,7 +454,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password complexity settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the password complexity settings
      */
     private async getPasswordComplexitySettingsRaw(requestParameters: BetaSettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetPasswordComplexitySettingsResponse>> {
@@ -491,7 +491,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password complexity settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the password complexity settings
      */
     async getPasswordComplexitySettings(requestParameters: BetaSettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetPasswordComplexitySettingsResponse> {
@@ -500,7 +500,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password expiry settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the password expiry settings
      */
     private async getPasswordExpirySettingsRaw(requestParameters: BetaSettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetPasswordExpirySettingsResponse>> {
@@ -537,7 +537,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password expiry settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the password expiry settings
      */
     async getPasswordExpirySettings(requestParameters: BetaSettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetPasswordExpirySettingsResponse> {
@@ -546,7 +546,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the security settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the security settings
      */
     private async getSecuritySettingsRaw(requestParameters: BetaSettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceGetSecuritySettingsResponse>> {
@@ -583,7 +583,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the security settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Get the security settings
      */
     async getSecuritySettings(requestParameters: BetaSettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceGetSecuritySettingsResponse> {
@@ -592,7 +592,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the security settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Set the security settings
      */
     private async setSecuritySettingsRaw(requestParameters: BetaSettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaSettingsServiceSetSecuritySettingsResponse>> {
@@ -629,7 +629,7 @@ export class BetaSettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the security settings
+     * Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
      * Set the security settings
      */
     async setSecuritySettings(requestParameters: BetaSettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaSettingsServiceSetSecuritySettingsResponse> {

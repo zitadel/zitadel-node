@@ -114,7 +114,8 @@ export interface SessionServiceWebAuthNFactor {
      */
     verifiedAt?: Date;
     /**
-     * 
+     * Indicates if the user presence was verified during the last challenge.
+     *  This can be used to determine if the factor can be considered as multi-factor authentication.
      * @type {boolean}
      * @memberof SessionServiceWebAuthNFactor
      */

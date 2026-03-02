@@ -48,7 +48,7 @@ export interface SessionServiceCreateSessionRequest {
      */
     checks?: SessionServiceChecks;
     /**
-     * 
+     * Custom key value list to be stored on the session.
      * @type {{ [key: string]: string; }}
      * @memberof SessionServiceCreateSessionRequest
      */

@@ -22,13 +22,14 @@ import {
 } from './oidc-service-prompt.js';
 
 /**
- * 
+ * AuthRequest represents an OpenID Connect Authorization Request as defined in
+ *  https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
  * @export
  * @interface OIDCServiceAuthRequest
  */
 export interface OIDCServiceAuthRequest {
     /**
-     * 
+     * The unique identifier of the authorization request.
      * @type {string}
      * @memberof OIDCServiceAuthRequest
      */
@@ -128,37 +129,42 @@ export interface OIDCServiceAuthRequest {
      */
     creationDate?: Date;
     /**
-     * 
+     * The OAuth2/OIDC client_id of the application that initiated the authorization request.
      * @type {string}
      * @memberof OIDCServiceAuthRequest
      */
     clientId?: string;
     /**
-     * 
+     * The scopes by the application that the user must consent to.
      * @type {Array<string>}
      * @memberof OIDCServiceAuthRequest
      */
     scope?: Array<string>;
     /**
-     * 
+     * The redirect_uri used in the authorization request. This must exactly match one of the redirect URIs registered for the client.
+     *  This uri is used to send the authorization code or tokens back to the application.
      * @type {string}
      * @memberof OIDCServiceAuthRequest
      */
     redirectUri?: string;
     /**
-     * 
+     * Prompts that must be displayed to the user.
      * @type {Array<OIDCServicePrompt>}
      * @memberof OIDCServiceAuthRequest
      */
     prompt?: Array<OIDCServicePrompt>;
     /**
-     * 
+     * End-User's preferred languages and scripts for the user interface, represented as a list of BCP47 [RFC5646]
+     *  language tag values, ordered by preference.
+     *  For instance, the value [fr-CA, fr, en] represents a preference for French as spoken in Canada,
+     *  then French (without a region designation), followed by English (without a region designation).
+     *  An error SHOULD NOT result if some or all of the requested locales are not supported.
      * @type {Array<string>}
      * @memberof OIDCServiceAuthRequest
      */
     uiLocales?: Array<string>;
     /**
-     * 
+     * Login hint can be set by the application with a user identifier such as an email or phone number.
      * @type {string}
      * @memberof OIDCServiceAuthRequest
      */
@@ -227,7 +233,7 @@ export interface OIDCServiceAuthRequest {
      */
     maxAge?: string;
     /**
-     * 
+     * User ID taken from a ID Token Hint if it was present and valid.
      * @type {string}
      * @memberof OIDCServiceAuthRequest
      */

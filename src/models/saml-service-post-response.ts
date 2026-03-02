@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface SAMLServicePostResponse {
     /**
-     * 
+     * The SAML RelaySate, that needs to be returned to the application to match the response to the request.
      * @type {string}
      * @memberof SAMLServicePostResponse
      */
     relayState?: string;
     /**
-     * 
+     * The SAML Response, that needs to be returned to the application to complete the SAML flow.
      * @type {string}
      * @memberof SAMLServicePostResponse
      */

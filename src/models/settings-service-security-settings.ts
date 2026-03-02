@@ -34,7 +34,8 @@ export interface SettingsServiceSecuritySettings {
      */
     embeddedIframe?: SettingsServiceEmbeddedIframeSettings;
     /**
-     * 
+     * If enabled, users are allowed to impersonate other users.
+     *  The impersonator needs the appropriate `*_IMPERSONATOR` roles assigned as well".
      * @type {boolean}
      * @memberof SettingsServiceSecuritySettings
      */

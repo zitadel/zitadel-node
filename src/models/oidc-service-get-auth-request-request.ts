@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface OIDCServiceGetAuthRequestRequest {
     /**
-     * 
+     * The ID of the Auth Request, as obtained from the redirect URL.
      * @type {string}
      * @memberof OIDCServiceGetAuthRequestRequest
      */

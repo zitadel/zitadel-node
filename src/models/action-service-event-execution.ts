@@ -20,19 +20,22 @@ import { mapValues } from '../runtime.js';
  */
 export interface ActionServiceEventExecution {
     /**
-     * all events as condition.
+     * Define all events as condition.
+     *  After any event is created, the execution is triggered.
      * @type {boolean}
      * @memberof ActionServiceEventExecution
      */
     all?: boolean;
     /**
-     * Event name as condition.
+     * Define a specific event as condition.
+     *  After this event is created, the execution is triggered.
      * @type {string}
      * @memberof ActionServiceEventExecution
      */
     event?: string;
     /**
-     * Event group as condition, all events under this group.
+     * Define an event group as condition.
+     *  After any event under this group is created, the execution is triggered.
      * @type {string}
      * @memberof ActionServiceEventExecution
      */
