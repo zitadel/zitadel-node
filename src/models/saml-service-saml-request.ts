@@ -14,13 +14,14 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * 
+ * SAMLRequest contains information about a SAML authentication request.
+ *  see: https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html
  * @export
  * @interface SAMLServiceSAMLRequest
  */
 export interface SAMLServiceSAMLRequest {
     /**
-     * 
+     * ID of the created SAMLRequest.
      * @type {string}
      * @memberof SAMLServiceSAMLRequest
      */
@@ -120,25 +121,25 @@ export interface SAMLServiceSAMLRequest {
      */
     creationDate?: Date;
     /**
-     * 
+     * SAML entityID of the application that created the SAMLRequest.
      * @type {string}
      * @memberof SAMLServiceSAMLRequest
      */
     issuer?: string;
     /**
-     * 
+     * URL which points back to the assertion consumer service of the application that created the SAMLRequest.
      * @type {string}
      * @memberof SAMLServiceSAMLRequest
      */
     assertionConsumerService?: string;
     /**
-     * 
+     * RelayState provided by the application for the request.
      * @type {string}
      * @memberof SAMLServiceSAMLRequest
      */
     relayState?: string;
     /**
-     * 
+     * Binding used by the application for the request.
      * @type {string}
      * @memberof SAMLServiceSAMLRequest
      */

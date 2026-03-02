@@ -27,6 +27,13 @@ import {
     UserServiceDetailsToJSON,
     UserServiceDetailsToJSONTyped,
 } from './user-service-details.js';
+import type { UserServiceUpdateHumanUserRequest } from './user-service-update-human-user-request.js';
+import {
+    UserServiceUpdateHumanUserRequestFromJSON,
+    UserServiceUpdateHumanUserRequestFromJSONTyped,
+    UserServiceUpdateHumanUserRequestToJSON,
+    UserServiceUpdateHumanUserRequestToJSONTyped,
+} from './user-service-update-human-user-request.js';
 import type { UserServiceAddHumanUserRequest } from './user-service-add-human-user-request.js';
 import {
     UserServiceAddHumanUserRequestFromJSON,
@@ -65,6 +72,12 @@ export interface UserServiceRetrieveIdentityProviderIntentResponse {
      * @memberof UserServiceRetrieveIdentityProviderIntentResponse
      */
     addHumanUser?: UserServiceAddHumanUserRequest;
+    /**
+     * 
+     * @type {UserServiceUpdateHumanUserRequest}
+     * @memberof UserServiceRetrieveIdentityProviderIntentResponse
+     */
+    updateHumanUser?: UserServiceUpdateHumanUserRequest;
 }
 
 /**
@@ -88,6 +101,7 @@ export function UserServiceRetrieveIdentityProviderIntentResponseFromJSONTyped(j
         'idpInformation': json['idpInformation'] == null ? undefined : UserServiceIDPInformationFromJSON(json['idpInformation']),
         'userId': json['userId'] == null ? undefined : json['userId'],
         'addHumanUser': json['addHumanUser'] == null ? undefined : UserServiceAddHumanUserRequestFromJSON(json['addHumanUser']),
+        'updateHumanUser': json['updateHumanUser'] == null ? undefined : UserServiceUpdateHumanUserRequestFromJSON(json['updateHumanUser']),
     };
 }
 
@@ -106,6 +120,7 @@ export function UserServiceRetrieveIdentityProviderIntentResponseToJSONTyped(val
         'idpInformation': UserServiceIDPInformationToJSON(value['idpInformation']),
         'userId': value['userId'],
         'addHumanUser': UserServiceAddHumanUserRequestToJSON(value['addHumanUser']),
+        'updateHumanUser': UserServiceUpdateHumanUserRequestToJSON(value['updateHumanUser']),
     };
 }
 

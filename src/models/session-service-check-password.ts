@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceCheckPassword {
     /**
-     * 
+     * The password of the user to be checked.
      * @type {string}
      * @memberof SessionServiceCheckPassword
      */

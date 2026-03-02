@@ -26,6 +26,7 @@ export const UserServiceAuthenticationMethodType = {
     AuthenticationMethodTypeU2F: 'AUTHENTICATION_METHOD_TYPE_U2F',
     AuthenticationMethodTypeOtpSms: 'AUTHENTICATION_METHOD_TYPE_OTP_SMS',
     AuthenticationMethodTypeOtpEmail: 'AUTHENTICATION_METHOD_TYPE_OTP_EMAIL',
+    AuthenticationMethodTypeRecoveryCode: 'AUTHENTICATION_METHOD_TYPE_RECOVERY_CODE',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 export type UserServiceAuthenticationMethodType = typeof UserServiceAuthenticationMethodType[keyof typeof UserServiceAuthenticationMethodType];

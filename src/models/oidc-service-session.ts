@@ -20,13 +20,13 @@ import { mapValues } from '../runtime.js';
  */
 export interface OIDCServiceSession {
     /**
-     * 
+     * ID of the session, used to login the user. Connects the session to the Auth Request.
      * @type {string}
      * @memberof OIDCServiceSession
      */
     sessionId?: string;
     /**
-     * 
+     * Token of the session used to login the user. This token verifies that the session is valid.
      * @type {string}
      * @memberof OIDCServiceSession
      */

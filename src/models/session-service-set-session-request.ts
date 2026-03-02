@@ -35,15 +35,17 @@ import {
  */
 export interface SessionServiceSetSessionRequest {
     /**
-     * 
+     * The unique identifier of the session to be updated.
      * @type {string}
      * @memberof SessionServiceSetSessionRequest
      */
     sessionId?: string;
     /**
-     * 
+     * Deprecated: the session token is no longer required when updating a session
+     *  and will be ignored when provided.
      * @type {string}
      * @memberof SessionServiceSetSessionRequest
+     * @deprecated
      */
     sessionToken?: string;
     /**
@@ -53,7 +55,10 @@ export interface SessionServiceSetSessionRequest {
      */
     checks?: SessionServiceChecks;
     /**
-     * 
+     * Additional custom key value pairs to be stored on the session.
+     *  Existing keys will be overwritten. To delete a key, set its value to an empty byte array.
+     *  Note that metadata keys cannot be changed once the session has been created.
+     *  You need to create a new entry and delete the old one instead.
      * @type {{ [key: string]: string; }}
      * @memberof SessionServiceSetSessionRequest
      */

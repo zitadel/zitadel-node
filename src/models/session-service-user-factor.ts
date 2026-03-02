@@ -114,25 +114,25 @@ export interface SessionServiceUserFactor {
      */
     verifiedAt?: Date;
     /**
-     * 
+     * The unique identifier of the user that was verified.
      * @type {string}
      * @memberof SessionServiceUserFactor
      */
     id?: string;
     /**
-     * 
+     * The login name of the user that was verified.
      * @type {string}
      * @memberof SessionServiceUserFactor
      */
     loginName?: string;
     /**
-     * 
+     * The display name of the user that was verified.
      * @type {string}
      * @memberof SessionServiceUserFactor
      */
     displayName?: string;
     /**
-     * 
+     * The id of the organization the user belongs to.
      * @type {string}
      * @memberof SessionServiceUserFactor
      */

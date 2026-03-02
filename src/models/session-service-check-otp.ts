@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceCheckOTP {
     /**
-     * 
+     * The One-Time Password sent over SMS or Email of the user to be checked.
      * @type {string}
      * @memberof SessionServiceCheckOTP
      */

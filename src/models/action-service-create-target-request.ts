@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { ActionServicePayloadType } from './action-service-payload-type.js';
+import {
+    ActionServicePayloadTypeFromJSON,
+    ActionServicePayloadTypeFromJSONTyped,
+    ActionServicePayloadTypeToJSON,
+    ActionServicePayloadTypeToJSONTyped,
+} from './action-service-payload-type.js';
 import type { ActionServiceRESTWebhook } from './action-service-rest-webhook.js';
 import {
     ActionServiceRESTWebhookFromJSON,
@@ -104,11 +111,17 @@ export interface ActionServiceCreateTargetRequest {
      */
     timeout?: string;
     /**
-     * 
+     * The URL of the endpoint to call.
      * @type {string}
      * @memberof ActionServiceCreateTargetRequest
      */
     endpoint?: string;
+    /**
+     * 
+     * @type {ActionServicePayloadType}
+     * @memberof ActionServiceCreateTargetRequest
+     */
+    payloadType?: ActionServicePayloadType;
     /**
      * 
      * @type {object}
@@ -128,6 +141,8 @@ export interface ActionServiceCreateTargetRequest {
      */
     restWebhook?: ActionServiceRESTWebhook;
 }
+
+
 
 /**
  * Check if a given object implements the ActionServiceCreateTargetRequest interface.
@@ -149,6 +164,7 @@ export function ActionServiceCreateTargetRequestFromJSONTyped(json: any, ignoreD
         'name': json['name'] == null ? undefined : json['name'],
         'timeout': json['timeout'] == null ? undefined : json['timeout'],
         'endpoint': json['endpoint'] == null ? undefined : json['endpoint'],
+        'payloadType': json['payloadType'] == null ? undefined : ActionServicePayloadTypeFromJSON(json['payloadType']),
         'restAsync': json['restAsync'] == null ? undefined : json['restAsync'],
         'restCall': json['restCall'] == null ? undefined : ActionServiceRESTCallFromJSON(json['restCall']),
         'restWebhook': json['restWebhook'] == null ? undefined : ActionServiceRESTWebhookFromJSON(json['restWebhook']),
@@ -169,6 +185,7 @@ export function ActionServiceCreateTargetRequestToJSONTyped(value?: ActionServic
         'name': value['name'],
         'timeout': value['timeout'],
         'endpoint': value['endpoint'],
+        'payloadType': ActionServicePayloadTypeToJSON(value['payloadType']),
         'restAsync': value['restAsync'],
         'restCall': ActionServiceRESTCallToJSON(value['restCall']),
         'restWebhook': ActionServiceRESTWebhookToJSON(value['restWebhook']),

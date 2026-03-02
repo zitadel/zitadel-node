@@ -20,37 +20,37 @@ import { mapValues } from '../runtime.js';
  */
 export interface SettingsServiceTheme {
     /**
-     * hex value for primary color
+     * The hex value for primary color.
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     primaryColor?: string;
     /**
-     * hex value for background color
+     * The hex value for background color.
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     backgroundColor?: string;
     /**
-     * hex value for warning color
+     * The hex value for warning color.
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     warnColor?: string;
     /**
-     * hex value for font color
+     * The value for font color.
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     fontColor?: string;
     /**
-     * url where the logo is served
+     * The URL where the logo is served.
      * @type {string}
      * @memberof SettingsServiceTheme
      */
     logoUrl?: string;
     /**
-     * url where the icon is served
+     * The URL where the icon is served.
      * @type {string}
      * @memberof SettingsServiceTheme
      */

@@ -128,7 +128,7 @@ export interface BetaInstanceServiceApiUpdateInstanceRequest {
 export class BetaInstanceServiceApi extends runtime.BaseAPI {
 
     /**
-     * Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
      * Add Custom Domain
      */
     private async addCustomDomainRaw(requestParameters: BetaInstanceServiceApiAddCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceAddCustomDomainResponse>> {
@@ -165,7 +165,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - `system.domain.write`
      * Add Custom Domain
      */
     async addCustomDomain(requestParameters: BetaInstanceServiceApiAddCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceAddCustomDomainResponse> {
@@ -174,7 +174,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
      * Add Trusted Domain
      */
     private async addTrustedDomainRaw(requestParameters: BetaInstanceServiceApiAddTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceAddTrustedDomainResponse>> {
@@ -211,7 +211,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
      * Add Trusted Domain
      */
     async addTrustedDomain(requestParameters: BetaInstanceServiceApiAddTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceAddTrustedDomainResponse> {
@@ -220,7 +220,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
      * Delete Instance
      */
     private async deleteInstanceRaw(requestParameters: BetaInstanceServiceApiDeleteInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceDeleteInstanceResponse>> {
@@ -257,7 +257,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Deletes an instance with the given ID.   Required permissions:    - `system.instance.delete`
      * Delete Instance
      */
     async deleteInstance(requestParameters: BetaInstanceServiceApiDeleteInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceDeleteInstanceResponse> {
@@ -266,7 +266,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * Get Instance
      */
     private async getInstanceRaw(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceGetInstanceResponse>> {
@@ -303,7 +303,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * Get Instance
      */
     async getInstance(requestParameters: BetaInstanceServiceApiGetInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceGetInstanceResponse> {
@@ -312,7 +312,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
      * List Custom Domains
      */
     private async listCustomDomainsRaw(requestParameters: BetaInstanceServiceApiListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListCustomDomainsResponse>> {
@@ -349,7 +349,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.read`
      * List Custom Domains
      */
     async listCustomDomains(requestParameters: BetaInstanceServiceApiListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListCustomDomainsResponse> {
@@ -358,7 +358,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
      * List Instances
      */
     private async listInstancesRaw(requestParameters: BetaInstanceServiceApiListInstancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListInstancesResponse>> {
@@ -395,7 +395,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - `system.instance.read`
      * List Instances
      */
     async listInstances(requestParameters: BetaInstanceServiceApiListInstancesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListInstancesResponse> {
@@ -404,7 +404,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * List Trusted Domains
      */
     private async listTrustedDomainsRaw(requestParameters: BetaInstanceServiceApiListTrustedDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceListTrustedDomainsResponse>> {
@@ -441,7 +441,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.read`
      * List Trusted Domains
      */
     async listTrustedDomains(requestParameters: BetaInstanceServiceApiListTrustedDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceListTrustedDomainsResponse> {
@@ -450,7 +450,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
      * Remove Custom Domain
      */
     private async removeCustomDomainRaw(requestParameters: BetaInstanceServiceApiRemoveCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceRemoveCustomDomainResponse>> {
@@ -487,7 +487,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `system.domain.write`
      * Remove Custom Domain
      */
     async removeCustomDomain(requestParameters: BetaInstanceServiceApiRemoveCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceRemoveCustomDomainResponse> {
@@ -496,7 +496,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
      * Remove Trusted Domain
      */
     private async removeTrustedDomainRaw(requestParameters: BetaInstanceServiceApiRemoveTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceRemoveTrustedDomainResponse>> {
@@ -533,7 +533,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - `iam.write`
      * Remove Trusted Domain
      */
     async removeTrustedDomain(requestParameters: BetaInstanceServiceApiRemoveTrustedDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceRemoveTrustedDomainResponse> {
@@ -542,7 +542,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
      * Update Instance
      */
     private async updateInstanceRaw(requestParameters: BetaInstanceServiceApiUpdateInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaInstanceServiceUpdateInstanceResponse>> {
@@ -579,7 +579,7 @@ export class BetaInstanceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
+     * Deprecated: please move to the corresponding endpoint under instance service v2. This endpoint will be removed with the next major version of ZITADEL.   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - `iam.write`
      * Update Instance
      */
     async updateInstance(requestParameters: BetaInstanceServiceApiUpdateInstanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaInstanceServiceUpdateInstanceResponse> {

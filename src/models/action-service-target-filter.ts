@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface ActionServiceTargetFilter {
     /**
-     * Defines the id to query for.
+     * Defines the id of the target that needs to be part of the execution.
      * @type {string}
      * @memberof ActionServiceTargetFilter
      */

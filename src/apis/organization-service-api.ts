@@ -15,31 +15,151 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  OrganizationServiceActivateOrganizationRequest,
+  OrganizationServiceActivateOrganizationResponse,
+  OrganizationServiceAddOrganizationDomainRequest,
+  OrganizationServiceAddOrganizationDomainResponse,
   OrganizationServiceAddOrganizationRequest,
   OrganizationServiceAddOrganizationResponse,
   OrganizationServiceConnectError,
+  OrganizationServiceDeactivateOrganizationRequest,
+  OrganizationServiceDeactivateOrganizationResponse,
+  OrganizationServiceDeleteOrganizationDomainRequest,
+  OrganizationServiceDeleteOrganizationDomainResponse,
+  OrganizationServiceDeleteOrganizationMetadataRequest,
+  OrganizationServiceDeleteOrganizationMetadataResponse,
+  OrganizationServiceDeleteOrganizationRequest,
+  OrganizationServiceDeleteOrganizationResponse,
+  OrganizationServiceGenerateOrganizationDomainValidationRequest,
+  OrganizationServiceGenerateOrganizationDomainValidationResponse,
+  OrganizationServiceListOrganizationDomainsRequest,
+  OrganizationServiceListOrganizationDomainsResponse,
+  OrganizationServiceListOrganizationMetadataRequest,
+  OrganizationServiceListOrganizationMetadataResponse,
   OrganizationServiceListOrganizationsRequest,
   OrganizationServiceListOrganizationsResponse,
+  OrganizationServiceSetOrganizationMetadataRequest,
+  OrganizationServiceSetOrganizationMetadataResponse,
+  OrganizationServiceUpdateOrganizationRequest,
+  OrganizationServiceUpdateOrganizationResponse,
+  OrganizationServiceVerifyOrganizationDomainRequest,
+  OrganizationServiceVerifyOrganizationDomainResponse,
 } from '../models/index.js';
 import {
+    OrganizationServiceActivateOrganizationRequestFromJSON,
+    OrganizationServiceActivateOrganizationRequestToJSON,
+    OrganizationServiceActivateOrganizationResponseFromJSON,
+    OrganizationServiceActivateOrganizationResponseToJSON,
+    OrganizationServiceAddOrganizationDomainRequestFromJSON,
+    OrganizationServiceAddOrganizationDomainRequestToJSON,
+    OrganizationServiceAddOrganizationDomainResponseFromJSON,
+    OrganizationServiceAddOrganizationDomainResponseToJSON,
     OrganizationServiceAddOrganizationRequestFromJSON,
     OrganizationServiceAddOrganizationRequestToJSON,
     OrganizationServiceAddOrganizationResponseFromJSON,
     OrganizationServiceAddOrganizationResponseToJSON,
     OrganizationServiceConnectErrorFromJSON,
     OrganizationServiceConnectErrorToJSON,
+    OrganizationServiceDeactivateOrganizationRequestFromJSON,
+    OrganizationServiceDeactivateOrganizationRequestToJSON,
+    OrganizationServiceDeactivateOrganizationResponseFromJSON,
+    OrganizationServiceDeactivateOrganizationResponseToJSON,
+    OrganizationServiceDeleteOrganizationDomainRequestFromJSON,
+    OrganizationServiceDeleteOrganizationDomainRequestToJSON,
+    OrganizationServiceDeleteOrganizationDomainResponseFromJSON,
+    OrganizationServiceDeleteOrganizationDomainResponseToJSON,
+    OrganizationServiceDeleteOrganizationMetadataRequestFromJSON,
+    OrganizationServiceDeleteOrganizationMetadataRequestToJSON,
+    OrganizationServiceDeleteOrganizationMetadataResponseFromJSON,
+    OrganizationServiceDeleteOrganizationMetadataResponseToJSON,
+    OrganizationServiceDeleteOrganizationRequestFromJSON,
+    OrganizationServiceDeleteOrganizationRequestToJSON,
+    OrganizationServiceDeleteOrganizationResponseFromJSON,
+    OrganizationServiceDeleteOrganizationResponseToJSON,
+    OrganizationServiceGenerateOrganizationDomainValidationRequestFromJSON,
+    OrganizationServiceGenerateOrganizationDomainValidationRequestToJSON,
+    OrganizationServiceGenerateOrganizationDomainValidationResponseFromJSON,
+    OrganizationServiceGenerateOrganizationDomainValidationResponseToJSON,
+    OrganizationServiceListOrganizationDomainsRequestFromJSON,
+    OrganizationServiceListOrganizationDomainsRequestToJSON,
+    OrganizationServiceListOrganizationDomainsResponseFromJSON,
+    OrganizationServiceListOrganizationDomainsResponseToJSON,
+    OrganizationServiceListOrganizationMetadataRequestFromJSON,
+    OrganizationServiceListOrganizationMetadataRequestToJSON,
+    OrganizationServiceListOrganizationMetadataResponseFromJSON,
+    OrganizationServiceListOrganizationMetadataResponseToJSON,
     OrganizationServiceListOrganizationsRequestFromJSON,
     OrganizationServiceListOrganizationsRequestToJSON,
     OrganizationServiceListOrganizationsResponseFromJSON,
     OrganizationServiceListOrganizationsResponseToJSON,
+    OrganizationServiceSetOrganizationMetadataRequestFromJSON,
+    OrganizationServiceSetOrganizationMetadataRequestToJSON,
+    OrganizationServiceSetOrganizationMetadataResponseFromJSON,
+    OrganizationServiceSetOrganizationMetadataResponseToJSON,
+    OrganizationServiceUpdateOrganizationRequestFromJSON,
+    OrganizationServiceUpdateOrganizationRequestToJSON,
+    OrganizationServiceUpdateOrganizationResponseFromJSON,
+    OrganizationServiceUpdateOrganizationResponseToJSON,
+    OrganizationServiceVerifyOrganizationDomainRequestFromJSON,
+    OrganizationServiceVerifyOrganizationDomainRequestToJSON,
+    OrganizationServiceVerifyOrganizationDomainResponseFromJSON,
+    OrganizationServiceVerifyOrganizationDomainResponseToJSON,
 } from '../models/index.js';
+
+export interface OrganizationServiceApiActivateOrganizationRequest {
+    organizationServiceActivateOrganizationRequest: OrganizationServiceActivateOrganizationRequest;
+}
 
 export interface OrganizationServiceApiAddOrganizationRequest {
     organizationServiceAddOrganizationRequest: OrganizationServiceAddOrganizationRequest;
 }
 
+export interface OrganizationServiceApiAddOrganizationDomainRequest {
+    organizationServiceAddOrganizationDomainRequest: OrganizationServiceAddOrganizationDomainRequest;
+}
+
+export interface OrganizationServiceApiDeactivateOrganizationRequest {
+    organizationServiceDeactivateOrganizationRequest: OrganizationServiceDeactivateOrganizationRequest;
+}
+
+export interface OrganizationServiceApiDeleteOrganizationRequest {
+    organizationServiceDeleteOrganizationRequest: OrganizationServiceDeleteOrganizationRequest;
+}
+
+export interface OrganizationServiceApiDeleteOrganizationDomainRequest {
+    organizationServiceDeleteOrganizationDomainRequest: OrganizationServiceDeleteOrganizationDomainRequest;
+}
+
+export interface OrganizationServiceApiDeleteOrganizationMetadataRequest {
+    organizationServiceDeleteOrganizationMetadataRequest: OrganizationServiceDeleteOrganizationMetadataRequest;
+}
+
+export interface OrganizationServiceApiGenerateOrganizationDomainValidationRequest {
+    organizationServiceGenerateOrganizationDomainValidationRequest: OrganizationServiceGenerateOrganizationDomainValidationRequest;
+}
+
+export interface OrganizationServiceApiListOrganizationDomainsRequest {
+    organizationServiceListOrganizationDomainsRequest: OrganizationServiceListOrganizationDomainsRequest;
+}
+
+export interface OrganizationServiceApiListOrganizationMetadataRequest {
+    organizationServiceListOrganizationMetadataRequest: OrganizationServiceListOrganizationMetadataRequest;
+}
+
 export interface OrganizationServiceApiListOrganizationsRequest {
     organizationServiceListOrganizationsRequest: OrganizationServiceListOrganizationsRequest;
+}
+
+export interface OrganizationServiceApiSetOrganizationMetadataRequest {
+    organizationServiceSetOrganizationMetadataRequest: OrganizationServiceSetOrganizationMetadataRequest;
+}
+
+export interface OrganizationServiceApiUpdateOrganizationRequest {
+    organizationServiceUpdateOrganizationRequest: OrganizationServiceUpdateOrganizationRequest;
+}
+
+export interface OrganizationServiceApiVerifyOrganizationDomainRequest {
+    organizationServiceVerifyOrganizationDomainRequest: OrganizationServiceVerifyOrganizationDomainRequest;
 }
 
 /**
@@ -48,8 +168,54 @@ export interface OrganizationServiceApiListOrganizationsRequest {
 export class OrganizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * Create an Organization
+     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Activate Organization
+     */
+    private async activateOrganizationRaw(requestParameters: OrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceActivateOrganizationResponse>> {
+        if (requestParameters['organizationServiceActivateOrganizationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceActivateOrganizationRequest',
+                'Required parameter "organizationServiceActivateOrganizationRequest" was null or undefined when calling activateOrganization().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/ActivateOrganization`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceActivateOrganizationRequestToJSON(requestParameters['organizationServiceActivateOrganizationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceActivateOrganizationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Activate Organization
+     */
+    async activateOrganization(requestParameters: OrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceActivateOrganizationResponse> {
+        const response = await this.activateOrganizationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`
+     * Add Organization
      */
     private async addOrganizationRaw(requestParameters: OrganizationServiceApiAddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationResponse>> {
         if (requestParameters['organizationServiceAddOrganizationRequest'] == null) {
@@ -85,8 +251,8 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-     * Create an Organization
+     * Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - `org.create`
+     * Add Organization
      */
     async addOrganization(requestParameters: OrganizationServiceApiAddOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceAddOrganizationResponse> {
         const response = await this.addOrganizationRaw(requestParameters, initOverrides);
@@ -94,8 +260,376 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * Search Organizations
+     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Add Organization Domain
+     */
+    private async addOrganizationDomainRaw(requestParameters: OrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceAddOrganizationDomainResponse>> {
+        if (requestParameters['organizationServiceAddOrganizationDomainRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceAddOrganizationDomainRequest',
+                'Required parameter "organizationServiceAddOrganizationDomainRequest" was null or undefined when calling addOrganizationDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/AddOrganizationDomain`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceAddOrganizationDomainRequestToJSON(requestParameters['organizationServiceAddOrganizationDomainRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceAddOrganizationDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Add Organization Domain
+     */
+    async addOrganizationDomain(requestParameters: OrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceAddOrganizationDomainResponse> {
+        const response = await this.addOrganizationDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deactivate Organization
+     */
+    private async deactivateOrganizationRaw(requestParameters: OrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceDeactivateOrganizationResponse>> {
+        if (requestParameters['organizationServiceDeactivateOrganizationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceDeactivateOrganizationRequest',
+                'Required parameter "organizationServiceDeactivateOrganizationRequest" was null or undefined when calling deactivateOrganization().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/DeactivateOrganization`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceDeactivateOrganizationRequestToJSON(requestParameters['organizationServiceDeactivateOrganizationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceDeactivateOrganizationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deactivate Organization
+     */
+    async deactivateOrganization(requestParameters: OrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceDeactivateOrganizationResponse> {
+        const response = await this.deactivateOrganizationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Delete Organization
+     */
+    private async deleteOrganizationRaw(requestParameters: OrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceDeleteOrganizationResponse>> {
+        if (requestParameters['organizationServiceDeleteOrganizationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceDeleteOrganizationRequest',
+                'Required parameter "organizationServiceDeleteOrganizationRequest" was null or undefined when calling deleteOrganization().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/DeleteOrganization`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceDeleteOrganizationRequestToJSON(requestParameters['organizationServiceDeleteOrganizationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceDeleteOrganizationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Delete Organization
+     */
+    async deleteOrganization(requestParameters: OrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceDeleteOrganizationResponse> {
+        const response = await this.deleteOrganizationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Delete Organization Domain
+     */
+    private async deleteOrganizationDomainRaw(requestParameters: OrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceDeleteOrganizationDomainResponse>> {
+        if (requestParameters['organizationServiceDeleteOrganizationDomainRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceDeleteOrganizationDomainRequest',
+                'Required parameter "organizationServiceDeleteOrganizationDomainRequest" was null or undefined when calling deleteOrganizationDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/DeleteOrganizationDomain`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceDeleteOrganizationDomainRequestToJSON(requestParameters['organizationServiceDeleteOrganizationDomainRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceDeleteOrganizationDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Delete Organization Domain
+     */
+    async deleteOrganizationDomain(requestParameters: OrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceDeleteOrganizationDomainResponse> {
+        const response = await this.deleteOrganizationDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Delete Organization Metadata
+     */
+    private async deleteOrganizationMetadataRaw(requestParameters: OrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceDeleteOrganizationMetadataResponse>> {
+        if (requestParameters['organizationServiceDeleteOrganizationMetadataRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceDeleteOrganizationMetadataRequest',
+                'Required parameter "organizationServiceDeleteOrganizationMetadataRequest" was null or undefined when calling deleteOrganizationMetadata().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/DeleteOrganizationMetadata`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceDeleteOrganizationMetadataRequestToJSON(requestParameters['organizationServiceDeleteOrganizationMetadataRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceDeleteOrganizationMetadataResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Delete Organization Metadata
+     */
+    async deleteOrganizationMetadata(requestParameters: OrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceDeleteOrganizationMetadataResponse> {
+        const response = await this.deleteOrganizationMetadataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Generate Organization Domain Validation
+     */
+    private async generateOrganizationDomainValidationRaw(requestParameters: OrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceGenerateOrganizationDomainValidationResponse>> {
+        if (requestParameters['organizationServiceGenerateOrganizationDomainValidationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceGenerateOrganizationDomainValidationRequest',
+                'Required parameter "organizationServiceGenerateOrganizationDomainValidationRequest" was null or undefined when calling generateOrganizationDomainValidation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/GenerateOrganizationDomainValidation`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceGenerateOrganizationDomainValidationRequestToJSON(requestParameters['organizationServiceGenerateOrganizationDomainValidationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceGenerateOrganizationDomainValidationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Generate Organization Domain Validation
+     */
+    async generateOrganizationDomainValidation(requestParameters: OrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceGenerateOrganizationDomainValidationResponse> {
+        const response = await this.generateOrganizationDomainValidationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.read`
+     * List Organization Domains
+     */
+    private async listOrganizationDomainsRaw(requestParameters: OrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationDomainsResponse>> {
+        if (requestParameters['organizationServiceListOrganizationDomainsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceListOrganizationDomainsRequest',
+                'Required parameter "organizationServiceListOrganizationDomainsRequest" was null or undefined when calling listOrganizationDomains().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/ListOrganizationDomains`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceListOrganizationDomainsRequestToJSON(requestParameters['organizationServiceListOrganizationDomainsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceListOrganizationDomainsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.read`
+     * List Organization Domains
+     */
+    async listOrganizationDomains(requestParameters: OrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationDomainsResponse> {
+        const response = await this.listOrganizationDomainsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * List Organization Metadata
+     */
+    private async listOrganizationMetadataRaw(requestParameters: OrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationMetadataResponse>> {
+        if (requestParameters['organizationServiceListOrganizationMetadataRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceListOrganizationMetadataRequest',
+                'Required parameter "organizationServiceListOrganizationMetadataRequest" was null or undefined when calling listOrganizationMetadata().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/ListOrganizationMetadata`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceListOrganizationMetadataRequestToJSON(requestParameters['organizationServiceListOrganizationMetadataRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceListOrganizationMetadataResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * List Organization Metadata
+     */
+    async listOrganizationMetadata(requestParameters: OrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationMetadataResponse> {
+        const response = await this.listOrganizationMetadataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Search for Organizations. By default, we will return all organization of the instance that you have permission to read.  Make sure to include a limit and sorting for pagination.   Required permission:   - `org.read`
+     * List Organizations
      */
     private async listOrganizationsRaw(requestParameters: OrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceListOrganizationsResponse>> {
         if (requestParameters['organizationServiceListOrganizationsRequest'] == null) {
@@ -131,11 +665,149 @@ export class OrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-     * Search Organizations
+     * Search for Organizations. By default, we will return all organization of the instance that you have permission to read.  Make sure to include a limit and sorting for pagination.   Required permission:   - `org.read`
+     * List Organizations
      */
     async listOrganizations(requestParameters: OrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceListOrganizationsResponse> {
         const response = await this.listOrganizationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Set Organization Metadata
+     */
+    private async setOrganizationMetadataRaw(requestParameters: OrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceSetOrganizationMetadataResponse>> {
+        if (requestParameters['organizationServiceSetOrganizationMetadataRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceSetOrganizationMetadataRequest',
+                'Required parameter "organizationServiceSetOrganizationMetadataRequest" was null or undefined when calling setOrganizationMetadata().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/SetOrganizationMetadata`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceSetOrganizationMetadataRequestToJSON(requestParameters['organizationServiceSetOrganizationMetadataRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceSetOrganizationMetadataResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Set Organization Metadata
+     */
+    async setOrganizationMetadata(requestParameters: OrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceSetOrganizationMetadataResponse> {
+        const response = await this.setOrganizationMetadataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Change the name of the organization.   Required permission:   - `org.write`
+     * Update Organization
+     */
+    private async updateOrganizationRaw(requestParameters: OrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceUpdateOrganizationResponse>> {
+        if (requestParameters['organizationServiceUpdateOrganizationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceUpdateOrganizationRequest',
+                'Required parameter "organizationServiceUpdateOrganizationRequest" was null or undefined when calling updateOrganization().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/UpdateOrganization`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceUpdateOrganizationRequestToJSON(requestParameters['organizationServiceUpdateOrganizationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceUpdateOrganizationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Change the name of the organization.   Required permission:   - `org.write`
+     * Update Organization
+     */
+    async updateOrganization(requestParameters: OrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceUpdateOrganizationResponse> {
+        const response = await this.updateOrganizationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Verify Organization Domain
+     */
+    private async verifyOrganizationDomainRaw(requestParameters: OrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrganizationServiceVerifyOrganizationDomainResponse>> {
+        if (requestParameters['organizationServiceVerifyOrganizationDomainRequest'] == null) {
+            throw new runtime.RequiredError(
+                'organizationServiceVerifyOrganizationDomainRequest',
+                'Required parameter "organizationServiceVerifyOrganizationDomainRequest" was null or undefined when calling verifyOrganizationDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("zitadelAccessToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/zitadel.org.v2.OrganizationService/VerifyOrganizationDomain`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrganizationServiceVerifyOrganizationDomainRequestToJSON(requestParameters['organizationServiceVerifyOrganizationDomainRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationServiceVerifyOrganizationDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Verify Organization Domain
+     */
+    async verifyOrganizationDomain(requestParameters: OrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrganizationServiceVerifyOrganizationDomainResponse> {
+        const response = await this.verifyOrganizationDomainRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

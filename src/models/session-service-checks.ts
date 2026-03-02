@@ -20,6 +20,13 @@ import {
     SessionServiceCheckTOTPToJSON,
     SessionServiceCheckTOTPToJSONTyped,
 } from './session-service-check-totp.js';
+import type { SessionServiceCheckRecoveryCode } from './session-service-check-recovery-code.js';
+import {
+    SessionServiceCheckRecoveryCodeFromJSON,
+    SessionServiceCheckRecoveryCodeFromJSONTyped,
+    SessionServiceCheckRecoveryCodeToJSON,
+    SessionServiceCheckRecoveryCodeToJSONTyped,
+} from './session-service-check-recovery-code.js';
 import type { SessionServiceCheckWebAuthN } from './session-service-check-web-auth-n.js';
 import {
     SessionServiceCheckWebAuthNFromJSON,
@@ -104,6 +111,12 @@ export interface SessionServiceChecks {
      * @memberof SessionServiceChecks
      */
     otpEmail?: SessionServiceCheckOTP;
+    /**
+     * 
+     * @type {SessionServiceCheckRecoveryCode}
+     * @memberof SessionServiceChecks
+     */
+    recoveryCode?: SessionServiceCheckRecoveryCode;
 }
 
 /**
@@ -130,6 +143,7 @@ export function SessionServiceChecksFromJSONTyped(json: any, ignoreDiscriminator
         'totp': json['totp'] == null ? undefined : SessionServiceCheckTOTPFromJSON(json['totp']),
         'otpSms': json['otpSms'] == null ? undefined : SessionServiceCheckOTPFromJSON(json['otpSms']),
         'otpEmail': json['otpEmail'] == null ? undefined : SessionServiceCheckOTPFromJSON(json['otpEmail']),
+        'recoveryCode': json['recoveryCode'] == null ? undefined : SessionServiceCheckRecoveryCodeFromJSON(json['recoveryCode']),
     };
 }
 
@@ -151,6 +165,7 @@ export function SessionServiceChecksToJSONTyped(value?: SessionServiceChecks | n
         'totp': SessionServiceCheckTOTPToJSON(value['totp']),
         'otpSms': SessionServiceCheckOTPToJSON(value['otpSms']),
         'otpEmail': SessionServiceCheckOTPToJSON(value['otpEmail']),
+        'recoveryCode': SessionServiceCheckRecoveryCodeToJSON(value['recoveryCode']),
     };
 }
 

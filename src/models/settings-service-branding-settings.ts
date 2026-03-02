@@ -54,19 +54,19 @@ export interface SettingsServiceBrandingSettings {
      */
     darkTheme?: SettingsServiceTheme;
     /**
-     * 
+     * The url where the font is served.
      * @type {string}
      * @memberof SettingsServiceBrandingSettings
      */
     fontUrl?: string;
     /**
-     * hides the org suffix on the login form if the scope \"urn:zitadel:iam:org:domain:primary:{domainname}\" is set
+     * If enabled, the organization suffix will be hidden on the login form if the scope \"urn:zitadel:iam:org:domain:primary:{domainname}\" is used.
      * @type {boolean}
      * @memberof SettingsServiceBrandingSettings
      */
     hideLoginNameSuffix?: boolean;
     /**
-     * 
+     * If enabled, the Zitadel logo will not be displayed on the login screen.
      * @type {boolean}
      * @memberof SettingsServiceBrandingSettings
      */

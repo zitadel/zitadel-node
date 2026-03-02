@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface ActionServiceGetTargetRequest {
     /**
-     * 
+     * The unique identifier of the target to retrieve.
      * @type {string}
      * @memberof ActionServiceGetTargetRequest
      */

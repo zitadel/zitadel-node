@@ -28,19 +28,21 @@ import {
  */
 export interface SettingsServiceDomainSettings {
     /**
-     * 
+     * If enabled, the login name will automatically be suffixed with the domain of the organization.
+     *  This ensures that the login name is unique across the instance.
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */
     loginNameIncludesDomain?: boolean;
     /**
-     * 
+     * If enabled, organization domains must be verified (through an DNS or HTTP challenge) upon creation.
+     *  If disabled, organization domains will be created as already verified automatically.
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */
     requireOrgDomainVerification?: boolean;
     /**
-     * 
+     * If enabled, the SMTP sender address domain must match custom domain on the instance.
      * @type {boolean}
      * @memberof SettingsServiceDomainSettings
      */

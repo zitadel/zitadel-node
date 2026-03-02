@@ -41,7 +41,7 @@ export interface ActionServiceListTargetsResponse {
      */
     pagination?: ActionServicePaginationResponse;
     /**
-     * 
+     * List of all targets matching the query.
      * @type {Array<ActionServiceTarget>}
      * @memberof ActionServiceListTargetsResponse
      */

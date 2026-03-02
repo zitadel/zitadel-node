@@ -88,7 +88,7 @@ export interface BetaAuthorizationServiceApiUpdateAuthorizationRequest {
 export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
      * Activate Authorization
      */
     private async activateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiActivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceActivateAuthorizationResponse>> {
@@ -125,7 +125,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \"user.grant.write\"
      * Activate Authorization
      */
     async activateAuthorization(requestParameters: BetaAuthorizationServiceApiActivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceActivateAuthorizationResponse> {
@@ -134,7 +134,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
      * Create Authorization
      */
     private async createAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiCreateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceCreateAuthorizationResponse>> {
@@ -171,7 +171,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \"user.grant.write\"
      * Create Authorization
      */
     async createAuthorization(requestParameters: BetaAuthorizationServiceApiCreateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceCreateAuthorizationResponse> {
@@ -180,7 +180,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
      * Deactivate Authorization
      */
     private async deactivateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiDeactivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceDeactivateAuthorizationResponse>> {
@@ -217,7 +217,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \"user.grant.write\"
      * Deactivate Authorization
      */
     async deactivateAuthorization(requestParameters: BetaAuthorizationServiceApiDeactivateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceDeactivateAuthorizationResponse> {
@@ -226,7 +226,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
      * Delete Authorization
      */
     private async deleteAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiDeleteAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceDeleteAuthorizationResponse>> {
@@ -263,7 +263,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \"user.grant.delete\"
      * Delete Authorization
      */
     async deleteAuthorization(requestParameters: BetaAuthorizationServiceApiDeleteAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceDeleteAuthorizationResponse> {
@@ -272,7 +272,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
      * List Authorizations
      */
     private async listAuthorizationsRaw(requestParameters: BetaAuthorizationServiceApiListAuthorizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceListAuthorizationsResponse>> {
@@ -309,7 +309,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \"user.grant.read\"    - no permissions required for listing own authorizations
      * List Authorizations
      */
     async listAuthorizations(requestParameters: BetaAuthorizationServiceApiListAuthorizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceListAuthorizationsResponse> {
@@ -318,7 +318,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
      * Update Authorization
      */
     private async updateAuthorizationRaw(requestParameters: BetaAuthorizationServiceApiUpdateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaAuthorizationServiceUpdateAuthorizationResponse>> {
@@ -355,7 +355,7 @@ export class BetaAuthorizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
+     * Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \"user.grant.write\"
      * Update Authorization
      */
     async updateAuthorization(requestParameters: BetaAuthorizationServiceApiUpdateAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaAuthorizationServiceUpdateAuthorizationResponse> {

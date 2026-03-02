@@ -54,7 +54,7 @@ export interface OrganizationServiceListOrganizationsResponse {
      */
     sortingColumn?: OrganizationServiceOrganizationFieldName;
     /**
-     * 
+     * The Result is a list of organizations matching the query.
      * @type {Array<OrganizationServiceOrganization>}
      * @memberof OrganizationServiceListOrganizationsResponse
      */

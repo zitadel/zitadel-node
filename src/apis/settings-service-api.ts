@@ -152,8 +152,8 @@ export interface SettingsServiceApiSetSecuritySettingsRequest {
 export class SettingsServiceApi extends runtime.BaseAPI {
 
     /**
-     * Get the current active identity providers
-     * Get the current active identity providers
+     * Get the current active identity providers for the requested context.  This can be the instance or an organization. In case of an organization,  the returned identity providers will fall back to the active instance identity providers  if not explicitly set on the organization.   Optionally, filter the identity providers by their allowed actions:    - creation_allowed: only return identity providers that are allowed for user creation    - linking_allowed: only return identity providers that are allowed for linking to existing users    - auto_creation: only return identity providers that are allowed for automatic user creation    - auto_linking: only return identity providers that are allowed for automatic linking to existing users   Required permissions:    - `policy.read`
+     * Get Active Identity Providers
      */
     private async getActiveIdentityProvidersRaw(requestParameters: SettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetActiveIdentityProvidersResponse>> {
         if (requestParameters['settingsServiceGetActiveIdentityProvidersRequest'] == null) {
@@ -189,8 +189,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active identity providers
-     * Get the current active identity providers
+     * Get the current active identity providers for the requested context.  This can be the instance or an organization. In case of an organization,  the returned identity providers will fall back to the active instance identity providers  if not explicitly set on the organization.   Optionally, filter the identity providers by their allowed actions:    - creation_allowed: only return identity providers that are allowed for user creation    - linking_allowed: only return identity providers that are allowed for linking to existing users    - auto_creation: only return identity providers that are allowed for automatic user creation    - auto_linking: only return identity providers that are allowed for automatic linking to existing users   Required permissions:    - `policy.read`
+     * Get Active Identity Providers
      */
     async getActiveIdentityProviders(requestParameters: SettingsServiceApiGetActiveIdentityProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetActiveIdentityProvidersResponse> {
         const response = await this.getActiveIdentityProvidersRaw(requestParameters, initOverrides);
@@ -198,8 +198,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active branding settings
-     * Get the current active branding settings
+     * Get the current active branding settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Branding Settings
      */
     private async getBrandingSettingsRaw(requestParameters: SettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetBrandingSettingsResponse>> {
         if (requestParameters['settingsServiceGetBrandingSettingsRequest'] == null) {
@@ -235,8 +235,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the current active branding settings
-     * Get the current active branding settings
+     * Get the current active branding settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Branding Settings
      */
     async getBrandingSettings(requestParameters: SettingsServiceApiGetBrandingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetBrandingSettingsResponse> {
         const response = await this.getBrandingSettingsRaw(requestParameters, initOverrides);
@@ -244,8 +244,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the domain settings
-     * Get the domain settings
+     * Get the domain settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Domain Settings
      */
     private async getDomainSettingsRaw(requestParameters: SettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetDomainSettingsResponse>> {
         if (requestParameters['settingsServiceGetDomainSettingsRequest'] == null) {
@@ -281,8 +281,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the domain settings
-     * Get the domain settings
+     * Get the domain settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Domain Settings
      */
     async getDomainSettings(requestParameters: SettingsServiceApiGetDomainSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetDomainSettingsResponse> {
         const response = await this.getDomainSettingsRaw(requestParameters, initOverrides);
@@ -290,8 +290,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get basic information over the instance
-     * Get basic information over the instance
+     * Get basic information of the instance like the default organization, default language and supported languages.   Required permissions:    - `policy.read`
+     * Get General Settings
      */
     private async getGeneralSettingsRaw(requestParameters: SettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetGeneralSettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -327,8 +327,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get basic information over the instance
-     * Get basic information over the instance
+     * Get basic information of the instance like the default organization, default language and supported languages.   Required permissions:    - `policy.read`
+     * Get General Settings
      */
     async getGeneralSettings(requestParameters: SettingsServiceApiGetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetGeneralSettingsResponse> {
         const response = await this.getGeneralSettingsRaw(requestParameters, initOverrides);
@@ -382,8 +382,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the legal and support settings
-     * Get the legal and support settings
+     * Get the legal and support settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Legal and Support Settings
      */
     private async getLegalAndSupportSettingsRaw(requestParameters: SettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLegalAndSupportSettingsResponse>> {
         if (requestParameters['settingsServiceGetLegalAndSupportSettingsRequest'] == null) {
@@ -419,8 +419,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the legal and support settings
-     * Get the legal and support settings
+     * Get the legal and support settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Legal and Support Settings
      */
     async getLegalAndSupportSettings(requestParameters: SettingsServiceApiGetLegalAndSupportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLegalAndSupportSettingsResponse> {
         const response = await this.getLegalAndSupportSettingsRaw(requestParameters, initOverrides);
@@ -428,8 +428,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the lockout settings
-     * Get the lockout settings
+     * Get the lockout settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Lockout settings define how many failed attempts are allowed before a user is locked out.   Required permissions:    - `policy.read`
+     * Get Lockout Settings
      */
     private async getLockoutSettingsRaw(requestParameters: SettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLockoutSettingsResponse>> {
         if (requestParameters['settingsServiceGetLockoutSettingsRequest'] == null) {
@@ -465,8 +465,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the lockout settings
-     * Get the lockout settings
+     * Get the lockout settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Lockout settings define how many failed attempts are allowed before a user is locked out.   Required permissions:    - `policy.read`
+     * Get Lockout Settings
      */
     async getLockoutSettings(requestParameters: SettingsServiceApiGetLockoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLockoutSettingsResponse> {
         const response = await this.getLockoutSettingsRaw(requestParameters, initOverrides);
@@ -474,8 +474,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the login settings
-     * Get the login settings
+     * Get the login settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Login Settings
      */
     private async getLoginSettingsRaw(requestParameters: SettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetLoginSettingsResponse>> {
         if (requestParameters['settingsServiceGetLoginSettingsRequest'] == null) {
@@ -511,8 +511,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the login settings
-     * Get the login settings
+     * Get the login settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Login Settings
      */
     async getLoginSettings(requestParameters: SettingsServiceApiGetLoginSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetLoginSettingsResponse> {
         const response = await this.getLoginSettingsRaw(requestParameters, initOverrides);
@@ -520,8 +520,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password complexity settings
-     * Get the password complexity settings
+     * Get the password complexity settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Password Complexity Settings
      */
     private async getPasswordComplexitySettingsRaw(requestParameters: SettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordComplexitySettingsResponse>> {
         if (requestParameters['settingsServiceGetPasswordComplexitySettingsRequest'] == null) {
@@ -557,8 +557,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password complexity settings
-     * Get the password complexity settings
+     * Get the password complexity settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Password Complexity Settings
      */
     async getPasswordComplexitySettings(requestParameters: SettingsServiceApiGetPasswordComplexitySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordComplexitySettingsResponse> {
         const response = await this.getPasswordComplexitySettingsRaw(requestParameters, initOverrides);
@@ -566,8 +566,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password expiry settings
-     * Get the password expiry settings
+     * Get the password expiry settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Password Expiry Settings
      */
     private async getPasswordExpirySettingsRaw(requestParameters: SettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetPasswordExpirySettingsResponse>> {
         if (requestParameters['settingsServiceGetPasswordExpirySettingsRequest'] == null) {
@@ -603,8 +603,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the password expiry settings
-     * Get the password expiry settings
+     * Get the password expiry settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - `policy.read`
+     * Get Password Expiry Settings
      */
     async getPasswordExpirySettings(requestParameters: SettingsServiceApiGetPasswordExpirySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetPasswordExpirySettingsResponse> {
         const response = await this.getPasswordExpirySettingsRaw(requestParameters, initOverrides);
@@ -612,8 +612,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the security settings
-     * Get the security settings
+     * Get the security settings of the ZITADEL instance.  Security settings include settings like enabling impersonation and embedded iframe settings.   Required permissions:    - `iam.policy.read`
+     * Get Security Settings
      */
     private async getSecuritySettingsRaw(requestParameters: SettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceGetSecuritySettingsResponse>> {
         if (requestParameters['body'] == null) {
@@ -649,8 +649,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the security settings
-     * Get the security settings
+     * Get the security settings of the ZITADEL instance.  Security settings include settings like enabling impersonation and embedded iframe settings.   Required permissions:    - `iam.policy.read`
+     * Get Security Settings
      */
     async getSecuritySettings(requestParameters: SettingsServiceApiGetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceGetSecuritySettingsResponse> {
         const response = await this.getSecuritySettingsRaw(requestParameters, initOverrides);
@@ -704,8 +704,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the security settings
-     * Set the security settings
+     * Set the security settings of the instance.   Required permissions:    - `iam.policy.write`
+     * Set Security Settings
      */
     private async setSecuritySettingsRaw(requestParameters: SettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsServiceSetSecuritySettingsResponse>> {
         if (requestParameters['settingsServiceSetSecuritySettingsRequest'] == null) {
@@ -741,8 +741,8 @@ export class SettingsServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the security settings
-     * Set the security settings
+     * Set the security settings of the instance.   Required permissions:    - `iam.policy.write`
+     * Set Security Settings
      */
     async setSecuritySettings(requestParameters: SettingsServiceApiSetSecuritySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsServiceSetSecuritySettingsResponse> {
         const response = await this.setSecuritySettingsRaw(requestParameters, initOverrides);

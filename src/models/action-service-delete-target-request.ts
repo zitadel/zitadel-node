@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface ActionServiceDeleteTargetRequest {
     /**
-     * 
+     * The unique identifier of the target to delete.
      * @type {string}
      * @memberof ActionServiceDeleteTargetRequest
      */

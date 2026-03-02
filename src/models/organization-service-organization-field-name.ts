@@ -20,6 +20,7 @@
 export const OrganizationServiceOrganizationFieldName = {
     OrganizationFieldNameUnspecified: 'ORGANIZATION_FIELD_NAME_UNSPECIFIED',
     OrganizationFieldNameName: 'ORGANIZATION_FIELD_NAME_NAME',
+    OrganizationFieldNameCreationDate: 'ORGANIZATION_FIELD_NAME_CREATION_DATE',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 export type OrganizationServiceOrganizationFieldName = typeof OrganizationServiceOrganizationFieldName[keyof typeof OrganizationServiceOrganizationFieldName];

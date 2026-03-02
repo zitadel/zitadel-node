@@ -78,8 +78,8 @@ export interface SessionServiceApiSetSessionRequest {
 export class SessionServiceApi extends runtime.BaseAPI {
 
     /**
-     * Create a new session
-     * Create a new session
+     * Create a new session with initial checks, metadata and challenges for further verification.  A token will be returned, which is required for using the session as authentication, e.g.  when authenticating an OIDC auth request or SAML request.  Additionally, the session token can be used as OAuth2 access token to authenticate against  the ZITADEL APIs.   Required permissions:    - `session.write`
+     * Create Session
      */
     private async createSessionRaw(requestParameters: SessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceCreateSessionResponse>> {
         if (requestParameters['sessionServiceCreateSessionRequest'] == null) {
@@ -115,8 +115,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new session
-     * Create a new session
+     * Create a new session with initial checks, metadata and challenges for further verification.  A token will be returned, which is required for using the session as authentication, e.g.  when authenticating an OIDC auth request or SAML request.  Additionally, the session token can be used as OAuth2 access token to authenticate against  the ZITADEL APIs.   Required permissions:    - `session.write`
+     * Create Session
      */
     async createSession(requestParameters: SessionServiceApiCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceCreateSessionResponse> {
         const response = await this.createSessionRaw(requestParameters, initOverrides);
@@ -124,8 +124,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Terminate a session
-     * Terminate a session
+     * Terminate an existing session. This invalidates the session and its token.  The session can no longer be used for the authentication of other resources  or to authenticate against the ZITADEL APIs.   You can only terminate your own session, unless you are granted the `session.delete` permission.   Required permissions:    - `session.delete`    - no permission required for own sessions or when providing the current session token
+     * DeleteSession
      */
     private async deleteSessionRaw(requestParameters: SessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceDeleteSessionResponse>> {
         if (requestParameters['sessionServiceDeleteSessionRequest'] == null) {
@@ -161,8 +161,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Terminate a session
-     * Terminate a session
+     * Terminate an existing session. This invalidates the session and its token.  The session can no longer be used for the authentication of other resources  or to authenticate against the ZITADEL APIs.   You can only terminate your own session, unless you are granted the `session.delete` permission.   Required permissions:    - `session.delete`    - no permission required for own sessions or when providing the current session token
+     * DeleteSession
      */
     async deleteSession(requestParameters: SessionServiceApiDeleteSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceDeleteSessionResponse> {
         const response = await this.deleteSessionRaw(requestParameters, initOverrides);
@@ -170,8 +170,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSession a session
-     * GetSession a session
+     * Retrieve a session by its ID. Returns all information about the session, including  the factors that were verified, the metadata, user agent information and possible expiration date.  The session token is required unless either of the following conditions is met:    - the caller created the session    - the authenticated user requests their own session (checked user)    - the security token provided in the authorization header has the same user agent as the session    - the caller is granted the permission session.read permission on either the instance or on the checked user\'s organization   Required permissions:    - `session.read`    - no permission required to get own sessions (see above) or when providing the current session token
+     * Get Session
      */
     private async getSessionRaw(requestParameters: SessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceGetSessionResponse>> {
         if (requestParameters['sessionServiceGetSessionRequest'] == null) {
@@ -207,8 +207,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * GetSession a session
-     * GetSession a session
+     * Retrieve a session by its ID. Returns all information about the session, including  the factors that were verified, the metadata, user agent information and possible expiration date.  The session token is required unless either of the following conditions is met:    - the caller created the session    - the authenticated user requests their own session (checked user)    - the security token provided in the authorization header has the same user agent as the session    - the caller is granted the permission session.read permission on either the instance or on the checked user\'s organization   Required permissions:    - `session.read`    - no permission required to get own sessions (see above) or when providing the current session token
+     * Get Session
      */
     async getSession(requestParameters: SessionServiceApiGetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceGetSessionResponse> {
         const response = await this.getSessionRaw(requestParameters, initOverrides);
@@ -216,8 +216,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search sessions
-     * Search sessions
+     * Searches for sessions matching the given query. You can search by session ID, user ID,  creation date, creator, user agent or expiration date.   Required permissions:    - `session.read`    - no permission required to search for own sessions
+     * List sessions
      */
     private async listSessionsRaw(requestParameters: SessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceListSessionsResponse>> {
         if (requestParameters['sessionServiceListSessionsRequest'] == null) {
@@ -253,8 +253,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Search sessions
-     * Search sessions
+     * Searches for sessions matching the given query. You can search by session ID, user ID,  creation date, creator, user agent or expiration date.   Required permissions:    - `session.read`    - no permission required to search for own sessions
+     * List sessions
      */
     async listSessions(requestParameters: SessionServiceApiListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceListSessionsResponse> {
         const response = await this.listSessionsRaw(requestParameters, initOverrides);
@@ -262,8 +262,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a session
-     * Update a session
+     * Update an existing session with new information like additional checks or metadata  or request additional challenges.  A new session token will be returned. Note that the previous token will be invalidated.   Required permissions:    - `session.write`
+     * Set Session
      */
     private async setSessionRaw(requestParameters: SessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionServiceSetSessionResponse>> {
         if (requestParameters['sessionServiceSetSessionRequest'] == null) {
@@ -299,8 +299,8 @@ export class SessionServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a session
-     * Update a session
+     * Update an existing session with new information like additional checks or metadata  or request additional challenges.  A new session token will be returned. Note that the previous token will be invalidated.   Required permissions:    - `session.write`
+     * Set Session
      */
     async setSession(requestParameters: SessionServiceApiSetSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionServiceSetSessionResponse> {
         const response = await this.setSessionRaw(requestParameters, initOverrides);

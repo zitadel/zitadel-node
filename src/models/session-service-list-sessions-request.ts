@@ -48,7 +48,8 @@ export interface SessionServiceListSessionsRequest {
      */
     query?: SessionServiceListQuery;
     /**
-     * 
+     * The criteria to be used when searching for sessions.
+     *  Multiple queries will be combined with a logical AND.
      * @type {Array<SessionServiceSearchQuery>}
      * @memberof SessionServiceListSessionsRequest
      */

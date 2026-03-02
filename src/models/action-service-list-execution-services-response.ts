@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface ActionServiceListExecutionServicesResponse {
     /**
-     * All available methods
+     * All available services to use in conditions.
      * @type {Array<string>}
      * @memberof ActionServiceListExecutionServicesResponse
      */

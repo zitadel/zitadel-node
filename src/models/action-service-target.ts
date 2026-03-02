@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { ActionServicePayloadType } from './action-service-payload-type.js';
+import {
+    ActionServicePayloadTypeFromJSON,
+    ActionServicePayloadTypeFromJSONTyped,
+    ActionServicePayloadTypeToJSON,
+    ActionServicePayloadTypeToJSONTyped,
+} from './action-service-payload-type.js';
 import type { ActionServiceRESTWebhook } from './action-service-rest-webhook.js';
 import {
     ActionServiceRESTWebhookFromJSON,
@@ -229,7 +236,7 @@ export interface ActionServiceTarget {
      */
     changeDate?: Date;
     /**
-     * 
+     * Display name of the target.
      * @type {string}
      * @memberof ActionServiceTarget
      */
@@ -298,17 +305,27 @@ export interface ActionServiceTarget {
      */
     timeout?: string;
     /**
-     * 
+     * The URL that will be called in case of an execution.
      * @type {string}
      * @memberof ActionServiceTarget
      */
     endpoint?: string;
     /**
-     * 
+     * The current signing key used to sign the request sent to the target.
+     *  The key can be used to verify the integrity and authenticity of the request
+     *  on the receiver side. The key should be treated as a secret and only known to ZITADEL and the receiver.
+     *  The signature is included in the request header `X-ZITADEL-Signature`
+     *  and calculated over the raw body of the request using HMAC with SHA256.
      * @type {string}
      * @memberof ActionServiceTarget
      */
     signingKey?: string;
+    /**
+     * 
+     * @type {ActionServicePayloadType}
+     * @memberof ActionServiceTarget
+     */
+    payloadType?: ActionServicePayloadType;
     /**
      * 
      * @type {object}
@@ -328,6 +345,8 @@ export interface ActionServiceTarget {
      */
     restWebhook?: ActionServiceRESTWebhook;
 }
+
+
 
 /**
  * Check if a given object implements the ActionServiceTarget interface.
@@ -353,6 +372,7 @@ export function ActionServiceTargetFromJSONTyped(json: any, ignoreDiscriminator:
         'timeout': json['timeout'] == null ? undefined : json['timeout'],
         'endpoint': json['endpoint'] == null ? undefined : json['endpoint'],
         'signingKey': json['signingKey'] == null ? undefined : json['signingKey'],
+        'payloadType': json['payloadType'] == null ? undefined : ActionServicePayloadTypeFromJSON(json['payloadType']),
         'restAsync': json['restAsync'] == null ? undefined : json['restAsync'],
         'restCall': json['restCall'] == null ? undefined : ActionServiceRESTCallFromJSON(json['restCall']),
         'restWebhook': json['restWebhook'] == null ? undefined : ActionServiceRESTWebhookFromJSON(json['restWebhook']),
@@ -377,6 +397,7 @@ export function ActionServiceTargetToJSONTyped(value?: ActionServiceTarget | nul
         'timeout': value['timeout'],
         'endpoint': value['endpoint'],
         'signingKey': value['signingKey'],
+        'payloadType': ActionServicePayloadTypeToJSON(value['payloadType']),
         'restAsync': value['restAsync'],
         'restCall': ActionServiceRESTCallToJSON(value['restCall']),
         'restWebhook': ActionServiceRESTWebhookToJSON(value['restWebhook']),

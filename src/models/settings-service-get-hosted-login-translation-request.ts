@@ -20,7 +20,8 @@ import { mapValues } from '../runtime.js';
  */
 export interface SettingsServiceGetHostedLoginTranslationRequest {
     /**
-     * 
+     * The locale of the translations to be returned.
+     *  Needs to be a BCP 47 language tag (e.g. "en", "de", "fr-CH").
      * @type {string}
      * @memberof SettingsServiceGetHostedLoginTranslationRequest
      */

@@ -168,7 +168,7 @@ export interface BetaOrganizationServiceApiVerifyOrganizationDomainRequest {
 export class BetaOrganizationServiceApi extends runtime.BaseAPI {
 
     /**
-     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
      * Activate Organization
      */
     private async activateOrganizationRaw(requestParameters: BetaOrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceActivateOrganizationResponse>> {
@@ -205,7 +205,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - `org.write`
      * Activate Organization
      */
     async activateOrganization(requestParameters: BetaOrganizationServiceApiActivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceActivateOrganizationResponse> {
@@ -214,7 +214,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
      * Add Organization Domain
      */
     private async addOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceAddOrganizationDomainResponse>> {
@@ -251,7 +251,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - `org.write`
      * Add Organization Domain
      */
     async addOrganizationDomain(requestParameters: BetaOrganizationServiceApiAddOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceAddOrganizationDomainResponse> {
@@ -306,7 +306,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
      * Deactivate Organization
      */
     private async deactivateOrganizationRaw(requestParameters: BetaOrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeactivateOrganizationResponse>> {
@@ -343,7 +343,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - `org.write`
      * Deactivate Organization
      */
     async deactivateOrganization(requestParameters: BetaOrganizationServiceApiDeactivateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeactivateOrganizationResponse> {
@@ -352,7 +352,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
      * Delete Organization
      */
     private async deleteOrganizationRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationResponse>> {
@@ -389,7 +389,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - `org.delete`
      * Delete Organization
      */
     async deleteOrganization(requestParameters: BetaOrganizationServiceApiDeleteOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationResponse> {
@@ -398,7 +398,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
      * Delete Organization Domain
      */
     private async deleteOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationDomainResponse>> {
@@ -435,7 +435,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - `org.write`
      * Delete Organization Domain
      */
     async deleteOrganizationDomain(requestParameters: BetaOrganizationServiceApiDeleteOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationDomainResponse> {
@@ -444,7 +444,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
      * Delete Organization Metadata
      */
     private async deleteOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceDeleteOrganizationMetadataResponse>> {
@@ -481,7 +481,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete metadata objects from an organization with a specific key.   Required permission:   - `org.write`
      * Delete Organization Metadata
      */
     async deleteOrganizationMetadata(requestParameters: BetaOrganizationServiceApiDeleteOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceDeleteOrganizationMetadataResponse> {
@@ -490,7 +490,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
      * Generate Organization Domain Validation
      */
     private async generateOrganizationDomainValidationRaw(requestParameters: BetaOrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceGenerateOrganizationDomainValidationResponse>> {
@@ -527,7 +527,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - `org.write`
      * Generate Organization Domain Validation
      */
     async generateOrganizationDomainValidation(requestParameters: BetaOrganizationServiceApiGenerateOrganizationDomainValidationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceGenerateOrganizationDomainValidationResponse> {
@@ -536,7 +536,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
      * List Organization Domains
      */
     private async listOrganizationDomainsRaw(requestParameters: BetaOrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationDomainsResponse>> {
@@ -573,7 +573,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - `org.read`
      * List Organization Domains
      */
     async listOrganizationDomains(requestParameters: BetaOrganizationServiceApiListOrganizationDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationDomainsResponse> {
@@ -582,7 +582,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   List metadata of an organization filtered by query.   Required permission:   - `org.read`
      * List Organization Metadata
      */
     private async listOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationMetadataResponse>> {
@@ -619,7 +619,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * List metadata of an organization filtered by query.   Required permission:   - `org.read`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   List metadata of an organization filtered by query.   Required permission:   - `org.read`
      * List Organization Metadata
      */
     async listOrganizationMetadata(requestParameters: BetaOrganizationServiceApiListOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationMetadataResponse> {
@@ -628,7 +628,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `org.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
      * List Organizations
      */
     private async listOrganizationsRaw(requestParameters: BetaOrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceListOrganizationsResponse>> {
@@ -665,7 +665,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `iam.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - `org.read`   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
      * List Organizations
      */
     async listOrganizations(requestParameters: BetaOrganizationServiceApiListOrganizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceListOrganizationsResponse> {
@@ -674,7 +674,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
      * Set Organization Metadata
      */
     private async setOrganizationMetadataRaw(requestParameters: BetaOrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceSetOrganizationMetadataResponse>> {
@@ -711,7 +711,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - `org.write`
      * Set Organization Metadata
      */
     async setOrganizationMetadata(requestParameters: BetaOrganizationServiceApiSetOrganizationMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceSetOrganizationMetadataResponse> {
@@ -720,7 +720,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the name of the organization.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Change the name of the organization.   Required permission:   - `org.write`
      * Update Organization
      */
     private async updateOrganizationRaw(requestParameters: BetaOrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceUpdateOrganizationResponse>> {
@@ -757,7 +757,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Change the name of the organization.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Change the name of the organization.   Required permission:   - `org.write`
      * Update Organization
      */
     async updateOrganization(requestParameters: BetaOrganizationServiceApiUpdateOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceUpdateOrganizationResponse> {
@@ -766,7 +766,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
      * Verify Organization Domain
      */
     private async verifyOrganizationDomainRaw(requestParameters: BetaOrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BetaOrganizationServiceVerifyOrganizationDomainResponse>> {
@@ -803,7 +803,7 @@ export class BetaOrganizationServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
+     * Deprecated: please move to the corresponding endpoint under organization service v2. This endpoint will be removed with the next major version of ZITADEL.   Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - `org.write`
      * Verify Organization Domain
      */
     async verifyOrganizationDomain(requestParameters: BetaOrganizationServiceApiVerifyOrganizationDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BetaOrganizationServiceVerifyOrganizationDomainResponse> {

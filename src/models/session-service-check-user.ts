@@ -20,13 +20,17 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceCheckUser {
     /**
-     * 
+     * The login name of the user to be checked. It will search case insensitive.
+     *  Note this only checks for the computed login name and not for any organization scoped usernames.
+     *  Also note that it will not check for emails or phone numbers, even if the corresponding
+     *  setting is enabled. Use the user service ListUsers method to find a user by email or phone number first
+     *  to obtain the user ID or login name.
      * @type {string}
      * @memberof SessionServiceCheckUser
      */
     loginName?: string;
     /**
-     * 
+     * The unique identifier of the user to be checked.
      * @type {string}
      * @memberof SessionServiceCheckUser
      */

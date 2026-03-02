@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceUserIDQuery {
     /**
-     * 
+     * ID of the user whose sessions are being searched for.
      * @type {string}
      * @memberof SessionServiceUserIDQuery
      */

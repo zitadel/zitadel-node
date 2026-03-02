@@ -35,7 +35,7 @@ import {
  */
 export interface OrganizationServiceOrganization {
     /**
-     * Unique identifier of the organization.
+     * ID is the unique identifier of the organization.
      * @type {string}
      * @memberof OrganizationServiceOrganization
      */

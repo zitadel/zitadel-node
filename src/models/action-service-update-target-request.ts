@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { ActionServicePayloadType } from './action-service-payload-type.js';
+import {
+    ActionServicePayloadTypeFromJSON,
+    ActionServicePayloadTypeFromJSONTyped,
+    ActionServicePayloadTypeToJSON,
+    ActionServicePayloadTypeToJSONTyped,
+} from './action-service-payload-type.js';
 import type { ActionServiceRESTWebhook } from './action-service-rest-webhook.js';
 import {
     ActionServiceRESTWebhookFromJSON,
@@ -35,13 +42,14 @@ import {
  */
 export interface ActionServiceUpdateTargetRequest {
     /**
-     * 
+     * The unique identifier of the target to update.
      * @type {string}
      * @memberof ActionServiceUpdateTargetRequest
      */
     id?: string;
     /**
-     * 
+     * Optionally, update the name of the target.
+     *  If not set, the name will not be changed.
      * @type {string}
      * @memberof ActionServiceUpdateTargetRequest
      */
@@ -110,7 +118,8 @@ export interface ActionServiceUpdateTargetRequest {
      */
     timeout?: string;
     /**
-     * 
+     * The new URL of the endpoint to call.
+     *  If not set, the endpoint will not be changed.
      * @type {string}
      * @memberof ActionServiceUpdateTargetRequest
      */
@@ -180,6 +189,12 @@ export interface ActionServiceUpdateTargetRequest {
     expirationSigningKey?: string;
     /**
      * 
+     * @type {ActionServicePayloadType}
+     * @memberof ActionServiceUpdateTargetRequest
+     */
+    payloadType?: ActionServicePayloadType;
+    /**
+     * 
      * @type {object}
      * @memberof ActionServiceUpdateTargetRequest
      */
@@ -197,6 +212,8 @@ export interface ActionServiceUpdateTargetRequest {
      */
     restWebhook?: ActionServiceRESTWebhook;
 }
+
+
 
 /**
  * Check if a given object implements the ActionServiceUpdateTargetRequest interface.
@@ -220,6 +237,7 @@ export function ActionServiceUpdateTargetRequestFromJSONTyped(json: any, ignoreD
         'timeout': json['timeout'] == null ? undefined : json['timeout'],
         'endpoint': json['endpoint'] == null ? undefined : json['endpoint'],
         'expirationSigningKey': json['expirationSigningKey'] == null ? undefined : json['expirationSigningKey'],
+        'payloadType': json['payloadType'] == null ? undefined : ActionServicePayloadTypeFromJSON(json['payloadType']),
         'restAsync': json['restAsync'] == null ? undefined : json['restAsync'],
         'restCall': json['restCall'] == null ? undefined : ActionServiceRESTCallFromJSON(json['restCall']),
         'restWebhook': json['restWebhook'] == null ? undefined : ActionServiceRESTWebhookFromJSON(json['restWebhook']),
@@ -242,6 +260,7 @@ export function ActionServiceUpdateTargetRequestToJSONTyped(value?: ActionServic
         'timeout': value['timeout'],
         'endpoint': value['endpoint'],
         'expirationSigningKey': value['expirationSigningKey'],
+        'payloadType': ActionServicePayloadTypeToJSON(value['payloadType']),
         'restAsync': value['restAsync'],
         'restCall': ActionServiceRESTCallToJSON(value['restCall']),
         'restWebhook': ActionServiceRESTWebhookToJSON(value['restWebhook']),

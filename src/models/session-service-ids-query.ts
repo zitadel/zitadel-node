@@ -20,7 +20,8 @@ import { mapValues } from '../runtime.js';
  */
 export interface SessionServiceIDsQuery {
     /**
-     * 
+     * List of session IDs to search for.
+     *  If multiple IDs are provided, sessions matching any of the IDs will be returned.
      * @type {Array<string>}
      * @memberof SessionServiceIDsQuery
      */
