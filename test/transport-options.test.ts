@@ -78,6 +78,24 @@ describe('TransportOptionsTest', () => {
       }),
     });
     expect(tokenRes.status).toBe(201);
+
+    // Stub 3 - Settings API endpoint (for verifying headers on API calls)
+    const settingsRes = await fetch(adminUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        request: {
+          method: 'POST',
+          url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings',
+        },
+        response: {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+          jsonBody: {},
+        },
+      }),
+    });
+    expect(settingsRes.status).toBe(201);
   }, 30_000);
 
   afterAll(async () => {
@@ -116,18 +134,25 @@ describe('TransportOptionsTest', () => {
     );
     expect(zitadel).toBeTruthy();
 
-    // Verify via WireMock request journal
-    const journalRes = await fetch(
-      `http://${host}:${httpPort}/__admin/requests`,
-    );
-    const journal = (await journalRes.json()) as {
-      requests: { request?: { headers?: Record<string, string> } }[];
-    };
+    // Make an actual API call to verify headers propagate to service requests
+    await expect(
+      zitadel.settings.getGeneralSettings({ body: {} }),
+    ).resolves.toBeDefined();
 
-    const foundHeader = journal.requests.some(
-      (req) => req.request?.headers?.['X-Custom-Header'],
+    // Use WireMock's verification API to assert the header was sent on the API call
+    const verifyRes = await fetch(
+      `http://${host}:${httpPort}/__admin/requests/count`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings',
+          headers: { 'X-Custom-Header': { equalTo: 'test-value' } },
+        }),
+      },
     );
-    expect(foundHeader).toBe(true);
+    const { count } = (await verifyRes.json()) as { count: number };
+    expect(count).toBeGreaterThanOrEqual(1);
   }, 30_000);
 
   test('proxy URL routes requests through proxy', async () => {
