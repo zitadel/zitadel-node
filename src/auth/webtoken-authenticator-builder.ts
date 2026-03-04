@@ -103,6 +103,7 @@ export class WebTokenAuthenticatorBuilder extends OAuthAuthenticatorBuilder {
       this.lifetimeSeconds,
       this.jwtAlg,
       this.kid,
+      this.transportOptions,
     );
   }
 }

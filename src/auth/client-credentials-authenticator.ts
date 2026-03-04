@@ -20,16 +20,18 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
    * @param clientId The OAuth2 client identifier.
    * @param clientSecret The OAuth2 client secret.
    * @param scope The scope for the token request.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   public constructor(
     openId: OpenId,
     clientId: string,
     clientSecret: string,
     scope: string = 'openid urn:zitadel:iam:org:project:id:zitadel:aud',
+    transportOptions?: TransportOptions,
   ) {
     const authServer = openId.getAuthorizationServer();
     const client: oauth.Client = { client_id: clientId };
-    super(authServer, client, scope);
+    super(authServer, client, scope, transportOptions);
     this.clientAuth = oauth.ClientSecretBasic(clientSecret);
     this.parameters = new URLSearchParams({
       grant_type: 'client_credentials',
@@ -64,15 +66,20 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,
   ): Promise<oauth.TokenEndpointResponse> {
+    const tokenOptions = await this.buildTokenRequestOptions();
+
+    // Allow insecure requests in test environments even without transport options
+    if (process.env.JEST_WORKER_ID !== undefined) {
+      tokenOptions[oauth.allowInsecureRequests] = true;
+    }
+
     // noinspection JSDeprecatedSymbols
     const response = await oauth.clientCredentialsGrantRequest(
       authServer,
       client,
       this.clientAuth,
       this.parameters,
-      {
-        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
-      },
+      tokenOptions,
     );
 
     return oauth.processClientCredentialsResponse(authServer, client, response);

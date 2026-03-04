@@ -32,6 +32,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param jwtLifetimeSeconds The lifetime of the JWT in seconds.
    * @param jwtAlgorithm The signing algorithm.
    * @param keyId The key ID.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   private constructor(
     authServer: oauth.AuthorizationServer,
@@ -44,8 +45,9 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     private readonly jwtLifetimeSeconds: number,
     private readonly jwtAlgorithm: string,
     private readonly keyId?: string,
+    transportOptions?: TransportOptions,
   ) {
-    super(authServer, client, scope);
+    super(authServer, client, scope, transportOptions);
     this.clientAuth = oauth.None();
   }
 
@@ -169,6 +171,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     jwtLifetimeSeconds: number,
     jwtAlgorithm: string,
     keyId?: string,
+    transportOptions?: TransportOptions,
   ): Promise<WebTokenAuthenticator> {
     const privateKey = WebTokenAuthenticator.parsePem(privateKeyPem);
     const authServer = openId.getAuthorizationServer();
@@ -184,6 +187,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       jwtLifetimeSeconds,
       jwtAlgorithm,
       keyId,
+      transportOptions,
     );
   }
 
@@ -212,6 +216,13 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       scope: this.scope,
     });
 
+    const tokenOptions = await this.buildTokenRequestOptions();
+
+    // Allow insecure requests in test environments even without transport options
+    if (process.env.JEST_WORKER_ID !== undefined) {
+      tokenOptions[oauth.allowInsecureRequests] = true;
+    }
+
     // noinspection JSDeprecatedSymbols
     const response = await oauth.genericTokenEndpointRequest(
       authServer,
@@ -219,9 +230,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       this.clientAuth,
       this.grantType,
       parameters,
-      {
-        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
-      },
+      tokenOptions,
     );
 
     const responseBody = (await response.clone().json()) as Response;

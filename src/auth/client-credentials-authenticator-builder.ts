@@ -38,6 +38,7 @@ export class ClientCredentialsAuthenticatorBuilder extends OAuthAuthenticatorBui
       this.clientId,
       this.clientSecret,
       this.authScopes,
+      this.transportOptions,
     );
   }
 }

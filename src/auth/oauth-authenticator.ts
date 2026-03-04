@@ -1,6 +1,7 @@
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
+import { TransportOptions } from '../configuration.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.
@@ -24,13 +25,87 @@ export abstract class OAuthAuthenticator extends Authenticator {
    * @param authServer The discovered authorization server metadata.
    * @param client The OAuth2 client metadata.
    * @param scope The scope for the token request.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   protected constructor(
     protected readonly authServer: oauth.AuthorizationServer,
     protected readonly client: oauth.Client,
     protected readonly scope: string,
+    protected readonly transportOptions?: TransportOptions,
   ) {
     super(authServer.issuer);
+  }
+
+  /**
+   * Builds oauth4webapi request options from transport options.
+   *
+   * Constructs a customFetch wrapper that applies the configured dispatcher
+   * (for TLS/proxy settings) and default headers to all HTTP requests made
+   * by oauth4webapi functions.
+   *
+   * @returns An options object suitable for passing to oauth4webapi token
+   *          request functions.
+   */
+  protected async buildTokenRequestOptions(): Promise<Record<string | symbol, unknown>> {
+    const options: Record<string | symbol, unknown> = {};
+
+    if (this.transportOptions?.insecure) {
+      options[oauth.allowInsecureRequests] = true;
+    }
+
+    if (this.transportOptions?.defaultHeaders) {
+      options.headers = this.transportOptions.defaultHeaders;
+    }
+
+    if (
+      this.transportOptions?.insecure ||
+      this.transportOptions?.caCertPath ||
+      this.transportOptions?.proxyUrl
+    ) {
+      const connectOpts: Record<string, unknown> = {};
+      if (this.transportOptions.insecure) {
+        connectOpts.rejectUnauthorized = false;
+      }
+      if (this.transportOptions.caCertPath) {
+        const { readFileSync } = await import('node:fs');
+        const tls = await import('node:tls');
+        const customCa = readFileSync(this.transportOptions.caCertPath, 'utf-8');
+        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
+      }
+
+      let dispatcher: unknown;
+      if (this.transportOptions.proxyUrl) {
+        const { ProxyAgent } = await import('undici');
+        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } = {
+          uri: this.transportOptions.proxyUrl,
+        };
+        if (Object.keys(connectOpts).length > 0) {
+          proxyOpts.requestTls = connectOpts;
+        }
+        dispatcher = new ProxyAgent(proxyOpts);
+      } else {
+        const { Agent } = await import('undici');
+        dispatcher = new Agent({ connect: connectOpts });
+      }
+
+      const defaultHeaders = this.transportOptions?.defaultHeaders;
+      options[oauth.customFetch] = (url: string, fetchOptions: Record<string, unknown>) => {
+        if (defaultHeaders) {
+          const existingHeaders = (fetchOptions.headers ?? {}) as Record<string, string>;
+          fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
+        }
+        return fetch(url, { ...fetchOptions, dispatcher } as RequestInit);
+      };
+    } else if (this.transportOptions?.defaultHeaders) {
+      const defaultHeaders = this.transportOptions.defaultHeaders;
+      options[oauth.customFetch] = (url: string, fetchOptions: Record<string, unknown>) => {
+        const existingHeaders = (fetchOptions.headers ?? {}) as Record<string, string>;
+        fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
+        return fetch(url, fetchOptions as RequestInit);
+      };
+    }
+
+    return options;
   }
 
   /**
