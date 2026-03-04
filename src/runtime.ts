@@ -130,9 +130,12 @@ export class BaseAPI {
       }
       if (this.configuration.transportOptions.caCertPath) {
         const { readFileSync } = await import('node:fs');
-        connectOpts.ca = readFileSync(
+        const tls = await import('node:tls');
+        const customCa = readFileSync(
           this.configuration.transportOptions.caCertPath,
+          'utf-8',
         );
+        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
       }
       if (this.configuration.transportOptions.proxyUrl) {
         const { ProxyAgent } = await import('undici');

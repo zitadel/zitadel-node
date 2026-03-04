@@ -59,7 +59,9 @@ export class OpenId {
       }
       if (transportOptions.caCertPath) {
         const { readFileSync } = await import('node:fs');
-        connectOpts.ca = readFileSync(transportOptions.caCertPath);
+        const tls = await import('node:tls');
+        const customCa = readFileSync(transportOptions.caCertPath, 'utf-8');
+        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
       }
       if (transportOptions.proxyUrl) {
         const { ProxyAgent } = await import('undici');
