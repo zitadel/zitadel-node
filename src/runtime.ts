@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Configuration } from './configuration.js';
+import { Configuration, buildDispatcher } from './configuration.js';
 import { ApiException } from './api-exception.js';
 
 /**
@@ -119,38 +119,9 @@ export class BaseAPI {
       body,
     };
 
-    if (
-      this.configuration.transportOptions?.insecure ||
-      this.configuration.transportOptions?.caCertPath ||
-      this.configuration.transportOptions?.proxyUrl
-    ) {
-      const connectOpts: Record<string, unknown> = {};
-      if (this.configuration.transportOptions.insecure) {
-        connectOpts.rejectUnauthorized = false;
-      }
-      if (this.configuration.transportOptions.caCertPath) {
-        const { readFileSync } = await import('node:fs');
-        const tls = await import('node:tls');
-        const customCa = readFileSync(
-          this.configuration.transportOptions.caCertPath,
-          'utf-8',
-        );
-        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
-      }
-      if (this.configuration.transportOptions.proxyUrl) {
-        const { ProxyAgent } = await import('undici');
-        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
-          {
-            uri: this.configuration.transportOptions.proxyUrl,
-          };
-        if (Object.keys(connectOpts).length > 0) {
-          proxyOpts.requestTls = connectOpts;
-        }
-        (init as any).dispatcher = new ProxyAgent(proxyOpts);
-      } else {
-        const { Agent } = await import('undici');
-        (init as any).dispatcher = new Agent({ connect: connectOpts });
-      }
+    const dispatcher = await buildDispatcher(this.configuration.transportOptions);
+    if (dispatcher) {
+      (init as any).dispatcher = dispatcher;
     }
 
     return { url, init };

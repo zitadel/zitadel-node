@@ -1,5 +1,5 @@
 import * as oauth from 'oauth4webapi';
-import { TransportOptions } from '../configuration.js';
+import { TransportOptions, buildDispatcher } from '../configuration.js';
 
 /**
  * OpenId class is responsible for fetching and storing important OpenID
@@ -48,35 +48,9 @@ export class OpenId {
     if (transportOptions?.defaultHeaders) {
       fetchInit.headers = transportOptions.defaultHeaders;
     }
-    if (
-      transportOptions?.insecure ||
-      transportOptions?.caCertPath ||
-      transportOptions?.proxyUrl
-    ) {
-      const connectOpts: Record<string, unknown> = {};
-      if (transportOptions.insecure) {
-        connectOpts.rejectUnauthorized = false;
-      }
-      if (transportOptions.caCertPath) {
-        const { readFileSync } = await import('node:fs');
-        const tls = await import('node:tls');
-        const customCa = readFileSync(transportOptions.caCertPath, 'utf-8');
-        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
-      }
-      if (transportOptions.proxyUrl) {
-        const { ProxyAgent } = await import('undici');
-        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
-          {
-            uri: transportOptions.proxyUrl,
-          };
-        if (Object.keys(connectOpts).length > 0) {
-          proxyOpts.requestTls = connectOpts;
-        }
-        fetchInit.dispatcher = new ProxyAgent(proxyOpts);
-      } else {
-        const { Agent } = await import('undici');
-        fetchInit.dispatcher = new Agent({ connect: connectOpts });
-      }
+    const dispatcher = await buildDispatcher(transportOptions);
+    if (dispatcher) {
+      fetchInit.dispatcher = dispatcher;
     }
 
     // eslint-disable-next-line no-undef

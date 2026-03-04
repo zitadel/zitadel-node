@@ -1,7 +1,7 @@
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
-import { TransportOptions } from '../configuration.js';
+import { TransportOptions, buildDispatcher } from '../configuration.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.
@@ -59,41 +59,8 @@ export abstract class OAuthAuthenticator extends Authenticator {
       options.headers = this.transportOptions.defaultHeaders;
     }
 
-    if (
-      this.transportOptions?.insecure ||
-      this.transportOptions?.caCertPath ||
-      this.transportOptions?.proxyUrl
-    ) {
-      const connectOpts: Record<string, unknown> = {};
-      if (this.transportOptions.insecure) {
-        connectOpts.rejectUnauthorized = false;
-      }
-      if (this.transportOptions.caCertPath) {
-        const { readFileSync } = await import('node:fs');
-        const tls = await import('node:tls');
-        const customCa = readFileSync(
-          this.transportOptions.caCertPath,
-          'utf-8',
-        );
-        connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
-      }
-
-      let dispatcher: unknown;
-      if (this.transportOptions.proxyUrl) {
-        const { ProxyAgent } = await import('undici');
-        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
-          {
-            uri: this.transportOptions.proxyUrl,
-          };
-        if (Object.keys(connectOpts).length > 0) {
-          proxyOpts.requestTls = connectOpts;
-        }
-        dispatcher = new ProxyAgent(proxyOpts);
-      } else {
-        const { Agent } = await import('undici');
-        dispatcher = new Agent({ connect: connectOpts });
-      }
-
+    const dispatcher = await buildDispatcher(this.transportOptions);
+    if (dispatcher || this.transportOptions?.defaultHeaders) {
       const defaultHeaders = this.transportOptions?.defaultHeaders;
       options[oauth.customFetch] = (
         url: string,
@@ -106,20 +73,10 @@ export abstract class OAuthAuthenticator extends Authenticator {
           >;
           fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
         }
-        return fetch(url, { ...fetchOptions, dispatcher } as RequestInit);
-      };
-    } else if (this.transportOptions?.defaultHeaders) {
-      const defaultHeaders = this.transportOptions.defaultHeaders;
-      options[oauth.customFetch] = (
-        url: string,
-        fetchOptions: Record<string, unknown>,
-      ) => {
-        const existingHeaders = (fetchOptions.headers ?? {}) as Record<
-          string,
-          string
-        >;
-        fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
-        return fetch(url, fetchOptions as RequestInit);
+        return fetch(url, {
+          ...fetchOptions,
+          ...(dispatcher ? { dispatcher } : {}),
+        } as RequestInit);
       };
     }
 
