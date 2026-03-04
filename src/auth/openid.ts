@@ -1,4 +1,5 @@
 import * as oauth from 'oauth4webapi';
+import { TransportOptions } from '../configuration.js';
 
 /**
  * OpenId class is responsible for fetching and storing important OpenID
@@ -39,9 +40,46 @@ export class OpenId {
    */
   private static async fetchOpenIdConfiguration(
     hostname: string,
+    transportOptions?: TransportOptions,
   ): Promise<oauth.AuthorizationServer> {
     const wellKnownUrl = this.buildWellKnownUrl(hostname);
-    const response = await fetch(wellKnownUrl);
+
+    const fetchInit: Record<string, unknown> = {};
+    if (transportOptions?.defaultHeaders) {
+      fetchInit.headers = transportOptions.defaultHeaders;
+    }
+    if (
+      transportOptions?.insecure ||
+      transportOptions?.caCertPath ||
+      transportOptions?.proxyUrl
+    ) {
+      const connectOpts: Record<string, unknown> = {};
+      if (transportOptions.insecure) {
+        connectOpts.rejectUnauthorized = false;
+      }
+      if (transportOptions.caCertPath) {
+        const { readFileSync } = await import('node:fs');
+        connectOpts.ca = readFileSync(transportOptions.caCertPath);
+        connectOpts.checkServerIdentity = () => undefined;
+      }
+      if (transportOptions.proxyUrl) {
+        const { ProxyAgent } = await import('undici');
+        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
+          {
+            uri: transportOptions.proxyUrl,
+          };
+        if (Object.keys(connectOpts).length > 0) {
+          proxyOpts.requestTls = connectOpts;
+        }
+        fetchInit.dispatcher = new ProxyAgent(proxyOpts);
+      } else {
+        const { Agent } = await import('undici');
+        fetchInit.dispatcher = new Agent({ connect: connectOpts });
+      }
+    }
+
+    // eslint-disable-next-line no-undef
+    const response = await fetch(wellKnownUrl, fetchInit as RequestInit);
 
     if (!response.ok) {
       throw new Error(
@@ -68,12 +106,18 @@ export class OpenId {
    * @throws {Error} If the provided hostname is empty, or if there's an
    * error during the HTTP request or JSON parsing.
    */
-  public static async discover(hostname: string): Promise<OpenId> {
+  public static async discover(
+    hostname: string,
+    transportOptions?: TransportOptions,
+  ): Promise<OpenId> {
     if (!hostname) {
       throw new Error('Hostname cannot be empty.');
     }
 
-    const authServer = await this.fetchOpenIdConfiguration(hostname);
+    const authServer = await this.fetchOpenIdConfiguration(
+      hostname,
+      transportOptions,
+    );
     return new OpenId(authServer);
   }
 

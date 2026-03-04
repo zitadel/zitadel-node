@@ -3,6 +3,13 @@ import { NoAuthAuthenticator, Authenticator } from './auth/index.js';
 import { arch, platform, version as nodeVersion } from 'process';
 import { VERSION } from './version.js';
 
+export interface TransportOptions {
+  defaultHeaders?: Record<string, string>;
+  caCertPath?: string;
+  insecure?: boolean;
+  proxyUrl?: string;
+}
+
 export class Configuration {
   public readonly userAgent: string;
 
@@ -12,6 +19,7 @@ export class Configuration {
       basePath?: string;
       headers?: HTTPHeaders;
       userAgent?: string;
+      transportOptions?: TransportOptions;
     } = {},
   ) {
     this.userAgent =
@@ -31,6 +39,13 @@ export class Configuration {
   }
 
   get headers(): HTTPHeaders | undefined {
-    return this.configuration.headers;
+    return {
+      ...this.configuration.transportOptions?.defaultHeaders,
+      ...this.configuration.headers,
+    };
+  }
+
+  get transportOptions(): TransportOptions | undefined {
+    return this.configuration.transportOptions;
   }
 }

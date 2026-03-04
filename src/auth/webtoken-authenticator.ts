@@ -3,6 +3,7 @@ import * as oauth from 'oauth4webapi';
 import * as jose from 'jose';
 import { OpenId } from './openid.js';
 import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
+import { TransportOptions } from '../configuration.js';
 // @ts-expect-error since it is not expoered.
 import type { CryptoKey } from 'crypto';
 import * as fs from 'node:fs';
@@ -70,6 +71,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
   public static async fromJson(
     host: string,
     jsonPath: string,
+    transportOptions?: TransportOptions,
   ): Promise<WebTokenAuthenticator> {
     const json = fs.readFileSync(jsonPath, 'utf-8').replaceAll('\\"', '"');
     const config = JSON.parse(json);
@@ -82,7 +84,12 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       throw new Error('Missing required configuration keys in JSON file.');
     }
 
-    return WebTokenAuthenticator.builder(host, userId, privateKey)
+    return WebTokenAuthenticator.builder(
+      host,
+      userId,
+      privateKey,
+      transportOptions,
+    )
       .keyId(keyId)
       .build();
   }
@@ -93,12 +100,14 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param host The base URL for API endpoints.
    * @param userId The user ID.
    * @param privateKey The PEM-formatted private key.
+   * @param transportOptions Optional transport options for TLS and headers.
    * @returns A new builder instance.
    */
   public static builder(
     host: string,
     userId: string,
     privateKey: string,
+    transportOptions?: TransportOptions,
   ): WebTokenAuthenticatorBuilder {
     return new WebTokenAuthenticatorBuilder(
       host,
@@ -106,6 +115,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       userId,
       host,
       privateKey,
+      transportOptions,
     );
   }
 

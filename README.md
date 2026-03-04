@@ -203,6 +203,94 @@ Choose the authentication method that best suits your needs based on your
 environment and security requirements. For more details, please refer to the
 [Zitadel documentation on authenticating service users](https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users).
 
+## Advanced Configuration
+
+The SDK supports several transport-level options that can be passed via the
+`transportOptions` parameter when initializing the client. These options allow
+you to customize TLS behavior, set default headers, and route requests through
+a proxy.
+
+#### 1. Disabling TLS Verification
+
+If you need to connect to a Zitadel instance with a self-signed or untrusted
+certificate (for example, in development or testing), you can disable TLS
+verification:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://example.us1.zitadel.cloud',
+  'id',
+  'secret',
+  { insecure: true },
+);
+```
+
+> **Warning:** Do not use `insecure: true` in production. It disables
+> certificate validation and makes connections vulnerable to
+> man-in-the-middle attacks.
+
+#### 2. Using a Custom CA Certificate
+
+If your Zitadel instance uses a certificate signed by a private or internal
+Certificate Authority, you can provide the path to the CA certificate:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://example.us1.zitadel.cloud',
+  'id',
+  'secret',
+  { caCertPath: '/path/to/ca.pem' },
+);
+```
+
+#### 3. Custom Default Headers
+
+You can set default headers that will be included with every request made by
+the SDK:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://example.us1.zitadel.cloud',
+  'id',
+  'secret',
+  { defaultHeaders: { 'Proxy-Authorization': 'Basic ...' } },
+);
+```
+
+#### 4. Proxy Configuration
+
+If your environment requires routing requests through an HTTP proxy, you can
+specify the proxy URL:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://example.us1.zitadel.cloud',
+  'id',
+  'secret',
+  { proxyUrl: 'http://proxy:8080' },
+);
+```
+
+Proxy configuration composes with TLS options. For example, you can use a proxy
+with a custom CA certificate:
+
+```ts
+const zitadel = await Zitadel.withClientCredentials(
+  'https://example.us1.zitadel.cloud',
+  'id',
+  'secret',
+  { proxyUrl: 'http://proxy:8080', caCertPath: '/path/to/ca.pem' },
+);
+```
+
 ## Design and Dependencies
 
 This SDK is designed to be lean and efficient, focusing on providing a

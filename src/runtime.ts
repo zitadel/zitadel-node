@@ -119,6 +119,38 @@ export class BaseAPI {
       body,
     };
 
+    if (
+      this.configuration.transportOptions?.insecure ||
+      this.configuration.transportOptions?.caCertPath ||
+      this.configuration.transportOptions?.proxyUrl
+    ) {
+      const connectOpts: Record<string, unknown> = {};
+      if (this.configuration.transportOptions.insecure) {
+        connectOpts.rejectUnauthorized = false;
+      }
+      if (this.configuration.transportOptions.caCertPath) {
+        const { readFileSync } = await import('node:fs');
+        connectOpts.ca = readFileSync(
+          this.configuration.transportOptions.caCertPath,
+        );
+        connectOpts.checkServerIdentity = () => undefined;
+      }
+      if (this.configuration.transportOptions.proxyUrl) {
+        const { ProxyAgent } = await import('undici');
+        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
+          {
+            uri: this.configuration.transportOptions.proxyUrl,
+          };
+        if (Object.keys(connectOpts).length > 0) {
+          proxyOpts.requestTls = connectOpts;
+        }
+        (init as any).dispatcher = new ProxyAgent(proxyOpts);
+      } else {
+        const { Agent } = await import('undici');
+        (init as any).dispatcher = new Agent({ connect: connectOpts });
+      }
+    }
+
     return { url, init };
   }
 

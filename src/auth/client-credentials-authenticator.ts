@@ -2,6 +2,7 @@ import { OAuthAuthenticator } from './oauth-authenticator.js';
 import { OpenId } from './openid.js';
 import { ClientCredentialsAuthenticatorBuilder } from './client-credentials-authenticator-builder.js';
 import * as oauth from 'oauth4webapi';
+import { TransportOptions } from '../configuration.js';
 
 /**
  * OAuth2 Client Credentials Authenticator.
@@ -42,17 +43,20 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
    * @param host The base URL for API endpoints.
    * @param clientId The OAuth2 client identifier.
    * @param clientSecret The OAuth2 client secret.
+   * @param transportOptions Optional transport options for TLS and headers.
    * @returns A new builder instance.
    */
   public static builder(
     host: string,
     clientId: string,
     clientSecret: string,
+    transportOptions?: TransportOptions,
   ): ClientCredentialsAuthenticatorBuilder {
     return new ClientCredentialsAuthenticatorBuilder(
       host,
       clientId,
       clientSecret,
+      transportOptions,
     );
   }
 
