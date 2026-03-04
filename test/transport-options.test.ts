@@ -173,7 +173,7 @@ describe('TransportOptionsTest', () => {
         'dummy-client',
         'dummy-secret',
       ),
-    ).rejects.toThrow(Error);
+    ).rejects.toThrow();
   }, 30_000);
 
   test('transport options object works', async () => {

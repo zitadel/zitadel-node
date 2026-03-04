@@ -53,7 +53,7 @@ export async function buildDispatcher(
 
 export class Configuration {
   public readonly userAgent: string;
-  private readonly cachedDispatcher: Promise<unknown | undefined>;
+  private cachedDispatcher: Promise<unknown | undefined> | null = null;
 
   constructor(
     private readonly authenticator: Authenticator = new NoAuthAuthenticator(),
@@ -70,15 +70,17 @@ export class Configuration {
     if (this.configuration.transportOptions?.defaultHeaders) {
       Object.freeze(this.configuration.transportOptions.defaultHeaders);
     }
-    this.cachedDispatcher = buildDispatcher(
-      this.configuration.transportOptions,
-    );
   }
 
   /**
-   * Returns the cached dispatcher for reuse across requests.
+   * Returns the cached dispatcher, building it lazily on first access.
    */
   getDispatcher(): Promise<unknown | undefined> {
+    if (this.cachedDispatcher === null) {
+      this.cachedDispatcher = buildDispatcher(
+        this.configuration.transportOptions,
+      );
+    }
     return this.cachedDispatcher;
   }
 

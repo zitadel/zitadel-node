@@ -21,7 +21,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
   /**
    * Cached dispatcher for reuse across token requests.
    */
-  private readonly cachedDispatcher: Promise<unknown | undefined>;
+  private cachedDispatcher: Promise<unknown | undefined> | null = null;
 
   /**
    * OAuthAuthenticator constructor.
@@ -38,7 +38,6 @@ export abstract class OAuthAuthenticator extends Authenticator {
     protected readonly transportOptions?: TransportOptions,
   ) {
     super(authServer.issuer);
-    this.cachedDispatcher = buildDispatcher(this.transportOptions);
   }
 
   /**
@@ -64,6 +63,9 @@ export abstract class OAuthAuthenticator extends Authenticator {
       options.headers = this.transportOptions.defaultHeaders;
     }
 
+    if (this.cachedDispatcher === null) {
+      this.cachedDispatcher = buildDispatcher(this.transportOptions);
+    }
     const dispatcher = await this.cachedDispatcher;
     if (dispatcher || this.transportOptions?.defaultHeaders) {
       const defaultHeaders = this.transportOptions?.defaultHeaders;
