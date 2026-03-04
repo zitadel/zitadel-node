@@ -133,7 +133,6 @@ export class BaseAPI {
         connectOpts.ca = readFileSync(
           this.configuration.transportOptions.caCertPath,
         );
-        connectOpts.checkServerIdentity = () => undefined;
       }
       if (this.configuration.transportOptions.proxyUrl) {
         const { ProxyAgent } = await import('undici');

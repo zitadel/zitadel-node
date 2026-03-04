@@ -60,7 +60,6 @@ export class OpenId {
       if (transportOptions.caCertPath) {
         const { readFileSync } = await import('node:fs');
         connectOpts.ca = readFileSync(transportOptions.caCertPath);
-        connectOpts.checkServerIdentity = () => undefined;
       }
       if (transportOptions.proxyUrl) {
         const { ProxyAgent } = await import('undici');
