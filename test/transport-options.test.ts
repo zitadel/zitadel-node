@@ -1,8 +1,10 @@
-import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers';
 import Zitadel, { TransportOptions } from '../src/index.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const FIXTURES_DIR = path.join(__dirname, 'fixtures');
 
 describe('TransportOptionsTest', () => {
