@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers';
-import Zitadel from '../src/index.js';
+import Zitadel, { TransportOptions } from '../src/index.js';
 
 const FIXTURES_DIR = path.join(__dirname, 'fixtures');
 
@@ -46,7 +46,7 @@ describe('TransportOptionsTest', () => {
     const adminUrl = `http://${host}:${httpPort}/__admin/mappings`;
 
     // Stub 1 - OpenID Configuration (uses response templating for baseUrl)
-    await fetch(adminUrl, {
+    const oidcRes = await fetch(adminUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -58,9 +58,10 @@ describe('TransportOptionsTest', () => {
         },
       }),
     });
+    expect(oidcRes.status).toBe(201);
 
     // Stub 2 - Token endpoint
-    await fetch(adminUrl, {
+    const tokenRes = await fetch(adminUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -76,6 +77,7 @@ describe('TransportOptionsTest', () => {
         },
       }),
     });
+    expect(tokenRes.status).toBe(201);
   }, 30_000);
 
   afterAll(async () => {
@@ -146,6 +148,17 @@ describe('TransportOptionsTest', () => {
         'dummy-client',
         'dummy-secret',
       ),
-    ).rejects.toThrow();
+    ).rejects.toThrow(Error);
+  }, 30_000);
+
+  test('transport options object works', async () => {
+    const opts: TransportOptions = { insecure: true };
+    const zitadel = await Zitadel.withClientCredentials(
+      `https://${host}:${httpsPort}`,
+      'dummy-client',
+      'dummy-secret',
+      opts,
+    );
+    expect(zitadel).toBeTruthy();
   }, 30_000);
 });

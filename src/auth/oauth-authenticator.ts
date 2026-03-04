@@ -46,7 +46,9 @@ export abstract class OAuthAuthenticator extends Authenticator {
    * @returns An options object suitable for passing to oauth4webapi token
    *          request functions.
    */
-  protected async buildTokenRequestOptions(): Promise<Record<string | symbol, unknown>> {
+  protected async buildTokenRequestOptions(): Promise<
+    Record<string | symbol, unknown>
+  > {
     const options: Record<string | symbol, unknown> = {};
 
     if (this.transportOptions?.insecure) {
@@ -69,16 +71,20 @@ export abstract class OAuthAuthenticator extends Authenticator {
       if (this.transportOptions.caCertPath) {
         const { readFileSync } = await import('node:fs');
         const tls = await import('node:tls');
-        const customCa = readFileSync(this.transportOptions.caCertPath, 'utf-8');
+        const customCa = readFileSync(
+          this.transportOptions.caCertPath,
+          'utf-8',
+        );
         connectOpts.ca = [...(tls.rootCertificates ?? []), customCa];
       }
 
       let dispatcher: unknown;
       if (this.transportOptions.proxyUrl) {
         const { ProxyAgent } = await import('undici');
-        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } = {
-          uri: this.transportOptions.proxyUrl,
-        };
+        const proxyOpts: { uri: string; requestTls?: Record<string, unknown> } =
+          {
+            uri: this.transportOptions.proxyUrl,
+          };
         if (Object.keys(connectOpts).length > 0) {
           proxyOpts.requestTls = connectOpts;
         }
@@ -89,17 +95,29 @@ export abstract class OAuthAuthenticator extends Authenticator {
       }
 
       const defaultHeaders = this.transportOptions?.defaultHeaders;
-      options[oauth.customFetch] = (url: string, fetchOptions: Record<string, unknown>) => {
+      options[oauth.customFetch] = (
+        url: string,
+        fetchOptions: Record<string, unknown>,
+      ) => {
         if (defaultHeaders) {
-          const existingHeaders = (fetchOptions.headers ?? {}) as Record<string, string>;
+          const existingHeaders = (fetchOptions.headers ?? {}) as Record<
+            string,
+            string
+          >;
           fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
         }
         return fetch(url, { ...fetchOptions, dispatcher } as RequestInit);
       };
     } else if (this.transportOptions?.defaultHeaders) {
       const defaultHeaders = this.transportOptions.defaultHeaders;
-      options[oauth.customFetch] = (url: string, fetchOptions: Record<string, unknown>) => {
-        const existingHeaders = (fetchOptions.headers ?? {}) as Record<string, string>;
+      options[oauth.customFetch] = (
+        url: string,
+        fetchOptions: Record<string, unknown>,
+      ) => {
+        const existingHeaders = (fetchOptions.headers ?? {}) as Record<
+          string,
+          string
+        >;
         fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
         return fetch(url, fetchOptions as RequestInit);
       };
