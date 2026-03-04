@@ -1,6 +1,12 @@
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers';
+import {
+  GenericContainer,
+  Network,
+  StartedNetwork,
+  StartedTestContainer,
+  Wait,
+} from 'testcontainers';
 import Zitadel, { TransportOptions } from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -8,16 +14,23 @@ const __dirname = path.dirname(__filename);
 const FIXTURES_DIR = path.join(__dirname, 'fixtures');
 
 describe('TransportOptionsTest', () => {
+  let network: StartedNetwork;
   let container: StartedTestContainer;
+  let proxyContainer: StartedTestContainer;
   let host: string;
   let httpPort: number;
   let httpsPort: number;
+  let proxyPort: number;
   let certPath: string;
 
   beforeAll(async () => {
     certPath = path.join(FIXTURES_DIR, 'ca.pem');
 
+    network = await new Network().start();
+
     container = await new GenericContainer('wiremock/wiremock:3.3.1')
+      .withNetwork(network)
+      .withNetworkAliases('wiremock')
       .withCommand([
         '--https-port',
         '8443',
@@ -41,9 +54,22 @@ describe('TransportOptionsTest', () => {
       )
       .start();
 
+    proxyContainer = await new GenericContainer('vimagick/tinyproxy')
+      .withNetwork(network)
+      .withExposedPorts(8888)
+      .withCopyFilesToContainer([
+        {
+          source: path.join(FIXTURES_DIR, 'tinyproxy.conf'),
+          target: '/etc/tinyproxy/tinyproxy.conf',
+        },
+      ])
+      .withWaitStrategy(Wait.forListeningPorts())
+      .start();
+
     host = container.getHost();
     httpPort = container.getMappedPort(8080);
     httpsPort = container.getMappedPort(8443);
+    proxyPort = proxyContainer.getMappedPort(8888);
 
     const adminUrl = `http://${host}:${httpPort}/__admin/mappings`;
 
@@ -101,8 +127,14 @@ describe('TransportOptionsTest', () => {
   }, 30_000);
 
   afterAll(async () => {
+    if (proxyContainer) {
+      await proxyContainer.stop();
+    }
     if (container) {
       await container.stop();
+    }
+    if (network) {
+      await network.stop();
     }
   });
 
@@ -157,14 +189,21 @@ describe('TransportOptionsTest', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   }, 30_000);
 
-  test('proxy URL routes requests through proxy', () => {
+  test('proxy URL routes requests through proxy', async () => {
+    // Use Docker-internal hostname — only resolvable through the proxy's network
     const zitadel = Zitadel.withAccessToken(
-      `http://${host}:${httpPort}`,
+      'http://wiremock:8080',
       'test-token',
-      { proxyUrl: `http://${host}:${httpPort}` },
+      {
+        proxyUrl: `http://${host}:${proxyPort}`,
+      },
     );
     expect(zitadel).toBeTruthy();
-  });
+
+    await expect(
+      zitadel.settings.getGeneralSettings({ body: {} }),
+    ).resolves.toBeDefined();
+  }, 30_000);
 
   test('HTTPS without CA cert or insecure fails', async () => {
     await expect(
