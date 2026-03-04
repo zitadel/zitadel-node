@@ -3,7 +3,7 @@ import * as oauth from 'oauth4webapi';
 import * as jose from 'jose';
 import { OpenId } from './openid.js';
 import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
-import { TransportOptions } from '../configuration.js';
+import { TransportOptions } from '../transport-options.js';
 // @ts-expect-error since it is not expoered.
 import type { CryptoKey } from 'crypto';
 import * as fs from 'node:fs';

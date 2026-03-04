@@ -35,7 +35,8 @@ import {
   PersonalAccessAuthenticator,
   WebTokenAuthenticator,
 } from './auth/index.js';
-import { Configuration, TransportOptions } from './configuration.js';
+import { Configuration } from './configuration.js';
+import { TransportOptions } from './transport-options.js';
 
 export * from './zitadel-exception.js';
 export * from './api-exception.js';

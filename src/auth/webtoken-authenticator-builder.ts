@@ -1,6 +1,6 @@
 import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
 import { WebTokenAuthenticator } from './webtoken-authenticator.js';
-import { TransportOptions } from '../configuration.js';
+import { TransportOptions } from '../transport-options.js';
 
 /**
  * Builder for WebTokenAuthenticator.

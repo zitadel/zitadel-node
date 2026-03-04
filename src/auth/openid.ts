@@ -1,5 +1,5 @@
 import * as oauth from 'oauth4webapi';
-import { TransportOptions, buildDispatcher } from '../configuration.js';
+import { TransportOptions, buildDispatcher } from '../transport-options.js';
 
 /**
  * OpenId class is responsible for fetching and storing important OpenID

@@ -1,7 +1,7 @@
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
-import { TransportOptions, buildDispatcher } from '../configuration.js';
+import { TransportOptions, buildDispatcher } from '../transport-options.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.

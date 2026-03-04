@@ -1,6 +1,6 @@
 import { OpenId } from './openid.js';
 import { OAuthAuthenticator } from './oauth-authenticator.js';
-import { TransportOptions } from '../configuration.js';
+import { TransportOptions } from '../transport-options.js';
 
 /**
  * Base builder for OAuth authenticators.
