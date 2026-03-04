@@ -53,6 +53,7 @@ export async function buildDispatcher(
 
 export class Configuration {
   public readonly userAgent: string;
+  private readonly cachedDispatcher: Promise<unknown | undefined>;
 
   constructor(
     private readonly authenticator: Authenticator = new NoAuthAuthenticator(),
@@ -69,6 +70,16 @@ export class Configuration {
     if (this.configuration.transportOptions?.defaultHeaders) {
       Object.freeze(this.configuration.transportOptions.defaultHeaders);
     }
+    this.cachedDispatcher = buildDispatcher(
+      this.configuration.transportOptions,
+    );
+  }
+
+  /**
+   * Returns the cached dispatcher for reuse across requests.
+   */
+  getDispatcher(): Promise<unknown | undefined> {
+    return this.cachedDispatcher;
   }
 
   get basePath(): string {

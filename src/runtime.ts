@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { Configuration, buildDispatcher } from './configuration.js';
+import { Configuration } from './configuration.js';
 import { ApiException } from './api-exception.js';
 
 /**
@@ -119,9 +119,7 @@ export class BaseAPI {
       body,
     };
 
-    const dispatcher = await buildDispatcher(
-      this.configuration.transportOptions,
-    );
+    const dispatcher = await this.configuration.getDispatcher();
     if (dispatcher) {
       (init as any).dispatcher = dispatcher;
     }

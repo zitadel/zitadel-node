@@ -79,9 +79,7 @@
   "dependencies": {
     "@jest/globals": "^30.2.0",
     "jose": "^6.1.0",
-    "oauth4webapi": "^3.8.2"
-  },
-  "overrides": {
+    "oauth4webapi": "^3.8.2",
     "undici": "^6.23.0"
   }
 }

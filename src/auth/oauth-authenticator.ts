@@ -18,6 +18,10 @@ export abstract class OAuthAuthenticator extends Authenticator {
    * The token's expiration timestamp.
    */
   protected tokenExpiry: number | null = null;
+  /**
+   * Cached dispatcher for reuse across token requests.
+   */
+  private readonly cachedDispatcher: Promise<unknown | undefined>;
 
   /**
    * OAuthAuthenticator constructor.
@@ -34,6 +38,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
     protected readonly transportOptions?: TransportOptions,
   ) {
     super(authServer.issuer);
+    this.cachedDispatcher = buildDispatcher(this.transportOptions);
   }
 
   /**
@@ -59,7 +64,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
       options.headers = this.transportOptions.defaultHeaders;
     }
 
-    const dispatcher = await buildDispatcher(this.transportOptions);
+    const dispatcher = await this.cachedDispatcher;
     if (dispatcher || this.transportOptions?.defaultHeaders) {
       const defaultHeaders = this.transportOptions?.defaultHeaders;
       options[oauth.customFetch] = (

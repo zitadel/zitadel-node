@@ -5,7 +5,6 @@ module.exports = {
     '@mridang/semantic-release-peer-version',
     '@codedependant/semantic-release-docker',
     '@commitlint/.*?',
-    'undici',
   ],
   ignore: ['src/apis/**', 'src/models/**', 'comm'],
 };
