@@ -25,6 +25,9 @@ export class Configuration {
     this.userAgent =
       this.configuration.userAgent ??
       `zitadel-client/${VERSION} (lang=ts; lang_version=${nodeVersion}; os=${platform}; arch=${arch})`;
+    if (this.configuration.transportOptions?.defaultHeaders) {
+      Object.freeze(this.configuration.transportOptions.defaultHeaders);
+    }
   }
 
   get basePath(): string {
