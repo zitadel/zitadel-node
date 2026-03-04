@@ -119,7 +119,9 @@ export class BaseAPI {
       body,
     };
 
-    const dispatcher = await buildDispatcher(this.configuration.transportOptions);
+    const dispatcher = await buildDispatcher(
+      this.configuration.transportOptions,
+    );
     if (dispatcher) {
       (init as any).dispatcher = dispatcher;
     }
