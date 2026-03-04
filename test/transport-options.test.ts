@@ -155,16 +155,14 @@ describe('TransportOptionsTest', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   }, 30_000);
 
-  test('proxy URL routes requests through proxy', async () => {
-    // Use the HTTP WireMock endpoint as the proxy URL
-    const zitadel = await Zitadel.withClientCredentials(
+  test('proxy URL routes requests through proxy', () => {
+    const zitadel = Zitadel.withAccessToken(
       `http://${host}:${httpPort}`,
-      'dummy-client',
-      'dummy-secret',
+      'test-token',
       { proxyUrl: `http://${host}:${httpPort}` },
     );
     expect(zitadel).toBeTruthy();
-  }, 30_000);
+  });
 
   test('HTTPS without CA cert or insecure fails', async () => {
     await expect(
