@@ -54,13 +54,13 @@ describe('TransportOptionsTest', () => {
       )
       .start();
 
-    proxyContainer = await new GenericContainer('vimagick/tinyproxy')
+    proxyContainer = await new GenericContainer('ubuntu/squid:6.10-24.10_beta')
       .withNetwork(network)
-      .withExposedPorts(8888)
+      .withExposedPorts(3128)
       .withCopyFilesToContainer([
         {
-          source: path.join(FIXTURES_DIR, 'tinyproxy.conf'),
-          target: '/etc/tinyproxy/tinyproxy.conf',
+          source: path.join(FIXTURES_DIR, 'squid.conf'),
+          target: '/etc/squid/squid.conf',
         },
       ])
       .withWaitStrategy(Wait.forListeningPorts())
@@ -69,7 +69,7 @@ describe('TransportOptionsTest', () => {
     host = container.getHost();
     httpPort = container.getMappedPort(8080);
     httpsPort = container.getMappedPort(8443);
-    proxyPort = proxyContainer.getMappedPort(8888);
+    proxyPort = proxyContainer.getMappedPort(3128);
 
     const adminUrl = `http://${host}:${httpPort}/__admin/mappings`;
 
