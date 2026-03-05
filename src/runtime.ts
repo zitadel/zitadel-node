@@ -12,9 +12,7 @@ export class BaseAPI {
     'i',
   );
 
-  constructor(protected configuration = new Configuration()) {
-    //
-  }
+  constructor(protected configuration = new Configuration()) {}
 
   /**
    * Check if the given MIME is a JSON MIME.

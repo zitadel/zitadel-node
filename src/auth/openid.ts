@@ -11,9 +11,7 @@ export class OpenId {
   /**
    * @param authServer The discovered authorization server metadata.
    */
-  private constructor(private readonly authServer: oauth.AuthorizationServer) {
-    //
-  }
+  private constructor(private readonly authServer: oauth.AuthorizationServer) {}
 
   /**
    * Builds and returns a URL object from the provided hostname.

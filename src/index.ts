@@ -122,7 +122,7 @@ export default class Zitadel {
    *
    * @param host API URL (e.g. "https://api.zitadel.example.com").
    * @param accessToken Personal Access Token for Bearer authentication.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, headers.
    * @returns Configured Zitadel client instance.
    * @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
    */
@@ -144,7 +144,7 @@ export default class Zitadel {
    * @param host API URL.
    * @param clientId OAuth2 client identifier.
    * @param clientSecret OAuth2 client secret.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, headers.
    * @returns Configured Zitadel client instance with token auto-refresh.
    * @throws {Error} If token retrieval fails.
    * @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
@@ -170,7 +170,7 @@ export default class Zitadel {
    *
    * @param host API URL.
    * @param keyFile Path to service account JSON or PEM key file.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, headers.
    * @returns Configured Zitadel client instance using JWT assertion.
    * @throws {Error} If key parsing or token exchange fails.
    * @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt

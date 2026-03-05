@@ -25,7 +25,9 @@ export class Configuration {
       this.configuration.userAgent ??
       `zitadel-client/${VERSION} (lang=ts; lang_version=${nodeVersion}; os=${platform}; arch=${arch})`;
     if (this.configuration.transportOptions?.defaultHeaders) {
-      Object.freeze(this.configuration.transportOptions.defaultHeaders);
+      this.configuration.transportOptions.defaultHeaders = Object.freeze({
+        ...this.configuration.transportOptions.defaultHeaders,
+      });
     }
   }
 
@@ -53,10 +55,13 @@ export class Configuration {
   }
 
   get headers(): HTTPHeaders | undefined {
-    return {
-      ...this.configuration.transportOptions?.defaultHeaders,
-      ...this.configuration.headers,
-    };
+    const transportHeaders =
+      this.configuration.transportOptions?.defaultHeaders;
+    const configHeaders = this.configuration.headers;
+    if (!transportHeaders && !configHeaders) {
+      return undefined;
+    }
+    return { ...transportHeaders, ...configHeaders };
   }
 
   get transportOptions(): TransportOptions | undefined {
