@@ -121,7 +121,7 @@ export class BaseAPI {
 
     const dispatcher = await this.configuration.getDispatcher();
     if (dispatcher) {
-      (init as any).dispatcher = dispatcher;
+      Object.assign(init, { dispatcher });
     }
 
     return { url, init };

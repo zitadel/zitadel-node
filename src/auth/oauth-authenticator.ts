@@ -1,3 +1,4 @@
+import type { Dispatcher } from 'undici';
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
@@ -21,7 +22,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
   /**
    * Cached dispatcher for reuse across token requests.
    */
-  private cachedDispatcher: Promise<unknown | undefined> | null = null;
+  private cachedDispatcher: Promise<Dispatcher | undefined> | null = null;
 
   /**
    * OAuthAuthenticator constructor.

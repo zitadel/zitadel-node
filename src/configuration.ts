@@ -1,3 +1,4 @@
+import type { Dispatcher } from 'undici';
 import { HTTPHeaders } from './runtime.js';
 import { NoAuthAuthenticator, Authenticator } from './auth/index.js';
 import { arch, platform, version as nodeVersion } from 'process';
@@ -9,7 +10,7 @@ export { buildDispatcher } from './transport-options.js';
 
 export class Configuration {
   public readonly userAgent: string;
-  private cachedDispatcher: Promise<unknown | undefined> | null = null;
+  private cachedDispatcher: Promise<Dispatcher | undefined> | null = null;
 
   constructor(
     private readonly authenticator: Authenticator = new NoAuthAuthenticator(),
@@ -31,7 +32,7 @@ export class Configuration {
   /**
    * Returns the cached dispatcher, building it lazily on first access.
    */
-  getDispatcher(): Promise<unknown | undefined> {
+  getDispatcher(): Promise<Dispatcher | undefined> {
     if (this.cachedDispatcher === null) {
       this.cachedDispatcher = buildDispatcher(
         this.configuration.transportOptions,

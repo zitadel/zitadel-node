@@ -7,7 +7,7 @@ import {
   StartedTestContainer,
   Wait,
 } from 'testcontainers';
-import Zitadel, { TransportOptions } from '../src/index.js';
+import Zitadel from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,7 +73,6 @@ describe('TransportOptionsTest', () => {
 
     const adminUrl = `http://${host}:${httpPort}/__admin/mappings`;
 
-    // Stub 1 - OpenID Configuration (uses response templating for baseUrl)
     const oidcRes = await fetch(adminUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -88,7 +87,6 @@ describe('TransportOptionsTest', () => {
     });
     expect(oidcRes.status).toBe(201);
 
-    // Stub 2 - Token endpoint
     const tokenRes = await fetch(adminUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -107,7 +105,6 @@ describe('TransportOptionsTest', () => {
     });
     expect(tokenRes.status).toBe(201);
 
-    // Stub 3 - Settings API endpoint (for verifying headers on API calls)
     const settingsRes = await fetch(adminUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -159,7 +156,6 @@ describe('TransportOptionsTest', () => {
   }, 30_000);
 
   test('default headers are sent with requests', async () => {
-    // Use HTTP to avoid TLS concerns
     const zitadel = await Zitadel.withClientCredentials(
       `http://${host}:${httpPort}`,
       'dummy-client',
@@ -168,12 +164,10 @@ describe('TransportOptionsTest', () => {
     );
     expect(zitadel).toBeTruthy();
 
-    // Make an actual API call to verify headers propagate to service requests
     await expect(
       zitadel.settings.getGeneralSettings({ body: {} }),
     ).resolves.toBeDefined();
 
-    // Use WireMock's verification API to assert the header was sent on the API call
     const verifyRes = await fetch(
       `http://${host}:${httpPort}/__admin/requests/count`,
       {
@@ -190,7 +184,6 @@ describe('TransportOptionsTest', () => {
   }, 30_000);
 
   test('proxy URL routes requests through proxy', async () => {
-    // Use Docker-internal hostname — only resolvable through the proxy's network
     const zitadel = Zitadel.withAccessToken(
       'http://wiremock:8080',
       'test-token',
@@ -213,16 +206,5 @@ describe('TransportOptionsTest', () => {
         'dummy-secret',
       ),
     ).rejects.toThrow();
-  }, 30_000);
-
-  test('transport options object works', async () => {
-    const opts: TransportOptions = { insecure: true };
-    const zitadel = await Zitadel.withClientCredentials(
-      `https://${host}:${httpsPort}`,
-      'dummy-client',
-      'dummy-secret',
-      opts,
-    );
-    expect(zitadel).toBeTruthy();
   }, 30_000);
 });

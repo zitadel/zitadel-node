@@ -1,3 +1,5 @@
+import type { Dispatcher } from 'undici';
+
 export interface TransportOptions {
   defaultHeaders?: Record<string, string>;
   caCertPath?: string;
@@ -12,7 +14,7 @@ export interface TransportOptions {
  */
 export async function buildDispatcher(
   transportOptions?: TransportOptions,
-): Promise<unknown | undefined> {
+): Promise<Dispatcher | undefined> {
   if (
     !transportOptions?.insecure &&
     !transportOptions?.caCertPath &&
