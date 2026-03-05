@@ -243,7 +243,7 @@ const zitadel = await Zitadel.withClientCredentials(
 ### Custom Default Headers
 
 You can attach default headers to every outgoing request. This is useful for
-proxy authentication or custom routing headers:
+custom routing or tracing headers:
 
 ```ts
 import Zitadel from '@zitadel/sdk';
@@ -252,14 +252,15 @@ const zitadel = await Zitadel.withClientCredentials(
   'https://your-instance.zitadel.cloud',
   'client-id',
   'client-secret',
-  { defaultHeaders: { 'Proxy-Authorization': 'Basic dXNlcjpwYXNz' } },
+  { defaultHeaders: { 'X-Custom-Header': 'my-value' } },
 );
 ```
 
 ### Proxy Configuration
 
 If your environment requires routing traffic through an HTTP proxy, you can
-specify the proxy URL:
+specify the proxy URL. To authenticate with the proxy, embed the credentials
+directly in the URL:
 
 ```ts
 import Zitadel from '@zitadel/sdk';
@@ -268,7 +269,7 @@ const zitadel = await Zitadel.withClientCredentials(
   'https://your-instance.zitadel.cloud',
   'client-id',
   'client-secret',
-  { proxyUrl: 'http://proxy:8080' },
+  { proxyUrl: 'http://user:pass@proxy:8080' },
 );
 ```
 
