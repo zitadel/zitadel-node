@@ -2,7 +2,7 @@ import { OAuthAuthenticator } from './oauth-authenticator.js';
 import { OpenId } from './openid.js';
 import { ClientCredentialsAuthenticatorBuilder } from './client-credentials-authenticator-builder.js';
 import * as oauth from 'oauth4webapi';
-import { TransportOptions } from '../transport-options.js';
+import type { TransportOptions } from '../transport-options.js';
 
 /**
  * OAuth2 Client Credentials Authenticator.

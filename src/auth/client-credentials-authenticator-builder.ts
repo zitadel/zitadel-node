@@ -1,6 +1,6 @@
 import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
 import { ClientCredentialsAuthenticator } from './client-credentials-authenticator.js';
-import { TransportOptions } from '../transport-options.js';
+import type { TransportOptions } from '../transport-options.js';
 
 /**
  * Builder for ClientCredentialsAuthenticator.

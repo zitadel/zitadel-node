@@ -36,7 +36,7 @@ import {
   WebTokenAuthenticator,
 } from './auth/index.js';
 import { Configuration } from './configuration.js';
-import { TransportOptions } from './transport-options.js';
+import type { TransportOptions } from './transport-options.js';
 
 export * from './zitadel-exception.js';
 export * from './api-exception.js';
