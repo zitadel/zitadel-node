@@ -35,7 +35,7 @@ export class WebTokenAuthenticatorBuilder extends OAuthAuthenticatorBuilder {
    * @param jwtSubject The subject claim for the JWT.
    * @param jwtAudience The audience claim for the JWT.
    * @param privateKey The PEM-formatted private key used to sign the JWT.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   public constructor(
     host: string,

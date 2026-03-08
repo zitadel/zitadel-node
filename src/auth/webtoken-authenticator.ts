@@ -67,6 +67,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    *
    * @param host The base URL for the API endpoints.
    * @param jsonPath The file path to the JSON configuration file.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A builder instance for WebTokenAuthenticator.
    * @throws {Error} if the file cannot be read or the JSON is invalid.
    */
@@ -102,7 +103,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param host The base URL for API endpoints.
    * @param userId The user ID.
    * @param privateKey The PEM-formatted private key.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A new builder instance.
    */
   public static builder(
@@ -159,6 +160,18 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
   /**
    * Creates an instance of WebTokenAuthenticator.
    * @internal
+   *
+   * @param openId The OpenId configuration instance.
+   * @param clientId The OAuth2 client identifier.
+   * @param scope The scope for the token request.
+   * @param jwtIssuer The issuer claim for the JWT.
+   * @param jwtSubject The subject claim for the JWT.
+   * @param jwtAudience The audience claim for the JWT.
+   * @param privateKeyPem The PEM-formatted private key.
+   * @param jwtLifetimeSeconds The lifetime of the JWT in seconds.
+   * @param jwtAlgorithm The signing algorithm.
+   * @param keyId The key ID.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   public static async create(
     openId: OpenId,

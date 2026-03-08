@@ -44,6 +44,11 @@ export * from './configuration.js';
 export * from './models/index.js';
 export * from './auth/index.js';
 
+/**
+ * Main entry point for the Zitadel SDK.
+ *
+ * Provides access to all Zitadel API services through a single client instance.
+ */
 export default class Zitadel {
   public readonly actions: ActionServiceApi;
   public readonly applications: ApplicationServiceApi;
@@ -75,6 +80,13 @@ export default class Zitadel {
   public readonly users: UserServiceApi;
   public readonly webkeys: WebKeyServiceApi;
 
+  /**
+   * Constructs a new Zitadel client instance.
+   *
+   * @param authenticator The authenticator to use for API requests.
+   * @param mutateConfig Optional callback to mutate the configuration.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
+   */
   public constructor(
     authenticator: Authenticator,
     mutateConfig?: (config: Configuration) => void,
@@ -122,7 +134,7 @@ export default class Zitadel {
    *
    * @param host API URL (e.g. "https://api.zitadel.example.com").
    * @param accessToken Personal Access Token for Bearer authentication.
-   * @param transportOptions Optional transport options for TLS, proxy, headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns Configured Zitadel client instance.
    * @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
    */
@@ -144,7 +156,7 @@ export default class Zitadel {
    * @param host API URL.
    * @param clientId OAuth2 client identifier.
    * @param clientSecret OAuth2 client secret.
-   * @param transportOptions Optional transport options for TLS, proxy, headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns Configured Zitadel client instance with token auto-refresh.
    * @throws {Error} If token retrieval fails.
    * @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
@@ -170,7 +182,7 @@ export default class Zitadel {
    *
    * @param host API URL.
    * @param keyFile Path to service account JSON or PEM key file.
-   * @param transportOptions Optional transport options for TLS, proxy, headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns Configured Zitadel client instance using JWT assertion.
    * @throws {Error} If key parsing or token exchange fails.
    * @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt

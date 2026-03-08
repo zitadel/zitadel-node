@@ -18,7 +18,7 @@ export abstract class OAuthAuthenticatorBuilder {
    * Constructs the builder with the required host.
    *
    * @param host The hostname of the OpenID provider.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   protected constructor(
     protected readonly host: string,

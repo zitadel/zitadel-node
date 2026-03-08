@@ -75,6 +75,7 @@ export class OpenId {
    * and returns a new OpenId instance.
    *
    * @param hostname The hostname of the OpenID provider.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A promise that resolves to an OpenId instance.
    * @throws {Error} If the provided hostname is empty, or if there's an
    * error during the HTTP request or JSON parsing.

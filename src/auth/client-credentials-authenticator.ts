@@ -45,7 +45,7 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
    * @param host The base URL for API endpoints.
    * @param clientId The OAuth2 client identifier.
    * @param clientSecret The OAuth2 client secret.
-   * @param transportOptions Optional transport options for TLS and headers.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A new builder instance.
    */
   public static builder(
