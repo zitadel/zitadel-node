@@ -1,5 +1,8 @@
 import type { Dispatcher } from 'undici';
 
+/**
+ * Immutable transport options for configuring HTTP connections.
+ */
 export interface TransportOptions {
   defaultHeaders?: Record<string, string>;
   caCertPath?: string;
