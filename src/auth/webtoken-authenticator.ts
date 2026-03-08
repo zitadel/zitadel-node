@@ -231,7 +231,6 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
 
     const tokenOptions = await this.buildTokenRequestOptions();
 
-    // Allow insecure requests in test environments even without transport options
     if (process.env.JEST_WORKER_ID !== undefined) {
       tokenOptions[oauth.allowInsecureRequests] = true;
     }
