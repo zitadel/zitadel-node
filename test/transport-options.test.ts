@@ -48,10 +48,12 @@ describe('TransportOptionsTest', () => {
           target: '/home/wiremock/keystore.p12',
         },
       ])
-      .withCopyDirectoryToContainer({
-        source: path.join(FIXTURES_DIR, 'mappings'),
-        target: '/home/wiremock/mappings',
-      })
+      .withCopyDirectoriesToContainer([
+        {
+          source: path.join(FIXTURES_DIR, 'mappings'),
+          target: '/home/wiremock/mappings',
+        },
+      ])
       .withExposedPorts(8080, 8443)
       .withWaitStrategy(
         Wait.forHttp('/__admin/mappings', 8080).forStatusCode(200),
