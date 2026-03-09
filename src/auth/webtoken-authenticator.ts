@@ -4,7 +4,7 @@ import * as jose from 'jose';
 import { OpenId } from './openid.js';
 import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
 import type { TransportOptions } from '../transport-options.js';
-// @ts-expect-error since it is not expoered.
+// @ts-expect-error since it is not exported.
 import type { CryptoKey } from 'crypto';
 import * as fs from 'node:fs';
 import { createPrivateKey, KeyObject } from 'node:crypto';
