@@ -28,7 +28,7 @@ describe('TransportOptionsTest', () => {
 
     network = await new Network().start();
 
-    container = await new GenericContainer('wiremock/wiremock:3.3.1')
+    container = await new GenericContainer('wiremock/wiremock:3.12.1')
       .withNetwork(network)
       .withNetworkAliases('wiremock')
       .withCommand([
