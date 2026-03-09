@@ -33,8 +33,7 @@ export async function buildDispatcher(
   const connectOpts: Record<string, unknown> = {};
   if (transportOptions.insecure) {
     connectOpts.rejectUnauthorized = false;
-  }
-  if (transportOptions.caCertPath) {
+  } else if (transportOptions.caCertPath) {
     const { readFileSync } = await import('node:fs');
     const tls = await import('node:tls');
     const customCa = readFileSync(transportOptions.caCertPath, 'utf-8');

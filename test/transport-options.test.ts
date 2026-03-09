@@ -37,10 +37,9 @@ describe('TransportOptionsTest', () => {
   });
 
   test('testInsecureTakesPrecedenceOverCaCertPath', async () => {
-    const certPath = path.join(FIXTURES_DIR, 'ca.pem');
     const result = await buildDispatcher({
       insecure: true,
-      caCertPath: certPath,
+      caCertPath: '/nonexistent/ca.pem',
     });
     expect(result).toBeInstanceOf(Agent);
   });
