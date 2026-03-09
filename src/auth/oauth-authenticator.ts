@@ -59,7 +59,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
   > {
     const options: Record<string | symbol, unknown> = {};
 
-    if (this.transportOptions?.insecure) {
+    if (this.authServer.issuer.startsWith('http://')) {
       options[oauth.allowInsecureRequests] = true;
     }
 
