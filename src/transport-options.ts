@@ -6,8 +6,11 @@ import type { Dispatcher } from 'undici';
 export interface TransportOptions {
   /** Default headers sent to the origin server with every request. */
   defaultHeaders?: Record<string, string>;
+  /** Path to a custom CA certificate file for TLS verification. */
   caCertPath?: string;
+  /** Whether to disable TLS certificate verification. */
   insecure?: boolean;
+  /** Proxy URL for HTTP connections. */
   proxyUrl?: string;
 }
 
