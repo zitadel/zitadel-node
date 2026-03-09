@@ -2,7 +2,10 @@ import type { Dispatcher } from 'undici';
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
-import { buildDispatcher, type TransportOptions } from '../transport-options.js';
+import {
+  buildDispatcher,
+  type TransportOptions,
+} from '../transport-options.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.
@@ -84,7 +87,7 @@ export abstract class OAuthAuthenticator extends Authenticator {
         return fetch(url, {
           ...fetchOptions,
           ...(dispatcher ? { dispatcher } : {}),
-        } as RequestInit);
+        } as globalThis.RequestInit);
       };
     }
 
