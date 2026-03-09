@@ -36,7 +36,7 @@ describe('TransportOptionsTest', () => {
     expect(result).toBeInstanceOf(ProxyAgent);
   });
 
-  test('testInsecureTakesPrecedenceOverCaCertPath', async () => {
+  test('testInsecureTakesPrecedenceOverCaCert', async () => {
     const result = await buildDispatcher({
       insecure: true,
       caCertPath: '/nonexistent/ca.pem',
