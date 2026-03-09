@@ -48,6 +48,10 @@ describe('TransportOptionsTest', () => {
           target: '/home/wiremock/keystore.p12',
         },
       ])
+      .withCopyDirectoryToContainer({
+        source: path.join(FIXTURES_DIR, 'mappings'),
+        target: '/home/wiremock/mappings',
+      })
       .withExposedPorts(8080, 8443)
       .withWaitStrategy(
         Wait.forHttp('/__admin/mappings', 8080).forStatusCode(200),
@@ -70,57 +74,6 @@ describe('TransportOptionsTest', () => {
     httpPort = container.getMappedPort(8080);
     httpsPort = container.getMappedPort(8443);
     proxyPort = proxyContainer.getMappedPort(3128);
-
-    const adminUrl = `http://${host}:${httpPort}/__admin/mappings`;
-
-    const oidcRes = await fetch(adminUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        request: { method: 'GET', url: '/.well-known/openid-configuration' },
-        response: {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-          body: '{"issuer":"{{request.baseUrl}}","token_endpoint":"{{request.baseUrl}}/oauth/v2/token","authorization_endpoint":"{{request.baseUrl}}/oauth/v2/authorize","userinfo_endpoint":"{{request.baseUrl}}/oidc/v1/userinfo","jwks_uri":"{{request.baseUrl}}/oauth/v2/keys"}',
-        },
-      }),
-    });
-    expect(oidcRes.status).toBe(201);
-
-    const tokenRes = await fetch(adminUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        request: { method: 'POST', url: '/oauth/v2/token' },
-        response: {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-          jsonBody: {
-            access_token: 'test-token-12345',
-            token_type: 'Bearer',
-            expires_in: 3600,
-          },
-        },
-      }),
-    });
-    expect(tokenRes.status).toBe(201);
-
-    const settingsRes = await fetch(adminUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        request: {
-          method: 'POST',
-          url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings',
-        },
-        response: {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-          jsonBody: {},
-        },
-      }),
-    });
-    expect(settingsRes.status).toBe(201);
   }, 30_000);
 
   afterAll(async () => {
