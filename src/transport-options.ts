@@ -4,7 +4,7 @@ import type { Dispatcher } from 'undici';
  * Immutable transport options for configuring HTTP connections.
  */
 export interface TransportOptions {
-  /** Default headers sent to the origin server with every request. */
+  /** Default HTTP headers sent to the origin server with every request. */
   defaultHeaders?: Record<string, string>;
   /** Path to a custom CA certificate file for TLS verification. */
   caCertPath?: string;
