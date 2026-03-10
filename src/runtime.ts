@@ -12,9 +12,7 @@ export class BaseAPI {
     'i',
   );
 
-  constructor(protected configuration = new Configuration()) {
-    //
-  }
+  constructor(protected configuration = new Configuration()) {}
 
   /**
    * Check if the given MIME is a JSON MIME.
@@ -118,6 +116,11 @@ export class BaseAPI {
       ...overriddenInit,
       body,
     };
+
+    const dispatcher = await this.configuration.getDispatcher();
+    if (dispatcher) {
+      Object.assign(init, { dispatcher });
+    }
 
     return { url, init };
   }

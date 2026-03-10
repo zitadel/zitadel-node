@@ -203,6 +203,76 @@ Choose the authentication method that best suits your needs based on your
 environment and security requirements. For more details, please refer to the
 [Zitadel documentation on authenticating service users](https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users).
 
+## Advanced Configuration
+
+The SDK provides a `TransportOptions` object that allows you to customise
+the underlying HTTP transport used for both OpenID discovery and API calls.
+
+### Disabling TLS Verification
+
+In development or testing environments with self-signed certificates, you can
+disable TLS verification entirely:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  { insecure: true },
+);
+```
+
+### Using a Custom CA Certificate
+
+If your Zitadel instance uses a certificate signed by a private CA, you can
+provide the path to the CA certificate in PEM format:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  { caCertPath: '/path/to/ca.pem' },
+);
+```
+
+### Custom Default Headers
+
+You can attach default headers to every outgoing request. This is useful for
+custom routing or tracing headers:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  { defaultHeaders: { 'X-Custom-Header': 'my-value' } },
+);
+```
+
+### Proxy Configuration
+
+If your environment requires routing traffic through an HTTP proxy, you can
+specify the proxy URL. To authenticate with the proxy, embed the credentials
+directly in the URL:
+
+```ts
+import Zitadel from '@zitadel/sdk';
+
+const zitadel = await Zitadel.withClientCredentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  { proxyUrl: 'http://user:pass@proxy:8080' },
+);
+```
+
 ## Design and Dependencies
 
 This SDK is designed to be lean and efficient, focusing on providing a

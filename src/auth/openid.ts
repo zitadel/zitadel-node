@@ -1,4 +1,8 @@
 import * as oauth from 'oauth4webapi';
+import {
+  buildDispatcher,
+  type TransportOptions,
+} from '../transport-options.js';
 
 /**
  * OpenId class is responsible for fetching and storing important OpenID
@@ -10,9 +14,7 @@ export class OpenId {
   /**
    * @param authServer The discovered authorization server metadata.
    */
-  private constructor(private readonly authServer: oauth.AuthorizationServer) {
-    //
-  }
+  private constructor(private readonly authServer: oauth.AuthorizationServer) {}
 
   /**
    * Builds and returns a URL object from the provided hostname.
@@ -39,9 +41,21 @@ export class OpenId {
    */
   private static async fetchOpenIdConfiguration(
     hostname: string,
+    transportOptions?: TransportOptions,
   ): Promise<oauth.AuthorizationServer> {
     const wellKnownUrl = this.buildWellKnownUrl(hostname);
-    const response = await fetch(wellKnownUrl);
+
+    const fetchInit: Record<string, unknown> = {};
+    if (transportOptions?.defaultHeaders) {
+      fetchInit.headers = transportOptions.defaultHeaders;
+    }
+    const dispatcher = await buildDispatcher(transportOptions);
+    if (dispatcher) {
+      fetchInit.dispatcher = dispatcher;
+    }
+
+    // eslint-disable-next-line no-undef
+    const response = await fetch(wellKnownUrl, fetchInit as RequestInit);
 
     if (!response.ok) {
       throw new Error(
@@ -64,16 +78,23 @@ export class OpenId {
    * and returns a new OpenId instance.
    *
    * @param hostname The hostname of the OpenID provider.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A promise that resolves to an OpenId instance.
    * @throws {Error} If the provided hostname is empty, or if there's an
    * error during the HTTP request or JSON parsing.
    */
-  public static async discover(hostname: string): Promise<OpenId> {
+  public static async discover(
+    hostname: string,
+    transportOptions?: TransportOptions,
+  ): Promise<OpenId> {
     if (!hostname) {
       throw new Error('Hostname cannot be empty.');
     }
 
-    const authServer = await this.fetchOpenIdConfiguration(hostname);
+    const authServer = await this.fetchOpenIdConfiguration(
+      hostname,
+      transportOptions,
+    );
     return new OpenId(authServer);
   }
 

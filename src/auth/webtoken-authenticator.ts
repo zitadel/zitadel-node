@@ -3,7 +3,8 @@ import * as oauth from 'oauth4webapi';
 import * as jose from 'jose';
 import { OpenId } from './openid.js';
 import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
-// @ts-expect-error since it is not expoered.
+import type { TransportOptions } from '../transport-options.js';
+// @ts-expect-error since it is not exported.
 import type { CryptoKey } from 'crypto';
 import * as fs from 'node:fs';
 import { createPrivateKey, KeyObject } from 'node:crypto';
@@ -31,6 +32,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param jwtLifetimeSeconds The lifetime of the JWT in seconds.
    * @param jwtAlgorithm The signing algorithm.
    * @param keyId The key ID.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   private constructor(
     authServer: oauth.AuthorizationServer,
@@ -43,8 +45,9 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     private readonly jwtLifetimeSeconds: number,
     private readonly jwtAlgorithm: string,
     private readonly keyId?: string,
+    transportOptions?: TransportOptions,
   ) {
-    super(authServer, client, scope);
+    super(authServer, client, scope, transportOptions);
     this.clientAuth = oauth.None();
   }
 
@@ -64,12 +67,14 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    *
    * @param host The base URL for the API endpoints.
    * @param jsonPath The file path to the JSON configuration file.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A builder instance for WebTokenAuthenticator.
    * @throws {Error} if the file cannot be read or the JSON is invalid.
    */
   public static async fromJson(
     host: string,
     jsonPath: string,
+    transportOptions?: TransportOptions,
   ): Promise<WebTokenAuthenticator> {
     const json = fs.readFileSync(jsonPath, 'utf-8').replaceAll('\\"', '"');
     const config = JSON.parse(json);
@@ -82,7 +87,12 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       throw new Error('Missing required configuration keys in JSON file.');
     }
 
-    return WebTokenAuthenticator.builder(host, userId, privateKey)
+    return WebTokenAuthenticator.builder(
+      host,
+      userId,
+      privateKey,
+      transportOptions,
+    )
       .keyId(keyId)
       .build();
   }
@@ -93,12 +103,14 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param host The base URL for API endpoints.
    * @param userId The user ID.
    * @param privateKey The PEM-formatted private key.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    * @returns A new builder instance.
    */
   public static builder(
     host: string,
     userId: string,
     privateKey: string,
+    transportOptions?: TransportOptions,
   ): WebTokenAuthenticatorBuilder {
     return new WebTokenAuthenticatorBuilder(
       host,
@@ -106,6 +118,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       userId,
       host,
       privateKey,
+      transportOptions,
     );
   }
 
@@ -147,6 +160,18 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
   /**
    * Creates an instance of WebTokenAuthenticator.
    * @internal
+   *
+   * @param openId The OpenId configuration instance.
+   * @param clientId The OAuth2 client identifier.
+   * @param scope The scope for the token request.
+   * @param jwtIssuer The issuer claim for the JWT.
+   * @param jwtSubject The subject claim for the JWT.
+   * @param jwtAudience The audience claim for the JWT.
+   * @param privateKeyPem The PEM-formatted private key.
+   * @param jwtLifetimeSeconds The lifetime of the JWT in seconds.
+   * @param jwtAlgorithm The signing algorithm.
+   * @param keyId The key ID.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   public static async create(
     openId: OpenId,
@@ -159,6 +184,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     jwtLifetimeSeconds: number,
     jwtAlgorithm: string,
     keyId?: string,
+    transportOptions?: TransportOptions,
   ): Promise<WebTokenAuthenticator> {
     const privateKey = WebTokenAuthenticator.parsePem(privateKeyPem);
     const authServer = openId.getAuthorizationServer();
@@ -174,6 +200,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       jwtLifetimeSeconds,
       jwtAlgorithm,
       keyId,
+      transportOptions,
     );
   }
 
@@ -202,6 +229,12 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       scope: this.scope,
     });
 
+    const tokenOptions = await this.buildTokenRequestOptions();
+
+    if (process.env.JEST_WORKER_ID !== undefined) {
+      tokenOptions[oauth.allowInsecureRequests] = true;
+    }
+
     // noinspection JSDeprecatedSymbols
     const response = await oauth.genericTokenEndpointRequest(
       authServer,
@@ -209,9 +242,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       this.clientAuth,
       this.grantType,
       parameters,
-      {
-        [oauth.allowInsecureRequests]: process.env.JEST_WORKER_ID !== undefined,
-      },
+      tokenOptions,
     );
 
     const responseBody = (await response.clone().json()) as Response;

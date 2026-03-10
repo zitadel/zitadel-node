@@ -1,5 +1,6 @@
 import { OpenId } from './openid.js';
 import { OAuthAuthenticator } from './oauth-authenticator.js';
+import type { TransportOptions } from '../transport-options.js';
 
 /**
  * Base builder for OAuth authenticators.
@@ -17,8 +18,12 @@ export abstract class OAuthAuthenticatorBuilder {
    * Constructs the builder with the required host.
    *
    * @param host The hostname of the OpenID provider.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
-  protected constructor(protected readonly host: string) {}
+  protected constructor(
+    protected readonly host: string,
+    protected readonly transportOptions?: TransportOptions,
+  ) {}
 
   /**
    * Overrides the default scopes.
@@ -33,7 +38,7 @@ export abstract class OAuthAuthenticatorBuilder {
 
   protected async discoverOpenId(): Promise<void> {
     if (!this.openId) {
-      this.openId = await OpenId.discover(this.host);
+      this.openId = await OpenId.discover(this.host, this.transportOptions);
     }
   }
 
