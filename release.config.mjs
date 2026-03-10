@@ -20,7 +20,7 @@ export default {
       '@semantic-release/exec',
       {
         prepareCmd:
-          "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' src/version.ts",
+          "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+[-a-zA-Z0-9\\.]*/${nextRelease.version}/' src/version.ts",
       },
     ],
     [
