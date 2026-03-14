@@ -77,6 +77,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "overrides": {
+    "@codedependant/semantic-release-docker": {
+      "@actions/core": "^3.0.0"
+    }
+  },
   "dependencies": {
     "jose": "^6.1.0",
     "oauth4webapi": "^3.8.2",
