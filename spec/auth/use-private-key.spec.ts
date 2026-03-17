@@ -27,7 +27,7 @@ describe('UsePrivateKeySpec', () => {
       context.baseUrl,
       context.jwtKey,
     );
-    await client.settings.settingsServiceGetGeneralSettings();
+    await client.settings.getGeneralSettings({ body: {} });
   }, 120000);
 
   /**
@@ -40,7 +40,7 @@ describe('UsePrivateKeySpec', () => {
       context.jwtKey,
     );
     await expect(
-      invalid.settings.settingsServiceGetGeneralSettings(),
+      invalid.settings.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });

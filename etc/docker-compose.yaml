@@ -20,7 +20,7 @@ services:
     restart: 'no'
     networks:
       - storage
-    image: 'ghcr.io/zitadel/zitadel:latest'
+    image: 'ghcr.io/zitadel/zitadel:v4.2.0'
     command: 'init --config /example-zitadel-config.yaml --config /example-zitadel-secrets.yaml'
     depends_on:
       db:
@@ -34,7 +34,7 @@ services:
     restart: 'no'
     networks:
       - storage
-    image: 'ghcr.io/zitadel/zitadel:latest-debug'
+    image: 'ghcr.io/zitadel/zitadel:v4.2.0-debug'
     user: root
     entrypoint: '/bin/bash'
     command:
@@ -59,7 +59,7 @@ services:
     networks:
       - backend
       - storage
-    image: 'ghcr.io/zitadel/zitadel:latest'
+    image: 'ghcr.io/zitadel/zitadel:v4.2.0'
     command: >
       start --config /example-zitadel-config.yaml
       --config /example-zitadel-secrets.yaml

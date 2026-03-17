@@ -1,49 +1,36 @@
 import { ZitadelException } from './zitadel-exception.js';
 
 /**
- * Represents an HTTP error returned from an API.
+ * Represents an HTTP error returned from the Zitadel API.
+ *
  * Exposes the HTTP status code, response headers, and response body.
  */
 export class ApiException extends ZitadelException {
   /**
-   * The HTTP body of the server response.
-   * Can be a decoded JSON object, a string, or null.
+   * HTTP response headers.
    */
-  protected readonly _responseBody: Record<string, unknown> | string | null;
+  private readonly _responseHeaders: Record<string, string[]>;
 
   /**
-   * The HTTP headers of the server response.
-   * Represented as a record where keys are header names and values are arrays of strings
-   * (to accommodate headers that can appear multiple times).
+   * HTTP response body.
    */
-  protected readonly _responseHeaders: Record<string, string[]>;
+  private readonly _responseBody: string | null;
 
   /**
    * Constructor.
    *
-   * @param message Error message.
-   * @param code HTTP status code. This will be passed to ZitadelException's constructor.
-   * @param responseHeaders HTTP response headers. Defaults to an empty object.
-   * @param responseBody HTTP response body (decoded JSON object, string, or null). Defaults to null.
+   * @param code            HTTP status code
+   * @param responseHeaders HTTP response headers
+   * @param responseBody    HTTP response body
    */
   public constructor(
-    message: string,
     code: number,
-    responseHeaders: Record<string, string[]> = {},
-    responseBody: Record<string, unknown> | string | null = null,
+    responseHeaders: Record<string, string[]>,
+    responseBody: string | null,
   ) {
-    super(message, undefined, code);
+    super(`Error ${code}`, undefined, code);
     this._responseHeaders = responseHeaders;
     this._responseBody = responseBody;
-  }
-
-  /**
-   * Gets the HTTP status code.
-   *
-   * @returns HTTP status code.
-   */
-  public getStatusCode(): number {
-    return super.getCode();
   }
 
   /**
@@ -56,11 +43,11 @@ export class ApiException extends ZitadelException {
   }
 
   /**
-   * Gets the HTTP response body (decoded JSON object, string, or null).
+   * Gets the HTTP response body.
    *
    * @returns HTTP response body.
    */
-  public getResponseBody(): Record<string, unknown> | string | null {
+  public getResponseBody(): string | null {
     return this._responseBody;
   }
 }
