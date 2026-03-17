@@ -12,9 +12,7 @@ export class BaseAPI {
     'i',
   );
 
-  constructor(protected configuration = new Configuration()) {
-    //
-  }
+  constructor(protected configuration = new Configuration()) {}
 
   /**
    * Check if the given MIME is a JSON MIME.
@@ -42,8 +40,8 @@ export class BaseAPI {
     if (response && response.status >= 200 && response.status < 300) {
       return response;
     }
+    const responseBody = await response.text();
     throw new ApiException(
-      'Response returned an error code',
       response.status,
       Object.fromEntries(
         Object.entries(response.headers).map(([k, v]) => [
@@ -51,7 +49,7 @@ export class BaseAPI {
           Array.isArray(v) ? v : [v],
         ]),
       ),
-      response?.body?.toString(),
+      responseBody,
     );
   }
 
@@ -118,6 +116,11 @@ export class BaseAPI {
       ...overriddenInit,
       body,
     };
+
+    const dispatcher = await this.configuration.getDispatcher();
+    if (dispatcher) {
+      Object.assign(init, { dispatcher });
+    }
 
     return { url, init };
   }

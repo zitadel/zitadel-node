@@ -1,6 +1,11 @@
+import type { Dispatcher } from 'undici';
 import { Authenticator } from './authenticator.js';
 import * as oauth from 'oauth4webapi';
 import { ZitadelException } from '../zitadel-exception.js';
+import {
+  buildDispatcher,
+  type TransportOptions,
+} from '../transport-options.js';
 
 /**
  * Abstract base class for OAuth-based authenticators.
@@ -17,6 +22,10 @@ export abstract class OAuthAuthenticator extends Authenticator {
    * The token's expiration timestamp.
    */
   protected tokenExpiry: number | null = null;
+  /**
+   * Cached dispatcher for reuse across token requests.
+   */
+  private cachedDispatcher: Promise<Dispatcher | undefined> | null = null;
 
   /**
    * OAuthAuthenticator constructor.
@@ -24,13 +33,65 @@ export abstract class OAuthAuthenticator extends Authenticator {
    * @param authServer The discovered authorization server metadata.
    * @param client The OAuth2 client metadata.
    * @param scope The scope for the token request.
+   * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   protected constructor(
     protected readonly authServer: oauth.AuthorizationServer,
     protected readonly client: oauth.Client,
     protected readonly scope: string,
+    protected readonly transportOptions?: TransportOptions,
   ) {
     super(authServer.issuer);
+  }
+
+  /**
+   * Builds oauth4webapi request options from transport options.
+   *
+   * Constructs a customFetch wrapper that applies the configured dispatcher
+   * (for TLS/proxy settings) and default headers to all HTTP requests made
+   * by oauth4webapi functions.
+   *
+   * @returns An options object suitable for passing to oauth4webapi token
+   *          request functions.
+   */
+  protected async buildTokenRequestOptions(): Promise<
+    Record<string | symbol, unknown>
+  > {
+    const options: Record<string | symbol, unknown> = {};
+
+    if (this.authServer.issuer.startsWith('http://')) {
+      options[oauth.allowInsecureRequests] = true;
+    }
+
+    if (this.transportOptions?.defaultHeaders) {
+      options.headers = this.transportOptions.defaultHeaders;
+    }
+
+    if (this.cachedDispatcher === null) {
+      this.cachedDispatcher = buildDispatcher(this.transportOptions);
+    }
+    const dispatcher = await this.cachedDispatcher;
+    if (dispatcher || this.transportOptions?.defaultHeaders) {
+      const defaultHeaders = this.transportOptions?.defaultHeaders;
+      options[oauth.customFetch] = (
+        url: string,
+        fetchOptions: Record<string, unknown>,
+      ) => {
+        if (defaultHeaders) {
+          const existingHeaders = (fetchOptions.headers ?? {}) as Record<
+            string,
+            string
+          >;
+          fetchOptions.headers = { ...defaultHeaders, ...existingHeaders };
+        }
+        return fetch(url, {
+          ...fetchOptions,
+          ...(dispatcher ? { dispatcher } : {}),
+        } as globalThis.RequestInit);
+      };
+    }
+
+    return options;
   }
 
   /**

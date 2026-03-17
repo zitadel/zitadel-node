@@ -8,7 +8,19 @@ export default {
     },
   ],
   plugins: [
-    '@semantic-release/commit-analyzer',
+    [
+      '@semantic-release/commit-analyzer',
+      {
+        releaseRules: [
+          {
+            type: 'chore',
+            scope: 'deps',
+            subject: '*security-updates*',
+            release: 'patch',
+          },
+        ],
+      },
+    ],
     [
       '@mridang/semantic-release-peer-version',
       {
@@ -20,7 +32,7 @@ export default {
       '@semantic-release/exec',
       {
         prepareCmd:
-          "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' src/version.ts",
+          "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+[-a-zA-Z0-9\\.]*/${nextRelease.version}/' src/version.ts",
       },
     ],
     [
@@ -39,22 +51,20 @@ export default {
       },
     ],
     [
-      '@semantic-release/github',
+      '@semantic-release/npm',
       {
-        successComment: false,
-        failComment: false,
-        assets: [],
+        npmPublish: true,
+        pkgRoot: '.',
+        tarballDir: '.',
+        access: 'public',
       },
     ],
-    // [
-    //   '@semantic-release/npm',
-    //   {
-    //     npmPublish: true,
-    //     pkgRoot: '.',
-    //     tarballDir: '.',
-    //     access: 'public',
-    //   },
-    // ],
+    [
+      '@semantic-release/github',
+      {
+        assets: [{ path: '*.tgz', label: 'Package' }],
+      },
+    ],
     [
       '@semantic-release/git',
       {
