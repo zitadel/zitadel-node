@@ -80,6 +80,6 @@
   "dependencies": {
     "jose": "^6.1.0",
     "oauth4webapi": "^3.8.2",
-    "undici": "^6.23.0"
+    "undici": "^7.24.0"
   }
 }
