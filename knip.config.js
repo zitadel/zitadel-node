@@ -3,7 +3,7 @@ module.exports = {
   ignoreDependencies: [
     '@semantic-release/.*?',
     '@mridang/semantic-release-peer-version',
-    '@codedependant/semantic-release-docker',
+    '@mridang/semantic-release-oci',
     '@commitlint/.*?',
   ],
   ignore: ['src/apis/**', 'src/models/**', 'comm'],

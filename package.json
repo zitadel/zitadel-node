@@ -50,10 +50,10 @@
   "homepage": "https://github.com/zitadel/zitadel-node",
   "bugs": "https://github.com/zitadel/zitadel-node/issues",
   "devDependencies": {
-    "@codedependant/semantic-release-docker": "^5.1.1",
     "@commitlint/config-conventional": "^20.0.0",
     "@jest/globals": "^30.2.0",
     "@mridang/eslint-defaults": "^1.6.1",
+    "@mridang/semantic-release-oci": "^1.0.0",
     "@mridang/semantic-release-peer-version": "^1.2.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

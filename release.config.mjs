@@ -42,7 +42,7 @@ export default {
       },
     ],
     [
-      '@codedependant/semantic-release-docker',
+      '@mridang/semantic-release-oci',
       {
         dockerRegistry: 'ghcr.io',
         dockerProject: 'zitadel',
