@@ -1,7 +1,7 @@
-import Zitadel from '../../src/index.js';
+import Zitadel from "../../src/index.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from '../../src/zitadel-exception.js';
-import { useIntegrationEnvironment } from '../base-spec.js';
+import { ZitadelException } from "../../src/zitadel-exception.js";
+import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
  * SettingsService Integration Tests (Private Key Assertion)
@@ -12,7 +12,7 @@ import { useIntegrationEnvironment } from '../base-spec.js';
  * 1. Retrieve general settings successfully with a valid private key
  * 2. Expect an ApiException when using an invalid private key
  */
-describe('UsePrivateKeySpec', () => {
+describe("UsePrivateKeySpec", () => {
   const { context } = useIntegrationEnvironment();
 
   /**
@@ -22,7 +22,7 @@ describe('UsePrivateKeySpec', () => {
    * @throws {Error}
    * @doesNotPerformAssertions
    */
-  it('testRetrievesGeneralSettingsWithValidAuth', async () => {
+  it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const client = await Zitadel.withPrivateKey(
       context.baseUrl,
       context.jwtKey,
@@ -34,9 +34,9 @@ describe('UsePrivateKeySpec', () => {
    * Expect an ApiException when using an invalid private key assertion.
    * @throws {Error}
    */
-  it('testRaisesApiExceptionWithInvalidAuth', async () => {
+  it("testRaisesApiExceptionWithInvalidAuth", async () => {
     const invalid = await Zitadel.withPrivateKey(
-      'https://zitadel.cloud',
+      "https://zitadel.cloud",
       context.jwtKey,
     );
     await expect(

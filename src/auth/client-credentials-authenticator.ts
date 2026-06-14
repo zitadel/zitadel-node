@@ -1,8 +1,8 @@
-import { OAuthAuthenticator } from './oauth-authenticator.js';
-import { OpenId } from './openid.js';
-import { ClientCredentialsAuthenticatorBuilder } from './client-credentials-authenticator-builder.js';
-import * as oauth from 'oauth4webapi';
-import type { TransportOptions } from '../transport-options.js';
+import { OAuthAuthenticator } from "./oauth-authenticator.js";
+import { OpenId } from "./openid.js";
+import { ClientCredentialsAuthenticatorBuilder } from "./client-credentials-authenticator-builder.js";
+import * as oauth from "oauth4webapi";
+import type { TransportOptions } from "../transport-options.js";
 
 /**
  * OAuth2 Client Credentials Authenticator.
@@ -26,15 +26,21 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
     openId: OpenId,
     clientId: string,
     clientSecret: string,
-    scope: string = 'openid urn:zitadel:iam:org:project:id:zitadel:aud',
+    scope: string = "openid urn:zitadel:iam:org:project:id:zitadel:aud",
     transportOptions?: TransportOptions,
   ) {
     const authServer = openId.getAuthorizationServer();
     const client: oauth.Client = { client_id: clientId };
-    super(authServer, client, scope, transportOptions);
+    super(
+      openId.getHostEndpoint(),
+      authServer,
+      client,
+      scope,
+      transportOptions,
+    );
     this.clientAuth = oauth.ClientSecretBasic(clientSecret);
     this.parameters = new URLSearchParams({
-      grant_type: 'client_credentials',
+      grant_type: "client_credentials",
       scope: this.scope,
     });
   }
@@ -66,7 +72,7 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,
   ): Promise<oauth.TokenEndpointResponse> {
-    const tokenOptions = await this.buildTokenRequestOptions();
+    const tokenOptions = this.buildTokenRequestOptions();
 
     if (process.env.JEST_WORKER_ID !== undefined) {
       tokenOptions[oauth.allowInsecureRequests] = true;

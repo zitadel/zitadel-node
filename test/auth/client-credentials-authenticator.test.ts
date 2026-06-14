@@ -1,6 +1,6 @@
 // noinspection ES6PreferShortImport
-import { ClientCredentialsAuthenticator } from '../../src/auth/client-credentials-authenticator.js';
-import { withOauthContainer } from './oauth-authenticator-test.js';
+import { ClientCredentialsAuthenticator } from "../../src/auth/client-credentials-authenticator.js";
+import { withOauthContainer } from "./oauth-authenticator-test.js";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -10,18 +10,18 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  * This test verifies that the client credentials authenticator correctly
  * refreshes its token and returns the proper Authorization header.
  */
-describe('ClientCredentialsAuthenticatorTest', () => {
+describe("ClientCredentialsAuthenticatorTest", () => {
   withOauthContainer((getOauthHost) => {
-    test('testRefreshToken', async () => {
+    test("testRefreshToken", async () => {
       const oauthHost = getOauthHost();
       await sleep(20);
 
       const authenticator = await ClientCredentialsAuthenticator.builder(
         oauthHost,
-        'dummy-client',
-        'dummy-secret',
+        "dummy-client",
+        "dummy-secret",
       )
-        .scopes(['openid', 'foo'])
+        .scopes(["openid", "foo"])
         .build();
 
       expect(await authenticator.getAuthToken()).not.toBeFalsy();
@@ -34,7 +34,7 @@ describe('ClientCredentialsAuthenticatorTest', () => {
 
       // noinspection DuplicatedCode
       expect(token.access_token).toBe(await authenticator.getAuthToken());
-      expect(authenticator.getHost().toString()).toBe(oauthHost + '/');
+      expect(authenticator.getHost().toString()).toBe(oauthHost + "/");
 
       expect((await authenticator.refreshToken()).access_token).not.toEqual(
         (await authenticator.refreshToken()).access_token,

@@ -1,19 +1,19 @@
 // noinspection DuplicatedCode
 
-import { generateKeyPair } from 'node:crypto';
+import { generateKeyPair } from "node:crypto";
 // noinspection ES6PreferShortImport
-import { WebTokenAuthenticator } from '../../src/auth/webtoken-authenticator.js';
-import { withOauthContainer } from './oauth-authenticator-test.js';
+import { WebTokenAuthenticator } from "../../src/auth/webtoken-authenticator.js";
+import { withOauthContainer } from "./oauth-authenticator-test.js";
 
-describe('WebTokenAuthenticatorTest', () => {
+describe("WebTokenAuthenticatorTest", () => {
   const getPrivateKey = (): Promise<string> => {
     return new Promise((resolve, reject) => {
       generateKeyPair(
-        'rsa',
+        "rsa",
         {
           modulusLength: 2048,
-          publicKeyEncoding: { type: 'spki', format: 'pem' },
-          privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+          publicKeyEncoding: { type: "spki", format: "pem" },
+          privateKeyEncoding: { type: "pkcs8", format: "pem" },
         },
         (err, publicKey, privKey) => {
           if (err) {
@@ -26,14 +26,14 @@ describe('WebTokenAuthenticatorTest', () => {
   };
 
   withOauthContainer((getOauthHost) => {
-    test('testRefreshToken', async () => {
+    test("testRefreshToken", async () => {
       const oauthHost = getOauthHost();
       const authenticator = await WebTokenAuthenticator.builder(
         oauthHost,
-        '1',
+        "1",
         await getPrivateKey(),
       )
-        .scopes(['openid', 'foo'])
+        .scopes(["openid", "foo"])
         .build();
 
       expect(await authenticator.getAuthToken()).not.toBeFalsy();
@@ -41,20 +41,20 @@ describe('WebTokenAuthenticatorTest', () => {
       expect(token.access_token).not.toBeFalsy();
       expect(token.expires_in && token.expires_in > 0).toBe(true);
       expect(token.access_token).toBe(await authenticator.getAuthToken());
-      expect(authenticator.getHost().toString()).toBe(oauthHost + '/');
+      expect(authenticator.getHost().toString()).toBe(oauthHost + "/");
       expect((await authenticator.refreshToken()).access_token).not.toEqual(
         (await authenticator.refreshToken()).access_token,
       );
     }, 30000);
 
-    test('testRefreshTokenWithRS256', async () => {
+    test("testRefreshTokenWithRS256", async () => {
       const oauthHost = getOauthHost();
       const authenticator = await WebTokenAuthenticator.builder(
         oauthHost,
-        '1',
+        "1",
         await getPrivateKey(),
       )
-        .jwtAlgorithm('RS256')
+        .jwtAlgorithm("RS256")
         .build();
 
       expect(await authenticator.getAuthToken()).not.toBeFalsy();
@@ -62,17 +62,17 @@ describe('WebTokenAuthenticatorTest', () => {
       expect(token.access_token).not.toBeFalsy();
       expect(token.expires_in && token.expires_in > 0).toBe(true);
       expect(token.access_token).toBe(await authenticator.getAuthToken());
-      expect(authenticator.getHost().toString()).toBe(oauthHost + '/');
+      expect(authenticator.getHost().toString()).toBe(oauthHost + "/");
       expect((await authenticator.refreshToken()).access_token).not.toEqual(
         (await authenticator.refreshToken()).access_token,
       );
     }, 30000);
 
-    test('testRefreshTokenWithExtendedLifetime', async () => {
+    test("testRefreshTokenWithExtendedLifetime", async () => {
       const oauthHost = getOauthHost();
       const authenticator = await WebTokenAuthenticator.builder(
         oauthHost,
-        '1',
+        "1",
         await getPrivateKey(),
       )
         .tokenLifetimeSeconds(86400)
@@ -83,7 +83,7 @@ describe('WebTokenAuthenticatorTest', () => {
       expect(token.access_token).not.toBeFalsy();
       expect(token.expires_in && token.expires_in > 0).toBe(true);
       expect(token.access_token).toBe(await authenticator.getAuthToken());
-      expect(authenticator.getHost().toString()).toBe(oauthHost + '/');
+      expect(authenticator.getHost().toString()).toBe(oauthHost + "/");
       expect((await authenticator.refreshToken()).access_token).not.toEqual(
         (await authenticator.refreshToken()).access_token,
       );

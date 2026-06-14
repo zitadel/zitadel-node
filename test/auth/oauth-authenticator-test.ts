@@ -1,18 +1,18 @@
 // file: test/auth/oauth-authenticator.test.ts
-import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers';
+import { GenericContainer, StartedTestContainer, Wait } from "testcontainers";
 
 export function withOauthContainer(
   defineTests: (getOauthHost: () => string) => void,
 ): void {
   let container: StartedTestContainer;
-  let oauthHost = '';
+  let oauthHost = "";
 
   beforeAll(async () => {
     container = await new GenericContainer(
-      'ghcr.io/navikt/mock-oauth2-server:2.1.10',
+      "ghcr.io/navikt/mock-oauth2-server:2.1.10",
     )
       .withExposedPorts(8080)
-      .withWaitStrategy(Wait.forHttp('/', 8080).forStatusCode(405))
+      .withWaitStrategy(Wait.forHttp("/", 8080).forStatusCode(405))
       .start();
 
     // noinspection HttpUrlsUsage
@@ -23,7 +23,7 @@ export function withOauthContainer(
     await container.stop();
   });
 
-  describe('with mock OAuth2 server', () => {
+  describe("with mock OAuth2 server", () => {
     defineTests(() => oauthHost); // 👈 defer access to when test runs
   });
 }

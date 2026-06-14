@@ -1,9 +1,9 @@
-import { execSync } from 'child_process';
-import * as path from 'path';
-import * as fs from 'fs';
-import { fileURLToPath } from 'url';
-import { afterAll, beforeAll } from '@jest/globals';
-import { setTimeout } from 'timers/promises';
+import { execSync } from "child_process";
+import * as path from "path";
+import * as fs from "fs";
+import { fileURLToPath } from "url";
+import { afterAll, beforeAll } from "@jest/globals";
+import { setTimeout } from "timers/promises";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,7 +45,7 @@ abstract class AbstractIntegrationTest {
    */
   private static composeFilePath: string = path.resolve(
     __dirname,
-    '../etc/docker-compose.yaml',
+    "../etc/docker-compose.yaml",
   );
   /**
    * The directory containing the docker-compose.yaml file.
@@ -60,24 +60,24 @@ abstract class AbstractIntegrationTest {
   public static async setUpBeforeClass(): Promise<void> {
     this.composeFileDir = path.dirname(this.composeFilePath);
 
-    console.log('Bringing up Docker Compose stack...');
+    console.log("Bringing up Docker Compose stack...");
     try {
       const command = `docker compose -f "${this.composeFilePath}" up --detach --no-color --quiet-pull`;
-      execSync(command, { stdio: 'inherit' });
-      console.log('Docker Compose stack is up.');
+      execSync(command, { stdio: "inherit" });
+      console.log("Docker Compose stack is up.");
     } catch (error: unknown) {
-      let errorMessage = 'Failed to bring up Docker Compose stack.';
+      let errorMessage = "Failed to bring up Docker Compose stack.";
       if (error instanceof Error) {
         errorMessage += `\n${error.message}`;
       }
       throw new Error(errorMessage);
     }
 
-    this.loadFileContentIntoProperty('zitadel_output/pat.txt', 'authToken');
+    this.loadFileContentIntoProperty("zitadel_output/pat.txt", "authToken");
 
     const jwtKeyFilePath = path.join(
       this.composeFileDir,
-      'zitadel_output/sa-key.json',
+      "zitadel_output/sa-key.json",
     );
     if (!fs.existsSync(jwtKeyFilePath)) {
       throw new Error(`JWT Key file not found at path: ${jwtKeyFilePath}`);
@@ -85,7 +85,7 @@ abstract class AbstractIntegrationTest {
     this.jwtKey = jwtKeyFilePath;
     console.log(`Loaded JWT_KEY path: ${this.jwtKey}`);
 
-    this.baseUrl = 'http://localhost:8099';
+    this.baseUrl = "http://localhost:18100";
     console.log(`Exposed BASE_URL as: ${this.baseUrl}`);
 
     await setTimeout(40000);
@@ -98,14 +98,14 @@ abstract class AbstractIntegrationTest {
    */
   private static loadFileContentIntoProperty(
     relativePath: string,
-    propertyName: 'authToken',
+    propertyName: "authToken",
   ): void {
     if (!this.composeFileDir) {
-      throw new Error('Compose file directory is not initialized.');
+      throw new Error("Compose file directory is not initialized.");
     }
     const filePath = path.join(this.composeFileDir, relativePath);
     if (fs.existsSync(filePath)) {
-      this[propertyName] = fs.readFileSync(filePath, 'utf-8').trim();
+      this[propertyName] = fs.readFileSync(filePath, "utf-8").trim();
       console.log(`Loaded ${filePath} content into property: ${propertyName}`);
     } else {
       throw new Error(
@@ -119,16 +119,16 @@ abstract class AbstractIntegrationTest {
    * This includes stopping and removing the Docker Compose stack.
    */
   public static tearDownAfterClass(): void {
-    console.log('Tearing down Docker Compose stack...');
+    console.log("Tearing down Docker Compose stack...");
     if (fs.existsSync(this.composeFilePath)) {
       try {
         const commandl = `docker compose -f "${this.composeFilePath}" logs`;
-        execSync(commandl, { stdio: 'inherit' });
+        execSync(commandl, { stdio: "inherit" });
         const command = `docker compose -f "${this.composeFilePath}" down -v`;
-        execSync(command, { stdio: 'inherit' });
-        console.log('Docker Compose stack torn down.');
+        execSync(command, { stdio: "inherit" });
+        console.log("Docker Compose stack torn down.");
       } catch (error: unknown) {
-        let errorMessage = 'Warning: Failed to tear down Docker Compose stack.';
+        let errorMessage = "Warning: Failed to tear down Docker Compose stack.";
         if (error instanceof Error) {
           errorMessage += `\n${error.message}`;
         }
@@ -136,7 +136,7 @@ abstract class AbstractIntegrationTest {
       }
     } else {
       throw new Error(
-        'Docker Compose file path not initialized or file does not exist, skipping tear down.',
+        "Docker Compose file path not initialized or file does not exist, skipping tear down.",
       );
     }
   }
@@ -145,7 +145,7 @@ abstract class AbstractIntegrationTest {
    * Retrieves the authentication token.
    */
   public static getAuthToken(): string {
-    if (!this.authToken) throw new Error('Auth token is not available.');
+    if (!this.authToken) throw new Error("Auth token is not available.");
     return this.authToken;
   }
 
@@ -153,7 +153,7 @@ abstract class AbstractIntegrationTest {
    * Retrieves the absolute path to the JWT key file.
    */
   public static getJwtKey(): string {
-    if (!this.jwtKey) throw new Error('JWT key is not available.');
+    if (!this.jwtKey) throw new Error("JWT key is not available.");
     return this.jwtKey;
   }
 
@@ -161,7 +161,7 @@ abstract class AbstractIntegrationTest {
    * Retrieves the base URL.
    */
   public static getBaseUrl(): string {
-    if (!this.baseUrl) throw new Error('Base URL is not available.');
+    if (!this.baseUrl) throw new Error("Base URL is not available.");
     return this.baseUrl;
   }
 }
