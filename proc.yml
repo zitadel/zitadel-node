@@ -1,0 +1,14 @@
+npmName: "@zitadel/client"
+npmVersion: 0.0.1
+# typescriptThreePlus: true
+supportsES6: true
+ensureUniqueParams: true
+modelPropertyNaming: original
+disallowAdditionalPropertiesIfNotPresent: false
+withInterfaces: false
+useSingleRequestParameter: true
+enumUnknownDefaultCase: true
+generateUnitTests: true
+importFileExtension: ".js"
+repoName: git@github.com:zitadel/zitadel-node.git
+generatorName: node-plus

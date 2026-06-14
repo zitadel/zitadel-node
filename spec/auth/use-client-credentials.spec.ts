@@ -1,7 +1,7 @@
-import Zitadel from '../../src/index.js';
+import Zitadel from "../../src/index.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from '../../src/zitadel-exception.js';
-import { useIntegrationEnvironment } from '../base-spec.js';
+import { ZitadelException } from "../../src/zitadel-exception.js";
+import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
  * SettingsService Integration Tests (Client Credentials)
@@ -12,21 +12,21 @@ import { useIntegrationEnvironment } from '../base-spec.js';
  * 1. Retrieve general settings successfully with valid credentials
  * 2. Expect an ApiException when using invalid credentials
  */
-describe('UseClientCredentialsSpec', () => {
+describe("UseClientCredentialsSpec", () => {
   const { context } = useIntegrationEnvironment();
 
-  async function generateUserSecret(token: string, loginName = 'api-user') {
+  async function generateUserSecret(token: string, loginName = "api-user") {
     const userUrl = new URL(
-      'http://localhost:8099/management/v1/global/users/_by_login_name',
+      "http://localhost:18100/management/v1/global/users/_by_login_name",
     );
-    userUrl.searchParams.set('loginName', loginName);
+    userUrl.searchParams.set("loginName", loginName);
 
     let userIdResponse;
     try {
       userIdResponse = await fetch(userUrl.toString(), {
         headers: {
           Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
+          Accept: "application/json",
         },
         signal: AbortSignal.timeout(5000),
       });
@@ -42,22 +42,24 @@ describe('UseClientCredentialsSpec', () => {
     }
 
     if (userIdResponse.ok) {
-      const userPayload = await userIdResponse.json();
+      const userPayload = (await userIdResponse.json()) as {
+        user?: { id?: string };
+      };
       const userId = userPayload?.user?.id;
 
-      if (userId && typeof userId === 'string') {
-        const secretUrl = `http://localhost:8099/management/v1/users/${userId}/secret`;
+      if (userId && typeof userId === "string") {
+        const secretUrl = `http://localhost:18100/management/v1/users/${userId}/secret`;
 
         let secretResponse;
         try {
           secretResponse = await fetch(secretUrl, {
-            method: 'PUT',
+            method: "PUT",
             headers: {
               Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
+              "Content-Type": "application/json",
+              Accept: "application/json",
             },
-            body: '{}',
+            body: "{}",
             signal: AbortSignal.timeout(5000),
           });
         } catch (error) {
@@ -72,7 +74,10 @@ describe('UseClientCredentialsSpec', () => {
         }
 
         if (secretResponse.ok) {
-          const secretData = await secretResponse.json();
+          const secretData = (await secretResponse.json()) as {
+            clientId?: string;
+            clientSecret?: string;
+          };
           const { clientId, clientSecret } = secretData;
 
           if (clientId && clientSecret) {
@@ -108,7 +113,7 @@ describe('UseClientCredentialsSpec', () => {
    * @throws {Error}
    * @doesNotPerformAssertions
    */
-  it('testRetrievesGeneralSettingsWithValidAuth', async () => {
+  it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const credentials = await generateUserSecret(context.authToken);
     const client = await Zitadel.withClientCredentials(
       context.baseUrl,
@@ -123,11 +128,11 @@ describe('UseClientCredentialsSpec', () => {
    * Expect an ApiException when using invalid client credentials.
    * @throws {Error}
    */
-  it('testRaisesApiExceptionWithInvalidAuth', async () => {
+  it("testRaisesApiExceptionWithInvalidAuth", async () => {
     const invalid = await Zitadel.withClientCredentials(
       context.baseUrl,
-      'invalid',
-      'invalid',
+      "invalid",
+      "invalid",
     );
 
     await expect(

@@ -1,7 +1,7 @@
-import Zitadel from '../../src/index.js';
+import Zitadel from "../../src/index.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from '../../src/zitadel-exception.js';
-import { useIntegrationEnvironment } from '../base-spec.js';
+import { ZitadelException } from "../../src/zitadel-exception.js";
+import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
  * SettingsService Integration Tests (Personal Access Token)
@@ -12,7 +12,7 @@ import { useIntegrationEnvironment } from '../base-spec.js';
  * 1. Retrieve general settings successfully with a valid token
  * 2. Expect an ApiException when using an invalid token
  */
-describe('UseAccessTokenSpec', () => {
+describe("UseAccessTokenSpec", () => {
   const { context } = useIntegrationEnvironment();
 
   /**
@@ -21,7 +21,7 @@ describe('UseAccessTokenSpec', () => {
    * @throws {ApiException} on API error
    * @doesNotPerformAssertions
    */
-  it('testRetrievesGeneralSettingsWithValidAuth', async () => {
+  it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
 
     await client.settings.getGeneralSettings({ body: {} });
@@ -31,8 +31,8 @@ describe('UseAccessTokenSpec', () => {
    * Expect an ApiException when using an invalid PAT.
    * @throws {Error}
    */
-  it('testRaisesApiExceptionWithInvalidAuth', async () => {
-    const invalid = Zitadel.withAccessToken(context.baseUrl, 'invalid');
+  it("testRaisesApiExceptionWithInvalidAuth", async () => {
+    const invalid = Zitadel.withAccessToken(context.baseUrl, "invalid");
 
     await expect(
       invalid.settings.getGeneralSettings({ body: {} }),

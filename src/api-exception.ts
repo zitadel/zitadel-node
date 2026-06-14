@@ -1,53 +1,9 @@
-import { ZitadelException } from './zitadel-exception.js';
-
-/**
- * Represents an HTTP error returned from the Zitadel API.
- *
- * Exposes the HTTP status code, response headers, and response body.
- */
-export class ApiException extends ZitadelException {
-  /**
-   * HTTP response headers.
-   */
-  private readonly _responseHeaders: Record<string, string[]>;
-
-  /**
-   * HTTP response body.
-   */
-  private readonly _responseBody: string | null;
-
-  /**
-   * Constructor.
-   *
-   * @param code            HTTP status code
-   * @param responseHeaders HTTP response headers
-   * @param responseBody    HTTP response body
-   */
-  public constructor(
-    code: number,
-    responseHeaders: Record<string, string[]>,
-    responseBody: string | null,
-  ) {
-    super(`Error ${code}`, undefined, code);
-    this._responseHeaders = responseHeaders;
-    this._responseBody = responseBody;
-  }
-
-  /**
-   * Gets the HTTP response headers.
-   *
-   * @returns HTTP response headers.
-   */
-  public getResponseHeaders(): Record<string, string[]> {
-    return this._responseHeaders;
-  }
-
-  /**
-   * Gets the HTTP response body.
-   *
-   * @returns HTTP response body.
-   */
-  public getResponseBody(): string | null {
-    return this._responseBody;
-  }
-}
+// Bespoke compatibility shim (listed in .openapi-generator-ignore).
+//
+// The integration specs are written against an `ApiException` raised by every
+// failing API call. The generator emits a typed error hierarchy rooted at
+// `ApiError` (with status-specific subclasses such as `NotFoundError`), so the
+// SDK's public `ApiException` is simply that generated base class re-exported
+// under the name the specs expect. Every API error the SDK throws is therefore
+// `instanceof ApiException`.
+export { ApiError as ApiException } from "./api-error.js";

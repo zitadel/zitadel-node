@@ -1,8 +1,17 @@
-import mridangPlugin from '@mridang/eslint-defaults';
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 
 export default [
-  ...mridangPlugin.configs.recommended,
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    ignores: ['src/apis/*', 'src/models/*', 'README.md', 'build/**', 'etc/**'],
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "coverage/**",
+      "build/**",
+      ".out/**",
+      "eslint.config.mjs",
+    ],
   },
 ];

@@ -1,13 +1,13 @@
-import crypto from 'crypto';
-import Zitadel from '../src/index.js';
+import crypto from "crypto";
+import Zitadel from "../src/index.js";
 // noinspection ES6PreferShortImport
 import {
   UserServiceAddHumanUserResponse,
   UserServiceUser,
-} from '../src/models/index.js';
+} from "../src/models/index.js";
 // noinspection ES6PreferShortImport
-import { ApiException } from '../src/api-exception.js';
-import { useIntegrationEnvironment } from './base-spec.js';
+import { ApiException } from "../src/api-exception.js";
+import { useIntegrationEnvironment } from "./base-spec.js";
 
 /**
  * UserService Integration Tests
@@ -24,7 +24,7 @@ import { useIntegrationEnvironment } from './base-spec.js';
  * Each test runs in isolation: a new user is created before each test (beforeEach)
  * and removed after (afterEach) to ensure a clean state.
  */
-describe('UserServiceSanityCheckSpec', () => {
+describe("UserServiceSanityCheckSpec", () => {
   const { context } = useIntegrationEnvironment();
   let client: Zitadel;
   let user: UserServiceAddHumanUserResponse;
@@ -41,19 +41,16 @@ describe('UserServiceSanityCheckSpec', () => {
    */
   beforeEach(async () => {
     const uniqueId = crypto.randomUUID().substring(0, 8);
-    const request = {
-      userServiceAddHumanUserRequest: {
-        username: `user_${uniqueId}`,
-        profile: {
-          givenName: 'John',
-          familyName: 'Doe',
-        },
-        email: {
-          email: `johndoe_${uniqueId}@example.com`,
-        },
+    user = await client.users.addHumanUser({
+      username: `user_${uniqueId}`,
+      profile: {
+        givenName: "John",
+        familyName: "Doe",
       },
-    };
-    user = await client.users.addHumanUser(request);
+      email: {
+        email: `johndoe_${uniqueId}@example.com`,
+      },
+    });
   });
 
   /**
@@ -61,9 +58,7 @@ describe('UserServiceSanityCheckSpec', () => {
    */
   afterEach(async () => {
     try {
-      await client.users.deleteUser({
-        userServiceDeleteUserRequest: { userId: user.userId || '' },
-      });
+      await client.users.deleteUser({ userId: user.userId || "" });
     } catch {
       // cleanup errors ignored
     }
@@ -74,11 +69,9 @@ describe('UserServiceSanityCheckSpec', () => {
    *
    * @throws ApiException on API error
    */
-  it('testRetrievesTheUserDetailsById', async () => {
+  it("testRetrievesTheUserDetailsById", async () => {
     const response = await client.users.getUserByID({
-      userServiceGetUserByIDRequest: {
-        userId: user.userId || '',
-      },
+      userId: user.userId || "",
     });
     expect(response.user?.userId).toBe(user.userId);
   });
@@ -88,13 +81,8 @@ describe('UserServiceSanityCheckSpec', () => {
    *
    * @throws ApiException on API error
    */
-  it('testIncludesTheCreatedUserWhenListingAllUsers', async () => {
-    const request = {
-      userServiceListUsersRequest: {
-        queries: [],
-      },
-    };
-    const response = await client.users.listUsers(request);
+  it("testIncludesTheCreatedUserWhenListingAllUsers", async () => {
+    const response = await client.users.listUsers({ queries: [] });
     const userIds = response.result?.map(
       (userItem: UserServiceUser) => userItem.userId,
     );
@@ -106,35 +94,27 @@ describe('UserServiceSanityCheckSpec', () => {
    *
    * @throws ApiException on API error
    */
-  it('testUpdatesTheUserEmailAndReflectsInGet', async () => {
+  it("testUpdatesTheUserEmailAndReflectsInGet", async () => {
     const newEmail = `updated_${crypto.randomUUID().substring(0, 8)}@example.com`;
 
-    await client.users.updateUser({
-      userServiceUpdateUserRequest: {
-        userId: user.userId || '',
-        human: {
-          email: { email: newEmail },
-        },
-      },
+    await client.users.updateHumanUser({
+      userId: user.userId || "",
+      email: { email: newEmail },
     });
 
     const response = await client.users.getUserByID({
-      userServiceGetUserByIDRequest: {
-        userId: user.userId || '',
-      },
+      userId: user.userId || "",
     });
-    expect(response.user?.human?.email?.email).toContain('updated');
+    expect(response.user?.human?.email?.email).toContain("updated");
   });
 
   /**
    * Attempt to retrieve a non-existent user and expect an ApiException.
    */
-  it('testRaisesAnApiExceptionWhenRetrievingNonExistentUser', async () => {
+  it("testRaisesAnApiExceptionWhenRetrievingNonExistentUser", async () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
-      client.users.getUserByID({
-        userServiceGetUserByIDRequest: { userId: nonExistentId },
-      }),
+      client.users.getUserByID({ userId: nonExistentId }),
     ).rejects.toThrow(ApiException);
   });
 });
