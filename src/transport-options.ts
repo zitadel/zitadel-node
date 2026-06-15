@@ -101,7 +101,7 @@ export class TransportOptionsBuilder {
   private _timeout: number | null = 10000;
   private _followRedirects: boolean = true;
   private _maxRedirects: number | null = null;
-  private _userAgent: string | null = "openapi-typescript-client/1.0.0 (node)";
+  private _userAgent: string | null = "@zitadel/client/1.0.0 (node)";
   private _defaultHeaders: Record<string, string> = {};
   private _injectRequestId: boolean = false;
 
