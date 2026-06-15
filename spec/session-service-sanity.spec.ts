@@ -7,7 +7,7 @@ import {
   SessionServiceCheckUser,
 } from "../src/models/index.js";
 // noinspection ES6PreferShortImport
-import { ApiException } from "../src/api-exception.js";
+import { ApiError } from "../src/api-error.js";
 import { useIntegrationEnvironment } from "./base-spec.js";
 
 /**
@@ -38,7 +38,7 @@ describe("SessionServiceSanityCheckSpec", () => {
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
   beforeEach(async () => {
     const username = crypto.randomUUID().substring(0, 8);
@@ -73,7 +73,7 @@ describe("SessionServiceSanityCheckSpec", () => {
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
   it("testRetrievesTheSessionDetailsById", async () => {
     const response = await client.sessionService.getSession({ sessionId });
@@ -81,7 +81,7 @@ describe("SessionServiceSanityCheckSpec", () => {
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
   it("testIncludesTheCreatedSessionWhenListingAllSessions", async () => {
     const response = await client.sessionService.listSessions({ queries: [] });
@@ -90,7 +90,7 @@ describe("SessionServiceSanityCheckSpec", () => {
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
   it("testUpdatesTheSessionLifetimeAndReturnsANewToken", async () => {
     const response = await client.sessionService.setSession({
@@ -104,6 +104,6 @@ describe("SessionServiceSanityCheckSpec", () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
       client.sessionService.getSession({ sessionId: nonExistentId }),
-    ).rejects.toThrow(ApiException);
+    ).rejects.toThrow(ApiError);
   });
 });

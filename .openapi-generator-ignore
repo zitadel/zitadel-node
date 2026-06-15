@@ -19,22 +19,17 @@ src/auth/**
 !src/auth/bearer-authenticator.ts
 !src/auth/http-aware-authenticator.ts
 
-# --- bespoke support classes (back-compat error shims + helpers the generator does not emit) ---
+# --- bespoke support classes (helpers the generator does not emit) ---
 # `src/index.ts` is the barrel that re-exports the generated `Zitadel` facade as
-# the package default. `api-exception.ts` / `zitadel-exception.ts` re-export the
-# generated typed `ApiError` under the `ApiException` / `ZitadelException` names
-# the integration specs import.
-src/api-exception.ts
+# the package default.
 src/index.ts
-src/zitadel-exception.ts
 
 # --- bespoke tests + fixtures the generator does not emit ---
 # Integration specs, their Zitadel server fixtures, and the hand-authored unit
-# tests (public facade, ApiException shim, the Zitadel authenticators). The
-# spec-independent unit tests are generator-owned and intentionally absent.
+# tests (public facade, the Zitadel authenticators). The spec-independent unit
+# tests are generator-owned and intentionally absent.
 etc/
 spec/
-test/api-exception.test.ts
 test/auth/client-credentials-authenticator.test.ts
 test/auth/no-auth-authenticator.test.ts
 test/auth/oauth-authenticator-test.ts

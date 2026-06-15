@@ -51,6 +51,7 @@ export type { UUID } from "./brand.js";
 
 /* Error hierarchy. */
 export { ApiError } from "./api-error.js";
+export { ZitadelError } from "./errors/zitadel-error.js";
 export * from "./errors/index.js";
 export {
   SerializationError,
@@ -80,4 +81,3 @@ export { OpenId } from "./auth/openid.js";
 /* The generated Zitadel facade, exposed as both a named and the default export. */
 export { Zitadel } from "./zitadel.js";
 export { Zitadel as default } from "./zitadel.js";
-export { ZitadelException } from "./zitadel-exception.js";
