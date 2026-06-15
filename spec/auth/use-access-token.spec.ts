@@ -1,7 +1,7 @@
 import Zitadel from "../../src/index.js";
 import { PersonalAccessAuthenticator } from "../../src/auth/personal-access-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from "../../src/zitadel-exception.js";
+import { ZitadelError } from "../../src/errors/zitadel-error.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
@@ -11,7 +11,7 @@ import { useIntegrationEnvironment } from "../base-spec.js";
  * endpoint works when authenticating via Personal Access Token:
  *
  * 1. Retrieve general settings successfully with a valid token
- * 2. Expect an ApiException when using an invalid token
+ * 2. Expect an ApiError when using an invalid token
  */
 describe("UseAccessTokenSpec", () => {
   const { context } = useIntegrationEnvironment();
@@ -19,7 +19,7 @@ describe("UseAccessTokenSpec", () => {
   /**
    * Validate retrieval of general settings with a valid PAT.
    *
-   * @throws {ApiException} on API error
+   * @throws {ApiError} on API error
    * @doesNotPerformAssertions
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
@@ -31,7 +31,7 @@ describe("UseAccessTokenSpec", () => {
   });
 
   /**
-   * Expect an ApiException when using an invalid PAT.
+   * Expect an ApiError when using an invalid PAT.
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
@@ -41,6 +41,6 @@ describe("UseAccessTokenSpec", () => {
 
     await expect(
       invalid.settingsService.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelException);
+    ).rejects.toThrow(ZitadelError);
   }, 120000);
 });

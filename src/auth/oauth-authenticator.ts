@@ -184,8 +184,8 @@ export abstract class OAuthAuthenticator
    *
    * @returns The refreshed access token response.
    * @throws {ApiError} if token fetch fails or response is invalid. (ApiError
-   *   is re-exported as the SDK's `ZitadelException`, so token-exchange
-   *   failures and API-response errors share a single error base.)
+   *   extends the SDK's `ZitadelError` root, so token-exchange failures and
+   *   API-response errors share a single error base.)
    */
   public async refreshToken(): Promise<oauth.TokenEndpointResponse> {
     try {

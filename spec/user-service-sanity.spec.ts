@@ -7,7 +7,7 @@ import {
   UserServiceUser,
 } from "../src/models/index.js";
 // noinspection ES6PreferShortImport
-import { ApiException } from "../src/api-exception.js";
+import { ApiError } from "../src/api-error.js";
 import { useIntegrationEnvironment } from "./base-spec.js";
 
 /**
@@ -40,7 +40,7 @@ describe("UserServiceSanityCheckSpec", () => {
   /**
    * Create a new human user before each test.
    *
-   * @throws ApiException on API error
+   * @throws ApiError on API error
    */
   beforeEach(async () => {
     const uniqueId = crypto.randomUUID().substring(0, 8);
@@ -70,7 +70,7 @@ describe("UserServiceSanityCheckSpec", () => {
   /**
    * Retrieve the user by ID and verify the returned ID matches.
    *
-   * @throws ApiException on API error
+   * @throws ApiError on API error
    */
   it("testRetrievesTheUserDetailsById", async () => {
     const response = await client.userService.getUserByID({
@@ -82,7 +82,7 @@ describe("UserServiceSanityCheckSpec", () => {
   /**
    * List all human users and verify the created user appears in the list.
    *
-   * @throws ApiException on API error
+   * @throws ApiError on API error
    */
   it("testIncludesTheCreatedUserWhenListingAllUsers", async () => {
     const response = await client.userService.listUsers({ queries: [] });
@@ -95,7 +95,7 @@ describe("UserServiceSanityCheckSpec", () => {
   /**
    * Update the user's email and verify via a get call that the change was applied.
    *
-   * @throws ApiException on API error
+   * @throws ApiError on API error
    */
   it("testUpdatesTheUserEmailAndReflectsInGet", async () => {
     const newEmail = `updated_${crypto.randomUUID().substring(0, 8)}@example.com`;
@@ -112,12 +112,12 @@ describe("UserServiceSanityCheckSpec", () => {
   });
 
   /**
-   * Attempt to retrieve a non-existent user and expect an ApiException.
+   * Attempt to retrieve a non-existent user and expect an ApiError.
    */
   it("testRaisesAnApiExceptionWhenRetrievingNonExistentUser", async () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
       client.userService.getUserByID({ userId: nonExistentId }),
-    ).rejects.toThrow(ApiException);
+    ).rejects.toThrow(ApiError);
   });
 });

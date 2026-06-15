@@ -1,7 +1,7 @@
 import Zitadel from "../../src/index.js";
 import { ClientCredentialsAuthenticator } from "../../src/auth/client-credentials-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from "../../src/zitadel-exception.js";
+import { ZitadelError } from "../../src/errors/zitadel-error.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
@@ -11,7 +11,7 @@ import { useIntegrationEnvironment } from "../base-spec.js";
  * endpoint works when authenticating via Client Credentials:
  *
  * 1. Retrieve general settings successfully with valid credentials
- * 2. Expect an ApiException when using invalid credentials
+ * 2. Expect an ApiError when using invalid credentials
  */
 describe("UseClientCredentialsSpec", () => {
   const { context } = useIntegrationEnvironment();
@@ -110,7 +110,7 @@ describe("UseClientCredentialsSpec", () => {
   /**
    * Validate retrieval of general settings with valid client credentials.
    *
-   * @throws {ApiException} on API error
+   * @throws {ApiError} on API error
    * @throws {Error}
    * @doesNotPerformAssertions
    */
@@ -128,7 +128,7 @@ describe("UseClientCredentialsSpec", () => {
   }, 120000);
 
   /**
-   * Expect an ApiException when using invalid client credentials.
+   * Expect an ApiError when using invalid client credentials.
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
@@ -142,6 +142,6 @@ describe("UseClientCredentialsSpec", () => {
 
     await expect(
       invalid.settingsService.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelException);
+    ).rejects.toThrow(ZitadelError);
   }, 120000);
 });
