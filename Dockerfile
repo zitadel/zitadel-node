@@ -12,4 +12,8 @@ COPY . .
 
 RUN npm run build
 
-CMD ["node", "--require", "./dist/index.ts"]
+# Start a Node REPL. The built SDK is an ESM package ("type": "module"), so it
+# cannot be CommonJS-preloaded via --require; instead the REPL/stdin can pull it
+# in on demand. Node 24's synchronous require()-of-ESM lets a piped snippet do
+# `require("./dist/index.js").Zitadel` against the built artifact.
+CMD ["node"]
