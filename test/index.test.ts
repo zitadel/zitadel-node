@@ -9,6 +9,8 @@ import {
   Wait,
 } from "testcontainers";
 import { NoAuthAuthenticator } from "../src/auth/noauth-authenticator.js";
+import { PersonalAccessAuthenticator } from "../src/auth/personal-access-authenticator.js";
+import { ClientCredentialsAuthenticator } from "../src/auth/client-credentials-authenticator.js";
 import { TransportOptions } from "../src/transport-options.js";
 import Zitadel from "../src/index.js";
 
@@ -136,62 +138,81 @@ describe("ZitadelTest", () => {
   });
 
   test("testCustomCaCert", async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `https://${host}:${httpsPort}`,
-      "dummy-client",
-      "dummy-secret",
-      TransportOptions.builder().caCertPath(caCertPath).build(),
+    const transport = TransportOptions.builder().caCertPath(caCertPath).build();
+    const zitadel = Zitadel.withAuthenticator(
+      await ClientCredentialsAuthenticator.builder(
+        `https://${host}:${httpsPort}`,
+        "dummy-client",
+        "dummy-secret",
+        transport,
+      ).build(),
+      transport,
     );
 
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
     expect(response.defaultLanguage).toBe("https");
   }, 30_000);
 
   test("testInsecureMode", async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `https://${host}:${httpsPort}`,
-      "dummy-client",
-      "dummy-secret",
-      TransportOptions.builder().verifySsl(false).build(),
+    const transport = TransportOptions.builder().verifySsl(false).build();
+    const zitadel = Zitadel.withAuthenticator(
+      await ClientCredentialsAuthenticator.builder(
+        `https://${host}:${httpsPort}`,
+        "dummy-client",
+        "dummy-secret",
+        transport,
+      ).build(),
+      transport,
     );
 
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
     expect(response.defaultLanguage).toBe("https");
   }, 30_000);
 
   test("testDefaultHeaders", async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `http://${host}:${httpPort}`,
-      "dummy-client",
-      "dummy-secret",
-      TransportOptions.builder()
-        .defaultHeaders({ "X-Custom-Header": "test-value" })
-        .build(),
+    const transport = TransportOptions.builder()
+      .defaultHeaders({ "X-Custom-Header": "test-value" })
+      .build();
+    const zitadel = Zitadel.withAuthenticator(
+      await ClientCredentialsAuthenticator.builder(
+        `http://${host}:${httpPort}`,
+        "dummy-client",
+        "dummy-secret",
+        transport,
+      ).build(),
+      transport,
     );
 
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
     expect(response.defaultLanguage).toBe("http");
     expect(response.defaultOrgId).toBe("test-value");
   }, 30_000);
 
   test("testProxyUrl", async () => {
-    const zitadel = Zitadel.withAccessToken(
-      "http://wiremock:8080",
-      "test-token",
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator("http://wiremock:8080", "test-token"),
       TransportOptions.builder().proxy(`http://${host}:${proxyPort}`).build(),
     );
 
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
     expect(response.defaultLanguage).toBe("http");
   }, 30_000);
 
   test("testNoCaCertFails", async () => {
     await expect(
-      Zitadel.withClientCredentials(
+      ClientCredentialsAuthenticator.builder(
         `https://${host}:${httpsPort}`,
         "dummy-client",
         "dummy-secret",
-      ),
+      ).build(),
     ).rejects.toThrow();
   }, 30_000);
 });

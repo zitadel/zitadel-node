@@ -17,7 +17,7 @@ import type { ApiClient } from "../api-client.js";
  * use the same transport configuration (proxy, TLS, timeouts) as regular
  * API calls.
  *
- * The {@link ApiClient} is injected by the `Client` class after construction,
+ * The {@link ApiClient} is injected by the `Zitadel` class after construction,
  * via {@link setApiClient}. Implementations must not make HTTP calls before
  * the client is injected.
  *
@@ -29,7 +29,7 @@ export interface HttpAwareAuthenticator extends Authenticator {
   /**
    * Inject the shared API client for making HTTP requests.
    *
-   * Called by the `Client` constructor after the {@link ApiClient} has been
+   * Called by the `Zitadel` constructor after the {@link ApiClient} has been
    * created with the user's `TransportOptions`. Implementations should
    * store this reference and use it for all outbound HTTP calls (token
    * exchange, discovery, etc.).

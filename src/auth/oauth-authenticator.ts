@@ -11,9 +11,9 @@ import { DefaultApiClient } from "../default-api-client.js";
  *
  * Provides common functionality for OAuth authenticators, including token
  * management and header construction. The {@link Authenticator} contract
- * exposes a synchronous {@link getAuthHeaders}, so the access token must be
- * minted (or refreshed) out-of-band via {@link prime} before any request; the
- * `Zitadel` facade wraps every API method to call {@link prime} first.
+ * exposes a synchronous {@link getAuthHeaders}, so the access token is minted
+ * (or refreshed) via {@link prime} inside {@link getAuthHeadersAsync}, which the
+ * SDK awaits on every API request.
  */
 export abstract class OAuthAuthenticator
   extends BaseAuthenticator
@@ -76,7 +76,8 @@ export abstract class OAuthAuthenticator
 
   /**
    * Synchronous auth headers. Requires {@link prime} to have minted a token
-   * first (the `Zitadel` facade guarantees this before each API call).
+   * first. Prefer {@link getAuthHeadersAsync}, which the SDK calls on the
+   * request path and which mints the token automatically.
    */
   public getAuthHeaders(): Record<string, string> {
     const accessToken = this.token?.access_token;
@@ -87,8 +88,23 @@ export abstract class OAuthAuthenticator
   }
 
   /**
+   * Async auth headers used by the SDK on every request. Mints (or refreshes)
+   * the access token via {@link prime} before returning the Bearer header, so
+   * no eager priming at construction time is required.
+   *
+   * Node has no blocking HTTP, so an OAuth token cannot be minted inside the
+   * synchronous {@link getAuthHeaders}; the generated API base awaits this
+   * method instead, keeping token exchange (and any auth failure) on the
+   * API-call path.
+   */
+  public override async getAuthHeadersAsync(): Promise<Record<string, string>> {
+    await this.prime();
+    return this.getAuthHeaders();
+  }
+
+  /**
    * Ensure a valid access token is available, refreshing it when missing or
-   * expired. Called before each API request by the SDK facade.
+   * expired. Invoked from {@link getAuthHeadersAsync} before each API request.
    */
   public async prime(): Promise<void> {
     await this.getAuthToken();

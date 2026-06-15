@@ -1,4 +1,5 @@
 import Zitadel from "../../src/index.js";
+import { PersonalAccessAuthenticator } from "../../src/auth/personal-access-authenticator.js";
 // noinspection ES6PreferShortImport
 import { ZitadelException } from "../../src/zitadel-exception.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
@@ -22,9 +23,11 @@ describe("UseAccessTokenSpec", () => {
    * @doesNotPerformAssertions
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
-    const client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
+    const client = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator(context.baseUrl, context.authToken),
+    );
 
-    await client.settings.getGeneralSettings({ body: {} });
+    await client.settingsService.getGeneralSettings({ body: {} });
   });
 
   /**
@@ -32,10 +35,12 @@ describe("UseAccessTokenSpec", () => {
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
-    const invalid = Zitadel.withAccessToken(context.baseUrl, "invalid");
+    const invalid = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator(context.baseUrl, "invalid"),
+    );
 
     await expect(
-      invalid.settings.getGeneralSettings({ body: {} }),
+      invalid.settingsService.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });

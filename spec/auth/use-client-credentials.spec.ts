@@ -1,4 +1,5 @@
 import Zitadel from "../../src/index.js";
+import { ClientCredentialsAuthenticator } from "../../src/auth/client-credentials-authenticator.js";
 // noinspection ES6PreferShortImport
 import { ZitadelException } from "../../src/zitadel-exception.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
@@ -115,13 +116,15 @@ describe("UseClientCredentialsSpec", () => {
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const credentials = await generateUserSecret(context.authToken);
-    const client = await Zitadel.withClientCredentials(
-      context.baseUrl,
-      credentials.clientId,
-      credentials.clientSecret,
+    const client = Zitadel.withAuthenticator(
+      await ClientCredentialsAuthenticator.builder(
+        context.baseUrl,
+        credentials.clientId,
+        credentials.clientSecret,
+      ).build(),
     );
 
-    await client.settings.getGeneralSettings({ body: {} });
+    await client.settingsService.getGeneralSettings({ body: {} });
   }, 120000);
 
   /**
@@ -129,14 +132,16 @@ describe("UseClientCredentialsSpec", () => {
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
-    const invalid = await Zitadel.withClientCredentials(
-      context.baseUrl,
-      "invalid",
-      "invalid",
+    const invalid = Zitadel.withAuthenticator(
+      await ClientCredentialsAuthenticator.builder(
+        context.baseUrl,
+        "invalid",
+        "invalid",
+      ).build(),
     );
 
     await expect(
-      invalid.settings.getGeneralSettings({ body: {} }),
+      invalid.settingsService.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });
