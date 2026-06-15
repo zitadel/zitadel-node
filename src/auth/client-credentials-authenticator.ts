@@ -38,7 +38,7 @@ export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
       scope,
       transportOptions,
     );
-    this.clientAuth = oauth.ClientSecretBasic(clientSecret);
+    this.clientAuth = oauth.ClientSecretPost(clientSecret);
     this.parameters = new URLSearchParams({
       grant_type: "client_credentials",
       scope: this.scope,
