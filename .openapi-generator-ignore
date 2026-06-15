@@ -61,7 +61,6 @@ VERSIONING.md
 .editorconfig
 .github/
 .gitignore
-.idea/
 .npmrc
 .nvmrc
 .pre-commit-config.yaml
