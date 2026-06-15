@@ -1,5 +1,6 @@
 // noinspection DuplicatedCode
 
+import { inspect } from "util";
 import { generateKeyPair } from "node:crypto";
 // noinspection ES6PreferShortImport
 import { WebTokenAuthenticator } from "../../src/auth/webtoken-authenticator.js";
@@ -88,5 +89,24 @@ describe("WebTokenAuthenticatorTest", () => {
         (await authenticator.refreshToken()).access_token,
       );
     }, 40000);
+
+    it("redacts secrets in inspect and JSON output", async () => {
+      const oauthHost = getOauthHost();
+      const authenticator = await WebTokenAuthenticator.builder(
+        oauthHost,
+        "1",
+        await getPrivateKey(),
+      ).build();
+
+      const accessToken = (await authenticator.refreshToken()).access_token;
+
+      const inspected = inspect(authenticator);
+      const serialised = JSON.stringify(authenticator);
+
+      expect(inspected).not.toContain(accessToken);
+      expect(inspected).toContain("***");
+      expect(serialised).not.toContain(accessToken);
+      expect(serialised).toContain("***");
+    }, 30000);
   });
 });
