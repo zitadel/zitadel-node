@@ -191,7 +191,7 @@ export abstract class OAuthAuthenticator
     try {
       this.token = await this.performTokenRequest(this.authServer, this.client);
       const expiresIn = this.token.expires_in ?? 3600;
-      const buffer = 30 * 1000;
+      const buffer = 300 * 1000;
       this.tokenExpiry = Date.now() + expiresIn * 1000 - buffer;
 
       return this.token;
@@ -206,4 +206,36 @@ export abstract class OAuthAuthenticator
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,
   ): Promise<oauth.TokenEndpointResponse>;
+
+  /**
+   * Redacted inspection representation.
+   *
+   * Masks the cached access token so it never leaks through
+   * `console.log(auth)` or `util.inspect(auth)` into application logs,
+   * mirroring the `repr`/`__debugInfo` masking the Python, PHP, and Ruby
+   * SDKs apply to their OAuth authenticators. The presence of a token is
+   * still reported (as `***`) so callers can tell whether one is cached
+   * without exposing its value.
+   */
+  [Symbol.for("nodejs.util.inspect.custom")](): string {
+    const accessToken = this.token?.access_token ? "***" : null;
+    return `${this.constructor.name}(host=${this.hostEndpoint}, clientId=${this.client.client_id}, scope=${this.scope}, accessToken=${accessToken}, tokenExpiry=${this.tokenExpiry})`;
+  }
+
+  /**
+   * Redacted JSON representation.
+   *
+   * Ensures `JSON.stringify(auth)` never serialises the cached access
+   * token, masking it as `***` when present, consistent with
+   * {@link OAuthAuthenticator[Symbol.for]}.
+   */
+  toJSON(): Record<string, unknown> {
+    return {
+      host: this.hostEndpoint,
+      clientId: this.client.client_id,
+      scope: this.scope,
+      accessToken: this.token?.access_token ? "***" : null,
+      tokenExpiry: this.tokenExpiry,
+    };
+  }
 }
