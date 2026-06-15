@@ -74,7 +74,7 @@ services:
       - './example-zitadel-secrets.yaml:/example-zitadel-secrets.yaml:ro'
       - './zitadel_output:/var/zitadel_output:rw'
     ports:
-      - '18100:8080'
+      - '8080'
     healthcheck:
       test:
         [

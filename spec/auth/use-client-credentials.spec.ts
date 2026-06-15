@@ -16,9 +16,13 @@ import { useIntegrationEnvironment } from "../base-spec.js";
 describe("UseClientCredentialsSpec", () => {
   const { context } = useIntegrationEnvironment();
 
-  async function generateUserSecret(token: string, loginName = "api-user") {
+  async function generateUserSecret(
+    baseUrl: string,
+    token: string,
+    loginName = "api-user",
+  ) {
     const userUrl = new URL(
-      "http://localhost:18100/management/v1/global/users/_by_login_name",
+      `${baseUrl}/management/v1/global/users/_by_login_name`,
     );
     userUrl.searchParams.set("loginName", loginName);
 
@@ -49,7 +53,7 @@ describe("UseClientCredentialsSpec", () => {
       const userId = userPayload?.user?.id;
 
       if (userId && typeof userId === "string") {
-        const secretUrl = `http://localhost:18100/management/v1/users/${userId}/secret`;
+        const secretUrl = `${baseUrl}/management/v1/users/${userId}/secret`;
 
         let secretResponse;
         try {
@@ -115,7 +119,10 @@ describe("UseClientCredentialsSpec", () => {
    * @doesNotPerformAssertions
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
-    const credentials = await generateUserSecret(context.authToken);
+    const credentials = await generateUserSecret(
+      context.baseUrl,
+      context.authToken,
+    );
     const client = Zitadel.withAuthenticator(
       await ClientCredentialsAuthenticator.builder(
         context.baseUrl,

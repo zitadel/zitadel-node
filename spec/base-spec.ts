@@ -85,10 +85,30 @@ abstract class AbstractIntegrationTest {
     this.jwtKey = jwtKeyFilePath;
     console.log(`Loaded JWT_KEY path: ${this.jwtKey}`);
 
-    this.baseUrl = "http://localhost:18100";
+    this.baseUrl = this.discoverBaseUrl();
     console.log(`Exposed BASE_URL as: ${this.baseUrl}`);
 
     await setTimeout(40000);
+  }
+
+  /**
+   * Discovers the host port that Docker mapped to the zitadel service's
+   * container port 8080 and builds the base URL from it.
+   *
+   * The compose file requests an ephemeral host port (`- '8080'`), so Docker
+   * assigns a random free port at startup. `docker compose port` reports the
+   * resolved `host:port` binding, which we parse to extract the host port.
+   */
+  private static discoverBaseUrl(): string {
+    const command = `docker compose -f "${this.composeFilePath}" port zitadel 8080`;
+    const output = execSync(command, { encoding: "utf-8" }).trim();
+    const hostPort = output.split(":").pop();
+    if (!hostPort || !/^\d+$/.test(hostPort)) {
+      throw new Error(
+        `Failed to discover the mapped host port for zitadel:8080 (got: "${output}").`,
+      );
+    }
+    return `http://localhost:${hostPort}`;
   }
 
   /**
