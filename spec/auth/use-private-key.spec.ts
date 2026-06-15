@@ -1,4 +1,5 @@
 import Zitadel from "../../src/index.js";
+import { WebTokenAuthenticator } from "../../src/auth/webtoken-authenticator.js";
 // noinspection ES6PreferShortImport
 import { ZitadelException } from "../../src/zitadel-exception.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
@@ -23,11 +24,10 @@ describe("UsePrivateKeySpec", () => {
    * @doesNotPerformAssertions
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
-    const client = await Zitadel.withPrivateKey(
-      context.baseUrl,
-      context.jwtKey,
+    const client = Zitadel.withAuthenticator(
+      await WebTokenAuthenticator.fromJson(context.baseUrl, context.jwtKey),
     );
-    await client.settings.getGeneralSettings({ body: {} });
+    await client.settingsService.getGeneralSettings({ body: {} });
   }, 120000);
 
   /**
@@ -35,12 +35,14 @@ describe("UsePrivateKeySpec", () => {
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
-    const invalid = await Zitadel.withPrivateKey(
-      "https://zitadel.cloud",
-      context.jwtKey,
+    const invalid = Zitadel.withAuthenticator(
+      await WebTokenAuthenticator.fromJson(
+        "https://zitadel.cloud",
+        context.jwtKey,
+      ),
     );
     await expect(
-      invalid.settings.getGeneralSettings({ body: {} }),
+      invalid.settingsService.getGeneralSettings({ body: {} }),
     ).rejects.toThrow(ZitadelException);
   }, 120000);
 });

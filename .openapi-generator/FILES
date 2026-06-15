@@ -39,7 +39,6 @@ src/auth/bearer-authenticator.ts
 src/auth/http-aware-authenticator.ts
 src/auth/zitadel-access-token-authenticator.ts
 src/brand.ts
-src/client.ts
 src/configuration.ts
 src/deep-input.ts
 src/default-api-client.ts
@@ -1413,6 +1412,7 @@ src/servers.ts
 src/trace-context-util.ts
 src/transport-options.ts
 src/value-serializer.ts
+src/zitadel.ts
 test/configuration.test.ts
 test/default-api-client-unit.test.ts
 test/header-selector.test.ts

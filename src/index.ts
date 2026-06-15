@@ -15,10 +15,9 @@
  */
 
 /*
- * Client entry point and per-group API classes (+ their Options, server, and
- * inline-enum types, re-exported transitively through the api barrel).
+ * Per-group API classes (+ their Options, server, and inline-enum types,
+ * re-exported transitively through the api barrel).
  */
-export { Client } from "./client.js";
 export * from "./api/index.js";
 
 /* Model types. */
@@ -78,6 +77,7 @@ export { WebTokenAuthenticator } from "./auth/webtoken-authenticator.js";
 export { WebTokenAuthenticatorBuilder } from "./auth/webtoken-authenticator-builder.js";
 export { OpenId } from "./auth/openid.js";
 
-/* The hand-maintained Zitadel facade (default export). */
-export { default } from "./zitadel.js";
+/* The generated Zitadel facade, exposed as both a named and the default export. */
+export { Zitadel } from "./zitadel.js";
+export { Zitadel as default } from "./zitadel.js";
 export { ZitadelException } from "./zitadel-exception.js";
