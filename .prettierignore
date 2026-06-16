@@ -11,3 +11,4 @@ etc/
 *.yml
 *.json
 *.lock
+VERSIONING.md
