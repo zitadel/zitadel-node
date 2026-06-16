@@ -1,0 +1,91 @@
+# OpenAPI Generator keep-list (.openapi-generator-ignore).
+#
+# Patterns follow .gitignore syntax with last-match-wins semantics, so order
+# matters: a later pattern overrides an earlier one. `prune` (see Makefile)
+# deletes any tracked file the generator no longer emits unless it is kept here.
+# Sections are alphabetised within themselves; the one exception is the auth
+# negation block, whose `!` re-includes must stay immediately after the broad
+# `src/auth/**` keep (moving them ahead would flip which files are regenerated).
+
+# --- bespoke authenticators (ported onto the generated auth interfaces) ---
+# The generator owns only the auth scaffolding (the `Authenticator` interface,
+# `BaseAuthenticator`, `BearerAuthenticator`, `HttpAwareAuthenticator`). Every
+# concrete Zitadel authenticator plus the auth barrel is hand-maintained, so
+# keep the whole directory, then re-enable overwriting for the four scaffolding
+# files. The broad keep MUST stay first; its `!` exceptions follow it.
+src/auth/**
+!src/auth/authenticator.ts
+!src/auth/base-authenticator.ts
+!src/auth/bearer-authenticator.ts
+!src/auth/http-aware-authenticator.ts
+
+# --- bespoke support classes (helpers the generator does not emit) ---
+# `src/index.ts` is the barrel that re-exports the generated `Zitadel` facade as
+# the package default.
+src/index.ts
+
+# --- bespoke tests + fixtures the generator does not emit ---
+# Integration specs, their Zitadel server fixtures, and the hand-authored unit
+# tests (public facade, the Zitadel authenticators). The spec-independent unit
+# tests are generator-owned and intentionally absent.
+etc/
+spec/
+test/auth/client-credentials-authenticator.test.ts
+test/auth/no-auth-authenticator.test.ts
+test/auth/oauth-authenticator-test.ts
+test/auth/personal-access-authenticator.test.ts
+test/auth/web-token-authenticator.test.ts
+test/fixtures/
+test/index.test.ts
+test/setup.js
+
+# --- repo identity + docs (team-owned) ---
+LICENSE
+README.md
+SECURITY.md
+SKILLS.md
+VERSIONING.md
+
+# --- house tooling (team-owned) ---
+# Lint/format configs carry the generator's defaults verbatim (ESLint flat =
+# `@eslint/js` + `typescript-eslint` recommended; Prettier = defaults). The only
+# deviation is the ESM filename, since the package is `"type": "module"`; the
+# CommonJS variants (`eslint.config.js`, `.prettierrc.json`) are kept so a regen
+# cannot shadow the ESM config the package actually loads.
+.dockerignore
+.editorconfig
+.github/
+.gitignore
+.npmrc
+.nvmrc
+.pre-commit-config.yaml
+.prettierignore
+.prettierrc.json
+.run/
+commitlint.config.mjs
+devbox.json
+devbox.lock
+Dockerfile
+eslint.config.js
+eslint.config.mjs
+jest.config.mjs
+knip.config.js
+lefthook.yml
+prettier.config.mjs
+qodana.yaml
+release.config.mjs
+tsconfig.jest.json
+tsconfig.json
+typedoc.json
+
+# --- build / package config (team-owned) ---
+package-lock.json
+package.json
+
+# --- generation tooling we added ---
+.openapi-generator-ignore
+Makefile
+proc.yml
+
+# --- generator bookkeeping ---
+.openapi-generator/

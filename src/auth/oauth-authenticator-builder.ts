@@ -1,6 +1,6 @@
-import { OpenId } from './openid.js';
-import { OAuthAuthenticator } from './oauth-authenticator.js';
-import type { TransportOptions } from '../transport-options.js';
+import { OpenId } from "./openid.js";
+import { OAuthAuthenticator } from "./oauth-authenticator.js";
+import type { TransportOptions } from "../transport-options.js";
 
 /**
  * Base builder for OAuth authenticators.
@@ -11,7 +11,7 @@ import type { TransportOptions } from '../transport-options.js';
  */
 export abstract class OAuthAuthenticatorBuilder {
   protected authScopes: string =
-    'openid urn:zitadel:iam:org:project:id:zitadel:aud';
+    "openid urn:zitadel:iam:org:project:id:zitadel:aud";
   protected openId!: OpenId;
 
   /**
@@ -32,7 +32,7 @@ export abstract class OAuthAuthenticatorBuilder {
    * @returns The builder instance for chaining.
    */
   public scopes(scopes: string | string[]): this {
-    this.authScopes = Array.isArray(scopes) ? scopes.join(' ') : scopes;
+    this.authScopes = Array.isArray(scopes) ? scopes.join(" ") : scopes;
     return this;
   }
 

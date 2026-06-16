@@ -1,13 +1,11 @@
-import { OAuthAuthenticator } from './oauth-authenticator.js';
-import * as oauth from 'oauth4webapi';
-import * as jose from 'jose';
-import { OpenId } from './openid.js';
-import { WebTokenAuthenticatorBuilder } from './webtoken-authenticator-builder.js';
-import type { TransportOptions } from '../transport-options.js';
-// @ts-expect-error since it is not exported.
-import type { CryptoKey } from 'crypto';
-import * as fs from 'node:fs';
-import { createPrivateKey, KeyObject } from 'node:crypto';
+import { OAuthAuthenticator } from "./oauth-authenticator.js";
+import * as oauth from "oauth4webapi";
+import * as jose from "jose";
+import { OpenId } from "./openid.js";
+import { WebTokenAuthenticatorBuilder } from "./webtoken-authenticator-builder.js";
+import type { TransportOptions } from "../transport-options.js";
+import * as fs from "node:fs";
+import { createPrivateKey, KeyObject } from "node:crypto";
 
 /**
  * JWT-based Authenticator using the JWT Bearer Grant (RFC7523).
@@ -17,7 +15,7 @@ import { createPrivateKey, KeyObject } from 'node:crypto';
 export class WebTokenAuthenticator extends OAuthAuthenticator {
   private readonly clientAuth: oauth.ClientAuth;
   private readonly grantType: string =
-    'urn:ietf:params:oauth:grant-type:jwt-bearer';
+    "urn:ietf:params:oauth:grant-type:jwt-bearer";
 
   /**
    * WebTokenAuthenticator constructor.
@@ -35,10 +33,11 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    * @param transportOptions Optional transport options for TLS, proxy, and headers.
    */
   private constructor(
+    hostEndpoint: string,
     authServer: oauth.AuthorizationServer,
     client: oauth.Client,
     scope: string,
-    private readonly privateKey: CryptoKey,
+    private readonly privateKey: KeyObject,
     private readonly jwtIssuer: string,
     private readonly jwtSubject: string,
     private readonly jwtAudience: string,
@@ -47,7 +46,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     private readonly keyId?: string,
     transportOptions?: TransportOptions,
   ) {
-    super(authServer, client, scope, transportOptions);
+    super(hostEndpoint, authServer, client, scope, transportOptions);
     this.clientAuth = oauth.None();
   }
 
@@ -76,7 +75,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     jsonPath: string,
     transportOptions?: TransportOptions,
   ): Promise<WebTokenAuthenticator> {
-    const json = fs.readFileSync(jsonPath, 'utf-8').replaceAll('\\"', '"');
+    const json = fs.readFileSync(jsonPath, "utf-8").replaceAll('\\"', '"');
     const config = JSON.parse(json);
 
     const userId = config?.userId;
@@ -84,7 +83,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     const keyId = config?.keyId;
 
     if (!userId || !privateKey || !keyId) {
-      throw new Error('Missing required configuration keys in JSON file.');
+      throw new Error("Missing required configuration keys in JSON file.");
     }
 
     return WebTokenAuthenticator.builder(
@@ -131,30 +130,30 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
    */
   private static parsePem(pemLike: string): KeyObject {
     // 1 – turn literal “\n” into real LF and unify CRLF → LF
-    let pem = pemLike.replace(/\\n/g, '\n').replace(/\r\n/g, '\n').trim();
+    let pem = pemLike.replace(/\\n/g, "\n").replace(/\r\n/g, "\n").trim();
 
     // 2 – ensure header and footer sit on their own lines
     pem = pem
-      .replace(/(-----BEGIN [^-]+-----)([A-Za-z0-9+/=]+)/, '$1\n$2')
-      .replace(/([A-Za-z0-9+/=]+)(-----END [^-]+-----)/, '$1\n$2');
+      .replace(/(-----BEGIN [^-]+-----)([A-Za-z0-9+/=]+)/, "$1\n$2")
+      .replace(/([A-Za-z0-9+/=]+)(-----END [^-]+-----)/, "$1\n$2");
 
     // 3 – if the body is one long line, wrap it at 64 chars (tidy, not mandatory)
-    const parts = pem.split('\n');
+    const parts = pem.split("\n");
     if (parts.length === 3) {
       const [header, bodyRaw, footer] = parts;
       const bodyWrapped =
         bodyRaw
-          .replace(/\s+/g, '') // strip stray white-space
+          .replace(/\s+/g, "") // strip stray white-space
           .match(/.{1,64}/g) // wrap
-          ?.join('\n') ?? bodyRaw;
+          ?.join("\n") ?? bodyRaw;
       pem = `${header}\n${bodyWrapped}\n${footer}`;
     }
 
     // 4 – pick the correct “type” hint for Node’s decoder
-    const type = /BEGIN RSA PRIVATE KEY/.test(pem) ? 'pkcs1' : 'pkcs8';
+    const type = /BEGIN RSA PRIVATE KEY/.test(pem) ? "pkcs1" : "pkcs8";
 
     // 5 – finally build the KeyObject
-    return createPrivateKey({ key: pem, format: 'pem', type });
+    return createPrivateKey({ key: pem, format: "pem", type });
   }
 
   /**
@@ -190,6 +189,7 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
     const authServer = openId.getAuthorizationServer();
     const client: oauth.Client = { client_id: clientId };
     return new WebTokenAuthenticator(
+      openId.getHostEndpoint(),
       authServer,
       client,
       scope,
@@ -229,13 +229,12 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       scope: this.scope,
     });
 
-    const tokenOptions = await this.buildTokenRequestOptions();
+    const tokenOptions = this.buildTokenRequestOptions();
 
     if (process.env.JEST_WORKER_ID !== undefined) {
       tokenOptions[oauth.allowInsecureRequests] = true;
     }
 
-    // noinspection JSDeprecatedSymbols
     const response = await oauth.genericTokenEndpointRequest(
       authServer,
       client,
@@ -245,11 +244,12 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       tokenOptions,
     );
 
-    const responseBody = (await response.clone().json()) as Response;
-    // @ts-expect-error wgsg
+    const responseBody = (await response.clone().json()) as {
+      id_token?: unknown;
+    };
     const idToken = responseBody.id_token;
 
-    if (!idToken || typeof idToken !== 'string') {
+    if (!idToken || typeof idToken !== "string") {
       return oauth.processGenericTokenEndpointResponse(
         authServer,
         client,
@@ -259,9 +259,9 @@ export class WebTokenAuthenticator extends OAuthAuthenticator {
       const claims = jose.decodeJwt(idToken);
 
       const validationClientId = claims.azp;
-      if (!validationClientId || typeof validationClientId !== 'string') {
+      if (!validationClientId || typeof validationClientId !== "string") {
         throw new Error(
-          'ID Token is missing a valid `azp` claim for validation.',
+          "ID Token is missing a valid `azp` claim for validation.",
         );
       }
 

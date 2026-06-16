@@ -1,6 +1,6 @@
-import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
-import { WebTokenAuthenticator } from './webtoken-authenticator.js';
-import type { TransportOptions } from '../transport-options.js';
+import { OAuthAuthenticatorBuilder } from "./oauth-authenticator-builder.js";
+import { WebTokenAuthenticator } from "./webtoken-authenticator.js";
+import type { TransportOptions } from "../transport-options.js";
 
 /**
  * Builder for WebTokenAuthenticator.
@@ -23,7 +23,7 @@ import type { TransportOptions } from '../transport-options.js';
  * service account JSON file.
  */
 export class WebTokenAuthenticatorBuilder extends OAuthAuthenticatorBuilder {
-  private jwtAlg: string = 'RS256';
+  private jwtAlg: string = "RS256";
   private lifetimeSeconds: number = 3600;
   private kid?: string;
 
@@ -94,7 +94,7 @@ export class WebTokenAuthenticatorBuilder extends OAuthAuthenticatorBuilder {
     await this.discoverOpenId();
     return WebTokenAuthenticator.create(
       this.openId,
-      'zitadel',
+      "zitadel",
       this.authScopes,
       this.jwtIssuer,
       this.jwtSubject,

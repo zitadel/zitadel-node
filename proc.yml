@@ -1,0 +1,8 @@
+npmName: "@zitadel/client"
+npmVersion: 0.0.1
+disallowAdditionalPropertiesIfNotPresent: false
+generateUnitTests: true
+importFileExtension: ".js"
+clientClassName: Zitadel
+repoName: git@github.com:zitadel/zitadel-node.git
+generatorName: node-plus
