@@ -9,34 +9,42 @@ import { BetaProjectServicePrivateLabelingSetting } from "./beta-project-service
 import { Expose } from "class-transformer";
 
 export class BetaProjectServiceUpdateProjectRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "id" })
   id?: string;
   /**
    * Name of the project.
-   * @example null
    */
   @Expose({ name: "name" })
   name?: string;
   /**
    * Enable this setting to have role information included in the user info endpoint. It is also dependent on your application settings to include it in tokens and other types.
-   * @example null
    */
   @Expose({ name: "projectRoleAssertion" })
   projectRoleAssertion?: boolean;
   /**
    * When enabled ZITADEL will check if a user has a role of this project assigned when login into an application of this project.
-   * @example null
    */
   @Expose({ name: "projectRoleCheck" })
   projectRoleCheck?: boolean;
   /**
    * When enabled ZITADEL will check if the organization of the user, that is trying to log in, has a grant to this project.
-   * @example null
    */
   @Expose({ name: "hasProjectCheck" })
   hasProjectCheck?: boolean;
-  /** @example null */
   @Expose({ name: "privateLabelingSetting" })
   privateLabelingSetting?: BetaProjectServicePrivateLabelingSetting;
 
@@ -71,6 +79,26 @@ export class BetaProjectServiceUpdateProjectRequest {
       throw new TypeError(
         `hasProjectCheck must be a boolean, got ${typeof this.hasProjectCheck}`,
       );
+    }
+    if (this.privateLabelingSetting != null) {
+      const privateLabelingSettingValues = Object.values(
+        BetaProjectServicePrivateLabelingSetting,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaProjectServicePrivateLabelingSetting as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(privateLabelingSettingValues as readonly unknown[]).includes(
+          this.privateLabelingSetting,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for privateLabelingSetting: ${JSON.stringify(this.privateLabelingSetting)}. ` +
+            `Expected one of [${privateLabelingSettingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

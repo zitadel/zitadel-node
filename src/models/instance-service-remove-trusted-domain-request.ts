@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class InstanceServiceRemoveTrustedDomainRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * InstanceID is the unique ID of the instance from which the trusted domain will be removed.  If not set, the instance in the current context (e.g. identified by the host header) will be used.  If an ID is set, the caller must have additional permissions.
-   * @example null
    */
   @Expose({ name: "instanceId" })
   instanceId?: string;
   /**
    * The trusted domain to remove from the instance.
-   * @example null
    */
   @Expose({ name: "trustedDomain" })
   trustedDomain?: string;

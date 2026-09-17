@@ -10,20 +10,29 @@ import { BetaAppServiceApplicationNameQuery } from "./beta-app-service-applicati
 import { Expose, Type } from "class-transformer";
 
 export class BetaAppServiceApplicationSearchFilter {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "apiAppOnly" })
   apiAppOnly?: boolean;
-  /** @example null */
   @Expose({ name: "nameFilter" })
   @Type(() => BetaAppServiceApplicationNameQuery)
   nameFilter?: BetaAppServiceApplicationNameQuery;
-  /** @example null */
   @Expose({ name: "oidcAppOnly" })
   oidcAppOnly?: boolean;
-  /** @example null */
   @Expose({ name: "samlAppOnly" })
   samlAppOnly?: boolean;
-  /** @example null */
   @Expose({ name: "stateFilter" })
   stateFilter?: BetaAppServiceAppState;
 
@@ -43,6 +52,22 @@ export class BetaAppServiceApplicationSearchFilter {
       throw new TypeError(
         `samlAppOnly must be a boolean, got ${typeof this.samlAppOnly}`,
       );
+    }
+    if (this.stateFilter != null) {
+      const stateFilterValues = Object.values(BetaAppServiceAppState).filter(
+        (v) =>
+          typeof (BetaAppServiceAppState as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(stateFilterValues as readonly unknown[]).includes(this.stateFilter)
+      ) {
+        throw new Error(
+          `Unknown enum value for stateFilter: ${JSON.stringify(this.stateFilter)}. ` +
+            `Expected one of [${stateFilterValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

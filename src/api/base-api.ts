@@ -8,6 +8,7 @@
 import type { ApiClient } from "../api-client.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { isNoAuth } from "../auth/authenticator.js";
 import { ApiError } from "../api-error.js";
 import { BadRequestError } from "../errors/bad-request-error.js";
 import { ClientError } from "../errors/client-error.js";
@@ -19,7 +20,7 @@ import { ServerError } from "../errors/server-error.js";
 import { UnauthorizedError } from "../errors/unauthorized-error.js";
 import { UnprocessableEntityError } from "../errors/unprocessable-entity-error.js";
 import { Configuration } from "../configuration.js";
-import { DefaultApiClient } from "../default-api-client.js";
+import { DefaultApiClient } from "#transport";
 import { HeaderSelector } from "../header-selector.js";
 import { ObjectSerializer } from "../object-serializer.js";
 import { injectTraceContext } from "../trace-context-util.js";
@@ -102,7 +103,15 @@ export abstract class BaseApi {
       url = base + path;
     }
 
-    const effectiveAuth = auth ?? this.authenticator;
+    /* Three-state auth resolution (the no-auth sentinel is a distinct
+     * third state, so `null` is no longer overloaded):
+     *   - auth IS the NO_AUTH sentinel  -> apply NO credentials; the
+     *     operation is `security: []` and must never pick up the
+     *     client-level authenticator.
+     *   - auth is null/undefined        -> no per-call override; fall
+     *     back to the configured client authenticator (secured op).
+     *   - auth is a real authenticator  -> per-call override; use it. */
+    const effectiveAuth = isNoAuth(auth) ? null : (auth ?? this.authenticator);
     if (effectiveAuth) {
       const authQueryParams = effectiveAuth.getQueryParams();
       for (const [k, v] of Object.entries(authQueryParams)) {

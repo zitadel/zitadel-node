@@ -9,20 +9,31 @@ import { Expose } from "class-transformer";
 
 export class ProjectServiceUpdateProjectGrantRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * ProjectID is the unique identifier of the project.
-   * @example null
    */
   @Expose({ name: "projectId" })
   projectId?: string;
   /**
    * GrantedOrganizationID is the unique identifier of the organization the project was granted to.
-   * @example null
    */
   @Expose({ name: "grantedOrganizationId" })
   grantedOrganizationId?: string;
   /**
    * RoleKeys is a list of roles to be granted to the organization for self management.  The roles are identified by their keys.  Any roles not included in this list will be removed from the project grant.  If you want to add a role, make sure to include all other existing roles as well.  If any previous role is removed, all user grants for this project grant with this role will be removed as well.
-   * @example null
    */
   @Expose({ name: "roleKeys" })
   roleKeys?: Array<string>;

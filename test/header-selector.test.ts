@@ -58,6 +58,17 @@ describe("HeaderSelector", () => {
     });
   });
 
+  describe("selectAcceptHeader", () => {
+    test("returns empty string for empty accept array", () => {
+      const select = (
+        headerSelector as unknown as {
+          selectAcceptHeader(accept: string[] | null): string;
+        }
+      ).selectAcceptHeader.bind(headerSelector);
+      expect(select([])).toBe("");
+    });
+  });
+
   describe("selectHeaders", () => {
     test("sets Accept header when accepts provided", () => {
       const headers = headerSelector.selectHeaders(

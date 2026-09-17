@@ -12,10 +12,22 @@ import { Expose } from "class-transformer";
  * Query for users with a specific email.
  */
 export class BetaUserServiceEmailQuery {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "emailAddress" })
   emailAddress?: string;
-  /** @example null */
   @Expose({ name: "method" })
   method?: BetaUserServiceTextQueryMethod;
 
@@ -25,6 +37,20 @@ export class BetaUserServiceEmailQuery {
       throw new TypeError(
         `emailAddress must be a string, got ${typeof this.emailAddress}`,
       );
+    }
+    if (this.method != null) {
+      const methodValues = Object.values(BetaUserServiceTextQueryMethod).filter(
+        (v) =>
+          typeof (BetaUserServiceTextQueryMethod as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(methodValues as readonly unknown[]).includes(this.method)) {
+        throw new Error(
+          `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
+            `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

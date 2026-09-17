@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -96,7 +97,7 @@ export class SessionServiceApi extends BaseApi {
           json,
           SessionServiceCreateSessionResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -156,7 +157,7 @@ export class SessionServiceApi extends BaseApi {
           json,
           SessionServiceDeleteSessionResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -213,7 +214,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceGetSessionResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -270,7 +271,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceListSessionsResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -327,7 +328,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceSetSessionResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 }

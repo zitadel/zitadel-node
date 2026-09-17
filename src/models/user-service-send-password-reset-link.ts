@@ -9,12 +9,24 @@ import { UserServiceNotificationType } from "./user-service-notification-type.js
 import { Expose, Type } from "class-transformer";
 
 export class UserServiceSendPasswordResetLink {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "notificationType" })
   notificationType?: UserServiceNotificationType;
   /**
    * Optionally set a url_template, which will be used in the password reset mail sent by ZITADEL to guide the user to your password change page.  If no template is set, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
-   * @example null
    */
   @Expose({ name: "urlTemplate" })
   urlTemplate?: string;
@@ -25,6 +37,26 @@ export class UserServiceSendPasswordResetLink {
       throw new TypeError(
         `urlTemplate must be a string, got ${typeof this.urlTemplate}`,
       );
+    }
+    if (this.notificationType != null) {
+      const notificationTypeValues = Object.values(
+        UserServiceNotificationType,
+      ).filter(
+        (v) =>
+          typeof (UserServiceNotificationType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(notificationTypeValues as readonly unknown[]).includes(
+          this.notificationType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for notificationType: ${JSON.stringify(this.notificationType)}. ` +
+            `Expected one of [${notificationTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

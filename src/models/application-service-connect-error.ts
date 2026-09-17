@@ -13,24 +13,46 @@ import { Expose, Type } from "class-transformer";
  */
 export class ApplicationServiceConnectError {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
-   * @example null
    */
   @Expose({ name: "code" })
   code?: ApplicationServiceConnectErrorCodeEnum;
   /**
    * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
-   * @example null
    */
   @Expose({ name: "message" })
   message?: string;
   /**
    * A list of messages that carry the error details. There is no limit on the number of messages.
-   * @example null
    */
   @Expose({ name: "details" })
   @Type(() => ApplicationServiceAny)
   details?: Array<ApplicationServiceAny>;
+
+  /**
+   * The schema-declared wire-key names. Its PRESENCE marks this model as
+   * declaring `additionalProperties`: undeclared wire keys are free-form data
+   * that must SURVIVE a round-trip. ObjectSerializer reads this set and
+   * re-attaches any json key NOT listed here after plainToInstance (which, with
+   * excludeExtraneousValues, would otherwise silently drop them — data loss).
+   * Models without this static intentionally discard extras.
+   */
+  static readonly __additionalPropertiesDeclaredKeys: ReadonlySet<string> =
+    new Set(["code", "message", "details"]);
 
   [key: string]: unknown;
 
@@ -42,7 +64,14 @@ export class ApplicationServiceConnectError {
       );
     }
     if (this.code != null) {
-      const codeValues = Object.values(ApplicationServiceConnectErrorCodeEnum);
+      const codeValues = Object.values(
+        ApplicationServiceConnectErrorCodeEnum,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceConnectErrorCodeEnum as Record<string, unknown>
+          )[v as string] !== "number",
+      );
       if (!(codeValues as readonly unknown[]).includes(this.code)) {
         throw new Error(
           `Unknown enum value for code: ${JSON.stringify(this.code)}. ` +

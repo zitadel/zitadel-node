@@ -11,28 +11,37 @@ import { Expose, Type } from "class-transformer";
 
 export class UserServiceCreateUserRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The unique identifier of the organization the user belongs to.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * The ID is a unique identifier for the user in the instance.  If not specified, it will be generated.  You can set your own user id that is unique within the instance.  This is useful in migration scenarios, for example if the user already has an ID in another Zitadel system.  If not specified, it will be generated.  It can't be changed after creation.
-   * @example null
    */
   @Expose({ name: "userId" })
   userId?: string;
   /**
    * The username is a unique identifier for the user in the organization.  If not specified, Zitadel sets the username to the email for users of type human and to the user_id for users of type machine.  It is used to identify the user in the organization and can be used for login.
-   * @example null
    */
   @Expose({ name: "username" })
   username?: string;
-  /** @example null */
   @Expose({ name: "human" })
   @Type(() => UserServiceHuman)
   human?: UserServiceHuman;
-  /** @example null */
   @Expose({ name: "machine" })
   @Type(() => UserServiceMachine)
   machine?: UserServiceMachine;

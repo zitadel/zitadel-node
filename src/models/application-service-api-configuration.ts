@@ -10,12 +10,24 @@ import { Expose } from "class-transformer";
 
 export class ApplicationServiceAPIConfiguration {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The unique OAuth2 client_id used for authentication of the API,  e.g. at the introspection endpoint.
-   * @example null
    */
   @Expose({ name: "clientId" })
   clientId?: string;
-  /** @example null */
   @Expose({ name: "authMethodType" })
   authMethodType?: ApplicationServiceAPIAuthMethodType;
 
@@ -25,6 +37,26 @@ export class ApplicationServiceAPIConfiguration {
       throw new TypeError(
         `clientId must be a string, got ${typeof this.clientId}`,
       );
+    }
+    if (this.authMethodType != null) {
+      const authMethodTypeValues = Object.values(
+        ApplicationServiceAPIAuthMethodType,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceAPIAuthMethodType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(authMethodTypeValues as readonly unknown[]).includes(
+          this.authMethodType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for authMethodType: ${JSON.stringify(this.authMethodType)}. ` +
+            `Expected one of [${authMethodTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

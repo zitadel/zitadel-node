@@ -10,12 +10,24 @@ import { Expose } from "class-transformer";
 
 export class BetaOrganizationServiceOrgDomainFilter {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The domain.
-   * @example null
    */
   @Expose({ name: "domain" })
   domain?: string;
-  /** @example null */
   @Expose({ name: "method" })
   method?: BetaOrganizationServiceTextQueryMethod;
 
@@ -23,6 +35,22 @@ export class BetaOrganizationServiceOrgDomainFilter {
     Object.assign(this, data);
     if (this.domain != null && typeof this.domain !== "string") {
       throw new TypeError(`domain must be a string, got ${typeof this.domain}`);
+    }
+    if (this.method != null) {
+      const methodValues = Object.values(
+        BetaOrganizationServiceTextQueryMethod,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaOrganizationServiceTextQueryMethod as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(methodValues as readonly unknown[]).includes(this.method)) {
+        throw new Error(
+          `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
+            `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

@@ -9,23 +9,32 @@ import { BetaFeatureServiceImprovedPerformance } from "./beta-feature-service-im
 import { Expose } from "class-transformer";
 
 export class BetaFeatureServiceSetSystemFeaturesRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "loginDefaultOrg" })
   loginDefaultOrg?: boolean;
-  /** @example null */
   @Expose({ name: "userSchema" })
   userSchema?: boolean;
   /**
    * Deprecated: the flag has been removed and `urn:ietf:params:oauth:grant-type:token-exchange`  grant type for the OIDC token endpoint is enabled by default.  Token exchange can be used to request tokens with a lesser scope or impersonate other users.  See the security policy to allow impersonation on an instance.  This field is only kept for backward compatibility and will be removed in the next major version of Zitadel.  Setting the field will have no effect.
-   * @example null
    * @deprecated This property is deprecated.
    */
   @Expose({ name: "oidcTokenExchange" })
   oidcTokenExchange?: boolean;
-  /** @example null */
   @Expose({ name: "improvedPerformance" })
   improvedPerformance?: Array<BetaFeatureServiceImprovedPerformance>;
-  /** @example null */
   @Expose({ name: "oidcSingleV1SessionTermination" })
   oidcSingleV1SessionTermination?: boolean;
 
@@ -59,6 +68,47 @@ export class BetaFeatureServiceSetSystemFeaturesRequest {
       throw new TypeError(
         `oidcSingleV1SessionTermination must be a boolean, got ${typeof this.oidcSingleV1SessionTermination}`,
       );
+    }
+    if (this.improvedPerformance != null) {
+      const improvedPerformanceValues = Object.values(
+        BetaFeatureServiceImprovedPerformance,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaFeatureServiceImprovedPerformance as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(improvedPerformanceValues as readonly unknown[]).includes(
+          this.improvedPerformance,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for improvedPerformance: ${JSON.stringify(this.improvedPerformance)}. ` +
+            `Expected one of [${improvedPerformanceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (
+      this.improvedPerformance != null &&
+      Array.isArray(this.improvedPerformance)
+    ) {
+      const improvedPerformanceValues = Object.values(
+        BetaFeatureServiceImprovedPerformance,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaFeatureServiceImprovedPerformance as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      for (const __v of this.improvedPerformance as readonly unknown[]) {
+        if (!(improvedPerformanceValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for improvedPerformance: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${improvedPerformanceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
     }
   }
 

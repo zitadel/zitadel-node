@@ -12,23 +12,45 @@ import { Expose, Transform } from "class-transformer";
  */
 export class AuthorizationServiceAny {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * A URL that acts as a globally unique identifier for the type of the serialized message. For example: `type.googleapis.com/google.rpc.ErrorInfo`. This is used to determine the schema of the data in the `value` field and is the discriminator for the `debug` field.
-   * @example null
    */
   @Expose({ name: "type" })
   type?: string;
   /**
    * The Protobuf message, serialized as bytes and base64-encoded. The specific message type is identified by the `type` field.
-   * @example null
    */
   @Expose({ name: "value" })
   value?: Buffer;
   /**
    * Deserialized error detail payload. The 'type' field indicates the schema. This field is for easier debugging and should not be relied upon for application logic.
-   * @example null
    */
   @Expose({ name: "debug" })
   debug?: unknown;
+
+  /**
+   * The schema-declared wire-key names. Its PRESENCE marks this model as
+   * declaring `additionalProperties`: undeclared wire keys are free-form data
+   * that must SURVIVE a round-trip. ObjectSerializer reads this set and
+   * re-attaches any json key NOT listed here after plainToInstance (which, with
+   * excludeExtraneousValues, would otherwise silently drop them — data loss).
+   * Models without this static intentionally discard extras.
+   */
+  static readonly __additionalPropertiesDeclaredKeys: ReadonlySet<string> =
+    new Set(["type", "value", "debug"]);
 
   [key: string]: unknown;
 

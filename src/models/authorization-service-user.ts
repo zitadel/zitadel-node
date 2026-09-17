@@ -9,32 +9,41 @@ import { Expose } from "class-transformer";
 
 export class AuthorizationServiceUser {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * ID represents the ID of the user who was granted the authorization.
-   * @example null
    */
   @Expose({ name: "id" })
   id?: string;
   /**
    * PreferredLoginName represents the preferred login name of the granted user.
-   * @example null
    */
   @Expose({ name: "preferredLoginName" })
   preferredLoginName?: string;
   /**
    * DisplayName represents the public display name of the granted user.
-   * @example null
    */
   @Expose({ name: "displayName" })
   displayName?: string;
   /**
    * AvatarURL is the URL to the user's public avatar image.
-   * @example null
    */
   @Expose({ name: "avatarUrl" })
   avatarUrl?: string;
   /**
    * The organization the user belong to.  This does not have to correspond with the authorizations organization.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;

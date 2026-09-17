@@ -10,21 +10,31 @@ import { SAMLServicePostResponse } from "./saml-service-post-response.js";
 import { Expose, Type } from "class-transformer";
 
 export class SAMLServiceCreateResponseResponse {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "details" })
   @Type(() => SAMLServiceDetails)
   details?: SAMLServiceDetails;
   /**
    * URL including the Assertion Consumer Service where the user should be redirected or has to call per POST, depending on the binding. Contains details for the application to obtain the response on success, or error details on failure. Note that this field must be treated as credentials, as the contained SAMLResponse or code can be used on behalve of the user.
-   * @example null
    */
   @Expose({ name: "url" })
   url?: string;
-  /** @example null */
   @Expose({ name: "post" })
   @Type(() => SAMLServicePostResponse)
   post?: SAMLServicePostResponse;
-  /** @example null */
   @Expose({ name: "redirect" })
   redirect?: object;
 

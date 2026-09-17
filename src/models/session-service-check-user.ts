@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class SessionServiceCheckUser {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The login name of the user to be checked. It will search case insensitive.  Note this only checks for the computed login name and not for any organization scoped usernames.  Also note that it will not check for emails or phone numbers, even if the corresponding  setting is enabled. Use the user service ListUsers method to find a user by email or phone number first  to obtain the user ID or login name.
-   * @example null
    */
   @Expose({ name: "loginName" })
   loginName?: string;
   /**
    * The unique identifier of the user to be checked.
-   * @example null
    */
   @Expose({ name: "userId" })
   userId?: string;

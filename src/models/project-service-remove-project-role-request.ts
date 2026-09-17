@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class ProjectServiceRemoveProjectRoleRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * ProjectID is the unique identifier of the project.
-   * @example null
    */
   @Expose({ name: "projectId" })
   projectId?: string;
   /**
    * RoleKey is the key of the role to be removed.  All dependencies of this role will be removed as well, including project grants and user grants.  If the role is not found, the request will return a successful response as the desired state is already achieved.
-   * @example null
    */
   @Expose({ name: "roleKey" })
   roleKey?: string;

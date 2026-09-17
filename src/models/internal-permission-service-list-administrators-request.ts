@@ -11,16 +11,27 @@ import { InternalPermissionServicePaginationRequest } from "./internal-permissio
 import { Expose, Type } from "class-transformer";
 
 export class InternalPermissionServiceListAdministratorsRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "pagination" })
   @Type(() => InternalPermissionServicePaginationRequest)
   pagination?: InternalPermissionServicePaginationRequest;
-  /** @example null */
   @Expose({ name: "sortingColumn" })
   sortingColumn?: InternalPermissionServiceAdministratorFieldName;
   /**
    * Filter the administrator roles to be returned.
-   * @example null
    */
   @Expose({ name: "filters" })
   @Type(() => InternalPermissionServiceAdministratorSearchFilter)
@@ -30,6 +41,29 @@ export class InternalPermissionServiceListAdministratorsRequest {
     data?: Partial<InternalPermissionServiceListAdministratorsRequest>,
   ) {
     Object.assign(this, data);
+    if (this.sortingColumn != null) {
+      const sortingColumnValues = Object.values(
+        InternalPermissionServiceAdministratorFieldName,
+      ).filter(
+        (v) =>
+          typeof (
+            InternalPermissionServiceAdministratorFieldName as Record<
+              string,
+              unknown
+            >
+          )[v as string] !== "number",
+      );
+      if (
+        !(sortingColumnValues as readonly unknown[]).includes(
+          this.sortingColumn,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for sortingColumn: ${JSON.stringify(this.sortingColumn)}. ` +
+            `Expected one of [${sortingColumnValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
   }
 
   /**

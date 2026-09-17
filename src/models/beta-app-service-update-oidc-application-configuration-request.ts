@@ -20,45 +20,46 @@ import {
 } from "../object-serializer.js";
 
 export class BetaAppServiceUpdateOIDCApplicationConfigurationRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "redirectUris" })
   redirectUris?: Array<string>;
-  /** @example null */
   @Expose({ name: "responseTypes" })
   responseTypes?: Array<BetaAppServiceOIDCResponseType>;
-  /** @example null */
   @Expose({ name: "grantTypes" })
   grantTypes?: Array<BetaAppServiceOIDCGrantType>;
-  /** @example null */
   @Expose({ name: "appType" })
   appType?: BetaAppServiceOIDCAppType;
-  /** @example null */
   @Expose({ name: "authMethodType" })
   authMethodType?: BetaAppServiceOIDCAuthMethodType;
-  /** @example null */
   @Expose({ name: "postLogoutRedirectUris" })
   postLogoutRedirectUris?: Array<string>;
-  /** @example null */
   @Expose({ name: "version" })
   version?: BetaAppServiceOIDCVersion;
-  /** @example null */
   @Expose({ name: "devMode" })
   devMode?: boolean;
-  /** @example null */
   @Expose({ name: "accessTokenType" })
   accessTokenType?: BetaAppServiceOIDCTokenType;
-  /** @example null */
   @Expose({ name: "accessTokenRoleAssertion" })
   accessTokenRoleAssertion?: boolean;
-  /** @example null */
   @Expose({ name: "idTokenRoleAssertion" })
   idTokenRoleAssertion?: boolean;
-  /** @example null */
   @Expose({ name: "idTokenUserinfoAssertion" })
   idTokenUserinfoAssertion?: boolean;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "clockSkew" })
   /*
@@ -77,16 +78,12 @@ export class BetaAppServiceUpdateOIDCApplicationConfigurationRequest {
     { toPlainOnly: true },
   )
   clockSkew?: Temporal.Duration;
-  /** @example null */
   @Expose({ name: "additionalOrigins" })
   additionalOrigins?: Array<string>;
-  /** @example null */
   @Expose({ name: "skipNativeAppSuccessPage" })
   skipNativeAppSuccessPage?: boolean;
-  /** @example null */
   @Expose({ name: "backChannelLogoutUri" })
   backChannelLogoutUri?: string;
-  /** @example null */
   @Expose({ name: "loginVersion" })
   @Type(() => BetaAppServiceLoginVersion)
   loginVersion?: BetaAppServiceLoginVersion;
@@ -183,6 +180,146 @@ export class BetaAppServiceUpdateOIDCApplicationConfigurationRequest {
       throw new TypeError(
         `backChannelLogoutUri must be a string, got ${typeof this.backChannelLogoutUri}`,
       );
+    }
+    if (this.responseTypes != null) {
+      const responseTypesValues = Object.values(
+        BetaAppServiceOIDCResponseType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCResponseType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(responseTypesValues as readonly unknown[]).includes(
+          this.responseTypes,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for responseTypes: ${JSON.stringify(this.responseTypes)}. ` +
+            `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.responseTypes != null && Array.isArray(this.responseTypes)) {
+      const responseTypesValues = Object.values(
+        BetaAppServiceOIDCResponseType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCResponseType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.responseTypes as readonly unknown[]) {
+        if (!(responseTypesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for responseTypes: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.grantTypes != null) {
+      const grantTypesValues = Object.values(
+        BetaAppServiceOIDCGrantType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCGrantType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(grantTypesValues as readonly unknown[]).includes(this.grantTypes)) {
+        throw new Error(
+          `Unknown enum value for grantTypes: ${JSON.stringify(this.grantTypes)}. ` +
+            `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.grantTypes != null && Array.isArray(this.grantTypes)) {
+      const grantTypesValues = Object.values(
+        BetaAppServiceOIDCGrantType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCGrantType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.grantTypes as readonly unknown[]) {
+        if (!(grantTypesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for grantTypes: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.appType != null) {
+      const appTypeValues = Object.values(BetaAppServiceOIDCAppType).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCAppType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(appTypeValues as readonly unknown[]).includes(this.appType)) {
+        throw new Error(
+          `Unknown enum value for appType: ${JSON.stringify(this.appType)}. ` +
+            `Expected one of [${appTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.authMethodType != null) {
+      const authMethodTypeValues = Object.values(
+        BetaAppServiceOIDCAuthMethodType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCAuthMethodType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(authMethodTypeValues as readonly unknown[]).includes(
+          this.authMethodType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for authMethodType: ${JSON.stringify(this.authMethodType)}. ` +
+            `Expected one of [${authMethodTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.version != null) {
+      const versionValues = Object.values(BetaAppServiceOIDCVersion).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCVersion as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(versionValues as readonly unknown[]).includes(this.version)) {
+        throw new Error(
+          `Unknown enum value for version: ${JSON.stringify(this.version)}. ` +
+            `Expected one of [${versionValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.accessTokenType != null) {
+      const accessTokenTypeValues = Object.values(
+        BetaAppServiceOIDCTokenType,
+      ).filter(
+        (v) =>
+          typeof (BetaAppServiceOIDCTokenType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(accessTokenTypeValues as readonly unknown[]).includes(
+          this.accessTokenType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for accessTokenType: ${JSON.stringify(this.accessTokenType)}. ` +
+            `Expected one of [${accessTokenTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

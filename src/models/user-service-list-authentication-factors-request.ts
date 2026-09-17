@@ -10,13 +10,24 @@ import { UserServiceAuthFactors } from "./user-service-auth-factors.js";
 import { Expose, Type } from "class-transformer";
 
 export class UserServiceListAuthenticationFactorsRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "userId" })
   userId?: string;
-  /** @example null */
   @Expose({ name: "authFactors" })
   authFactors?: Array<UserServiceAuthFactors>;
-  /** @example null */
   @Expose({ name: "states" })
   states?: Array<UserServiceAuthFactorState>;
 
@@ -24,6 +35,68 @@ export class UserServiceListAuthenticationFactorsRequest {
     Object.assign(this, data);
     if (this.userId != null && typeof this.userId !== "string") {
       throw new TypeError(`userId must be a string, got ${typeof this.userId}`);
+    }
+    if (this.authFactors != null) {
+      const authFactorsValues = Object.values(UserServiceAuthFactors).filter(
+        (v) =>
+          typeof (UserServiceAuthFactors as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(authFactorsValues as readonly unknown[]).includes(this.authFactors)
+      ) {
+        throw new Error(
+          `Unknown enum value for authFactors: ${JSON.stringify(this.authFactors)}. ` +
+            `Expected one of [${authFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.authFactors != null && Array.isArray(this.authFactors)) {
+      const authFactorsValues = Object.values(UserServiceAuthFactors).filter(
+        (v) =>
+          typeof (UserServiceAuthFactors as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.authFactors as readonly unknown[]) {
+        if (!(authFactorsValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for authFactors: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${authFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.states != null) {
+      const statesValues = Object.values(UserServiceAuthFactorState).filter(
+        (v) =>
+          typeof (UserServiceAuthFactorState as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(statesValues as readonly unknown[]).includes(this.states)) {
+        throw new Error(
+          `Unknown enum value for states: ${JSON.stringify(this.states)}. ` +
+            `Expected one of [${statesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.states != null && Array.isArray(this.states)) {
+      const statesValues = Object.values(UserServiceAuthFactorState).filter(
+        (v) =>
+          typeof (UserServiceAuthFactorState as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.states as readonly unknown[]) {
+        if (!(statesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for states: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${statesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
     }
   }
 

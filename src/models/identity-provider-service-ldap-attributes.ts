@@ -8,46 +8,46 @@
 import { Expose } from "class-transformer";
 
 export class IdentityProviderServiceLDAPAttributes {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "idAttribute" })
   idAttribute?: string;
-  /** @example null */
   @Expose({ name: "firstNameAttribute" })
   firstNameAttribute?: string;
-  /** @example null */
   @Expose({ name: "lastNameAttribute" })
   lastNameAttribute?: string;
-  /** @example null */
   @Expose({ name: "displayNameAttribute" })
   displayNameAttribute?: string;
-  /** @example null */
   @Expose({ name: "nickNameAttribute" })
   nickNameAttribute?: string;
-  /** @example null */
   @Expose({ name: "preferredUsernameAttribute" })
   preferredUsernameAttribute?: string;
-  /** @example null */
   @Expose({ name: "emailAttribute" })
   emailAttribute?: string;
-  /** @example null */
   @Expose({ name: "emailVerifiedAttribute" })
   emailVerifiedAttribute?: string;
-  /** @example null */
   @Expose({ name: "phoneAttribute" })
   phoneAttribute?: string;
-  /** @example null */
   @Expose({ name: "phoneVerifiedAttribute" })
   phoneVerifiedAttribute?: string;
-  /** @example null */
   @Expose({ name: "preferredLanguageAttribute" })
   preferredLanguageAttribute?: string;
-  /** @example null */
   @Expose({ name: "avatarUrlAttribute" })
   avatarUrlAttribute?: string;
-  /** @example null */
   @Expose({ name: "profileAttribute" })
   profileAttribute?: string;
-  /** @example null */
   @Expose({ name: "rootCa" })
   rootCa?: string;
 

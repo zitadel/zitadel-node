@@ -8,6 +8,7 @@
 /* eslint-disable */
 
 import * as http from "node:http";
+import * as zlib from "node:zlib";
 import {
   DefaultApiClient,
   SENSITIVE_HEADER_NAMES,
@@ -391,6 +392,20 @@ describe("DefaultApiClient.decodeBody charset handling", () => {
       DefaultApiClient.decodeBody(buf, 'text/plain; charset="ISO-8859-1"'),
     ).toBe("é");
   });
+
+  it("decodes a BOM-less utf-16 body as big-endian (RFC 2781)", () => {
+    // "Pet" encoded UTF-16 big-endian, no BOM: 00 50 00 65 00 74.
+    // Node's TextDecoder maps the bare 'utf-16' label to little-endian,
+    // which would mis-decode these bytes. An HTTP client resolving the
+    // IANA charset UTF-16 with no BOM must default to big-endian.
+    const buf = Buffer.from([0x00, 0x50, 0x00, 0x65, 0x00, 0x74]);
+    expect(DefaultApiClient.decodeBody(buf, "text/plain; charset=utf-16")).toBe(
+      "Pet",
+    );
+    // Same bytes read little-endian would NOT be "Pet" -- proves the
+    // big-endian choice rather than an accidental round-trip.
+    expect(new TextDecoder("utf-16le").decode(buf)).not.toBe("Pet");
+  });
 });
 
 describe("DefaultApiClient.buildContentDisposition multipart filename safety", () => {
@@ -520,6 +535,26 @@ describe("DefaultApiClient multipart wire form (canonical behaviors #4, #5)", ()
         { "data.xyzzy": Buffer.from([0x00, 0x01, 0x02]) },
       );
       const body = getBody().toString("binary");
+      expect(body).toContain("Content-Type: application/octet-stream");
+    } finally {
+      close();
+    }
+  });
+
+  it("#4 raw-bytes part with no extension reuses the field name as filename and falls back to application/octet-stream", async () => {
+    const { url, getBody, close } = await captureRawBody();
+    try {
+      const client = new DefaultApiClient();
+      // Field name "file" has no extension: the field name doubles as the
+      // filename and the per-part Content-Type falls back to octet-stream.
+      await client.sendRequest(
+        "POST",
+        url,
+        {},
+        { file: Buffer.from([0x00, 0x01, 0x02]) },
+      );
+      const body = getBody().toString("binary");
+      expect(body).toContain('name="file"; filename="file"');
       expect(body).toContain("Content-Type: application/octet-stream");
     } finally {
       close();
@@ -1007,5 +1042,78 @@ describe("body-read error is wrapped in ApiError", () => {
     await expect(
       client.sendRequest("GET", "http://api.example/x", {}, null),
     ).rejects.toBeInstanceOf(ApiError);
+  });
+});
+
+/*
+ * Canonical scenario AL — Content-Encoding lie. A server advertises
+ * `Content-Encoding: gzip` but the body is NOT a valid gzip stream. The
+ * client MUST surface the SDK's ApiError (no crash, no corrupt-byte
+ * passthrough), matching java/python/ruby/go/php/rust/elixir which wrap the
+ * decompression failure.
+ *
+ * On the real-network path undici decodes Content-Encoding transparently and
+ * throws on a malformed stream (already wrapped as ApiError by the body-read
+ * catch). This unit test pins the behaviour deterministically by mocking
+ * `fetch` to return a body that carries the gzip magic bytes (0x1F 0x8B) --
+ * so it claims AND looks like gzip -- but is not a decodable gzip stream.
+ * RED before the fix (the undecoded bytes were base64'd and returned), GREEN
+ * after (DefaultApiClient.ensureDecoded gunzips, fails, and throws ApiError).
+ */
+describe("Content-Encoding lie surfaces ApiError (canonical AL)", () => {
+  const originalFetch = global.fetch;
+  afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
+  it("throws ApiError when Content-Encoding: gzip body is not valid gzip", async () => {
+    // gzip magic prefix + garbage tail: declares gzip, looks like gzip, but
+    // is not a valid gzip stream.
+    const lyingBody = Buffer.concat([
+      Buffer.from([0x1f, 0x8b]),
+      Buffer.from("this is not a valid gzip stream", "utf-8"),
+    ]);
+    global.fetch = (async (): Promise<Response> => {
+      return new Response(lyingBody, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Encoding": "gzip",
+        },
+      });
+    }) as typeof fetch;
+
+    const client = new DefaultApiClient();
+    await expect(
+      client.sendRequest("GET", "http://api.example/lie", {}, null),
+    ).rejects.toBeInstanceOf(ApiError);
+  });
+
+  it("decodes a genuinely gzip-encoded body that the fetch layer left compressed", async () => {
+    // ensureDecoded is exercised directly: a valid gzip stream still on the
+    // wire is decompressed rather than passed through as base64. It is async
+    // because the shared base decodes via the Web-standard DecompressionStream
+    // so the gzip-lie guard runs on every runtime.
+    const valid = zlib.gzipSync(Buffer.from('{"userId":1}', "utf-8"));
+    const out = await DefaultApiClient.ensureDecoded(valid, "gzip");
+    expect(out.toString("utf-8")).toBe('{"userId":1}');
+  });
+
+  it("leaves an already-decoded body untouched (no double-decode)", async () => {
+    // When the fetch layer has already decoded the body the gzip magic is gone,
+    // so ensureDecoded must pass the plaintext through unchanged.
+    const decoded = Buffer.from('{"userId":1}', "utf-8");
+    const out = await DefaultApiClient.ensureDecoded(decoded, "gzip");
+    expect(out.toString("utf-8")).toBe('{"userId":1}');
+  });
+
+  it("throws ApiError directly from ensureDecoded on invalid gzip bytes", async () => {
+    const lyingBody = Buffer.concat([
+      Buffer.from([0x1f, 0x8b]),
+      Buffer.from("garbage", "utf-8"),
+    ]);
+    await expect(
+      DefaultApiClient.ensureDecoded(lyingBody, "gzip"),
+    ).rejects.toThrow(ApiError);
   });
 });

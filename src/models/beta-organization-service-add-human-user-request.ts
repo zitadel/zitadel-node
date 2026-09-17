@@ -18,52 +18,55 @@ import { Email } from "../brand.js";
 
 export class BetaOrganizationServiceAddHumanUserRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * optionally set your own id unique for the user.
-   * @example null
    */
   @Expose({ name: "userId" })
   userId?: string;
   /**
    * optionally set a unique username, if none is provided the email will be used.
-   * @example null
    */
   @Expose({ name: "username" })
   username?: string;
-  /** @example null */
   @Expose({ name: "organization" })
   @Type(() => BetaOrganizationServiceOrganization)
   organization?: BetaOrganizationServiceOrganization;
-  /** @example null */
   @Expose({ name: "profile" })
   @Type(() => BetaOrganizationServiceSetHumanProfile)
   profile?: BetaOrganizationServiceSetHumanProfile;
-  /** @example null */
   @Expose({ name: "email" })
   @Type(() => BetaOrganizationServiceSetHumanEmail)
   email?: BetaOrganizationServiceSetHumanEmail;
-  /** @example null */
   @Expose({ name: "phone" })
   @Type(() => BetaOrganizationServiceSetHumanPhone)
   phone?: BetaOrganizationServiceSetHumanPhone;
-  /** @example null */
   @Expose({ name: "metadata" })
   @Type(() => BetaOrganizationServiceSetMetadataEntry)
   metadata?: Array<BetaOrganizationServiceSetMetadataEntry>;
-  /** @example null */
   @Expose({ name: "idpLinks" })
   @Type(() => BetaOrganizationServiceIDPLink)
   idpLinks?: Array<BetaOrganizationServiceIDPLink>;
   /**
    * An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds.  Currently no other options are supported, and if anything different is used the validation will fail.
-   * @example null
    */
   @Expose({ name: "totpSecret" })
   totpSecret?: string;
-  /** @example null */
   @Expose({ name: "hashedPassword" })
   @Type(() => BetaOrganizationServiceHashedPassword)
   hashedPassword?: BetaOrganizationServiceHashedPassword;
-  /** @example null */
   @Expose({ name: "password" })
   @Type(() => BetaOrganizationServicePassword)
   password?: BetaOrganizationServicePassword;

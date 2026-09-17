@@ -18,47 +18,50 @@ import { InternalPermissionServiceUserPreferredLoginNameFilter } from "./interna
 import { Expose, Type } from "class-transformer";
 
 export class InternalPermissionServiceAdministratorSearchFilter {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "and" })
   @Type(() => InternalPermissionServiceAndFilter)
   and?: InternalPermissionServiceAndFilter;
-  /** @example null */
   @Expose({ name: "changeDate" })
   @Type(() => InternalPermissionServiceTimestampFilter)
   changeDate?: InternalPermissionServiceTimestampFilter;
-  /** @example null */
   @Expose({ name: "creationDate" })
   @Type(() => InternalPermissionServiceTimestampFilter)
   creationDate?: InternalPermissionServiceTimestampFilter;
-  /** @example null */
   @Expose({ name: "inUserIdsFilter" })
   @Type(() => InternalPermissionServiceInIDsFilter)
   inUserIdsFilter?: InternalPermissionServiceInIDsFilter;
-  /** @example null */
   @Expose({ name: "not" })
   @Type(() => InternalPermissionServiceNotFilter)
   not?: InternalPermissionServiceNotFilter;
-  /** @example null */
   @Expose({ name: "or" })
   @Type(() => InternalPermissionServiceOrFilter)
   or?: InternalPermissionServiceOrFilter;
-  /** @example null */
   @Expose({ name: "resource" })
   @Type(() => InternalPermissionServiceResourceFilter)
   resource?: InternalPermissionServiceResourceFilter;
-  /** @example null */
   @Expose({ name: "role" })
   @Type(() => InternalPermissionServiceRoleFilter)
   role?: InternalPermissionServiceRoleFilter;
-  /** @example null */
   @Expose({ name: "userDisplayName" })
   @Type(() => InternalPermissionServiceUserDisplayNameFilter)
   userDisplayName?: InternalPermissionServiceUserDisplayNameFilter;
-  /** @example null */
   @Expose({ name: "userOrganizationId" })
   @Type(() => InternalPermissionServiceIDFilter)
   userOrganizationId?: InternalPermissionServiceIDFilter;
-  /** @example null */
   @Expose({ name: "userPreferredLoginName" })
   @Type(() => InternalPermissionServiceUserPreferredLoginNameFilter)
   userPreferredLoginName?: InternalPermissionServiceUserPreferredLoginNameFilter;

@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -120,7 +121,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceActivateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -181,7 +182,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceActivateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -241,7 +242,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceAddProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -301,7 +302,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceCreateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -361,7 +362,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceCreateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -421,7 +422,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceDeactivateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -482,7 +483,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceDeactivateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -542,7 +543,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceDeleteProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -602,7 +603,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceDeleteProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -662,7 +663,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceGetProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -722,7 +723,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceListProjectGrantsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -782,7 +783,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceListProjectRolesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -842,7 +843,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceListProjectsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -902,7 +903,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceRemoveProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -962,7 +963,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceUpdateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -1022,7 +1023,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceUpdateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -1082,7 +1083,7 @@ export class BetaProjectServiceApi extends BaseApi {
           json,
           BetaProjectServiceUpdateProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

@@ -10,12 +10,24 @@ import { Expose } from "class-transformer";
 
 export class BetaAuthorizationServiceUserDisplayNameQuery {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Specify the public display name of the granted user to search for.
-   * @example null
    */
   @Expose({ name: "displayName" })
   displayName?: string;
-  /** @example null */
   @Expose({ name: "method" })
   method?: BetaAuthorizationServiceTextFilterMethod;
 
@@ -25,6 +37,22 @@ export class BetaAuthorizationServiceUserDisplayNameQuery {
       throw new TypeError(
         `displayName must be a string, got ${typeof this.displayName}`,
       );
+    }
+    if (this.method != null) {
+      const methodValues = Object.values(
+        BetaAuthorizationServiceTextFilterMethod,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaAuthorizationServiceTextFilterMethod as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(methodValues as readonly unknown[]).includes(this.method)) {
+        throw new Error(
+          `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
+            `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

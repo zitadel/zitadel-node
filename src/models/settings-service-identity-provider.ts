@@ -10,16 +10,26 @@ import { SettingsServiceOptions } from "./settings-service-options.js";
 import { Expose, Type } from "class-transformer";
 
 export class SettingsServiceIdentityProvider {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "id" })
   id?: string;
-  /** @example null */
   @Expose({ name: "name" })
   name?: string;
-  /** @example null */
   @Expose({ name: "type" })
   type?: SettingsServiceIdentityProviderType;
-  /** @example null */
   @Expose({ name: "options" })
   @Type(() => SettingsServiceOptions)
   options?: SettingsServiceOptions;
@@ -31,6 +41,22 @@ export class SettingsServiceIdentityProvider {
     }
     if (this.name != null && typeof this.name !== "string") {
       throw new TypeError(`name must be a string, got ${typeof this.name}`);
+    }
+    if (this.type != null) {
+      const typeValues = Object.values(
+        SettingsServiceIdentityProviderType,
+      ).filter(
+        (v) =>
+          typeof (
+            SettingsServiceIdentityProviderType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(typeValues as readonly unknown[]).includes(this.type)) {
+        throw new Error(
+          `Unknown enum value for type: ${JSON.stringify(this.type)}. ` +
+            `Expected one of [${typeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

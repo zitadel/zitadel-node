@@ -39,6 +39,12 @@
     },
     "./package.json": "./package.json"
   },
+  "imports": {
+    "#transport": {
+      "node": "./dist/default-api-client.js",
+      "default": "./dist/default-api-client.web.js"
+    }
+  },
   "license": "Apache-2.0",
   "description": "TODO",
   "private": false,

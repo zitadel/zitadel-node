@@ -9,32 +9,41 @@ import { Expose } from "class-transformer";
 
 export class SettingsServiceGetGeneralSettingsResponse {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.  Deprecated: use default_organization_id instead.
-   * @example null
    */
   @Expose({ name: "defaultOrgId" })
   defaultOrgId?: string;
   /**
-   * The default language is use if no other language is specified or detected.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-   * @example null
+   * The default language is use if no other language is specified or detected.  The format is a BCP 47 language tag (e.g. "en", "de", "fr-CH").
    */
   @Expose({ name: "defaultLanguage" })
   defaultLanguage?: string;
   /**
-   * The list of supported languages.  Note that the instance might restrict the languages further  only allowing a subset of these languages to be used.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-   * @example null
+   * The list of supported languages.  Note that the instance might restrict the languages further  only allowing a subset of these languages to be used.  The format is a BCP 47 language tag (e.g. "en", "de", "fr-CH").
    */
   @Expose({ name: "supportedLanguages" })
   supportedLanguages?: Array<string>;
   /**
    * The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.
-   * @example null
    */
   @Expose({ name: "defaultOrganizationId" })
   defaultOrganizationId?: string;
   /**
-   * The list of allowed languages for the instance.  This is a subset of the supported languages to be used in the instance  e.g. for user selection during registration or language detection in the UI.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-   * @example null
+   * The list of allowed languages for the instance.  This is a subset of the supported languages to be used in the instance  e.g. for user selection during registration or language detection in the UI.  The format is a BCP 47 language tag (e.g. "en", "de", "fr-CH").
    */
   @Expose({ name: "allowedLanguages" })
   allowedLanguages?: Array<string>;

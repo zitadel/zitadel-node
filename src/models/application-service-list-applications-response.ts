@@ -11,13 +11,25 @@ import { Expose, Type } from "class-transformer";
 
 export class ApplicationServiceListApplicationsResponse {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The list of applications matching the query. Depending on the applied limit,  there might be more applications available than included in this list.  Use the returned pagination information to request further applications.
-   * @example null
    */
   @Expose({ name: "applications" })
   @Type(() => ApplicationServiceApplication)
   applications?: Array<ApplicationServiceApplication>;
-  /** @example null */
   @Expose({ name: "pagination" })
   @Type(() => ApplicationServicePaginationResponse)
   pagination?: ApplicationServicePaginationResponse;

@@ -10,23 +10,33 @@ import { SessionServiceDetails } from "./session-service-details.js";
 import { Expose, Type } from "class-transformer";
 
 export class SessionServiceCreateSessionResponse {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "details" })
   @Type(() => SessionServiceDetails)
   details?: SessionServiceDetails;
   /**
    * Unique identifier of the session.
-   * @example null
    */
   @Expose({ name: "sessionId" })
   sessionId?: string;
   /**
    * The current token of the session, which is required for using the session as authentication,  e.g.when authenticating an OIDC auth request or SAML request.  Additionally, the session token can be used as OAuth2 access token to authenticate against  the ZITADEL APIs.
-   * @example null
    */
   @Expose({ name: "sessionToken" })
   sessionToken?: string;
-  /** @example null */
   @Expose({ name: "challenges" })
   @Type(() => SessionServiceChallenges)
   challenges?: SessionServiceChallenges;

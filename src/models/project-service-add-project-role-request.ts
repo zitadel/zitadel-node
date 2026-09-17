@@ -9,26 +9,36 @@ import { Expose } from "class-transformer";
 
 export class ProjectServiceAddProjectRoleRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * ProjectID is the unique identifier of the project.
-   * @example null
    */
   @Expose({ name: "projectId" })
   projectId?: string;
   /**
    * RoleKey identifies the role. It's the only relevant attribute for ZITADEL and  will be used for authorization checks and as claim in tokens and user info responses.
-   * @example null
    */
   @Expose({ name: "roleKey" })
   roleKey?: string;
   /**
    * DisplayName is a human readable name for the role, which might be displayed to users.
-   * @example null
    */
   @Expose({ name: "displayName" })
   displayName?: string;
   /**
    * Group allows grouping roles for display purposes. Zitadel will not handle it in any way.  It can be used to group roles in a UI to allow easier management for administrators.  This attribute is not to be confused with groups as a collection of users.
-   * @example null
    */
   @Expose({ name: "group" })
   group?: string;

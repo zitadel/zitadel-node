@@ -12,8 +12,21 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class IdentityProviderServiceSAMLConfig {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Metadata of the SAML identity provider.
-   * @example null
    */
   @Expose({ name: "metadataXml" })
   /** 2.1 — `format: byte` round-trips Buffer <-> base64 string at the serde boundary. */
@@ -28,31 +41,25 @@ export class IdentityProviderServiceSAMLConfig {
     { toPlainOnly: true },
   )
   metadataXml?: Buffer;
-  /** @example null */
   @Expose({ name: "binding" })
   binding?: IdentityProviderServiceSAMLBinding;
   /**
    * Boolean which defines if the authentication requests are signed.
-   * @example null
    */
   @Expose({ name: "withSignedRequest" })
   withSignedRequest?: boolean;
-  /** @example null */
   @Expose({ name: "nameIdFormat" })
   nameIdFormat?: IdentityProviderServiceSAMLNameIDFormat;
   /**
    * Optional name of the attribute, which will be used to map the user  in case the nameid-format returned is  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
-   * @example null
    */
   @Expose({ name: "transientMappingAttributeName" })
   transientMappingAttributeName?: string;
   /**
    * Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider,  if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
-   * @example null
    */
   @Expose({ name: "federatedLogoutEnabled" })
   federatedLogoutEnabled?: boolean;
-  /** @example null */
   @Expose({ name: "signatureAlgorithm" })
   signatureAlgorithm?: IdentityProviderServiceSAMLSignatureAlgorithm;
 
@@ -96,6 +103,63 @@ export class IdentityProviderServiceSAMLConfig {
       throw new TypeError(
         `federatedLogoutEnabled must be a boolean, got ${typeof this.federatedLogoutEnabled}`,
       );
+    }
+    if (this.binding != null) {
+      const bindingValues = Object.values(
+        IdentityProviderServiceSAMLBinding,
+      ).filter(
+        (v) =>
+          typeof (
+            IdentityProviderServiceSAMLBinding as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(bindingValues as readonly unknown[]).includes(this.binding)) {
+        throw new Error(
+          `Unknown enum value for binding: ${JSON.stringify(this.binding)}. ` +
+            `Expected one of [${bindingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.nameIdFormat != null) {
+      const nameIdFormatValues = Object.values(
+        IdentityProviderServiceSAMLNameIDFormat,
+      ).filter(
+        (v) =>
+          typeof (
+            IdentityProviderServiceSAMLNameIDFormat as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(nameIdFormatValues as readonly unknown[]).includes(this.nameIdFormat)
+      ) {
+        throw new Error(
+          `Unknown enum value for nameIdFormat: ${JSON.stringify(this.nameIdFormat)}. ` +
+            `Expected one of [${nameIdFormatValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.signatureAlgorithm != null) {
+      const signatureAlgorithmValues = Object.values(
+        IdentityProviderServiceSAMLSignatureAlgorithm,
+      ).filter(
+        (v) =>
+          typeof (
+            IdentityProviderServiceSAMLSignatureAlgorithm as Record<
+              string,
+              unknown
+            >
+          )[v as string] !== "number",
+      );
+      if (
+        !(signatureAlgorithmValues as readonly unknown[]).includes(
+          this.signatureAlgorithm,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for signatureAlgorithm: ${JSON.stringify(this.signatureAlgorithm)}. ` +
+            `Expected one of [${signatureAlgorithmValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

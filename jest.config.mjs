@@ -33,6 +33,7 @@ export default {
   extensionsToTreatAsEsm: [".ts", ".tsx", ".mts"],
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
+    "^#transport$": "<rootDir>/src/default-api-client.ts",
   },
   reporters: [
     "default",

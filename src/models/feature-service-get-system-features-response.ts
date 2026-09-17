@@ -12,39 +12,44 @@ import { FeatureServiceLoginV2FeatureFlag } from "./feature-service-login-v2-fea
 import { Expose, Type } from "class-transformer";
 
 export class FeatureServiceGetSystemFeaturesResponse {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "details" })
   @Type(() => FeatureServiceDetails)
   details?: FeatureServiceDetails;
-  /** @example null */
   @Expose({ name: "loginDefaultOrg" })
   @Type(() => FeatureServiceFeatureFlag)
   loginDefaultOrg?: FeatureServiceFeatureFlag;
-  /** @example null */
   @Expose({ name: "userSchema" })
   @Type(() => FeatureServiceFeatureFlag)
   userSchema?: FeatureServiceFeatureFlag;
-  /** @example null */
   @Expose({ name: "oidcTokenExchange" })
   @Type(() => FeatureServiceFeatureFlag)
   oidcTokenExchange?: FeatureServiceFeatureFlag;
-  /** @example null */
   @Expose({ name: "improvedPerformance" })
   @Type(() => FeatureServiceImprovedPerformanceFeatureFlag)
   improvedPerformance?: FeatureServiceImprovedPerformanceFeatureFlag;
-  /** @example null */
   @Expose({ name: "oidcSingleV1SessionTermination" })
   @Type(() => FeatureServiceFeatureFlag)
   oidcSingleV1SessionTermination?: FeatureServiceFeatureFlag;
-  /** @example null */
   @Expose({ name: "enableBackChannelLogout" })
   @Type(() => FeatureServiceFeatureFlag)
   enableBackChannelLogout?: FeatureServiceFeatureFlag;
-  /** @example null */
   @Expose({ name: "loginV2" })
   @Type(() => FeatureServiceLoginV2FeatureFlag)
   loginV2?: FeatureServiceLoginV2FeatureFlag;
-  /** @example null */
   @Expose({ name: "permissionCheckV2" })
   @Type(() => FeatureServiceFeatureFlag)
   permissionCheckV2?: FeatureServiceFeatureFlag;

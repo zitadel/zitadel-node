@@ -10,42 +10,49 @@ import { Expose, Type } from "class-transformer";
 
 export class ProjectServiceCreateProjectRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * OrganizationID is the unique identifier of the organization the project belongs to.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * ProjectID is the unique identifier of the new project. This field is optional.  If omitted, the system will generate a unique ID for you. This is the  recommended way. The generated ID will be returned in the response.
-   * @example null
    */
   @Expose({ name: "projectId" })
   projectId?: string;
   /**
    * Name of the project. This might be presented to users, e.g. in sign-in flows.
-   * @example null
    */
   @Expose({ name: "name" })
   name?: string;
   /**
    * ProjectRoleAssertion is a  setting that can be enabled to have role information  included in the user info endpoint.  It is also dependent on your application settings to include it in tokens and other types.
-   * @example null
    */
   @Expose({ name: "projectRoleAssertion" })
   projectRoleAssertion?: boolean;
   /**
    * AuthorizationRequired is a boolean flag that can be enabled to check if a user has  an authorization to use this project assigned when login into an application of this project.
-   * @example null
    */
   @Expose({ name: "authorizationRequired" })
   authorizationRequired?: boolean;
   /**
    * ProjectAccessRequired is a boolean flag that can be enabled to check if the organization  of the user, that is trying to log in,  has access to this project (either owns the project or is granted).
-   * @example null
    */
   @Expose({ name: "projectAccessRequired" })
   projectAccessRequired?: boolean;
-  /** @example null */
   @Expose({ name: "privateLabelingSetting" })
   privateLabelingSetting?: ProjectServicePrivateLabelingSetting;
 
@@ -90,6 +97,26 @@ export class ProjectServiceCreateProjectRequest {
       throw new TypeError(
         `projectAccessRequired must be a boolean, got ${typeof this.projectAccessRequired}`,
       );
+    }
+    if (this.privateLabelingSetting != null) {
+      const privateLabelingSettingValues = Object.values(
+        ProjectServicePrivateLabelingSetting,
+      ).filter(
+        (v) =>
+          typeof (
+            ProjectServicePrivateLabelingSetting as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(privateLabelingSettingValues as readonly unknown[]).includes(
+          this.privateLabelingSetting,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for privateLabelingSetting: ${JSON.stringify(this.privateLabelingSetting)}. ` +
+            `Expected one of [${privateLabelingSettingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

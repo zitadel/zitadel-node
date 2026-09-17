@@ -9,25 +9,32 @@ import { UserServiceGender } from "./user-service-gender.js";
 import { Expose } from "class-transformer";
 
 export class UserServiceHumanProfile {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "givenName" })
   givenName?: string;
-  /** @example null */
   @Expose({ name: "familyName" })
   familyName?: string;
-  /** @example null */
   @Expose({ name: "nickName" })
   nickName?: string;
-  /** @example null */
   @Expose({ name: "displayName" })
   displayName?: string;
-  /** @example null */
   @Expose({ name: "preferredLanguage" })
   preferredLanguage?: string;
-  /** @example null */
   @Expose({ name: "gender" })
   gender?: UserServiceGender;
-  /** @example null */
   @Expose({ name: "avatarUrl" })
   avatarUrl?: string;
 
@@ -65,6 +72,19 @@ export class UserServiceHumanProfile {
       throw new TypeError(
         `avatarUrl must be a string, got ${typeof this.avatarUrl}`,
       );
+    }
+    if (this.gender != null) {
+      const genderValues = Object.values(UserServiceGender).filter(
+        (v) =>
+          typeof (UserServiceGender as Record<string, unknown>)[v as string] !==
+          "number",
+      );
+      if (!(genderValues as readonly unknown[]).includes(this.gender)) {
+        throw new Error(
+          `Unknown enum value for gender: ${JSON.stringify(this.gender)}. ` +
+            `Expected one of [${genderValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

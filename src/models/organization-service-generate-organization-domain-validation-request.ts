@@ -10,18 +10,29 @@ import { Expose, Type } from "class-transformer";
 
 export class OrganizationServiceGenerateOrganizationDomainValidationRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * OrganizationID is the unique identifier of the organization for which the domain validation is to be generated.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * Domain is the full qualified domain name for which the validation is to be generated.
-   * @example null
    */
   @Expose({ name: "domain" })
   domain?: string;
-  /** @example null */
   @Expose({ name: "type" })
   type?: OrganizationServiceDomainValidationType;
 
@@ -39,6 +50,22 @@ export class OrganizationServiceGenerateOrganizationDomainValidationRequest {
     }
     if (this.domain != null && typeof this.domain !== "string") {
       throw new TypeError(`domain must be a string, got ${typeof this.domain}`);
+    }
+    if (this.type != null) {
+      const typeValues = Object.values(
+        OrganizationServiceDomainValidationType,
+      ).filter(
+        (v) =>
+          typeof (
+            OrganizationServiceDomainValidationType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(typeValues as readonly unknown[]).includes(this.type)) {
+        throw new Error(
+          `Unknown enum value for type: ${JSON.stringify(this.type)}. ` +
+            `Expected one of [${typeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

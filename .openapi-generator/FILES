@@ -1,3 +1,4 @@
+src/abstract-api-client.ts
 src/api-client.ts
 src/api-error.ts
 src/api-response.ts
@@ -42,6 +43,7 @@ src/brand.ts
 src/configuration.ts
 src/deep-input.ts
 src/default-api-client.ts
+src/default-api-client.web.ts
 src/errors/bad-request-error.ts
 src/errors/client-error.ts
 src/errors/conflict-error.ts
@@ -1413,9 +1415,13 @@ src/trace-context-util.ts
 src/transport-options.ts
 src/value-serializer.ts
 src/zitadel.ts
+test/api-result.test.ts
 test/configuration.test.ts
 test/default-api-client-unit.test.ts
 test/header-selector.test.ts
+test/server-configuration.test.ts
+test/server-variable.test.ts
 test/trace-context-util.test.ts
 test/transport-options.test.ts
 test/value-serializer.test.ts
+test/web-api-client.test.ts

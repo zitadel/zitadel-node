@@ -21,55 +21,56 @@ import { IdentityProviderServiceSAMLConfig } from "./identity-provider-service-s
 import { Expose, Type } from "class-transformer";
 
 export class IdentityProviderServiceIDPConfig {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "options" })
   @Type(() => IdentityProviderServiceOptions)
   options?: IdentityProviderServiceOptions;
-  /** @example null */
   @Expose({ name: "apple" })
   @Type(() => IdentityProviderServiceAppleConfig)
   apple?: IdentityProviderServiceAppleConfig;
-  /** @example null */
   @Expose({ name: "azureAd" })
   @Type(() => IdentityProviderServiceAzureADConfig)
   azureAd?: IdentityProviderServiceAzureADConfig;
-  /** @example null */
   @Expose({ name: "github" })
   @Type(() => IdentityProviderServiceGitHubConfig)
   github?: IdentityProviderServiceGitHubConfig;
-  /** @example null */
   @Expose({ name: "githubEs" })
   @Type(() => IdentityProviderServiceGitHubEnterpriseServerConfig)
   githubEs?: IdentityProviderServiceGitHubEnterpriseServerConfig;
-  /** @example null */
   @Expose({ name: "gitlab" })
   @Type(() => IdentityProviderServiceGitLabConfig)
   gitlab?: IdentityProviderServiceGitLabConfig;
-  /** @example null */
   @Expose({ name: "gitlabSelfHosted" })
   @Type(() => IdentityProviderServiceGitLabSelfHostedConfig)
   gitlabSelfHosted?: IdentityProviderServiceGitLabSelfHostedConfig;
-  /** @example null */
   @Expose({ name: "google" })
   @Type(() => IdentityProviderServiceGoogleConfig)
   google?: IdentityProviderServiceGoogleConfig;
-  /** @example null */
   @Expose({ name: "jwt" })
   @Type(() => IdentityProviderServiceJWTConfig)
   jwt?: IdentityProviderServiceJWTConfig;
-  /** @example null */
   @Expose({ name: "ldap" })
   @Type(() => IdentityProviderServiceLDAPConfig)
   ldap?: IdentityProviderServiceLDAPConfig;
-  /** @example null */
   @Expose({ name: "oauth" })
   @Type(() => IdentityProviderServiceOAuthConfig)
   oauth?: IdentityProviderServiceOAuthConfig;
-  /** @example null */
   @Expose({ name: "oidc" })
   @Type(() => IdentityProviderServiceGenericOIDCConfig)
   oidc?: IdentityProviderServiceGenericOIDCConfig;
-  /** @example null */
   @Expose({ name: "saml" })
   @Type(() => IdentityProviderServiceSAMLConfig)
   saml?: IdentityProviderServiceSAMLConfig;

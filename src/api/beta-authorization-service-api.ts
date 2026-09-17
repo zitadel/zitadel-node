@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -99,7 +100,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceActivateAuthorizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -160,7 +161,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceCreateAuthorizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -223,7 +224,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceDeactivateAuthorizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -284,7 +285,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceDeleteAuthorizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -344,7 +345,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceListAuthorizationsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -405,7 +406,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceUpdateAuthorizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

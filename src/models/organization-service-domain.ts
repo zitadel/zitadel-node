@@ -10,30 +10,39 @@ import { Expose } from "class-transformer";
 
 export class OrganizationServiceDomain {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * OrganizationID is the unique identifier of the organization the domain belongs to.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * Domain is the fully qualified domain name.
-   * @example null
    */
   @Expose({ name: "domain" })
   domain?: string;
   /**
    * IsVerified is a boolean flag indicating if the domain has been verified.
-   * @example null
    */
   @Expose({ name: "isVerified" })
   isVerified?: boolean;
   /**
    * IsPrimary is a boolean flag indicating if the domain is the primary domain of the organization.
-   * @example null
    */
   @Expose({ name: "isPrimary" })
   isPrimary?: boolean;
-  /** @example null */
   @Expose({ name: "validationType" })
   validationType?: OrganizationServiceDomainValidationType;
 
@@ -59,6 +68,26 @@ export class OrganizationServiceDomain {
       throw new TypeError(
         `isPrimary must be a boolean, got ${typeof this.isPrimary}`,
       );
+    }
+    if (this.validationType != null) {
+      const validationTypeValues = Object.values(
+        OrganizationServiceDomainValidationType,
+      ).filter(
+        (v) =>
+          typeof (
+            OrganizationServiceDomainValidationType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(validationTypeValues as readonly unknown[]).includes(
+          this.validationType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for validationType: ${JSON.stringify(this.validationType)}. ` +
+            `Expected one of [${validationTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

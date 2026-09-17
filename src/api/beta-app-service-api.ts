@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -110,7 +111,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceCreateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -171,7 +172,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceCreateApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -232,7 +233,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceDeactivateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -292,7 +293,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceDeleteApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -353,7 +354,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceDeleteApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -413,7 +414,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceGetApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -473,7 +474,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceGetApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -534,7 +535,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceListApplicationKeysResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -594,7 +595,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceListApplicationsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -655,7 +656,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceReactivateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -716,7 +717,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceRegenerateClientSecretResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -776,7 +777,7 @@ export class BetaAppServiceApi extends BaseApi {
           json,
           BetaAppServiceUpdateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

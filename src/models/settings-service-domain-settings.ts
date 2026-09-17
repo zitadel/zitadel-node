@@ -10,24 +10,34 @@ import { Expose } from "class-transformer";
 
 export class SettingsServiceDomainSettings {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * If enabled, the login name will automatically be suffixed with the domain of the organization.  This ensures that the login name is unique across the instance.
-   * @example null
    */
   @Expose({ name: "loginNameIncludesDomain" })
   loginNameIncludesDomain?: boolean;
   /**
    * If enabled, organization domains must be verified (through an DNS or HTTP challenge) upon creation.  If disabled, organization domains will be created as already verified automatically.
-   * @example null
    */
   @Expose({ name: "requireOrgDomainVerification" })
   requireOrgDomainVerification?: boolean;
   /**
    * If enabled, the SMTP sender address domain must match custom domain on the instance.
-   * @example null
    */
   @Expose({ name: "smtpSenderAddressMatchesInstanceDomain" })
   smtpSenderAddressMatchesInstanceDomain?: boolean;
-  /** @example null */
   @Expose({ name: "resourceOwnerType" })
   resourceOwnerType?: SettingsServiceResourceOwnerType;
 
@@ -56,6 +66,26 @@ export class SettingsServiceDomainSettings {
       throw new TypeError(
         `smtpSenderAddressMatchesInstanceDomain must be a boolean, got ${typeof this.smtpSenderAddressMatchesInstanceDomain}`,
       );
+    }
+    if (this.resourceOwnerType != null) {
+      const resourceOwnerTypeValues = Object.values(
+        SettingsServiceResourceOwnerType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceResourceOwnerType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(resourceOwnerTypeValues as readonly unknown[]).includes(
+          this.resourceOwnerType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
+            `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

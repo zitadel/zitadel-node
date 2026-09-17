@@ -9,14 +9,26 @@ import { Expose, Transform } from "class-transformer";
 
 export class BetaOrganizationServiceMetadata {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Key in the metadata key/value pair.
-   * @example null
    */
   @Expose({ name: "key" })
   key?: string;
   /**
    * Value in the metadata key/value pair.
-   * @example null
    */
   @Expose({ name: "value" })
   /** 2.1 — `format: byte` round-trips Buffer <-> base64 string at the serde boundary. */

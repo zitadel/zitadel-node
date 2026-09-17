@@ -20,6 +20,7 @@
     // *SearchFilter).
     "emitDecoratorMetadata": false,
     "isolatedModules": true,
+    "rootDir": "./src",
     "outDir": "./dist"
   },
   "include": ["src/**/*.ts"],

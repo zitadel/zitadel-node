@@ -13,25 +13,33 @@ import { Expose, Type } from "class-transformer";
 
 export class IdentityProviderServiceIDP {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Unique identifier for the identity provider.
-   * @example null
    */
   @Expose({ name: "id" })
   id?: string;
-  /** @example null */
   @Expose({ name: "details" })
   @Type(() => IdentityProviderServiceDetails)
   details?: IdentityProviderServiceDetails;
-  /** @example null */
   @Expose({ name: "state" })
   state?: IdentityProviderServiceIDPState;
-  /** @example null */
   @Expose({ name: "name" })
   name?: string;
-  /** @example null */
   @Expose({ name: "type" })
   type?: IdentityProviderServiceIDPType;
-  /** @example null */
   @Expose({ name: "config" })
   @Type(() => IdentityProviderServiceIDPConfig)
   config?: IdentityProviderServiceIDPConfig;
@@ -43,6 +51,34 @@ export class IdentityProviderServiceIDP {
     }
     if (this.name != null && typeof this.name !== "string") {
       throw new TypeError(`name must be a string, got ${typeof this.name}`);
+    }
+    if (this.state != null) {
+      const stateValues = Object.values(IdentityProviderServiceIDPState).filter(
+        (v) =>
+          typeof (IdentityProviderServiceIDPState as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(stateValues as readonly unknown[]).includes(this.state)) {
+        throw new Error(
+          `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
+            `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.type != null) {
+      const typeValues = Object.values(IdentityProviderServiceIDPType).filter(
+        (v) =>
+          typeof (IdentityProviderServiceIDPType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(typeValues as readonly unknown[]).includes(this.type)) {
+        throw new Error(
+          `Unknown enum value for type: ${JSON.stringify(this.type)}. ` +
+            `Expected one of [${typeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

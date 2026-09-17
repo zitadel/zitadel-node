@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -120,7 +121,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceActivateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -181,7 +182,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceActivateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -241,7 +242,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceAddProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -301,7 +302,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceCreateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -361,7 +362,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceCreateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -421,7 +422,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceDeactivateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -482,7 +483,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceDeactivateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -542,7 +543,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceDeleteProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -602,7 +603,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceDeleteProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -659,7 +660,7 @@ export class ProjectServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ProjectServiceGetProjectResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -719,7 +720,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceListProjectGrantsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -779,7 +780,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceListProjectRolesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -836,7 +837,7 @@ export class ProjectServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ProjectServiceListProjectsResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -896,7 +897,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceRemoveProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -956,7 +957,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceUpdateProjectResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -1016,7 +1017,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceUpdateProjectGrantResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -1076,7 +1077,7 @@ export class ProjectServiceApi extends BaseApi {
           json,
           ProjectServiceUpdateProjectRoleResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

@@ -11,13 +11,25 @@ import { Expose, Type } from "class-transformer";
 
 export class InstanceServiceListInstancesResponse {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The instances matching the query.
-   * @example null
    */
   @Expose({ name: "instances" })
   @Type(() => InstanceServiceInstance)
   instances?: Array<InstanceServiceInstance>;
-  /** @example null */
   @Expose({ name: "pagination" })
   @Type(() => InstanceServicePaginationResponse)
   pagination?: InstanceServicePaginationResponse;

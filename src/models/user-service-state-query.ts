@@ -12,12 +12,39 @@ import { Expose } from "class-transformer";
  * Query for users with a specific state.
  */
 export class UserServiceStateQuery {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "state" })
   state?: UserServiceUserState;
 
   constructor(data?: Partial<UserServiceStateQuery>) {
     Object.assign(this, data);
+    if (this.state != null) {
+      const stateValues = Object.values(UserServiceUserState).filter(
+        (v) =>
+          typeof (UserServiceUserState as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(stateValues as readonly unknown[]).includes(this.state)) {
+        throw new Error(
+          `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
+            `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
   }
 
   /**

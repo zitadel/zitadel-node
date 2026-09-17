@@ -9,20 +9,31 @@ import { Expose } from "class-transformer";
 
 export class BetaActionServiceResponseExecution {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * All calls to any available services and methods as condition.
-   * @example null
    */
   @Expose({ name: "all" })
   all?: boolean;
   /**
    * GRPC-method as condition.
-   * @example null
    */
   @Expose({ name: "method" })
   method?: string;
   /**
    * GRPC-service as condition.
-   * @example null
    */
   @Expose({ name: "service" })
   service?: string;

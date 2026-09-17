@@ -18,47 +18,50 @@ import { BetaInternalPermissionServiceUserPreferredLoginNameFilter } from "./bet
 import { Expose, Type } from "class-transformer";
 
 export class BetaInternalPermissionServiceAdministratorSearchFilter {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "and" })
   @Type(() => BetaInternalPermissionServiceAndFilter)
   and?: BetaInternalPermissionServiceAndFilter;
-  /** @example null */
   @Expose({ name: "changeDate" })
   @Type(() => BetaInternalPermissionServiceTimestampFilter)
   changeDate?: BetaInternalPermissionServiceTimestampFilter;
-  /** @example null */
   @Expose({ name: "creationDate" })
   @Type(() => BetaInternalPermissionServiceTimestampFilter)
   creationDate?: BetaInternalPermissionServiceTimestampFilter;
-  /** @example null */
   @Expose({ name: "inUserIdsFilter" })
   @Type(() => BetaInternalPermissionServiceInIDsFilter)
   inUserIdsFilter?: BetaInternalPermissionServiceInIDsFilter;
-  /** @example null */
   @Expose({ name: "not" })
   @Type(() => BetaInternalPermissionServiceNotFilter)
   not?: BetaInternalPermissionServiceNotFilter;
-  /** @example null */
   @Expose({ name: "or" })
   @Type(() => BetaInternalPermissionServiceOrFilter)
   or?: BetaInternalPermissionServiceOrFilter;
-  /** @example null */
   @Expose({ name: "resource" })
   @Type(() => BetaInternalPermissionServiceResourceFilter)
   resource?: BetaInternalPermissionServiceResourceFilter;
-  /** @example null */
   @Expose({ name: "role" })
   @Type(() => BetaInternalPermissionServiceRoleFilter)
   role?: BetaInternalPermissionServiceRoleFilter;
-  /** @example null */
   @Expose({ name: "userDisplayName" })
   @Type(() => BetaInternalPermissionServiceUserDisplayNameFilter)
   userDisplayName?: BetaInternalPermissionServiceUserDisplayNameFilter;
-  /** @example null */
   @Expose({ name: "userOrganizationId" })
   @Type(() => BetaInternalPermissionServiceIDFilter)
   userOrganizationId?: BetaInternalPermissionServiceIDFilter;
-  /** @example null */
   @Expose({ name: "userPreferredLoginName" })
   @Type(() => BetaInternalPermissionServiceUserPreferredLoginNameFilter)
   userPreferredLoginName?: BetaInternalPermissionServiceUserPreferredLoginNameFilter;

@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class FeatureServiceLoginV2 {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Require that all users must use the new login UI. If enabled, all users will be redirected to the login V2 regardless of the application's preference.
-   * @example null
    */
   @Expose({ name: "required" })
   required?: boolean;
   /**
    * Optionally specify a base uri of the login UI. If unspecified the default URI will be used.
-   * @example null
    */
   @Expose({ name: "baseUri" })
   baseUri?: string;

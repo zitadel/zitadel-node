@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class OrganizationServiceUpdateOrganizationRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * OrganizationID is the unique identifier of the organization to be updated.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * Name is the new name for the organization to be set.  Note that since the name is used to generate the organization's default domain,  changing the name will also change the domain.  Additionally, if the domain is used as suffix for user logins,  their login names will also change accordingly.  It will not affect any custom domains added to the organization.
-   * @example null
    */
   @Expose({ name: "name" })
   name?: string;

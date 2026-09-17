@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -93,7 +94,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceActivateWebKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -153,7 +154,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceCreateWebKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -213,7 +214,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceDeleteWebKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -271,7 +272,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceListWebKeysResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

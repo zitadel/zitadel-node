@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -110,7 +111,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceCreateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -171,7 +172,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceCreateApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -232,7 +233,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceDeactivateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -292,7 +293,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceDeleteApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -353,7 +354,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceDeleteApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -414,7 +415,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceGenerateClientSecretResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -474,7 +475,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceGetApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -534,7 +535,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceGetApplicationKeyResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -595,7 +596,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceListApplicationKeysResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -655,7 +656,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceListApplicationsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -716,7 +717,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceReactivateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -776,7 +777,7 @@ export class ApplicationServiceApi extends BaseApi {
           json,
           ApplicationServiceUpdateApplicationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

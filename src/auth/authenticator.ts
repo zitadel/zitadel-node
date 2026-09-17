@@ -39,3 +39,48 @@ export interface Authenticator {
    */
   getCookieParams(): Record<string, string>;
 }
+
+/**
+ * Internal no-auth sentinel.
+ *
+ * An operation declared `security: []` in the spec is explicitly
+ * unauthenticated and must NOT pick up the client-level authenticator.
+ * Passing `null`/`undefined` as the per-call auth cannot express that
+ * intent because `null` already means "no per-call override — fall back
+ * to the client authenticator". This sentinel is a distinct, third state.
+ *
+ * It is a frozen singleton that satisfies the {@link Authenticator}
+ * interface by contributing no headers, query params, or cookies. The
+ * base client compares against it BY IDENTITY ({@link isNoAuth}) and, when
+ * matched, applies no credentials at all rather than falling back to the
+ * configured client authenticator.
+ *
+ * This value is internal to the generated client — callers never see it
+ * and should never pass it themselves.
+ */
+export const NO_AUTH: Authenticator = Object.freeze({
+  getHost(): string {
+    return "";
+  },
+  getAuthHeaders(): Record<string, string> {
+    return {};
+  },
+  getAuthHeadersAsync(): Promise<Record<string, string>> {
+    return Promise.resolve({});
+  },
+  getQueryParams(): Record<string, string> {
+    return {};
+  },
+  getCookieParams(): Record<string, string> {
+    return {};
+  },
+});
+
+/**
+ * Identity check for the {@link NO_AUTH} sentinel. Returns true only for
+ * the exact sentinel singleton — never for `null`, `undefined`, or any
+ * real authenticator instance.
+ */
+export function isNoAuth(auth: Authenticator | null | undefined): boolean {
+  return auth === NO_AUTH;
+}

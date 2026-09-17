@@ -11,36 +11,43 @@ import { SettingsServiceThemeMode } from "./settings-service-theme-mode.js";
 import { Expose, Type } from "class-transformer";
 
 export class SettingsServiceBrandingSettings {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "lightTheme" })
   @Type(() => SettingsServiceTheme)
   lightTheme?: SettingsServiceTheme;
-  /** @example null */
   @Expose({ name: "darkTheme" })
   @Type(() => SettingsServiceTheme)
   darkTheme?: SettingsServiceTheme;
   /**
    * The url where the font is served.
-   * @example null
    */
   @Expose({ name: "fontUrl" })
   fontUrl?: string;
   /**
-   * If enabled, the organization suffix will be hidden on the login form if the scope \\\"urn:zitadel:iam:org:domain:primary:{domainname}\\\" is used.
-   * @example null
+   * If enabled, the organization suffix will be hidden on the login form if the scope \"urn:zitadel:iam:org:domain:primary:{domainname}\" is used.
    */
   @Expose({ name: "hideLoginNameSuffix" })
   hideLoginNameSuffix?: boolean;
   /**
    * If enabled, the Zitadel logo will not be displayed on the login screen.
-   * @example null
    */
   @Expose({ name: "disableWatermark" })
   disableWatermark?: boolean;
-  /** @example null */
   @Expose({ name: "resourceOwnerType" })
   resourceOwnerType?: SettingsServiceResourceOwnerType;
-  /** @example null */
   @Expose({ name: "themeMode" })
   themeMode?: SettingsServiceThemeMode;
 
@@ -66,6 +73,40 @@ export class SettingsServiceBrandingSettings {
       throw new TypeError(
         `disableWatermark must be a boolean, got ${typeof this.disableWatermark}`,
       );
+    }
+    if (this.resourceOwnerType != null) {
+      const resourceOwnerTypeValues = Object.values(
+        SettingsServiceResourceOwnerType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceResourceOwnerType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(resourceOwnerTypeValues as readonly unknown[]).includes(
+          this.resourceOwnerType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
+            `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.themeMode != null) {
+      const themeModeValues = Object.values(SettingsServiceThemeMode).filter(
+        (v) =>
+          typeof (SettingsServiceThemeMode as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(themeModeValues as readonly unknown[]).includes(this.themeMode)) {
+        throw new Error(
+          `Unknown enum value for themeMode: ${JSON.stringify(this.themeMode)}. ` +
+            `Expected one of [${themeModeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

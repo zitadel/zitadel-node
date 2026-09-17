@@ -138,6 +138,78 @@ export function durationFromProtoJson(value: string): Temporal.Duration {
 }
 
 /**
+ * Matches a canonical JSON number: optional minus, an integer part with no
+ * leading zeros (or a bare 0), an optional fractional part, and an optional
+ * exponent. Used to gate {@link rawDecimal} so only valid numeric text is
+ * emitted unquoted; anything else falls back to a normal quoted string.
+ */
+const JSON_NUMBER_PATTERN = /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/;
+
+/**
+ * 2.5 — Emit a `type: number` (no-format) Decimal field as an unquoted JSON
+ * number while preserving its full textual precision.
+ *
+ * A Decimal is a branded string at runtime (arbitrary precision the IEEE-754
+ * `number` type cannot hold), so letting JSON.stringify quote it would emit
+ * a JSON string and a spec-conformant server validating `type: number` would
+ * reject it. JSON.rawJSON (TC39 json-parse-with-source, Node >= 21 / V8 12.4)
+ * wraps already-valid JSON text so JSON.stringify writes it verbatim — and the
+ * spec checks the [[IsRawJSON]] slot AFTER the replacer returns, so returning
+ * this from the serialize replacer is honoured.
+ *
+ * `JSON.rawJSON` is not declared by the ES2024 lib this client targets, so it
+ * is reached through a minimal typed view rather than an inline suppression.
+ * Returns the raw-JSON token for valid numeric text, or the original string
+ * unchanged (to be quoted normally) for anything that is not a JSON number.
+ */
+function rawDecimal(text: string): unknown {
+  if (!JSON_NUMBER_PATTERN.test(text)) {
+    return text;
+  }
+  const rawJson = (JSON as unknown as { rawJSON?: (t: string) => unknown })
+    .rawJSON;
+  return typeof rawJson === "function" ? rawJson(text) : text;
+}
+
+/**
+ * 2.5 (plain-object request bodies) — global registry of every property name
+ * that is a `type: number` (no-format) Decimal field, aggregated across all
+ * generated models.
+ *
+ * The per-model `__decimalFields` set on the owning class drives unquoted
+ * emission when the value being serialized is a real model INSTANCE (the
+ * replacer reads it off `this.constructor`). But request bodies are routinely
+ * passed as plain object literals (the body parameter type is `DeepInput<T>`),
+ * and a plain object's constructor is `Object`, which carries no
+ * `__decimalFields` — so the Decimal field would be quoted as a JSON string,
+ * violating the spec's `type: number`. This holder-independent set lets the
+ * serializer recognise such fields by name on a plain object too.
+ *
+ * Built lazily (the models module is fully initialised only after this module
+ * loads) by unioning each model class's own `__decimalFields`. Emission still
+ * goes through {@link rawDecimal}, which only writes a value unquoted when it
+ * is valid JSON numeric text, so a same-named non-numeric string is untouched.
+ */
+let globalDecimalFields: ReadonlySet<string> | undefined;
+
+function decimalFieldNames(): ReadonlySet<string> {
+  if (globalDecimalFields === undefined) {
+    const names = new Set<string>();
+    for (const exported of Object.values(models as Record<string, unknown>)) {
+      const fields = (exported as { __decimalFields?: unknown } | undefined)
+        ?.__decimalFields;
+      if (fields instanceof Set) {
+        for (const name of fields as Set<string>) {
+          names.add(name);
+        }
+      }
+    }
+    globalDecimalFields = names;
+  }
+  return globalDecimalFields;
+}
+
+/**
  * Maximum allowed JSON nesting depth. Node's JSON.parse has no built-in
  * cap and recurses through V8's call stack, so a malicious 100k-deep
  * `{"a":{"a":...}}` payload would stack-overflow / DoS. Matches the
@@ -229,9 +301,17 @@ export class ObjectSerializer {
     if (obj === null || obj === undefined) {
       return "null";
     }
+    /**
+     * Unwrap a `oneOf` wrapper to its single inner instance. An `anyOf`
+     * composite is left intact: it carries the `__isAnyOfComposite` marker and
+     * its own `toJSON`, which merges every retained variant so the emitted
+     * JSON is the union of all matched variants' fields (lossless round-trip).
+     * Unwrapping it would collapse the union back to one variant.
+     */
     if (
       typeof obj === "object" &&
-      "actualInstance" in (obj as Record<string, unknown>)
+      "actualInstance" in (obj as Record<string, unknown>) &&
+      !("__isAnyOfComposite" in (obj as Record<string, unknown>))
     ) {
       obj = (obj as Record<string, unknown>).actualInstance;
     }
@@ -261,6 +341,36 @@ export class ObjectSerializer {
           return (this[_key] as Temporal.PlainTime).toString();
         if (this[_key] instanceof Temporal.Duration)
           return durationToProtoJson(this[_key] as Temporal.Duration);
+        /**
+         * 2.5 — `type: number` (no format) Decimal field. The model holds it
+         * as a precision-preserving string; emit it unquoted as a JSON number
+         * (via JSON.rawJSON) so a spec-conformant server sees a number, not a
+         * quoted string. The owning model registers its no-format numeric
+         * fields by property name in a static `__decimalFields` set; consult
+         * the holder's constructor for it first.
+         *
+         * A request body is often a plain object literal (the body parameter
+         * type is `DeepInput<T>`), whose constructor is `Object` and carries no
+         * `__decimalFields` — so fall back to the holder-independent global
+         * registry ({@link decimalFieldNames}) keyed by property name. Either
+         * way only a string value whose field is registered is considered, and
+         * {@link rawDecimal} emits it unquoted only when it is valid JSON
+         * numeric text, so genuine string fields are untouched.
+         */
+        if (typeof value === "string") {
+          const ctor = (this as { constructor?: unknown }).constructor as
+            | { __decimalFields?: ReadonlySet<string> }
+            | undefined;
+          const ownDecimals =
+            ctor && ctor.__decimalFields instanceof Set
+              ? ctor.__decimalFields
+              : undefined;
+          if (
+            ownDecimals ? ownDecimals.has(_key) : decimalFieldNames().has(_key)
+          ) {
+            return rawDecimal(value);
+          }
+        }
         if (value === null && _key !== "") return undefined;
         return value;
       });
@@ -348,6 +458,18 @@ export class ObjectSerializer {
             `Missing discriminator property '${discProp}' in payload.`,
           );
         }
+        /**
+         * anyOf vs oneOf retention. A `oneOf` is mutually exclusive, so the
+         * first matching variant wins and resolution stops. A non-discriminated
+         * `anyOf` may be co-satisfied by several variants at once ("a
+         * medication, a surgery, OR BOTH"); returning on the first match would
+         * silently drop the other variants' fields and lose them on re-encode.
+         * For `anyOf` we therefore collect EVERY variant that validates and
+         * hand them all to the composite wrapper, which retains them and emits
+         * their union on serialize (lossless round-trip).
+         */
+        const isAnyOf = anyOfSchemas !== undefined;
+        const matched: unknown[] = [];
         for (const schemaName of schemas) {
           const schemaCls = (models as Record<string, unknown>)[schemaName] as
             | ClassConstructor<unknown>
@@ -375,12 +497,26 @@ export class ObjectSerializer {
                 new (schemaCls as unknown as new (i: unknown) => unknown)(
                   instance,
                 );
-                return new (cls as unknown as new (i: unknown) => T)(instance);
+                if (isAnyOf) {
+                  matched.push(instance);
+                } else {
+                  return new (cls as unknown as new (i: unknown) => T)(
+                    instance,
+                  );
+                }
               }
             } catch {
               continue;
             }
           }
+        }
+        /**
+         * anyOf: hand the wrapper every variant that validated. The composite
+         * retains all of them so co-satisfied fields survive a round-trip. A
+         * single-variant payload still works — `matched` holds one element.
+         */
+        if (isAnyOf && matched.length > 0) {
+          return new (cls as unknown as new (i: unknown) => T)(matched);
         }
         /**
          * 4.7 — oneOf/anyOf without a discriminator and no variant matched
@@ -394,6 +530,36 @@ export class ObjectSerializer {
           `Value does not match any of the declared schemas ` +
             `(${schemas.join(", ")}).`,
         );
+      }
+
+      /**
+       * Gap L11: a model declaring `unevaluatedProperties:false` (OAS 3.1 /
+       * JSON Schema 2020-12) is STRICT — an undeclared wire key is a contract
+       * violation that must be REJECTED, not silently dropped. plainToInstance
+       * with excludeExtraneousValues discards every non-@Expose key, so without
+       * this gate the strict contract would be unenforced on the real
+       * deserialize path (the model's own fromJsonStrict was never reached).
+       * The static `__strictDeclaredKeys` set (present only on strict models)
+       * lists the allowed wire keys; reject any json key not in it before
+       * building the instance. Models without the marker are non-strict and
+       * accept extras as before.
+       */
+      const strictKeys = (cls as { __strictDeclaredKeys?: ReadonlySet<string> })
+        .__strictDeclaredKeys;
+      if (
+        strictKeys &&
+        json &&
+        typeof json === "object" &&
+        !Array.isArray(json)
+      ) {
+        for (const key of Object.keys(json as Record<string, unknown>)) {
+          if (!strictKeys.has(key)) {
+            throw new DeserializationError(
+              `Unknown property '${key}' on ${cls.name} ` +
+                `(unevaluatedProperties:false).`,
+            );
+          }
+        }
       }
 
       const instance = plainToInstance(cls, json, {
@@ -411,7 +577,28 @@ export class ObjectSerializer {
         typeof instance === "object" &&
         typeof cls === "function"
       ) {
-        return new (cls as unknown as new (i: unknown) => T)(instance);
+        const built = new (cls as unknown as new (i: unknown) => T)(instance);
+        /**
+         * H11: a model declaring `additionalProperties` carries free-form wire
+         * keys on an index signature. plainToInstance(excludeExtraneousValues)
+         * drops every key without an @Expose decorator — the index signature is
+         * not exposed — so those extras would be silently lost on a round-trip.
+         * Re-attach any json key NOT in the model's declared-key set so free-form
+         * data survives. Models without the marker intentionally discard extras.
+         */
+        const declaredKeys = (
+          cls as { __additionalPropertiesDeclaredKeys?: ReadonlySet<string> }
+        ).__additionalPropertiesDeclaredKeys;
+        if (declaredKeys && json && typeof json === "object") {
+          for (const [key, value] of Object.entries(
+            json as Record<string, unknown>,
+          )) {
+            if (!declaredKeys.has(key)) {
+              (built as Record<string, unknown>)[key] = value;
+            }
+          }
+        }
+        return built;
       }
       return instance;
     } catch (e) {
@@ -432,15 +619,60 @@ export class ObjectSerializer {
    * @param cls the class constructor to instantiate for each element
    * @returns array of deserialized objects
    */
-  static deserializeArray<T>(json: unknown, cls: ClassConstructor<T>): T[] {
+  static deserializeArray<T>(
+    json: unknown,
+    cls: ClassConstructor<T> | ((value: unknown) => T | null),
+  ): T[] {
     if (!Array.isArray(json)) {
       throw new SerializationError(
         "Expected array but received: " + typeof json,
       );
     }
-    return json
-      .map((item: unknown) => ObjectSerializer.deserialize(item, cls))
-      .filter((x): x is T => x !== null);
+    const deserializeElement = ObjectSerializer.elementDeserializer(cls);
+    const mapped = json.map((item: unknown) => deserializeElement(item));
+    /**
+     * Only drop nulls for a model-class element type, where `deserialize`
+     * returns null for a null/absent element and dropping it is the
+     * established behaviour. For a primitive/enum element deserializer a
+     * `null` is a legitimate wire value (e.g. `items: { nullable: true }`),
+     * so preserving it keeps the array length and index alignment intact
+     * rather than silently losing data.
+     */
+    if (ObjectSerializer.isClassConstructor(cls)) {
+      return mapped.filter((x): x is T => x !== null);
+    }
+    return mapped as T[];
+  }
+
+  /**
+   * Whether a deserializer argument is a model class constructor (as opposed
+   * to a bare element-deserializer arrow function). A class constructor has
+   * an own `prototype`; an arrow function does not. Used to decide whether a
+   * produced `null` is a failed-model-parse sentinel (drop) or a legitimate
+   * primitive/enum null wire value (keep).
+   */
+  private static isClassConstructor<T>(
+    cls: ClassConstructor<T> | ((value: unknown) => T | null),
+  ): cls is ClassConstructor<T> {
+    return typeof cls === "function" && "prototype" in cls;
+  }
+
+  /**
+   * Resolve a deserializer argument that is either a model class constructor
+   * or an element-deserializer function, into a uniform per-element function.
+   * A bare class constructor is wrapped in {@link deserialize}; an arrow
+   * function (which has no own `prototype`, unlike a class) is used directly.
+   * This lets nested generic containers — e.g. `Array<Record<string, Foo>>` —
+   * compose their per-level deserializers so the innermost models are decoded
+   * into typed instances instead of left as raw objects.
+   */
+  private static elementDeserializer<T>(
+    cls: ClassConstructor<T> | ((value: unknown) => T | null),
+  ): (value: unknown) => T | null {
+    if (!ObjectSerializer.isClassConstructor(cls)) {
+      return cls as (value: unknown) => T | null;
+    }
+    return (value: unknown) => ObjectSerializer.deserialize(value, cls);
   }
 
   /**
@@ -456,7 +688,7 @@ export class ObjectSerializer {
    */
   static deserializeMap<T>(
     json: unknown,
-    cls: ClassConstructor<T>,
+    cls: ClassConstructor<T> | ((value: unknown) => T | null),
   ): Record<string, T> {
     if (json === null || json === undefined) {
       return {};
@@ -467,14 +699,61 @@ export class ObjectSerializer {
           (Array.isArray(json) ? "array" : typeof json),
       );
     }
+    const deserializeValue = ObjectSerializer.elementDeserializer(cls);
+    /**
+     * As in deserializeArray: drop a null only for a model-class value type
+     * (where null is a failed-parse sentinel). For a primitive/enum value
+     * deserializer a null is a legitimate nullable wire value and the key
+     * must be retained so the map's key set is not silently mutated.
+     */
+    const dropNulls = ObjectSerializer.isClassConstructor(cls);
     const out: Record<string, T> = {};
     for (const [k, v] of Object.entries(json as Record<string, unknown>)) {
-      const deserialized = ObjectSerializer.deserialize(v, cls);
-      if (deserialized !== null) {
-        out[k] = deserialized;
+      const deserialized = deserializeValue(v);
+      if (deserialized !== null || !dropNulls) {
+        out[k] = deserialized as T;
       }
     }
     return out;
+  }
+
+  /**
+   * Validate a wire value against the members of a named enum at the
+   * deserialize boundary. A bare-enum return (e.g. `getSwatch`) or an
+   * enum container leaf arrives as a raw JSON scalar; a plain cast would
+   * silently let an unknown value (`"magenta"`) through as a non-enum
+   * string. This mirrors the model-field enum check (and Python's
+   * `klass(data)` / Java's `@JsonCreator fromValue`), throwing on an
+   * unknown value instead of corrupting the typed result.
+   *
+   * @param value the parsed wire value
+   * @param enumObj the runtime enum object whose values are the wire values
+   * @returns the value, typed as the enum member
+   */
+  static deserializeEnum<T>(
+    value: unknown,
+    enumObj: Record<string, unknown>,
+  ): T {
+    /**
+     * A TypeScript numeric enum carries a reverse mapping, so
+     * Object.values() yields both the member-name strings and the numeric
+     * wire values (e.g. ["NUMBER_1", 1]). Without filtering, a string
+     * payload matching a member name would pass this membership check and
+     * bypass validation. Drop the reverse-mapped string keys by keeping
+     * only values v for which enumObj[v] is not itself a number. For a
+     * string enum (no reverse mapping) enumObj[value] is undefined, so
+     * every value is retained unchanged.
+     */
+    const members = Object.values(enumObj).filter(
+      (v) => typeof enumObj[v as string] !== "number",
+    );
+    if (!(members as readonly unknown[]).includes(value)) {
+      throw new SerializationError(
+        `Unknown enum value: ${JSON.stringify(value)}. ` +
+          `Expected one of [${members.map((v) => JSON.stringify(v)).join(", ")}].`,
+      );
+    }
+    return value as T;
   }
 
   /**
@@ -513,24 +792,40 @@ export class ObjectSerializer {
   }
 
   /**
-   * Formats a Date as an ISO 8601 string preserving the local timezone offset
-   * instead of converting to UTC, matching the format used by Java, Kotlin, C#,
-   * and other language generators.
+   * Formats a Date as a deterministic ISO 8601 date-time in UTC, e.g.
+   * `2024-01-01T12:30:45+00:00` or `2020-01-02T03:04:05.123+00:00` when the
+   * instant carries sub-second precision.
+   *
+   * A JS Date is an absolute instant with no stored timezone offset, so the
+   * previous local-time formatting (getFullYear/getHours/getTimezoneOffset)
+   * made the wire bytes depend on the host machine's timezone — the same
+   * instant serialized differently on a UTC host vs a CET host. Pinning to
+   * UTC via the getUTC* accessors makes the output host-independent and
+   * aligns it with the other SDKs that emit a fixed offset (Swift pins UTC
+   * and emits `+00:00`; Go emits the RFC3339 `Z`). The explicit `+00:00`
+   * suffix (rather than `Z`) keeps the offset-bearing shape the rest of the
+   * stack expects while remaining a valid UTC designator.
+   *
+   * The encoder also preserves the millisecond fraction the decoder already
+   * accepts: a JS Date holds whole-millisecond precision (`getUTCMilliseconds`),
+   * so an instant like `2020-01-02T03:04:05.123Z` round-trips losslessly with
+   * its `.123` intact instead of being silently truncated to whole seconds.
+   * The `.SSS` group is emitted only when the milliseconds are non-zero, so a
+   * whole-second instant keeps its bare `…:45+00:00` shape. This matches the
+   * sub-second-preserving encoders in the other SDKs (Go RFC3339Nano,
+   * Python `.isoformat()`, Java `ISO_OFFSET_DATE_TIME`).
    */
   private static formatDateTimeOffset(date: Date): string {
     const pad = (n: number, w = 2): string => String(n).padStart(w, "0");
-    const y = date.getFullYear();
-    const mo = pad(date.getMonth() + 1);
-    const d = pad(date.getDate());
-    const h = pad(date.getHours());
-    const mi = pad(date.getMinutes());
-    const s = pad(date.getSeconds());
-    const offsetMin = -date.getTimezoneOffset();
-    const sign = offsetMin >= 0 ? "+" : "-";
-    const absMin = Math.abs(offsetMin);
-    const hh = String(Math.floor(absMin / 60)).padStart(2, "0");
-    const mm = String(absMin % 60).padStart(2, "0");
-    return `${y}-${mo}-${d}T${h}:${mi}:${s}${sign}${hh}:${mm}`;
+    const y = date.getUTCFullYear();
+    const mo = pad(date.getUTCMonth() + 1);
+    const d = pad(date.getUTCDate());
+    const h = pad(date.getUTCHours());
+    const mi = pad(date.getUTCMinutes());
+    const s = pad(date.getUTCSeconds());
+    const ms = date.getUTCMilliseconds();
+    const frac = ms === 0 ? "" : `.${pad(ms, 3)}`;
+    return `${y}-${mo}-${d}T${h}:${mi}:${s}${frac}+00:00`;
   }
 
   /**

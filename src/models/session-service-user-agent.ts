@@ -10,24 +10,34 @@ import { Expose, Type } from "class-transformer";
 
 export class SessionServiceUserAgent {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * FingerprintID is a unique identifier for the user agent's fingerprint.  It can be used to group sessions by device or browser.
-   * @example null
    */
   @Expose({ name: "fingerprintId" })
   fingerprintId?: string;
   /**
    * IP is the IP address from which the session was created.
-   * @example null
    */
   @Expose({ name: "ip" })
   ip?: string;
   /**
    * Description is a human-readable description of the user agent.
-   * @example null
    */
   @Expose({ name: "description" })
   description?: string;
-  /** @example null */
   @Expose({ name: "header" })
   @Type(() => SessionServiceHeaderValues)
   header?: { [key: string]: SessionServiceHeaderValues };

@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -108,7 +109,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceGetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -169,7 +170,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceGetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -228,7 +229,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceGetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -288,7 +289,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceGetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -347,7 +348,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceResetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -408,7 +409,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceResetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -467,7 +468,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceResetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -527,7 +528,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceResetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -588,7 +589,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceSetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -649,7 +650,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceSetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -709,7 +710,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceSetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -769,7 +770,7 @@ export class FeatureServiceApi extends BaseApi {
           json,
           FeatureServiceSetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

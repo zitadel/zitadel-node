@@ -10,47 +10,53 @@ import { Expose } from "class-transformer";
 
 export class SettingsServiceLegalAndSupportSettings {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Link to the Terms of Service. Can be a relative or absolute URL.
-   * @example null
    */
   @Expose({ name: "tosLink" })
   tosLink?: string;
   /**
    * Link to the Privacy Policy. Can be a relative or absolute URL.
-   * @example null
    */
   @Expose({ name: "privacyPolicyLink" })
   privacyPolicyLink?: string;
   /**
    * Link to a help page. Can be a relative or absolute URL.
-   * @example null
    */
   @Expose({ name: "helpLink" })
   helpLink?: string;
   /**
    * Email address for support issues.
-   * @example null
    */
   @Expose({ name: "supportEmail" })
   supportEmail?: string;
-  /** @example null */
   @Expose({ name: "resourceOwnerType" })
   resourceOwnerType?: SettingsServiceResourceOwnerType;
   /**
    * Link to documentation to be shown in the console.
-   * @example null
    */
   @Expose({ name: "docsLink" })
   docsLink?: string;
   /**
    * Link to an external resource that will be available to users in the console.
-   * @example null
    */
   @Expose({ name: "customLink" })
   customLink?: string;
   /**
    * The button text that would be shown in console pointing to custom link.
-   * @example null
    */
   @Expose({ name: "customLinkText" })
   customLinkText?: string;
@@ -97,6 +103,26 @@ export class SettingsServiceLegalAndSupportSettings {
       throw new TypeError(
         `customLinkText must be a string, got ${typeof this.customLinkText}`,
       );
+    }
+    if (this.resourceOwnerType != null) {
+      const resourceOwnerTypeValues = Object.values(
+        SettingsServiceResourceOwnerType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceResourceOwnerType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(resourceOwnerTypeValues as readonly unknown[]).includes(
+          this.resourceOwnerType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
+            `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

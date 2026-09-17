@@ -10,7 +10,7 @@ import { isHttpAwareAuthenticator } from "./auth/http-aware-authenticator.js";
 import { BearerAuthenticator } from "./auth/bearer-authenticator.js";
 import type { ApiClient } from "./api-client.js";
 import { Configuration } from "./configuration.js";
-import { DefaultApiClient } from "./default-api-client.js";
+import { DefaultApiClient } from "#transport";
 import { TransportOptions } from "./transport-options.js";
 import { ActionServiceApi } from "./api/action-service-api.js";
 import { ApplicationServiceApi } from "./api/application-service-api.js";

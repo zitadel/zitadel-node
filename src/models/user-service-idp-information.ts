@@ -11,30 +11,37 @@ import { UserServiceIDPSAMLAccessInformation } from "./user-service-idpsaml-acce
 import { Expose, Type } from "class-transformer";
 
 export class UserServiceIDPInformation {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "idpId" })
   idpId?: string;
-  /** @example null */
   @Expose({ name: "userId" })
   userId?: string;
-  /** @example null */
   @Expose({ name: "userName" })
   userName?: string;
   /**
    * `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
-   * @example null
    */
   @Expose({ name: "rawInformation" })
   rawInformation?: { [key: string]: unknown };
-  /** @example null */
   @Expose({ name: "ldap" })
   @Type(() => UserServiceIDPLDAPAccessInformation)
   ldap?: UserServiceIDPLDAPAccessInformation;
-  /** @example null */
   @Expose({ name: "oauth" })
   @Type(() => UserServiceIDPOAuthAccessInformation)
   oauth?: UserServiceIDPOAuthAccessInformation;
-  /** @example null */
   @Expose({ name: "saml" })
   @Type(() => UserServiceIDPSAMLAccessInformation)
   saml?: UserServiceIDPSAMLAccessInformation;

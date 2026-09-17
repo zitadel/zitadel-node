@@ -13,25 +13,33 @@ import { Expose, Type } from "class-transformer";
 import { Email } from "../brand.js";
 
 export class BetaUserServiceUpdateHumanUserRequest {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "userId" })
   userId?: string;
-  /** @example null */
   @Expose({ name: "username" })
   username?: string;
-  /** @example null */
   @Expose({ name: "profile" })
   @Type(() => BetaUserServiceSetHumanProfile)
   profile?: BetaUserServiceSetHumanProfile;
-  /** @example null */
   @Expose({ name: "email" })
   @Type(() => BetaUserServiceSetHumanEmail)
   email?: BetaUserServiceSetHumanEmail;
-  /** @example null */
   @Expose({ name: "phone" })
   @Type(() => BetaUserServiceSetHumanPhone)
   phone?: BetaUserServiceSetHumanPhone;
-  /** @example null */
   @Expose({ name: "password" })
   @Type(() => BetaUserServiceSetPassword)
   password?: BetaUserServiceSetPassword;

@@ -11,22 +11,32 @@ import { Expose, Type } from "class-transformer";
 
 export class UserServiceUpdateUserRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The user id is the users unique identifier in the instance.  It can't be changed.
-   * @example null
    */
   @Expose({ name: "userId" })
   userId?: string;
   /**
    * Set a new username that is unique within the instance.  Beware that active tokens and sessions are invalidated when the username is changed.
-   * @example null
    */
   @Expose({ name: "username" })
   username?: string;
-  /** @example null */
   @Expose({ name: "human" })
   @Type(() => UserServiceHuman)
   human?: UserServiceHuman;
-  /** @example null */
   @Expose({ name: "machine" })
   @Type(() => UserServiceMachine)
   machine?: UserServiceMachine;

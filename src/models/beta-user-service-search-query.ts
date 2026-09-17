@@ -25,67 +25,65 @@ import { Expose, Type } from "class-transformer";
 import { Email } from "../brand.js";
 
 export class BetaUserServiceSearchQuery {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "andQuery" })
   @Type(() => BetaUserServiceAndQuery)
   andQuery?: BetaUserServiceAndQuery;
-  /** @example null */
   @Expose({ name: "displayNameQuery" })
   @Type(() => BetaUserServiceDisplayNameQuery)
   displayNameQuery?: BetaUserServiceDisplayNameQuery;
-  /** @example null */
   @Expose({ name: "emailQuery" })
   @Type(() => BetaUserServiceEmailQuery)
   emailQuery?: BetaUserServiceEmailQuery;
-  /** @example null */
   @Expose({ name: "firstNameQuery" })
   @Type(() => BetaUserServiceFirstNameQuery)
   firstNameQuery?: BetaUserServiceFirstNameQuery;
-  /** @example null */
   @Expose({ name: "inUserEmailsQuery" })
   @Type(() => BetaUserServiceInUserEmailsQuery)
   inUserEmailsQuery?: BetaUserServiceInUserEmailsQuery;
-  /** @example null */
   @Expose({ name: "inUserIdsQuery" })
   @Type(() => BetaUserServiceInUserIDQuery)
   inUserIdsQuery?: BetaUserServiceInUserIDQuery;
-  /** @example null */
   @Expose({ name: "lastNameQuery" })
   @Type(() => BetaUserServiceLastNameQuery)
   lastNameQuery?: BetaUserServiceLastNameQuery;
-  /** @example null */
   @Expose({ name: "loginNameQuery" })
   @Type(() => BetaUserServiceLoginNameQuery)
   loginNameQuery?: BetaUserServiceLoginNameQuery;
-  /** @example null */
   @Expose({ name: "nickNameQuery" })
   @Type(() => BetaUserServiceNickNameQuery)
   nickNameQuery?: BetaUserServiceNickNameQuery;
-  /** @example null */
   @Expose({ name: "notQuery" })
   @Type(() => BetaUserServiceNotQuery)
   notQuery?: BetaUserServiceNotQuery;
-  /** @example null */
   @Expose({ name: "orQuery" })
   @Type(() => BetaUserServiceOrQuery)
   orQuery?: BetaUserServiceOrQuery;
-  /** @example null */
   @Expose({ name: "organizationIdQuery" })
   @Type(() => BetaUserServiceOrganizationIdQuery)
   organizationIdQuery?: BetaUserServiceOrganizationIdQuery;
-  /** @example null */
   @Expose({ name: "phoneQuery" })
   @Type(() => BetaUserServicePhoneQuery)
   phoneQuery?: BetaUserServicePhoneQuery;
-  /** @example null */
   @Expose({ name: "stateQuery" })
   @Type(() => BetaUserServiceStateQuery)
   stateQuery?: BetaUserServiceStateQuery;
-  /** @example null */
   @Expose({ name: "typeQuery" })
   @Type(() => BetaUserServiceTypeQuery)
   typeQuery?: BetaUserServiceTypeQuery;
-  /** @example null */
   @Expose({ name: "userNameQuery" })
   @Type(() => BetaUserServiceUserNameQuery)
   userNameQuery?: BetaUserServiceUserNameQuery;

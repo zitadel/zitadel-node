@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -107,7 +108,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceGetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -167,7 +168,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceGetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -225,7 +226,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceGetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -284,7 +285,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceGetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -342,7 +343,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceResetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -402,7 +403,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceResetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -460,7 +461,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceResetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -519,7 +520,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceResetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -579,7 +580,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceSetInstanceFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -639,7 +640,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceSetOrganizationFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -698,7 +699,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceSetSystemFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -757,7 +758,7 @@ export class BetaFeatureServiceApi extends BaseApi {
           json,
           BetaFeatureServiceSetUserFeaturesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

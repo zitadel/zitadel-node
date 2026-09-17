@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -106,7 +107,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceAddCustomDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -166,7 +167,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceAddTrustedDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -226,7 +227,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceDeleteInstanceResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -286,7 +287,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceGetInstanceResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -346,7 +347,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListCustomDomainsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -406,7 +407,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListInstancesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -466,7 +467,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListTrustedDomainsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -526,7 +527,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceRemoveCustomDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -587,7 +588,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceRemoveTrustedDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -647,7 +648,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceUpdateInstanceResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

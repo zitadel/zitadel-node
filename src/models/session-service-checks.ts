@@ -15,35 +15,41 @@ import { SessionServiceCheckWebAuthN } from "./session-service-check-web-auth-n.
 import { Expose, Type } from "class-transformer";
 
 export class SessionServiceChecks {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "user" })
   @Type(() => SessionServiceCheckUser)
   user?: SessionServiceCheckUser;
-  /** @example null */
   @Expose({ name: "password" })
   @Type(() => SessionServiceCheckPassword)
   password?: SessionServiceCheckPassword;
-  /** @example null */
   @Expose({ name: "webAuthN" })
   @Type(() => SessionServiceCheckWebAuthN)
   webAuthN?: SessionServiceCheckWebAuthN;
-  /** @example null */
   @Expose({ name: "idpIntent" })
   @Type(() => SessionServiceCheckIDPIntent)
   idpIntent?: SessionServiceCheckIDPIntent;
-  /** @example null */
   @Expose({ name: "totp" })
   @Type(() => SessionServiceCheckTOTP)
   totp?: SessionServiceCheckTOTP;
-  /** @example null */
   @Expose({ name: "otpSms" })
   @Type(() => SessionServiceCheckOTP)
   otpSms?: SessionServiceCheckOTP;
-  /** @example null */
   @Expose({ name: "otpEmail" })
   @Type(() => SessionServiceCheckOTP)
   otpEmail?: SessionServiceCheckOTP;
-  /** @example null */
   @Expose({ name: "recoveryCode" })
   @Type(() => SessionServiceCheckRecoveryCode)
   recoveryCode?: SessionServiceCheckRecoveryCode;

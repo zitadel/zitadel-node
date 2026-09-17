@@ -9,18 +9,49 @@ import { BetaSettingsServiceResourceOwnerType } from "./beta-settings-service-re
 import { Expose } from "class-transformer";
 
 export class BetaSettingsServiceLockoutSettings {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "maxPasswordAttempts" })
   maxPasswordAttempts?: unknown;
-  /** @example null */
   @Expose({ name: "resourceOwnerType" })
   resourceOwnerType?: BetaSettingsServiceResourceOwnerType;
-  /** @example null */
   @Expose({ name: "maxOtpAttempts" })
   maxOtpAttempts?: unknown;
 
   constructor(data?: Partial<BetaSettingsServiceLockoutSettings>) {
     Object.assign(this, data);
+    if (this.resourceOwnerType != null) {
+      const resourceOwnerTypeValues = Object.values(
+        BetaSettingsServiceResourceOwnerType,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaSettingsServiceResourceOwnerType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(resourceOwnerTypeValues as readonly unknown[]).includes(
+          this.resourceOwnerType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
+            `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
   }
 
   /**

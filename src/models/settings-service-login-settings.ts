@@ -18,60 +18,64 @@ import {
 
 export class SettingsServiceLoginSettings {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * If enabled, users can log in locally with their username and passkeys or password.  Disabling this option will require users to log in with an external identity provider.  Be sure to allow at least one external identity provider if this option is disabled.  Deprecated: check allow_local_authentication instead.
-   * @example null
    * @deprecated This property is deprecated.
    */
   @Expose({ name: "allowUsernamePassword" })
   allowUsernamePassword?: boolean;
   /**
    * If enabled, users can log in locally with their username and passkeys or password.  Disabling this option will require users to log in with an external identity provider.  Be sure to allow at least one external identity provider if this option is disabled.
-   * @example null
    */
   @Expose({ name: "allowLocalAuthentication" })
   allowLocalAuthentication?: boolean;
   /**
    * If enabled, users can register a local account by themself.  This option does not effect external identity providers.  Each identity provider can be configured to allow or disallow registration.
-   * @example null
    */
   @Expose({ name: "allowRegister" })
   allowRegister?: boolean;
   /**
    * If enabled, users will generally be allowed to use an external identity provider to log in.  Be sure to allow at least one external identity provider if this option is enabled.
-   * @example null
    */
   @Expose({ name: "allowExternalIdp" })
   allowExternalIdp?: boolean;
   /**
    * If enabled, users will be forced to use a multi-factor to log in.  This also applies to federated logins through an external identity provider.  Users will be required to set up a second factor if they have not done so already.
-   * @example null
    */
   @Expose({ name: "forceMfa" })
   forceMfa?: boolean;
-  /** @example null */
   @Expose({ name: "passkeysType" })
   passkeysType?: SettingsServicePasskeysType;
   /**
    * If enabled, the password reset link will be hidden on the login screen.
-   * @example null
    */
   @Expose({ name: "hidePasswordReset" })
   hidePasswordReset?: boolean;
   /**
    * If enabled, an unknown username on the login screen will not return an error directly,  but will always display the password screen.  This prevents user enumeration attacks.
-   * @example null
    */
   @Expose({ name: "ignoreUnknownUsernames" })
   ignoreUnknownUsernames?: boolean;
   /**
    * Defines where the user will be redirected to if the login is started without app context (e.g. from mail).
-   * @example null
    */
   @Expose({ name: "defaultRedirectUri" })
   defaultRedirectUri?: string;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "passwordCheckLifetime" })
   /*
@@ -91,8 +95,7 @@ export class SettingsServiceLoginSettings {
   )
   passwordCheckLifetime?: Temporal.Duration;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "externalLoginCheckLifetime" })
   /*
@@ -112,8 +115,7 @@ export class SettingsServiceLoginSettings {
   )
   externalLoginCheckLifetime?: Temporal.Duration;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "mfaInitSkipLifetime" })
   /*
@@ -133,8 +135,7 @@ export class SettingsServiceLoginSettings {
   )
   mfaInitSkipLifetime?: Temporal.Duration;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "secondFactorCheckLifetime" })
   /*
@@ -154,8 +155,7 @@ export class SettingsServiceLoginSettings {
   )
   secondFactorCheckLifetime?: Temporal.Duration;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "multiFactorCheckLifetime" })
   /*
@@ -176,40 +176,33 @@ export class SettingsServiceLoginSettings {
   multiFactorCheckLifetime?: Temporal.Duration;
   /**
    * The list of allowed second factors.
-   * @example null
    */
   @Expose({ name: "secondFactors" })
   secondFactors?: Array<SettingsServiceSecondFactorType>;
   /**
    * The list of allowed multi factors.
-   * @example null
    */
   @Expose({ name: "multiFactors" })
   multiFactors?: Array<SettingsServiceMultiFactorType>;
   /**
    * Allow discovery of the organization and its authentication option by domain.  If set to true, the suffix (@domain.com) of an unknown username input on the login screen  will be matched against the organization domains and will redirect to the registration of that organization on success.  The registration can either be locally (requires allow_register to be true) or through an external identity provider.  In case only one identity provider is configured for the organization, the user will be redirected directly to the identity provider.
-   * @example null
    */
   @Expose({ name: "allowDomainDiscovery" })
   allowDomainDiscovery?: boolean;
   /**
    * By default, users can login with their verified email address additionally to their login name.  Setting this to true disables the email login.  Note: If the email is set as the login name, this setting has no effect.
-   * @example null
    */
   @Expose({ name: "disableLoginWithEmail" })
   disableLoginWithEmail?: boolean;
   /**
    * By default, users can login with their verified phone number additionally to their login name.  Setting this to true disables the phone number login.  Note: If the phone number is set as the login name, this setting has no effect.
-   * @example null
    */
   @Expose({ name: "disableLoginWithPhone" })
   disableLoginWithPhone?: boolean;
-  /** @example null */
   @Expose({ name: "resourceOwnerType" })
   resourceOwnerType?: SettingsServiceResourceOwnerType;
   /**
    * If enabled, users will be forced to use a multi-factor to log in if they authenticated locally.  This does not apply to federated logins through an external identity provider.  Users will be required to set up a second factor if they have not done so already.  If both force_mfa and force_mfa_local_only are enabled, force_mfa takes precedence and  all logins will require a second factor.
-   * @example null
    */
   @Expose({ name: "forceMfaLocalOnly" })
   forceMfaLocalOnly?: boolean;
@@ -396,6 +389,118 @@ export class SettingsServiceLoginSettings {
       throw new TypeError(
         `forceMfaLocalOnly must be a boolean, got ${typeof this.forceMfaLocalOnly}`,
       );
+    }
+    if (this.passkeysType != null) {
+      const passkeysTypeValues = Object.values(
+        SettingsServicePasskeysType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServicePasskeysType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(passkeysTypeValues as readonly unknown[]).includes(this.passkeysType)
+      ) {
+        throw new Error(
+          `Unknown enum value for passkeysType: ${JSON.stringify(this.passkeysType)}. ` +
+            `Expected one of [${passkeysTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.secondFactors != null) {
+      const secondFactorsValues = Object.values(
+        SettingsServiceSecondFactorType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceSecondFactorType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(secondFactorsValues as readonly unknown[]).includes(
+          this.secondFactors,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for secondFactors: ${JSON.stringify(this.secondFactors)}. ` +
+            `Expected one of [${secondFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.secondFactors != null && Array.isArray(this.secondFactors)) {
+      const secondFactorsValues = Object.values(
+        SettingsServiceSecondFactorType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceSecondFactorType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.secondFactors as readonly unknown[]) {
+        if (!(secondFactorsValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for secondFactors: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${secondFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.multiFactors != null) {
+      const multiFactorsValues = Object.values(
+        SettingsServiceMultiFactorType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceMultiFactorType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(multiFactorsValues as readonly unknown[]).includes(this.multiFactors)
+      ) {
+        throw new Error(
+          `Unknown enum value for multiFactors: ${JSON.stringify(this.multiFactors)}. ` +
+            `Expected one of [${multiFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.multiFactors != null && Array.isArray(this.multiFactors)) {
+      const multiFactorsValues = Object.values(
+        SettingsServiceMultiFactorType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceMultiFactorType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.multiFactors as readonly unknown[]) {
+        if (!(multiFactorsValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for multiFactors: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${multiFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.resourceOwnerType != null) {
+      const resourceOwnerTypeValues = Object.values(
+        SettingsServiceResourceOwnerType,
+      ).filter(
+        (v) =>
+          typeof (SettingsServiceResourceOwnerType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(resourceOwnerTypeValues as readonly unknown[]).includes(
+          this.resourceOwnerType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
+            `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

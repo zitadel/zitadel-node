@@ -9,13 +9,24 @@ import { BetaOIDCServiceErrorReason } from "./beta-oidc-service-error-reason.js"
 import { Expose, Type } from "class-transformer";
 
 export class BetaOIDCServiceAuthorizationError {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "error" })
   error?: BetaOIDCServiceErrorReason;
-  /** @example null */
   @Expose({ name: "errorDescription" })
   errorDescription?: string;
-  /** @example null */
   @Expose({ name: "errorUri" })
   errorUri?: string;
 
@@ -33,6 +44,20 @@ export class BetaOIDCServiceAuthorizationError {
       throw new TypeError(
         `errorUri must be a string, got ${typeof this.errorUri}`,
       );
+    }
+    if (this.error != null) {
+      const errorValues = Object.values(BetaOIDCServiceErrorReason).filter(
+        (v) =>
+          typeof (BetaOIDCServiceErrorReason as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(errorValues as readonly unknown[]).includes(this.error)) {
+        throw new Error(
+          `Unknown enum value for error: ${JSON.stringify(this.error)}. ` +
+            `Expected one of [${errorValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

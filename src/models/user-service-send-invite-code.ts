@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class UserServiceSendInviteCode {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page.  If no template is set and no previous code was created, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
-   * @example null
    */
   @Expose({ name: "urlTemplate" })
   urlTemplate?: string;
   /**
    * Optionally set an application name, which will be used in the invite mail sent by ZITADEL.  If no application name is set and no previous code was created, ZITADEL will be used as default.
-   * @example null
    */
   @Expose({ name: "applicationName" })
   applicationName?: string;

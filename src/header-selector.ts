@@ -28,7 +28,7 @@ export class HeaderSelector {
     const headers: Record<string, string> = {};
 
     const acceptHeader = this.selectAcceptHeader(accept);
-    if (acceptHeader !== null && acceptHeader !== "") {
+    if (acceptHeader !== "") {
       headers["Accept"] = acceptHeader;
     }
 
@@ -51,9 +51,9 @@ export class HeaderSelector {
    * @param accept Array of header
    * @returns Accept (e.g. application/json)
    */
-  private selectAcceptHeader(accept: string[] | null): string | null {
+  private selectAcceptHeader(accept: string[] | null): string {
     if (accept === null) {
-      return null;
+      return "";
     }
 
     const filteredAccept = accept.filter((s) => s !== null && s.trim() !== "");

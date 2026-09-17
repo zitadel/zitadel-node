@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -103,7 +104,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceCreateTargetResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -163,7 +164,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceDeleteTargetResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -220,7 +221,7 @@ export class BetaActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaActionServiceGetTargetResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -279,7 +280,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionFunctionsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -338,7 +339,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionMethodsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -397,7 +398,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionServicesResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -457,7 +458,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -517,7 +518,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListTargetsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -577,7 +578,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceSetExecutionResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -637,7 +638,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceUpdateTargetResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

@@ -10,11 +10,23 @@ import { UserServiceListDetails } from "./user-service-list-details.js";
 import { Expose, Type } from "class-transformer";
 
 export class UserServiceListAuthenticationMethodTypesResponse {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "details" })
   @Type(() => UserServiceListDetails)
   details?: UserServiceListDetails;
-  /** @example null */
   @Expose({ name: "authMethodTypes" })
   authMethodTypes?: Array<UserServiceAuthenticationMethodType>;
 
@@ -22,6 +34,44 @@ export class UserServiceListAuthenticationMethodTypesResponse {
     data?: Partial<UserServiceListAuthenticationMethodTypesResponse>,
   ) {
     Object.assign(this, data);
+    if (this.authMethodTypes != null) {
+      const authMethodTypesValues = Object.values(
+        UserServiceAuthenticationMethodType,
+      ).filter(
+        (v) =>
+          typeof (
+            UserServiceAuthenticationMethodType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(authMethodTypesValues as readonly unknown[]).includes(
+          this.authMethodTypes,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for authMethodTypes: ${JSON.stringify(this.authMethodTypes)}. ` +
+            `Expected one of [${authMethodTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.authMethodTypes != null && Array.isArray(this.authMethodTypes)) {
+      const authMethodTypesValues = Object.values(
+        UserServiceAuthenticationMethodType,
+      ).filter(
+        (v) =>
+          typeof (
+            UserServiceAuthenticationMethodType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      for (const __v of this.authMethodTypes as readonly unknown[]) {
+        if (!(authMethodTypesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for authMethodTypes: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${authMethodTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
   }
 
   /**

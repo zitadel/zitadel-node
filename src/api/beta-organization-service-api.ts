@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -115,7 +116,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceActivateOrganizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -176,7 +177,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceAddOrganizationDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -236,7 +237,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceCreateOrganizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -297,7 +298,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceDeactivateOrganizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -357,7 +358,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceDeleteOrganizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -420,7 +421,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceDeleteOrganizationDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -483,7 +484,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceDeleteOrganizationMetadataResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -548,7 +549,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceGenerateOrganizationDomainValidationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -611,7 +612,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceListOrganizationDomainsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -674,7 +675,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceListOrganizationMetadataResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -734,7 +735,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceListOrganizationsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -797,7 +798,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceSetOrganizationMetadataResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -857,7 +858,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceUpdateOrganizationResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -920,7 +921,7 @@ export class BetaOrganizationServiceApi extends BaseApi {
           json,
           BetaOrganizationServiceVerifyOrganizationDomainResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

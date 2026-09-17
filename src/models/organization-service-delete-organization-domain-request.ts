@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class OrganizationServiceDeleteOrganizationDomainRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * OrganizationID is the unique identifier of the organization from which the domain is to be deleted.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * Domain is the full qualified domain name to be deleted from the organization.  Note that if the domain is used as suffix for user logins,  those users will not be able to log in anymore. They have to use another domain instead.  Also if the domain was used for domain discovery,  users will not be able to find the organization by the domain anymore.
-   * @example null
    */
   @Expose({ name: "domain" })
   domain?: string;

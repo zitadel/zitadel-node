@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -88,7 +89,7 @@ export class IdentityProviderServiceApi extends BaseApi {
           json,
           IdentityProviderServiceGetIDPByIDResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

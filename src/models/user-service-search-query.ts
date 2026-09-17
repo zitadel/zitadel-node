@@ -27,75 +27,71 @@ import { Expose, Type } from "class-transformer";
 import { Email } from "../brand.js";
 
 export class UserServiceSearchQuery {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "andQuery" })
   @Type(() => UserServiceAndQuery)
   andQuery?: UserServiceAndQuery;
-  /** @example null */
   @Expose({ name: "displayNameQuery" })
   @Type(() => UserServiceDisplayNameQuery)
   displayNameQuery?: UserServiceDisplayNameQuery;
-  /** @example null */
   @Expose({ name: "emailQuery" })
   @Type(() => UserServiceEmailQuery)
   emailQuery?: UserServiceEmailQuery;
-  /** @example null */
   @Expose({ name: "firstNameQuery" })
   @Type(() => UserServiceFirstNameQuery)
   firstNameQuery?: UserServiceFirstNameQuery;
-  /** @example null */
   @Expose({ name: "inUserEmailsQuery" })
   @Type(() => UserServiceInUserEmailsQuery)
   inUserEmailsQuery?: UserServiceInUserEmailsQuery;
-  /** @example null */
   @Expose({ name: "inUserIdsQuery" })
   @Type(() => UserServiceInUserIDQuery)
   inUserIdsQuery?: UserServiceInUserIDQuery;
-  /** @example null */
   @Expose({ name: "lastNameQuery" })
   @Type(() => UserServiceLastNameQuery)
   lastNameQuery?: UserServiceLastNameQuery;
-  /** @example null */
   @Expose({ name: "loginNameQuery" })
   @Type(() => UserServiceLoginNameQuery)
   loginNameQuery?: UserServiceLoginNameQuery;
-  /** @example null */
   @Expose({ name: "metadataKeyFilter" })
   @Type(() => UserServiceMetadataKeyFilter)
   metadataKeyFilter?: UserServiceMetadataKeyFilter;
-  /** @example null */
   @Expose({ name: "metadataValueFilter" })
   @Type(() => UserServiceMetadataValueFilter)
   metadataValueFilter?: UserServiceMetadataValueFilter;
-  /** @example null */
   @Expose({ name: "nickNameQuery" })
   @Type(() => UserServiceNickNameQuery)
   nickNameQuery?: UserServiceNickNameQuery;
-  /** @example null */
   @Expose({ name: "notQuery" })
   @Type(() => UserServiceNotQuery)
   notQuery?: UserServiceNotQuery;
-  /** @example null */
   @Expose({ name: "orQuery" })
   @Type(() => UserServiceOrQuery)
   orQuery?: UserServiceOrQuery;
-  /** @example null */
   @Expose({ name: "organizationIdQuery" })
   @Type(() => UserServiceOrganizationIdQuery)
   organizationIdQuery?: UserServiceOrganizationIdQuery;
-  /** @example null */
   @Expose({ name: "phoneQuery" })
   @Type(() => UserServicePhoneQuery)
   phoneQuery?: UserServicePhoneQuery;
-  /** @example null */
   @Expose({ name: "stateQuery" })
   @Type(() => UserServiceStateQuery)
   stateQuery?: UserServiceStateQuery;
-  /** @example null */
   @Expose({ name: "typeQuery" })
   @Type(() => UserServiceTypeQuery)
   typeQuery?: UserServiceTypeQuery;
-  /** @example null */
   @Expose({ name: "userNameQuery" })
   @Type(() => UserServiceUserNameQuery)
   userNameQuery?: UserServiceUserNameQuery;

@@ -15,35 +15,41 @@ import { SessionServiceWebAuthNFactor } from "./session-service-web-auth-n-facto
 import { Expose, Type } from "class-transformer";
 
 export class SessionServiceFactors {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "user" })
   @Type(() => SessionServiceUserFactor)
   user?: SessionServiceUserFactor;
-  /** @example null */
   @Expose({ name: "password" })
   @Type(() => SessionServicePasswordFactor)
   password?: SessionServicePasswordFactor;
-  /** @example null */
   @Expose({ name: "webAuthN" })
   @Type(() => SessionServiceWebAuthNFactor)
   webAuthN?: SessionServiceWebAuthNFactor;
-  /** @example null */
   @Expose({ name: "intent" })
   @Type(() => SessionServiceIntentFactor)
   intent?: SessionServiceIntentFactor;
-  /** @example null */
   @Expose({ name: "totp" })
   @Type(() => SessionServiceTOTPFactor)
   totp?: SessionServiceTOTPFactor;
-  /** @example null */
   @Expose({ name: "otpSms" })
   @Type(() => SessionServiceOTPFactor)
   otpSms?: SessionServiceOTPFactor;
-  /** @example null */
   @Expose({ name: "otpEmail" })
   @Type(() => SessionServiceOTPFactor)
   otpEmail?: SessionServiceOTPFactor;
-  /** @example null */
   @Expose({ name: "recoveryCode" })
   @Type(() => SessionServiceRecoveryCodeFactor)
   recoveryCode?: SessionServiceRecoveryCodeFactor;

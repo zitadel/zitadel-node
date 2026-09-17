@@ -10,12 +10,24 @@ import { Expose, Type } from "class-transformer";
 
 export class SessionServiceWebAuthN {
   /**
-   * The domain on which the session was created. Will be used in the WebAuthN challenge.  It must be either the exact domain or a top-level domain of the origin of the request.  For example if the request is coming from \"login.example.com\", the domain can be  \"login.example.com\" or \"example.com\", but not \"other.com\" or \"sub.login.example.com\".  See also: https://www.w3.org/TR/webauthn/#relying-party-identifier
-   * @example null
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
+   * The domain on which the session was created. Will be used in the WebAuthN challenge.  It must be either the exact domain or a top-level domain of the origin of the request.  For example if the request is coming from "login.example.com", the domain can be  "login.example.com" or "example.com", but not "other.com" or "sub.login.example.com".  See also: https://www.w3.org/TR/webauthn/#relying-party-identifier
    */
   @Expose({ name: "domain" })
   domain?: string;
-  /** @example null */
   @Expose({ name: "userVerificationRequirement" })
   userVerificationRequirement?: SessionServiceUserVerificationRequirement;
 
@@ -23,6 +35,26 @@ export class SessionServiceWebAuthN {
     Object.assign(this, data);
     if (this.domain != null && typeof this.domain !== "string") {
       throw new TypeError(`domain must be a string, got ${typeof this.domain}`);
+    }
+    if (this.userVerificationRequirement != null) {
+      const userVerificationRequirementValues = Object.values(
+        SessionServiceUserVerificationRequirement,
+      ).filter(
+        (v) =>
+          typeof (
+            SessionServiceUserVerificationRequirement as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(userVerificationRequirementValues as readonly unknown[]).includes(
+          this.userVerificationRequirement,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for userVerificationRequirement: ${JSON.stringify(this.userVerificationRequirement)}. ` +
+            `Expected one of [${userVerificationRequirementValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

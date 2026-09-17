@@ -9,19 +9,30 @@ import { InstanceServiceDomainFilter } from "./instance-service-domain-filter.js
 import { Expose, Type } from "class-transformer";
 
 export class InstanceServiceCustomDomainFilter {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "domainFilter" })
   @Type(() => InstanceServiceDomainFilter)
   domainFilter?: InstanceServiceDomainFilter;
   /**
    * Filter whether the domain is auto-generated.
-   * @example null
    */
   @Expose({ name: "generatedFilter" })
   generatedFilter?: boolean;
   /**
    * Filter whether the domain is the primary domain of the instance.
-   * @example null
    */
   @Expose({ name: "primaryFilter" })
   primaryFilter?: boolean;

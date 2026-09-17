@@ -9,14 +9,26 @@ import { Expose } from "class-transformer";
 
 export class InstanceServiceAddTrustedDomainRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * InstanceID is the unique ID of the instance to which the trusted domain will be added.  If not set, the instance in the current context (e.g. identified by the host header) will be used.  If an ID is set, the caller must have additional permissions.
-   * @example null
    */
   @Expose({ name: "instanceId" })
   instanceId?: string;
   /**
    * Trusted domain to be added to the instance.  Must be a valid domain name.  Once the domain is added, it can be used in API responses like OIDC discovery,  email templates, and more.  This can be used in cases where the API is accessed through a different domain  than the instance domain, e.g. proxy setups and custom login UIs.  Unlike custom domains, trusted domains are not used to route requests to this instance  and therefore do not need to be uniquely assigned to an instance.
-   * @example null
    */
   @Expose({ name: "trustedDomain" })
   trustedDomain?: string;

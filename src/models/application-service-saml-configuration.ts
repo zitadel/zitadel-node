@@ -10,8 +10,21 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class ApplicationServiceSAMLConfiguration {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The Metadata XML is the provided or fetched metadata stored at Zitadel.  If either the metadata was provided as XML or when Zitadel fetched it at the provided URL,  it is stored here.
-   * @example null
    */
   @Expose({ name: "metadataXml" })
   /** 2.1 — `format: byte` round-trips Buffer <-> base64 string at the serde boundary. */
@@ -28,11 +41,9 @@ export class ApplicationServiceSAMLConfiguration {
   metadataXml?: Buffer;
   /**
    * The Metadata URL is the URL where the metadata was fetched from.  In case the metadata was provided as raw XML, this field is empty.
-   * @example null
    */
   @Expose({ name: "metadataUrl" })
   metadataUrl?: string;
-  /** @example null */
   @Expose({ name: "loginVersion" })
   @Type(() => ApplicationServiceLoginVersion)
   loginVersion?: ApplicationServiceLoginVersion;

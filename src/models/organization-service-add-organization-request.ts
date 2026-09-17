@@ -10,27 +10,37 @@ import { Expose, Type } from "class-transformer";
 
 export class OrganizationServiceAddOrganizationRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Name is the unique name of the organization to be created.  This must be unique across the instance.
-   * @example null
    */
   @Expose({ name: "name" })
   name?: string;
   /**
    * Specify users to be assigned as organization admins.  If no users are specified here, the organization will be created without any admin users.  The organization can still be managed by any instance administrator.  If no roles are specified for a user, they will be assigned the role ORG_OWNER.
-   * @example null
    */
   @Expose({ name: "admins" })
   @Type(() => OrganizationServiceAdmin)
   admins?: Array<OrganizationServiceAdmin>;
   /**
    * OrganizationID is the unique identifier of the organization. This field is optional.  If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * Optionally, set a unique id for the organization. If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.   Deprecated: use 'organization_id' field instead.  If both org_id and organization_id are set, organization_id will take precedence.
-   * @example null
    * @deprecated This property is deprecated.
    */
   @Expose({ name: "orgId" })

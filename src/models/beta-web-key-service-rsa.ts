@@ -10,15 +10,55 @@ import { BetaWebKeyServiceRSAHasher } from "./beta-web-key-service-rsa-hasher.js
 import { Expose, Type } from "class-transformer";
 
 export class BetaWebKeyServiceRSA {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "bits" })
   bits?: BetaWebKeyServiceRSABits;
-  /** @example null */
   @Expose({ name: "hasher" })
   hasher?: BetaWebKeyServiceRSAHasher;
 
   constructor(data?: Partial<BetaWebKeyServiceRSA>) {
     Object.assign(this, data);
+    if (this.bits != null) {
+      const bitsValues = Object.values(BetaWebKeyServiceRSABits).filter(
+        (v) =>
+          typeof (BetaWebKeyServiceRSABits as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(bitsValues as readonly unknown[]).includes(this.bits)) {
+        throw new Error(
+          `Unknown enum value for bits: ${JSON.stringify(this.bits)}. ` +
+            `Expected one of [${bitsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.hasher != null) {
+      const hasherValues = Object.values(BetaWebKeyServiceRSAHasher).filter(
+        (v) =>
+          typeof (BetaWebKeyServiceRSAHasher as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(hasherValues as readonly unknown[]).includes(this.hasher)) {
+        throw new Error(
+          `Unknown enum value for hasher: ${JSON.stringify(this.hasher)}. ` +
+            `Expected one of [${hasherValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
   }
 
   /**

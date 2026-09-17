@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -90,7 +91,7 @@ export class OIDCServiceApi extends BaseApi {
       ["application/json"],
       "application/json",
       (json: unknown) => json as object,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -147,7 +148,7 @@ export class OIDCServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, OIDCServiceCreateCallbackResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -204,7 +205,7 @@ export class OIDCServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, OIDCServiceGetAuthRequestResponse)!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -265,7 +266,7 @@ export class OIDCServiceApi extends BaseApi {
           json,
           OIDCServiceGetDeviceAuthorizationRequestResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

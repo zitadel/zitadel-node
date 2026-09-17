@@ -21,68 +21,69 @@ import {
 
 export class ApplicationServiceCreateOIDCApplicationRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * RedirectURIs are the allowed callback URIs for the OAuth2 / OIDC flows,  where the authorization code or tokens will be sent to.  The redirect_uri parameter in the authorization request must exactly match one of these URIs.
-   * @example null
    */
   @Expose({ name: "redirectUris" })
   redirectUris?: Array<string>;
   /**
    * ResponseTypes define whether a code, id_token token or just id_token will be returned.  The response_type parameter in the authorization request must exactly match one of these values.
-   * @example null
    */
   @Expose({ name: "responseTypes" })
   responseTypes?: Array<ApplicationServiceOIDCResponseType>;
   /**
    * GrantTypes define the flow type the application is allowed to use.  The grant_type parameter in the token request must exactly match one of these values.  Minimum one grant type must be provided, but multiple grant types can be provided to allow  different flows, e.g. authorization code flow and refresh token flow.
-   * @example null
    */
   @Expose({ name: "grantTypes" })
   grantTypes?: Array<ApplicationServiceOIDCGrantType>;
-  /** @example null */
   @Expose({ name: "applicationType" })
   applicationType?: ApplicationServiceOIDCApplicationType;
-  /** @example null */
   @Expose({ name: "authMethodType" })
   authMethodType?: ApplicationServiceOIDCAuthMethodType;
   /**
    * PostLogoutRedirectURIs are the allowed URIs to redirect to after a logout.  The post_logout_redirect_uri parameter in the logout request must exactly match one of these URIs.
-   * @example null
    */
   @Expose({ name: "postLogoutRedirectUris" })
   postLogoutRedirectUris?: Array<string>;
-  /** @example null */
   @Expose({ name: "version" })
   version?: ApplicationServiceOIDCVersion;
   /**
    * DevelopmentMode can be enabled for development purposes. This allows the use of  OIDC non-compliant and potentially insecure settings, such as the use of  HTTP redirect URIs or wildcard redirect URIs.
-   * @example null
    */
   @Expose({ name: "developmentMode" })
   developmentMode?: boolean;
-  /** @example null */
   @Expose({ name: "accessTokenType" })
   accessTokenType?: ApplicationServiceOIDCTokenType;
   /**
    * If AccessTokenRoleAssertion is enabled, the roles of the user are added to the access token.  Ensure that the access token is a JWT token and not a bearer token. And either request the roles  by scope or enable the user role assertion on the project.
-   * @example null
    */
   @Expose({ name: "accessTokenRoleAssertion" })
   accessTokenRoleAssertion?: boolean;
   /**
    * If IDTokenRoleAssertion is enabled, the roles of the user are added to the id token.  Ensure that either the roles are requested by scope or enable the user role assertion on the  project.
-   * @example null
    */
   @Expose({ name: "idTokenRoleAssertion" })
   idTokenRoleAssertion?: boolean;
   /**
    * If IDTokenUserinfoAssertion is enabled, the claims of profile, email, address and phone scopes  are added to the id token even if an access token is issued. This can be required by some applications  that do not call the userinfo endpoint after authentication or directly use the id_token for retrieving  user information.  Attention: this violates the OIDC specification, which states that these claims must only be  requested from the userinfo endpoint if an access token is issued. This is to prevent  leaking of personal information in the id token, which is often stored in the browser and  therefore more vulnerable.
-   * @example null
    */
   @Expose({ name: "idTokenUserinfoAssertion" })
   idTokenUserinfoAssertion?: boolean;
   /**
-   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
-   * @example null
+   * A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like "day"  or "month". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix "s" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should  be expressed in JSON format as "3.000000001s", and 3 seconds and 1  microsecond should be expressed in JSON format as "3.000001s".
    */
   @Expose({ name: "clockSkew" })
   /*
@@ -103,23 +104,19 @@ export class ApplicationServiceCreateOIDCApplicationRequest {
   clockSkew?: Temporal.Duration;
   /**
    * AdditionalOrigins are HTTP origins (scheme + host + port) from where the API can be used  additional to the redirect_uris.  This is useful if the application is used from an origin different to the redirect_uris,  e.g. if the application is a SPA served in a native app, where the redirect_uri is a custom scheme,  but the application is served from a https origin.
-   * @example null
    */
   @Expose({ name: "additionalOrigins" })
   additionalOrigins?: Array<string>;
   /**
    * For native apps a successful login usually shows a success page with a link to open the application again.  SkipNativeAppSuccessPage can be used to skip this page and open the application directly.
-   * @example null
    */
   @Expose({ name: "skipNativeAppSuccessPage" })
   skipNativeAppSuccessPage?: boolean;
   /**
    * BackChannelLogoutURI is used to notify the application about terminated sessions according  to the OIDC Back-Channel Logout (https://openid.net/specs/openid-connect-backchannel-1_0.html).
-   * @example null
    */
   @Expose({ name: "backChannelLogoutUri" })
   backChannelLogoutUri?: string;
-  /** @example null */
   @Expose({ name: "loginVersion" })
   @Type(() => ApplicationServiceLoginVersion)
   loginVersion?: ApplicationServiceLoginVersion;
@@ -217,6 +214,152 @@ export class ApplicationServiceCreateOIDCApplicationRequest {
       throw new TypeError(
         `backChannelLogoutUri must be a string, got ${typeof this.backChannelLogoutUri}`,
       );
+    }
+    if (this.responseTypes != null) {
+      const responseTypesValues = Object.values(
+        ApplicationServiceOIDCResponseType,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceOIDCResponseType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(responseTypesValues as readonly unknown[]).includes(
+          this.responseTypes,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for responseTypes: ${JSON.stringify(this.responseTypes)}. ` +
+            `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.responseTypes != null && Array.isArray(this.responseTypes)) {
+      const responseTypesValues = Object.values(
+        ApplicationServiceOIDCResponseType,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceOIDCResponseType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      for (const __v of this.responseTypes as readonly unknown[]) {
+        if (!(responseTypesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for responseTypes: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.grantTypes != null) {
+      const grantTypesValues = Object.values(
+        ApplicationServiceOIDCGrantType,
+      ).filter(
+        (v) =>
+          typeof (ApplicationServiceOIDCGrantType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(grantTypesValues as readonly unknown[]).includes(this.grantTypes)) {
+        throw new Error(
+          `Unknown enum value for grantTypes: ${JSON.stringify(this.grantTypes)}. ` +
+            `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.grantTypes != null && Array.isArray(this.grantTypes)) {
+      const grantTypesValues = Object.values(
+        ApplicationServiceOIDCGrantType,
+      ).filter(
+        (v) =>
+          typeof (ApplicationServiceOIDCGrantType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      for (const __v of this.grantTypes as readonly unknown[]) {
+        if (!(grantTypesValues as readonly unknown[]).includes(__v)) {
+          throw new Error(
+            `Unknown enum value for grantTypes: ${JSON.stringify(__v)}. ` +
+              `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+          );
+        }
+      }
+    }
+    if (this.applicationType != null) {
+      const applicationTypeValues = Object.values(
+        ApplicationServiceOIDCApplicationType,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceOIDCApplicationType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(applicationTypeValues as readonly unknown[]).includes(
+          this.applicationType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for applicationType: ${JSON.stringify(this.applicationType)}. ` +
+            `Expected one of [${applicationTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.authMethodType != null) {
+      const authMethodTypeValues = Object.values(
+        ApplicationServiceOIDCAuthMethodType,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceOIDCAuthMethodType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(authMethodTypeValues as readonly unknown[]).includes(
+          this.authMethodType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for authMethodType: ${JSON.stringify(this.authMethodType)}. ` +
+            `Expected one of [${authMethodTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.version != null) {
+      const versionValues = Object.values(ApplicationServiceOIDCVersion).filter(
+        (v) =>
+          typeof (ApplicationServiceOIDCVersion as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(versionValues as readonly unknown[]).includes(this.version)) {
+        throw new Error(
+          `Unknown enum value for version: ${JSON.stringify(this.version)}. ` +
+            `Expected one of [${versionValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.accessTokenType != null) {
+      const accessTokenTypeValues = Object.values(
+        ApplicationServiceOIDCTokenType,
+      ).filter(
+        (v) =>
+          typeof (ApplicationServiceOIDCTokenType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (
+        !(accessTokenTypeValues as readonly unknown[]).includes(
+          this.accessTokenType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for accessTokenType: ${JSON.stringify(this.accessTokenType)}. ` +
+            `Expected one of [${accessTokenTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

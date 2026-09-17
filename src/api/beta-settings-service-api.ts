@@ -9,6 +9,7 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
+import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -107,7 +108,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetActiveIdentityProvidersResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -168,7 +169,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetBrandingSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -228,7 +229,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetDomainSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -287,7 +288,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetGeneralSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -348,7 +349,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetLegalAndSupportSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -408,7 +409,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetLockoutSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -468,7 +469,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetLoginSettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -531,7 +532,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetPasswordComplexitySettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -592,7 +593,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetPasswordExpirySettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -651,7 +652,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceGetSecuritySettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 
@@ -712,7 +713,7 @@ export class BetaSettingsServiceApi extends BaseApi {
           json,
           BetaSettingsServiceSetSecuritySettingsResponse,
         )!,
-      null,
+      NO_AUTH,
     );
   }
 }

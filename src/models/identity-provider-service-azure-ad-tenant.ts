@@ -9,10 +9,22 @@ import { IdentityProviderServiceAzureADTenantType } from "./identity-provider-se
 import { Expose, Type } from "class-transformer";
 
 export class IdentityProviderServiceAzureADTenant {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "tenantId" })
   tenantId?: string;
-  /** @example null */
   @Expose({ name: "tenantType" })
   tenantType?: IdentityProviderServiceAzureADTenantType;
 
@@ -22,6 +34,22 @@ export class IdentityProviderServiceAzureADTenant {
       throw new TypeError(
         `tenantId must be a string, got ${typeof this.tenantId}`,
       );
+    }
+    if (this.tenantType != null) {
+      const tenantTypeValues = Object.values(
+        IdentityProviderServiceAzureADTenantType,
+      ).filter(
+        (v) =>
+          typeof (
+            IdentityProviderServiceAzureADTenantType as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (!(tenantTypeValues as readonly unknown[]).includes(this.tenantType)) {
+        throw new Error(
+          `Unknown enum value for tenantType: ${JSON.stringify(this.tenantType)}. ` +
+            `Expected one of [${tenantTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

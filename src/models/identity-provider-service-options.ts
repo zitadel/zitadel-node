@@ -10,30 +10,39 @@ import { Expose, Type } from "class-transformer";
 
 export class IdentityProviderServiceOptions {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Enable if users should be able to link an existing ZITADEL user with an  external account.
-   * @example null
    */
   @Expose({ name: "isLinkingAllowed" })
   isLinkingAllowed?: boolean;
   /**
    * Enable if users should be able to create a new account in ZITADEL when  using an external account.
-   * @example null
    */
   @Expose({ name: "isCreationAllowed" })
   isCreationAllowed?: boolean;
   /**
    * Enable if a new account in ZITADEL should be created automatically when  login with an external account.
-   * @example null
    */
   @Expose({ name: "isAutoCreation" })
   isAutoCreation?: boolean;
   /**
    * Enable if a the ZITADEL account fields should be updated automatically on  each login.
-   * @example null
    */
   @Expose({ name: "isAutoUpdate" })
   isAutoUpdate?: boolean;
-  /** @example null */
   @Expose({ name: "autoLinking" })
   autoLinking?: IdentityProviderServiceAutoLinkingOption;
 
@@ -67,6 +76,24 @@ export class IdentityProviderServiceOptions {
       throw new TypeError(
         `isAutoUpdate must be a boolean, got ${typeof this.isAutoUpdate}`,
       );
+    }
+    if (this.autoLinking != null) {
+      const autoLinkingValues = Object.values(
+        IdentityProviderServiceAutoLinkingOption,
+      ).filter(
+        (v) =>
+          typeof (
+            IdentityProviderServiceAutoLinkingOption as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(autoLinkingValues as readonly unknown[]).includes(this.autoLinking)
+      ) {
+        throw new Error(
+          `Unknown enum value for autoLinking: ${JSON.stringify(this.autoLinking)}. ` +
+            `Expected one of [${autoLinkingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

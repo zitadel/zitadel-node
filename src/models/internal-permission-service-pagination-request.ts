@@ -9,20 +9,31 @@ import { Expose } from "class-transformer";
 
 export class InternalPermissionServicePaginationRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * Starting point for retrieval, in combination of offset used to query a set list of objects.
-   * @example null
    */
   @Expose({ name: "offset" })
   offset?: unknown;
   /**
    * limit is the maximum amount of objects returned. The default is set to 100  with a maximum of 1000 in the runtime configuration.  If the limit exceeds the maximum configured ZITADEL will throw an error.  If no limit is present the default is taken.
-   * @example null
    */
   @Expose({ name: "limit" })
   limit?: number;
   /**
    * Asc is the sorting order. If true the list is sorted ascending, if false  the list is sorted descending. The default is descending.
-   * @example null
    */
   @Expose({ name: "asc" })
   asc?: boolean;

@@ -13,30 +13,39 @@ import { Expose } from "class-transformer";
  */
 export class BetaOrganizationServiceDomain {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The Organization id.
-   * @example null
    */
   @Expose({ name: "organizationId" })
   organizationId?: string;
   /**
    * The domain name.
-   * @example null
    */
   @Expose({ name: "domainName" })
   domainName?: string;
   /**
    * Defines if the domain is verified.
-   * @example null
    */
   @Expose({ name: "isVerified" })
   isVerified?: boolean;
   /**
    * Defines if the domain is the primary domain.
-   * @example null
    */
   @Expose({ name: "isPrimary" })
   isPrimary?: boolean;
-  /** @example null */
   @Expose({ name: "validationType" })
   validationType?: BetaOrganizationServiceDomainValidationType;
 
@@ -64,6 +73,29 @@ export class BetaOrganizationServiceDomain {
       throw new TypeError(
         `isPrimary must be a boolean, got ${typeof this.isPrimary}`,
       );
+    }
+    if (this.validationType != null) {
+      const validationTypeValues = Object.values(
+        BetaOrganizationServiceDomainValidationType,
+      ).filter(
+        (v) =>
+          typeof (
+            BetaOrganizationServiceDomainValidationType as Record<
+              string,
+              unknown
+            >
+          )[v as string] !== "number",
+      );
+      if (
+        !(validationTypeValues as readonly unknown[]).includes(
+          this.validationType,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for validationType: ${JSON.stringify(this.validationType)}. ` +
+            `Expected one of [${validationTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

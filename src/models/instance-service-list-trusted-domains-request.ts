@@ -12,21 +12,31 @@ import { Expose, Type } from "class-transformer";
 
 export class InstanceServiceListTrustedDomainsRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * InstanceID is the unique ID of the instance whose trusted domains will be listed.  If not set, the instance in the current context (e.g. identified by the host header) will be used.  If an ID is set, the caller must have additional permissions.
-   * @example null
    */
   @Expose({ name: "instanceId" })
   instanceId?: string;
-  /** @example null */
   @Expose({ name: "pagination" })
   @Type(() => InstanceServicePaginationRequest)
   pagination?: InstanceServicePaginationRequest;
-  /** @example null */
   @Expose({ name: "sortingColumn" })
   sortingColumn?: InstanceServiceTrustedDomainFieldName;
   /**
    * Filter the domains to be returned.
-   * @example null
    */
   @Expose({ name: "filters" })
   @Type(() => InstanceServiceTrustedDomainFilter)
@@ -38,6 +48,26 @@ export class InstanceServiceListTrustedDomainsRequest {
       throw new TypeError(
         `instanceId must be a string, got ${typeof this.instanceId}`,
       );
+    }
+    if (this.sortingColumn != null) {
+      const sortingColumnValues = Object.values(
+        InstanceServiceTrustedDomainFieldName,
+      ).filter(
+        (v) =>
+          typeof (
+            InstanceServiceTrustedDomainFieldName as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(sortingColumnValues as readonly unknown[]).includes(
+          this.sortingColumn,
+        )
+      ) {
+        throw new Error(
+          `Unknown enum value for sortingColumn: ${JSON.stringify(this.sortingColumn)}. ` +
+            `Expected one of [${sortingColumnValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

@@ -10,36 +10,44 @@ import { Expose } from "class-transformer";
 
 export class UserServiceProfile {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * The given name is the first name of the user.  For example, it can be used to personalize notifications and login UIs.
-   * @example null
    */
   @Expose({ name: "givenName" })
   givenName?: string;
   /**
    * The family name is the last name of the user.  For example, it can be used to personalize user interfaces and notifications.
-   * @example null
    */
   @Expose({ name: "familyName" })
   familyName?: string;
   /**
    * The nick name is the users short name.  For example, it can be used to personalize user interfaces and notifications.
-   * @example null
    */
   @Expose({ name: "nickName" })
   nickName?: string;
   /**
    * The display name is how a user should primarily be displayed in lists.  It can also for example be used to personalize user interfaces and notifications.
-   * @example null
    */
   @Expose({ name: "displayName" })
   displayName?: string;
   /**
    * The users preferred language is the language that systems should use to interact with the user.  It has the format of a [BCP-47 language tag](https://datatracker.ietf.org/doc/html/rfc3066).  It is used by Zitadel where no higher prioritized preferred language can be used.  For example, browser settings can overwrite a users preferred_language.  Notification messages and standard login UIs use the users preferred language if it is supported and allowed on the instance.  Else, the default language of the instance is used.
-   * @example null
    */
   @Expose({ name: "preferredLanguage" })
   preferredLanguage?: string;
-  /** @example null */
   @Expose({ name: "gender" })
   gender?: UserServiceGender;
 
@@ -72,6 +80,19 @@ export class UserServiceProfile {
       throw new TypeError(
         `preferredLanguage must be a string, got ${typeof this.preferredLanguage}`,
       );
+    }
+    if (this.gender != null) {
+      const genderValues = Object.values(UserServiceGender).filter(
+        (v) =>
+          typeof (UserServiceGender as Record<string, unknown>)[v as string] !==
+          "number",
+      );
+      if (!(genderValues as readonly unknown[]).includes(this.gender)) {
+        throw new Error(
+          `Unknown enum value for gender: ${JSON.stringify(this.gender)}. ` +
+            `Expected one of [${genderValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
     }
   }
 

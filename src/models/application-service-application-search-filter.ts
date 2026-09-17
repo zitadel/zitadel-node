@@ -14,31 +14,73 @@ import { ApplicationServiceProjectIDFilter } from "./application-service-project
 import { Expose, Type } from "class-transformer";
 
 export class ApplicationServiceApplicationSearchFilter {
-  /** @example null */
+  /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
   @Expose({ name: "clientIdFilter" })
   @Type(() => ApplicationServiceClientIDFilter)
   clientIdFilter?: ApplicationServiceClientIDFilter;
-  /** @example null */
   @Expose({ name: "entityIdFilter" })
   @Type(() => ApplicationServiceEntityIDFilter)
   entityIdFilter?: ApplicationServiceEntityIDFilter;
-  /** @example null */
   @Expose({ name: "nameFilter" })
   @Type(() => ApplicationServiceApplicationNameFilter)
   nameFilter?: ApplicationServiceApplicationNameFilter;
-  /** @example null */
   @Expose({ name: "projectIdFilter" })
   @Type(() => ApplicationServiceProjectIDFilter)
   projectIdFilter?: ApplicationServiceProjectIDFilter;
-  /** @example null */
   @Expose({ name: "stateFilter" })
   stateFilter?: ApplicationServiceApplicationState;
-  /** @example null */
   @Expose({ name: "typeFilter" })
   typeFilter?: ApplicationServiceApplicationType;
 
   constructor(data?: Partial<ApplicationServiceApplicationSearchFilter>) {
     Object.assign(this, data);
+    if (this.stateFilter != null) {
+      const stateFilterValues = Object.values(
+        ApplicationServiceApplicationState,
+      ).filter(
+        (v) =>
+          typeof (
+            ApplicationServiceApplicationState as Record<string, unknown>
+          )[v as string] !== "number",
+      );
+      if (
+        !(stateFilterValues as readonly unknown[]).includes(this.stateFilter)
+      ) {
+        throw new Error(
+          `Unknown enum value for stateFilter: ${JSON.stringify(this.stateFilter)}. ` +
+            `Expected one of [${stateFilterValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
+    if (this.typeFilter != null) {
+      const typeFilterValues = Object.values(
+        ApplicationServiceApplicationType,
+      ).filter(
+        (v) =>
+          typeof (ApplicationServiceApplicationType as Record<string, unknown>)[
+            v as string
+          ] !== "number",
+      );
+      if (!(typeFilterValues as readonly unknown[]).includes(this.typeFilter)) {
+        throw new Error(
+          `Unknown enum value for typeFilter: ${JSON.stringify(this.typeFilter)}. ` +
+            `Expected one of [${typeFilterValues.map((v) => JSON.stringify(v)).join(", ")}].`,
+        );
+      }
+    }
   }
 
   /**

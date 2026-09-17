@@ -9,26 +9,36 @@ import { Expose } from "class-transformer";
 
 export class BetaProjectServiceUpdateProjectRoleRequest {
   /**
+   * 2.5 — Wire-serialization registry for `type: number` (no format)
+   * fields. Such fields are carried as branded {@link Decimal} values,
+   * which are plain strings at runtime to preserve arbitrary precision.
+   * On the request path ObjectSerializer.serialize walks the instance with
+   * JSON.stringify, which would quote a string and emit
+   * `"weightKg":"12.345"` (a JSON string) instead of the spec-required
+   * `"weightKg":12.345` (a JSON number). The serializer consults this set
+   * (by runtime property name) to emit those fields unquoted via JSON.rawJSON,
+   * preserving the full decimal text without a lossy Number() round-trip.
+   * Empty when the model has no `type: number` no-format fields.
+   */
+  static readonly __decimalFields: ReadonlySet<string> = new Set([]);
+
+  /**
    * ID of the project.
-   * @example null
    */
   @Expose({ name: "projectId" })
   projectId?: string;
   /**
    * The key is the only relevant attribute for ZITADEL regarding the authorization checks.
-   * @example null
    */
   @Expose({ name: "roleKey" })
   roleKey?: string;
   /**
    * Name displayed for the role.
-   * @example null
    */
   @Expose({ name: "displayName" })
   displayName?: string;
   /**
    * The group is only used for display purposes. That you have better handling, like giving all the roles from a group to a user.
-   * @example null
    */
   @Expose({ name: "group" })
   group?: string;
