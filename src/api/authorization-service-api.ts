@@ -100,7 +100,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceActivateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -161,7 +161,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceCreateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -222,7 +222,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceDeactivateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -283,7 +283,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceDeleteAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -343,7 +343,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceListAuthorizationsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -404,7 +404,7 @@ export class AuthorizationServiceApi extends BaseApi {
           json,
           AuthorizationServiceUpdateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

@@ -98,7 +98,7 @@ export class BetaInternalPermissionServiceApi extends BaseApi {
           json,
           BetaInternalPermissionServiceCreateAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -161,7 +161,7 @@ export class BetaInternalPermissionServiceApi extends BaseApi {
           json,
           BetaInternalPermissionServiceDeleteAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -223,7 +223,7 @@ export class BetaInternalPermissionServiceApi extends BaseApi {
           json,
           BetaInternalPermissionServiceListAdministratorsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -286,7 +286,7 @@ export class BetaInternalPermissionServiceApi extends BaseApi {
           json,
           BetaInternalPermissionServiceUpdateAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

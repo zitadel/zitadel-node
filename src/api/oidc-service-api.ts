@@ -91,7 +91,7 @@ export class OIDCServiceApi extends BaseApi {
       ["application/json"],
       "application/json",
       (json: unknown) => json as object,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -148,7 +148,7 @@ export class OIDCServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, OIDCServiceCreateCallbackResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -205,7 +205,7 @@ export class OIDCServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, OIDCServiceGetAuthRequestResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -266,7 +266,7 @@ export class OIDCServiceApi extends BaseApi {
           json,
           OIDCServiceGetDeviceAuthorizationRequestResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

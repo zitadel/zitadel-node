@@ -104,7 +104,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceCreateTargetResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -164,7 +164,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceDeleteTargetResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -221,7 +221,7 @@ export class BetaActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaActionServiceGetTargetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -280,7 +280,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionFunctionsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -339,7 +339,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionMethodsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -398,7 +398,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionServicesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -458,7 +458,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListExecutionsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -518,7 +518,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceListTargetsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -578,7 +578,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceSetExecutionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -638,7 +638,7 @@ export class BetaActionServiceApi extends BaseApi {
           json,
           BetaActionServiceUpdateTargetResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

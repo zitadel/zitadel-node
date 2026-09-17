@@ -92,7 +92,7 @@ export class BetaTelemetryServiceApi extends BaseApi {
           json,
           BetaTelemetryServiceReportBaseInformationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -153,7 +153,7 @@ export class BetaTelemetryServiceApi extends BaseApi {
           json,
           BetaTelemetryServiceReportResourceCountsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

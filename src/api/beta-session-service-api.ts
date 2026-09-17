@@ -97,7 +97,7 @@ export class BetaSessionServiceApi extends BaseApi {
           json,
           BetaSessionServiceCreateSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -157,7 +157,7 @@ export class BetaSessionServiceApi extends BaseApi {
           json,
           BetaSessionServiceDeleteSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -217,7 +217,7 @@ export class BetaSessionServiceApi extends BaseApi {
           json,
           BetaSessionServiceGetSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -277,7 +277,7 @@ export class BetaSessionServiceApi extends BaseApi {
           json,
           BetaSessionServiceListSessionsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -337,7 +337,7 @@ export class BetaSessionServiceApi extends BaseApi {
           json,
           BetaSessionServiceSetSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

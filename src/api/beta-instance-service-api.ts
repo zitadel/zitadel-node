@@ -107,7 +107,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceAddCustomDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -167,7 +167,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceAddTrustedDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -227,7 +227,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceDeleteInstanceResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -287,7 +287,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceGetInstanceResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -347,7 +347,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListCustomDomainsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -407,7 +407,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListInstancesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -467,7 +467,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceListTrustedDomainsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -527,7 +527,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceRemoveCustomDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -588,7 +588,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceRemoveTrustedDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -648,7 +648,7 @@ export class BetaInstanceServiceApi extends BaseApi {
           json,
           BetaInstanceServiceUpdateInstanceResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

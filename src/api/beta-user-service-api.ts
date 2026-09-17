@@ -155,7 +155,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceAddHumanUserResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -212,7 +212,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceAddIDPLinkResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -269,7 +269,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceAddOTPEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -326,7 +326,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceAddOTPSMSResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -387,7 +387,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceCreatePasskeyRegistrationLinkResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -447,7 +447,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceDeactivateUserResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -504,7 +504,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceDeleteUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -561,7 +561,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceGetUserByIDResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -622,7 +622,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceListAuthenticationMethodTypesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -679,7 +679,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceListUsersResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -736,7 +736,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceLockUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -796,7 +796,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServicePasswordResetResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -856,7 +856,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceReactivateUserResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -916,7 +916,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceRegisterPasskeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -976,7 +976,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceRegisterTOTPResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1033,7 +1033,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceRegisterU2FResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1093,7 +1093,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceRemoveOTPEmailResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1153,7 +1153,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceRemoveOTPSMSResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1210,7 +1210,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceRemovePhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1267,7 +1267,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceRemoveTOTPResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1327,7 +1327,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceResendEmailCodeResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1387,7 +1387,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceResendPhoneCodeResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1448,7 +1448,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceRetrieveIdentityProviderIntentResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1505,7 +1505,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceSetEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1562,7 +1562,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceSetPasswordResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1619,7 +1619,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceSetPhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1680,7 +1680,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceStartIdentityProviderIntentResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1737,7 +1737,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceUnlockUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1797,7 +1797,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceUpdateHumanUserResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1854,7 +1854,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceVerifyEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1915,7 +1915,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceVerifyPasskeyRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1972,7 +1972,7 @@ export class BetaUserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, BetaUserServiceVerifyPhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2033,7 +2033,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceVerifyTOTPRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2094,7 +2094,7 @@ export class BetaUserServiceApi extends BaseApi {
           json,
           BetaUserServiceVerifyU2FRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

@@ -94,7 +94,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceActivateWebKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -154,7 +154,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceCreateWebKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -214,7 +214,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceDeleteWebKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -272,7 +272,7 @@ export class BetaWebKeyServiceApi extends BaseApi {
           json,
           BetaWebKeyServiceListWebKeysResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

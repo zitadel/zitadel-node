@@ -96,7 +96,7 @@ export class InternalPermissionServiceApi extends BaseApi {
           json,
           InternalPermissionServiceCreateAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -157,7 +157,7 @@ export class InternalPermissionServiceApi extends BaseApi {
           json,
           InternalPermissionServiceDeleteAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -217,7 +217,7 @@ export class InternalPermissionServiceApi extends BaseApi {
           json,
           InternalPermissionServiceListAdministratorsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -278,7 +278,7 @@ export class InternalPermissionServiceApi extends BaseApi {
           json,
           InternalPermissionServiceUpdateAdministratorResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

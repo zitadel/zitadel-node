@@ -88,7 +88,7 @@ export class SAMLServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SAMLServiceCreateResponseResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -145,7 +145,7 @@ export class SAMLServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SAMLServiceGetSAMLRequestResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

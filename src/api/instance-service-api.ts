@@ -107,7 +107,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceAddCustomDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -167,7 +167,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceAddTrustedDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -227,7 +227,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceDeleteInstanceResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -284,7 +284,7 @@ export class InstanceServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, InstanceServiceGetInstanceResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -344,7 +344,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceListCustomDomainsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -404,7 +404,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceListInstancesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -464,7 +464,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceListTrustedDomainsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -524,7 +524,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceRemoveCustomDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -585,7 +585,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceRemoveTrustedDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -645,7 +645,7 @@ export class InstanceServiceApi extends BaseApi {
           json,
           InstanceServiceUpdateInstanceResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

@@ -204,7 +204,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddHumanUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -261,7 +261,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddIDPLinkResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -318,7 +318,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddKeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -375,7 +375,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddOTPEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -432,7 +432,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddOTPSMSResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -493,7 +493,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceAddPersonalAccessTokenResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -550,7 +550,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceAddSecretResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -610,7 +610,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceCreateInviteCodeResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -671,7 +671,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceCreatePasskeyRegistrationLinkResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -728,7 +728,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceCreateUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -785,7 +785,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceDeactivateUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -842,7 +842,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceDeleteUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -902,7 +902,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceDeleteUserMetadataResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -963,7 +963,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceGenerateRecoveryCodesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1020,7 +1020,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceGetUserByIDResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1081,7 +1081,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceHumanMFAInitSkippedResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1141,7 +1141,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceListAuthenticationFactorsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1202,7 +1202,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceListAuthenticationMethodTypesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1259,7 +1259,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceListIDPLinksResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1316,7 +1316,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceListKeysResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1373,7 +1373,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceListPasskeysResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1434,7 +1434,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceListPersonalAccessTokensResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1494,7 +1494,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceListUserMetadataResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1551,7 +1551,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceListUsersResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1608,7 +1608,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceLockUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1665,7 +1665,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServicePasswordResetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1722,7 +1722,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceReactivateUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1779,7 +1779,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRegisterPasskeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1836,7 +1836,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRegisterTOTPResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1893,7 +1893,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRegisterU2FResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -1950,7 +1950,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveIDPLinkResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2007,7 +2007,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveKeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2064,7 +2064,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveOTPEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2121,7 +2121,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveOTPSMSResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2178,7 +2178,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemovePasskeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2239,7 +2239,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceRemovePersonalAccessTokenResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2296,7 +2296,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemovePhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2357,7 +2357,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceRemoveRecoveryCodesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2414,7 +2414,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveSecretResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2471,7 +2471,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveTOTPResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2528,7 +2528,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceRemoveU2FResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2585,7 +2585,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceResendEmailCodeResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2645,7 +2645,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceResendInviteCodeResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2702,7 +2702,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceResendPhoneCodeResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2763,7 +2763,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceRetrieveIdentityProviderIntentResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2820,7 +2820,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceSendEmailCodeResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2877,7 +2877,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceSetEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2934,7 +2934,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceSetPasswordResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -2991,7 +2991,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceSetPhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3048,7 +3048,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceSetUserMetadataResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3109,7 +3109,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceStartIdentityProviderIntentResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3166,7 +3166,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceUnlockUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3223,7 +3223,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceUpdateHumanUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3280,7 +3280,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceUpdateUserResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3337,7 +3337,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceVerifyEmailResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3397,7 +3397,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceVerifyInviteCodeResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3458,7 +3458,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceVerifyPasskeyRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3515,7 +3515,7 @@ export class UserServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, UserServiceVerifyPhoneResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3576,7 +3576,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceVerifyTOTPRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -3637,7 +3637,7 @@ export class UserServiceApi extends BaseApi {
           json,
           UserServiceVerifyU2FRegistrationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

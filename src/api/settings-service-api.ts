@@ -112,7 +112,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetActiveIdentityProvidersResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -173,7 +173,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetBrandingSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -233,7 +233,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetDomainSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -292,7 +292,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetGeneralSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -353,7 +353,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetHostedLoginTranslationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -414,7 +414,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetLegalAndSupportSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -474,7 +474,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetLockoutSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -534,7 +534,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetLoginSettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -595,7 +595,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetPasswordComplexitySettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -656,7 +656,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetPasswordExpirySettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -715,7 +715,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceGetSecuritySettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -776,7 +776,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceSetHostedLoginTranslationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -837,7 +837,7 @@ export class SettingsServiceApi extends BaseApi {
           json,
           SettingsServiceSetSecuritySettingsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

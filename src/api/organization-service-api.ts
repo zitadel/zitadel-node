@@ -116,7 +116,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceActivateOrganizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -176,7 +176,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceAddOrganizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -237,7 +237,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceAddOrganizationDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -298,7 +298,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceDeactivateOrganizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -358,7 +358,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceDeleteOrganizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -419,7 +419,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceDeleteOrganizationDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -480,7 +480,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceDeleteOrganizationMetadataResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -545,7 +545,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceGenerateOrganizationDomainValidationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -606,7 +606,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceListOrganizationDomainsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -667,7 +667,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceListOrganizationMetadataResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -727,7 +727,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceListOrganizationsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -788,7 +788,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceSetOrganizationMetadataResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -848,7 +848,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceUpdateOrganizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -909,7 +909,7 @@ export class OrganizationServiceApi extends BaseApi {
           json,
           OrganizationServiceVerifyOrganizationDomainResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

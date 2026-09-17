@@ -114,7 +114,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceActivatePublicKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -171,7 +171,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceAddPublicKeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -228,7 +228,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceCreateTargetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -289,7 +289,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceDeactivatePublicKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -346,7 +346,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceDeleteTargetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -403,7 +403,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceGetTargetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -462,7 +462,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceListExecutionFunctionsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -521,7 +521,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceListExecutionMethodsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -580,7 +580,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceListExecutionServicesResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -640,7 +640,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceListExecutionsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -700,7 +700,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceListPublicKeysResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -757,7 +757,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceListTargetsResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -817,7 +817,7 @@ export class ActionServiceApi extends BaseApi {
           json,
           ActionServiceRemovePublicKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -874,7 +874,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceSetExecutionResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -931,7 +931,7 @@ export class ActionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, ActionServiceUpdateTargetResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

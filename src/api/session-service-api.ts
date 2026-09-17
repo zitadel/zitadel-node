@@ -97,7 +97,7 @@ export class SessionServiceApi extends BaseApi {
           json,
           SessionServiceCreateSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -157,7 +157,7 @@ export class SessionServiceApi extends BaseApi {
           json,
           SessionServiceDeleteSessionResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -214,7 +214,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceGetSessionResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -271,7 +271,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceListSessionsResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -328,7 +328,7 @@ export class SessionServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, SessionServiceSetSessionResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

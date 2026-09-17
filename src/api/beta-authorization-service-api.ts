@@ -100,7 +100,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceActivateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -161,7 +161,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceCreateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -224,7 +224,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceDeactivateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -285,7 +285,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceDeleteAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -345,7 +345,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceListAuthorizationsResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -406,7 +406,7 @@ export class BetaAuthorizationServiceApi extends BaseApi {
           json,
           BetaAuthorizationServiceUpdateAuthorizationResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

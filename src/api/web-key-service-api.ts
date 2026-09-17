@@ -94,7 +94,7 @@ export class WebKeyServiceApi extends BaseApi {
           json,
           WebKeyServiceActivateWebKeyResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -151,7 +151,7 @@ export class WebKeyServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, WebKeyServiceCreateWebKeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -208,7 +208,7 @@ export class WebKeyServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, WebKeyServiceDeleteWebKeyResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -261,7 +261,7 @@ export class WebKeyServiceApi extends BaseApi {
       "application/json",
       (json: unknown) =>
         ObjectSerializer.deserialize(json, WebKeyServiceListWebKeysResponse)!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

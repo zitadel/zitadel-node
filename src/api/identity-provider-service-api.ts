@@ -89,7 +89,7 @@ export class IdentityProviderServiceApi extends BaseApi {
           json,
           IdentityProviderServiceGetIDPByIDResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }

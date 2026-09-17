@@ -91,7 +91,7 @@ export class BetaOIDCServiceApi extends BaseApi {
           json,
           BetaOIDCServiceCreateCallbackResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 
@@ -151,7 +151,7 @@ export class BetaOIDCServiceApi extends BaseApi {
           json,
           BetaOIDCServiceGetAuthRequestResponse,
         )!,
-      NO_AUTH,
+      undefined,
     );
   }
 }
