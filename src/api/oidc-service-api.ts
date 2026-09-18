@@ -9,7 +9,6 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
-import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -41,16 +40,16 @@ export class OIDCServiceApi extends BaseApi {
   /**
    * Authorize or Deny Device Authorization
    * Authorize or deny the device authorization request based on the provided device authorization id.   Required permissions:    - `session.link`
-   * @param oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest  (required)
+   * @param oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest  (required)
    * @return object
    * @throws {ApiError} if fails to make API call
    */
   async authorizeOrDenyDeviceAuthorization(
-    oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest: DeepInput<OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest>,
+    oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest: DeepInput<OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest>,
   ): Promise<object> {
     const authorizeOrDenyDeviceAuthorizationResult =
       await this.authorizeOrDenyDeviceAuthorizationWithHttpInfo(
-        oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest,
+        oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest,
       );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -72,11 +71,11 @@ export class OIDCServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async authorizeOrDenyDeviceAuthorizationWithHttpInfo(
-    oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest: DeepInput<OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest>,
+    oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest: DeepInput<OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest>,
   ): Promise<ApiResult<object>> {
-    if (oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest == null) {
+    if (oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest == null) {
       throw new Error(
-        'Missing required parameter "oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest" when calling authorizeOrDenyDeviceAuthorization',
+        'Missing required parameter "oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest" when calling authorizeOrDenyDeviceAuthorization',
       );
     }
     const path = `/zitadel.oidc.v2.OIDCService/AuthorizeOrDenyDeviceAuthorization`;
@@ -87,7 +86,7 @@ export class OIDCServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      oIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest,
+      oidcServiceAuthorizeOrDenyDeviceAuthorizationRequest,
       ["application/json"],
       "application/json",
       (json: unknown) => json as object,
@@ -98,15 +97,15 @@ export class OIDCServiceApi extends BaseApi {
   /**
    * Create Callback
    * Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.   Required permissions:    - `session.link`
-   * @param oIDCServiceCreateCallbackRequest  (required)
+   * @param oidcServiceCreateCallbackRequest  (required)
    * @return OIDCServiceCreateCallbackResponse
    * @throws {ApiError} if fails to make API call
    */
   async createCallback(
-    oIDCServiceCreateCallbackRequest: DeepInput<OIDCServiceCreateCallbackRequest>,
+    oidcServiceCreateCallbackRequest: DeepInput<OIDCServiceCreateCallbackRequest>,
   ): Promise<OIDCServiceCreateCallbackResponse> {
     const createCallbackResult = await this.createCallbackWithHttpInfo(
-      oIDCServiceCreateCallbackRequest,
+      oidcServiceCreateCallbackRequest,
     );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -128,11 +127,11 @@ export class OIDCServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async createCallbackWithHttpInfo(
-    oIDCServiceCreateCallbackRequest: DeepInput<OIDCServiceCreateCallbackRequest>,
+    oidcServiceCreateCallbackRequest: DeepInput<OIDCServiceCreateCallbackRequest>,
   ): Promise<ApiResult<OIDCServiceCreateCallbackResponse>> {
-    if (oIDCServiceCreateCallbackRequest == null) {
+    if (oidcServiceCreateCallbackRequest == null) {
       throw new Error(
-        'Missing required parameter "oIDCServiceCreateCallbackRequest" when calling createCallback',
+        'Missing required parameter "oidcServiceCreateCallbackRequest" when calling createCallback',
       );
     }
     const path = `/zitadel.oidc.v2.OIDCService/CreateCallback`;
@@ -143,7 +142,7 @@ export class OIDCServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      oIDCServiceCreateCallbackRequest,
+      oidcServiceCreateCallbackRequest,
       ["application/json"],
       "application/json",
       (json: unknown) =>
@@ -155,15 +154,15 @@ export class OIDCServiceApi extends BaseApi {
   /**
    * Get Auth Request
    * Get OIDC Auth Request details by ID, obtained from the redirect URL.  Returns details that are parsed from the application's Auth Request.   Required permissions:    - `session.read`
-   * @param oIDCServiceGetAuthRequestRequest  (required)
+   * @param oidcServiceGetAuthRequestRequest  (required)
    * @return OIDCServiceGetAuthRequestResponse
    * @throws {ApiError} if fails to make API call
    */
   async getAuthRequest(
-    oIDCServiceGetAuthRequestRequest: DeepInput<OIDCServiceGetAuthRequestRequest>,
+    oidcServiceGetAuthRequestRequest: DeepInput<OIDCServiceGetAuthRequestRequest>,
   ): Promise<OIDCServiceGetAuthRequestResponse> {
     const getAuthRequestResult = await this.getAuthRequestWithHttpInfo(
-      oIDCServiceGetAuthRequestRequest,
+      oidcServiceGetAuthRequestRequest,
     );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -185,11 +184,11 @@ export class OIDCServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async getAuthRequestWithHttpInfo(
-    oIDCServiceGetAuthRequestRequest: DeepInput<OIDCServiceGetAuthRequestRequest>,
+    oidcServiceGetAuthRequestRequest: DeepInput<OIDCServiceGetAuthRequestRequest>,
   ): Promise<ApiResult<OIDCServiceGetAuthRequestResponse>> {
-    if (oIDCServiceGetAuthRequestRequest == null) {
+    if (oidcServiceGetAuthRequestRequest == null) {
       throw new Error(
-        'Missing required parameter "oIDCServiceGetAuthRequestRequest" when calling getAuthRequest',
+        'Missing required parameter "oidcServiceGetAuthRequestRequest" when calling getAuthRequest',
       );
     }
     const path = `/zitadel.oidc.v2.OIDCService/GetAuthRequest`;
@@ -200,7 +199,7 @@ export class OIDCServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      oIDCServiceGetAuthRequestRequest,
+      oidcServiceGetAuthRequestRequest,
       ["application/json"],
       "application/json",
       (json: unknown) =>
@@ -212,16 +211,16 @@ export class OIDCServiceApi extends BaseApi {
   /**
    * Get Device Authorization Request
    * Get the device authorization based on the provided \"user code\".  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.   Required permissions:    - `session.read`
-   * @param oIDCServiceGetDeviceAuthorizationRequestRequest  (required)
+   * @param oidcServiceGetDeviceAuthorizationRequestRequest  (required)
    * @return OIDCServiceGetDeviceAuthorizationRequestResponse
    * @throws {ApiError} if fails to make API call
    */
   async getDeviceAuthorizationRequest(
-    oIDCServiceGetDeviceAuthorizationRequestRequest: DeepInput<OIDCServiceGetDeviceAuthorizationRequestRequest>,
+    oidcServiceGetDeviceAuthorizationRequestRequest: DeepInput<OIDCServiceGetDeviceAuthorizationRequestRequest>,
   ): Promise<OIDCServiceGetDeviceAuthorizationRequestResponse> {
     const getDeviceAuthorizationRequestResult =
       await this.getDeviceAuthorizationRequestWithHttpInfo(
-        oIDCServiceGetDeviceAuthorizationRequestRequest,
+        oidcServiceGetDeviceAuthorizationRequestRequest,
       );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -243,11 +242,11 @@ export class OIDCServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async getDeviceAuthorizationRequestWithHttpInfo(
-    oIDCServiceGetDeviceAuthorizationRequestRequest: DeepInput<OIDCServiceGetDeviceAuthorizationRequestRequest>,
+    oidcServiceGetDeviceAuthorizationRequestRequest: DeepInput<OIDCServiceGetDeviceAuthorizationRequestRequest>,
   ): Promise<ApiResult<OIDCServiceGetDeviceAuthorizationRequestResponse>> {
-    if (oIDCServiceGetDeviceAuthorizationRequestRequest == null) {
+    if (oidcServiceGetDeviceAuthorizationRequestRequest == null) {
       throw new Error(
-        'Missing required parameter "oIDCServiceGetDeviceAuthorizationRequestRequest" when calling getDeviceAuthorizationRequest',
+        'Missing required parameter "oidcServiceGetDeviceAuthorizationRequestRequest" when calling getDeviceAuthorizationRequest',
       );
     }
     const path = `/zitadel.oidc.v2.OIDCService/GetDeviceAuthorizationRequest`;
@@ -258,7 +257,7 @@ export class OIDCServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      oIDCServiceGetDeviceAuthorizationRequestRequest,
+      oidcServiceGetDeviceAuthorizationRequestRequest,
       ["application/json"],
       "application/json",
       (json: unknown) =>

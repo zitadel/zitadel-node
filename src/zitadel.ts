@@ -109,13 +109,13 @@ export class Zitadel {
   /** API operations for the InternalPermissionServiceApi group. */
   public readonly internalPermissionService: InternalPermissionServiceApi;
   /** API operations for the OIDCServiceApi group. */
-  public readonly oIDCService: OIDCServiceApi;
+  public readonly oidcService: OIDCServiceApi;
   /** API operations for the OrganizationServiceApi group. */
   public readonly organizationService: OrganizationServiceApi;
   /** API operations for the ProjectServiceApi group. */
   public readonly projectService: ProjectServiceApi;
   /** API operations for the SAMLServiceApi group. */
-  public readonly sAMLService: SAMLServiceApi;
+  public readonly samlService: SAMLServiceApi;
   /** API operations for the SessionServiceApi group. */
   public readonly sessionService: SessionServiceApi;
   /** API operations for the SettingsServiceApi group. */
@@ -259,7 +259,7 @@ export class Zitadel {
       config,
       authenticator,
     );
-    this.oIDCService = new OIDCServiceApi(apiClient, config, authenticator);
+    this.oidcService = new OIDCServiceApi(apiClient, config, authenticator);
     this.organizationService = new OrganizationServiceApi(
       apiClient,
       config,
@@ -270,7 +270,7 @@ export class Zitadel {
       config,
       authenticator,
     );
-    this.sAMLService = new SAMLServiceApi(apiClient, config, authenticator);
+    this.samlService = new SAMLServiceApi(apiClient, config, authenticator);
     this.sessionService = new SessionServiceApi(
       apiClient,
       config,

@@ -9,7 +9,6 @@ import type { ApiClient } from "../api-client.js";
 import { ApiError } from "../api-error.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
-import { NO_AUTH } from "../auth/authenticator.js";
 import { BaseApi } from "./base-api.js";
 import { Configuration } from "../configuration.js";
 import { ObjectSerializer } from "../object-serializer.js";
@@ -38,15 +37,15 @@ export class SAMLServiceApi extends BaseApi {
   /**
    * Create Response
    * Finalize a SAML Request and get the response definition for success or failure.  The response must be handled as per the SAML definition to inform the application about the success or failure.  On success, the response contains details for the application to obtain the SAMLResponse.  This method can only be called once for an SAML request.   Required permissions:    - `session.link`
-   * @param sAMLServiceCreateResponseRequest  (required)
+   * @param samlServiceCreateResponseRequest  (required)
    * @return SAMLServiceCreateResponseResponse
    * @throws {ApiError} if fails to make API call
    */
   async createResponse(
-    sAMLServiceCreateResponseRequest: DeepInput<SAMLServiceCreateResponseRequest>,
+    samlServiceCreateResponseRequest: DeepInput<SAMLServiceCreateResponseRequest>,
   ): Promise<SAMLServiceCreateResponseResponse> {
     const createResponseResult = await this.createResponseWithHttpInfo(
-      sAMLServiceCreateResponseRequest,
+      samlServiceCreateResponseRequest,
     );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -68,11 +67,11 @@ export class SAMLServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async createResponseWithHttpInfo(
-    sAMLServiceCreateResponseRequest: DeepInput<SAMLServiceCreateResponseRequest>,
+    samlServiceCreateResponseRequest: DeepInput<SAMLServiceCreateResponseRequest>,
   ): Promise<ApiResult<SAMLServiceCreateResponseResponse>> {
-    if (sAMLServiceCreateResponseRequest == null) {
+    if (samlServiceCreateResponseRequest == null) {
       throw new Error(
-        'Missing required parameter "sAMLServiceCreateResponseRequest" when calling createResponse',
+        'Missing required parameter "samlServiceCreateResponseRequest" when calling createResponse',
       );
     }
     const path = `/zitadel.saml.v2.SAMLService/CreateResponse`;
@@ -83,7 +82,7 @@ export class SAMLServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      sAMLServiceCreateResponseRequest,
+      samlServiceCreateResponseRequest,
       ["application/json"],
       "application/json",
       (json: unknown) =>
@@ -95,15 +94,15 @@ export class SAMLServiceApi extends BaseApi {
   /**
    * Get SAML Request
    * Get SAML Request details by ID. Returns details that are parsed from the application's SAML Request.   Required permissions:    - `session.read`
-   * @param sAMLServiceGetSAMLRequestRequest  (required)
+   * @param samlServiceGetSAMLRequestRequest  (required)
    * @return SAMLServiceGetSAMLRequestResponse
    * @throws {ApiError} if fails to make API call
    */
   async getSAMLRequest(
-    sAMLServiceGetSAMLRequestRequest: DeepInput<SAMLServiceGetSAMLRequestRequest>,
+    samlServiceGetSAMLRequestRequest: DeepInput<SAMLServiceGetSAMLRequestRequest>,
   ): Promise<SAMLServiceGetSAMLRequestResponse> {
     const getSAMLRequestResult = await this.getSAMLRequestWithHttpInfo(
-      sAMLServiceGetSAMLRequestRequest,
+      samlServiceGetSAMLRequestRequest,
     );
     /* convenience-empty-body-handling: a body-returning operation that
      * receives no decodable body (204 / empty / null) must surface a
@@ -125,11 +124,11 @@ export class SAMLServiceApi extends BaseApi {
    * @throws {ApiError} if fails to make API call
    */
   async getSAMLRequestWithHttpInfo(
-    sAMLServiceGetSAMLRequestRequest: DeepInput<SAMLServiceGetSAMLRequestRequest>,
+    samlServiceGetSAMLRequestRequest: DeepInput<SAMLServiceGetSAMLRequestRequest>,
   ): Promise<ApiResult<SAMLServiceGetSAMLRequestResponse>> {
-    if (sAMLServiceGetSAMLRequestRequest == null) {
+    if (samlServiceGetSAMLRequestRequest == null) {
       throw new Error(
-        'Missing required parameter "sAMLServiceGetSAMLRequestRequest" when calling getSAMLRequest',
+        'Missing required parameter "samlServiceGetSAMLRequestRequest" when calling getSAMLRequest',
       );
     }
     const path = `/zitadel.saml.v2.SAMLService/GetSAMLRequest`;
@@ -140,7 +139,7 @@ export class SAMLServiceApi extends BaseApi {
       path,
       queryParams,
       headerParams,
-      sAMLServiceGetSAMLRequestRequest,
+      samlServiceGetSAMLRequestRequest,
       ["application/json"],
       "application/json",
       (json: unknown) =>
