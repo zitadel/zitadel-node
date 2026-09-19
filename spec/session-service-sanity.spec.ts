@@ -1,13 +1,14 @@
-import crypto from 'crypto';
-import Zitadel from '../src/index.js';
+import crypto from "crypto";
+import Zitadel from "../src/index.js";
+import { PersonalAccessAuthenticator } from "../src/auth/personal-access-authenticator.js";
 // noinspection ES6PreferShortImport
 import {
   SessionServiceChecks,
   SessionServiceCheckUser,
-} from '../src/models/index.js';
+} from "../src/models/index.js";
 // noinspection ES6PreferShortImport
-import { ApiException } from '../src/api-exception.js';
-import { useIntegrationEnvironment } from './base-spec.js';
+import { ApiError } from "../src/api-error.js";
+import { useIntegrationEnvironment } from "./base-spec.js";
 
 /**
  * SessionService Integration Tests
@@ -24,106 +25,85 @@ import { useIntegrationEnvironment } from './base-spec.js';
  * Each test runs in isolation: a new session is created before each test (beforeEach)
  * and deleted after (afterEach) to ensure a clean state.
  */
-describe('SessionServiceSanityCheckSpec', () => {
+describe("SessionServiceSanityCheckSpec", () => {
   const { context } = useIntegrationEnvironment();
   let client: Zitadel;
   let sessionId: string;
 
   // This runs once before all tests in the suite
   beforeAll(() => {
-    client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
+    client = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator(context.baseUrl, context.authToken),
+    );
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
   beforeEach(async () => {
     const username = crypto.randomUUID().substring(0, 8);
-    await client.users.addHumanUser({
-      userServiceAddHumanUserRequest: {
-        username: username,
-        profile: {
-          givenName: 'John',
-          familyName: 'Doe',
-        },
-        email: {
-          email: `johndoe_${username}@example.com`,
-        },
+    await client.userService.addHumanUser({
+      username: username,
+      profile: {
+        givenName: "John",
+        familyName: "Doe",
+      },
+      email: {
+        email: `johndoe_${username}@example.com`,
       },
     });
 
-    const request = {
-      sessionServiceCreateSessionRequest: {
-        checks: {
-          user: {
-            loginName: username,
-          } as SessionServiceCheckUser,
-        } as SessionServiceChecks,
-        lifetime: '18000s',
-      },
-    };
-
-    const response = await client.sessions.createSession(request);
-    sessionId = response.sessionId || '';
+    const response = await client.sessionService.createSession({
+      checks: {
+        user: {
+          loginName: username,
+        } as SessionServiceCheckUser,
+      } as SessionServiceChecks,
+      lifetime: "18000s",
+    });
+    sessionId = response.sessionId || "";
   });
 
   afterEach(async () => {
     try {
-      await client.sessions.deleteSession({
-        sessionServiceDeleteSessionRequest: {
-          sessionId,
-        },
-      });
+      await client.sessionService.deleteSession({ sessionId });
     } catch {
       // Ignore cleanup errors
     }
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
-  it('testRetrievesTheSessionDetailsById', async () => {
-    const response = await client.sessions.getSession({
-      sessionServiceGetSessionRequest: {
-        sessionId,
-      },
-    });
+  it("testRetrievesTheSessionDetailsById", async () => {
+    const response = await client.sessionService.getSession({ sessionId });
     expect(response.session?.id).toBe(sessionId);
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
-  it('testIncludesTheCreatedSessionWhenListingAllSessions', async () => {
-    const request = {
-      sessionServiceListSessionsRequest: {
-        queries: [],
-      },
-    };
-    const response = await client.sessions.listSessions(request);
+  it("testIncludesTheCreatedSessionWhenListingAllSessions", async () => {
+    const response = await client.sessionService.listSessions({ queries: [] });
     const ids = response.sessions?.map((session) => session.id);
     expect(ids).toContain(sessionId);
   });
 
   /**
-   * @throws ApiException
+   * @throws ApiError
    */
-  it('testUpdatesTheSessionLifetimeAndReturnsANewToken', async () => {
-    const response = await client.sessions.setSession({
-      sessionServiceSetSessionRequest: {
-        sessionId: sessionId,
-        lifetime: '36000s',
-      },
+  it("testUpdatesTheSessionLifetimeAndReturnsANewToken", async () => {
+    const response = await client.sessionService.setSession({
+      sessionId: sessionId,
+      lifetime: "36000s",
     });
-    expect(typeof response.sessionToken).toBe('string');
+    expect(typeof response.sessionToken).toBe("string");
   });
 
-  it('testRaisesAnApiExceptionWhenRetrievingANonExistentSession', async () => {
+  it("testRaisesAnApiExceptionWhenRetrievingANonExistentSession", async () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
-      client.sessions.getSession({
-        sessionServiceGetSessionRequest: { sessionId: nonExistentId },
-      }),
-    ).rejects.toThrow(ApiException);
+      client.sessionService.getSession({ sessionId: nonExistentId }),
+    ).rejects.toThrow(ApiError);
   });
 });

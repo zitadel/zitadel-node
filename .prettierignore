@@ -1,26 +1,14 @@
-# Dependency directories
-node_modules
-
-# Build output
-/dist
-/build
-/out
-
-# Version control directories
-.git
-
-# Logs
-*.log
-
-# Other common directories to ignore
-/public
-/assets
-
-# Minified files
-# Source maps
-*.map
-
-# Image files
-*.jpeg
-src/apis/*
-src/models/*
+node_modules/
+dist/
+build/
+.out/
+coverage/
+specs/
+certs/
+proxy/
+etc/
+*.yaml
+*.yml
+*.json
+*.lock
+VERSIONING.md

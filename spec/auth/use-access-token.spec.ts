@@ -1,7 +1,8 @@
-import Zitadel from '../../src/index.js';
+import Zitadel from "../../src/index.js";
+import { PersonalAccessAuthenticator } from "../../src/auth/personal-access-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelException } from '../../src/zitadel-exception.js';
-import { useIntegrationEnvironment } from '../base-spec.js';
+import { ZitadelError } from "../../src/errors/zitadel-error.js";
+import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
  * SettingsService Integration Tests (Personal Access Token)
@@ -10,32 +11,36 @@ import { useIntegrationEnvironment } from '../base-spec.js';
  * endpoint works when authenticating via Personal Access Token:
  *
  * 1. Retrieve general settings successfully with a valid token
- * 2. Expect an ApiException when using an invalid token
+ * 2. Expect an ApiError when using an invalid token
  */
-describe('UseAccessTokenSpec', () => {
+describe("UseAccessTokenSpec", () => {
   const { context } = useIntegrationEnvironment();
 
   /**
    * Validate retrieval of general settings with a valid PAT.
    *
-   * @throws {ApiException} on API error
+   * @throws {ApiError} on API error
    * @doesNotPerformAssertions
    */
-  it('testRetrievesGeneralSettingsWithValidAuth', async () => {
-    const client = Zitadel.withAccessToken(context.baseUrl, context.authToken);
+  it("testRetrievesGeneralSettingsWithValidAuth", async () => {
+    const client = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator(context.baseUrl, context.authToken),
+    );
 
-    await client.settings.getGeneralSettings({ body: {} });
+    await client.settingsService.getGeneralSettings({ body: {} });
   });
 
   /**
-   * Expect an ApiException when using an invalid PAT.
+   * Expect an ApiError when using an invalid PAT.
    * @throws {Error}
    */
-  it('testRaisesApiExceptionWithInvalidAuth', async () => {
-    const invalid = Zitadel.withAccessToken(context.baseUrl, 'invalid');
+  it("testRaisesApiExceptionWithInvalidAuth", async () => {
+    const invalid = Zitadel.withAuthenticator(
+      new PersonalAccessAuthenticator(context.baseUrl, "invalid"),
+    );
 
     await expect(
-      invalid.settings.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelException);
+      invalid.settingsService.getGeneralSettings({ body: {} }),
+    ).rejects.toThrow(ZitadelError);
   }, 120000);
 });

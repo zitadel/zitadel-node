@@ -1,26 +1,26 @@
-import { Authenticator } from './authenticator.js';
+import { BaseAuthenticator } from "./base-authenticator.js";
 
 /**
  * Dummy Authenticator for testing purposes.
  *
  * This authenticator does not apply any authentication to API requests.
  */
-export class NoAuthAuthenticator extends Authenticator {
-  /**
-   * NoAuthAuthenticator constructor.
-   *
-   * @param host The base URL for all authentication endpoints.
-   */
-  public constructor(host: string = 'http://localhost') {
-    super(host);
-  }
+export class NoAuthAuthenticator extends BaseAuthenticator {
+  private readonly host: string;
 
   /**
-   * Retrieve the authentication token needed for API requests.
-   *
-   * @returns The authentication token.
+   * @param host The base URL for all API endpoints.
    */
-  public getAuthToken(): Promise<string> {
-    return Promise.resolve('');
+  public constructor(host: string = "http://localhost") {
+    super();
+    this.host = host;
+  }
+
+  getHost(): string {
+    return this.host;
+  }
+
+  getAuthHeaders(): Record<string, string> {
+    return {};
   }
 }
