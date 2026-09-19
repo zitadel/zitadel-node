@@ -21,7 +21,16 @@ export default {
     "json",
     "node",
   ],
-  testPathIgnorePatterns: ["/node_modules/", "/frontend/", "/dist/"],
+  // .claude/worktrees holds throwaway checkouts of this same repo, each with
+  // its own copy of spec/. Without this they match testMatch too, so a run
+  // executes the integration specs once per leftover worktree, against code
+  // that is not the working tree's.
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/frontend/",
+    "/dist/",
+    "/.claude/",
+  ],
   resetModules: false,
   collectCoverage: true,
   coverageDirectory: "./build/coverage",
