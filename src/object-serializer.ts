@@ -719,10 +719,10 @@ export class ObjectSerializer {
 
   /**
    * Validate a wire value against the members of a named enum at the
-   * deserialize boundary. A bare-enum return (e.g. `getSwatch`) or an
-   * enum container leaf arrives as a raw JSON scalar; a plain cast would
-   * silently let an unknown value (`"magenta"`) through as a non-enum
-   * string. This mirrors the model-field enum check (and Python's
+   * deserialize boundary. An operation whose response schema is the enum
+   * itself, or an enum container leaf, arrives as a raw JSON scalar; a
+   * plain cast would silently let an unknown value (`"magenta"`) through
+   * as a non-enum string. This mirrors the model-field enum check (and Python's
    * `klass(data)` / Java's `@JsonCreator fromValue`), throwing on an
    * unknown value instead of corrupting the typed result.
    *

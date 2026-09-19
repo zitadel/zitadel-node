@@ -1,3 +1,4 @@
+SKILLS.md
 src/abstract-api-client.ts
 src/api-client.ts
 src/api-error.ts

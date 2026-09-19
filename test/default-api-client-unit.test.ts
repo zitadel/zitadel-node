@@ -394,17 +394,17 @@ describe("DefaultApiClient.decodeBody charset handling", () => {
   });
 
   it("decodes a BOM-less utf-16 body as big-endian (RFC 2781)", () => {
-    // "Pet" encoded UTF-16 big-endian, no BOM: 00 50 00 65 00 74.
+    // "Log" encoded UTF-16 big-endian, no BOM: 00 4c 00 6f 00 67.
     // Node's TextDecoder maps the bare 'utf-16' label to little-endian,
     // which would mis-decode these bytes. An HTTP client resolving the
     // IANA charset UTF-16 with no BOM must default to big-endian.
-    const buf = Buffer.from([0x00, 0x50, 0x00, 0x65, 0x00, 0x74]);
+    const buf = Buffer.from([0x00, 0x4c, 0x00, 0x6f, 0x00, 0x67]);
     expect(DefaultApiClient.decodeBody(buf, "text/plain; charset=utf-16")).toBe(
-      "Pet",
+      "Log",
     );
-    // Same bytes read little-endian would NOT be "Pet" -- proves the
+    // Same bytes read little-endian would NOT be "Log" -- proves the
     // big-endian choice rather than an accidental round-trip.
-    expect(new TextDecoder("utf-16le").decode(buf)).not.toBe("Pet");
+    expect(new TextDecoder("utf-16le").decode(buf)).not.toBe("Log");
   });
 });
 
@@ -654,9 +654,9 @@ describe("SENSITIVE_HEADER_NAMES allowlist", () => {
   /*
    * node-hardcoded-redirect-strip-list: the stripped set must be derived
    * from the spec's apiKey-in-header security schemes ()
-   * rather than a hardcoded SaaS-provider list. The petstore spec declares
-   * X-API-Key and X-Internal-Key as apiKey-in-header schemes, so both are
-   * present; query/cookie apiKeys are NOT header credentials and must be absent.
+   * rather than a hardcoded SaaS-provider list. Every apiKey-in-header
+   * scheme this spec declares must be present; query/cookie apiKeys are NOT
+   * header credentials and must be absent.
    */
   it("includes the spec-declared apiKey-in-header names", () => {});
 

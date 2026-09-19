@@ -84,7 +84,7 @@ export class ValueSerializer {
   ): string | string[] | undefined {
     /* Path parameters are required components of the URL — accepting an
      * empty string would silently produce a malformed URL like
-     * `/pet//details`, which most servers route to 404 instead of
+     * `/resource//details`, which most servers route to 404 instead of
      * surfacing the bug at the call site. The required-non-null check
      * lives in the operation method; here we catch the empty-string
      * case that slips through it. */

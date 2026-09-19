@@ -13,9 +13,9 @@ If using locally, add it as a file dependency in your `package.json`.
 ## Quick Start
 
 ```typescript
-import { Client } from "./src/client";
+import { Zitadel } from "./src/client";
 
-const client = Client.withToken("https://api.example.com", "your-token");
+const client = Zitadel.withToken("https://api.example.com", "your-token");
 ```
 
 ## Authentication
@@ -26,13 +26,13 @@ All authentication is handled via `Authenticator` implementations passed to the 
 
 ```typescript
 import { BearerAuthenticator } from "./src/auth/bearer-authenticator";
-import { Client } from "./src/client";
+import { Zitadel } from "./src/client";
 
 const authenticator = new BearerAuthenticator(
   "https://api.example.com",
   "your-token",
 );
-const client = new Client(authenticator);
+const client = new Zitadel(authenticator);
 ```
 
 ## Servers
@@ -42,7 +42,7 @@ If the OpenAPI spec defines multiple servers, the generated `Servers` class expo
 ```typescript
 import { Servers } from "./src/servers";
 
-const client = Client.withToken(Servers.SERVER_0.url(), "your-token");
+const client = Zitadel.withToken(Servers.SERVER_0.url(), "your-token");
 ```
 
 ## Testing
@@ -59,7 +59,7 @@ const fake = {
   },
 };
 
-const client = new Client(fake);
+const client = new Zitadel(fake);
 ```
 
 ## Error Handling
@@ -83,7 +83,7 @@ import { ClientError } from "./src/errors/client-error";
 import { ServerError } from "./src/errors/server-error";
 
 try {
-  const result = await client.petApi.getPetById(petId);
+  const result = await client.actionService.activatePublicKey(/* ... */);
 } catch (error) {
   if (error instanceof NotFoundError) {
     console.log(`Not found: ${error.message}`);
@@ -107,7 +107,7 @@ const transport = TransportOptions.builder()
   .timeout(5000)
   .build();
 
-const client = new Client(authenticator, transport);
+const client = new Zitadel(authenticator, transport);
 ```
 
 ## API Methods
@@ -121,11 +121,9 @@ All API methods return `Promise` values and should be used with `await`.
 Models are generated as TypeScript classes in the `src/models/` directory.
 
 ```typescript
-import { Pet } from "./src/models/pet";
+import { ActionServiceActivatePublicKeyRequest } from "./src/models/action-service-activate-public-key-request.js";
 
-const pet = new Pet();
-pet.name = "Fido";
-pet.status = "available";
+const model = new ActionServiceActivatePublicKeyRequest();
 ```
 
 ## Binary / File Uploads
