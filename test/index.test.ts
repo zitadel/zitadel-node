@@ -8,9 +8,10 @@ import {
   StartedTestContainer,
   Wait,
 } from "testcontainers";
-import { NoAuthAuthenticator } from "../src/auth/noauth-authenticator.js";
-import { PersonalAccessAuthenticator } from "../src/auth/personal-access-authenticator.js";
+import { NoAuthAuthenticator } from "../src/auth/no-auth-authenticator.js";
+import { PersonalAccessTokenAuthenticator } from "../src/auth/personal-access-token-authenticator.js";
 import { ClientCredentialsAuthenticator } from "../src/auth/client-credentials-authenticator.js";
+import { NetworkError } from "../src/errors/network-error.js";
 import { TransportOptions } from "../src/transport-options.js";
 import Zitadel from "../src/index.js";
 
@@ -140,11 +141,10 @@ describe("ZitadelTest", () => {
   test("testCustomCaCert", async () => {
     const transport = TransportOptions.builder().caCertPath(caCertPath).build();
     const zitadel = Zitadel.withAuthenticator(
-      await ClientCredentialsAuthenticator.builder(
+      ClientCredentialsAuthenticator.builder(
         `https://${host}:${httpsPort}`,
         "dummy-client",
         "dummy-secret",
-        transport,
       ).build(),
       transport,
     );
@@ -158,11 +158,10 @@ describe("ZitadelTest", () => {
   test("testInsecureMode", async () => {
     const transport = TransportOptions.builder().verifySsl(false).build();
     const zitadel = Zitadel.withAuthenticator(
-      await ClientCredentialsAuthenticator.builder(
+      ClientCredentialsAuthenticator.builder(
         `https://${host}:${httpsPort}`,
         "dummy-client",
         "dummy-secret",
-        transport,
       ).build(),
       transport,
     );
@@ -178,11 +177,10 @@ describe("ZitadelTest", () => {
       .defaultHeaders({ "X-Custom-Header": "test-value" })
       .build();
     const zitadel = Zitadel.withAuthenticator(
-      await ClientCredentialsAuthenticator.builder(
+      ClientCredentialsAuthenticator.builder(
         `http://${host}:${httpPort}`,
         "dummy-client",
         "dummy-secret",
-        transport,
       ).build(),
       transport,
     );
@@ -196,7 +194,10 @@ describe("ZitadelTest", () => {
 
   test("testProxyUrl", async () => {
     const zitadel = Zitadel.withAuthenticator(
-      new PersonalAccessAuthenticator("http://wiremock:8080", "test-token"),
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
+      ),
       TransportOptions.builder().proxy(`http://${host}:${proxyPort}`).build(),
     );
 
@@ -207,12 +208,19 @@ describe("ZitadelTest", () => {
   }, 30_000);
 
   test("testNoCaCertFails", async () => {
-    await expect(
+    const zitadel = Zitadel.withAuthenticator(
       ClientCredentialsAuthenticator.builder(
         `https://${host}:${httpsPort}`,
         "dummy-client",
         "dummy-secret",
       ).build(),
-    ).rejects.toThrow();
+    );
+    let error: unknown = null;
+    try {
+      await zitadel.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect((error as Error).constructor).toBe(NetworkError);
   }, 30_000);
 });

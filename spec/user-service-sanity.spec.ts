@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import Zitadel from "../src/index.js";
-import { PersonalAccessAuthenticator } from "../src/auth/personal-access-authenticator.js";
+import { PersonalAccessTokenAuthenticator } from "../src/auth/personal-access-token-authenticator.js";
 // noinspection ES6PreferShortImport
 import {
   UserServiceAddHumanUserResponse,
@@ -33,7 +33,7 @@ describe("UserServiceSanityCheckSpec", () => {
   // This runs once before all tests in the suite
   beforeAll(() => {
     client = Zitadel.withAuthenticator(
-      new PersonalAccessAuthenticator(context.baseUrl, context.authToken),
+      new PersonalAccessTokenAuthenticator(context.baseUrl, context.authToken),
     );
   });
 

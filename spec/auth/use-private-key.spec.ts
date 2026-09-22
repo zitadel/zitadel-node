@@ -1,7 +1,8 @@
 import Zitadel from "../../src/index.js";
-import { WebTokenAuthenticator } from "../../src/auth/webtoken-authenticator.js";
+import { generateKeyPairSync } from "node:crypto";
+import { WebTokenAuthenticator } from "../../src/auth/web-token-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelError } from "../../src/errors/zitadel-error.js";
+import { OAuth2ServerError } from "../../src/errors/oauth2-server-error.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
@@ -11,7 +12,7 @@ import { useIntegrationEnvironment } from "../base-spec.js";
  * endpoint works when authenticating via a private key assertion:
  *
  * 1. Retrieve general settings successfully with a valid private key
- * 2. Expect an ApiError when using an invalid private key
+ * 2. Expect an OAuth2ServerError when signing with a key the instance does not know
  */
 describe("UsePrivateKeySpec", () => {
   const { context } = useIntegrationEnvironment();
@@ -25,24 +26,32 @@ describe("UsePrivateKeySpec", () => {
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const client = Zitadel.withAuthenticator(
-      await WebTokenAuthenticator.fromJson(context.baseUrl, context.jwtKey),
+      WebTokenAuthenticator.fromJson(context.baseUrl, context.jwtKey),
     );
     await client.settingsService.getGeneralSettings({ body: {} });
   }, 120000);
 
   /**
-   * Expect an ApiError when using an invalid private key assertion.
+   * Expect an OAuth2ServerError when signing with a key the instance does not know.
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
+    const { privateKey } = generateKeyPairSync("rsa", {
+      modulusLength: 2048,
+      publicKeyEncoding: { type: "spki", format: "pem" },
+      privateKeyEncoding: { type: "pkcs8", format: "pem" },
+    });
     const invalid = Zitadel.withAuthenticator(
-      await WebTokenAuthenticator.fromJson(
-        "https://zitadel.cloud",
-        context.jwtKey,
-      ),
+      WebTokenAuthenticator.builder(context.baseUrl, "invalid", privateKey)
+        .keyId("invalid")
+        .build(),
     );
-    await expect(
-      invalid.settingsService.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelError);
+    let error: unknown = null;
+    try {
+      await invalid.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect((error as Error).constructor).toBe(OAuth2ServerError);
   }, 120000);
 });

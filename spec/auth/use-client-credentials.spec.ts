@@ -1,7 +1,7 @@
 import Zitadel from "../../src/index.js";
 import { ClientCredentialsAuthenticator } from "../../src/auth/client-credentials-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelError } from "../../src/errors/zitadel-error.js";
+import { OAuth2ServerError } from "../../src/errors/oauth2-server-error.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
@@ -11,7 +11,7 @@ import { useIntegrationEnvironment } from "../base-spec.js";
  * endpoint works when authenticating via Client Credentials:
  *
  * 1. Retrieve general settings successfully with valid credentials
- * 2. Expect an ApiError when using invalid credentials
+ * 2. Expect an OAuth2ServerError when using invalid credentials
  */
 describe("UseClientCredentialsSpec", () => {
   const { context } = useIntegrationEnvironment();
@@ -124,7 +124,7 @@ describe("UseClientCredentialsSpec", () => {
       context.authToken,
     );
     const client = Zitadel.withAuthenticator(
-      await ClientCredentialsAuthenticator.builder(
+      ClientCredentialsAuthenticator.builder(
         context.baseUrl,
         credentials.clientId,
         credentials.clientSecret,
@@ -135,20 +135,24 @@ describe("UseClientCredentialsSpec", () => {
   }, 120000);
 
   /**
-   * Expect an ApiError when using invalid client credentials.
+   * Expect an OAuth2ServerError when using invalid client credentials.
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
     const invalid = Zitadel.withAuthenticator(
-      await ClientCredentialsAuthenticator.builder(
+      ClientCredentialsAuthenticator.builder(
         context.baseUrl,
         "invalid",
         "invalid",
       ).build(),
     );
 
-    await expect(
-      invalid.settingsService.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelError);
+    let error: unknown = null;
+    try {
+      await invalid.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect((error as Error).constructor).toBe(OAuth2ServerError);
   }, 120000);
 });

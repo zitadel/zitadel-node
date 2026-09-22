@@ -49,11 +49,16 @@ export { ServerConfiguration, ServerVariable } from "./server-configuration.js";
 export { isUuid, uuid, URI, Email, Decimal } from "./brand.js";
 export type { UUID } from "./brand.js";
 
-/* Error hierarchy. */
+/*
+ * Error hierarchy: the root, the HTTP tree (including NetworkError and
+ * NetworkTimeoutError), the serialization error, and the two OAuth2 errors the
+ * token-minting authenticators raise.
+ */
 export { ApiError } from "./api-error.js";
-export { ZitadelError } from "./errors/zitadel-error.js";
 export * from "./errors/index.js";
 export { SerializationError } from "./object-serializer.js";
+export { OAuth2ServerError } from "./errors/oauth2-server-error.js";
+export { OAuth2TokenError } from "./errors/oauth2-token-error.js";
 
 /*
  * Authentication: the interface, the HTTP-aware extension, and every
@@ -65,15 +70,15 @@ export { isHttpAwareAuthenticator } from "./auth/http-aware-authenticator.js";
 export { BearerAuthenticator } from "./auth/bearer-authenticator.js";
 export { BaseAuthenticator } from "./auth/base-authenticator.js";
 export { ZitadelAccessTokenAuthenticator } from "./auth/zitadel-access-token-authenticator.js";
-export { NoAuthAuthenticator } from "./auth/noauth-authenticator.js";
-export { PersonalAccessAuthenticator } from "./auth/personal-access-authenticator.js";
+export { NoAuthAuthenticator } from "./auth/no-auth-authenticator.js";
+export { PersonalAccessTokenAuthenticator } from "./auth/personal-access-token-authenticator.js";
 export { OAuthAuthenticator } from "./auth/oauth-authenticator.js";
 export { OAuthAuthenticatorBuilder } from "./auth/oauth-authenticator-builder.js";
 export { ClientCredentialsAuthenticator } from "./auth/client-credentials-authenticator.js";
 export { ClientCredentialsAuthenticatorBuilder } from "./auth/client-credentials-authenticator-builder.js";
-export { WebTokenAuthenticator } from "./auth/webtoken-authenticator.js";
-export { WebTokenAuthenticatorBuilder } from "./auth/webtoken-authenticator-builder.js";
-export { OpenId } from "./auth/openid.js";
+export { WebTokenAuthenticator } from "./auth/web-token-authenticator.js";
+export { WebTokenAuthenticatorBuilder } from "./auth/web-token-authenticator-builder.js";
+export { OpenId } from "./auth/open-id.js";
 
 /* The generated Zitadel facade, exposed as both a named and the default export. */
 export { Zitadel } from "./zitadel.js";

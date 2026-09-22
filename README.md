@@ -77,7 +77,7 @@ JSON file. This process creates a secure token.
 import Zitadel, { ApiError, WebTokenAuthenticator } from "@zitadel/sdk";
 
 const zitadel = Zitadel.withAuthenticator(
-  await WebTokenAuthenticator.fromJson(
+  WebTokenAuthenticator.fromJson(
     "https://example.us1.zitadel.cloud",
     "path/to/jwt-key.json",
   ),
@@ -127,7 +127,7 @@ import Zitadel, {
 } from "@zitadel/sdk";
 
 const zitadel = Zitadel.withAuthenticator(
-  await ClientCredentialsAuthenticator.builder(
+  ClientCredentialsAuthenticator.builder(
     "https://example.us1.zitadel.cloud",
     "id",
     "secret",
@@ -167,15 +167,21 @@ authenticate without exchanging credentials every time.
 **How do you use it?**
 
 1. Obtain a valid personal access token from your account.
-2. Create the authenticator with: `PersonalAccessAuthenticator`
+2. Create the authenticator with: `PersonalAccessTokenAuthenticator`
 
 **Example:**
 
 ```ts
-import Zitadel, { ApiError, PersonalAccessAuthenticator } from "@zitadel/sdk";
+import Zitadel, {
+  ApiError,
+  PersonalAccessTokenAuthenticator,
+} from "@zitadel/sdk";
 
 const zitadel = Zitadel.withAuthenticator(
-  new PersonalAccessAuthenticator("https://example.us1.zitadel.cloud", "token"),
+  new PersonalAccessTokenAuthenticator(
+    "https://example.us1.zitadel.cloud",
+    "token",
+  ),
 );
 
 try {
@@ -222,7 +228,7 @@ import Zitadel, {
 const transport = TransportOptions.builder().verifySsl(false).build();
 
 const zitadel = Zitadel.withAuthenticator(
-  await ClientCredentialsAuthenticator.builder(
+  ClientCredentialsAuthenticator.builder(
     "https://your-instance.zitadel.cloud",
     "client-id",
     "client-secret",
@@ -247,7 +253,7 @@ const transport = TransportOptions.builder()
   .build();
 
 const zitadel = Zitadel.withAuthenticator(
-  await ClientCredentialsAuthenticator.builder(
+  ClientCredentialsAuthenticator.builder(
     "https://your-instance.zitadel.cloud",
     "client-id",
     "client-secret",
@@ -272,7 +278,7 @@ const transport = TransportOptions.builder()
   .build();
 
 const zitadel = Zitadel.withAuthenticator(
-  await ClientCredentialsAuthenticator.builder(
+  ClientCredentialsAuthenticator.builder(
     "https://your-instance.zitadel.cloud",
     "client-id",
     "client-secret",
@@ -298,7 +304,7 @@ const transport = TransportOptions.builder()
   .build();
 
 const zitadel = Zitadel.withAuthenticator(
-  await ClientCredentialsAuthenticator.builder(
+  ClientCredentialsAuthenticator.builder(
     "https://your-instance.zitadel.cloud",
     "client-id",
     "client-secret",

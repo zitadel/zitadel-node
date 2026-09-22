@@ -89,7 +89,6 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "jose": "^6.1.0",
-    "oauth4webapi": "^3.8.2",
     "reflect-metadata": "^0.2.2",
     "temporal-polyfill": "^0.3.0",
     "undici": "^6"

@@ -9,15 +9,22 @@
 
 # --- bespoke authenticators (ported onto the generated auth interfaces) ---
 # The generator owns only the auth scaffolding (the `Authenticator` interface,
-# `BaseAuthenticator`, `BearerAuthenticator`, `HttpAwareAuthenticator`). Every
-# concrete Zitadel authenticator plus the auth barrel is hand-maintained, so
-# keep the whole directory, then re-enable overwriting for the four scaffolding
-# files. The broad keep MUST stay first; its `!` exceptions follow it.
+# `BaseAuthenticator`, `BearerAuthenticator`, `HttpAwareAuthenticator`,
+# `ZitadelAccessTokenAuthenticator`). Every concrete Zitadel authenticator is
+# hand-maintained, so keep the whole directory, then re-enable overwriting for
+# the five scaffolding files. The broad keep MUST stay first; its `!`
+# exceptions follow it.
 src/auth/**
 !src/auth/authenticator.ts
 !src/auth/base-authenticator.ts
 !src/auth/bearer-authenticator.ts
 !src/auth/http-aware-authenticator.ts
+!src/auth/zitadel-access-token-authenticator.ts
+
+# The OAuth2 error types the authenticators raise. The generator only emits
+# them inside its own OAuth2 token manager, which this spec does not use.
+src/errors/oauth2-server-error.ts
+src/errors/oauth2-token-error.ts
 
 # --- bespoke support classes (helpers the generator does not emit) ---
 # `src/index.ts` is the barrel that re-exports the generated `Zitadel` facade as

@@ -1,7 +1,7 @@
 import Zitadel from "../../src/index.js";
-import { PersonalAccessAuthenticator } from "../../src/auth/personal-access-authenticator.js";
+import { PersonalAccessTokenAuthenticator } from "../../src/auth/personal-access-token-authenticator.js";
 // noinspection ES6PreferShortImport
-import { ZitadelError } from "../../src/errors/zitadel-error.js";
+import { UnauthorizedError } from "../../src/errors/unauthorized-error.js";
 import { useIntegrationEnvironment } from "../base-spec.js";
 
 /**
@@ -11,7 +11,7 @@ import { useIntegrationEnvironment } from "../base-spec.js";
  * endpoint works when authenticating via Personal Access Token:
  *
  * 1. Retrieve general settings successfully with a valid token
- * 2. Expect an ApiError when using an invalid token
+ * 2. Expect an UnauthorizedError when using an invalid token
  */
 describe("UseAccessTokenSpec", () => {
   const { context } = useIntegrationEnvironment();
@@ -24,23 +24,27 @@ describe("UseAccessTokenSpec", () => {
    */
   it("testRetrievesGeneralSettingsWithValidAuth", async () => {
     const client = Zitadel.withAuthenticator(
-      new PersonalAccessAuthenticator(context.baseUrl, context.authToken),
+      new PersonalAccessTokenAuthenticator(context.baseUrl, context.authToken),
     );
 
     await client.settingsService.getGeneralSettings({ body: {} });
   });
 
   /**
-   * Expect an ApiError when using an invalid PAT.
+   * Expect an UnauthorizedError when using an invalid PAT.
    * @throws {Error}
    */
   it("testRaisesApiExceptionWithInvalidAuth", async () => {
     const invalid = Zitadel.withAuthenticator(
-      new PersonalAccessAuthenticator(context.baseUrl, "invalid"),
+      new PersonalAccessTokenAuthenticator(context.baseUrl, "invalid"),
     );
 
-    await expect(
-      invalid.settingsService.getGeneralSettings({ body: {} }),
-    ).rejects.toThrow(ZitadelError);
+    let error: unknown = null;
+    try {
+      await invalid.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect((error as Error).constructor).toBe(UnauthorizedError);
   }, 120000);
 });
