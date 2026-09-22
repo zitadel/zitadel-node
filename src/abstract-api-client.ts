@@ -7,6 +7,8 @@
 
 import type { ApiClient, SendRequestOptions } from "./api-client.js";
 import { ApiError } from "./api-error.js";
+import { NetworkError } from "./errors/network-error.js";
+import { NetworkTimeoutError } from "./errors/network-timeout-error.js";
 import type { ApiHttpResponse } from "./api-http-response.js";
 import { ObjectSerializer } from "./object-serializer.js";
 import { TransportOptions } from "./transport-options.js";
@@ -90,6 +92,44 @@ export abstract class AbstractApiClient implements ApiClient {
    */
   protected supportedEncodings(): string {
     return "gzip, deflate, br";
+  }
+
+  /**
+   * Classify a failure raised by `fetch` or by the response body read.
+   *
+   * The `AbortSignal.timeout` signal rejects with a `DOMException` named
+   * `TimeoutError`, and undici reports its own connect / headers / body
+   * timeouts as a `TypeError` whose cause carries a `UND_ERR_*_TIMEOUT` code:
+   * both are a {@link NetworkTimeoutError}. Any other `TypeError` means no
+   * HTTP response arrived (connection refused, DNS failure, TLS failure,
+   * connection reset) and is a {@link NetworkError}. Anything else, such as
+   * a malformed compressed body, stays a plain {@link ApiError}. The original
+   * error is kept as `cause` in every case.
+   *
+   * @param error the value `fetch` or the body read rejected with
+   * @returns the SDK error to throw
+   */
+  protected static transportError(error: unknown): ApiError {
+    /* Duck-typed rather than `instanceof`: fetch may reject with an error
+     * from another realm (a test sandbox or a polyfill), whose `TypeError`
+     * is not this realm's `TypeError`. */
+    const field = (value: unknown, key: string): unknown =>
+      value != null && typeof value === "object" && key in value
+        ? (value as Record<string, unknown>)[key]
+        : undefined;
+    const name = String(field(error, "name") ?? "");
+    const message = String(field(error, "message") ?? error);
+    const causeCode = String(field(field(error, "cause"), "code") ?? "");
+    if (
+      name === "TimeoutError" ||
+      /^UND_ERR_(CONNECT|HEADERS|BODY)_TIMEOUT$/.test(causeCode)
+    ) {
+      return new NetworkTimeoutError(message, { cause: error });
+    }
+    if (name === "TypeError") {
+      return new NetworkError(message, { cause: error });
+    }
+    return new ApiError(0, message, null, null, null, { cause: error });
   }
 
   /**
@@ -351,14 +391,7 @@ export abstract class AbstractApiClient implements ApiClient {
       if (error instanceof ApiError) {
         throw error;
       }
-      throw new ApiError(
-        0,
-        error instanceof Error ? error.message : String(error),
-        null,
-        null,
-        null,
-        { cause: error },
-      );
+      throw AbstractApiClient.transportError(error);
     }
 
     /* Wrap the post-headers body read in the SDK's transport error type.
@@ -392,14 +425,7 @@ export abstract class AbstractApiClient implements ApiClient {
       if (error instanceof ApiError) {
         throw error;
       }
-      throw new ApiError(
-        0,
-        error instanceof Error ? error.message : String(error),
-        null,
-        null,
-        null,
-        { cause: error },
-      );
+      throw AbstractApiClient.transportError(error);
     }
     const contentType = response.headers.get("content-type") ?? "";
     const responseBody = AbstractApiClient.isTextContentType(contentType)

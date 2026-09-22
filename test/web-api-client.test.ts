@@ -9,7 +9,6 @@
 
 import * as http from "node:http";
 import { DefaultApiClient as WebApiClient } from "../src/default-api-client.web.js";
-import { ApiError } from "../src/api-error.js";
 import { TransportOptions } from "../src/transport-options.js";
 
 /*
@@ -17,7 +16,7 @@ import { TransportOptions } from "../src/transport-options.js";
  * Jest runs on Node, so the `#transport` conditional import resolves to the
  * Node transport for the rest of the suite; these tests import the web variant
  * explicitly to prove it shares the AbstractApiClient orchestration over plain
- * `fetch` and refuses the Node-only transport features with a typed ApiError.
+ * `fetch` and refuses the Node-only transport features at construction.
  */
 
 let server: http.Server;
@@ -77,32 +76,23 @@ describe("Web (portable) transport", () => {
     expect(response.headers["x-test-header"]).toBe("test-value");
   });
 
-  it("rejects proxy routing with a typed ApiError", async () => {
+  it("rejects proxy routing at construction with a TypeError", () => {
     const transport = TransportOptions.builder()
       .proxy("http://127.0.0.1:3128")
       .build();
-    const client = new WebApiClient(transport);
-    await expect(
-      client.sendRequest("GET", `${baseUrl}/echo`, {}, null),
-    ).rejects.toThrow(ApiError);
+    expect(() => new WebApiClient(transport)).toThrow(TypeError);
   });
 
-  it("rejects a custom CA certificate with a typed ApiError", async () => {
+  it("rejects a custom CA certificate at construction with a TypeError", () => {
     const transport = TransportOptions.builder()
       .caCertPath("/some/ca.pem")
       .build();
-    const client = new WebApiClient(transport);
-    await expect(
-      client.sendRequest("GET", `${baseUrl}/echo`, {}, null),
-    ).rejects.toThrow(ApiError);
+    expect(() => new WebApiClient(transport)).toThrow(TypeError);
   });
 
-  it("rejects disabling TLS verification with a typed ApiError", async () => {
+  it("rejects disabling TLS verification at construction with a TypeError", () => {
     const transport = TransportOptions.builder().verifySsl(false).build();
-    const client = new WebApiClient(transport);
-    await expect(
-      client.sendRequest("GET", `${baseUrl}/echo`, {}, null),
-    ).rejects.toThrow(ApiError);
+    expect(() => new WebApiClient(transport)).toThrow(TypeError);
   });
 
   it("still honours plain requests when maxRedirects is set (cap lives in the base, not a dispatcher)", async () => {

@@ -14,6 +14,7 @@ import {
   SENSITIVE_HEADER_NAMES,
 } from "../src/default-api-client.js";
 import { ApiError } from "../src/api-error.js";
+import { NetworkError, NetworkTimeoutError } from "../src/errors/index.js";
 import { TransportOptions } from "../src/transport-options.js";
 
 let server: http.Server;
@@ -309,15 +310,15 @@ describe("DefaultApiClient unit", () => {
 });
 
 describe("DefaultApiClient CA certificate fail-fast", () => {
-  it("throws ApiError at construction for a non-existent caCertPath", () => {
+  it("throws TypeError at construction for a non-existent caCertPath", () => {
     // ca-cert-fail-fast: an explicitly configured CA certificate path that
-    // cannot be read or parsed must fail fast at construction with the SDK's
-    // ApiError rather than silently falling back to the system trust store
+    // cannot be read or parsed must fail fast at construction with a
+    // TypeError rather than silently falling back to the system trust store
     // (security theater).
     const transport = TransportOptions.builder()
       .caCertPath("/nonexistent/ca.pem")
       .build();
-    expect(() => new DefaultApiClient(transport)).toThrow(ApiError);
+    expect(() => new DefaultApiClient(transport)).toThrow(TypeError);
   });
 });
 
@@ -326,7 +327,7 @@ describe("DefaultApiClient transport-failure responseHeaders", () => {
   // produces no response headers, so the thrown ApiError must carry
   // responseHeaders === null (the documented "no headers" sentinel), not an
   // empty {} that would be indistinguishable from a real header-less response.
-  it("connection failure throws ApiError with null responseHeaders", async () => {
+  it("connection failure throws NetworkError with null responseHeaders", async () => {
     const client = new DefaultApiClient();
     // Port 1 has no listener on the loopback interface; the connect attempt
     // fails before any response is received.
@@ -338,9 +339,40 @@ describe("DefaultApiClient transport-failure responseHeaders", () => {
     } finally {
       await client.close();
     }
+    expect(caught).toBeInstanceOf(NetworkError);
+    expect(caught).not.toBeInstanceOf(NetworkTimeoutError);
     expect(caught).toBeInstanceOf(ApiError);
     expect(caught!.statusCode).toBe(0);
     expect(caught!.responseHeaders).toBeNull();
+    expect((caught!.cause as Error).name).toBe("TypeError");
+  });
+
+  it("a request that exceeds the timeout throws NetworkTimeoutError", async () => {
+    const slow = http.createServer(() => {
+      /* never respond */
+    });
+    await new Promise<void>((resolve) => slow.listen(0, "127.0.0.1", resolve));
+    const port = (slow.address() as { port: number }).port;
+    const client = new DefaultApiClient(
+      TransportOptions.builder().timeout(50).build(),
+    );
+    let caught: unknown;
+    try {
+      await client.sendRequest(
+        "GET",
+        `http://127.0.0.1:${port}/slow`,
+        {},
+        null,
+      );
+    } catch (e) {
+      caught = e;
+    } finally {
+      await client.close();
+      slow.closeAllConnections();
+      await new Promise<void>((resolve) => slow.close(() => resolve()));
+    }
+    expect(caught).toBeInstanceOf(NetworkTimeoutError);
+    expect((caught as NetworkTimeoutError).statusCode).toBe(0);
   });
 
   it("using a closed client throws ApiError with null responseHeaders", async () => {

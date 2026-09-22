@@ -132,17 +132,25 @@ export class TransportOptionsBuilder {
    *
    * @param proxy proxy URL (e.g. "http://proxy:3128"), or null
    * @returns this builder
+   * @throws TypeError if the URL cannot be parsed or is not an http(s) URL with a host
    */
   proxy(proxy: string | null): this {
     if (proxy != null) {
-      const parsed = new URL(proxy);
+      let parsed: URL;
+      try {
+        parsed = new URL(proxy);
+      } catch (e) {
+        throw new TypeError(`Invalid proxy URL (unparseable): ${proxy}`, {
+          cause: e,
+        });
+      }
       if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
-        throw new Error(
+        throw new TypeError(
           `Invalid proxy URL (must use http or https scheme): ${proxy}`,
         );
       }
       if (!parsed.hostname) {
-        throw new Error(`Invalid proxy URL (missing host): ${proxy}`);
+        throw new TypeError(`Invalid proxy URL (missing host): ${proxy}`);
       }
     }
     this._proxy = proxy;

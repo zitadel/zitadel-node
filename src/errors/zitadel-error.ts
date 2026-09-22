@@ -8,7 +8,7 @@
 /**
  * Branded root of the SDK error hierarchy. Every error this client throws —
  * transport/API errors ({@link ApiError} and its 4xx/5xx subclasses) and
- * (de)serialization errors (SerializationError / DeserializationError) —
+ * (de)serialization errors ({@link SerializationError}) —
  * ultimately extends this class, so a single `catch (e) { if (e instanceof
  * ZitadelError) … }` distinguishes errors originating in the SDK from
  * unrelated runtime errors.

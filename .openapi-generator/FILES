@@ -51,6 +51,8 @@ src/errors/conflict-error.ts
 src/errors/forbidden-error.ts
 src/errors/index.ts
 src/errors/internal-server-error.ts
+src/errors/network-error.ts
+src/errors/network-timeout-error.ts
 src/errors/not-found-error.ts
 src/errors/server-error.ts
 src/errors/unauthorized-error.ts

@@ -48,7 +48,7 @@ export class BetaSessionServiceCreateSessionRequest {
   /*
    * 4.8 — `format: duration` is a google.protobuf.Duration. The native
    * type stays Temporal.Duration, but the wire form is protobuf-JSON
-   * ("3600s"), not ISO-8601 ("PT1H") — Zitadel rejects the ISO form.
+   * ("3600s"), not ISO-8601 ("PT1H") — protobuf-JSON APIs reject the ISO form.
    */
   @Transform(
     ({ value }) =>

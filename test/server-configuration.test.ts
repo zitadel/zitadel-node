@@ -60,6 +60,6 @@ describe("ServerConfiguration", () => {
       null,
       { env: new ServerVariable("prod", null, ["prod", "staging"]) },
     );
-    expect(() => config.getUrl({ env: "dev" })).toThrow();
+    expect(() => config.getUrl({ env: "dev" })).toThrow(RangeError);
   });
 });

@@ -53,10 +53,7 @@ export type { UUID } from "./brand.js";
 export { ApiError } from "./api-error.js";
 export { ZitadelError } from "./errors/zitadel-error.js";
 export * from "./errors/index.js";
-export {
-  SerializationError,
-  DeserializationError,
-} from "./object-serializer.js";
+export { SerializationError } from "./object-serializer.js";
 
 /*
  * Authentication: the interface, the HTTP-aware extension, and every

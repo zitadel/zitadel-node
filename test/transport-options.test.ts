@@ -84,10 +84,16 @@ describe("TransportOptions", () => {
     expect(opts.maxRedirects).toBeNull();
   });
 
-  test("invalid proxy URL throws exception", () => {
+  test("invalid proxy URL throws TypeError", () => {
     expect(() => {
       TransportOptions.builder().proxy("not-a-valid-url");
-    }).toThrow();
+    }).toThrow(TypeError);
+  });
+
+  test("proxy URL with a non-http scheme throws TypeError", () => {
+    expect(() => {
+      TransportOptions.builder().proxy("ftp://proxy.example.com");
+    }).toThrow(TypeError);
   });
 
   test("null proxy URL is accepted", () => {

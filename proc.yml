@@ -7,3 +7,4 @@ clientClassName: Zitadel
 repoName: git@github.com:zitadel/zitadel-node.git
 generatorName: node-plus
 licenseId: Apache-2.0
+errorPrefix: Zitadel
