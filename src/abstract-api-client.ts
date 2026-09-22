@@ -7,7 +7,7 @@
 
 import type { ApiClient, SendRequestOptions } from "./api-client.js";
 import { ApiError } from "./api-error.js";
-import type { ApiHttpResponse } from "./api-response.js";
+import type { ApiHttpResponse } from "./api-http-response.js";
 import { ObjectSerializer } from "./object-serializer.js";
 import { TransportOptions } from "./transport-options.js";
 

@@ -2,7 +2,7 @@ SKILLS.md
 src/abstract-api-client.ts
 src/api-client.ts
 src/api-error.ts
-src/api-response.ts
+src/api-http-response.ts
 src/api-result.ts
 src/api/action-service-api.ts
 src/api/application-service-api.ts
