@@ -1,3 +1,4 @@
+.openapi-generator/DEV-DEPENDENCIES
 SKILLS.md
 src/abstract-api-client.ts
 src/api-client.ts
