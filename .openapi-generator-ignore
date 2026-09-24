@@ -90,3 +90,6 @@ proc.yml
 
 # --- generator bookkeeping ---
 .openapi-generator/
+# ...except the dev-dependency manifest: it lists what the generated tests
+# import, and this repo's own package manifest has to stay in step with it.
+!.openapi-generator/DEV-DEPENDENCIES
