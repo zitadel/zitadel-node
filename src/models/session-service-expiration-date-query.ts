@@ -34,6 +34,17 @@ export class SessionServiceExpirationDateQuery {
 
   constructor(data?: Partial<SessionServiceExpirationDateQuery>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.expirationDate != null &&
+      (!(this.expirationDate instanceof Date) ||
+        Number.isNaN(this.expirationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `expirationDate must be a valid Date, got ${String(this.expirationDate)}`,
+      );
+    }
     if (this.method != null) {
       const methodValues = Object.values(
         SessionServiceTimestampQueryMethod,
@@ -44,7 +55,7 @@ export class SessionServiceExpirationDateQuery {
           )[v as string] !== "number",
       );
       if (!(methodValues as readonly unknown[]).includes(this.method)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
             `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

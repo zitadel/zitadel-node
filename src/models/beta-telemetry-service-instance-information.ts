@@ -53,6 +53,17 @@ export class BetaTelemetryServiceInstanceInformation {
         `domains must be an array, got ${typeof this.domains}`,
       );
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.createdAt != null &&
+      (!(this.createdAt instanceof Date) ||
+        Number.isNaN(this.createdAt.getTime()))
+    ) {
+      throw new TypeError(
+        `createdAt must be a valid Date, got ${String(this.createdAt)}`,
+      );
+    }
   }
 
   /**

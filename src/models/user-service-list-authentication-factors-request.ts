@@ -7,7 +7,7 @@
 
 import { UserServiceAuthFactorState } from "./user-service-auth-factor-state.js";
 import { UserServiceAuthFactors } from "./user-service-auth-factors.js";
-import { Expose, Type } from "class-transformer";
+import { Expose } from "class-transformer";
 
 export class UserServiceListAuthenticationFactorsRequest {
   /**
@@ -46,7 +46,7 @@ export class UserServiceListAuthenticationFactorsRequest {
       if (
         !(authFactorsValues as readonly unknown[]).includes(this.authFactors)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for authFactors: ${JSON.stringify(this.authFactors)}. ` +
             `Expected one of [${authFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -61,7 +61,7 @@ export class UserServiceListAuthenticationFactorsRequest {
       );
       for (const __v of this.authFactors as readonly unknown[]) {
         if (!(authFactorsValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for authFactors: ${JSON.stringify(__v)}. ` +
               `Expected one of [${authFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -76,7 +76,7 @@ export class UserServiceListAuthenticationFactorsRequest {
           ] !== "number",
       );
       if (!(statesValues as readonly unknown[]).includes(this.states)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for states: ${JSON.stringify(this.states)}. ` +
             `Expected one of [${statesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -91,7 +91,7 @@ export class UserServiceListAuthenticationFactorsRequest {
       );
       for (const __v of this.states as readonly unknown[]) {
         if (!(statesValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for states: ${JSON.stringify(__v)}. ` +
               `Expected one of [${statesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );

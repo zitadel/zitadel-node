@@ -14,7 +14,6 @@ import { UserServiceSetHumanPhone } from "./user-service-set-human-phone.js";
 import { UserServiceSetHumanProfile } from "./user-service-set-human-profile.js";
 import { UserServiceSetMetadataEntry } from "./user-service-set-metadata-entry.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class UserServiceAddHumanUserRequest {
   /**

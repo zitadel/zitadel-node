@@ -83,7 +83,7 @@ export class BetaFeatureServiceSetSystemFeaturesRequest {
           this.improvedPerformance,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for improvedPerformance: ${JSON.stringify(this.improvedPerformance)}. ` +
             `Expected one of [${improvedPerformanceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -103,7 +103,7 @@ export class BetaFeatureServiceSetSystemFeaturesRequest {
       );
       for (const __v of this.improvedPerformance as readonly unknown[]) {
         if (!(improvedPerformanceValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for improvedPerformance: ${JSON.stringify(__v)}. ` +
               `Expected one of [${improvedPerformanceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );

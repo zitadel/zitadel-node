@@ -7,7 +7,7 @@
 
 import { BetaWebKeyServiceRSABits } from "./beta-web-key-service-rsa-bits.js";
 import { BetaWebKeyServiceRSAHasher } from "./beta-web-key-service-rsa-hasher.js";
-import { Expose, Type } from "class-transformer";
+import { Expose } from "class-transformer";
 
 export class BetaWebKeyServiceRSA {
   /**
@@ -39,7 +39,7 @@ export class BetaWebKeyServiceRSA {
           ] !== "number",
       );
       if (!(bitsValues as readonly unknown[]).includes(this.bits)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for bits: ${JSON.stringify(this.bits)}. ` +
             `Expected one of [${bitsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -53,7 +53,7 @@ export class BetaWebKeyServiceRSA {
           ] !== "number",
       );
       if (!(hasherValues as readonly unknown[]).includes(this.hasher)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for hasher: ${JSON.stringify(this.hasher)}. ` +
             `Expected one of [${hasherValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -10,7 +10,6 @@ import { UserServiceSetHumanPhone } from "./user-service-set-human-phone.js";
 import { UserServiceSetHumanProfile } from "./user-service-set-human-profile.js";
 import { UserServiceSetPassword } from "./user-service-set-password.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class UserServiceUpdateHumanUserRequest {
   /**

@@ -7,7 +7,7 @@ import {
   UserServiceUser,
 } from "../src/models/index.js";
 // noinspection ES6PreferShortImport
-import { ApiError } from "../src/api-error.js";
+import { ApiError } from "../src/errors/api-error.js";
 import { useIntegrationEnvironment } from "./base-spec.js";
 
 /**

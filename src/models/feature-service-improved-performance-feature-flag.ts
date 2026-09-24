@@ -7,7 +7,7 @@
 
 import { FeatureServiceImprovedPerformance } from "./feature-service-improved-performance.js";
 import { FeatureServiceSource } from "./feature-service-source.js";
-import { Expose, Type } from "class-transformer";
+import { Expose } from "class-transformer";
 
 export class FeatureServiceImprovedPerformanceFeatureFlag {
   /**
@@ -45,7 +45,7 @@ export class FeatureServiceImprovedPerformanceFeatureFlag {
           this.executionPaths,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for executionPaths: ${JSON.stringify(this.executionPaths)}. ` +
             `Expected one of [${executionPathsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -62,7 +62,7 @@ export class FeatureServiceImprovedPerformanceFeatureFlag {
       );
       for (const __v of this.executionPaths as readonly unknown[]) {
         if (!(executionPathsValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for executionPaths: ${JSON.stringify(__v)}. ` +
               `Expected one of [${executionPathsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -77,7 +77,7 @@ export class FeatureServiceImprovedPerformanceFeatureFlag {
           ] !== "number",
       );
       if (!(sourceValues as readonly unknown[]).includes(this.source)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for source: ${JSON.stringify(this.source)}. ` +
             `Expected one of [${sourceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -60,6 +60,17 @@ export class BetaSessionServiceUserFactor {
         `organizationId must be a string, got ${typeof this.organizationId}`,
       );
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.verifiedAt != null &&
+      (!(this.verifiedAt instanceof Date) ||
+        Number.isNaN(this.verifiedAt.getTime()))
+    ) {
+      throw new TypeError(
+        `verifiedAt must be a valid Date, got ${String(this.verifiedAt)}`,
+      );
+    }
   }
 
   /**

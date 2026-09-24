@@ -92,7 +92,7 @@ export class ServerConfiguration {
    *
    * @param overrides variable name to value overrides (defaults to empty)
    * @returns the fully resolved URL
-   * @throws RangeError if an override value is not in the variable's enum
+   * @throws TypeError if an override value is not in the variable's enum
    */
   getUrl(overrides: Record<string, string> = {}): string {
     let url = this.urlTemplate;
@@ -103,7 +103,7 @@ export class ServerConfiguration {
         variable.enumValues.length > 0 &&
         !variable.enumValues.includes(value)
       ) {
-        throw new RangeError(
+        throw new TypeError(
           `Invalid value '${value}' for server variable '${varName}'. Allowed values: ${variable.enumValues.join(", ")}`,
         );
       }

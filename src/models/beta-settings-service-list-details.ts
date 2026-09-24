@@ -35,6 +35,17 @@ export class BetaSettingsServiceListDetails {
 
   constructor(data?: Partial<BetaSettingsServiceListDetails>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.timestamp != null &&
+      (!(this.timestamp instanceof Date) ||
+        Number.isNaN(this.timestamp.getTime()))
+    ) {
+      throw new TypeError(
+        `timestamp must be a valid Date, got ${String(this.timestamp)}`,
+      );
+    }
   }
 
   /**

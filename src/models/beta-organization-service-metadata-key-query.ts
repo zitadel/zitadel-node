@@ -43,7 +43,7 @@ export class BetaOrganizationServiceMetadataKeyQuery {
           )[v as string] !== "number",
       );
       if (!(methodValues as readonly unknown[]).includes(this.method)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
             `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

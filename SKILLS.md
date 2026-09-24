@@ -50,12 +50,23 @@ const client = Zitadel.withToken(Servers.SERVER_0.getUrl(), "your-token");
 The `Authenticator` interface is the seam for tests: substitute a fake authenticator that returns a known header map, and assert your code calls the API the way you expect.
 
 ```typescript
-const fake = {
+import type { Authenticator } from "./src/auth/authenticator.js";
+
+const fake: Authenticator = {
   getHost(): string {
     return "https://api.example.com";
   },
   getAuthHeaders(): Record<string, string> {
     return { Authorization: "Bearer test-token" };
+  },
+  getAuthHeadersAsync(): Promise<Record<string, string>> {
+    return Promise.resolve(this.getAuthHeaders());
+  },
+  getQueryParams(): Record<string, string> {
+    return {};
+  },
+  getCookieParams(): Record<string, string> {
+    return {};
   },
 };
 

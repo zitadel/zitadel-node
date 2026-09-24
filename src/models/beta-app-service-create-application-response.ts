@@ -46,6 +46,17 @@ export class BetaAppServiceCreateApplicationResponse {
     if (this.appId != null && typeof this.appId !== "string") {
       throw new TypeError(`appId must be a string, got ${typeof this.appId}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
   }
 
   /**

@@ -34,6 +34,17 @@ export class BetaSessionServiceCreationDateQuery {
 
   constructor(data?: Partial<BetaSessionServiceCreationDateQuery>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
     if (this.method != null) {
       const methodValues = Object.values(
         BetaSessionServiceTimestampQueryMethod,
@@ -44,7 +55,7 @@ export class BetaSessionServiceCreationDateQuery {
           )[v as string] !== "number",
       );
       if (!(methodValues as readonly unknown[]).includes(this.method)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for method: ${JSON.stringify(this.method)}. ` +
             `Expected one of [${methodValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

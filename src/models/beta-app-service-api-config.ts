@@ -49,7 +49,7 @@ export class BetaAppServiceAPIConfig {
           this.authMethodType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for authMethodType: ${JSON.stringify(this.authMethodType)}. ` +
             `Expected one of [${authMethodTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

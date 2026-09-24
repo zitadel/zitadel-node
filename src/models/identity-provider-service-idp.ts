@@ -60,7 +60,7 @@ export class IdentityProviderServiceIDP {
           ] !== "number",
       );
       if (!(stateValues as readonly unknown[]).includes(this.state)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
             `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -74,7 +74,7 @@ export class IdentityProviderServiceIDP {
           ] !== "number",
       );
       if (!(typeValues as readonly unknown[]).includes(this.type)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for type: ${JSON.stringify(this.type)}. ` +
             `Expected one of [${typeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

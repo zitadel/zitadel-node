@@ -1,15 +1,6 @@
 import type { ApiClient } from "../api-client.js";
-import { ApiError } from "../api-error.js";
-import { BadRequestError } from "../errors/bad-request-error.js";
-import { ClientError } from "../errors/client-error.js";
-import { ConflictError } from "../errors/conflict-error.js";
-import { ForbiddenError } from "../errors/forbidden-error.js";
-import { InternalServerError } from "../errors/internal-server-error.js";
-import { NotFoundError } from "../errors/not-found-error.js";
-import { ServerError } from "../errors/server-error.js";
-import { UnauthorizedError } from "../errors/unauthorized-error.js";
-import { UnprocessableEntityError } from "../errors/unprocessable-entity-error.js";
-import { SerializationError } from "../object-serializer.js";
+import { ApiError } from "../errors/api-error.js";
+import { SerializationError } from "../errors/serialization-error.js";
 
 const WELL_KNOWN_PATH = "/.well-known/openid-configuration";
 
@@ -106,9 +97,8 @@ export class OpenId {
     );
     const status = response.statusCode;
     if (status < 200 || status >= 300) {
-      throw OpenId.statusError(
+      throw ApiError.fromResponse(
         status,
-        `OpenID discovery at ${url} failed with status ${status}`,
         { ...response.headers },
         response.body,
       );
@@ -138,37 +128,5 @@ export class OpenId {
       );
     }
     return endpoint;
-  }
-
-  private static statusError(
-    status: number,
-    message: string,
-    headers: Record<string, string>,
-    body: string,
-  ): ApiError {
-    switch (status) {
-      case 400:
-        return new BadRequestError(message, headers, body);
-      case 401:
-        return new UnauthorizedError(message, headers, body);
-      case 403:
-        return new ForbiddenError(message, headers, body);
-      case 404:
-        return new NotFoundError(message, headers, body);
-      case 409:
-        return new ConflictError(message, headers, body);
-      case 422:
-        return new UnprocessableEntityError(message, headers, body);
-      case 500:
-        return new InternalServerError(message, headers, body);
-      default:
-        if (status >= 400 && status < 500) {
-          return new ClientError(status, message, headers, body);
-        }
-        if (status >= 500) {
-          return new ServerError(status, message, headers, body);
-        }
-        return new ApiError(status, message, headers, body);
-    }
   }
 }

@@ -82,6 +82,17 @@ export class BetaTelemetryServiceResourceCount {
     if (this.amount != null && typeof this.amount !== "number") {
       throw new TypeError(`amount must be a number, got ${typeof this.amount}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.updatedAt != null &&
+      (!(this.updatedAt instanceof Date) ||
+        Number.isNaN(this.updatedAt.getTime()))
+    ) {
+      throw new TypeError(
+        `updatedAt must be a valid Date, got ${String(this.updatedAt)}`,
+      );
+    }
     if (this.parentType != null) {
       const parentTypeValues = Object.values(
         BetaTelemetryServiceCountParentType,
@@ -92,7 +103,7 @@ export class BetaTelemetryServiceResourceCount {
           )[v as string] !== "number",
       );
       if (!(parentTypeValues as readonly unknown[]).includes(this.parentType)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for parentType: ${JSON.stringify(this.parentType)}. ` +
             `Expected one of [${parentTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

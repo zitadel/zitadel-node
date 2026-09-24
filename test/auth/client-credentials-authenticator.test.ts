@@ -2,7 +2,7 @@
 import { inspect } from "util";
 import type { ApiClient } from "../../src/api-client.js";
 import type { ApiHttpResponse } from "../../src/api-http-response.js";
-import { ApiError } from "../../src/api-error.js";
+import { ApiError } from "../../src/errors/api-error.js";
 import { ClientCredentialsAuthenticator } from "../../src/auth/client-credentials-authenticator.js";
 import { OpenId } from "../../src/auth/open-id.js";
 import { DefaultApiClient } from "../../src/default-api-client.js";
@@ -12,7 +12,7 @@ import { NotFoundError } from "../../src/errors/not-found-error.js";
 import { OAuth2ServerError } from "../../src/errors/oauth2-server-error.js";
 import { OAuth2TokenError } from "../../src/errors/oauth2-token-error.js";
 import { ZitadelError } from "../../src/errors/zitadel-error.js";
-import { SerializationError } from "../../src/object-serializer.js";
+import { SerializationError } from "../../src/errors/serialization-error.js";
 import { TransportOptions } from "../../src/transport-options.js";
 import { withOauthContainer } from "./oauth-authenticator-test.js";
 

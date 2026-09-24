@@ -24,7 +24,6 @@ import { UserServiceStateQuery } from "./user-service-state-query.js";
 import { UserServiceTypeQuery } from "./user-service-type-query.js";
 import { UserServiceUserNameQuery } from "./user-service-user-name-query.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class UserServiceSearchQuery {
   /**

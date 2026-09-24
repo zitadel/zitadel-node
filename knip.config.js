@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   entry: ["src/index.ts", "release.config.mjs", "commitlint.config.mjs"],
   ignoreDependencies: [
     "@semantic-release/.*?",

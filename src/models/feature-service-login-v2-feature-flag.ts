@@ -50,7 +50,7 @@ export class FeatureServiceLoginV2FeatureFlag {
           ] !== "number",
       );
       if (!(sourceValues as readonly unknown[]).includes(this.source)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for source: ${JSON.stringify(this.source)}. ` +
             `Expected one of [${sourceValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

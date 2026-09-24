@@ -21,14 +21,14 @@ export class BearerAuthenticator extends BaseAuthenticator {
      * accepts, silently failing auth. Reject it up front to match the
      * api-key authenticator's own empty guard and the other SDKs. */
     if (token.trim().length === 0) {
-      throw new Error("Bearer token must not be empty or whitespace");
+      throw new TypeError("Bearer token must not be empty or whitespace");
     }
     /* RFC 7230 §3.2.6 — field-value is HTAB / SP / VCHAR / obs-text.
      * Reject anything outside printable ASCII + TAB so callers see a
      * clear error rather than HTTP header injection from CR/LF or
      * silently-mangled non-ASCII bytes. */
     if (/[^\t\x20-\x7E]/.test(token)) {
-      throw new Error(
+      throw new TypeError(
         "Bearer token must contain only printable ASCII characters (RFC 7230 §3.2.6)",
       );
     }

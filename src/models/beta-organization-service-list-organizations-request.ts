@@ -53,7 +53,7 @@ export class BetaOrganizationServiceListOrganizationsRequest {
           this.sortingColumn,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for sortingColumn: ${JSON.stringify(this.sortingColumn)}. ` +
             `Expected one of [${sortingColumnValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -7,7 +7,6 @@
 
 import { BetaOrganizationServiceSendEmailVerificationCode } from "./beta-organization-service-send-email-verification-code.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class BetaOrganizationServiceSetHumanEmail {
   /**

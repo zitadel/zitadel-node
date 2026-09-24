@@ -9,7 +9,6 @@ import { BetaSessionServiceOTPEmail } from "./beta-session-service-otp-email.js"
 import { BetaSessionServiceOTPSMS } from "./beta-session-service-otpsms.js";
 import { BetaSessionServiceWebAuthN } from "./beta-session-service-web-auth-n.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class BetaSessionServiceRequestChallenges {
   /**

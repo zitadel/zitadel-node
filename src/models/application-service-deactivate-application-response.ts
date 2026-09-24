@@ -31,6 +31,17 @@ export class ApplicationServiceDeactivateApplicationResponse {
 
   constructor(data?: Partial<ApplicationServiceDeactivateApplicationResponse>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.deactivationDate != null &&
+      (!(this.deactivationDate instanceof Date) ||
+        Number.isNaN(this.deactivationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `deactivationDate must be a valid Date, got ${String(this.deactivationDate)}`,
+      );
+    }
   }
 
   /**

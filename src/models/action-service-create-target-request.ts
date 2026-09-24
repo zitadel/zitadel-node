@@ -105,7 +105,7 @@ export class ActionServiceCreateTargetRequest {
       if (
         !(payloadTypeValues as readonly unknown[]).includes(this.payloadType)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for payloadType: ${JSON.stringify(this.payloadType)}. ` +
             `Expected one of [${payloadTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

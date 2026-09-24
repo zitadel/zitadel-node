@@ -21,11 +21,6 @@ src/auth/**
 !src/auth/http-aware-authenticator.ts
 !src/auth/zitadel-access-token-authenticator.ts
 
-# The OAuth2 error types the authenticators raise. The generator only emits
-# them inside its own OAuth2 token manager, which this spec does not use.
-src/errors/oauth2-server-error.ts
-src/errors/oauth2-token-error.ts
-
 # --- bespoke support classes (helpers the generator does not emit) ---
 # `src/index.ts` is the barrel that re-exports the generated `Zitadel` facade as
 # the package default.

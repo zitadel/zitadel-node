@@ -54,11 +54,7 @@ export type { UUID } from "./brand.js";
  * NetworkTimeoutError), the serialization error, and the two OAuth2 errors the
  * token-minting authenticators raise.
  */
-export { ApiError } from "./api-error.js";
 export * from "./errors/index.js";
-export { SerializationError } from "./object-serializer.js";
-export { OAuth2ServerError } from "./errors/oauth2-server-error.js";
-export { OAuth2TokenError } from "./errors/oauth2-token-error.js";
 
 /*
  * Authentication: the interface, the HTTP-aware extension, and every

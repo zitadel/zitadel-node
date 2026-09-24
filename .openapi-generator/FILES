@@ -1,7 +1,6 @@
 SKILLS.md
 src/abstract-api-client.ts
 src/api-client.ts
-src/api-error.ts
 src/api-http-response.ts
 src/api-result.ts
 src/api/action-service-api.ts
@@ -45,6 +44,7 @@ src/configuration.ts
 src/deep-input.ts
 src/default-api-client.ts
 src/default-api-client.web.ts
+src/errors/api-error.ts
 src/errors/bad-request-error.ts
 src/errors/client-error.ts
 src/errors/conflict-error.ts
@@ -54,6 +54,9 @@ src/errors/internal-server-error.ts
 src/errors/network-error.ts
 src/errors/network-timeout-error.ts
 src/errors/not-found-error.ts
+src/errors/oauth2-server-error.ts
+src/errors/oauth2-token-error.ts
+src/errors/serialization-error.ts
 src/errors/server-error.ts
 src/errors/unauthorized-error.ts
 src/errors/unprocessable-entity-error.ts

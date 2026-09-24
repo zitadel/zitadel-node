@@ -22,7 +22,6 @@ import { BetaUserServiceStateQuery } from "./beta-user-service-state-query.js";
 import { BetaUserServiceTypeQuery } from "./beta-user-service-type-query.js";
 import { BetaUserServiceUserNameQuery } from "./beta-user-service-user-name-query.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class BetaUserServiceSearchQuery {
   /**

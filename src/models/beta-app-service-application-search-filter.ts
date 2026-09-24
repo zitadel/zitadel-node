@@ -63,7 +63,7 @@ export class BetaAppServiceApplicationSearchFilter {
       if (
         !(stateFilterValues as readonly unknown[]).includes(this.stateFilter)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for stateFilter: ${JSON.stringify(this.stateFilter)}. ` +
             `Expected one of [${stateFilterValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

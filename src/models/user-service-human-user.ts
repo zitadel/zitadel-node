@@ -10,7 +10,6 @@ import { UserServiceHumanPhone } from "./user-service-human-phone.js";
 import { UserServiceHumanProfile } from "./user-service-human-profile.js";
 import { UserServiceUserState } from "./user-service-user-state.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class UserServiceHumanUser {
   /**
@@ -111,6 +110,28 @@ export class UserServiceHumanUser {
         `passwordChangeRequired must be a boolean, got ${typeof this.passwordChangeRequired}`,
       );
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.passwordChanged != null &&
+      (!(this.passwordChanged instanceof Date) ||
+        Number.isNaN(this.passwordChanged.getTime()))
+    ) {
+      throw new TypeError(
+        `passwordChanged must be a valid Date, got ${String(this.passwordChanged)}`,
+      );
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.mfaInitSkipped != null &&
+      (!(this.mfaInitSkipped instanceof Date) ||
+        Number.isNaN(this.mfaInitSkipped.getTime()))
+    ) {
+      throw new TypeError(
+        `mfaInitSkipped must be a valid Date, got ${String(this.mfaInitSkipped)}`,
+      );
+    }
     if (this.state != null) {
       const stateValues = Object.values(UserServiceUserState).filter(
         (v) =>
@@ -119,7 +140,7 @@ export class UserServiceHumanUser {
           ] !== "number",
       );
       if (!(stateValues as readonly unknown[]).includes(this.state)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
             `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

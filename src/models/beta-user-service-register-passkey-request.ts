@@ -56,7 +56,7 @@ export class BetaUserServiceRegisterPasskeyRequest {
           this.authenticator,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for authenticator: ${JSON.stringify(this.authenticator)}. ` +
             `Expected one of [${authenticatorValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -89,7 +89,7 @@ export class ValueSerializer {
      * lives in the operation method; here we catch the empty-string
      * case that slips through it. */
     if (location === "path" && typeof value === "string" && value === "") {
-      throw new Error(`Path parameter '${paramName}' must not be empty`);
+      throw new TypeError(`Path parameter '${paramName}' must not be empty`);
     }
 
     if (value === null || value === undefined) {

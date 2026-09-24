@@ -88,7 +88,7 @@ export class SettingsServiceBrandingSettings {
           this.resourceOwnerType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
             `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -102,7 +102,7 @@ export class SettingsServiceBrandingSettings {
           ] !== "number",
       );
       if (!(themeModeValues as readonly unknown[]).includes(this.themeMode)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for themeMode: ${JSON.stringify(this.themeMode)}. ` +
             `Expected one of [${themeModeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -39,6 +39,17 @@ export class ActionServiceAddPublicKeyResponse {
     if (this.keyId != null && typeof this.keyId !== "string") {
       throw new TypeError(`keyId must be a string, got ${typeof this.keyId}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
   }
 
   /**

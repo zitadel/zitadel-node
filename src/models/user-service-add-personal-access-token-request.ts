@@ -39,6 +39,17 @@ export class UserServiceAddPersonalAccessTokenRequest {
     if (this.userId != null && typeof this.userId !== "string") {
       throw new TypeError(`userId must be a string, got ${typeof this.userId}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.expirationDate != null &&
+      (!(this.expirationDate instanceof Date) ||
+        Number.isNaN(this.expirationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `expirationDate must be a valid Date, got ${String(this.expirationDate)}`,
+      );
+    }
   }
 
   /**

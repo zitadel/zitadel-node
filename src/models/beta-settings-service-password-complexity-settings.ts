@@ -84,7 +84,7 @@ export class BetaSettingsServicePasswordComplexitySettings {
           this.resourceOwnerType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
             `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

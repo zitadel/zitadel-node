@@ -73,7 +73,7 @@ export class AuthorizationServiceConnectError {
           )[v as string] !== "number",
       );
       if (!(codeValues as readonly unknown[]).includes(this.code)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for code: ${JSON.stringify(this.code)}. ` +
             `Expected one of [${codeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

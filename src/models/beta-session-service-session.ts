@@ -7,7 +7,7 @@
 
 import { BetaSessionServiceFactors } from "./beta-session-service-factors.js";
 import { BetaSessionServiceUserAgent } from "./beta-session-service-user-agent.js";
-import { Expose, Type, Transform } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 
 export class BetaSessionServiceSession {
   /**
@@ -59,6 +59,39 @@ export class BetaSessionServiceSession {
     Object.assign(this, data);
     if (this.id != null && typeof this.id !== "string") {
       throw new TypeError(`id must be a string, got ${typeof this.id}`);
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.changeDate != null &&
+      (!(this.changeDate instanceof Date) ||
+        Number.isNaN(this.changeDate.getTime()))
+    ) {
+      throw new TypeError(
+        `changeDate must be a valid Date, got ${String(this.changeDate)}`,
+      );
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.expirationDate != null &&
+      (!(this.expirationDate instanceof Date) ||
+        Number.isNaN(this.expirationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `expirationDate must be a valid Date, got ${String(this.expirationDate)}`,
+      );
     }
   }
 

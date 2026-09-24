@@ -31,6 +31,17 @@ export class OrganizationServiceDeleteOrganizationResponse {
 
   constructor(data?: Partial<OrganizationServiceDeleteOrganizationResponse>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.deletionDate != null &&
+      (!(this.deletionDate instanceof Date) ||
+        Number.isNaN(this.deletionDate.getTime()))
+    ) {
+      throw new TypeError(
+        `deletionDate must be a valid Date, got ${String(this.deletionDate)}`,
+      );
+    }
   }
 
   /**

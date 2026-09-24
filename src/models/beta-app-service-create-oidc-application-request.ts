@@ -199,7 +199,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           this.responseTypes,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for responseTypes: ${JSON.stringify(this.responseTypes)}. ` +
             `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -216,7 +216,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
       );
       for (const __v of this.responseTypes as readonly unknown[]) {
         if (!(responseTypesValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for responseTypes: ${JSON.stringify(__v)}. ` +
               `Expected one of [${responseTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -233,7 +233,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           ] !== "number",
       );
       if (!(grantTypesValues as readonly unknown[]).includes(this.grantTypes)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for grantTypes: ${JSON.stringify(this.grantTypes)}. ` +
             `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -250,7 +250,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
       );
       for (const __v of this.grantTypes as readonly unknown[]) {
         if (!(grantTypesValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for grantTypes: ${JSON.stringify(__v)}. ` +
               `Expected one of [${grantTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -265,7 +265,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           ] !== "number",
       );
       if (!(appTypeValues as readonly unknown[]).includes(this.appType)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for appType: ${JSON.stringify(this.appType)}. ` +
             `Expected one of [${appTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -285,7 +285,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           this.authMethodType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for authMethodType: ${JSON.stringify(this.authMethodType)}. ` +
             `Expected one of [${authMethodTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -299,7 +299,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           ] !== "number",
       );
       if (!(versionValues as readonly unknown[]).includes(this.version)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for version: ${JSON.stringify(this.version)}. ` +
             `Expected one of [${versionValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -319,7 +319,7 @@ export class BetaAppServiceCreateOIDCApplicationRequest {
           this.accessTokenType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for accessTokenType: ${JSON.stringify(this.accessTokenType)}. ` +
             `Expected one of [${accessTokenTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

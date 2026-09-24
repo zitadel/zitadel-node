@@ -10,7 +10,6 @@ import { BetaUserServiceSetHumanPhone } from "./beta-user-service-set-human-phon
 import { BetaUserServiceSetHumanProfile } from "./beta-user-service-set-human-profile.js";
 import { BetaUserServiceSetPassword } from "./beta-user-service-set-password.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class BetaUserServiceUpdateHumanUserRequest {
   /**

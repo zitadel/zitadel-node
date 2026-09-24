@@ -36,7 +36,7 @@ export class AuthorizationServiceStateQuery {
           ] !== "number",
       );
       if (!(stateValues as readonly unknown[]).includes(this.state)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
             `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

@@ -99,7 +99,7 @@ export class ProjectServiceUpdateProjectRequest {
           this.privateLabelingSetting,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for privateLabelingSetting: ${JSON.stringify(this.privateLabelingSetting)}. ` +
             `Expected one of [${privateLabelingSettingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

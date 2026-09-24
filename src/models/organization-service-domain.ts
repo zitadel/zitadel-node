@@ -83,7 +83,7 @@ export class OrganizationServiceDomain {
           this.validationType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for validationType: ${JSON.stringify(this.validationType)}. ` +
             `Expected one of [${validationTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

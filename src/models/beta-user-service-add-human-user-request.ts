@@ -14,7 +14,6 @@ import { BetaUserServiceSetHumanPhone } from "./beta-user-service-set-human-phon
 import { BetaUserServiceSetHumanProfile } from "./beta-user-service-set-human-profile.js";
 import { BetaUserServiceSetMetadataEntry } from "./beta-user-service-set-metadata-entry.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class BetaUserServiceAddHumanUserRequest {
   /**

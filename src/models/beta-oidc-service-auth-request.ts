@@ -129,6 +129,17 @@ export class BetaOIDCServiceAuthRequest {
         `hintUserId must be a string, got ${typeof this.hintUserId}`,
       );
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
     if (this.prompt != null) {
       const promptValues = Object.values(BetaOIDCServicePrompt).filter(
         (v) =>
@@ -137,7 +148,7 @@ export class BetaOIDCServiceAuthRequest {
           ] !== "number",
       );
       if (!(promptValues as readonly unknown[]).includes(this.prompt)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for prompt: ${JSON.stringify(this.prompt)}. ` +
             `Expected one of [${promptValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -152,7 +163,7 @@ export class BetaOIDCServiceAuthRequest {
       );
       for (const __v of this.prompt as readonly unknown[]) {
         if (!(promptValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for prompt: ${JSON.stringify(__v)}. ` +
               `Expected one of [${promptValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );

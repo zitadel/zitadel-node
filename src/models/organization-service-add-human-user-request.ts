@@ -14,7 +14,6 @@ import { OrganizationServiceSetHumanPhone } from "./organization-service-set-hum
 import { OrganizationServiceSetHumanProfile } from "./organization-service-set-human-profile.js";
 import { OrganizationServiceSetMetadataEntry } from "./organization-service-set-metadata-entry.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class OrganizationServiceAddHumanUserRequest {
   /**

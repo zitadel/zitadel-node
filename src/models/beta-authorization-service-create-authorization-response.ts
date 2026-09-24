@@ -41,6 +41,17 @@ export class BetaAuthorizationServiceCreateAuthorizationResponse {
     if (this.id != null && typeof this.id !== "string") {
       throw new TypeError(`id must be a string, got ${typeof this.id}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
   }
 
   /**

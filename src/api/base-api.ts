@@ -9,16 +9,9 @@ import type { ApiClient } from "../api-client.js";
 import type { ApiResult } from "../api-result.js";
 import type { Authenticator } from "../auth/authenticator.js";
 import { isNoAuth } from "../auth/authenticator.js";
-import { ApiError } from "../api-error.js";
-import { BadRequestError } from "../errors/bad-request-error.js";
-import { ClientError } from "../errors/client-error.js";
-import { ConflictError } from "../errors/conflict-error.js";
-import { ForbiddenError } from "../errors/forbidden-error.js";
-import { InternalServerError } from "../errors/internal-server-error.js";
-import { NotFoundError } from "../errors/not-found-error.js";
-import { ServerError } from "../errors/server-error.js";
-import { UnauthorizedError } from "../errors/unauthorized-error.js";
-import { UnprocessableEntityError } from "../errors/unprocessable-entity-error.js";
+/* Imported through the errors barrel, which loads every status-specific
+ * error, so ApiError.fromResponse knows them all. */
+import { ApiError } from "../errors/index.js";
 import { Configuration } from "../configuration.js";
 import { DefaultApiClient } from "#transport";
 import { HeaderSelector } from "../header-selector.js";
@@ -154,12 +147,12 @@ export abstract class BaseApi {
         const cookieStr = cookieEntries
           .map(([k, v]) => {
             if (!/^[A-Za-z0-9!#$%&'*+\-.^_`|~]+$/.test(k)) {
-              throw new Error(
+              throw new TypeError(
                 `Cookie name '${k}' contains characters forbidden by RFC 6265`,
               );
             }
             if (!/^[!\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]*$/.test(v)) {
-              throw new Error(
+              throw new TypeError(
                 `Cookie value for '${k}' contains characters forbidden by RFC 6265`,
               );
             }
@@ -283,10 +276,9 @@ export abstract class BaseApi {
   }
 
   /**
-   * Throw the appropriate error subclass for the given error response.
-   *
-   * Attempts to parse the response body as JSON so that structured error
-   * data (e.g. from a `default` response schema) is available via
+   * Throw the error {@link ApiError.fromResponse} maps the response to. The
+   * body is parsed as JSON where possible so that structured error data
+   * (e.g. from a `default` response schema) is available via
    * {@link ApiError.errorBody}.
    */
   private throwApiError(response: {
@@ -294,49 +286,11 @@ export abstract class BaseApi {
     body: string | null;
     headers: Record<string, string>;
   }): never {
-    const code = response.statusCode;
-    const message = `API returned status code ${code}`;
-    const headers = response.headers;
-    const body = response.body;
-
-    let errorBody: unknown = null;
-    if (body) {
-      try {
-        /* F5: depth-cap JSON parsing to refuse 100k-deep error payloads
-         * before V8 stack-overflows. */
-        errorBody = ObjectSerializer.parseJson(body);
-      } catch {
-        /* non-JSON or over-deep body, errorBody stays null */
-      }
-    }
-
-    if (code >= 400 && code < 500) {
-      switch (code) {
-        case 400:
-          throw new BadRequestError(message, headers, body, errorBody);
-        case 401:
-          throw new UnauthorizedError(message, headers, body, errorBody);
-        case 403:
-          throw new ForbiddenError(message, headers, body, errorBody);
-        case 404:
-          throw new NotFoundError(message, headers, body, errorBody);
-        case 409:
-          throw new ConflictError(message, headers, body, errorBody);
-        case 422:
-          throw new UnprocessableEntityError(message, headers, body, errorBody);
-        default:
-          throw new ClientError(code, message, headers, body, errorBody);
-      }
-    }
-    if (code >= 500) {
-      switch (code) {
-        case 500:
-          throw new InternalServerError(message, headers, body, errorBody);
-        default:
-          throw new ServerError(code, message, headers, body, errorBody);
-      }
-    }
-    throw new ApiError(code, message, headers, body, errorBody);
+    throw ApiError.fromResponse(
+      response.statusCode,
+      response.headers,
+      response.body,
+    );
   }
 
   /**

@@ -58,6 +58,28 @@ export class BetaWebKeyServiceWebKey {
     if (this.id != null && typeof this.id !== "string") {
       throw new TypeError(`id must be a string, got ${typeof this.id}`);
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.changeDate != null &&
+      (!(this.changeDate instanceof Date) ||
+        Number.isNaN(this.changeDate.getTime()))
+    ) {
+      throw new TypeError(
+        `changeDate must be a valid Date, got ${String(this.changeDate)}`,
+      );
+    }
     if (this.state != null) {
       const stateValues = Object.values(BetaWebKeyServiceState).filter(
         (v) =>
@@ -66,7 +88,7 @@ export class BetaWebKeyServiceWebKey {
           ] !== "number",
       );
       if (!(stateValues as readonly unknown[]).includes(this.state)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for state: ${JSON.stringify(this.state)}. ` +
             `Expected one of [${stateValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

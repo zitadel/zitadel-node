@@ -48,7 +48,7 @@ export class UserServiceListAuthenticationMethodTypesResponse {
           this.authMethodTypes,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for authMethodTypes: ${JSON.stringify(this.authMethodTypes)}. ` +
             `Expected one of [${authMethodTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -65,7 +65,7 @@ export class UserServiceListAuthenticationMethodTypesResponse {
       );
       for (const __v of this.authMethodTypes as readonly unknown[]) {
         if (!(authMethodTypesValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for authMethodTypes: ${JSON.stringify(__v)}. ` +
               `Expected one of [${authMethodTypesValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );

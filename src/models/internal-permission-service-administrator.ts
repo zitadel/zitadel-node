@@ -75,6 +75,28 @@ export class InternalPermissionServiceAdministrator {
         `instance must be a boolean, got ${typeof this.instance}`,
       );
     }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.creationDate != null &&
+      (!(this.creationDate instanceof Date) ||
+        Number.isNaN(this.creationDate.getTime()))
+    ) {
+      throw new TypeError(
+        `creationDate must be a valid Date, got ${String(this.creationDate)}`,
+      );
+    }
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.changeDate != null &&
+      (!(this.changeDate instanceof Date) ||
+        Number.isNaN(this.changeDate.getTime()))
+    ) {
+      throw new TypeError(
+        `changeDate must be a valid Date, got ${String(this.changeDate)}`,
+      );
+    }
   }
 
   /**

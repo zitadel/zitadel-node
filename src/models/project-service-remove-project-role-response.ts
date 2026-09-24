@@ -31,6 +31,17 @@ export class ProjectServiceRemoveProjectRoleResponse {
 
   constructor(data?: Partial<ProjectServiceRemoveProjectRoleResponse>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.removalDate != null &&
+      (!(this.removalDate instanceof Date) ||
+        Number.isNaN(this.removalDate.getTime()))
+    ) {
+      throw new TypeError(
+        `removalDate must be a valid Date, got ${String(this.removalDate)}`,
+      );
+    }
   }
 
   /**

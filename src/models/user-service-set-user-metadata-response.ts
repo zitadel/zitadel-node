@@ -31,6 +31,16 @@ export class UserServiceSetUserMetadataResponse {
 
   constructor(data?: Partial<UserServiceSetUserMetadataResponse>) {
     Object.assign(this, data);
+    /* `format: date-time`: an unparseable wire value becomes an Invalid Date
+     * rather than an error, so reject it here. */
+    if (
+      this.setDate != null &&
+      (!(this.setDate instanceof Date) || Number.isNaN(this.setDate.getTime()))
+    ) {
+      throw new TypeError(
+        `setDate must be a valid Date, got ${String(this.setDate)}`,
+      );
+    }
   }
 
   /**

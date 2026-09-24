@@ -9,7 +9,7 @@ import { BetaSettingsServiceMultiFactorType } from "./beta-settings-service-mult
 import { BetaSettingsServicePasskeysType } from "./beta-settings-service-passkeys-type.js";
 import { BetaSettingsServiceResourceOwnerType } from "./beta-settings-service-resource-owner-type.js";
 import { BetaSettingsServiceSecondFactorType } from "./beta-settings-service-second-factor-type.js";
-import { Expose, Type, Transform } from "class-transformer";
+import { Expose, Transform } from "class-transformer";
 import { Temporal } from "temporal-polyfill";
 import {
   durationFromProtoJson,
@@ -352,7 +352,7 @@ export class BetaSettingsServiceLoginSettings {
       if (
         !(passkeysTypeValues as readonly unknown[]).includes(this.passkeysType)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for passkeysType: ${JSON.stringify(this.passkeysType)}. ` +
             `Expected one of [${passkeysTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -372,7 +372,7 @@ export class BetaSettingsServiceLoginSettings {
           this.secondFactors,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for secondFactors: ${JSON.stringify(this.secondFactors)}. ` +
             `Expected one of [${secondFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -389,7 +389,7 @@ export class BetaSettingsServiceLoginSettings {
       );
       for (const __v of this.secondFactors as readonly unknown[]) {
         if (!(secondFactorsValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for secondFactors: ${JSON.stringify(__v)}. ` +
               `Expected one of [${secondFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -408,7 +408,7 @@ export class BetaSettingsServiceLoginSettings {
       if (
         !(multiFactorsValues as readonly unknown[]).includes(this.multiFactors)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for multiFactors: ${JSON.stringify(this.multiFactors)}. ` +
             `Expected one of [${multiFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -425,7 +425,7 @@ export class BetaSettingsServiceLoginSettings {
       );
       for (const __v of this.multiFactors as readonly unknown[]) {
         if (!(multiFactorsValues as readonly unknown[]).includes(__v)) {
-          throw new Error(
+          throw new TypeError(
             `Unknown enum value for multiFactors: ${JSON.stringify(__v)}. ` +
               `Expected one of [${multiFactorsValues.map((v) => JSON.stringify(v)).join(", ")}].`,
           );
@@ -446,7 +446,7 @@ export class BetaSettingsServiceLoginSettings {
           this.resourceOwnerType,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for resourceOwnerType: ${JSON.stringify(this.resourceOwnerType)}. ` +
             `Expected one of [${resourceOwnerTypeValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

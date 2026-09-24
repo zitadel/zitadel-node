@@ -9,7 +9,6 @@ import { SessionServiceOTPEmail } from "./session-service-otp-email.js";
 import { SessionServiceOTPSMS } from "./session-service-otpsms.js";
 import { SessionServiceWebAuthN } from "./session-service-web-auth-n.js";
 import { Expose, Type } from "class-transformer";
-import { Email } from "../brand.js";
 
 export class SessionServiceRequestChallenges {
   /**

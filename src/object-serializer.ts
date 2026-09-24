@@ -9,22 +9,7 @@ import "reflect-metadata";
 import { plainToInstance, type ClassConstructor } from "class-transformer";
 import { Temporal } from "temporal-polyfill";
 import * as models from "./models/index.js";
-import { ZitadelError } from "./errors/zitadel-error.js";
-
-/**
- * Exception raised when serialization or deserialization fails. Extends the
- * branded {@link ZitadelError} root so it shares a common `instanceof
- * ZitadelError` ancestor with the transport-level {@link ApiError} hierarchy.
- */
-export class SerializationError extends ZitadelError {
-  public readonly cause?: Error;
-
-  constructor(message: string, cause?: Error) {
-    super(message);
-    this.name = "SerializationError";
-    this.cause = cause;
-  }
-}
+import { SerializationError } from "./errors/serialization-error.js";
 
 /**
  * Number of nanoseconds in one second, as a BigInt, for exact

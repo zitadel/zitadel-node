@@ -8,7 +8,7 @@
 import { IdentityProviderServiceSAMLBinding } from "./identity-provider-service-saml-binding.js";
 import { IdentityProviderServiceSAMLNameIDFormat } from "./identity-provider-service-saml-name-id-format.js";
 import { IdentityProviderServiceSAMLSignatureAlgorithm } from "./identity-provider-service-saml-signature-algorithm.js";
-import { Expose, Type, Transform } from "class-transformer";
+import { Expose, Transform } from "class-transformer";
 
 export class IdentityProviderServiceSAMLConfig {
   /**
@@ -114,7 +114,7 @@ export class IdentityProviderServiceSAMLConfig {
           )[v as string] !== "number",
       );
       if (!(bindingValues as readonly unknown[]).includes(this.binding)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for binding: ${JSON.stringify(this.binding)}. ` +
             `Expected one of [${bindingValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -132,7 +132,7 @@ export class IdentityProviderServiceSAMLConfig {
       if (
         !(nameIdFormatValues as readonly unknown[]).includes(this.nameIdFormat)
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for nameIdFormat: ${JSON.stringify(this.nameIdFormat)}. ` +
             `Expected one of [${nameIdFormatValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
@@ -155,7 +155,7 @@ export class IdentityProviderServiceSAMLConfig {
           this.signatureAlgorithm,
         )
       ) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for signatureAlgorithm: ${JSON.stringify(this.signatureAlgorithm)}. ` +
             `Expected one of [${signatureAlgorithmValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );

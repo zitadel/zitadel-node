@@ -771,7 +771,7 @@ describe("ValueSerializer", () => {
           "simple",
           false,
         ),
-      ).toThrow();
+      ).toThrow(TypeError);
     });
   });
 

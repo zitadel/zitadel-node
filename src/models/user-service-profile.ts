@@ -88,7 +88,7 @@ export class UserServiceProfile {
           "number",
       );
       if (!(genderValues as readonly unknown[]).includes(this.gender)) {
-        throw new Error(
+        throw new TypeError(
           `Unknown enum value for gender: ${JSON.stringify(this.gender)}. ` +
             `Expected one of [${genderValues.map((v) => JSON.stringify(v)).join(", ")}].`,
         );
