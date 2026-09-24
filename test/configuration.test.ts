@@ -12,17 +12,6 @@ import {
 } from "../src/server-configuration.js";
 
 describe("Configuration", () => {
-  let savedDefault: Configuration;
-
-  beforeEach(() => {
-    savedDefault = Configuration.getDefault();
-    Configuration.setDefault(null);
-  });
-
-  afterEach(() => {
-    Configuration.setDefault(savedDefault);
-  });
-
   test("builder produces correct defaults", () => {
     const config = Configuration.builder().build();
 
@@ -145,31 +134,31 @@ describe("Configuration", () => {
     expect(config.baseUrl).toBe("https://override.example.com");
   });
 
-  test("getDefault returns an instance", () => {
-    const config = Configuration.getDefault();
+  test("defaultConfiguration returns an instance", () => {
+    const config = Configuration.defaultConfiguration();
 
     expect(config).toBeInstanceOf(Configuration);
     expect(config.baseUrl).toBe("https://zitadel.com");
   });
 
-  test("getDefault returns the same instance", () => {
-    const first = Configuration.getDefault();
-    const second = Configuration.getDefault();
+  test("defaultConfiguration returns a fresh instance", () => {
+    /* There is no settable process-wide default: every call builds a new
+     * Configuration, so nothing one caller does can change what another
+     * gets. */
+    const first = Configuration.defaultConfiguration();
+    const second = Configuration.defaultConfiguration();
 
-    expect(first).toBe(second);
+    expect(first).not.toBe(second);
+    expect(first.baseUrl).toBe(second.baseUrl);
   });
 
-  test("setDefault changes the default", () => {
-    const custom = Configuration.builder()
-      .baseUrl("https://custom.example.com")
-      .build();
-
-    Configuration.setDefault(custom);
-
-    expect(Configuration.getDefault()).toBe(custom);
-    expect(Configuration.getDefault().baseUrl).toBe(
-      "https://custom.example.com",
-    );
+  test("Configuration has no settable process-wide default", () => {
+    expect(
+      (Configuration as unknown as Record<string, unknown>).setDefault,
+    ).toBeUndefined();
+    expect(
+      (Configuration as unknown as Record<string, unknown>).getDefault,
+    ).toBeUndefined();
   });
 
   test("builder produces independent instances", () => {

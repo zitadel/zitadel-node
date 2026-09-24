@@ -12,23 +12,65 @@
  * If the @opentelemetry/api package is not installed, this function silently no-ops.
  */
 
+interface OtelApi {
+  propagation: { inject: (ctx: unknown, carrier: unknown) => void };
+  context: { active: () => unknown };
+}
+
+type ModuleLoader = (id: string) => unknown;
+
+/*
+ * The optional @opentelemetry/api dependency is loaded synchronously so that
+ * injectTraceContext is synchronous, as it is in every other SDK. A CommonJS
+ * build has `require`; an ES module build reaches the same loader through
+ * `process.getBuiltinModule('node:module')`, which is callable from either
+ * module system. A browser bundle has neither, so the loader stays null and
+ * the function no-ops. The loader is resolved once, at module load.
+ */
+function resolveModuleLoader(): ModuleLoader | null {
+  if (typeof require === "function") {
+    return require;
+  }
+  const proc = (
+    globalThis as {
+      process?: { getBuiltinModule?: ModuleLoader; cwd?: () => string };
+    }
+  ).process;
+  if (
+    typeof proc?.getBuiltinModule !== "function" ||
+    typeof proc.cwd !== "function"
+  ) {
+    return null;
+  }
+  const nodeModule = proc.getBuiltinModule("node:module") as {
+    createRequire?: (filename: string) => ModuleLoader;
+  } | null;
+  if (typeof nodeModule?.createRequire !== "function") {
+    return null;
+  }
+  /* Resolve from the working directory: @opentelemetry/api is a peer
+   * dependency, so it is installed by the application, not beside this SDK. */
+  return nodeModule.createRequire(`${proc.cwd()}/`);
+}
+
+let loadModule: ModuleLoader | null;
+try {
+  loadModule = resolveModuleLoader();
+} catch {
+  loadModule = null;
+}
+
 /**
  * Inject the current OpenTelemetry trace context into the given headers object.
  *
  * @param headers - mutable record of request headers
  */
-export async function injectTraceContext(
-  headers: Record<string, string>,
-): Promise<void> {
+export function injectTraceContext(headers: Record<string, string>): void {
+  if (loadModule === null) {
+    return;
+  }
   try {
-    /*
-     * Static specifier (not a variable) so no-unsanitized/method is satisfied;
-     * the import is still optional at runtime via the surrounding try/catch.
-     */
-    const otel = await (import("@opentelemetry/api") as Promise<{
-      propagation: { inject: (ctx: unknown, carrier: unknown) => void };
-      context: { active: () => unknown };
-    }>);
+    const otel = loadModule("@opentelemetry/api") as OtelApi;
     otel.propagation.inject(otel.context.active(), headers);
   } catch {
     /* empty */

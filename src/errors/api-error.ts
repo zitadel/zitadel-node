@@ -144,12 +144,37 @@ export class ApiError<T = unknown> extends ZitadelError {
    * @returns the deserialized error body
    */
   getTypedErrorBody<U>(clazz: ClassConstructor<U>): U | null {
-    /* F5: depth-cap JSON parsing for parity with Go/Java/Python (the body
-     * may be attacker-controlled). */
+    /* F5: depth-cap JSON parsing before deserializing, since the error body
+     * is attacker-controlled. */
     const json =
       this.responseBody != null
         ? ObjectSerializer.parseJson(this.responseBody)
         : null;
     return ObjectSerializer.deserialize(json, clazz);
+  }
+
+  /**
+   * Build a human-readable error message from the stored attributes: the
+   * message, then the HTTP status code, response headers and response body
+   * where present.
+   */
+  override toString(): string {
+    let msg =
+      this.message === ""
+        ? "Error message: the server returns an error"
+        : this.message;
+    if (this.statusCode !== 0) {
+      msg += `\nHTTP status code: ${this.statusCode}`;
+    }
+    if (
+      this.responseHeaders !== null &&
+      Object.keys(this.responseHeaders).length > 0
+    ) {
+      msg += `\nResponse headers: ${JSON.stringify(this.responseHeaders)}`;
+    }
+    if (this.responseBody !== null && this.responseBody !== "") {
+      msg += `\nResponse body: ${this.responseBody}`;
+    }
+    return msg;
   }
 }

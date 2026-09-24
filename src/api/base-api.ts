@@ -42,7 +42,7 @@ export abstract class BaseApi {
    * @param apiClient the HTTP transport client.
    *   When omitted a {@link DefaultApiClient} with default transport options is used.
    * @param config API-level configuration (base URL and default headers).
-   *   When omitted the {@link Configuration.getDefault default configuration} is used.
+   *   When omitted the {@link Configuration.defaultConfiguration default configuration} is used.
    * @param authenticator optional authenticator applied to all requests unless overridden per-call.
    */
   protected constructor(
@@ -51,7 +51,7 @@ export abstract class BaseApi {
     authenticator?: Authenticator | null,
   ) {
     this.apiClient = apiClient ?? new DefaultApiClient();
-    this.config = config ?? Configuration.getDefault();
+    this.config = config ?? Configuration.defaultConfiguration();
     this.headerSelector = new HeaderSelector();
     this.authenticator = authenticator ?? null;
   }
@@ -163,7 +163,7 @@ export abstract class BaseApi {
         headers["Cookie"] = existing ? `${existing}; ${cookieStr}` : cookieStr;
       }
     }
-    await injectTraceContext(headers);
+    injectTraceContext(headers);
 
     const serializedBody = this.serializeBody(body, contentType);
     if (serializedBody === null) {

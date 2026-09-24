@@ -41,7 +41,7 @@ export class OAuth2ServerError extends ZitadelError {
       return `Token request failed with status ${statusCode}: ${rawBody}`;
     }
     if (description !== null) {
-      return `Token request failed with status ${statusCode}: ${code} — ${description}`;
+      return `Token request failed with status ${statusCode}: ${code} -- ${description}`;
     }
     return `Token request failed with status ${statusCode}: ${code}`;
   }

@@ -24,8 +24,6 @@ import { ServerConfiguration } from "./server-configuration.js";
  * ```
  */
 export class Configuration {
-  private static defaultInstance: Configuration | null = null;
-
   /** Base URL for all API requests. */
   public readonly baseUrl: string;
 
@@ -52,28 +50,13 @@ export class Configuration {
   }
 
   /**
-   * Return the default configuration instance.
+   * Return a Configuration with default values.
    *
-   * If no default has been set via {@link Configuration.setDefault},
-   * a new instance is created with the spec-defined base URL and no
-   * default headers.
-   *
-   * @returns the default configuration
+   * @returns a new configuration with the spec-defined base URL and no
+   *   default headers
    */
-  public static getDefault(): Configuration {
-    if (Configuration.defaultInstance === null) {
-      Configuration.defaultInstance = new Configuration();
-    }
-    return Configuration.defaultInstance;
-  }
-
-  /**
-   * Set the default configuration instance.
-   *
-   * @param configuration the configuration to use as default, or null to reset
-   */
-  public static setDefault(configuration: Configuration | null): void {
-    Configuration.defaultInstance = configuration;
+  public static defaultConfiguration(): Configuration {
+    return new ConfigurationBuilder().build();
   }
 }
 
