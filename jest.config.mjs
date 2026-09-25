@@ -6,6 +6,7 @@ export default {
       {
         useESM: true,
         tsconfig: "tsconfig.jest.json",
+        diagnostics: false,
       },
     ],
   },
