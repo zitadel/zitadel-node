@@ -12,6 +12,7 @@ import { NoAuthAuthenticator } from "../src/auth/no-auth-authenticator.js";
 import { PersonalAccessTokenAuthenticator } from "../src/auth/personal-access-token-authenticator.js";
 import { ClientCredentialsAuthenticator } from "../src/auth/client-credentials-authenticator.js";
 import { NetworkError } from "../src/errors/network-error.js";
+import { ApiError } from "../src/errors/api-error.js";
 import { TransportOptions } from "../src/transport-options.js";
 import Zitadel from "../src/index.js";
 
@@ -27,6 +28,7 @@ describe("ZitadelTest", () => {
   let httpPort: number;
   let httpsPort: number;
   let proxyPort: number;
+  let proxyAuthPort: number;
   let caCertPath: string;
 
   beforeAll(async () => {
@@ -68,13 +70,20 @@ describe("ZitadelTest", () => {
 
     proxyContainer = await new GenericContainer("ubuntu/squid:6.10-24.10_beta")
       .withNetwork(network)
-      .withExposedPorts(3128)
+      .withExposedPorts(3128, 3129)
       .withCopyFilesToContainer([
         {
           source: path.join(FIXTURES_DIR, "squid.conf"),
           target: "/etc/squid/squid.conf",
         },
       ])
+      // Squid drops to the unprivileged `proxy` user; a root-owned tmpfs would
+      // make it die, so mount its log and spool dirs world-writable.
+      .withTmpFs({
+        "/var/log/squid": "rw,mode=1777",
+        "/var/spool/squid": "rw,mode=1777",
+      })
+      // Wait for every exposed port (3128 and 3129) to be listening before use.
       .withWaitStrategy(Wait.forListeningPorts())
       .start();
 
@@ -82,6 +91,7 @@ describe("ZitadelTest", () => {
     httpPort = container.getMappedPort(8080);
     httpsPort = container.getMappedPort(8443);
     proxyPort = proxyContainer.getMappedPort(3128);
+    proxyAuthPort = proxyContainer.getMappedPort(3129);
   }, 30_000);
 
   afterAll(async () => {
@@ -199,6 +209,48 @@ describe("ZitadelTest", () => {
         "test-token",
       ),
       TransportOptions.builder().proxy(`http://${host}:${proxyPort}`).build(),
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("http");
+  }, 30_000);
+
+  test("testProxyAuthRequiredWithoutCredentials", async () => {
+    // Port 3129 is the same proxy but requires Basic proxy credentials.
+    // A request without any credentials must be refused with a 407.
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
+      ),
+      TransportOptions.builder()
+        .proxy(`http://${host}:${proxyAuthPort}`)
+        .build(),
+    );
+
+    let error: unknown = null;
+    try {
+      await zitadel.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeInstanceOf(ApiError);
+    expect((error as ApiError).statusCode).toBe(407);
+  }, 30_000);
+
+  test("testProxyAuthWithCredentials", async () => {
+    // The same credentialed proxy succeeds once user:pass are supplied in the
+    // proxy URL, proving the SDK sends Proxy-Authorization.
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
+      ),
+      TransportOptions.builder()
+        .proxy(`http://user:pass@${host}:${proxyAuthPort}`)
+        .build(),
     );
 
     const response = await zitadel.settingsService.getGeneralSettings({
