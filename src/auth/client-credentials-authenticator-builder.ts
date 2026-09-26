@@ -1,44 +1,33 @@
-import { OAuthAuthenticatorBuilder } from './oauth-authenticator-builder.js';
-import { ClientCredentialsAuthenticator } from './client-credentials-authenticator.js';
-import type { TransportOptions } from '../transport-options.js';
+import { OAuthAuthenticatorBuilder } from "./oauth-authenticator-builder.js";
+import { ClientCredentialsAuthenticator } from "./client-credentials-authenticator.js";
+import { requireText } from "./oauth-authenticator.js";
 
 /**
- * Builder for ClientCredentialsAuthenticator.
- *
- * Extends the base OAuthAuthenticatorBuilder to provide a fluent API for
- * constructing a ClientCredentialsAuthenticator instance.
+ * Builder for {@link ClientCredentialsAuthenticator}.
  */
 export class ClientCredentialsAuthenticatorBuilder extends OAuthAuthenticatorBuilder {
-  /**
-   * Constructs the builder with the required parameters.
-   *
-   * @param host The base URL for API endpoints.
-   * @param clientId The OAuth2 client identifier.
-   * @param clientSecret The OAuth2 client secret.
-   * @param transportOptions Optional transport options for TLS, proxy, and headers.
-   */
-  public constructor(
-    host: string,
-    private readonly clientId: string,
-    private readonly clientSecret: string,
-    transportOptions?: TransportOptions,
-  ) {
-    super(host, transportOptions);
-  }
+  private readonly clientId: string;
+  private readonly clientSecret: string;
 
   /**
-   * Builds and returns a new ClientCredentialsAuthenticator instance.
-   *
-   * @returns The constructed ClientCredentialsAuthenticator.
+   * @param host the base URL for the OAuth provider
+   * @param clientId the OAuth2 client identifier
+   * @param clientSecret the OAuth2 client secret
+   * @throws {TypeError} if the host is not a valid http or https URL, or the
+   *   client identifier or secret is empty
    */
-  public async build(): Promise<ClientCredentialsAuthenticator> {
-    await this.discoverOpenId();
+  public constructor(host: string, clientId: string, clientSecret: string) {
+    super(host);
+    this.clientId = requireText(clientId, "Client ID");
+    this.clientSecret = requireText(clientSecret, "Client secret");
+  }
+
+  public build(): ClientCredentialsAuthenticator {
     return new ClientCredentialsAuthenticator(
       this.openId,
       this.clientId,
       this.clientSecret,
-      this.authScopes,
-      this.transportOptions,
+      this.scope,
     );
   }
 }

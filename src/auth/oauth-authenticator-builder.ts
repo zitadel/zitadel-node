@@ -1,46 +1,52 @@
-import { OpenId } from './openid.js';
-import { OAuthAuthenticator } from './oauth-authenticator.js';
-import type { TransportOptions } from '../transport-options.js';
+import { OpenId } from "./open-id.js";
+import type { OAuthAuthenticator } from "./oauth-authenticator.js";
+
+/** The default scopes requested when none are configured. */
+export const DEFAULT_SCOPE =
+  "openid urn:zitadel:iam:org:project:id:zitadel:aud";
 
 /**
- * Base builder for OAuth authenticators.
+ * Abstract builder for OAuth authenticators.
  *
- * Provides fluent methods to override the default token endpoint and scopes.
- * Subclasses extend this builder to construct specific OAuthAuthenticator
- * instances.
+ * Holds the OpenID discovery helper for the host and the requested scopes.
  */
 export abstract class OAuthAuthenticatorBuilder {
-  protected authScopes: string =
-    'openid urn:zitadel:iam:org:project:id:zitadel:aud';
-  protected openId!: OpenId;
+  protected readonly openId: OpenId;
+  protected scope: string = DEFAULT_SCOPE;
 
   /**
-   * Constructs the builder with the required host.
-   *
-   * @param host The hostname of the OpenID provider.
-   * @param transportOptions Optional transport options for TLS, proxy, and headers.
+   * @param host the base URL for the OAuth provider
+   * @throws {TypeError} if the host is not a valid http or https URL
    */
-  protected constructor(
-    protected readonly host: string,
-    protected readonly transportOptions?: TransportOptions,
-  ) {}
+  protected constructor(host: string) {
+    this.openId = new OpenId(host);
+  }
 
   /**
-   * Overrides the default scopes.
+   * Overrides the default scopes. Duplicates are dropped; order is kept.
    *
-   * @param scopes A list of scopes for the token request.
-   * @returns The builder instance for chaining.
+   * @param authScopes the scopes for the token request
+   * @throws {TypeError} if no scope is given, or a scope is empty or contains
+   *   whitespace
    */
-  public scopes(scopes: string | string[]): this {
-    this.authScopes = Array.isArray(scopes) ? scopes.join(' ') : scopes;
+  public scopes(...authScopes: string[]): this {
+    if (authScopes.length === 0) {
+      throw new TypeError("At least one scope is required.");
+    }
+    for (const authScope of authScopes) {
+      if (
+        typeof authScope !== "string" ||
+        authScope === "" ||
+        /\s/.test(authScope)
+      ) {
+        throw new TypeError(
+          `Scope must be a non-empty string without whitespace: '${authScope}'`,
+        );
+      }
+    }
+    this.scope = [...new Set(authScopes)].join(" ");
     return this;
   }
 
-  protected async discoverOpenId(): Promise<void> {
-    if (!this.openId) {
-      this.openId = await OpenId.discover(this.host, this.transportOptions);
-    }
-  }
-
-  public abstract build(): Promise<OAuthAuthenticator>;
+  public abstract build(): OAuthAuthenticator;
 }

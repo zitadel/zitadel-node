@@ -74,30 +74,30 @@ JSON file. This process creates a secure token.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/sdk';
+import Zitadel, { ApiError, WebTokenAuthenticator } from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withPrivateKey(
-  'https://example.us1.zitadel.cloud',
-  'path/to/jwt-key.json',
+const zitadel = Zitadel.withAuthenticator(
+  WebTokenAuthenticator.fromJson(
+    "https://example.us1.zitadel.cloud",
+    "path/to/jwt-key.json",
+  ),
 );
 
 try {
-  const response = await zitadel.users.addHumanUser({
-    userServiceAddHumanUserRequest: {
-      username: 'john.doe',
-      profile: {
-        givenName: 'John',
-        familyName: 'Doe',
-      },
-      email: {
-        email: 'john@doe.com',
-      },
+  const response = await zitadel.userService.addHumanUser({
+    username: "john.doe",
+    profile: {
+      givenName: "John",
+      familyName: "Doe",
+    },
+    email: {
+      email: "john@doe.com",
     },
   });
-  console.log('User created: ' + JSON.stringify(response, null, 2));
+  console.log("User created: " + JSON.stringify(response, null, 2));
 } catch (e) {
-  if (e instanceof ApiException) {
-    console.log('Error: ' + e.message);
+  if (e instanceof ApiError) {
+    console.log("Error: " + e.message);
   }
 }
 ```
@@ -121,31 +121,34 @@ which is then used to authenticate.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/sdk';
+import Zitadel, {
+  ApiError,
+  ClientCredentialsAuthenticator,
+} from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withClientCredentials(
-  'https://example.us1.zitadel.cloud',
-  'id',
-  'secret',
+const zitadel = Zitadel.withAuthenticator(
+  ClientCredentialsAuthenticator.builder(
+    "https://example.us1.zitadel.cloud",
+    "id",
+    "secret",
+  ).build(),
 );
 
 try {
-  const response = await zitadel.users.addHumanUser({
-    userServiceAddHumanUserRequest: {
-      username: 'john.doe',
-      profile: {
-        givenName: 'John',
-        familyName: 'Doe',
-      },
-      email: {
-        email: 'john@doe.com',
-      },
+  const response = await zitadel.userService.addHumanUser({
+    username: "john.doe",
+    profile: {
+      givenName: "John",
+      familyName: "Doe",
+    },
+    email: {
+      email: "john@doe.com",
     },
   });
-  console.log('User created: ' + JSON.stringify(response, null, 2));
+  console.log("User created: " + JSON.stringify(response, null, 2));
 } catch (e) {
-  if (e instanceof ApiException) {
-    console.log('Error: ' + e.message);
+  if (e instanceof ApiError) {
+    console.log("Error: " + e.message);
   }
 }
 ```
@@ -169,30 +172,33 @@ authenticate without exchanging credentials every time.
 **Example:**
 
 ```ts
-import Zitadel, { ApiException } from '@zitadel/sdk';
+import Zitadel, {
+  ApiError,
+  PersonalAccessTokenAuthenticator,
+} from "@zitadel/sdk";
 
-const zitadel = Zitadel.withAccessToken(
-  'https://example.us1.zitadel.cloud',
-  'token',
+const zitadel = Zitadel.withAuthenticator(
+  new PersonalAccessTokenAuthenticator(
+    "https://example.us1.zitadel.cloud",
+    "token",
+  ),
 );
 
 try {
-  const response = await zitadel.users.addHumanUser({
-    userServiceAddHumanUserRequest: {
-      username: 'john.doe',
-      profile: {
-        givenName: 'John',
-        familyName: 'Doe',
-      },
-      email: {
-        email: 'john@doe.com',
-      },
+  const response = await zitadel.userService.addHumanUser({
+    username: "john.doe",
+    profile: {
+      givenName: "John",
+      familyName: "Doe",
+    },
+    email: {
+      email: "john@doe.com",
     },
   });
-  console.log('User created: ' + JSON.stringify(response, null, 2));
+  console.log("User created: " + JSON.stringify(response, null, 2));
 } catch (e) {
-  if (e instanceof ApiException) {
-    console.log('Error: ' + e.message);
+  if (e instanceof ApiError) {
+    console.log("Error: " + e.message);
   }
 }
 ```
@@ -214,13 +220,20 @@ In development or testing environments with self-signed certificates, you can
 disable TLS verification entirely:
 
 ```ts
-import Zitadel from '@zitadel/sdk';
+import Zitadel, {
+  ClientCredentialsAuthenticator,
+  TransportOptions,
+} from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withClientCredentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  { insecure: true },
+const transport = TransportOptions.builder().verifySsl(false).build();
+
+const zitadel = Zitadel.withAuthenticator(
+  ClientCredentialsAuthenticator.builder(
+    "https://your-instance.zitadel.cloud",
+    "client-id",
+    "client-secret",
+  ).build(),
+  transport,
 );
 ```
 
@@ -230,13 +243,22 @@ If your Zitadel instance uses a certificate signed by a private CA, you can
 provide the path to the CA certificate in PEM format:
 
 ```ts
-import Zitadel from '@zitadel/sdk';
+import Zitadel, {
+  ClientCredentialsAuthenticator,
+  TransportOptions,
+} from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withClientCredentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  { caCertPath: '/path/to/ca.pem' },
+const transport = TransportOptions.builder()
+  .caCertPath("/path/to/ca.pem")
+  .build();
+
+const zitadel = Zitadel.withAuthenticator(
+  ClientCredentialsAuthenticator.builder(
+    "https://your-instance.zitadel.cloud",
+    "client-id",
+    "client-secret",
+  ).build(),
+  transport,
 );
 ```
 
@@ -246,13 +268,22 @@ You can attach default headers to every outgoing request. This is useful for
 custom routing or tracing headers:
 
 ```ts
-import Zitadel from '@zitadel/sdk';
+import Zitadel, {
+  ClientCredentialsAuthenticator,
+  TransportOptions,
+} from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withClientCredentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  { defaultHeaders: { 'X-Custom-Header': 'my-value' } },
+const transport = TransportOptions.builder()
+  .defaultHeaders({ "X-Custom-Header": "my-value" })
+  .build();
+
+const zitadel = Zitadel.withAuthenticator(
+  ClientCredentialsAuthenticator.builder(
+    "https://your-instance.zitadel.cloud",
+    "client-id",
+    "client-secret",
+  ).build(),
+  transport,
 );
 ```
 
@@ -263,13 +294,22 @@ specify the proxy URL. To authenticate with the proxy, embed the credentials
 directly in the URL:
 
 ```ts
-import Zitadel from '@zitadel/sdk';
+import Zitadel, {
+  ClientCredentialsAuthenticator,
+  TransportOptions,
+} from "@zitadel/sdk";
 
-const zitadel = await Zitadel.withClientCredentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  { proxyUrl: 'http://user:pass@proxy:8080' },
+const transport = TransportOptions.builder()
+  .proxy("http://user:pass@proxy:8080")
+  .build();
+
+const zitadel = Zitadel.withAuthenticator(
+  ClientCredentialsAuthenticator.builder(
+    "https://your-instance.zitadel.cloud",
+    "client-id",
+    "client-secret",
+  ).build(),
+  transport,
 );
 ```
 

@@ -1,21 +1,26 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
 import {
   GenericContainer,
   Network,
   StartedNetwork,
   StartedTestContainer,
   Wait,
-} from 'testcontainers';
-import { NoAuthAuthenticator } from '../src/auth/noauth-authenticator.js';
-import Zitadel from '../src/index.js';
+} from "testcontainers";
+import { NoAuthAuthenticator } from "../src/auth/no-auth-authenticator.js";
+import { PersonalAccessTokenAuthenticator } from "../src/auth/personal-access-token-authenticator.js";
+import { ClientCredentialsAuthenticator } from "../src/auth/client-credentials-authenticator.js";
+import { NetworkError } from "../src/errors/network-error.js";
+import { ApiError } from "../src/errors/api-error.js";
+import { TransportOptions } from "../src/transport-options.js";
+import Zitadel from "../src/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const FIXTURES_DIR = path.join(__dirname, 'fixtures');
+const FIXTURES_DIR = path.join(__dirname, "fixtures");
 
-describe('ZitadelTest', () => {
+describe("ZitadelTest", () => {
   let network: StartedNetwork;
   let container: StartedTestContainer;
   let proxyContainer: StartedTestContainer;
@@ -23,54 +28,62 @@ describe('ZitadelTest', () => {
   let httpPort: number;
   let httpsPort: number;
   let proxyPort: number;
+  let proxyAuthPort: number;
   let caCertPath: string;
 
   beforeAll(async () => {
-    caCertPath = path.join(FIXTURES_DIR, 'ca.pem');
+    caCertPath = path.join(FIXTURES_DIR, "ca.pem");
 
     network = await new Network().start();
 
-    container = await new GenericContainer('wiremock/wiremock:3.12.1')
+    container = await new GenericContainer("wiremock/wiremock:3.12.1")
       .withNetwork(network)
-      .withNetworkAliases('wiremock')
+      .withNetworkAliases("wiremock")
       .withCommand([
-        '--https-port',
-        '8443',
-        '--https-keystore',
-        '/home/wiremock/keystore.p12',
-        '--keystore-password',
-        'password',
-        '--keystore-type',
-        'PKCS12',
-        '--global-response-templating',
+        "--https-port",
+        "8443",
+        "--https-keystore",
+        "/home/wiremock/keystore.p12",
+        "--keystore-password",
+        "password",
+        "--keystore-type",
+        "PKCS12",
+        "--global-response-templating",
       ])
       .withCopyFilesToContainer([
         {
-          source: path.join(FIXTURES_DIR, 'keystore.p12'),
-          target: '/home/wiremock/keystore.p12',
+          source: path.join(FIXTURES_DIR, "keystore.p12"),
+          target: "/home/wiremock/keystore.p12",
         },
       ])
       .withCopyDirectoriesToContainer([
         {
-          source: path.join(FIXTURES_DIR, 'mappings'),
-          target: '/home/wiremock/mappings',
+          source: path.join(FIXTURES_DIR, "mappings"),
+          target: "/home/wiremock/mappings",
         },
       ])
       .withExposedPorts(8080, 8443)
       .withWaitStrategy(
-        Wait.forHttp('/__admin/mappings', 8080).forStatusCode(200),
+        Wait.forHttp("/__admin/mappings", 8080).forStatusCode(200),
       )
       .start();
 
-    proxyContainer = await new GenericContainer('ubuntu/squid:6.10-24.10_beta')
+    proxyContainer = await new GenericContainer("ubuntu/squid:6.10-24.10_beta")
       .withNetwork(network)
-      .withExposedPorts(3128)
+      .withExposedPorts(3128, 3129)
       .withCopyFilesToContainer([
         {
-          source: path.join(FIXTURES_DIR, 'squid.conf'),
-          target: '/etc/squid/squid.conf',
+          source: path.join(FIXTURES_DIR, "squid.conf"),
+          target: "/etc/squid/squid.conf",
         },
       ])
+      // Squid drops to the unprivileged `proxy` user; a root-owned tmpfs would
+      // make it die, so mount its log and spool dirs world-writable.
+      .withTmpFs({
+        "/var/log/squid": "rw,mode=1777",
+        "/var/spool/squid": "rw,mode=1777",
+      })
+      // Wait for every exposed port (3128 and 3129) to be listening before use.
       .withWaitStrategy(Wait.forListeningPorts())
       .start();
 
@@ -78,6 +91,7 @@ describe('ZitadelTest', () => {
     httpPort = container.getMappedPort(8080);
     httpsPort = container.getMappedPort(8443);
     proxyPort = proxyContainer.getMappedPort(3128);
+    proxyAuthPort = proxyContainer.getMappedPort(3129);
   }, 30_000);
 
   afterAll(async () => {
@@ -94,7 +108,7 @@ describe('ZitadelTest', () => {
 
   function kebabToPascalCase(kebabStr: string): string {
     return kebabStr
-      .split('-')
+      .split("-")
       .map((word) => {
         const lowerWord = word.toLowerCase();
         if (
@@ -106,16 +120,16 @@ describe('ZitadelTest', () => {
         }
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       })
-      .join('');
+      .join("");
   }
 
-  test('testServicesDynamic', () => {
-    const apiDir = path.join(__dirname, '..', 'src', 'apis');
+  test("testServicesDynamic", () => {
+    const apiDir = path.join(__dirname, "..", "src", "api");
     const apiFiles = fs.readdirSync(apiDir);
 
     const expected = apiFiles
-      .filter((file) => file.endsWith('service-api.ts'))
-      .map((file) => file.replace('.ts', ''))
+      .filter((file) => file.endsWith("service-api.ts"))
+      .map((file) => file.replace(".ts", ""))
       .map(kebabToPascalCase)
       .map((fff) => fff.toLowerCase())
       .sort();
@@ -125,7 +139,7 @@ describe('ZitadelTest', () => {
     const actual: string[] = [];
 
     for (const prop of properties) {
-      if (prop?.constructor?.name.endsWith('ServiceApi')) {
+      if (prop?.constructor?.name.endsWith("ServiceApi")) {
         actual.push(prop.constructor.name.toLowerCase());
       }
     }
@@ -134,63 +148,131 @@ describe('ZitadelTest', () => {
     expect(actual).toEqual(expected);
   });
 
-  test('testCustomCaCert', async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `https://${host}:${httpsPort}`,
-      'dummy-client',
-      'dummy-secret',
-      { caCertPath: caCertPath },
-    );
-
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
-    expect(response.defaultLanguage).toBe('https');
-  }, 30_000);
-
-  test('testInsecureMode', async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `https://${host}:${httpsPort}`,
-      'dummy-client',
-      'dummy-secret',
-      { insecure: true },
-    );
-
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
-    expect(response.defaultLanguage).toBe('https');
-  }, 30_000);
-
-  test('testDefaultHeaders', async () => {
-    const zitadel = await Zitadel.withClientCredentials(
-      `http://${host}:${httpPort}`,
-      'dummy-client',
-      'dummy-secret',
-      { defaultHeaders: { 'X-Custom-Header': 'test-value' } },
-    );
-
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
-    expect(response.defaultLanguage).toBe('http');
-    expect(response.defaultOrgId).toBe('test-value');
-  }, 30_000);
-
-  test('testProxyUrl', async () => {
-    const zitadel = Zitadel.withAccessToken(
-      'http://wiremock:8080',
-      'test-token',
-      {
-        proxyUrl: `http://${host}:${proxyPort}`,
-      },
-    );
-
-    const response = await zitadel.settings.getGeneralSettings({ body: {} });
-    expect(response.defaultLanguage).toBe('http');
-  }, 30_000);
-
-  test('testNoCaCertFails', async () => {
-    await expect(
-      Zitadel.withClientCredentials(
+  test("testCustomCaCert", async () => {
+    const transport = TransportOptions.builder().caCertPath(caCertPath).build();
+    const zitadel = Zitadel.withAuthenticator(
+      ClientCredentialsAuthenticator.builder(
         `https://${host}:${httpsPort}`,
-        'dummy-client',
-        'dummy-secret',
+        "dummy-client",
+        "dummy-secret",
+      ).build(),
+      transport,
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("https");
+  }, 30_000);
+
+  test("testInsecureMode", async () => {
+    const transport = TransportOptions.builder().verifySsl(false).build();
+    const zitadel = Zitadel.withAuthenticator(
+      ClientCredentialsAuthenticator.builder(
+        `https://${host}:${httpsPort}`,
+        "dummy-client",
+        "dummy-secret",
+      ).build(),
+      transport,
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("https");
+  }, 30_000);
+
+  test("testDefaultHeaders", async () => {
+    const transport = TransportOptions.builder()
+      .defaultHeaders({ "X-Custom-Header": "test-value" })
+      .build();
+    const zitadel = Zitadel.withAuthenticator(
+      ClientCredentialsAuthenticator.builder(
+        `http://${host}:${httpPort}`,
+        "dummy-client",
+        "dummy-secret",
+      ).build(),
+      transport,
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("http");
+    expect(response.defaultOrgId).toBe("test-value");
+  }, 30_000);
+
+  test("testProxyUrl", async () => {
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
       ),
-    ).rejects.toThrow();
+      TransportOptions.builder().proxy(`http://${host}:${proxyPort}`).build(),
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("http");
+  }, 30_000);
+
+  test("testProxyAuthRequiredWithoutCredentials", async () => {
+    // Port 3129 is the same proxy but requires Basic proxy credentials.
+    // A request without any credentials must be refused with a 407.
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
+      ),
+      TransportOptions.builder()
+        .proxy(`http://${host}:${proxyAuthPort}`)
+        .build(),
+    );
+
+    let error: unknown = null;
+    try {
+      await zitadel.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeInstanceOf(ApiError);
+    expect((error as ApiError).statusCode).toBe(407);
+  }, 30_000);
+
+  test("testProxyAuthWithCredentials", async () => {
+    // The same credentialed proxy succeeds once user:pass are supplied in the
+    // proxy URL, proving the SDK sends Proxy-Authorization.
+    const zitadel = Zitadel.withAuthenticator(
+      new PersonalAccessTokenAuthenticator(
+        "http://wiremock:8080",
+        "test-token",
+      ),
+      TransportOptions.builder()
+        .proxy(`http://user:pass@${host}:${proxyAuthPort}`)
+        .build(),
+    );
+
+    const response = await zitadel.settingsService.getGeneralSettings({
+      body: {},
+    });
+    expect(response.defaultLanguage).toBe("http");
+  }, 30_000);
+
+  test("testNoCaCertFails", async () => {
+    const zitadel = Zitadel.withAuthenticator(
+      ClientCredentialsAuthenticator.builder(
+        `https://${host}:${httpsPort}`,
+        "dummy-client",
+        "dummy-secret",
+      ).build(),
+    );
+    let error: unknown = null;
+    try {
+      await zitadel.settingsService.getGeneralSettings({ body: {} });
+    } catch (e) {
+      error = e;
+    }
+    expect((error as Error).constructor).toBe(NetworkError);
   }, 30_000);
 });
