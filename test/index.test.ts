@@ -12,7 +12,7 @@ import { NoAuthAuthenticator } from "../src/auth/no-auth-authenticator.js";
 import { PersonalAccessTokenAuthenticator } from "../src/auth/personal-access-token-authenticator.js";
 import { ClientCredentialsAuthenticator } from "../src/auth/client-credentials-authenticator.js";
 import { NetworkError } from "../src/errors/network-error.js";
-import { ApiError } from "../src/errors/api-error.js";
+import { ClientError } from "../src/errors/client-error.js";
 import { TransportOptions } from "../src/transport-options.js";
 import Zitadel from "../src/index.js";
 
@@ -236,8 +236,8 @@ describe("ZitadelTest", () => {
     } catch (e) {
       error = e;
     }
-    expect(error).toBeInstanceOf(ApiError);
-    expect((error as ApiError).statusCode).toBe(407);
+    expect(error).toBeInstanceOf(ClientError);
+    expect((error as ClientError).statusCode).toBe(407);
   }, 30_000);
 
   test("testProxyAuthWithCredentials", async () => {
