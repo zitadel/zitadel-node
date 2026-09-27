@@ -154,13 +154,21 @@ export class ValueSerializer {
       }
       case "spaceDelimited": {
         if (Array.isArray(value)) {
-          return value.map((v) => ObjectSerializer.stringify(v)).join(" ");
+          const items = value.map((v) => ObjectSerializer.stringify(v));
+          if (explode) {
+            return items;
+          }
+          return items.join(" ");
         }
         return ObjectSerializer.stringify(value);
       }
       case "pipeDelimited": {
         if (Array.isArray(value)) {
-          return value.map((v) => ObjectSerializer.stringify(v)).join("|");
+          const items = value.map((v) => ObjectSerializer.stringify(v));
+          if (explode) {
+            return items;
+          }
+          return items.join("|");
         }
         return ObjectSerializer.stringify(value);
       }
@@ -216,6 +224,61 @@ export class ValueSerializer {
   }
 
   /**
+   * Percent-encodes a query value while leaving RFC 3986 reserved characters
+   * literal (OAS `allowReserved: true`).
+   *
+   * Everything that is not RFC 3986 reserved or unreserved — spaces, control
+   * characters, non-ASCII — is still percent-encoded, so the result is always
+   * a valid URL query segment. `encodeURIComponent` already leaves the
+   * unreserved set (and `! ' ( ) *`) alone and encodes a space as `%20`; here
+   * the remaining reserved characters `: / ? # [ ] @ $ & + , ; =` are restored,
+   * matching Java's `encodeQueryAllowingReserved`.
+   */
+  static encodeQueryAllowingReserved(value: string): string {
+    return encodeURIComponent(value)
+      .replace(/%3A/g, ":")
+      .replace(/%2F/g, "/")
+      .replace(/%3F/g, "?")
+      .replace(/%23/g, "#")
+      .replace(/%5B/g, "[")
+      .replace(/%5D/g, "]")
+      .replace(/%40/g, "@")
+      .replace(/%21/g, "!")
+      .replace(/%24/g, "$")
+      .replace(/%26/g, "&")
+      .replace(/%27/g, "'")
+      .replace(/%28/g, "(")
+      .replace(/%29/g, ")")
+      .replace(/%2A/g, "*")
+      .replace(/%2B/g, "+")
+      .replace(/%2C/g, ",")
+      .replace(/%3B/g, ";")
+      .replace(/%3D/g, "=");
+  }
+
+  /**
+   * Wraps `value` in an {@link AllowReservedValue} when the parameter declares
+   * `allowReserved: true`; otherwise returns it unchanged. The query-string
+   * builder unwraps the marker and encodes the value with
+   * {@link encodeQueryAllowingReserved} so RFC 3986 reserved characters stay
+   * literal on the wire.
+   *
+   * @param value the serialized query value (a string, or a string[] for
+   *   exploded parameters)
+   * @param allowReserved whether the parameter preserves reserved characters
+   * @returns the value, wrapped iff `allowReserved` is true
+   */
+  static maybeAllowReserved(
+    value: string | string[] | undefined,
+    allowReserved: boolean,
+  ): string | string[] | AllowReservedValue | undefined {
+    if (value === null || value === undefined || !allowReserved) {
+      return value;
+    }
+    return new AllowReservedValue(value);
+  }
+
+  /**
    * Serialize a deepObject-style query parameter.
    *
    * Produces a record of flattened keys in the form `paramName[key]` to
@@ -238,4 +301,14 @@ export class ValueSerializer {
     }
     return result;
   }
+}
+
+/**
+ * Marker wrapping a query value so the query-string builder preserves RFC 3986
+ * reserved characters (OAS `allowReserved: true`) instead of percent-encoding
+ * them. Produced by {@link ValueSerializer.maybeAllowReserved} and unwrapped
+ * when the query string is assembled.
+ */
+export class AllowReservedValue {
+  constructor(readonly value: string | string[]) {}
 }

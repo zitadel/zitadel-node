@@ -187,6 +187,15 @@ describe("HeaderSelector", () => {
       expect(headers["Accept"]).toBe("application/json");
     });
 
+    test("drops whitespace-only entries before joining", () => {
+      const headers = headerSelector.selectHeaders(
+        ["   ", "application/json"],
+        "application/json",
+        false,
+      );
+      expect(headers["Accept"]).toBe("application/json");
+    });
+
     test("does not set Accept header when all entries are blank", () => {
       const headers = headerSelector.selectHeaders(
         ["", "   "],

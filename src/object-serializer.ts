@@ -288,6 +288,18 @@ export class ObjectSerializer {
     try {
       return JSON.stringify(obj, function (_key, value) {
         if (value instanceof Set) return [...value];
+        /**
+         * Reject a non-finite number (NaN, ±Infinity) on encode. RFC 8259 §6
+         * has no such token, so JSON.stringify would silently emit `null` in
+         * its place — corrupting the wire value. Fail loudly instead, matching
+         * the other SDKs (python allow_nan=False, go, rust, …).
+         */
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new SerializationError(
+            `Non-finite number ${String(value)} is not permitted by RFC 8259 ` +
+              `(JSON has no NaN or Infinity).`,
+          );
+        }
         if (this[_key] instanceof Date)
           return ObjectSerializer.formatDateTimeOffset(this[_key]);
         /**

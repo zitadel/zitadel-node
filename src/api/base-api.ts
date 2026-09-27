@@ -16,6 +16,7 @@ import { Configuration } from "../configuration.js";
 import { DefaultApiClient } from "#transport";
 import { HeaderSelector } from "../header-selector.js";
 import { ObjectSerializer } from "../object-serializer.js";
+import { AllowReservedValue, ValueSerializer } from "../value-serializer.js";
 import { injectTraceContext } from "../trace-context-util.js";
 
 /**
@@ -113,15 +114,31 @@ export abstract class BaseApi {
     }
 
     const filteredParams = Object.entries(queryParams)
-      .filter(([, v]) => v != null)
-      .flatMap(([k, v]) =>
-        Array.isArray(v)
-          ? v.map(
-              (item) =>
-                `${encodeURIComponent(k)}=${encodeURIComponent(String(item))}`,
+      .flatMap(([k, rawValue]) => {
+        /* OAS allowReserved: a wrapped value keeps RFC 3986 reserved
+         * characters literal instead of percent-encoding them. Unwrap the
+         * marker and pick the matching encoder; plain values are encoded
+         * exactly as before. */
+        let value: unknown = rawValue;
+        let allowReserved = false;
+        if (value instanceof AllowReservedValue) {
+          value = value.value;
+          allowReserved = true;
+        }
+        if (value == null) {
+          return [];
+        }
+        const encodeQueryValue = (v: string): string =>
+          allowReserved
+            ? ValueSerializer.encodeQueryAllowingReserved(v)
+            : encodeURIComponent(v);
+        const encodedKey = encodeURIComponent(k);
+        return Array.isArray(value)
+          ? value.map(
+              (item) => `${encodedKey}=${encodeQueryValue(String(item))}`,
             )
-          : [`${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`],
-      )
+          : [`${encodedKey}=${encodeQueryValue(String(value))}`];
+      })
       .join("&");
     if (filteredParams) {
       url += "?" + filteredParams;
