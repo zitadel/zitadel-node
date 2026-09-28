@@ -72,7 +72,7 @@ describe("UserServiceSanityCheckSpec", () => {
    *
    * @throws ApiError on API error
    */
-  it("testRetrievesTheUserDetailsById", async () => {
+  it("testRetrievesUserDetailsById", async () => {
     const response = await client.userService.getUserByID({
       userId: user.userId || "",
     });
@@ -84,7 +84,7 @@ describe("UserServiceSanityCheckSpec", () => {
    *
    * @throws ApiError on API error
    */
-  it("testIncludesTheCreatedUserWhenListingAllUsers", async () => {
+  it("testIncludesCreatedUserWhenListing", async () => {
     const response = await client.userService.listUsers({ queries: [] });
     const userIds = response.result?.map(
       (userItem: UserServiceUser) => userItem.userId,
@@ -97,7 +97,7 @@ describe("UserServiceSanityCheckSpec", () => {
    *
    * @throws ApiError on API error
    */
-  it("testUpdatesTheUserEmailAndReflectsInGet", async () => {
+  it("testUpdatesUserEmailAndReflectsInGet", async () => {
     const newEmail = `updated_${crypto.randomUUID().substring(0, 8)}@example.com`;
 
     await client.userService.updateHumanUser({
@@ -114,7 +114,7 @@ describe("UserServiceSanityCheckSpec", () => {
   /**
    * Attempt to retrieve a non-existent user and expect an ApiError.
    */
-  it("testRaisesAnApiExceptionWhenRetrievingNonExistentUser", async () => {
+  it("testRaisesApiExceptionForNonexistentUser", async () => {
     const nonExistentId = crypto.randomUUID();
     await expect(
       client.userService.getUserByID({ userId: nonExistentId }),
