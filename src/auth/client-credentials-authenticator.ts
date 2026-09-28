@@ -1,86 +1,71 @@
-import { OAuthAuthenticator } from './oauth-authenticator.js';
-import { OpenId } from './openid.js';
-import { ClientCredentialsAuthenticatorBuilder } from './client-credentials-authenticator-builder.js';
-import * as oauth from 'oauth4webapi';
-import type { TransportOptions } from '../transport-options.js';
+import { OAuthAuthenticator } from "./oauth-authenticator.js";
+import type { OpenId } from "./open-id.js";
+import { ClientCredentialsAuthenticatorBuilder } from "./client-credentials-authenticator-builder.js";
+import { DEFAULT_SCOPE } from "./oauth-authenticator-builder.js";
 
 /**
- * OAuth2 Client Credentials Authenticator.
+ * OAuth authenticator implementing the client-credentials flow (RFC 6749 §4.4).
  *
- * Implements the OAuth2 client credentials grant to obtain an access token.
+ * Mints a bearer token by POSTing client_id / client_secret to the provider's
+ * token endpoint through the SDK's shared transport. See
+ * {@link OAuthAuthenticator} for the caching and HTTP-injection contract.
  */
 export class ClientCredentialsAuthenticator extends OAuthAuthenticator {
-  private readonly clientAuth: oauth.ClientAuth;
-  private readonly parameters: URLSearchParams;
-
   /**
-   * Constructs a ClientCredentialsAuthenticator.
-   *
-   * @param openId The base URL for the API endpoints.
-   * @param clientId The OAuth2 client identifier.
-   * @param clientSecret The OAuth2 client secret.
-   * @param scope The scope for the token request.
-   * @param transportOptions Optional transport options for TLS, proxy, and headers.
+   * @param openId the OpenID discovery helper for the target host
+   * @param clientId the OAuth2 client identifier
+   * @param clientSecret the OAuth2 client secret
+   * @param scope the space-delimited scope string for the token request
    */
   public constructor(
     openId: OpenId,
-    clientId: string,
-    clientSecret: string,
-    scope: string = 'openid urn:zitadel:iam:org:project:id:zitadel:aud',
-    transportOptions?: TransportOptions,
+    private readonly clientId: string,
+    private readonly clientSecret: string,
+    scope: string = DEFAULT_SCOPE,
   ) {
-    const authServer = openId.getAuthorizationServer();
-    const client: oauth.Client = { client_id: clientId };
-    super(authServer, client, scope, transportOptions);
-    this.clientAuth = oauth.ClientSecretBasic(clientSecret);
-    this.parameters = new URLSearchParams({
-      grant_type: 'client_credentials',
-      scope: this.scope,
-    });
+    super(openId, scope);
   }
 
   /**
-   * Returns a new builder instance for ClientCredentialsAuthenticator.
+   * Returns a builder for a ClientCredentialsAuthenticator.
    *
-   * @param host The base URL for API endpoints.
-   * @param clientId The OAuth2 client identifier.
-   * @param clientSecret The OAuth2 client secret.
-   * @param transportOptions Optional transport options for TLS, proxy, and headers.
-   * @returns A new builder instance.
+   * @param host the base URL for the OAuth provider
+   * @param clientId the OAuth2 client identifier
+   * @param clientSecret the OAuth2 client secret
+   * @throws {TypeError} if the host is not a valid http or https URL, or the
+   *   client identifier or secret is empty
    */
   public static builder(
     host: string,
     clientId: string,
     clientSecret: string,
-    transportOptions?: TransportOptions,
   ): ClientCredentialsAuthenticatorBuilder {
     return new ClientCredentialsAuthenticatorBuilder(
       host,
       clientId,
       clientSecret,
-      transportOptions,
     );
   }
 
-  protected async performTokenRequest(
-    authServer: oauth.AuthorizationServer,
-    client: oauth.Client,
-  ): Promise<oauth.TokenEndpointResponse> {
-    const tokenOptions = await this.buildTokenRequestOptions();
+  protected getGrantType(): string {
+    return "client_credentials";
+  }
 
-    if (process.env.JEST_WORKER_ID !== undefined) {
-      tokenOptions[oauth.allowInsecureRequests] = true;
-    }
+  protected getTokenRequestParams(): Record<string, string> {
+    return { client_id: this.clientId, client_secret: this.clientSecret };
+  }
 
-    // noinspection JSDeprecatedSymbols
-    const response = await oauth.clientCredentialsGrantRequest(
-      authServer,
-      client,
-      this.clientAuth,
-      this.parameters,
-      tokenOptions,
-    );
+  [Symbol.for("nodejs.util.inspect.custom")](): string {
+    return `${this.constructor.name}(host=${this.getHost()}, clientId=${this.clientId}, clientSecret=***, scope=${this.scope}, accessToken=${this.maskedToken()})`;
+  }
 
-    return oauth.processClientCredentialsResponse(authServer, client, response);
+  override toJSON(): Record<string, unknown> {
+    return {
+      host: this.getHost(),
+      clientId: this.clientId,
+      clientSecret: "***",
+      scope: this.scope,
+      accessToken: this.maskedToken(),
+    };
   }
 }

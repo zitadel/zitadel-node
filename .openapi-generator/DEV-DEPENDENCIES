@@ -1,0 +1,12 @@
+# Every dev dependency an emitted test imports, one per line as
+# `<name> <version-range>  # <which test needs it>`. This file is
+# generator-owned and rewritten on every generation. It is the contract between
+# the generator and a client that keep-lists its own package.json: a dependency
+# added to a generated test but missing from the client's manifest kills the
+# whole suite at collection, so the test bootstrap (test/global-setup.ts)
+# probes this set up front and names this file when one is missing.
+testcontainers ^12.0  # test/global-setup.ts starts the mock server and the proxy
+@opentelemetry/api ^1.9.0  # test/trace-context-util.test.ts
+@opentelemetry/context-async-hooks ^2.0.0  # test/trace-context-util.test.ts
+@opentelemetry/core ^2.0.0  # test/trace-context-util.test.ts
+@opentelemetry/sdk-trace-base ^2.0.0  # test/trace-context-util.test.ts
