@@ -212,7 +212,8 @@ export abstract class AbstractApiClient implements ApiClient {
    * @param method HTTP method (GET, POST, PUT, DELETE, etc.)
    * @param url fully qualified URL
    * @param headers HTTP headers from the caller
-   * @param body request body (serialized JSON string, raw Buffer, or null)
+   * @param body request body (serialized JSON string, raw Buffer for binary, or a
+   *   `Record<string, unknown>` for multipart form data; may be null)
    * @param options optional per-call flags (e.g. redirect suppression)
    * @returns ApiHttpResponse containing status code, body, and headers
    */

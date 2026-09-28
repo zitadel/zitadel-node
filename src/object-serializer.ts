@@ -182,9 +182,8 @@ function decimalFieldNames(): ReadonlySet<string> {
 /**
  * Maximum allowed JSON nesting depth. Node's JSON.parse has no built-in
  * cap and recurses through V8's call stack, so a malicious 100k-deep
- * `{"a":{"a":...}}` payload would stack-overflow / DoS. Matches the
- * 1000-cap Java/Kotlin Jackson and Python json stdlib use; Go uses the
- * same. C# is stricter (64). F5 (Round-4 deferred).
+ * `{"a":{"a":...}}` payload would stack-overflow / DoS. All twelve SDKs
+ * use the same cap.
  */
 const MAX_JSON_DEPTH = 1000;
 
@@ -788,14 +787,11 @@ export class ObjectSerializer {
    * suffix (rather than `Z`) keeps the offset-bearing shape the rest of the
    * stack expects while remaining a valid UTC designator.
    *
-   * The encoder also preserves the millisecond fraction the decoder already
-   * accepts: a JS Date holds whole-millisecond precision (`getUTCMilliseconds`),
-   * so an instant like `2020-01-02T03:04:05.123Z` round-trips losslessly with
-   * its `.123` intact instead of being silently truncated to whole seconds.
-   * The `.SSS` group is emitted only when the milliseconds are non-zero, so a
-   * whole-second instant keeps its bare `…:45+00:00` shape. This matches the
-   * sub-second-preserving encoders in the other SDKs (Go RFC3339Nano,
-   * Python `.isoformat()`, Java `ISO_OFFSET_DATE_TIME`).
+   * The encoder always emits a fixed three-digit millisecond fraction, so a
+   * whole-second instant serialises as `…:45.000+00:00` and an instant like
+   * `2020-01-02T03:04:05.123Z` keeps its `.123`. This fixed `.SSS` shape is the
+   * canonical form shared by all twelve SDKs; a JS Date holds whole-millisecond
+   * precision (`getUTCMilliseconds`), so the fraction round-trips intact.
    */
   private static formatDateTimeOffset(date: Date): string {
     const pad = (n: number, w = 2): string => String(n).padStart(w, "0");
@@ -806,7 +802,7 @@ export class ObjectSerializer {
     const mi = pad(date.getUTCMinutes());
     const s = pad(date.getUTCSeconds());
     const ms = date.getUTCMilliseconds();
-    const frac = ms === 0 ? "" : `.${pad(ms, 3)}`;
+    const frac = `.${pad(ms, 3)}`;
     return `${y}-${mo}-${d}T${h}:${mi}:${s}${frac}+00:00`;
   }
 

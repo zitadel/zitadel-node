@@ -34,7 +34,8 @@ export interface ApiClient {
    * @param method HTTP method (GET, POST, PUT, DELETE, etc.)
    * @param url Fully qualified URL
    * @param headers HTTP headers
-   * @param body Request body (serialized JSON string, raw Buffer, or null)
+   * @param body Request body (serialized JSON string, raw Buffer for binary, or a
+   *   `Record<string, unknown>` for multipart form data; may be null)
    * @param options optional per-request transport overrides (e.g. `noRedirect`)
    * @returns ApiHttpResponse containing status code, body, and headers
    */

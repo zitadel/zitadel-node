@@ -8,11 +8,11 @@
 import { ObjectSerializer } from "./object-serializer.js";
 
 /**
- * Serializes parameter values for HTTP requests based on their location
- * (path, query, header, form) and handles type-specific conversions.
+ * Serializes parameter values for HTTP requests based on their location and format.
  *
- * This is the single entry point for all parameter serialization in generated
- * API methods. ObjectSerializer handles JSON object serde separately.
+ * Converts values into their string representations suitable for HTTP request
+ * paths, query strings, and headers. Handles null values, collections with various
+ * collection formats, and URL encoding.
  */
 export class ValueSerializer {
   /**
@@ -183,14 +183,6 @@ export class ValueSerializer {
   }
 
   /**
-   * Percent-encodes a value for use as a URL path segment.
-   *
-   * Mirrors Swift's `.urlPathAllowed` character set: encodes characters that
-   * are not allowed in a URI path segment per RFC 3986, but preserves the
-   * sub-delimiters (including `;`, `=`, `,`, `.`) that OAS 3.0 matrix/label/
-   * simple styles use as structural separators in the styled value.
-   */
-  /**
    * Formats a `format: date` value as YYYY-MM-DD for wire serialization.
    * Node has only Date (no separate date-only type), so the codegen
    * checks the spec format and routes through this helper to strip the
@@ -206,6 +198,15 @@ export class ValueSerializer {
     return `${y}-${m}-${d}`;
   }
 
+  /**
+   * Percent-encodes a value for use as a URL path segment.
+   *
+   * Mirrors Swift's `.urlPathAllowed` character set: encodes characters that
+   * are not allowed in a URI path segment per RFC 3986, but preserves the
+   * sub-delimiters (including `;`, `=`, `,`, `:`, etc.) that OAS 3.0
+   * matrix/label/simple styles use as structural separators in the styled
+   * value.
+   */
   static encodePathSegment(value: string): string {
     return encodeURIComponent(value)
       .replace(/%3B/g, ";")
@@ -304,10 +305,12 @@ export class ValueSerializer {
 }
 
 /**
- * Marker wrapping a query value so the query-string builder preserves RFC 3986
+ * Wraps a query value so the query-string builder preserves RFC 3986
  * reserved characters (OAS `allowReserved: true`) instead of percent-encoding
  * them. Produced by {@link ValueSerializer.maybeAllowReserved} and unwrapped
  * when the query string is assembled.
+ *
+ * @remarks The wrapped value is a string, or a string[] for exploded parameters.
  */
 export class AllowReservedValue {
   constructor(readonly value: string | string[]) {}

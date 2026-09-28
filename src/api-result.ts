@@ -12,9 +12,8 @@
 export interface ApiResult<T> {
   readonly statusCode: number;
   readonly data: T | undefined;
-  /* apiresult-rawbody-nullability: the transport always produces a body
-   * string (possibly empty), so rawBody is non-null — matching the SDKs
-   * that already type it non-null. */
+  /* The transport always produces a body string (possibly empty), so
+   * rawBody is never null. */
   readonly rawBody: string;
   readonly headers: Readonly<Record<string, string>>;
 }

@@ -14,7 +14,7 @@ import { ServerConfiguration } from "./server-configuration.js";
  * request. Transport-level settings (TLS, proxy, timeouts) belong in
  * `TransportOptions` and are configured on the `DefaultApiClient`.
  *
- * This class is immutable. Use {@link Configuration.builder} to create instances:
+ * This class is immutable and thread-safe. Use {@link Configuration.builder} to create instances:
  *
  * ```typescript
  * const config = Configuration.builder()
@@ -24,10 +24,20 @@ import { ServerConfiguration } from "./server-configuration.js";
  * ```
  */
 export class Configuration {
-  /** Base URL for all API requests. */
+  /**
+   * Base URL for all API requests.
+   *
+   * Defaults to the first server URL from the OpenAPI specification.
+   */
   public readonly baseUrl: string;
 
-  /** Default headers included in every API request. */
+  /**
+   * Default headers included in every API request.
+   *
+   * These headers are merged after transport-level headers from
+   * `TransportOptions` but before operation-specific headers and
+   * authentication headers.
+   */
   public readonly defaultHeaders: Readonly<Record<string, string>>;
 
   constructor(
@@ -51,6 +61,9 @@ export class Configuration {
 
   /**
    * Return a Configuration with default values.
+   *
+   * A fresh instance every call: the SDK keeps no process-wide default a
+   * caller could swap out from under another caller.
    *
    * @returns a new configuration with the spec-defined base URL and no
    *   default headers

@@ -13,7 +13,7 @@
  * are independent of API-level concerns (base URL, authentication headers)
  * which belong in `Configuration`.
  *
- * This class is immutable. Use {@link TransportOptions.builder} to create instances:
+ * This class is immutable and thread-safe. Use {@link TransportOptions.builder} to create instances:
  *
  * ```typescript
  * const transport = TransportOptions.builder()
@@ -34,19 +34,36 @@ export class TransportOptions {
   /** HTTP or HTTPS proxy URL for all outbound requests. */
   public readonly proxy: string | null;
 
-  /** End-to-end request timeout in milliseconds. Default 10000 (10 s). null means no timeout. */
+  /**
+   * End-to-end request timeout in milliseconds.
+   *
+   * Covers the entire request lifecycle: connection, TLS handshake, sending
+   * the request body, and reading the response. Defaults to 10000 ms
+   * (10 seconds). `null` disables the timeout (waits indefinitely).
+   */
   public readonly timeout: number | null;
 
   /** Whether the client follows HTTP 3xx redirects automatically. */
   public readonly followRedirects: boolean;
 
-  /** Maximum number of consecutive redirects to follow. */
+  /**
+   * Maximum number of consecutive redirects to follow.
+   *
+   * Only meaningful when {@link TransportOptions.followRedirects} is `true`.
+   * A value of `null` uses the HTTP client's built-in default.
+   */
   public readonly maxRedirects: number | null;
 
   /** Custom User-Agent header value. */
   public readonly userAgent: string | null;
 
-  /** Transport-level default headers included in every request. */
+  /**
+   * Transport-level default headers included in every request.
+   *
+   * These headers have the lowest priority: API-level headers from
+   * {@link Configuration.defaultHeaders}, operation-specific headers, and
+   * authentication headers all take precedence.
+   */
   public readonly defaultHeaders: Readonly<Record<string, string>>;
 
   /** Whether to auto-inject an X-Request-ID header with a unique UUID on every request. */
@@ -92,6 +109,7 @@ export class TransportOptions {
  * - `followRedirects` -- `true`
  * - `injectRequestId` -- `false`
  * - `timeout` -- `10000` (10 seconds)
+ * - `userAgent` -- a package-specific default string
  * - All other fields -- `null` or empty
  */
 export class TransportOptionsBuilder {

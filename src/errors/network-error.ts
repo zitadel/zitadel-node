@@ -8,10 +8,9 @@
 import { ApiError } from "./api-error.js";
 
 /**
- * Error for a request that got no HTTP response: the connection was refused,
- * the host name did not resolve, the TLS handshake failed, or the connection
- * was reset. The status code is always `0`; the underlying error is kept as
- * `cause`.
+ * Error for a request that got no HTTP response: connection refused,
+ * DNS failure, TLS failure, or connection reset. The status code is always
+ * `0`; the underlying error is kept as `cause`.
  */
 export class NetworkError extends ApiError {
   constructor(message: string, options?: { cause?: unknown }) {

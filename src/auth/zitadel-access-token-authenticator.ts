@@ -7,6 +7,9 @@
 
 import { BearerAuthenticator } from "./bearer-authenticator.js";
 
+/**
+ * Scheme-specific authenticator for the zitadelAccessToken security scheme.
+ */
 export class ZitadelAccessTokenAuthenticator extends BearerAuthenticator {
   constructor(host: string, token: string) {
     super(host, token);
